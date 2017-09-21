@@ -2,6 +2,7 @@
 
 """开发环境使用的配置
 """
+DEBUG = False
 
 DB = 'image_search_dev'
 HOST = '127.0.0.1'
