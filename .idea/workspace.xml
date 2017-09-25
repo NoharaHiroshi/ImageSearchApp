@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2aee8db4-43e4-4076-99bf-e411386af3a9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/icon/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/icon/icon.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/script/get_image_scripts/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/script/get_image_scripts/get_ali_icon.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/icon/icon_series.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/manage_index.ts" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/manage_index.ts" />
     </list>
     <ignored path="myProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,16 +28,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="development.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/config/development.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="session.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/session.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -69,22 +55,10 @@
       <file leaf-file-name="icon.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/icon/icon.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="874">
-              <caret line="46" column="40" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
+            <state relative-caret-position="399">
+              <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
               <folding>
                 <element signature="e#16#74#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="get_ali_icon.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/script/get_image_scripts/get_ali_icon.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="110" column="16" selection-start-line="110" selection-start-column="16" selection-end-line="110" selection-end-column="30" />
-              <folding>
-                <element signature="e#16#27#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -188,6 +162,7 @@
         <option value="$PROJECT_DIR$/script/get_ali_icon.py" />
         <option value="$PROJECT_DIR$/script/get_image_scripts/get_ali_icon.py" />
         <option value="$PROJECT_DIR$/model/icon/icon.py" />
+        <option value="$PROJECT_DIR$/model/icon/icon_series.py" />
       </list>
     </option>
   </component>
@@ -798,7 +773,14 @@
       <option name="project" value="LOCAL" />
       <updated>1505989895005</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="添加icon模型，获取icon脚本">
+      <created>1506326060322</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1506326060322</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -847,23 +829,16 @@
     <MESSAGE value="添加flask后台" />
     <MESSAGE value="与Angular连接" />
     <MESSAGE value="测试Angular2" />
-    <option name="LAST_COMMIT_MESSAGE" value="测试Angular2" />
+    <MESSAGE value="添加icon模型，获取icon脚本" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加icon模型，获取icon脚本" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/model/config/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/redis_cache.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -1171,16 +1146,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/create_all_tables.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="23" selection-start-line="11" selection-start-column="23" selection-end-line="11" selection-end-column="23" />
-          <folding>
-            <element signature="e#16#43#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage_app/views/manage_index/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
@@ -1188,14 +1153,6 @@
           <folding>
             <element signature="e#16#32#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/config/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1219,9 +1176,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/script/create_all_tables.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="34" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+          <folding>
+            <element signature="e#16#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/config/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/script/get_image_scripts/get_ali_icon.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
+        <state relative-caret-position="2090">
           <caret line="110" column="16" selection-start-line="110" selection-start-column="16" selection-end-line="110" selection-end-column="30" />
           <folding>
             <element signature="e#16#27#0" expanded="true" />
@@ -1229,10 +1204,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/model/icon/icon_series.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+          <folding>
+            <element signature="e#16#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model/icon/icon.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="874">
-          <caret line="46" column="40" selection-start-line="46" selection-start-column="40" selection-end-line="46" selection-end-column="40" />
+        <state relative-caret-position="399">
+          <caret line="21" column="30" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
           <folding>
             <element signature="e#16#74#0" expanded="true" />
           </folding>
