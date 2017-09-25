@@ -4,7 +4,7 @@ import os
 
 ENV = os.environ.get('ENV', 'development')
 
-print 'MODEL: %s' % ENV
+print 'MODEL: 已加载（%s）' % ENV
 
 if ENV == 'development':
     import development as config

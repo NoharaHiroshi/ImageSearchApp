@@ -2,8 +2,8 @@
 
 from flask import Flask, render_template, redirect, request, abort, url_for, jsonify
 from lib.log import create_log
-
 from views.manage_index.route import manage as manage_route
+from redis_store import common_redis
 
 DEFAULT_APP_NAME = __name__
 
@@ -22,9 +22,14 @@ def configure_logger(app):
     app.my_logger = create_log('platform')
 
 
+def configure_redis(app):
+    app.session_redis = common_redis
+
+
 def create_app(config=None, blueprints=BLUEPRINTS):
     app = Flask(DEFAULT_APP_NAME)
     app.config.from_object(config)
     configure_blueprints(app, blueprints)
+    configure_redis(app)
 
     return app
