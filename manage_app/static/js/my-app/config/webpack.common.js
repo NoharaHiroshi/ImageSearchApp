@@ -9,7 +9,7 @@ module.exports = {
     'app': './src/main.ts' // 应用代码
   },
   resolve: { // 解析模块路径时的配置
-    extensions: ['.ts', '.js'] // 制定模块的后缀，在引入模块时就会自动补全
+	extensions: ['.ts', '.js'] // 制定模块的后缀，在引入模块时就会自动补全
   },
   module: {
     rules: [ // 告诉webpack每一类文件需要使用什么加载器来处理

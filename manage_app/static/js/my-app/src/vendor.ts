@@ -15,5 +15,5 @@ import 'rxjs/Subject';
 import 'rxjs/BehaviorSubject';
 
 // Bootsctrap
-import 'bootstrap/dist/css/bootstrap.css';
-import 'font-awesome/css/font-awesome.css';
+// bootstrap/dist/css/bootstrap.css';
+// import 'font-awesome/css/font-awesome.css';
