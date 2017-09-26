@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2aee8db4-43e4-4076-99bf-e411386af3a9" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/permission_wrap.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/manage/permission.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/manage/role.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/config/helpers.js" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/config/helpers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/config/webpack.common.js" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/config/webpack.common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/config/webpack.dev.js" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/config/webpack.dev.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/package-lock.json" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/package.json" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/main.ts" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/main.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/vendor.ts" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/vendor.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/tsconfig.json" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/tsconfig.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/manage/func.py" afterPath="$PROJECT_DIR$/model/manage/func.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/manage/user.py" afterPath="$PROJECT_DIR$/model/manage/user.py" />
     </list>
     <ignored path="myProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,11 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="user.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="user.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/manage/user.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="5" selection-start-line="13" selection-start-column="4" selection-end-line="15" selection-end-column="5" />
+            <state relative-caret-position="912">
+              <caret line="75" column="44" selection-start-line="75" selection-start-column="44" selection-end-line="75" selection-end-column="44" />
               <folding>
                 <element signature="e#16#53#0" expanded="true" />
               </folding>
@@ -47,11 +44,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menu.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="permission.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/manage/permission.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+              <folding>
+                <element signature="e#16#74#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="menu.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/manage/menu.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-38">
-              <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+            <state relative-caret-position="95">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="role.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/manage/role.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="40" />
               <folding>
                 <element signature="e#16#74#0" expanded="true" />
               </folding>
@@ -62,10 +81,22 @@
       <file leaf-file-name="func.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/manage/func.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
+            <state relative-caret-position="418">
+              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding>
                 <element signature="e#16#74#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="permission_wrap.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/permission_wrap.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+              <folding>
+                <element signature="e#16#43#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -94,7 +125,7 @@
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/redis_store/redis_cache/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
+            <state relative-caret-position="95">
               <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding>
                 <element signature="e#16#28#0" expanded="true" />
@@ -111,36 +142,6 @@
               <folding>
                 <element signature="e#16#100#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/redis_store/config/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="21" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/manage_app/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="8" column="53" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="53" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -170,7 +171,6 @@
         <option value="$PROJECT_DIR$/model/base.py" />
         <option value="$PROJECT_DIR$/model/config/config.py" />
         <option value="$PROJECT_DIR$/model/session.py" />
-        <option value="$PROJECT_DIR$/model/manage/user.py" />
         <option value="$PROJECT_DIR$/manage_app/config/development.py" />
         <option value="$PROJECT_DIR$/script/create_all_tables.py" />
         <option value="$PROJECT_DIR$/lib/log.py" />
@@ -196,6 +196,10 @@
         <option value="$PROJECT_DIR$/model/manage/menu.py" />
         <option value="$PROJECT_DIR$/model/manage/menu_func.py" />
         <option value="$PROJECT_DIR$/model/manage/func.py" />
+        <option value="$PROJECT_DIR$/lib/permission_wrap.py" />
+        <option value="$PROJECT_DIR$/model/manage/role.py" />
+        <option value="$PROJECT_DIR$/model/manage/permission.py" />
+        <option value="$PROJECT_DIR$/model/manage/user.py" />
       </list>
     </option>
   </component>
@@ -865,18 +869,25 @@
       <option name="project" value="LOCAL" />
       <updated>1506416179079</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="测试Angular启动">
+      <created>1506420025611</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1506420025611</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1036" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2720049" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32890365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -928,27 +939,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/des3_encrypt.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/aes_encrypt.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/paginator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/redis_session.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1233,24 +1223,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/redis_store/redis_cache/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding>
-            <element signature="e#16#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/redis_store/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1269,16 +1241,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/manage/user.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="5" selection-start-line="13" selection-start-column="4" selection-end-line="15" selection-end-column="5" />
-          <folding>
-            <element signature="e#16#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/config/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -1287,22 +1249,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/manage/func.py">
+    <entry file="file://$PROJECT_DIR$/redis_store/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
+        <state relative-caret-position="57">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/redis_store/redis_cache/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding>
-            <element signature="e#16#74#0" expanded="true" />
+            <element signature="e#16#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/permission_wrap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
+          <folding>
+            <element signature="e#16#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/manage/menu.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-38">
-          <caret line="16" column="23" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+        <state relative-caret-position="95">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/manage/func.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
           <folding>
             <element signature="e#16#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/manage/role.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="40" />
+          <folding>
+            <element signature="e#16#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/manage/permission.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+          <folding>
+            <element signature="e#16#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/manage/user.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="912">
+          <caret line="75" column="44" selection-start-line="75" selection-start-column="44" selection-end-line="75" selection-end-column="44" />
+          <folding>
+            <element signature="e#16#53#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -3,7 +3,12 @@
 from flask.ext.login import UserMixin
 from sqlalchemy import Column, Integer, String, BigInteger
 from sqlalchemy import UniqueConstraint
+
 from model.base import Base, IdGenerator
+from model.session import get_session
+from redis_store.redis_cache import common_redis
+
+from model.manage.permission import RolePermissionRel
 
 from lib.aes_encrypt import AESCipher
 
@@ -52,6 +57,17 @@ class User(Base, UserMixin):
         }
 
         return s.get(self.type, u'未知身份')
+
+    @property
+    def user_permission(self):
+        key = u'user_permission_%s' % self.id
+        permission_list = common_redis.get(key)
+
+        if not permission_list:
+            with get_session() as db_session:
+                pass
+
+        return permission_list
 
     def is_status_active(self):
         return self.status == self.STATUS_NORMAL

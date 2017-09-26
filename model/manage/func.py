@@ -21,8 +21,8 @@ class Func(Base):
         }
 
 
-class MenuFuncRel(Base):
-    __tablename__ = 'manage_menu_func_rel'
+class MenuFunc(Base):
+    __tablename__ = 'manage_menu_func'
 
     id = Column(BigInteger, default=IdGenerator.gen, index=True)
     # 别名
