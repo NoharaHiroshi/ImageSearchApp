@@ -1,16 +1,15 @@
 const helpers = require('./helpers');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+const ENV = process.env.NODE_ENV = 'dev';
 
 module.exports = {
-  entry: {
-    'polyfills': './src/polyfills.ts', // 运行Angular时所需的一些标准js
-    'vendor': './src/vendor.ts', // Angular、Lodash、bootstrap.css......
-    'app': './src/main.ts' // 应用代码
-  },
   resolve: { // 解析模块路径时的配置
 	extensions: ['.ts', '.js'] // 制定模块的后缀，在引入模块时就会自动补全
   },
+  devtool: false,
   module: {
     rules: [ // 告诉webpack每一类文件需要使用什么加载器来处理
       {
@@ -45,6 +44,11 @@ module.exports = {
     ]
   },
   plugins: [
+	new webpack.DefinePlugin({
+		'process.env': {
+			'NODE_ENV': JSON.stringify(ENV)
+		}
+	}),
     //热替换
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
@@ -53,8 +57,23 @@ module.exports = {
     }),
 
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      // template: './src/index.html'
       // 自动向目标.html文件注入script和link标签
-    })
+    }),
+	
+	new ExtractTextPlugin("[name].css"),
+
+	new webpack.ProvidePlugin({
+		$ : "jquery",
+		jQuery : "jquery"
+	}), 
+	
+	new webpack.LoaderOptionsPlugin({
+		minimize: true,
+		debug: false,
+		
+		options: {
+		}
+	}),
   ]
 };
