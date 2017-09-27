@@ -20,3 +20,13 @@ class Role(Base):
             'desc': self.desc
         }
 
+
+class UserRole(Base):
+    __tablename__ = 'manage_user_role'
+
+    id = Column(BigInteger, default=IdGenerator.gen, index=True)
+    # 用户ID
+    user_id = Column(BigInteger, nullable=False, index=True)
+    # 角色ID
+    role_id = Column(BigInteger, nullable=False, index=True)
+

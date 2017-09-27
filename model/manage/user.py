@@ -9,6 +9,7 @@ from model.session import get_session
 from redis_store.redis_cache import common_redis
 
 from model.manage.permission import RolePermissionRel
+from model.manage.role import Role, UserRole
 
 from lib.aes_encrypt import AESCipher
 
@@ -59,13 +60,44 @@ class User(Base, UserMixin):
         return s.get(self.type, u'未知身份')
 
     @property
+    def user_menu(self):
+        key = u'user_menu_%s' % self.id
+        menu_list = common_redis.get(key)
+
+        if not menu_list:
+            with get_session() as db_session:
+                user_roles = db_session.query(UserRole).filter(
+                    UserRole.user_id == self.id
+                ).all()
+                user_role_ids = [user_role.id for user_role in user_roles]
+                menu_list = list()
+                all_menu = db_session.query(RolePermissionRel).filter(
+                    RolePermissionRel.role_id.in_(user_role_ids),
+                    RolePermissionRel.permission_type == RolePermissionRel.TYPE_MENU
+                ).all()
+                if all_menu:
+                    menu_list = [menu.id for menu in all_menu]
+
+        return menu_list
+
+    @property
     def user_permission(self):
         key = u'user_permission_%s' % self.id
         permission_list = common_redis.get(key)
 
         if not permission_list:
             with get_session() as db_session:
-                pass
+                user_roles = db_session.query(UserRole).filter(
+                    UserRole.user_id == self.id
+                ).all()
+                user_role_ids = [user_role.id for user_role in user_roles]
+                permission_list = list()
+                all_permission = db_session.query(RolePermissionRel).filter(
+                    RolePermissionRel.role_id.in_(user_role_ids),
+                    RolePermissionRel.permission_type == RolePermissionRel.TYPE_MENU_FUNC
+                ).all()
+                if all_permission:
+                    permission_list = [permission.id for permission in all_permission]
 
         return permission_list
 
