@@ -11,6 +11,7 @@ BLUEPRINTS = (
     (manage_route, '/manage'),
 )
 
+
 def configure_blueprints(app, blueprints):
     if blueprints:
         for view, url_prefix in blueprints:

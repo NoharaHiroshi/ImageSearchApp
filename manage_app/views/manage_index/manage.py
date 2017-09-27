@@ -13,7 +13,7 @@ from route import manage
 @manage.route('/', methods=['GET'])
 def index():
     try:
-        context = {'module': 'project_index'}
+        context = {'module': ',manage'}
         return render_template('tpl/manage_index.html', **context)
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))
