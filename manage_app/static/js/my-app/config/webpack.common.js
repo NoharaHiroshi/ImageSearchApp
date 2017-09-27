@@ -24,8 +24,9 @@ module.exports = {
         test: /\.styl$/,
         loader: 'css-loader!stylus-loader'
       }, {
-        test   : /\.css$/,
+        test: /\.css$/,
         loaders: ['to-string-loader', 'css-loader']
+		// loader: ExtractTextPlugin.extract({fallbackLoader : 'style-loader', loader : 'css-loader'})
       }, {
         test: /\.html$/,
         use: 'raw-loader',

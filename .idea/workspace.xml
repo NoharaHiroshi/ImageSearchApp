@@ -1,116 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2aee8db4-43e4-4076-99bf-e411386af3a9" name="Default" comment="webpack打包">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/font-awesome/fonts/FontAwesome.otf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/font-awesome/fonts/fontawesome-webfont.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/font-awesome/fonts/fontawesome-webfont.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/font-awesome/fonts/fontawesome-webfont.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/fonts/glyphicons-halflings-regular.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/fonts/glyphicons-halflings-regular.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/images/loading.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/blog-bg.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/checkbox-gray.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/friends/fr-01.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/friends/fr-02.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/friends/fr-03.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/friends/fr-04.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/friends/fr-05.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/friends/fr-06.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/friends/fr-07.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/friends/fr-08.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/friends/fr-09.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/friends/fr-10.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/friends/fr-11.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/instagram.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/login-bg.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/lorde.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/mask.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/ny.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/portfolio/port01.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/portfolio/port02.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/portfolio/port03.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/portfolio/port04.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/portfolio/port05.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/portfolio/port06.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/product.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/product.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/profile-01.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/profile-02.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/radio-gray.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/ui-danro.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/ui-divya.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/ui-sam.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/ui-sherman.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/ui-zac.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/weather.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/img/zoom.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/gritter/images/gritter-light.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/gritter/images/gritter-long.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/gritter/images/gritter.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/gritter/images/ie-spacer.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/lineicons/fonts/linecons.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/lineicons/fonts/linecons.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/lineicons/fonts/linecons.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/css/bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/css/style-responsive.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/css/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/css/table-responsive.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/css/to-do.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/css/zabuto_calendar.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/font-awesome/css/font-awesome.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/font-awesome/fonts/fontawesome-webfont.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/fonts/glyphicons-halflings-regular.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/bootstrap-inputmask/bootstrap-inputmask.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/bootstrap-switch.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/calendar-conf-events.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/chart-master/Chart.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/chartjs-conf.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/common-scripts.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/easy-pie-chart.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/fancybox/jquery.fancybox.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/fancybox/jquery.fancybox.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/form-component.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/fullcalendar/bootstrap-fullcalendar.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/fullcalendar/fullcalendar.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/gritter-conf.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/gritter/css/jquery.gritter.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/gritter/css/jquery.gritter0.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/gritter/js/jquery.gritter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/jquery-1.8.3.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/jquery-easy-pie-chart/jquery.easy-pie-chart.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/jquery-easy-pie-chart/jquery.easy-pie-chart.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/jquery-ui-1.9.2.custom.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/jquery.backstretch.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/jquery.dcjqaccordion.2.7.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/jquery.nicescroll.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/jquery.scrollTo.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/jquery.sparkline.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/jquery.tagsinput.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/jquery.ui.touch-punch.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/morris-conf.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/sparkline-chart.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/tasks.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/js/lib/zabuto_calendar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/lineicons/fonts/linecons.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/lineicons/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/lineicons/lte-ie7.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manage_app/static/lineicons/style.css" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/app.component.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/app.component.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/app.module.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/app.routes.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/main.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/main.ts" afterPath="" />
+    <list default="true" id="2aee8db4-43e4-4076-99bf-e411386af3a9" name="Default" comment="开发前端">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/__init__.py" afterPath="$PROJECT_DIR$/manage_app/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/config/webpack.common.js" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/config/webpack.common.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/config/webpack.dev.js" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/config/webpack.dev.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/tpl/app.html" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/tpl/app.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/templates/tpl/manage_index.html" afterPath="$PROJECT_DIR$/manage_app/templates/tpl/manage_index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/views/manage_index/manage.py" afterPath="$PROJECT_DIR$/manage_app/views/manage_index/manage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/package-lock.json" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/package-lock.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/package.json" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/package.json" />
     </list>
     <ignored path="myProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1004,7 +900,14 @@
       <option name="project" value="LOCAL" />
       <updated>1506492293800</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="添加后台管理模板">
+      <created>1506499399123</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1506499399123</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1061,7 +964,8 @@
     <MESSAGE value="添加角色模型，角色权限" />
     <MESSAGE value="获取用户菜单与权限" />
     <MESSAGE value="webpack打包" />
-    <option name="LAST_COMMIT_MESSAGE" value="webpack打包" />
+    <MESSAGE value="添加后台管理模板" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加后台管理模板" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
