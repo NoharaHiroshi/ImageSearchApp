@@ -18,7 +18,7 @@ class User(Base, UserMixin):
     __tablename__ = 'manage_user'
     # 添加唯一性约束，一个项目中只能有一个注册邮箱
     __table_args__ = (
-        UniqueConstraint('project_id', 'email', name='pid_email'),
+        UniqueConstraint('email', name='email'),
     )
 
     # 类型：管理员、超级管理员

@@ -7,7 +7,7 @@ from model.base import Base, IdGenerator
 class Func(Base):
     __tablename__ = 'manage_func'
 
-    id = Column(BigInteger, default=IdGenerator.gen, index=True)
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 名称
     name = Column(String(50), nullable=False, index=True)
     # 代码
@@ -24,7 +24,7 @@ class Func(Base):
 class MenuFunc(Base):
     __tablename__ = 'manage_menu_func'
 
-    id = Column(BigInteger, default=IdGenerator.gen, index=True)
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 别名
     name = Column(String(50), nullable=False, index=True)
     # 菜单ID

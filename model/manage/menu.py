@@ -10,7 +10,7 @@ class Menu(Base):
     __tablename__ = 'manage_menu'
 
     __table_args__ = (
-        UniqueConstraint('menu_code', name='menu_code'),
+        UniqueConstraint('code', name='code'),
     )
 
     @classmethod
@@ -22,7 +22,7 @@ class Menu(Base):
             else:
                 return 0
 
-    id = Column(BigInteger, default=IdGenerator.gen, index=True)
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 名称
     name = Column(String(50), nullable=False, index=True)
     # 代码

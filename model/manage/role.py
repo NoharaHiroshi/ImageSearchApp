@@ -7,7 +7,7 @@ from model.base import Base, IdGenerator
 class Role(Base):
     __tablename__ = 'manage_role'
 
-    id = Column(BigInteger, default=IdGenerator.gen, index=True)
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 角色名称
     name = Column(String(50), nullable=False, index=True)
     # 描述
@@ -24,7 +24,7 @@ class Role(Base):
 class UserRole(Base):
     __tablename__ = 'manage_user_role'
 
-    id = Column(BigInteger, default=IdGenerator.gen, index=True)
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 用户ID
     user_id = Column(BigInteger, nullable=False, index=True)
     # 角色ID

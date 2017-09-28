@@ -5,20 +5,26 @@
 	<title>Test Angular2</title>
 	<base href="/manage/">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+	<link rel="stylesheet" href="/static/css/bootstrap.css" type="text/css" /> 
+	<link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+	<link rel="stylesheet" href="/static/css/style-responsive.css" type="text/css" />
+	<link rel="stylesheet" href="/static/css/table-responsive.css" type="text/css" />
+	<link rel="stylesheet" href="/static/css/to-do.css" type="text/css" />
+	<link rel="stylesheet" href="/static/css/zabuto_calendar.css" type="text/css" />
 </head>
 <body>
 	<div class="app app ng-scope app-header-fixed app-aside-fixed" id="app" module="{{module}}">
-		<manage-index-root><img class="loading" src="{{ url_for('static', filename='images/loading.gif')}}"/></manage-index-root>
 	</div>
 	
 	{% if config.DEBUG %}
 	    <script type="text/javascript" src="/static/dist/debug/polyfills.js"></script>
 		<script type="text/javascript" src="/static/dist/debug/vendor.js"></script>
+		<script type="text/javascript" src="/static/dist/debug/app.js"></script>
 		<script type="text/javascript" src="/static/dist/debug/manage_index.js"></script>
     {% else %}
 	    <script type="text/javascript" src="/static/dist/prod/polyfills.js"></script>
 		<script type="text/javascript" src="/static/dist/prod/vendor.js"></script>
+		<script type="text/javascript" src="/static/dist/prod/app.js"></script>
 		<script type="text/javascript" src="/static/dist/prod/manage_index.js"></script>
     {% endif %}
 </body>

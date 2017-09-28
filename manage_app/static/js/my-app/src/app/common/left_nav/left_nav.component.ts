@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { NavService } from './nav.service';
+import { LeftNavService } from './nav.service';
 
-import { AppConfig} from '../config/app_config';
-import { Menu } from '../model/manage/permission/menu';
+import { AppConfig} from '../../config/app_config';
+import { Menu } from '../../model/menu';
 
 @Component({
   selector: 'left-nav-root',
-  templateUrl: '../../tpl/blocks/aside.html',
+  templateUrl: './left_nav.html',
 })
-
 export class LeftNavComponent implements OnInit {
-	menu_list:any[];
+	menu_list: Menu[];
 		
-	constructor(public app: AppConfig, private service: NavService) {
-	}
+	constructor(public app: AppConfig, private service: LeftNavService) {}
 	
 	ngOnInit(): void {
-		this.service.getMenus(this.app.module).then(data => {
+		this.service.getMenus().then(data => {
         	this.menu_list = data.menu_list;
         });
 	}

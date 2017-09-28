@@ -9,7 +9,7 @@ class RolePermissionRel(Base):
 
     TYPE_MENU, TYPE_MENU_FUNC = range(2)
 
-    id = Column(BigInteger, default=IdGenerator.gen, index=True)
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 权限类型
     permission_type = Column(Integer, default=TYPE_MENU, index=True)
     # 角色ID
