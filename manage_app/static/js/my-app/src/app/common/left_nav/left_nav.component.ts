@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LeftNavService } from './nav.service';
+import { LeftNavService } from './left_nav.service';
 
 import { AppConfig} from '../../config/app_config';
 import { Menu } from '../../model/menu';

@@ -14,7 +14,7 @@ export class LeftNavService extends BaseService {
 		super(http);
 	}
 	
-	getMenus(module:string): Promise<any> {
+	getMenus(): Promise<any> {
 		const url = `/manage/nav`; 
 		let self = this;
 	    return this.http.get(url)

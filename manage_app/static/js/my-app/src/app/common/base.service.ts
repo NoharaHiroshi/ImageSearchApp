@@ -34,7 +34,4 @@ export class BaseService {
  	    return c;
 	}
 	
-	public post(url: any, data: {}): Promise<{}> {
-		return this.postForm(url, JSON.stringify(data))
-	}
 }

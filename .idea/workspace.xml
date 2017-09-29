@@ -2,120 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="2aee8db4-43e4-4076-99bf-e411386af3a9" name="Default" comment="" />
-    <list default="true" id="14cfd216-d32d-4897-a739-6c739e598909" name="New changelist" comment="前端基本框架">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/dist/debug/app.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/dist/debug/manage_index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/dist/debug/vendor.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/main.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/app.component.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/app.module.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/app.routing.module.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/.gitkeep" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/css/style-responsive.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/css/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/css/table-responsive.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/css/to-do.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/css/zabuto_calendar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/font-awesome/css/font-awesome.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/font-awesome/fonts/FontAwesome.otf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/font-awesome/fonts/fontawesome-webfont.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/font-awesome/fonts/fontawesome-webfont.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/font-awesome/fonts/fontawesome-webfont.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/font-awesome/fonts/fontawesome-webfont.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/fonts/glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/fonts/glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/fonts/glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/blog-bg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/checkbox-gray.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/friends/fr-01.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/friends/fr-02.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/friends/fr-03.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/friends/fr-04.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/friends/fr-05.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/friends/fr-06.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/friends/fr-07.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/friends/fr-08.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/friends/fr-09.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/friends/fr-10.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/friends/fr-11.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/instagram.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/login-bg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/lorde.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/mask.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/ny.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/portfolio/port01.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/portfolio/port02.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/portfolio/port03.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/portfolio/port04.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/portfolio/port05.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/portfolio/port06.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/product.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/product.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/profile-01.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/profile-02.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/radio-gray.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/ui-danro.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/ui-divya.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/ui-sam.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/ui-sherman.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/ui-zac.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/weather.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/img/zoom.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/bootstrap-inputmask/bootstrap-inputmask.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/bootstrap-switch.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/calendar-conf-events.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/chart-master/Chart.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/chartjs-conf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/common-scripts.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/easy-pie-chart.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/fancybox/jquery.fancybox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/fancybox/jquery.fancybox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/form-component.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/fullcalendar/bootstrap-fullcalendar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/fullcalendar/fullcalendar.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/gritter-conf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/gritter/css/jquery.gritter.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/gritter/css/jquery.gritter0.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/gritter/images/gritter-light.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/gritter/images/gritter-long.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/gritter/images/gritter.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/gritter/images/ie-spacer.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/gritter/js/jquery.gritter.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/jquery-1.8.3.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/jquery-easy-pie-chart/jquery.easy-pie-chart.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/jquery-easy-pie-chart/jquery.easy-pie-chart.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/jquery-ui-1.9.2.custom.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/jquery.backstretch.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/jquery.dcjqaccordion.2.7.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/jquery.nicescroll.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/jquery.scrollTo.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/jquery.sparkline.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/jquery.tagsinput.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/jquery.ui.touch-punch.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/morris-conf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/sparkline-chart.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/tasks.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/js/zabuto_calendar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/lineicons/fonts/linecons.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/lineicons/fonts/linecons.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/lineicons/fonts/linecons.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/lineicons/fonts/linecons.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/lineicons/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/lineicons/lte-ie7.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/assets/lineicons/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/main.ts" afterPath="" />
+    <list default="true" id="14cfd216-d32d-4897-a739-6c739e598909" name="New changelist" comment="前端共用控件开发">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/dist/debug/app/manage.js" afterPath="$PROJECT_DIR$/manage_app/static/dist/debug/app/manage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/dist/debug/common/vendor.js" afterPath="$PROJECT_DIR$/manage_app/static/dist/debug/common/vendor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/dist/debug/index.html" afterPath="$PROJECT_DIR$/manage_app/static/dist/debug/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/dist/debug/polyfills.js" afterPath="$PROJECT_DIR$/manage_app/static/dist/debug/polyfills.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/config/webpack.dev.js" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/config/webpack.dev.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/common.module.ts" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/common.module.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/common.service.ts" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/common.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/package-lock.json" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/package-lock.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/package.json" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/base.service.ts" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/base.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/header/header.component.ts" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/header/header.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/left_nav/left_nav.component.ts" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/left_nav/left_nav.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/left_nav/left_nav.service.ts" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/left_nav/left_nav.service.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/manage/manage.component.ts" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/manage/manage.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/templates/tpl/manage_index.html" afterPath="$PROJECT_DIR$/manage_app/templates/tpl/manage_index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/manage/manage.module.ts" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/manage/manage.module.ts" />
     </list>
     <ignored path="myProject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -202,7 +102,7 @@
       <file leaf-file-name="__init__.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/manage_app/__init__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
+            <state relative-caret-position="551">
               <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
               <folding>
                 <element signature="e#16#100#0" expanded="true" />
@@ -1044,20 +944,28 @@
       <option name="project" value="LOCAL" />
       <updated>1506595053056</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="前端共用控件开发">
+      <created>1506676065049</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1506676065049</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1036" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28239608" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.502445" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32890365" sideWeight="0.49755502" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32890365" sideWeight="0.49755502" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1067,7 +975,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1106,7 +1013,8 @@
     <MESSAGE value="添加icon相关模型" />
     <MESSAGE value="建立数据库，添加数据，前端nav服务" />
     <MESSAGE value="前端基本框架" />
-    <option name="LAST_COMMIT_MESSAGE" value="前端基本框架" />
+    <MESSAGE value="前端共用控件开发" />
+    <option name="LAST_COMMIT_MESSAGE" value="前端共用控件开发" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="false" />
   </component>
   <component name="XDebuggerManager">
@@ -1492,7 +1400,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/manage_app/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
+        <state relative-caret-position="551">
           <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
           <folding>
             <element signature="e#16#100#0" expanded="true" />
