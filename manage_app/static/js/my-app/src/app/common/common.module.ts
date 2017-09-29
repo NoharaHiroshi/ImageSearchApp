@@ -5,9 +5,8 @@ import { HttpModule } from '@angular/http';
 import { RouterModule }   from '@angular/router';
 import { CommonModule} from '@angular/common'
 
-import { HeaderComponent } from './header.component';
-import { LeftNavComponent } from './left_nav.component';
-import { PagerComponent } from './pager.component';
+import { HeaderComponent } from './header/header.component';
+import { LeftNavComponent } from './left_nav/left_nav.component';
 
 import { CommonService } from './common.service';
 
@@ -15,20 +14,19 @@ import { CommonService } from './common.service';
 	declarations: [
 		HeaderComponent,
 		LeftNavComponent,
-		PagerComponent,
 	],
 	imports: [
 		BrowserModule,
 		FormsModule,
 		HttpModule,
 		RouterModule,
+		CommonModule
 	],
 	exports: [
 		HeaderComponent,
 		LeftNavComponent,
-		PagerComponent,
 	],
 	providers: [ CommonService ],
 })
-export class CommonModule { 
+export class SharedModule { 
 }
