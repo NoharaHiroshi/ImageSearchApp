@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeftNavService } from './left_nav.service';
 
-import { AppConfig} from '../../config/app_config';
 import { Menu } from '../../model/menu';
 
 @Component({
@@ -11,7 +10,7 @@ import { Menu } from '../../model/menu';
 export class LeftNavComponent implements OnInit {
 	menu_list: Menu[];
 		
-	constructor(public app: AppConfig, private service: LeftNavService) {}
+	constructor(private service: LeftNavService) {}
 	
 	ngOnInit(): void {
 		this.service.getMenus().then(data => {

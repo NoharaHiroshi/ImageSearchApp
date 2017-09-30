@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Test Angular2</title>
-	<base href="/">
+	<base href="/manage/">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" type="text/css" /> 
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
@@ -17,7 +17,7 @@
 	<manage-root>Loading...</manage-root>
 	
 	{% if config.DEBUG %}
-	    <script type="text/javascript" src="/static/dist/debug/polyfills.js"></script>
+	    <script type="text/javascript" src="/static/dist/debug/common/polyfills.js"></script>
 		<script type="text/javascript" src="/static/dist/debug/common/vendor.js"></script>
 		<script type="text/javascript" src="/static/dist/debug/app/manage.js"></script>
     {% else %}

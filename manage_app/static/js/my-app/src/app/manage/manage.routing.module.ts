@@ -4,14 +4,14 @@ import { RouterModule, Routes }  from '@angular/router';
 import { ManageComponent } from './manage.component';
 
 // 根路由器
-export const appRoutes: Routes = [
+const routes: Routes = [
 	{ path: '', component: ManageComponent },
 ];
 
 @NgModule({
 	imports: [
 		RouterModule.forRoot(
-			appRoutes,
+			routes,
 			{ enableTracing: true } // <-- debugging purposes only
     )
 	],

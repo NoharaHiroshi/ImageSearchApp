@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions, RequestMethod, RequestOptionsArgs } from '@angular/http';
 import { ViewContainerRef, ViewEncapsulation } from '@angular/core';
-import { AppConfig} from '../config/app_config';
 import 'rxjs/add/operator/toPromise';
 
 

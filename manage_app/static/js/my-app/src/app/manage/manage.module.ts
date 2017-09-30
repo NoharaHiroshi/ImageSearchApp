@@ -8,6 +8,7 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ManageRoutingModule } from './manage.routing.module';
 
 import { SharedModule } from '../common/common.module';
+import { LeftNavService } from '../common/left_nav/left_nav.service';
 
 import { ManageComponent } from './manage.component';
 
@@ -18,18 +19,17 @@ import { ManageComponent } from './manage.component';
 	],
 	imports: [
 		BrowserModule,
-		SharedModule,
 		FormsModule,
 		HttpModule,
 		RouterModule,
 		BrowserAnimationsModule,
 		
-		SharedModule,
+		SharedModule, // 共用控件
 		
 		ManageRoutingModule, // 根路由器放在最后
 	],
 	providers: [
-    
+		LeftNavService
 	],
 	bootstrap: [
 		ManageComponent

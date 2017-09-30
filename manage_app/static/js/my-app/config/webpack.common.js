@@ -25,8 +25,8 @@ module.exports = {
         loader: 'css-loader!stylus-loader'
       }, {
         test: /\.css$/,
-        loaders: ['to-string-loader', 'css-loader']
-		// loader: ExtractTextPlugin.extract({fallbackLoader : 'style-loader', loader : 'css-loader'})
+        // loaders: ['to-string-loader', 'css-loader']
+		loader: ExtractTextPlugin.extract({fallbackLoader : 'style-loader', loader : 'css-loader'})
       }, {
         test: /\.html$/,
         use: 'raw-loader',
@@ -53,7 +53,7 @@ module.exports = {
     //热替换
     new webpack.HotModuleReplacementPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
-      name: ['vendor', 'polyfills']
+      names: ['common/vendor', 'common/polyfills']
       //多个html共用一个js文件，提取公共代码
     }),
 
