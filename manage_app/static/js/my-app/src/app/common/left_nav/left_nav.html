@@ -7,14 +7,12 @@
 				<p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
 				<h5 class="centered">Marcel Newman</h5>
 				
-				<ng-container *ngFor="let menu of menu_list">
-					<li class="mt">
-						<a class="active" href="index.html">
-							<i class="fa fa-dashboard"></i>
-							<span>{{ menu.name }}</span>
-						</a>
-					</li>
-				</ng-container>
+				<li class="mt" *ngFor="let menu of menu_list">
+					<a class="active" href="index.html">
+						<i class="fa fa-dashboard"></i>
+						<span>{{ menu.name }}</span>
+					</a>
+				</li>
 
 				<li class="sub-menu">
 					<a href="javascript:;" >

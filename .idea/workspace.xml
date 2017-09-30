@@ -2,21 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="2aee8db4-43e4-4076-99bf-e411386af3a9" name="Default" comment="" />
-    <list default="true" id="14cfd216-d32d-4897-a739-6c739e598909" name="New changelist" comment="排查错误">
+    <list default="true" id="14cfd216-d32d-4897-a739-6c739e598909" name="New changelist" comment="连接Angular app">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/dist/debug/app/manage.js" afterPath="$PROJECT_DIR$/manage_app/static/dist/debug/app/manage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/dist/debug/common/vendor.js" afterPath="$PROJECT_DIR$/manage_app/static/dist/debug/common/vendor.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/dist/debug/index.html" afterPath="$PROJECT_DIR$/manage_app/static/dist/debug/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/dist/debug/polyfills.js" afterPath="$PROJECT_DIR$/manage_app/static/dist/debug/polyfills.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/config/webpack.common.js" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/config/webpack.common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/base.service.ts" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/base.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/common.service.ts" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/common.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/header/header.component.ts" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/header/header.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/left_nav/left_nav.component.ts" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/left_nav/left_nav.component.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/left_nav/left_nav.html" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/left_nav/left_nav.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/manage/manage.module.ts" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/manage/manage.module.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/manage/manage.routing.module.ts" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/manage/manage.routing.module.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/manage/manage_index.html" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/manage/manage_index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/templates/tpl/manage_index.html" afterPath="$PROJECT_DIR$/manage_app/templates/tpl/manage_index.html" />
     </list>
     <ignored path="myProject.iws" />
@@ -1070,7 +1059,14 @@
       <option name="project" value="LOCAL" />
       <updated>1506681174385</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="连接Angular app">
+      <created>1506754933709</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1506754933709</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1134,7 +1130,8 @@
     <MESSAGE value="前端基本框架" />
     <MESSAGE value="前端共用控件开发" />
     <MESSAGE value="排查错误" />
-    <option name="LAST_COMMIT_MESSAGE" value="排查错误" />
+    <MESSAGE value="连接Angular app" />
+    <option name="LAST_COMMIT_MESSAGE" value="连接Angular app" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="false" />
   </component>
   <component name="XDebuggerManager">
