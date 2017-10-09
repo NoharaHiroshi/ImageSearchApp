@@ -13,7 +13,6 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='js/lib/gritter/css/jquery.gritter.css') }}" />
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/style-responsive.css') }}" type="text/css" />
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
 	<link rel="stylesheet" href="{{ url_for('static', filename='lineicons/style.css') }}">    
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/table-responsive.css') }}" type="text/css" />
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/zabuto_calendar.css') }}" type="text/css" />
@@ -22,7 +21,23 @@
 </head>
 <body>
 	<section id="container">
-	<manage-root>Loading...</manage-root>
+	<manage-root>
+		<!--Loading 动画-->
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/loading_style.css') }}" type="text/css" />
+		<script src="{{ url_for('static', filename='js/lib/loading.min.js') }}"></script>
+		<div style="text-align:center;clear:both;"></div>
+		<div class='loading-base'>
+			<div class='cube'></div>
+			<div class='cube'></div>
+			<div class='cube'></div>
+			<div class='cube'></div>
+			<div class='cube'></div>
+			<div class='cube'></div>
+			<div class='cube'></div>
+			<div class='cube'></div>
+			<div class='cube'></div>
+		</div>
+	</manage-root>
 	
 	{% if config.DEBUG %}
 	    <script type="text/javascript" src="/static/dist/debug/common/polyfills.js"></script>
@@ -45,13 +60,13 @@
     <script src="{{ url_for('static', filename='js/lib/jquery.sparkline.js') }}"></script>
 
 
-    <!--common script for all pages-->
+    <!-- 通用脚本 -->
     <script src="{{ url_for('static', filename='js/lib/common-scripts.js') }}"></script>
     
     <script type="text/javascript" src="{{ url_for('static', filename='js/lib/gritter/js/jquery.gritter.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/lib/gritter-conf.js') }}"></script>
 
-    <!--script for this page-->
+    <!-- 当前页脚本 -->
     <script src="{{ url_for('static', filename='js/lib/sparkline-chart.js') }}"></script>    
 	<script src="{{ url_for('static', filename='js/lib/zabuto_calendar.js') }}"></script>	
 	

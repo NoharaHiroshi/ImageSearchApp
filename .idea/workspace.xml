@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list id="2aee8db4-43e4-4076-99bf-e411386af3a9" name="Default" comment="" />
-    <list default="true" id="14cfd216-d32d-4897-a739-6c739e598909" name="New changelist" comment="连接Angular app">
+    <list default="true" id="14cfd216-d32d-4897-a739-6c739e598909" name="New changelist" comment="后台管理模板样式匹配">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/css/style.css" afterPath="$PROJECT_DIR$/manage_app/static/css/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/dist/debug/app/manage.js" afterPath="$PROJECT_DIR$/manage_app/static/dist/debug/app/manage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/left_nav/left_nav.html" afterPath="$PROJECT_DIR$/manage_app/static/js/my-app/src/app/common/left_nav/left_nav.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/static/dist/debug/common/vendor.js" afterPath="$PROJECT_DIR$/manage_app/static/dist/debug/common/vendor.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manage_app/templates/tpl/manage_index.html" afterPath="$PROJECT_DIR$/manage_app/templates/tpl/manage_index.html" />
     </list>
     <ignored path="myProject.iws" />
@@ -22,7 +23,7 @@
     <SUITE FILE_PATH="coverage/ImageSearchApp$menu__1_.coverage" NAME="menu (1) Coverage Results" MODIFIED="1506590725471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/manage_app/views/manage_index" />
     <SUITE FILE_PATH="coverage/ImageSearchApp$menu.coverage" NAME="menu Coverage Results" MODIFIED="1506590301822" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model/manage" />
     <SUITE FILE_PATH="coverage/ImageSearchApp$create_all_tables.coverage" NAME="create_all_tables Coverage Results" MODIFIED="1506590696429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/script" />
-    <SUITE FILE_PATH="coverage/ImageSearchApp$main.coverage" NAME="main Coverage Results" MODIFIED="1506737710010" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/manage_app" />
+    <SUITE FILE_PATH="coverage/ImageSearchApp$main.coverage" NAME="main Coverage Results" MODIFIED="1507534685448" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/manage_app" />
     <SUITE FILE_PATH="coverage/ImageSearchApp$base.coverage" NAME="base Coverage Results" MODIFIED="1506590345760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/model" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -245,8 +246,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -525,13 +524,15 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="F:/work/projectcode/GraphManipulation" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/manage_app/static/js/lib" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
@@ -1066,18 +1067,25 @@
       <option name="project" value="LOCAL" />
       <updated>1506754933709</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="后台管理模板样式匹配">
+      <created>1506761845333</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1506761845333</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1036" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28606358" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29339853" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.502445" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32890365" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.74418604" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32890365" sideWeight="0.49755502" order="2" side_tool="false" content_ui="tabs" />
@@ -1131,7 +1139,8 @@
     <MESSAGE value="前端共用控件开发" />
     <MESSAGE value="排查错误" />
     <MESSAGE value="连接Angular app" />
-    <option name="LAST_COMMIT_MESSAGE" value="连接Angular app" />
+    <MESSAGE value="后台管理模板样式匹配" />
+    <option name="LAST_COMMIT_MESSAGE" value="后台管理模板样式匹配" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="false" />
   </component>
   <component name="XDebuggerManager">
