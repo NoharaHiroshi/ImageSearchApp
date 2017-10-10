@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Menu } from '../../model/menu';
 
+declare var $: any;
 
 @Component({
   selector: 'header-root',

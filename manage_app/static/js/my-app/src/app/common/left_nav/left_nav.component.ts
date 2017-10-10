@@ -3,6 +3,8 @@ import { LeftNavService } from './left_nav.service';
 
 import { Menu } from '../../model/menu';
 
+declare var $: any;
+
 @Component({
   selector: 'left-nav-root',
   templateUrl: './left_nav.html',
