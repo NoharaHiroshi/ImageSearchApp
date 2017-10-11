@@ -6,6 +6,7 @@ export class Menu {
 	url: string;
 	sort: number;
 	parent_id: string;
+	sub_menus: Menu[];
 	created_date: string;
 	modified_date: string;
 }

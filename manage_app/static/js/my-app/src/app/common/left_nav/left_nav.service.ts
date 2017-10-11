@@ -20,10 +20,15 @@ export class LeftNavService extends BaseService {
 	    return this.http.get(url)
 	               .toPromise()
 	               .then(function(res){
-	            	   let json = res.json();
-	            	   let menu_list = self.jsonListToObjectList(json.menu_list, Menu);
-	           	       json['menu_list'] = menu_list;
-	            	   return json;
+						let json = res.json();
+	            	    let menu_list = self.jsonListToObjectList(json.menu_list, Menu);
+					    for(let menu of menu_list){
+							let _sub_menus = menu.sub_menus;
+							menu.sub_menus = self.jsonListToObjectList(_sub_menus, Menu)
+						} 
+	           	        json['menu_list'] = menu_list;
+						json['menu_title'] = json.menu_title;
+	            	    return json;
 	               })
 	               .catch(this.handleError);
 	}
