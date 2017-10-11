@@ -21,7 +21,7 @@ def nav_list():
         with get_session() as db_session:
             all_parent_menu = db_session.query(Menu).filter(
                 Menu.parent_id == 0
-            ).all()
+            ).order_by(Menu.sort).all()
             for parent_menu in all_parent_menu:
                 parent_menu_dict = parent_menu.to_dict()
                 result['menu_list'].append(parent_menu_dict)

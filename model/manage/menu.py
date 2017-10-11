@@ -28,20 +28,23 @@ class Menu(Base):
     url = Column(String(50))
 
     @classmethod
-    def set_count(cls):
+    def set_count(cls, sort=None):
         with get_session() as db_session:
-            _menu = db_session.query(cls).order_by(-Menu.sort).first()
-            if _menu:
-                return _menu.sort + 1
+            if sort:
+                return sort
             else:
-                return 0
+                _menu = db_session.query(cls).order_by(-Menu.sort).first()
+                if _menu:
+                    return _menu.sort + 1
+                else:
+                    return 0
 
     @property
     def sub_menus(self):
         with get_session() as db_session:
             sub_menus = db_session.query(Menu).filter(
                 Menu.parent_id == self.id,
-            ).all()
+            ).order_by(Menu.sort).all()
             if sub_menus:
                 return [sub_menu.to_dict() for sub_menu in sub_menus]
             else:
