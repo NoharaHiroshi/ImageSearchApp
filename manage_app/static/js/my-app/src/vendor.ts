@@ -14,6 +14,19 @@ import 'rxjs/Subscription';
 import 'rxjs/Subject';
 import 'rxjs/BehaviorSubject';
 
-// Bootsctrap
-// bootstrap/dist/css/bootstrap.css';
-// import 'font-awesome/css/font-awesome.css';
+/* import 'jquery/dist/jquery';
+
+// lib
+import '../../lib/chart-master/Chart';
+import '../../lib/jquery';
+import '../../lib/jquery-1.8.3.min';
+import '../../lib/bootstrap.min';
+import '../../lib/jquery.dcjqaccordion.2.7';
+import '../../lib/jquery.scrollTo.min';
+import '../../lib/jquery.nicescroll';
+import '../../lib/jquery.sparkline';
+import '../../lib/common-scripts';
+import '../../lib/gritter/js/jquery.gritter';
+import '../../lib/gritter-conf';
+import '../../lib/sparkline-chart';
+import '../../lib/zabuto_calendar'; */

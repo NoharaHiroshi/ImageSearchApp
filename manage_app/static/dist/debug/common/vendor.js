@@ -6,7 +6,7 @@ webpackJsonp([1],{
 "use strict";
 
 var root_1 = __webpack_require__(17);
-var toSubscriber_1 = __webpack_require__(648);
+var toSubscriber_1 = __webpack_require__(649);
 var observable_1 = __webpack_require__(89);
 /**
  * A representation of any set of values over any amount of time. This the most basic building block
@@ -42470,9 +42470,9 @@ var isArray_1 = __webpack_require__(36);
 var isArrayLike_1 = __webpack_require__(202);
 var isPromise_1 = __webpack_require__(204);
 var PromiseObservable_1 = __webpack_require__(172);
-var IteratorObservable_1 = __webpack_require__(526);
+var IteratorObservable_1 = __webpack_require__(527);
 var ArrayObservable_1 = __webpack_require__(35);
-var ArrayLikeObservable_1 = __webpack_require__(515);
+var ArrayLikeObservable_1 = __webpack_require__(516);
 var iterator_1 = __webpack_require__(69);
 var Observable_1 = __webpack_require__(0);
 var observeOn_1 = __webpack_require__(122);
@@ -43943,9 +43943,22 @@ __webpack_require__(0);
 __webpack_require__(13);
 __webpack_require__(11);
 __webpack_require__(85);
-// Bootsctrap
-// bootstrap/dist/css/bootstrap.css';
-// import 'font-awesome/css/font-awesome.css'; 
+/* import 'jquery/dist/jquery';
+
+// lib
+import '../../lib/chart-master/Chart';
+import '../../lib/jquery';
+import '../../lib/jquery-1.8.3.min';
+import '../../lib/bootstrap.min';
+import '../../lib/jquery.dcjqaccordion.2.7';
+import '../../lib/jquery.scrollTo.min';
+import '../../lib/jquery.nicescroll';
+import '../../lib/jquery.sparkline';
+import '../../lib/common-scripts';
+import '../../lib/gritter/js/jquery.gritter';
+import '../../lib/gritter-conf';
+import '../../lib/sparkline-chart';
+import '../../lib/zabuto_calendar'; */ 
 
 
 /***/ }),
@@ -48648,7 +48661,7 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.1.2'
 
 /***/ }),
 
-/***/ 385:
+/***/ 386:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -48702,7 +48715,7 @@ var isPromise_1 = __webpack_require__(204);
 var isObject_1 = __webpack_require__(203);
 var Observable_1 = __webpack_require__(0);
 var iterator_1 = __webpack_require__(69);
-var InnerSubscriber_1 = __webpack_require__(385);
+var InnerSubscriber_1 = __webpack_require__(386);
 var observable_1 = __webpack_require__(89);
 function subscribeToResult(outerSubscriber, result, outerValue, outerIndex) {
     var destination = new InnerSubscriber_1.InnerSubscriber(outerSubscriber, outerValue, outerIndex);
@@ -48864,7 +48877,7 @@ exports.EmptyObservable = EmptyObservable;
 
 /***/ }),
 
-/***/ 515:
+/***/ 516:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49005,7 +49018,7 @@ exports.MulticastOperator = MulticastOperator;
 
 /***/ }),
 
-/***/ 526:
+/***/ 527:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55564,7 +55577,7 @@ exports.Notification = Notification;
 
 /***/ }),
 
-/***/ 648:
+/***/ 649:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55685,7 +55698,7 @@ var MapSubscriber = (function (_super) {
 
 /***/ }),
 
-/***/ 652:
+/***/ 653:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(208);
@@ -62347,4 +62360,4 @@ exports.isFunction = isFunction;
 
 /***/ })
 
-},[652]);
+},[653]);
