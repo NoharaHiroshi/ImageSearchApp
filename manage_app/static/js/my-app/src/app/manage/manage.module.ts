@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, RequestOptions } from '@angular/http';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import { ModalModule } from 'angular2-modal';
 import { ManageRoutingModule } from './manage.routing.module';
 
 import { SharedModule } from '../common/common.module';
@@ -24,6 +25,7 @@ import { ManageComponent } from './manage.component';
 		RouterModule,
 		BrowserAnimationsModule,
 		
+		ModalModule.forRoot(),
 		SharedModule, // 共用控件
 		
 		ManageRoutingModule, // 根路由器放在最后

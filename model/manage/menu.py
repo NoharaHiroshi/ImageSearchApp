@@ -65,10 +65,10 @@ class Menu(Base):
 if __name__ == '__main__':
     with get_session() as _db_session:
         menu = Menu()
-        menu.name = '测试子菜单1'
-        menu.code = 'test_sub_code1'
+        menu.name = '菜单配置'
+        menu.code = 'menu_conf'
         menu.sort = Menu.set_count()
-        menu.parent_id = 6470757892347920384
+        menu.parent_id = 6475635828428636160
         _db_session.add(menu)
         _db_session.commit()
 

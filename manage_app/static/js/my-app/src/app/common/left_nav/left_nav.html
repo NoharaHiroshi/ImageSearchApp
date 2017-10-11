@@ -4,17 +4,15 @@
 			<!-- sidebar menu start-->
 			<ul class="sidebar-menu nav-accordion">
 				<h5 class="centered">{{ menu_title }}</h5>
-				<ng-container *ngIf="menu_list">
-					<li class="sub-menu" *ngFor="let menu of menu_list">
-						<a href="javascript:;">
-							<i [class]=" menu.icon_info "></i>
-							<span>{{ menu.name }}</span>
-						</a>
-						<ul *ngIf="menu.sub_menus" class="sub">
-							<li><a *ngFor="let sub_menu of menu.sub_menus" [href]="sub_menu.url">{{ sub_menu.name }}</a></li>
-						</ul>
-					</li>
-				</ng-container>
+				<li class="sub-menu" *ngFor="let menu of menu_list">
+					<a href="javascript:;">
+						<i [class]=" menu.icon_info "></i>
+						<span>{{ menu.name }}</span>
+					</a>
+					<ul *ngIf="menu.sub_menus" class="sub">
+						<li><a *ngFor="let sub_menu of menu.sub_menus" [href]="sub_menu.url">{{ sub_menu.name }}</a></li>
+					</ul>
+				</li>
 			</ul>
 			<!-- sidebar menu end-->
 		</div>
