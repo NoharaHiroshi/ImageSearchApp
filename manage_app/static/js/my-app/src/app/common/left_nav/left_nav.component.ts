@@ -22,5 +22,4 @@ export class LeftNavComponent implements OnInit {
         });
 	}
 	
-	
 }
