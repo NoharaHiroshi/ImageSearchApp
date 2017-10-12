@@ -2,3 +2,4 @@
 
 from manage import *
 from menu import *
+from permission import *
