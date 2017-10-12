@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, RequestOptions } from '@angular/http';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { PathLocationStrategy, LocationStrategy } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { ModalModule } from 'angular2-modal';
 import { ManageRoutingModule } from './manage.routing.module';
@@ -41,6 +41,7 @@ import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.componen
 		ManageRoutingModule, // 根路由器放在最后
 	],
 	providers: [
+		{ provide: LocationStrategy, useClass: HashLocationStrategy },
 		LeftNavService
 	],
 	bootstrap: [

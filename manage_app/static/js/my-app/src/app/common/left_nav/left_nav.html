@@ -10,7 +10,9 @@
 						<span>{{ menu.name }}</span>
 					</a>
 					<ul *ngIf="menu.sub_menus" class="sub">
-						<li><a *ngFor="let sub_menu of menu.sub_menus" [href]="sub_menu.url">{{ sub_menu.name }}</a></li>
+						<li *ngFor="let sub_menu of menu.sub_menus">
+							<a routerLink="{{ sub_menu.url }}" routerLinkActive="menu_selected">{{ sub_menu.name }}</a>
+						</li>
 					</ul>
 				</li>
 			</ul>

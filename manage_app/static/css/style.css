@@ -392,14 +392,18 @@ ul.sidebar-menu li a.active i {
     color: #fff;
 }
 
-
 .mail-info, .mail-info:hover {
     margin: -3px 6px 0 0;
     font-size: 11px;
 }
 
+.menu_selected {
+	color: #fff !important;
+	background: transparent !important; 
+}
+
 /* MAIN CONTENT CONFIGURATION */
-#main-content {
+.main-content {
     margin-left: 210px;
 }
 
@@ -755,11 +759,11 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
     display: none;
 }
 
-.sidebar-closed #main-content {
+.sidebar-closed .main-content {
     margin-left: 0px;
 }
 
-.sidebar-closed #sidebar {
+.sidebar-closed .sidebar {
     margin-left: -180px;
 }
 
