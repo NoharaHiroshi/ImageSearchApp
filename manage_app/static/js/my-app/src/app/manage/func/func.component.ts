@@ -5,6 +5,7 @@ import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { Location }  from '@angular/common';
 
 import { ListBaseComponent } from '../../common/base.component';
+import { Func } from '../../model/func';
 import { FuncService } from './func.service';
 
 @Component({
@@ -19,11 +20,11 @@ export class FuncConfComponent extends ListBaseComponent{
 	}
 	
 	getPagerData(): void {
-		this.loading = true;
+		this.isLoading = true;
 		this.service.getFuncs().then(data => {
         	this.func_list = data.func_list;
         });
-		this.loading = false;
+		this.isLoading = false;
 	}
 
 }
