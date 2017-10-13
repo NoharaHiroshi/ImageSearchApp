@@ -14,8 +14,9 @@ import { LeftNavService } from '../common/left_nav/left_nav.service';
 
 import { ManageComponent } from './manage.component';
 
-import { PermissionConfComponent, PermissionConfDetailComponent } from './permission/permission.component';
+import { FuncConfComponent, FuncConfDetailComponent } from './func/func.component';
 import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.component';
+import { FuncService } from './func/func.service';
 
 
 @NgModule({
@@ -25,8 +26,8 @@ import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.componen
 		MenuConfComponent,
 		MenuConfDetailComponent,
 		
-		PermissionConfComponent,
-		PermissionConfDetailComponent
+		FuncConfComponent,
+		FuncConfDetailComponent
 	],
 	imports: [
 		BrowserModule,
@@ -42,7 +43,8 @@ import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.componen
 	],
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
-		LeftNavService
+		LeftNavService,
+		FuncService
 	],
 	bootstrap: [
 		ManageComponent

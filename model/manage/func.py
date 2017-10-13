@@ -3,6 +3,8 @@
 from sqlalchemy import Column, Integer, String, BigInteger
 from model.base import Base, IdGenerator
 
+from model.session import get_session
+
 
 class Func(Base):
     __tablename__ = 'manage_func'
@@ -12,12 +14,15 @@ class Func(Base):
     name = Column(String(50), nullable=False, index=True)
     # 代码
     code = Column(String(50), nullable=False, index=True)
+    # 描述
+    desc = Column(String(100))
 
     def to_dict(self):
         return {
             'id': str(self.id),
             'name': self.name,
             'code': self.code,
+            'desc': self.desc
         }
 
 
@@ -39,3 +44,12 @@ class MenuFunc(Base):
             'menu_id': str(self.menu_id),
             'func_id': str(self.func_id)
         }
+
+if __name__ == '__main__':
+    with get_session() as db_session:
+        func = Func()
+        func.name = u'查看列表'
+        func.code = u'list'
+        func.desc = u'查看数据权限'
+        db_session.add(func)
+        db_session.commit()

@@ -2,16 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
 
 import { ManageComponent } from './manage.component';
-import { PermissionConfComponent, PermissionConfDetailComponent } from './permission/permission.component';
+import { FuncConfComponent, FuncConfDetailComponent } from './func/func.component';
 import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.component';
 
 // 根路由器
 const routes: Routes = [
-	{ path: 'permission_conf', component: PermissionConfComponent },
-	{ path: 'permission_conf/detail:id', component: PermissionConfDetailComponent },
+	{ path: 'func_conf', component: FuncConfComponent },
+	{ path: 'func_conf/detail/:id', component: FuncConfDetailComponent },
+	{ path: 'func_conf/add', component: FuncConfDetailComponent },
 	
 	{ path: 'menu_conf', component: MenuConfComponent },
-	{ path: 'menu_conf/detail:id', component: MenuConfDetailComponent },
+	{ path: 'menu_conf/detail/:id', component: MenuConfDetailComponent },
 ];
 
 @NgModule({

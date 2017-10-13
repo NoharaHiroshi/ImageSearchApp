@@ -96,7 +96,8 @@ a, a:hover, a:focus {
 .btn-theme {
   color: #fff;
   background-color: #68dff0;
-  border-color: #48bcb4;
+  padding: 5px 10px;
+  margin-right: 3px;
 }
 .btn-theme:hover,
 .btn-theme:focus,
@@ -111,7 +112,8 @@ a, a:hover, a:focus {
 .btn-theme02 {
   color: #fff;
   background-color: #ac92ec;
-  border-color: #967adc;
+  padding: 5px 10px;
+  margin-right: 3px;
 }
 .btn-theme02:hover,
 .btn-theme02:focus,
@@ -126,7 +128,8 @@ a, a:hover, a:focus {
 .btn-theme03 {
   color: #fff;
   background-color: #48cfad;
-  border-color: #37bc9b;
+  padding: 5px 10px;
+  margin-right: 3px;
 }
 .btn-theme03:hover,
 .btn-theme03:focus,
@@ -141,7 +144,8 @@ a, a:hover, a:focus {
 .btn-theme04 {
   color: #fff;
   background-color: #ed5565;
-  border-color: #da4453;
+  padding: 5px 10px;
+  margin-right: 3px;
 }
 .btn-theme04:hover,
 .btn-theme04:focus,
@@ -2242,8 +2246,18 @@ label {
     color: #2A3542;
 }
 
+
 .site-min-height {
     min-height: 900px;
 }
 
+/* Custom */
 
+.sub-title {
+	margin-left: 5px;
+	font-size: 14px;
+}
+
+.button-name {
+	font-size: 13px;
+}
