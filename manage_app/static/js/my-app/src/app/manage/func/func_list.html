@@ -13,7 +13,7 @@
 				<thead>
 					<tr>
 						<th>
-							<input icheck type="checkbox">
+							<input icheck class="all-icheck" type="checkbox">
 						</th>
 						<th><i class="fa fa-bullhorn"></i> 功能名称 </th>
 						<th class="hidden-phone"><i class="fa fa-question-circle"></i> 功能代码 </th>
@@ -22,7 +22,7 @@
 				</thead>
 				<tbody *ngIf="func_list">
 					<tr *ngFor="let func of func_list">
-						<td><input icheck type="checkbox"></td>
+						<td><input icheck class="icheck" type="checkbox"></td>
 						<td><a [routerLink]="['detail', func.id]">{{ func.name }}</a></td>
 						<td class="hidden-phone">{{ func.code }}</td>
 						<td>{{ func.desc }}</td>
