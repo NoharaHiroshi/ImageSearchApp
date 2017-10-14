@@ -6,6 +6,6 @@ var delay = function(selector, func){
     }  
     else{
 		setTimeout(function(){delay(selector, func)}, 100)
-		}  
+	}  
 }  
   

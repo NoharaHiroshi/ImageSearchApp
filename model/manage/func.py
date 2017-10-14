@@ -48,8 +48,8 @@ class MenuFunc(Base):
 if __name__ == '__main__':
     with get_session() as db_session:
         func = Func()
-        func.name = u'查看列表'
-        func.code = u'list'
-        func.desc = u'查看数据权限'
+        func.name = u'增加数据'
+        func.code = u'add'
+        func.desc = u'增加数据对象'
         db_session.add(func)
         db_session.commit()

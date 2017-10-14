@@ -10,10 +10,14 @@ import { LeftNavComponent } from './left_nav/left_nav.component';
 
 import { CommonService } from './common.service';
 
+// Directive
+import { IcheckDirective } from './directive/icheck/icheck.directive'
+
 @NgModule({
 	declarations: [
 		HeaderComponent,
 		LeftNavComponent,
+		IcheckDirective,
 	],
 	imports: [
 		BrowserModule,
@@ -25,6 +29,7 @@ import { CommonService } from './common.service';
 	exports: [
 		HeaderComponent,
 		LeftNavComponent,
+		IcheckDirective,
 	],
 	providers: [ CommonService ],
 })

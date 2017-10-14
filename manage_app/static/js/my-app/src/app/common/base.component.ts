@@ -5,7 +5,6 @@ import { Modal } from 'angular2-modal/plugins/bootstrap';
 
 import { AppConfig} from '../config/app_config';
 
-
 @Component({
     selector: 'list-base',
     template:''
