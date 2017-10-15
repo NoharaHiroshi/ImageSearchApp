@@ -1,7 +1,7 @@
 # coding:utf-8
 
 import traceback
-from flask import render_template, abort, g, jsonify
+from flask import render_template, abort, g, jsonify, request
 from flask.ext.login import current_user
 from flask import current_app as app
 
@@ -28,3 +28,22 @@ def func_list():
         app.my_logger.error(traceback.format_exc(e))
         abort(400)
 
+
+@manage.route('/func_list/detail', methods=['GET'])
+def func_detail():
+    result = {
+        'response': 'ok',
+        'func': ''
+    }
+    try:
+        func_id = request.args.get('id')
+        print func_id
+        with get_session() as db_session:
+            func = db_session.query(Func).get(func_id)
+            if func:
+                func_dict = func.to_dict()
+                result['func'] = func_dict
+        return jsonify(result)
+    except Exception as e:
+        app.my_logger.error(traceback.format_exc(e))
+        abort(400)

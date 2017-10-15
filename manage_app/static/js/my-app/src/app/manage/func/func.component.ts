@@ -33,5 +33,20 @@ export class FuncConfComponent extends ListBaseComponent{
   selector: 'func-detail-root',
   templateUrl: './func_detail.html',
 })
-export class FuncConfDetailComponent{
+export class FuncConfDetailComponent extends ListBaseComponent{
+	constructor(private service: FuncService, public route: ActivatedRoute, public router: Router) {
+		super();
+	}
+	
+	ngOnit(): void {
+		let self = this;
+        this.route.params.switchMap((params: Params) => this.service.getDetail(params['id']||'0'))
+	        .subscribe(res => {
+	        	console.log(res);
+	        });
+	}
+	
+	goBack(): void {
+		this.router.navigate(['/func_conf']);
+	}
 }

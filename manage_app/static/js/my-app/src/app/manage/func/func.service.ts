@@ -16,7 +16,7 @@ export class FuncService extends BaseService {
 	}
 	
 	getFuncs(): Promise<any> {
-		const url = `/manage/func_list`; 
+		const url = '/manage/func_list'; 
 		let self = this;
 	    return this.http.get(url)
 	               .toPromise()
@@ -28,4 +28,14 @@ export class FuncService extends BaseService {
 	               })
 	               .catch(this.handleError);
 	}
+	
+	getDetail(id: string): Promise<{}>{
+		const url = '/manage/func_list/detail?id={$id}'; 
+		let self = this;
+		return this.http.get(url)
+				   .toPromise()
+				   .then(function(res){
+						let json = res.json();
+				   })
+	} 
 }
