@@ -34,19 +34,34 @@ export class FuncConfComponent extends ListBaseComponent{
   templateUrl: './func_detail.html',
 })
 export class FuncConfDetailComponent extends ListBaseComponent{
+	func: Func;
+
 	constructor(private service: FuncService, public route: ActivatedRoute, public router: Router) {
 		super();
 	}
 	
-	ngOnit(): void {
+	ngOnInit(): void {
 		let self = this;
         this.route.params.switchMap((params: Params) => this.service.getDetail(params['id']||'0'))
 	        .subscribe(res => {
-	        	console.log(res);
+	        	this.func = res['func'];
 	        });
 	}
 	
 	goBack(): void {
 		this.router.navigate(['/func_conf']);
+	}
+	
+	save(): void {
+		this.service.update(this.func).then(res => {
+			this.isDisabledButton = false;
+			if(res.response=='fail'){
+				console.log('fail', '保存失败');
+				this.isDisabledButton = true;
+			}else{
+				console.log('success', '保存成功');
+				this.goBack();
+			}
+		});
 	}
 }

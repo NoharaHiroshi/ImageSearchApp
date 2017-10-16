@@ -11,6 +11,7 @@ import { AppConfig} from '../config/app_config';
 })
 export class ListBaseComponent implements OnInit {
 	isLoading = true;
+	isDisabledButton = false;
 	curPage = 1;
 	queryParams = {};
 	

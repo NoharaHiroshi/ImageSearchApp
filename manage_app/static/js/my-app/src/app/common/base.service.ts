@@ -33,4 +33,25 @@ export class BaseService {
  	    return c;
 	}
 	
+	public postForm(url: any, body: string): Promise<{}> {
+	    var body = $.param(JSON.parse(body));
+		return this.http
+			    .post(url, body)
+			    .toPromise()
+			    .then(response => response.json())
+			    .catch(this.handleError);
+	}
+	
+	public postJsonForm(url: any, body: string): Promise<{}> {
+		return this.http
+			    .post(url, body)
+			    .toPromise()
+			    .then(response => response.json())
+			    .catch(this.handleError);
+	}
+	
+	public post(url: any, data: {}): Promise<{}> {
+		return this.postForm(url, JSON.stringify(data))
+	}
+	
 }

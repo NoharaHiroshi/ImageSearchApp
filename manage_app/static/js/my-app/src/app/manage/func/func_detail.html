@@ -1,7 +1,7 @@
 <h3>
 	<i class="fa fa-angle-right"></i> 功能列表 <span class="sub-title">Func List</span> 
 </h3>
-<div class="row mt">
+<div class="row mt" *ngIf="func">
 	<div class="col-lg-12">
 	  <div class="form-panel">
 		  <h5 class="mb return"><a href="javascript:void(0);" (click)="goBack()"><i class="fa fa-reply"></i> 返回 </a></h5>
@@ -9,26 +9,26 @@
 			  <div class="form-group">
 				  <label class="col-sm-2 col-sm-2 control-label">功能名称</label>
 				  <div class="col-sm-4">
-					  <input type="text" class="form-control" placeholder="添加功能名称，如：查看列表">
+					  <input type="text" class="form-control" name="name" [(ngModel)]="func.name" placeholder="添加功能名称，如：查看列表">
 				  </div>
 			  </div>
 			  <div class="form-group">
 				  <label class="col-sm-2 col-sm-2 control-label">功能代码</label>
 				  <div class="col-sm-4">
-					  <input type="text" class="form-control" placeholder="添加功能代码，如：list">
+					  <input type="text" class="form-control" name="code" [(ngModel)]="func.code" placeholder="添加功能代码，如：list">
 				  </div>
 			  </div>
 			  <div class="form-group">
 				  <label class="col-sm-2 col-sm-2 control-label">功能描述</label>
 				  <div class="col-sm-4">
-					  <input type="textarea" class="form-control" placeholder="添加功能描述">
+					  <input type="textarea" class="form-control" name="desc" [(ngModel)]="func.desc" placeholder="添加功能描述">
 				  </div>
 			  </div>
 			  <div class="form-group">
 				  <label class="col-sm-2 col-sm-2 control-label"></label>
 				  <div class="col-sm-4">
-					  <button type="button" class="btn btn-theme03">保存</button>
-					  <button type="button" class="btn btn-theme04">取消</button>
+					  <button type="button" type="submit" [disabled]="isDisabledButton" class="btn btn-theme03" (click)="save()">保存</button>
+					  <button type="button" type="submit" class="btn btn-theme04">取消</button>
 				  </div>
 			  </div>
 		  </form>

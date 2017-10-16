@@ -29,13 +29,21 @@ export class FuncService extends BaseService {
 	               .catch(this.handleError);
 	}
 	
-	getDetail(id: string): Promise<{}>{
-		const url = '/manage/func_list/detail?id={$id}'; 
+	getDetail(id: String): Promise<{}> {
+		const url = '/manage/func_list/detail?id=' + id; 
 		let self = this;
 		return this.http.get(url)
 				   .toPromise()
-				   .then(function(res){
-						let json = res.json();
+				   .then(res => {
+						let json = res.json()
+						json['func'] = self.jsonToObject(json.func, Func);
+						return json;
 				   })
+				   .catch(this.handleError);
 	} 
+	
+	update(func: Func): Promise<any> {
+		const url = '/manage/func_list/update';
+	    return this.postJsonForm(url, JSON.stringify(func));
+	}
 }
