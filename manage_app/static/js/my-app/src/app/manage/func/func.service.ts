@@ -44,6 +44,14 @@ export class FuncService extends BaseService {
 	
 	update(func: Func): Promise<any> {
 		const url = '/manage/func_list/update';
-	    return this.postJsonForm(url, JSON.stringify(func));
+	    return this.postForm(url, JSON.stringify(func));
+	}
+	
+	del(ids: String): Promise<{}> {
+		const url = '/manage/func_list/delete';
+		let params = {
+			'ids': ids
+		}
+		return this.postForm(url, JSON.stringify(params));
 	}
 }

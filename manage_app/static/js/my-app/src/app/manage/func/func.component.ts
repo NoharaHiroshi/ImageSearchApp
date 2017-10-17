@@ -26,7 +26,16 @@ export class FuncConfComponent extends ListBaseComponent{
         });
 		this.isLoading = false;
 	}
-
+	
+	delData(): void {
+		let del_ids = this.selectChecked();
+		this.service.del(del_ids).then(data =>{
+			if(data.response == 'ok'){
+				alert('删除成功');
+				this.refresh();
+			}
+		})
+	}
 }
 
 @Component({

@@ -3,6 +3,7 @@ import { Headers, Http, Response, RequestOptions, RequestMethod, RequestOptionsA
 import { ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 
+import { DefaultRequestOptions } from './util';
 
 export class BaseService {
 	http: Http;
@@ -34,17 +35,23 @@ export class BaseService {
 	}
 	
 	public postForm(url: any, body: string): Promise<{}> {
+	    var options = new DefaultRequestOptions();
+	    options.headers.append('Content-Type', 'application/x-www-form-urlencoded');
+	    
 	    var body = $.param(JSON.parse(body));
 		return this.http
-			    .post(url, body)
+			    .post(url, body, options)
 			    .toPromise()
 			    .then(response => response.json())
 			    .catch(this.handleError);
 	}
 	
 	public postJsonForm(url: any, body: string): Promise<{}> {
+	    var options = new DefaultRequestOptions();
+	    options.headers.append('Content-Type', 'application/json');
+	    
 		return this.http
-			    .post(url, body)
+			    .post(url, body, options)
 			    .toPromise()
 			    .then(response => response.json())
 			    .catch(this.handleError);

@@ -8,21 +8,21 @@ import { CommonModule} from '@angular/common'
 // Component
 import { HeaderComponent } from './header/header.component';
 import { LeftNavComponent } from './left_nav/left_nav.component';
-import { LoadingComponent } from './loading/loading.component';
+//import { LoadingComponent } from './loading/loading.component';
 
 // Service
 import { CommonService } from './common.service';
 
 // Directive
-import { IcheckDirective } from './directive/icheck/icheck.directive'
+//import { IcheckDirective } from './directive/icheck/icheck.directive'
 
 @NgModule({
 	declarations: [
 		HeaderComponent,
 		LeftNavComponent,
-		LoadingComponent,
+		//LoadingComponent,
 		
-		IcheckDirective,
+		//IcheckDirective,
 	],
 	imports: [
 		BrowserModule,
@@ -34,9 +34,9 @@ import { IcheckDirective } from './directive/icheck/icheck.directive'
 	exports: [
 		HeaderComponent,
 		LeftNavComponent,
-		LoadingComponent,
+		//LoadingComponent,
 		
-		IcheckDirective,
+		//IcheckDirective,
 	],
 	providers: [ CommonService ],
 })

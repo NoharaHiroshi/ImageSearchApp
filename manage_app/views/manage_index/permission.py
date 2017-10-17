@@ -76,6 +76,25 @@ def update_func_detail():
                     result['response'] = 'fail'
                     result['info'] = '当前对象不存在'
             db_session.commit()
+        return jsonify(result)
+    except Exception as e:
+        app.my_logger.error(traceback.format_exc(e))
+        abort(400)
+
+
+@manage.route('/func_list/delete', methods=['POST'])
+def delete_func_detail():
+    result = {
+        'response': 'ok'
+    }
+    try:
+        ids = request.form.get('ids').split(',')
+        with get_session() as db_session:
+            db_session.query(Func).filter(
+                Func.id.in_(ids)
+            ).delete(synchronize_session=False)
+            db_session.commit()
+            return jsonify(result)
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))
         abort(400)

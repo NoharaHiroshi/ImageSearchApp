@@ -12,6 +12,7 @@ import { AppConfig} from '../config/app_config';
 export class ListBaseComponent implements OnInit {
 	isLoading = true;
 	isDisabledButton = false;
+	isConfirm = false;
 	curPage = 1;
 	queryParams = {};
 	
@@ -24,5 +25,14 @@ export class ListBaseComponent implements OnInit {
     refresh(): void {
         this.getPagerData();
     }
+	
+	selectChecked(): String {
+		let obj_list = [];
+		let objs = $('input[name="checked"]:checked');
+		for(let obj of objs){
+			obj_list.push(obj.value);
+		}
+		return obj_list.join(',');
+	}
     
 }
