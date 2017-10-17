@@ -5,6 +5,8 @@ import 'rxjs/add/operator/toPromise';
 
 import { DefaultRequestOptions } from './util';
 
+declare var $: any;
+
 export class BaseService {
 	http: Http;
 
