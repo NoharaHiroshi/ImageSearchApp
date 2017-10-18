@@ -35,4 +35,9 @@ export class ListBaseComponent implements OnInit {
 		return obj_list.join(',');
 	}
     
+	modal(info: String): void {
+		if(this.isConfirm == false){
+			
+		}
+	}
 }
