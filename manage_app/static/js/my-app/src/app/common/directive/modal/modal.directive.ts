@@ -8,21 +8,22 @@ require('./assets/jquery.modal.js');
     selector: '[modal]',
 })
 export class ModalDirective {
+	
+	constructor(private elem: ElementRef, private renderer: Renderer) {}
+	
 	@Input() funcName: string;
 	
-	constructor(elem: ElementRef, renderer: Renderer) {
-		let self = this;
+	ngOnInit(): void {
 		if(this.funcName == 'del'){
 			$('body').append(`
-			<div class="modal">
-				<p>
-					确定删除？
-				</p>
-			</div>
-		`);
+				<div class="modal">
+					<p>
+						确定删除？
+					</p>
+				</div>
+			`);
 		}
-		$(elem.nativeElement).click(function(event: any) {
-			console.log('funcName:' + self.funcName);
+		$(this.elem.nativeElement).click(function(event: any) {
 			event.preventDefault();
 			$('.modal').modal({
 				fadeDuration: 250
