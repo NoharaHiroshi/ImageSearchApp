@@ -11,24 +11,22 @@ export class ModalDirective {
 	
 	constructor(private elem: ElementRef, private renderer: Renderer) {}
 	
-	@Input() funcName: string;
+	@Input('modal') funcName: string;
 	
 	ngOnInit(): void {
 		if(this.funcName == 'del'){
 			$('body').append(`
 				<div class="modal">
-					<p>
-						确定删除？
-					</p>
+				  <div class="modal-body">
+					确定删除？
+				  </div>
+				  <div class="modal-footer">
+					<button type="button" class="btn btn-default">取消</button>
+					<button type="button" class="btn btn-primary">确定</button>
+				  </div>
 				</div>
 			`);
 		}
-		$(this.elem.nativeElement).click(function(event: any) {
-			event.preventDefault();
-			$('.modal').modal({
-				fadeDuration: 250
-			});
-		});
 	}
 	
 }

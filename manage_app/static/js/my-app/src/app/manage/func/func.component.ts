@@ -29,6 +29,9 @@ export class FuncConfComponent extends ListBaseComponent{
 	
 	del(): void {
 		let del_ids = this.selectChecked();
+		$('.modal').modal({
+			fadeDuration: 250
+		});
 		this.service.del(del_ids).then(data =>{
 			if(data['response'] == 'ok'){
 				this.refresh();

@@ -10,11 +10,11 @@ import { AppConfig} from '../config/app_config';
     template:''
 })
 export class ListBaseComponent implements OnInit {
-	isLoading = true;
-	isDisabledButton = false;
-	isConfirm = false;
-	curPage = 1;
-	queryParams = {};
+	public isLoading = true;
+	public isDisabledButton = false;
+	public isConfirm = false;
+	public curPage = 1;
+	public queryParams = {};
 	
     getPagerData(): void {}
 	
@@ -35,9 +35,4 @@ export class ListBaseComponent implements OnInit {
 		return obj_list.join(',');
 	}
     
-	modal(info: String): void {
-		if(this.isConfirm == false){
-			
-		}
-	}
 }
