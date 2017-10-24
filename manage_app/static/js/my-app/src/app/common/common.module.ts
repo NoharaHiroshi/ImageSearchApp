@@ -15,7 +15,6 @@ import { CommonService } from './common.service';
 
 // Directive
 import { IcheckDirective } from './directive/icheck/icheck.directive';
-import { ModalDirective } from './directive/modal/modal.directive';
 
 @NgModule({
 	declarations: [
@@ -23,7 +22,6 @@ import { ModalDirective } from './directive/modal/modal.directive';
 		LeftNavComponent,
 		LoadingComponent,
 		
-		ModalDirective,
 		IcheckDirective,
 	],
 	imports: [
@@ -38,7 +36,6 @@ import { ModalDirective } from './directive/modal/modal.directive';
 		LeftNavComponent,
 		LoadingComponent,
 		
-		ModalDirective,
 		IcheckDirective,
 	],
 	providers: [ CommonService ],

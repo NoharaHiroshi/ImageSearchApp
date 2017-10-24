@@ -29,14 +29,36 @@ export class FuncConfComponent extends ListBaseComponent{
 	
 	del(): void {
 		let del_ids = this.selectChecked();
-		$('.modal').modal({
-			fadeDuration: 250
-		});
-		this.service.del(del_ids).then(data =>{
-			if(data['response'] == 'ok'){
-				this.refresh();
+		let self = this;
+		swal({
+			title: '删除',
+			text: '确定删除当前数据？',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '删除',
+			cancelButtonText: '取消',
+			confirmButtonClass: 'btn btn-danger',
+			cancelButtonClass: 'btn btn-success',
+			buttonsStyling: false
+		}).then(function(isConfirm) {
+			if(isConfirm === true){
+				self.service.del(del_ids).then(data =>{
+					if(data['response'] == 'ok'){
+						swal('已删除');
+						self.refresh();
+					}else{
+						swal('删除失败', data['info']);
+						self.refresh();
+					}
+				})
+			}else if (isConfirm === false){
+				self.refresh();
+			}else{
+				self.refresh();
 			}
-		})
+		});
 	}
 }
 

@@ -85,16 +85,23 @@ def update_func_detail():
 @manage.route('/func_list/delete', methods=['POST'])
 def delete_func_detail():
     result = {
-        'response': 'ok'
+        'response': 'ok',
+        'info': ''
     }
     try:
         ids = request.form.get('ids').split(',')
-        with get_session() as db_session:
-            db_session.query(Func).filter(
-                Func.id.in_(ids)
-            ).delete(synchronize_session=False)
-            db_session.commit()
-            return jsonify(result)
+        if ids[0]:
+            with get_session() as db_session:
+                db_session.query(Func).filter(
+                    Func.id.in_(ids)
+                ).delete(synchronize_session=False)
+                db_session.commit()
+        else:
+            result.update({
+                'response': 'fail',
+                'info': u'当前未选择任何数据'
+            })
+        return jsonify(result)
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))
         abort(400)
