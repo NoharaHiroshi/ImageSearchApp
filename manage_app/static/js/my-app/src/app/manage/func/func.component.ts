@@ -1,4 +1,5 @@
 declare var $: any;
+declare var swal: any;
 
 import { Component, OnInit, OnChanges, Input} from '@angular/core';
 import { ActivatedRoute, Params, Router }   from '@angular/router';
@@ -39,10 +40,10 @@ export class FuncConfComponent extends ListBaseComponent{
 			cancelButtonColor: '#d33',
 			confirmButtonText: '删除',
 			cancelButtonText: '取消',
-			confirmButtonClass: 'btn btn-danger',
-			cancelButtonClass: 'btn btn-success',
+			confirmButtonClass: 'btn btn-theme04 margin-right10',
+			cancelButtonClass: 'btn btn-theme03',
 			buttonsStyling: false
-		}).then(function(isConfirm) {
+		}).then(function(isConfirm: boolean) {
 			if(isConfirm === true){
 				self.service.del(del_ids).then(data =>{
 					if(data['response'] == 'ok'){
