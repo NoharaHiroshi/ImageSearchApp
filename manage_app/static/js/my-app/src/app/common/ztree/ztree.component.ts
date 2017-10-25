@@ -17,7 +17,19 @@ export class ZtreeComponent {
 		let zTree: any;
 		
 		// ztree配置
-		let setting = {};
+		let setting = {
+			view: {
+				dblClickExpand: false,
+				showIcon: false,
+				showLine: true,
+			},
+			check: {
+				enable: true,
+				chkboxType: { "Y": "ps", "N": "ps" },
+				chkStyle: "checkbox"
+			}
+		};
+		
 		console.log(this.data);
 		let zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, this.data);
 	}
