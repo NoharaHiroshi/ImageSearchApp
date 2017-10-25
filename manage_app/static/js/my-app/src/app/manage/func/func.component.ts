@@ -24,8 +24,8 @@ export class FuncConfComponent extends ListBaseComponent{
 		this.isLoading = true;
 		this.service.getFuncs().then(data => {
         	this.func_list = data.func_list;
+			this.isLoading = false;
         });
-		this.isLoading = false;
 	}
 	
 	del(): void {

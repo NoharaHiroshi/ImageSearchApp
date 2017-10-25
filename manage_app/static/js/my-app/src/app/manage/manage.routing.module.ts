@@ -13,6 +13,7 @@ const routes: Routes = [
 	
 	{ path: 'menu_conf', component: MenuConfComponent },
 	{ path: 'menu_conf/detail/:id', component: MenuConfDetailComponent },
+	{ path: 'menu_conf/add', component: MenuConfDetailComponent },
 ];
 
 @NgModule({

@@ -9,6 +9,7 @@ import { CommonModule} from '@angular/common'
 import { HeaderComponent } from './header/header.component';
 import { LeftNavComponent } from './left_nav/left_nav.component';
 import { LoadingComponent } from './loading/loading.component';
+import { ZtreeComponent } from './ztree/ztree.component';
 
 // Service
 import { CommonService } from './common.service';
@@ -21,6 +22,7 @@ import { IcheckDirective } from './directive/icheck/icheck.directive';
 		HeaderComponent,
 		LeftNavComponent,
 		LoadingComponent,
+		ZtreeComponent,
 		
 		IcheckDirective,
 	],
@@ -35,6 +37,7 @@ import { IcheckDirective } from './directive/icheck/icheck.directive';
 		HeaderComponent,
 		LeftNavComponent,
 		LoadingComponent,
+		ZtreeComponent,
 		
 		IcheckDirective,
 	],

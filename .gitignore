@@ -16,5 +16,4 @@
 *.ngfactory.ts
 *.d.ts
 
-static/dist/debug
-manage_app/static/dist/debug/common/polyfills.js
+static/dist/*

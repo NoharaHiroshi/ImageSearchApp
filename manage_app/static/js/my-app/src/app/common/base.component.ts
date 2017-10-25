@@ -1,4 +1,5 @@
 declare var $: any;
+declare var swal: any;
 import { Component, Input, OnInit, Output, EventEmitter, ViewChild} from '@angular/core';
 import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { Modal } from 'angular2-modal/plugins/bootstrap';

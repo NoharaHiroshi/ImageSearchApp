@@ -16,7 +16,9 @@ import { ManageComponent } from './manage.component';
 
 import { FuncConfComponent, FuncConfDetailComponent } from './func/func.component';
 import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.component';
+
 import { FuncService } from './func/func.service';
+import { MenuService } from './menu/menu.service';
 
 
 @NgModule({
@@ -44,7 +46,8 @@ import { FuncService } from './func/func.service';
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
 		LeftNavService,
-		FuncService
+		FuncService,
+		MenuService
 	],
 	bootstrap: [
 		ManageComponent
