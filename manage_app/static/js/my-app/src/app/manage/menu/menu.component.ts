@@ -28,13 +28,15 @@ export class MenuConfComponent extends ListBaseComponent{
 				let _sub_menus = []; 
 				
 				for(let sub_menu of menu.sub_menus){
-					_sub_menus.push(
-						{ name: sub_menu.name }
-					)
+					_sub_menus.push({ 
+						name: sub_menu.name,
+						menu_id: sub_menu.id,
+					})
 				}
 				
 				let _menu = {
 					name: menu.name,
+					menu_id: menu.id,
 					open: true,
 					children: _sub_menus
 				}

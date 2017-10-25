@@ -34,6 +34,5 @@ export class ListBaseComponent implements OnInit {
 			obj_list.push(obj.value);
 		}
 		return obj_list.join(',');
-	}
-    
+	}   
 }
