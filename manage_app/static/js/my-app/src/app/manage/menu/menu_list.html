@@ -34,8 +34,8 @@
 							<td>{{ menu.url }}</td>
 							<td>{{ menu.sort }}</td>
 							<td>
-								<span (click)="changeUpSort(menu.id)"><i class="fa fa-arrow-circle-o-up" aria-hidden="true"></i></span>
-								<span (click)="changeDownSort(menu.id)"><i class="fa fa-arrow-circle-o-down" aria-hidden="true"></i></span>
+								<button type="button" class="btn btn-theme min-btn" (click)="changeUpSort(menu.id)"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+								<button type="button" class="btn btn-theme03 min-btn" (click)="changeDownSort(menu.id)"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
 							</td>
 						</tr>
 					</tbody>

@@ -102,7 +102,7 @@ def update_menu_detail():
         parent_id = request.form.get('parent_id')
         icon_info = request.form.get('icon_info')
         url = request.form.get('url')
-        if None in [menu_id, menu_name, menu_code, parent_id]:
+        if None in [menu_name, menu_code, parent_id]:
             result.update({
                 'response': 'fail',
                 'info': u'请检查参数是否填写完整'
@@ -188,7 +188,9 @@ def change_menu_sort():
                             Menu.sort < menu.sort
                         ).first()
                         if _menu:
-                            menu.sort, _menu_sort = _menu.sort, menu.sort
+                            _sort = menu.sort
+                            menu.sort = _menu.sort
+                            _menu.sort = _sort
                         else:
                             result.update({
                                 'response': 'fail',
@@ -200,7 +202,9 @@ def change_menu_sort():
                             Menu.sort > menu.sort
                         ).first()
                         if _menu:
-                            menu.sort, _menu_sort = _menu.sort, menu.sort
+                            _sort = menu.sort
+                            menu.sort = _menu.sort
+                            _menu.sort = _sort
                         else:
                             result.update({
                                 'response': 'fail',
