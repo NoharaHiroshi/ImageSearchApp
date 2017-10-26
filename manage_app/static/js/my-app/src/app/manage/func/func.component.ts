@@ -88,10 +88,10 @@ export class FuncConfDetailComponent extends ListBaseComponent{
 	
 	save(): void {
 		this.service.update(this.func).then(res => {
-			this.isDisabledButton = false;
+			this.isDisabledButton = true;
 			if(res.response=='fail'){
 				console.log('fail', '保存失败');
-				this.isDisabledButton = true;
+				this.isDisabledButton = false;
 			}else{
 				console.log('success', '保存成功');
 				this.goBack();

@@ -1,0 +1,48 @@
+<h3>
+	<i class="fa fa-angle-right"></i> 菜单编辑 <span class="sub-title">Menu Edit</span> 
+</h3>
+<div class="row mt" *ngIf="menu">
+	<div class="col-lg-12">
+	  <div class="form-panel">
+		  <h5 class="mb return"><a href="javascript:void(0);" (click)="goBack()"><i class="fa fa-reply"></i> 返回 </a></h5>
+		  <form class="form-horizontal style-form" method="get">
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">菜单名称</label>
+				  <div class="col-sm-4">
+					  <input type="text" class="form-control" name="name" [(ngModel)]="menu.name" placeholder="添加菜单名称，如：菜单配置">
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">菜单代码</label>
+				  <div class="col-sm-4">
+					  <input type="text" class="form-control" name="code" [(ngModel)]="menu.code" placeholder="添加菜单代码，如：menu_manage">
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">图标样式</label>
+				  <div class="col-sm-4">
+					  <input type="text" class="form-control" name="icon" [(ngModel)]="menu.icon_info" placeholder="添加图标样式， 如：fa fa-dashboard">
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">所属菜单</label>
+				  <div class="col-sm-4">
+					  <select class="form-control" name="parent_id" [(ngModel)]="menu.parent_id">
+						<option value=0 selected="selected">指定所属菜单</option>
+						<ng-container *ngFor="let m of menu_select_info">
+							<option [value]="m.menu_id">{{ m.menu_name }}</option>
+						</ng-container>
+					  </select>
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label"></label>
+				  <div class="col-sm-4">
+					  <button type="button" type="submit" [disabled]="isDisabledButton" class="btn btn-theme03" (click)="save()">保存</button>
+					  <button type="button" type="submit" class="btn btn-theme04">取消</button>
+				  </div>
+			  </div>
+		  </form>
+	  </div>
+	</div><!-- col-lg-12-->      	
+</div><!-- /row -->

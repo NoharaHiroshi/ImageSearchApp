@@ -16,4 +16,4 @@
 *.ngfactory.ts
 *.d.ts
 
-static/dist/*
+static/dist/debug

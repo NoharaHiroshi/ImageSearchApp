@@ -32,4 +32,31 @@ export class MenuService extends BaseService {
 	               })
 	               .catch(this.handleError);
 	}
+	
+	getDetail(id: String): Promise<{}> {
+		const url = '/manage/menu_list/detail?id=' + id; 
+		let self = this;
+		return this.http.get(url)
+				   .toPromise()
+				   .then(res => {
+						let json = res.json()
+						json['menu'] = self.jsonToObject(json.menu, Menu);
+						json['menu_select_info'] = json.menu_select_info;
+						return json;
+				   })
+				   .catch(this.handleError);
+	} 
+	
+	update(menu: Menu): Promise<any> {
+		const url = '/manage/menu_list/update';
+	    return this.postForm(url, JSON.stringify(menu));
+	}
+	
+	del(ids: String): Promise<{}> {
+		const url = '/manage/menu_list/delete';
+		let params = {
+			'ids': ids
+		}
+		return this.postForm(url, JSON.stringify(params));
+	}
 }
