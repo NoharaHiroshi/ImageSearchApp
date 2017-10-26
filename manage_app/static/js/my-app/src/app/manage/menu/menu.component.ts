@@ -15,7 +15,6 @@ import { MenuService } from './menu.service';
 })
 export class MenuConfComponent extends ListBaseComponent{
 	menu_list: Menu[];
-	ztree_menu_list: any[];
 	
 	constructor(private service: MenuService) {
 		super();
@@ -25,25 +24,6 @@ export class MenuConfComponent extends ListBaseComponent{
 		this.isLoading = true;
 		this.service.getMenus().then(data => {
         	this.menu_list = data.menu_list;
-			this.ztree_menu_list = [];
-			for(let menu of this.menu_list){
-				let _sub_menus = []; 
-				
-				for(let sub_menu of menu.sub_menus){
-					_sub_menus.push({ 
-						name: sub_menu.name,
-						menu_id: sub_menu.id,
-					})
-				}
-				
-				let _menu = {
-					name: menu.name,
-					menu_id: menu.id,
-					open: true,
-					children: _sub_menus
-				}
-				this.ztree_menu_list.push(_menu);
-			}
 			this.isLoading = false;
         });
 	}
@@ -80,6 +60,30 @@ export class MenuConfComponent extends ListBaseComponent{
 				self.refresh();
 			}
 		});
+	}
+	
+	changeUpSort(menu_id: String): void {
+		this.service.changeSort(menu_id, 'up').then(data =>{
+			if(data['response'] == 'ok'){
+				swal('移动成功');
+				this.refresh();
+			}else{
+				swal('移动失败', data['info']);
+				this.refresh();
+			}
+		})
+	}
+	
+	changeDownSort(menu_id: String): void {
+		this.service.changeSort(menu_id, 'down').then(data =>{
+			if(data['response'] == 'ok'){
+				swal('移动成功');
+				this.refresh();
+			}else{
+				swal('移动失败', data['info']);
+				this.refresh();
+			}
+		})
 	}
 }
 

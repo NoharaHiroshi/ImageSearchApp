@@ -59,4 +59,13 @@ export class MenuService extends BaseService {
 		}
 		return this.postForm(url, JSON.stringify(params));
 	}
+	
+	changeSort(menu_id: String, change_method: String): Promise<any> {
+		const url = '/manage/menu_list/menu_sort_change';
+		let params = {
+			'menu_id': menu_id,
+			'change_method': change_method
+		}
+		return this.postForm(url, JSON.stringify(params));
+	}
 }

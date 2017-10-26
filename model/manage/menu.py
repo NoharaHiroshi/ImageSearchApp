@@ -28,12 +28,14 @@ class Menu(Base):
     url = Column(String(50))
 
     @classmethod
-    def set_count(cls, sort=None):
+    def set_count(cls, parent_id=0, sort=None):
         with get_session() as db_session:
             if sort:
                 return sort
             else:
-                _menu = db_session.query(cls).order_by(-Menu.sort).first()
+                _menu = db_session.query(cls).filter(
+                    cls.parent_id == parent_id
+                ).order_by(-Menu.sort).first()
                 if _menu:
                     return _menu.sort + 1
                 else:

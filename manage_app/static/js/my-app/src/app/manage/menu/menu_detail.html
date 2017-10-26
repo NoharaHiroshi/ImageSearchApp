@@ -30,7 +30,7 @@
 					  <select class="form-control" name="parent_id" [(ngModel)]="menu.parent_id">
 						<option value=0 selected="selected">指定所属菜单</option>
 						<ng-container *ngFor="let m of menu_select_info">
-							<option [value]="m.menu_id">{{ m.menu_name }}</option>
+							<option [value]="m.id">{{ m.menu_name }}</option>
 						</ng-container>
 					  </select>
 				  </div>
