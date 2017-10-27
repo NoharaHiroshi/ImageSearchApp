@@ -4,6 +4,7 @@ import { RouterModule, Routes }  from '@angular/router';
 import { ManageComponent } from './manage.component';
 import { FuncConfComponent, FuncConfDetailComponent } from './func/func.component';
 import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.component';
+import { MenuFuncConfComponent, MenuFuncConfDetailComponent } from './menu_func/menu_func.component';
 
 // 根路由器
 const routes: Routes = [
@@ -14,6 +15,10 @@ const routes: Routes = [
 	{ path: 'menu_conf', component: MenuConfComponent },
 	{ path: 'menu_conf/detail/:id', component: MenuConfDetailComponent },
 	{ path: 'menu_conf/add', component: MenuConfDetailComponent },
+	
+	{ path: 'menu_func_conf', component: MenuFuncConfComponent },
+	{ path: 'menu_func_conf/detail/:id', component: MenuFuncConfDetailComponent },
+	{ path: 'menu_func_conf/add', component: MenuFuncConfDetailComponent },
 ];
 
 @NgModule({

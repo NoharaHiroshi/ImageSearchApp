@@ -16,10 +16,11 @@ import { ManageComponent } from './manage.component';
 
 import { FuncConfComponent, FuncConfDetailComponent } from './func/func.component';
 import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.component';
+import { MenuFuncConfComponent, MenuFuncConfDetailComponent } from './menu_func/menu_func.component';
 
 import { FuncService } from './func/func.service';
 import { MenuService } from './menu/menu.service';
-
+import { MenuFuncService } from './menu_func/menu_func.service';
 
 @NgModule({
 	declarations: [
@@ -29,7 +30,10 @@ import { MenuService } from './menu/menu.service';
 		MenuConfDetailComponent,
 		
 		FuncConfComponent,
-		FuncConfDetailComponent
+		FuncConfDetailComponent,
+		
+		MenuFuncConfComponent,
+		MenuFuncConfDetailComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -47,7 +51,8 @@ import { MenuService } from './menu/menu.service';
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
 		LeftNavService,
 		FuncService,
-		MenuService
+		MenuService,
+		MenuFuncService
 	],
 	bootstrap: [
 		ManageComponent

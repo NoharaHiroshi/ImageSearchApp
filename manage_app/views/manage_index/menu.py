@@ -31,26 +31,6 @@ def nav_list():
         abort(400)
 
 
-# 获取带有前缀的菜单列表
-def get_menu_select_info(menu_select_info=list(), parent_id=0, level=0):
-    with get_session() as db_session:
-        menus = db_session.query(Menu).filter(
-            Menu.parent_id == parent_id
-        ).order_by(Menu.sort).all()
-        for menu in menus:
-            if menu:
-                menu_dict = menu.to_dict()
-                menu_dict.update({
-                    'menu_name': ''.join(['| ', '---- '*level, menu.name]),
-                })
-                menu_select_info.append(menu_dict)
-                _level = level + 1
-                get_menu_select_info(menu_select_info, menu.id, _level)
-            else:
-                continue
-    return menu_select_info
-
-
 @manage.route('/menu_list', methods=['GET'])
 def menu_list():
     result = {
@@ -59,7 +39,7 @@ def menu_list():
     }
     try:
         _menu_list = list()
-        _menu_list = get_menu_select_info(_menu_list)
+        _menu_list = Menu.get_menu_select_info(_menu_list)
         result['menu_list'] = _menu_list
         return jsonify(result)
     except Exception as e:
@@ -76,7 +56,7 @@ def get_menu_detail():
     try:
         func_id = request.args.get('id')
         menu_select_info = list()
-        menu_select_info = get_menu_select_info(menu_select_info)
+        menu_select_info = Menu.get_menu_select_info(menu_select_info)
         result['menu_select_info'] = menu_select_info
         with get_session() as db_session:
             menu = db_session.query(Menu).get(func_id)

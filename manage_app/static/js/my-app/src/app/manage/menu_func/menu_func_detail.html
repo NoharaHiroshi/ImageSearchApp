@@ -1,0 +1,53 @@
+<h3>
+	<i class="fa fa-angle-right"></i> 菜单功能编辑 <span class="sub-title">MenuFunc Edit</span> 
+</h3>
+<div class="row mt" *ngIf="menu_func">
+	<div class="col-lg-12">
+	  <div class="form-panel">
+		  <h5 class="mb return"><a href="javascript:void(0);" (click)="goBack()"><i class="fa fa-reply"></i> 返回 </a></h5>
+		  <form class="form-horizontal style-form" method="get">
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">菜单功能名称</label>
+				  <div class="col-sm-4">
+					  <input type="text" class="form-control" name="name" [(ngModel)]="menu_func.name" placeholder="添加菜单功能名称，如：添加菜单">
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">所属菜单</label>
+				  <div class="col-sm-4">
+					  <select class="form-control" name="menu_id" [(ngModel)]="menu_func.menu_id">
+						<option value=0 selected="selected">指定所属菜单</option>
+						<ng-container *ngFor="let m of menu_select_info">
+							<option [value]="m.id">{{ m.menu_name }} ( {{ m.code }} )</option>
+						</ng-container>
+					  </select>
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">所属功能</label>
+				  <div class="col-sm-4">
+					  <select class="form-control" name="func_id" [(ngModel)]="menu_func.func_id">
+						<option value=0 selected="selected">指定所属功能</option>
+						<ng-container *ngFor="let f of func_select_info">
+							<option [value]="f.id">{{ f.name }} ( {{ f.code }} )</option>
+						</ng-container>
+					  </select>
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">菜单功能代码</label>
+				  <div class="col-sm-4">
+					  <p class="detail-p">{{ menu_func.menu_func_code }}</p>
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label"></label>
+				  <div class="col-sm-4">
+					  <button type="button" type="submit" [disabled]="isDisabledButton" class="btn btn-theme03" (click)="save()">保存</button>
+					  <button type="button" type="submit" class="btn btn-theme04">取消</button>
+				  </div>
+			  </div>
+		  </form>
+	  </div>
+	</div><!-- col-lg-12-->      	
+</div><!-- /row -->

@@ -52,6 +52,26 @@ class Menu(Base):
             else:
                 return []
 
+    # 获取带有前缀的菜单列表
+    @classmethod
+    def get_menu_select_info(cls, menu_select_info=list(), parent_id=0, level=0):
+        with get_session() as db_session:
+            menus = db_session.query(Menu).filter(
+                Menu.parent_id == parent_id
+            ).order_by(Menu.sort).all()
+            for menu in menus:
+                if menu:
+                    menu_dict = menu.to_dict()
+                    menu_dict.update({
+                        'menu_name': ''.join(['| ', '---- ' * level, menu.name]),
+                    })
+                    menu_select_info.append(menu_dict)
+                    _level = level + 1
+                    cls.get_menu_select_info(menu_select_info, menu.id, _level)
+                else:
+                    continue
+        return menu_select_info
+
     def to_dict(self):
         return {
             'id': str(self.id),
