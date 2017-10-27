@@ -17,10 +17,12 @@ import { ManageComponent } from './manage.component';
 import { FuncConfComponent, FuncConfDetailComponent } from './func/func.component';
 import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.component';
 import { MenuFuncConfComponent, MenuFuncConfDetailComponent } from './menu_func/menu_func.component';
+import { RoleConfComponent, RoleConfDetailComponent } from './role/role.component';
 
 import { FuncService } from './func/func.service';
 import { MenuService } from './menu/menu.service';
 import { MenuFuncService } from './menu_func/menu_func.service';
+import { RoleService } from './role/role.service';
 
 @NgModule({
 	declarations: [
@@ -34,6 +36,9 @@ import { MenuFuncService } from './menu_func/menu_func.service';
 		
 		MenuFuncConfComponent,
 		MenuFuncConfDetailComponent,
+		
+		RoleConfComponent,
+		RoleConfDetailComponent
 	],
 	imports: [
 		BrowserModule,
@@ -52,7 +57,8 @@ import { MenuFuncService } from './menu_func/menu_func.service';
 		LeftNavService,
 		FuncService,
 		MenuService,
-		MenuFuncService
+		MenuFuncService,
+		RoleService
 	],
 	bootstrap: [
 		ManageComponent
