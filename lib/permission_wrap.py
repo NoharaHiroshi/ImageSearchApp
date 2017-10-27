@@ -9,6 +9,7 @@ def verify_permissions(code):
     def _dec(func):
         @wraps(func)
         def dec(*args, **kwargs):
+            print code
             return func(*args, **kwargs)
         return dec
     return _dec

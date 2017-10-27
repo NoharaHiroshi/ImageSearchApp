@@ -9,10 +9,13 @@ from model.session import get_session
 from model.manage.func import Func, MenuFunc
 from model.manage.menu import Menu
 
+from lib.permission_wrap import verify_permissions
+
 from route import manage
 
 
 @manage.route('/func_list', methods=['GET'])
+@verify_permissions('func_conf_list')
 def get_func_list():
     result = {
         'response': 'ok',
@@ -31,6 +34,7 @@ def get_func_list():
 
 
 @manage.route('/func_list/detail', methods=['GET'])
+@verify_permissions('func_conf_list')
 def get_func_detail():
     result = {
         'response': 'ok',
@@ -50,6 +54,7 @@ def get_func_detail():
 
 
 @manage.route('/func_list/update', methods=['POST'])
+@verify_permissions('func_conf_update')
 def update_func_detail():
     result = {
         'response': 'ok',
@@ -90,6 +95,7 @@ def update_func_detail():
 
 
 @manage.route('/func_list/delete', methods=['POST'])
+@verify_permissions('func_conf_delete')
 def delete_func_detail():
     result = {
         'response': 'ok',
@@ -115,6 +121,7 @@ def delete_func_detail():
 
 
 @manage.route('/menu_func_list', methods=['GET'])
+@verify_permissions('menu_func_conf_list')
 def get_menu_func_list():
     result = {
         'response': 'ok',
@@ -141,6 +148,7 @@ def get_menu_func_list():
 
 
 @manage.route('/menu_func_list/detail', methods=['GET'])
+@verify_permissions('menu_func_conf_list')
 def get_menu_func_detail():
     result = {
         'response': 'ok',
@@ -164,6 +172,7 @@ def get_menu_func_detail():
 
 
 @manage.route('/menu_func_list/update', methods=['POST'])
+@verify_permissions('menu_func_conf_update')
 def update_menu_func_detail():
     result = {
         'response': 'ok',

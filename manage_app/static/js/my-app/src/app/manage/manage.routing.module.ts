@@ -5,6 +5,7 @@ import { ManageComponent } from './manage.component';
 import { FuncConfComponent, FuncConfDetailComponent } from './func/func.component';
 import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.component';
 import { MenuFuncConfComponent, MenuFuncConfDetailComponent } from './menu_func/menu_func.component';
+import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent } from './role/role.component';
 
 // 根路由器
 const routes: Routes = [
@@ -19,6 +20,11 @@ const routes: Routes = [
 	{ path: 'menu_func_conf', component: MenuFuncConfComponent },
 	{ path: 'menu_func_conf/detail/:id', component: MenuFuncConfDetailComponent },
 	{ path: 'menu_func_conf/add', component: MenuFuncConfDetailComponent },
+	
+	{ path: 'role_conf', component: RoleConfComponent },
+	{ path: 'role_conf/detail/:id', component: RoleConfDetailComponent },
+	{ path: 'role_conf/add', component: RoleConfDetailComponent },
+	{ path: 'role_conf/permission/:id', component: RolePermissionConfDetailComponent },
 ];
 
 @NgModule({
