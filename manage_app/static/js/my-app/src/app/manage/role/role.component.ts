@@ -106,6 +106,8 @@ export class RoleConfDetailComponent extends ListBaseComponent{
   templateUrl: './role_permission_detail.html',
 })
 export class RolePermissionConfDetailComponent extends ListBaseComponent{
+	role: Role;
+	ztree_menu_list: any[];
 	
 	constructor(private service: RoleService, public route: ActivatedRoute, public router: Router) {
 		super();
@@ -116,6 +118,41 @@ export class RolePermissionConfDetailComponent extends ListBaseComponent{
         this.route.params.switchMap((params: Params) => this.service.getRolePermissionDetail(params['id']||'0'))
 	        .subscribe(res => {
 	        	this.role = res['role'];
+				this.all_menu_func_list = res['all_menu_func_list'];
+				this.ztree_menu_list = [];
+				for(let menu of this.all_menu_func_list){
+					let _sub_menus = []; 
+				
+					for(let sub_menu of menu.sub_menus){
+						let _sub_menu_funcs = [];
+						
+						for(let sub_menu_func of sub_menu.all_sub_menu_func){
+							_sub_menu_funcs.push({
+								name: sub_menu_func.name,
+								menu_id: sub_menu_func.id,
+								is_menu: false
+							})
+						}
+					
+						_sub_menus.push({ 
+							name: sub_menu.name,
+							menu_id: sub_menu.id,
+							is_menu: true,
+							open: true,
+							children: _sub_menu_funcs
+						})
+					}
+					
+					let _menu = {
+						name: menu.name,
+						menu_id: menu.id,
+						is_menu: true,
+						open: true,
+						children: _sub_menus
+					}
+					this.ztree_menu_list.push(_menu);
+				}
+				console.log(this.ztree_menu_list);
 				this.isLoading = false;
 	        });
 	}

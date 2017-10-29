@@ -7,6 +7,8 @@ from flask import current_app as app
 
 from model.session import get_session
 from model.manage.role import Role
+from model.manage.menu import Menu
+from model.manage.func import MenuFunc
 from model.manage.permission import RolePermissionRel
 
 from lib.permission_wrap import verify_permissions
@@ -118,23 +120,38 @@ def delete_role_detail():
 
 
 @manage.route('/role_list/permission/detail', methods=['GET'])
-@verify_permissions('role_conf_list')
+@verify_permissions('role_conf_update')
 def get_role_permission_detail():
     result = {
         'response': 'ok',
-        'role_permission_list': list()
+        'role': '',
+        'all_menu_func_list': list()
     }
     try:
         role_id = request.args.get('id')
         with get_session() as db_session:
-            all_role_permission = db_session.query(RolePermissionRel).filter(
-                RolePermissionRel.role_id == role_id
+            role = db_session.query(Role).get(role_id)
+            role_dict = role.to_dict()
+            result['role'] = role_dict
+
+            all_menu = db_session.query(Menu).filter(
+                Menu.parent_id == 0
             ).all()
-            role_permission_list = list()
-            for role_permission in all_role_permission:
-                role_permission_dict = role_permission.to_dict()
-                role_permission_list.append(role_permission_dict)
-            result['role_permission_list'] = role_permission_list
+            all_menu_list = list()
+            for menu in all_menu:
+                menu_dict = menu.to_dict()
+                sub_menus = menu_dict.get('sub_menus')
+                for sub_menu in sub_menus:
+                    all_sub_menu_func = db_session.query(MenuFunc).filter(
+                        MenuFunc.menu_id == sub_menu.get('id')
+                    ).all()
+                    sub_menu_func_list = list()
+                    for sub_menu_func in all_sub_menu_func:
+                        sub_menu_func_dict = sub_menu_func.to_dict()
+                        sub_menu_func_list.append(sub_menu_func_dict)
+                    sub_menu['all_sub_menu_func'] = sub_menu_func_list
+                all_menu_list.append(menu_dict)
+            result['all_menu_func_list'] = all_menu_list
         return jsonify(result)
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))

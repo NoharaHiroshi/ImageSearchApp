@@ -63,6 +63,7 @@ export class RoleService extends BaseService {
 				   .then(res => {
 						let json = res.json()
 						json['role'] = self.jsonToObject(json.role, Role);
+						json['all_menu_func_list'] = json.all_menu_func_list;
 						return json;
 				   })
 				   .catch(this.handleError);

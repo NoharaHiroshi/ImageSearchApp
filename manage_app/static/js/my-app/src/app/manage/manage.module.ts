@@ -17,7 +17,7 @@ import { ManageComponent } from './manage.component';
 import { FuncConfComponent, FuncConfDetailComponent } from './func/func.component';
 import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.component';
 import { MenuFuncConfComponent, MenuFuncConfDetailComponent } from './menu_func/menu_func.component';
-import { RoleConfComponent, RoleConfDetailComponent } from './role/role.component';
+import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent } from './role/role.component';
 
 import { FuncService } from './func/func.service';
 import { MenuService } from './menu/menu.service';
@@ -38,7 +38,8 @@ import { RoleService } from './role/role.service';
 		MenuFuncConfDetailComponent,
 		
 		RoleConfComponent,
-		RoleConfDetailComponent
+		RoleConfDetailComponent,
+		RolePermissionConfDetailComponent
 	],
 	imports: [
 		BrowserModule,

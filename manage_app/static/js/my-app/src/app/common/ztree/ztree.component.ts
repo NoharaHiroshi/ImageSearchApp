@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import 'ztree';
 declare var $: any;
@@ -9,6 +9,9 @@ declare var $: any;
 })
 export class ZtreeComponent {
 	@Input() data: any;
+	@Output() selectedNodes = new EventEmitter();   
+	
+	nodes: any;
 	
 	constructor() {}
 	
@@ -30,7 +33,14 @@ export class ZtreeComponent {
 			}
 		};
 		
-		console.log(this.data);
 		let zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, this.data);
+		$("#select-all").click(function(){ 
+			this.nodes = zTreeObj.getCheckedNodes(true); 
+			console.log(nodes);
+		});
+	}
+	
+	getSelectedNodes(): void {
+		this.selectedNodes.emit(this.nodes);
 	}
 }
