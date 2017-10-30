@@ -126,18 +126,22 @@ def get_role_permission_detail():
     result = {
         'response': 'ok',
         'role': '',
-        'all_menu_func_list': list()
+        'all_menu_func_list': list(),
+        'all_role_permission_list': list()
     }
     try:
         role_id = request.args.get('id')
         with get_session() as db_session:
+            # 角色信息
             role = db_session.query(Role).get(role_id)
             role_dict = role.to_dict()
             result['role'] = role_dict
 
+            # 菜单信息
             all_menu = db_session.query(Menu).filter(
                 Menu.parent_id == 0
             ).all()
+
             all_menu_list = list()
             for menu in all_menu:
                 menu_dict = menu.to_dict()
@@ -153,6 +157,15 @@ def get_role_permission_detail():
                     sub_menu['all_sub_menu_func'] = sub_menu_func_list
                 all_menu_list.append(menu_dict)
             result['all_menu_func_list'] = all_menu_list
+
+            # 角色权限信息
+            role_all_permission = db_session.query(RolePermissionRel).filter(
+                RolePermissionRel.role_id == role_id
+            ).all()
+            all_role_permission_list = list()
+            for role_permission in role_all_permission:
+                all_role_permission_list.append(role_permission.id)
+            result['all_role_permission_list'] = all_role_permission_list
         return jsonify(result)
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))
