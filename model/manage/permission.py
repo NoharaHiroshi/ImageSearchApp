@@ -12,10 +12,13 @@ class RolePermissionRel(Base):
     role_id = Column(BigInteger, nullable=False, index=True)
     # 菜单功能ID
     menu_func_id = Column(BigInteger, index=True)
+    # 菜单功能名称
+    menu_func_name = Column(String(45))
 
     def to_dict(self):
         return {
             'id': str(self.id),
             'role_id': str(self.role_id),
-            'menu_func_id': str(self.menu_func_id)
+            'menu_func_id': str(self.menu_func_id),
+            'menu_func_name': self.menu_func_name
         }

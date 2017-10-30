@@ -69,7 +69,9 @@ export class RoleService extends BaseService {
 				   .catch(this.handleError);
 	} 
 	
-	updateRolePermission(role: Role): Promise<any> {
+	updateRolePermission(role: Role, selected_nodes: any): Promise<any> {
+		selected_nodes = JSON.stringify(selected_nodes);
+		role.selected_nodes = selected_nodes
 		const url = '/manage/role_list/permission/update';
 	    return this.postForm(url, JSON.stringify(role));
 	}

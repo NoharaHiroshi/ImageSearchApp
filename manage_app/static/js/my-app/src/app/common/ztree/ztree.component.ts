@@ -9,15 +9,31 @@ declare var $: any;
 })
 export class ZtreeComponent {
 	@Input() data: any;
-	@Output() selectedNodes = new EventEmitter();   
+	@Output() selectedNodes = new EventEmitter<any[]>();   
 	
-	nodes: any;
+	nodes: any = [];
 	
 	constructor() {}
 	
 	ngOnInit(): void {
 		// ztree对象
 		let zTree: any;
+		
+		let self = this;
+		
+		let checkSelectedNodes(): void {
+			self.nodes = [];
+			let _nodes = zTreeObj.getCheckedNodes(true);
+			for(let _node of _nodes){
+				let _node_content = {
+					'name': _node['name'],
+					'menu_id': _node['menu_id'],
+					'is_menu': _node['is_menu']
+				}
+				self.nodes.push(_node_content);
+			}
+			self.selectedNodes.emit(self.nodes);	
+		}
 		
 		// ztree配置
 		let setting = {
@@ -30,17 +46,12 @@ export class ZtreeComponent {
 				enable: true,
 				chkboxType: { "Y": "ps", "N": "ps" },
 				chkStyle: "checkbox"
+			},
+			callback: {
+				onCheck: checkSelectedNodes
 			}
 		};
 		
 		let zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, this.data);
-		$("#select-all").click(function(){ 
-			this.nodes = zTreeObj.getCheckedNodes(true); 
-			console.log(nodes);
-		});
-	}
-	
-	getSelectedNodes(): void {
-		this.selectedNodes.emit(this.nodes);
 	}
 }

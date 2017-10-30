@@ -1,6 +1,7 @@
 # coding:utf-8
 
 import traceback
+import ujson
 from flask import render_template, abort, g, jsonify, request
 from flask.ext.login import current_user
 from flask import current_app as app
@@ -152,6 +153,38 @@ def get_role_permission_detail():
                     sub_menu['all_sub_menu_func'] = sub_menu_func_list
                 all_menu_list.append(menu_dict)
             result['all_menu_func_list'] = all_menu_list
+        return jsonify(result)
+    except Exception as e:
+        app.my_logger.error(traceback.format_exc(e))
+        abort(400)
+
+
+@manage.route('/role_list/permission/update', methods=['POST'])
+@verify_permissions('role_conf_update')
+def update_role_permission_detail():
+    result = {
+        'response': 'ok',
+    }
+    role_id = request.form.get('id')
+    role_selected_nodes = request.form.get('selected_nodes', None)
+    print role_selected_nodes
+    try:
+        if None in [role_selected_nodes]:
+            result.update({
+                'response': 'fail',
+                'info': u'当前未选择任何数据'
+            })
+        else:
+            with get_session() as db_session:
+                for node in role_selected_nodes:
+                    # 只记录功能id（menu_func）
+                    if not node.get('is_menu', True):
+                        role_permission = RolePermissionRel()
+                        role_permission.role_id = role_id
+                        role_permission.menu_func_id = node.get('menu_id')
+                        role_permission.menu_func_name = node.get('name')
+                        db_session.add(role_permission)
+                db_session.commit()
         return jsonify(result)
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))

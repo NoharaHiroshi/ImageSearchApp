@@ -108,6 +108,7 @@ export class RoleConfDetailComponent extends ListBaseComponent{
 export class RolePermissionConfDetailComponent extends ListBaseComponent{
 	role: Role;
 	ztree_menu_list: any[];
+	selected_nodes: any[];
 	
 	constructor(private service: RoleService, public route: ActivatedRoute, public router: Router) {
 		super();
@@ -161,8 +162,13 @@ export class RolePermissionConfDetailComponent extends ListBaseComponent{
 		this.router.navigate(['/role_conf']);
 	}
 	
+	getSelectedNodes(selected_nodes: any[]): void {
+		this.selected_nodes = selected_nodes;
+	}
+	
 	save(): void {
-		this.service.updateRolePermission(this.role).then(res => {
+		console.log(this.role);
+		this.service.updateRolePermission(this.role, this.selected_nodes).then(res => {
 			this.isDisabledButton = true;
 			if(res.response=='fail'){
 				console.log('fail', '保存失败');
