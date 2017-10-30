@@ -164,7 +164,7 @@ def get_role_permission_detail():
             ).all()
             all_role_permission_list = list()
             for role_permission in role_all_permission:
-                all_role_permission_list.append(role_permission.id)
+                all_role_permission_list.append(str(role_permission.menu_func_id))
             result['all_role_permission_list'] = all_role_permission_list
         return jsonify(result)
     except Exception as e:
@@ -179,25 +179,45 @@ def update_role_permission_detail():
         'response': 'ok',
     }
     role_id = request.form.get('id')
-    role_selected_nodes = request.form.get('selected_nodes', None)
-    print role_selected_nodes
+    role_selected_nodes = request.form.get('selected_nodes', '[]')
     try:
-        if None in [role_selected_nodes]:
-            result.update({
-                'response': 'fail',
-                'info': u'当前未选择任何数据'
-            })
-        else:
-            with get_session() as db_session:
-                for node in role_selected_nodes:
-                    # 只记录功能id（menu_func）
-                    if not node.get('is_menu', True):
+        with get_session() as db_session:
+            role_selected_nodes = ujson.loads(role_selected_nodes)
+            if role_selected_nodes:
+                update_ids = [role_selected_node.get('menu_id') for role_selected_node in role_selected_nodes]
+            else:
+                update_ids = []
+
+            all_has_permission = db_session.query(RolePermissionRel).filter(
+                RolePermissionRel.role_id == role_id
+            ).all()
+            if all_has_permission:
+                has_ids = [str(has_permission.menu_func_id) for has_permission in all_has_permission]
+            else:
+                has_ids = []
+
+            del_ids = set(has_ids) - set(update_ids)
+
+            # 删除
+            db_session.query(RolePermissionRel).filter(
+                RolePermissionRel.role_id == role_id,
+                RolePermissionRel.menu_func_id.in_(del_ids)
+            ).delete(synchronize_session=False)
+
+            for node in role_selected_nodes:
+                # 只记录功能id（menu_func）
+                if not node.get('is_menu', True):
+                    role_permission = db_session.query(RolePermissionRel).filter(
+                        RolePermissionRel.role_id == role_id,
+                        RolePermissionRel.menu_func_id == node.get('menu_id')
+                    ).first()
+                    if not role_permission:
                         role_permission = RolePermissionRel()
                         role_permission.role_id = role_id
                         role_permission.menu_func_id = node.get('menu_id')
                         role_permission.menu_func_name = node.get('name')
                         db_session.add(role_permission)
-                db_session.commit()
+            db_session.commit()
         return jsonify(result)
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))

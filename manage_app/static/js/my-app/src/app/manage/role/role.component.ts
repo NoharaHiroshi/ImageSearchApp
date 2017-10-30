@@ -91,10 +91,10 @@ export class RoleConfDetailComponent extends ListBaseComponent{
 		this.service.update(this.role).then(res => {
 			this.isDisabledButton = true;
 			if(res.response=='fail'){
-				console.log('fail', '保存失败');
+				swal('保存失败', data['info']);
 				this.isDisabledButton = false;
 			}else{
-				console.log('success', '保存成功');
+				swal('保存成功');
 				this.goBack();
 			}
 		});
@@ -120,27 +120,42 @@ export class RolePermissionConfDetailComponent extends ListBaseComponent{
 	        .subscribe(res => {
 	        	this.role = res['role'];
 				this.all_menu_func_list = res['all_menu_func_list'];
+				this.selected_nodes = res['all_role_permission_list'];
 				this.ztree_menu_list = [];
+				let self = this;
+				// 第一层：主菜单
 				for(let menu of this.all_menu_func_list){
 					let _sub_menus = []; 
+					var fir_selected = false;
 				
+					// 第二层：下级菜单
 					for(let sub_menu of menu.sub_menus){
 						let _sub_menu_funcs = [];
+						var sec_selected = false;
 						
+						// 第三层：菜单功能
 						for(let sub_menu_func of sub_menu.all_sub_menu_func){
+							let selected = false;
+							if(self.selected_nodes.indexOf(sub_menu_func.id) != -1){
+								selected = true;
+								sec_selected = true;
+								fir_selected = true;
+							}
 							_sub_menu_funcs.push({
 								name: sub_menu_func.name,
 								menu_id: sub_menu_func.id,
-								is_menu: false
+								is_menu: false,
+								checked: selected
 							})
 						}
-					
+						
 						_sub_menus.push({ 
 							name: sub_menu.name,
 							menu_id: sub_menu.id,
 							is_menu: true,
 							open: true,
-							children: _sub_menu_funcs
+							children: _sub_menu_funcs，
+							checked: sec_selected
 						})
 					}
 					
@@ -149,11 +164,11 @@ export class RolePermissionConfDetailComponent extends ListBaseComponent{
 						menu_id: menu.id,
 						is_menu: true,
 						open: true,
-						children: _sub_menus
+						children: _sub_menus，
+						checked: fir_selected
 					}
 					this.ztree_menu_list.push(_menu);
 				}
-				console.log(this.ztree_menu_list);
 				this.isLoading = false;
 	        });
 	}
@@ -167,14 +182,13 @@ export class RolePermissionConfDetailComponent extends ListBaseComponent{
 	}
 	
 	save(): void {
-		console.log(this.role);
 		this.service.updateRolePermission(this.role, this.selected_nodes).then(res => {
 			this.isDisabledButton = true;
 			if(res.response=='fail'){
-				console.log('fail', '保存失败');
+				swal('保存失败', data['info']);
 				this.isDisabledButton = false;
 			}else{
-				console.log('success', '保存成功');
+				swal('保存成功');
 				this.goBack();
 			}
 		});

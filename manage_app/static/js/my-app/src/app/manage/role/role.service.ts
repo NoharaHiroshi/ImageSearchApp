@@ -64,6 +64,7 @@ export class RoleService extends BaseService {
 						let json = res.json()
 						json['role'] = self.jsonToObject(json.role, Role);
 						json['all_menu_func_list'] = json.all_menu_func_list;
+						json['all_role_permission_list'] = json.all_role_permission_list;
 						return json;
 				   })
 				   .catch(this.handleError);
