@@ -11,7 +11,7 @@ export class ZtreeComponent {
 	@Input() data: any;
 	@Output() selectedNodes = new EventEmitter<any[]>();   
 	
-	nodes: any = [];
+	nodes: any;
 	
 	constructor() {}
 	

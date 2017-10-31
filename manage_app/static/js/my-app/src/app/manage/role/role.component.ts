@@ -91,7 +91,7 @@ export class RoleConfDetailComponent extends ListBaseComponent{
 		this.service.update(this.role).then(res => {
 			this.isDisabledButton = true;
 			if(res.response=='fail'){
-				swal('保存失败', data['info']);
+				swal('保存失败', res.info);
 				this.isDisabledButton = false;
 			}else{
 				swal('保存成功');
@@ -108,6 +108,7 @@ export class RoleConfDetailComponent extends ListBaseComponent{
 export class RolePermissionConfDetailComponent extends ListBaseComponent{
 	role: Role;
 	ztree_menu_list: any[];
+	all_menu_func_list: any[];
 	selected_nodes: any[];
 	
 	constructor(private service: RoleService, public route: ActivatedRoute, public router: Router) {
@@ -154,7 +155,7 @@ export class RolePermissionConfDetailComponent extends ListBaseComponent{
 							menu_id: sub_menu.id,
 							is_menu: true,
 							open: true,
-							children: _sub_menu_funcs，
+							children: _sub_menu_funcs,
 							checked: sec_selected
 						})
 					}
@@ -164,7 +165,7 @@ export class RolePermissionConfDetailComponent extends ListBaseComponent{
 						menu_id: menu.id,
 						is_menu: true,
 						open: true,
-						children: _sub_menus，
+						children: _sub_menus,
 						checked: fir_selected
 					}
 					this.ztree_menu_list.push(_menu);
@@ -185,7 +186,7 @@ export class RolePermissionConfDetailComponent extends ListBaseComponent{
 		this.service.updateRolePermission(this.role, this.selected_nodes).then(res => {
 			this.isDisabledButton = true;
 			if(res.response=='fail'){
-				swal('保存失败', data['info']);
+				swal('保存失败', res.info);
 				this.isDisabledButton = false;
 			}else{
 				swal('保存成功');
