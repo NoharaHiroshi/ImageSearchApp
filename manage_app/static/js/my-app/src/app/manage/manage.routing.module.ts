@@ -10,7 +10,6 @@ import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailCom
 // 根路由器
 const routes: Routes = [
 	{ path: '', redirectTo: '/login', pathMatch: 'full' },
-	{ path: 'login', component: LoginComponent },
 
 	{ path: 'func_conf', component: FuncConfComponent },
 	{ path: 'func_conf/detail/:id', component: FuncConfDetailComponent },
