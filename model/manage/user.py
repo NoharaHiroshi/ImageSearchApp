@@ -115,7 +115,7 @@ class User(Base, UserMixin):
         self.password = AESCipher.encrypt(password)
 
     def check_password(self, password):
-        if AESCipher.decrypt(self.passwd) == password:
+        if AESCipher.decrypt(self.password) == password:
             return True
         else:
             return False
@@ -135,3 +135,15 @@ class User(Base, UserMixin):
             'is_type_super_manage': self.is_type_super_manage(),
             'is_status_active': self.is_status_active()
         }
+
+if __name__ == '__main__':
+    with get_session() as db_session:
+        user = User()
+        user.name = 'Lands'
+        user.email = '308788433@qq.com'
+        user.phone = '18222100000'
+        user.set_password('123456')
+        user.type = User.TYPE_SUPER_MANAGE
+        user.creator_id = 0
+        db_session.add(user)
+        db_session.commit()
