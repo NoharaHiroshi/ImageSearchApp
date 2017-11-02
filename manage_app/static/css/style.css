@@ -2282,3 +2282,8 @@ label {
 .fail-info {
 	color: #FF6C60;
 }
+
+.user-info {
+	margin-top: 15px;
+	margin-right: 20px;
+}

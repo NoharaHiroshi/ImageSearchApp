@@ -21,10 +21,15 @@ export class HeaderService extends BaseService {
 	               .toPromise()
 	               .then(function(res){
 						let json = res.json();
-	            	    let user = self.jsonToObject(json['user'], User);
-	            	    return user;
+	            	    let user = self.jsonToObject(json.user, User);
+						json['user'] = user;
+	            	    return json;
 	               })
 	               .catch(this.handleError);
 	}
 	
+	logout(): Promise<any> {
+		const url = `/manage/logout`; 
+	    return this.http.get(url);
+	}
 }

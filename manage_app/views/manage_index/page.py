@@ -40,7 +40,7 @@ def header_info():
     }
     try:
         if current_user.is_authenticated():
-            user_dict = current_user.to_dcit()
+            user_dict = current_user.to_dict()
             result['user'] = user_dict
         return jsonify(result)
     except Exception as e:

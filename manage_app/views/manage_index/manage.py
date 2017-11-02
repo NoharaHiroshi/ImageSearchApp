@@ -3,7 +3,7 @@
 import traceback
 import time
 from flask import render_template, abort, g, redirect, url_for, request, jsonify, session
-from flask.ext.login import current_user, login_user
+from flask.ext.login import current_user, login_user, logout_user, login_required
 from flask import current_app as app
 from sqlalchemy import or_, func, and_
 
@@ -16,14 +16,10 @@ from route import manage
 
 
 @manage.route('/', methods=['GET'])
+@login_required
 def index():
     try:
-        context = {'module': 'manage'}
-        # 判断是否是登陆用户
-        if current_user.is_authenticated():
-            return render_template('tpl/manage_page.html', **context)
-        else:
-            return redirect(url_for('manage.login'))
+        return render_template('tpl/manage_page.html')
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))
         abort(400)
@@ -108,7 +104,7 @@ def login():
                         })
                         return jsonify(result)
 
-                    # 登陆成功后，跳转到后台管理界面
+                    # 验证身份后，调用Flask-Login中的login_user(),将user实例标记为已登录
                     login_user(user)
                     result['url'] = url_for('manage.index')
                     return jsonify(result)
@@ -119,6 +115,17 @@ def login():
                     })
                     return jsonify(result)
         return render_template('tpl/login.html', **context)
+    except Exception as e:
+        print e
+        abort(400)
+
+
+@manage.route('/logout', methods=['GET'])
+@login_required
+def logout():
+    try:
+        logout_user()
+        return redirect(url_for('manage.login'))
     except Exception as e:
         print e
         abort(400)

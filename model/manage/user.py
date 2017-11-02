@@ -140,7 +140,7 @@ if __name__ == '__main__':
     with get_session() as db_session:
         user = User()
         user.name = 'Lands'
-        user.email = '308788433@qq.com'
+        user.email = '380788433@qq.com'
         user.phone = '18222100000'
         user.set_password('123456')
         user.type = User.TYPE_SUPER_MANAGE

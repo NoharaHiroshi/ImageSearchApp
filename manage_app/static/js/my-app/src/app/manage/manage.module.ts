@@ -11,6 +11,7 @@ import { ManageRoutingModule } from './manage.routing.module';
 
 import { SharedModule } from '../common/common.module';
 import { LeftNavService } from '../common/left_nav/left_nav.service';
+import { HeaderService } from '../common/header/header.service';
 
 import { ManageComponent } from './manage.component';
 
@@ -55,6 +56,7 @@ import { RoleService } from './role/role.service';
 	],
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
+		HeaderService,
 		LeftNavService,
 		FuncService,
 		MenuService,

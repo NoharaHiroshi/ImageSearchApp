@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { User } from '../../model/user';
 import { HeaderService } from './header.service';
-import { ListBaseComponent } from './base.component';
+import { ListBaseComponent } from '../base.component';
 
 declare var $: any;
 
@@ -11,10 +11,18 @@ declare var $: any;
   templateUrl: './header.html',
 })
 
-export class HeaderComponent extends ListBaseComponent implements OnInit {
-	constructor() {}
+export class HeaderComponent implements OnInit {
+	user: User;
+
+	constructor(private service: HeaderService) {}
 	
 	ngOnInit(): void {
-		
+		this.service.getInfo().then(data => {
+        	this.user = data.user;
+        });
+	}
+	
+	logout(): void {
+		this.service.logout();
 	}
 }
