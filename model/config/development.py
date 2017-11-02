@@ -4,6 +4,9 @@
 """
 DEBUG = False
 
+# flask SECRET_KEY
+SECRET_KEY = 'LandsDoraLJKMars'
+
 DB = 'image_search_dev'
 HOST = '127.0.0.1'
 USER = 'root'

@@ -9,6 +9,8 @@ import hashlib
 from Crypto import Random
 from Crypto.Cipher import AES
 
+from model.config import config
+
 BS = 16
 
 
@@ -23,7 +25,7 @@ def unpad(s):
 class AESCipher(object):
     # 加密
     @staticmethod
-    def encrypt(raw, key='LandsDoraLJKMars'):
+    def encrypt(raw, key=config.SECRET_KEY):
         raw = pad(raw)
         Random.atfork()
         iv = Random.new().read(AES.block_size)
@@ -32,7 +34,7 @@ class AESCipher(object):
 
     # 解密
     @staticmethod
-    def decrypt(enc, key='LandsDoraLJKMars'):
+    def decrypt(enc, key=config.SECRET_KEY):
         enc = base64.b64decode(enc)
         iv = enc[:16]
         cipher = AES.new(key, AES.MODE_CBC, iv)

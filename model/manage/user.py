@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from flask.ext.login import UserMixin
+from flask.ext.login import UserMixin, AnonymousUserMixin
 from sqlalchemy import Column, Integer, String, BigInteger
 from sqlalchemy import UniqueConstraint
 
@@ -19,6 +19,7 @@ class User(Base, UserMixin):
     # 添加唯一性约束，一个项目中只能有一个注册邮箱
     __table_args__ = (
         UniqueConstraint('email', name='email'),
+        UniqueConstraint('phone', name='phone')
     )
 
     # 类型：管理员、超级管理员
