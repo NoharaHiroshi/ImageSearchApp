@@ -2278,3 +2278,7 @@ label {
 .margin-left30 {
     margin-left: 30px;
 }
+
+.fail-info {
+	color: #FF6C60;
+}

@@ -23,17 +23,16 @@
 		  <form class="form-login" action="{{ url_for('manage.login') }}" method="post">
 			<h2 class="form-login-heading">登陆</h2>
 			<div class="login-wrap">
-				<input id="csrf_token" name="csrf_token" type="hidden" value="{{ token }}">
-				<input type="text" class="form-control" name="account" value="" placeholder="邮箱/手机号" autofocus>
+				<input id="token" name="token" type="hidden" value="{{ token }}">
+				<input type="text" class="form-control" name="account" id="account" value="" placeholder="邮箱/手机号" autofocus>
 				<br>
-				<input type="password" class="form-control" name="password" value="" placeholder="密码">
+				<input type="password" class="form-control" name="password" id="password" value="" placeholder="密码">
 				<label class="checkbox">
 					<span class="pull-right">
-						<a data-toggle="modal" href="login.html#myModal"> 忘记密码了?</a>
-
+						<p class="fail-info" id="login_info"></p>
 					</span>
 				</label>
-				<button class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> 登陆</button>
+				<button class="btn btn-theme btn-block" id="login" type="submit"><i class="fa fa-lock"></i> 登陆</button>
 				<hr>
 				
 				<div class="login-social-link centered">
@@ -49,29 +48,6 @@
 				</div>
 
 			</div>
-
-			  <!-- Modal -->
-			  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-				  <div class="modal-dialog">
-					  <div class="modal-content">
-						  <div class="modal-header">
-							  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							  <h4 class="modal-title">忘记密码了 ?</h4>
-						  </div>
-						  <div class="modal-body">
-							  <p>填写您的注册邮箱，我们会将重置密码的链接发到您的邮箱中</p>
-							  <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
-
-						  </div>
-						  <div class="modal-footer">
-							  <button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
-							  <button class="btn btn-theme" type="button">提交</button>
-						  </div>
-					  </div>
-				  </div>
-			  </div>
-			  <!-- modal -->
-
 		  </form>	  	
 
 		</div>
@@ -81,5 +57,24 @@
 	<script src="{{ url_for('static', filename='js/lib/jquery.js') }}"></script>
     <script src="{{ url_for('static', filename='js/lib/jquery-1.8.3.min.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/lib/bootstrap.min.js') }}"></script>
+	<script>
+		$(document).ready(function(){
+			$("#login").click(function(e){
+				e.preventDefault();
+				var data = {
+					'token': $("#token").val(),
+					'account':$("#account").val(),
+					'password':$("#password").val(),
+				}
+				$.post('{{ url_for('manage.login') }}', data, function (res) {
+					if (res.response == 'ok') {
+						window.location.href = res.url;
+					}else{
+						$('#login_info').html(res.info);
+					}
+				});
+			});
+		})
+	</script>
 </body>
 </html>
