@@ -304,7 +304,7 @@ def update_user_role_detail():
     }
     role_ids = request.form.get('roles').split(',')
     user_id = request.form.get('id')
-    print user_id
+    is_add = request.form.get('is_add') == 'true'
     try:
         if not role_ids[0] or user_id == 0:
             result.update({
@@ -313,11 +313,44 @@ def update_user_role_detail():
             })
         else:
             with get_session() as db_session:
-                for role_id in role_ids:
-                    user_role = UserRole()
-                    user_role.user_id = user_id
-                    user_role.role_id = role_id
-                    db_session.add(user_role)
+                # 添加
+                if is_add:
+                    user_role = db_session.query(UserRole).filter(
+                        UserRole.user_id == user_id
+                    ).first()
+                    if user_role:
+                        result.update({
+                            'response': 'fail',
+                            'info': u'当前用户已分配角色'
+                        })
+                    else:
+                        for role_id in role_ids:
+                            user_role = UserRole()
+                            user_role.user_id = user_id
+                            user_role.role_id = role_id
+                            db_session.add(user_role)
+                # 修改
+                else:
+                    user_all_role = db_session.query(UserRole).filter(
+                        UserRole.user_id == user_id
+                    ).all()
+                    # 已有权限id
+                    has_role_ids = [str(user_role.role_id) for user_role in user_all_role]
+                    # 更新权限id
+                    update_role_ids = set(role_ids) - set(has_role_ids)
+                    # 删除权限id
+                    del_role_ids = set(has_role_ids) - set(role_ids)
+
+                    # 删除
+                    db_session.query(UserRole).filter(
+                        UserRole.role_id.in_(del_role_ids)
+                    ).delete(synchronize_session=False)
+                    # 更新
+                    for role_id in update_role_ids:
+                        user_role = UserRole()
+                        user_role.user_id = user_id
+                        user_role.role_id = role_id
+                        db_session.add(user_role)
                 db_session.commit()
         return jsonify(result)
     except Exception as e:

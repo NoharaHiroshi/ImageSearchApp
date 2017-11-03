@@ -114,6 +114,7 @@ export class UserRoleConfDetailComponent extends ListBaseComponent{
 		}
 		let role_ids = obj_list.join(',');
 		this.user_role.roles = role_ids;
+		this.user_role['is_add'] = this.isAdd;
 		this.service.update(this.user_role).then(res => {
 			this.isDisabledButton = true;
 			if(res.response=='fail'){

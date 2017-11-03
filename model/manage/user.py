@@ -150,11 +150,11 @@ class User(Base, UserMixin):
 if __name__ == '__main__':
     with get_session() as _db_session:
         _user = User()
-        _user.name = 'Lands'
-        _user.email = '380788433@qq.com'
-        _user.phone = '18222100000'
+        _user.name = 'Dora'
+        _user.email = '123456@qq.com'
+        _user.phone = '18222101111'
         _user.set_password('123456')
-        _user.type = User.TYPE_SUPER_MANAGE
+        _user.type = User.TYPE_MANAGE
         _user.creator_id = 0
         _db_session.add(_user)
         _db_session.commit()
