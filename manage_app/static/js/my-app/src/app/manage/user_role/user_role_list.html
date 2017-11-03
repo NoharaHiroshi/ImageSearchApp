@@ -1,0 +1,47 @@
+﻿<div *ngIf="isLoading">
+	<loading></loading>
+</div>
+<div *ngIf="!isLoading">
+	<h3>
+		<i class="fa fa-angle-right"></i> 用户角色列表 <span class="sub-title">UserRole List</span> 
+	</h3>
+	<div class="showback">
+		<button type="button" class="btn btn-theme" [routerLink]="['add']"><i class="fa fa-plus"></i> <span class="button-name">添加 </span></button>
+		<button type="button" class="btn btn-theme02" (click)="refresh()"><i class="fa fa-refresh"></i> <span class="button-name">刷新 </span></button>
+		<button type="button" class="btn btn-theme04" (click)="del()"><i class="fa fa-trash-o"></i> <span class="button-name">删除 </span></button>
+	</div>
+	<div class="row mt">
+		<div class="col-md-12">
+			<div class="content-panel">
+				<table class="table table-striped table-advance table-hover">
+					<thead>
+						<tr>
+							<th>
+								<input icheck class="all-icheck" type="checkbox">
+							</th>
+							<th><i class="fa fa-bookmark"></i> 用户名称 </th>
+							<th><i class="fa fa-bookmark"></i> 用户邮箱 </th>
+							<th><i class="fa fa-bookmark"></i> 用户状态 </th>
+							<th><i class="fa fa-bookmark"></i> 用户类别 </th>
+							<th><i class="fa fa-bullhorn"></i> 用户角色 </th>
+						</tr>
+					</thead>
+					<tbody *ngIf="user_role_list">
+						<tr *ngFor="let user_role of user_role_list">
+							<td class="td-center"><input icheck class="icheck" name="checked" type="checkbox" value={{user_role.id}}></td>
+							<td class="td-center"><a [routerLink]="['detail', user_role.id]">{{ user_role.name }}</a></td>
+							<td class="td-center"><a [routerLink]="['detail', user_role.id]">{{ user_role.email }}</a></td>
+							<td class="td-center">{{ user_role.status_text }}</td>
+							<td class="td-center">{{ user_role.type_text }}</td>
+							<td class="td-center">
+								<ng-container *ngFor="let role of user_role.roles">
+									<div>{{ role['name'] }}</div>
+								</ng-container>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div><!-- /content-panel -->
+		</div><!-- /col-md-12 -->
+	</div><!-- /row -->
+</div>

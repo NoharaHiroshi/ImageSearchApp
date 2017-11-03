@@ -21,8 +21,4 @@ export class HeaderComponent implements OnInit {
         	this.user = data.user;
         });
 	}
-	
-	logout(): void {
-		this.service.logout();
-	}
 }

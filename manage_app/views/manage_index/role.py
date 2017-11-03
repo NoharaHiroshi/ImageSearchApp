@@ -7,9 +7,10 @@ from flask.ext.login import current_user
 from flask import current_app as app
 
 from model.session import get_session
-from model.manage.role import Role
+from model.manage.role import Role, UserRole
 from model.manage.menu import Menu
 from model.manage.func import MenuFunc
+from model.manage.user import User
 from model.manage.permission import RolePermissionRel
 
 from lib.permission_wrap import verify_permissions
@@ -221,4 +222,75 @@ def update_role_permission_detail():
         return jsonify(result)
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))
+        abort(400)
+
+
+@manage.route('/user_role_list', methods=['GET'])
+@verify_permissions('user_role_conf_list')
+def get_user_role_list():
+    result = {
+        'response': 'ok',
+        'user_role_list': []
+    }
+    try:
+        with get_session() as db_session:
+            all_user_role_list = list()
+            # 所有有权限的用户
+            all_role_user = db_session.query(UserRole).group_by(
+                UserRole.user_id
+            ).all()
+            for role_user in all_role_user:
+                # 用户实例
+                user = db_session.query(User).get(role_user.user_id)
+                user_dict = user.to_dict()
+                # 用户角色
+                user_roles = db_session.query(UserRole, Role).join(
+                    Role, Role.id == UserRole.role_id
+                ).filter(
+                    UserRole.user_id == user.id
+                ).all()
+                user_role_list = list()
+                for user_role, role in user_roles:
+                    role_dict = role.to_dict()
+                    user_role_list.append(role_dict)
+                user_dict['roles'] = user_role_list
+                all_user_role_list.append(user_dict)
+            result['user_role_list'] = all_user_role_list
+            return jsonify(result)
+    except Exception as e:
+        print e
+        abort(400)
+
+
+@manage.route('/user_role_list/detail', methods=['GET'])
+@verify_permissions('user_role_conf_list')
+def get_user_role_detail():
+    result = {
+        'response': 'ok',
+        'user_role': '',
+        'all_user_info': [],
+        'all_role_info': []
+    }
+    try:
+        user_id = request.args.get('id')
+        result['all_role_info'] = Role.get_all_role()
+        result['all_user_info'] = User.get_all_user()
+        with get_session() as db_session:
+            user = db_session.query(User).get(user_id)
+            if user:
+                all_user_role = db_session.query(UserRole, Role).join(
+                    Role, UserRole.role_id == Role.id
+                ).filter(
+                    UserRole.user_id == user_id
+                ).all()
+                user_role_list = list()
+                for user_role, role in all_user_role:
+                    role_dict = role.to_dict()
+                    user_role_list.append(role_dict)
+                user_dict = user.to_dict()
+                user_dict['roles'] = user_role_list
+                result['user_role'] = user_dict
+        return jsonify(result)
+    except Exception as e:
+        print e
         abort(400)

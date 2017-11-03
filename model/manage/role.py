@@ -2,6 +2,7 @@
 
 from sqlalchemy import Column, Integer, String, BigInteger
 from model.base import Base, IdGenerator
+from model.session import get_session
 
 
 class Role(Base):
@@ -12,6 +13,17 @@ class Role(Base):
     name = Column(String(50), nullable=False, index=True)
     # 描述
     desc = Column(String(225))
+
+    # 获取所有Role实例
+    @classmethod
+    def get_all_role(cls):
+        with get_session() as db_session:
+            all_role_list = list()
+            all_role = db_session.query(cls).all()
+            for role in all_role:
+                role_dict = role.to_dict()
+                all_role_list.append(role_dict)
+        return all_role_list
 
     def to_dict(self):
         return {

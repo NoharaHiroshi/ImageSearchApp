@@ -27,9 +27,5 @@ export class HeaderService extends BaseService {
 	               })
 	               .catch(this.handleError);
 	}
-	
-	logout(): Promise<any> {
-		const url = `/manage/logout`; 
-	    return this.http.get(url);
-	}
+
 }

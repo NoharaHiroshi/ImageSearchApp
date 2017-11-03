@@ -4,7 +4,7 @@
 		  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
 	  </div>
 	<!--logo start-->
-	<a href="index.html" class="logo"><b>DASHGUM FREE</b></a>
+	<a href="index.html" class="logo"><b>后台管理</b> <span style="color: #fff; font-size: 13px;">Content Manage System</span></a>
 	<!--logo end-->
 	<div class="nav notify-row" id="top_menu">
 		<!--  notification start -->
@@ -146,15 +146,19 @@
 		</ul>
 		<!--  notification end -->
 	</div>
-	<div class="top-menu" *ngIf="user">
-		<ul class="nav pull-right top-menu">
+	<div class="right-nav right-notify-row" *ngIf="user">
+		<ul class="nav top-menu">
 			<li id="logout" class="dropdown user-info">
 				<a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
 					{{ user.name }}
+					<i class="fa fa-user"></i>
 				</a>
-				<ul class="dropdown-menu extended inbox">
-					<div class="notify-arrow notify-arrow-green"></div>
-					<button (click)="logout()">logout</button>
+				<ul class="dropdown-menu user-info-left inbox">
+					<div class="notify-arrow-green user-info-arrow"></div>
+					<span>
+						<i class="fa fa-sign-out"></i>
+						<a class="logout" href="/manage/logout">退出</a>
+					</span>
 				</ul>
 			</li>
 		</ul>

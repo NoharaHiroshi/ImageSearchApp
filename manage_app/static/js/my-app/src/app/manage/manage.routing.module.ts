@@ -6,11 +6,10 @@ import { FuncConfComponent, FuncConfDetailComponent } from './func/func.componen
 import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.component';
 import { MenuFuncConfComponent, MenuFuncConfDetailComponent } from './menu_func/menu_func.component';
 import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent } from './role/role.component';
+import { UserRoleConfComponent, UserRoleConfDetailComponent } from './user_role/user_role.component';
 
 // 根路由器
 const routes: Routes = [
-	{ path: '', redirectTo: '/login', pathMatch: 'full' },
-
 	{ path: 'func_conf', component: FuncConfComponent },
 	{ path: 'func_conf/detail/:id', component: FuncConfDetailComponent },
 	{ path: 'func_conf/add', component: FuncConfDetailComponent },
@@ -27,6 +26,10 @@ const routes: Routes = [
 	{ path: 'role_conf/detail/:id', component: RoleConfDetailComponent },
 	{ path: 'role_conf/add', component: RoleConfDetailComponent },
 	{ path: 'role_conf/permission/:id', component: RolePermissionConfDetailComponent },
+	
+	{ path: 'user_role_conf', component: UserRoleConfComponent },
+	{ path: 'user_role_conf/detail/:id', component: UserRoleConfDetailComponent },
+	{ path: 'user_role_conf/add', component: UserRoleConfDetailComponent },
 ];
 
 @NgModule({

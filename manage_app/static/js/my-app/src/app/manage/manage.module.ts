@@ -19,11 +19,13 @@ import { FuncConfComponent, FuncConfDetailComponent } from './func/func.componen
 import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.component';
 import { MenuFuncConfComponent, MenuFuncConfDetailComponent } from './menu_func/menu_func.component';
 import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent } from './role/role.component';
+import { UserRoleConfComponent, UserRoleConfDetailComponent } from './user_role/user_role.component';
 
 import { FuncService } from './func/func.service';
 import { MenuService } from './menu/menu.service';
 import { MenuFuncService } from './menu_func/menu_func.service';
 import { RoleService } from './role/role.service';
+import { UserRoleService } from './user_role/user_role.service';
 
 @NgModule({
 	declarations: [
@@ -40,7 +42,10 @@ import { RoleService } from './role/role.service';
 		
 		RoleConfComponent,
 		RoleConfDetailComponent,
-		RolePermissionConfDetailComponent
+		RolePermissionConfDetailComponent,
+		
+		UserRoleConfComponent,
+		UserRoleConfDetailComponent
 	],
 	imports: [
 		BrowserModule,
@@ -61,7 +66,8 @@ import { RoleService } from './role/role.service';
 		FuncService,
 		MenuService,
 		MenuFuncService,
-		RoleService
+		RoleService,
+		UserRoleService
 	],
 	bootstrap: [
 		ManageComponent

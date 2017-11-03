@@ -120,6 +120,17 @@ class User(Base, UserMixin):
         else:
             return False
 
+    # 获取所有Role实例
+    @classmethod
+    def get_all_user(cls):
+        with get_session() as db_session:
+            all_user_list = list()
+            all_user = db_session.query(cls).all()
+            for user in all_user:
+                user_dict = user.to_dict()
+                all_user_list.append(user_dict)
+        return all_user_list
+
     def to_dict(self):
         return {
             'id': str(self.id),
@@ -137,13 +148,13 @@ class User(Base, UserMixin):
         }
 
 if __name__ == '__main__':
-    with get_session() as db_session:
-        user = User()
-        user.name = 'Lands'
-        user.email = '380788433@qq.com'
-        user.phone = '18222100000'
-        user.set_password('123456')
-        user.type = User.TYPE_SUPER_MANAGE
-        user.creator_id = 0
-        db_session.add(user)
-        db_session.commit()
+    with get_session() as _db_session:
+        _user = User()
+        _user.name = 'Lands'
+        _user.email = '380788433@qq.com'
+        _user.phone = '18222100000'
+        _user.set_password('123456')
+        _user.type = User.TYPE_SUPER_MANAGE
+        _user.creator_id = 0
+        _db_session.add(_user)
+        _db_session.commit()
