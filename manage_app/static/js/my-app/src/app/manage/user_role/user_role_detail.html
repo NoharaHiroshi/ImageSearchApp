@@ -9,12 +9,17 @@
 			  <div class="form-group">
 				  <label class="col-sm-2 col-sm-2 control-label">选择用户</label>
 				  <div class="col-sm-4">
+				  <ng-container *ngIf="isAdd">
 					  <select class="form-control" name="user_id" [(ngModel)]="user_role.id">
 						<option value=0 selected="selected">指定所属用户</option>
 						<ng-container *ngFor="let user of all_user_info">
 							<option [value]="user.id">{{ user.name }}</option>
 						</ng-container>
 					  </select>
+				  </ng-container>
+				  <ng-container *ngIf="!isAdd">
+					  <p class="user-role-detail-p">{{user_role.name}}</p>
+				  </ng-container>
 				  </div>
 			  </div>
 			  <div class="form-group">
@@ -23,7 +28,7 @@
 					<div class="checkbox-list">
 						<ng-container *ngFor="let role of all_role_info">
 							<div class="checkbox-item">
-								<input icheck class="icheck" id="{{role.id}}" type="checkbox" value={{role.id}} >
+								<input icheck class="icheck" id="{{role.id}}" name="checked" type="checkbox" value={{role.id}} >
 								<span class="checkbox-item-span">{{ role.name }}</span>
 							</div>
 						</ng-container>

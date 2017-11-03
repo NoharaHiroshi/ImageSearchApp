@@ -294,3 +294,32 @@ def get_user_role_detail():
     except Exception as e:
         print e
         abort(400)
+
+
+@manage.route('/user_role_list/update', methods=['POST'])
+@verify_permissions('user_role_conf_update')
+def update_user_role_detail():
+    result = {
+        'response': 'ok'
+    }
+    role_ids = request.form.get('roles').split(',')
+    user_id = request.form.get('id')
+    print user_id
+    try:
+        if not role_ids[0] or user_id == 0:
+            result.update({
+                'response': 'fail',
+                'info': u'请检查参数是否填写完整'
+            })
+        else:
+            with get_session() as db_session:
+                for role_id in role_ids:
+                    user_role = UserRole()
+                    user_role.user_id = user_id
+                    user_role.role_id = role_id
+                    db_session.add(user_role)
+                db_session.commit()
+        return jsonify(result)
+    except Exception as e:
+        print e
+        abort(400)

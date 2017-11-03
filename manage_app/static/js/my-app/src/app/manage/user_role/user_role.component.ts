@@ -68,6 +68,8 @@ export class UserRoleConfComponent extends ListBaseComponent{
   templateUrl: './user_role_detail.html',
 })
 export class UserRoleConfDetailComponent extends ListBaseComponent{
+	isAdd: boolean = false;
+	
 	user_role: UserRole;
 	all_role_info: any;
 	all_user_info: any;
@@ -78,6 +80,10 @@ export class UserRoleConfDetailComponent extends ListBaseComponent{
 	
 	ngOnInit(): void {
 		this.isLoading = true;
+		// 判断是添加还是修改
+		if(undefined == this.route.params.value.id){
+			this.isAdd = true;
+		}
         this.route.params.switchMap((params: Params) => this.service.getDetail(params['id']||'0'))
 	        .subscribe(res => {
 	        	this.user_role = res['user_role'];
@@ -86,9 +92,11 @@ export class UserRoleConfDetailComponent extends ListBaseComponent{
 				this.isLoading = false;
 				let self = this;
 				setTimeout(function(){
-					for(let role of self.user_role.roles){
-						let _id = role['id'];
-						$('#' + _id).parent().addClass('checked');
+					if(undefined != self.user_role.roles){
+						for(let role of self.user_role.roles){
+							let _id = role['id'];
+							$('#' + _id).parent().addClass('checked');
+						}
 					}
 				}, 100);
 	        });
@@ -99,6 +107,13 @@ export class UserRoleConfDetailComponent extends ListBaseComponent{
 	}
 	
 	save(): void {
+		let obj_list = [];
+		let objs = $('input[name="checked"]:checked');
+		for(let obj of objs){
+			obj_list.push(obj.value);
+		}
+		let role_ids = obj_list.join(',');
+		this.user_role.roles = role_ids;
 		this.service.update(this.user_role).then(res => {
 			this.isDisabledButton = true;
 			if(res.response=='fail'){

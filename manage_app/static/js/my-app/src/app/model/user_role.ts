@@ -10,6 +10,5 @@ export class UserRole {
 	is_type_manage: boolean;
 	is_type_super_manage: boolean;
 	is_status_active: boolean;
-	roles: any;
-	role_id: number = 0;
+	roles: any = [];
 }
