@@ -23,7 +23,7 @@
 					<div class="checkbox-list">
 						<ng-container *ngFor="let role of all_role_info">
 							<div class="checkbox-item">
-								<input icheck class="icheck" name="checked" type="checkbox" value={{role.id}} >
+								<input icheck class="icheck" id="{{role.id}}" type="checkbox" value={{role.id}} >
 								<span class="checkbox-item-span">{{ role.name }}</span>
 							</div>
 						</ng-container>

@@ -74,18 +74,23 @@ export class UserRoleConfDetailComponent extends ListBaseComponent{
 	
 	constructor(private service: UserRoleService, public route: ActivatedRoute, public router: Router) {
 		super();
-		console.log(this.route.params);
 	}
 	
 	ngOnInit(): void {
 		this.isLoading = true;
         this.route.params.switchMap((params: Params) => this.service.getDetail(params['id']||'0'))
 	        .subscribe(res => {
-				console.log(res);
 	        	this.user_role = res['user_role'];
 				this.all_role_info = res['all_role_info'];
 				this.all_user_info = res['all_user_info'];
 				this.isLoading = false;
+				let self = this;
+				setTimeout(function(){
+					for(let role of self.user_role.roles){
+						let _id = role['id'];
+						$('#' + _id).parent().addClass('checked');
+					}
+				}, 100);
 	        });
 	}
 	
