@@ -19,8 +19,8 @@
 							<th>
 								<input icheck class="all-icheck" type="checkbox">
 							</th>
-							<th><i class="fa fa-bookmark"></i> 所属菜单 </th>
 							<th><i class="fa fa-bullhorn"></i> 菜单功能名称 </th>
+							<th><i class="fa fa-bookmark"></i> 所属菜单 </th>
 							<th class="hidden-phone"><i class="fa fa-question-circle"></i> 菜单功能代码 </th>
 							<th><i class="fa fa-bookmark"></i> 所属功能 </th>
 						</tr>
@@ -28,8 +28,8 @@
 					<tbody *ngIf="menu_func_list">
 						<tr *ngFor="let menu_func of menu_func_list">
 							<td><input icheck class="icheck" name="checked" type="checkbox" value={{menu_func.id}} ></td>
-							<td>{{ menu_func.menu_name }}</td>
 							<td><a [routerLink]="['detail', menu_func.id]">{{ menu_func.name }}</a></td>
+							<td>{{ menu_func.menu_name }}</td>
 							<td class="hidden-phone">{{ menu_func.menu_func_code }}</td>
 							<td>{{ menu_func.func_name}}</td>
 						</tr>

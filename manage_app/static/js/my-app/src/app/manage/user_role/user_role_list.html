@@ -30,7 +30,7 @@
 						<tr *ngFor="let user_role of user_role_list">
 							<td class="td-center"><input icheck class="icheck" name="checked" type="checkbox" value={{user_role.id}}></td>
 							<td class="td-center"><a [routerLink]="['detail', user_role.id]">{{ user_role.name }}</a></td>
-							<td class="td-center"><a [routerLink]="['detail', user_role.id]">{{ user_role.email }}</a></td>
+							<td class="td-center">{{ user_role.email }}</td>
 							<td class="td-center">{{ user_role.status_text }}</td>
 							<td class="td-center">{{ user_role.type_text }}</td>
 							<td class="td-center">
