@@ -95,7 +95,7 @@ export class UserRoleConfDetailComponent extends ListBaseComponent{
 					if(undefined != self.user_role.roles){
 						for(let role of self.user_role.roles){
 							let _id = role['id'];
-							$('#' + _id).parent().addClass('checked');
+							$('#' + _id).attr('checked', true);
 						}
 					}
 				}, 100);
