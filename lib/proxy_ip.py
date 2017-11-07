@@ -6,6 +6,8 @@
 import ujson
 import requests
 
+from redis_store.redis_cache import proxy_redis
+
 
 def validate_proxy_ip(proxy_ips):
     """
@@ -42,7 +44,5 @@ if __name__ == '__main__':
         {"http": "116.27.244.156:21538"},
         {"http": "183.52.107.157:36808"},
         {"http": "140.237.112.172:48879"},
-        {"http": "115.213.250.255:42980"},
+        {"https": "115.213.250.255:42980"},
     ]
-    _proxy_pool = validate_proxy_ip(proxy_ips=proxies)
-    print _proxy_pool
