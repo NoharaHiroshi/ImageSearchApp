@@ -4,6 +4,7 @@ from flask import Flask, render_template, redirect, request, abort, url_for, jso
 from lib.log import create_log
 from flask.ext.login import LoginManager, login_url
 from views.manage_index.route import manage as manage_route
+from views.lib.route import lib as lib_route
 from redis_store import common_redis
 
 from model.config import config as model_config
@@ -14,6 +15,7 @@ DEFAULT_APP_NAME = __name__
 
 BLUEPRINTS = (
     (manage_route, '/manage'),
+    (lib_route, '/lib'),
 )
 
 

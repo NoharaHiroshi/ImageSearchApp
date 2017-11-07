@@ -1,5 +1,9 @@
 # coding=utf-8
 
+"""
+    验证用户权限
+"""
+
 from functools import wraps
 
 from flask.ext.login import current_user
