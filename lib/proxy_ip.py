@@ -35,7 +35,7 @@ def get_proxy(page_num=1):
             new_data.append(node.string)
         for i in range(0, len(new_data), 10):
             ip = {
-                new_data[i+5].lower(): '%s:%s' % (new_data[1], new_data[2])
+                new_data[i+5].lower(): '%s:%s' % (new_data[i+1], new_data[i+2])
             }
             cleaned_data.append(ip)
     return cleaned_data
@@ -62,18 +62,26 @@ def validate_proxy_ip(proxy_ips):
     ]
     """
     # 本机IP
-    local_ip = '127.0.0.1'
+    local_ip = '103.233.130.246'
     # 有效代理IP池
     proxy_pool = []
     # 超时时间
-    timeout = 3
+    timeout = 10
+    headers = {
+        'Connection': 'keep-alive',
+        'Accept': 'application/json, text/javascript, */*; q=0.01',
+        'X-Requested-With': 'XMLHttpRequest',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 '
+                      '(KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36',
+        'Accept-Encoding': 'gzip, deflate, sdch',
+        'Accept-Language': 'zh-CN,zh;q=0.8',
+    }
     for ip in proxy_ips:
         try:
-            response = requests.get('http://localhost:8888/lib/validate_proxy_ip', proxies=ip, timeout=timeout)
+            response = requests.get('http://ip.chinaz.com/getip.aspx', headers=headers, proxies=ip, timeout=timeout)
+            result = ujson.loads(response.content)
         except Exception as e:
             continue
-        result = ujson.loads(response.content)
-        print result
         if result['ip'] != local_ip:
             proxy_pool.append(ip)
     return proxy_pool
@@ -81,7 +89,11 @@ def validate_proxy_ip(proxy_ips):
 
 if __name__ == '__main__':
     # 待清洗代理IP数据池
-    proxies = get_proxy(page_num=5)
-    print proxies
-    cleaned_proxy = validate_proxy_ip(proxies)
-    restore_redis_proxy(cleaned_proxy)
+    # proxies = get_proxy(page_num=10)
+    # cleaned_proxy = validate_proxy_ip(proxies)
+    # restore_redis_proxy(cleaned_proxy)
+    # for proxy in proxies:
+    #     for ip in proxy.values():
+    #         print ip
+    # validate_proxy_ip([{'https':'111.155.116.200:8123'}])
+    print ujson.dumps({'https': '111.155.116.200:8123'})
