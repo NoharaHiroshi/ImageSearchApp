@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { FileUploadModule } from 'ng2-file-upload';
 import { HttpModule, RequestOptions } from '@angular/http';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { ModalModule } from 'angular2-modal';
 import { ManageRoutingModule } from './manage.routing.module';
@@ -20,6 +21,7 @@ import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.componen
 import { MenuFuncConfComponent, MenuFuncConfDetailComponent } from './menu_func/menu_func.component';
 import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent } from './role/role.component';
 import { UserRoleConfComponent, UserRoleConfDetailComponent } from './user_role/user_role.component';
+import { SimpleDemoComponent } from './image/demo.component';
 
 import { FuncService } from './func/func.service';
 import { MenuService } from './menu/menu.service';
@@ -45,9 +47,13 @@ import { UserRoleService } from './user_role/user_role.service';
 		RolePermissionConfDetailComponent,
 		
 		UserRoleConfComponent,
-		UserRoleConfDetailComponent
+		UserRoleConfDetailComponent,
+		
+		SimpleDemoComponent
 	],
 	imports: [
+		CommonModule,
+        FileUploadModule,
 		BrowserModule,
 		FormsModule,
 		HttpModule,
