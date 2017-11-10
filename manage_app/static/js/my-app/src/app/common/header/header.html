@@ -147,10 +147,10 @@
 		<!--  notification end -->
 	</div>
 	<div class="right-nav right-notify-row" *ngIf="user">
-		<ul class="nav top-menu">
+		<ul class="nav top-user-info">
 			<li id="logout" class="dropdown user-info">
-				<a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-					{{ user.name }}
+				<a data-toggle="dropdown" class="dropdown-toggle user-info-a" href="index.html#">
+					<span class="user-info-span">{{ user.name }}</span>
 					<i class="fa fa-user"></i>
 				</a>
 				<ul class="dropdown-menu user-info-left inbox">
