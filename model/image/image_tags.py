@@ -7,7 +7,7 @@ from model.base import Base, IdGenerator
 class ImageTags(Base):
     __tablename__ = 'image_tags'
 
-    id = Column(BigInteger, default=IdGenerator.gen, index=True)
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     name = Column(String(30), nullable=False, index=True)
 
     def to_dict(self):
@@ -23,7 +23,7 @@ class ImageTagsRel(Base):
     # 图片、图片系列
     TYPE_IMAGE, TYPE_IMAGE_SERIES = range(2)
 
-    id = Column(BigInteger, default=IdGenerator.gen, index=True)
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 类型
     type = Column(Integer, default=TYPE_IMAGE, index=True)
     # 标签ID

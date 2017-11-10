@@ -7,7 +7,7 @@ from model.base import Base, IdGenerator
 class IconTags(Base):
     __tablename__ = 'icon_tags'
 
-    id = Column(BigInteger, default=IdGenerator.gen, index=True)
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     name = Column(String(30), nullable=False, index=True)
 
     def to_dict(self):
@@ -23,7 +23,7 @@ class IconTagsRel(Base):
     # 图标、图标系列
     TYPE_ICON, TYPE_ICON_SERIES = range(2)
 
-    id = Column(BigInteger, default=IdGenerator.gen, index=True)
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 类型
     type = Column(Integer, default=TYPE_ICON, index=True)
     # 标签ID

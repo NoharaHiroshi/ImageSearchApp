@@ -7,6 +7,12 @@ from model.manage.menu import Menu
 from model.manage.func import Func, MenuFunc
 from model.manage.role import Role, UserRole
 from model.manage.permission import RolePermissionRel
+from model.icon.icon import Icon
+from model.icon.icon_series import IconSeries
+from model.icon.icon_tags import IconTags, IconTagsRel
+from model.image.image import Image
+from model.image.image_series import ImageSeries
+from model.image.image_tags import ImageTags, ImageTagsRel
 
 
 def create_all_tables():
