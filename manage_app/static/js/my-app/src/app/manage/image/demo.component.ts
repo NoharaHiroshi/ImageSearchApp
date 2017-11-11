@@ -10,10 +10,17 @@ import { ListBaseComponent } from '../../common/base.component';
   templateUrl: './demo.html',
 })
 export class SimpleDemoComponent extends ListBaseComponent{
-	uploader: FileUploader = new FileUploader({    
-		url: "http://127.0.0.1:8888/uploadFile",   
-		method: "POST",    
-		itemAlias: "uploadedfile"
-	});
+	const url = 'http://127.0.0.1:8888/manage/upload_image';
+	
+	public uploader:FileUploader = new FileUploader({url: URL});
+	public hasBaseDropZoneOver:boolean = false;
+	public hasAnotherDropZoneOver:boolean = false;
 
+	public fileOverBase(e:any):void {
+		this.hasBaseDropZoneOver = e;
+	}
+
+	public fileOverAnother(e:any):void {
+		this.hasAnotherDropZoneOver = e;
+	}
 }
