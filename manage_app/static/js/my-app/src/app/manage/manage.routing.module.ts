@@ -32,7 +32,7 @@ const routes: Routes = [
 	{ path: 'user_role_conf/detail/:id', component: UserRoleConfDetailComponent },
 	{ path: 'user_role_conf/add', component: UserRoleConfDetailComponent },
 	
-	{ path: 'image_conf/demo', component: SimpleDemoComponent },
+	{ path: 'image_demo', component: SimpleDemoComponent },
 ];
 
 @NgModule({
