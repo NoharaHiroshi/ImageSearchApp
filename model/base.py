@@ -4,9 +4,10 @@ import os
 import datetime
 import time
 import threading
+import hashlib
 from sqlalchemy import Column, DateTime
 from sqlalchemy.ext.declarative import declarative_base
-
+from model.config import config
 
 class IdGenerator(object):
     _inc = 0
@@ -26,6 +27,13 @@ class IdGenerator(object):
         return new_id
 
 
+class HashName(object):
+    @staticmethod
+    def gen(_id, info=''):
+        hash_name = hashlib.md5(str(_id) + info + config.SECRET_KEY).hexdigest()
+        return hash_name
+
+
 class TBase(object):
 
     created_date = Column(DateTime, default=datetime.datetime.now, index=True)
@@ -34,5 +42,6 @@ class TBase(object):
 Base = declarative_base(cls=TBase)
 
 if __name__ == '__main__':
-    for i in range(10):
-        print IdGenerator.gen()
+    _id = '6488571505419485184'
+    hash_name = HashName.gen(_id, 'resource')
+    print hash_name

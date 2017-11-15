@@ -2,16 +2,15 @@
 
 import traceback
 import time
-import Image
 import os
+from PIL import Image
 from flask import render_template, abort, g, redirect, url_for, request, jsonify, session
 from flask.ext.login import current_user, login_user, logout_user, login_required
 from flask import current_app as app
 from sqlalchemy import or_, func, and_
-from manage_app.config import config
-
+from lib.upload_image import save_images
 from model.session import get_session
-from model.image.image import Image
+from model.image.image import Image as Img
 
 from route import manage
 
@@ -32,11 +31,11 @@ def upload_image():
             })
         else:
             for file_obj in file_objects:
-                file_obj.save(os.path.join(config.IMG_UPLOAD_SRC, file_obj.filename))
+                save_images(file_obj, auto_commit=True)
         return jsonify(result)
     except Exception as e:
         print e
         abort(400)
 
 if __name__ == '__main__':
-    print config.UPLOAD_SRC
+    pass

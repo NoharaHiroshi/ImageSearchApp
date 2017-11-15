@@ -7,8 +7,6 @@ from model.base import Base, IdGenerator
 class Image(Base):
     __tablename__ = 'image'
 
-    UNKNOWN, JPG, PNG, TIFF, BMP, GIF, SVG, PSD, EPS, AI, OTHER = range(11)
-
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 名称
     name = Column(String(100), index=True)
@@ -21,7 +19,7 @@ class Image(Base):
     # 缩略图
     thumbnail_url = Column(String(255), nullable=False)
     # 类型
-    type = Column(Integer, nullable=False, default=UNKNOWN)
+    format = Column(String(10), nullable=False, default=u'UNKNOWN')
     # 描述
     desc = Column(String(255))
     # 系列ID
@@ -36,6 +34,8 @@ class Image(Base):
     width = Column(Integer)
     # 高
     height = Column(Integer)
+    # 模式
+    mode = Column(String(10))
 
     def to_dict(self):
         return {
@@ -44,7 +44,7 @@ class Image(Base):
             'author': self.author,
             'preview_url': self.preview_url,
             'thumbnail_url': self.thumbnail_url,
-            'type': self.type,
+            'format': self.format,
             'desc': self.desc,
             'series_id': str(self.series_id),
             'series_name': self.series_name,
@@ -52,4 +52,5 @@ class Image(Base):
             'tag_names': self.tag_names,
             'width': self.width,
             'height': self.height,
+            'mode': self.mode
         }
