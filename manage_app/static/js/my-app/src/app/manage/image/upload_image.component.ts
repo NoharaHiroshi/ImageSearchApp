@@ -6,7 +6,7 @@ import { Location }  from '@angular/common';
 import { ListBaseComponent } from '../../common/base.component';
 
 @Component({
-  selector: 'upload-image-demo',
+  selector: 'upload-image',
   templateUrl: './upload_image.html',
 })
 export class ImageUploadComponent extends ListBaseComponent{

@@ -21,14 +21,15 @@ import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.componen
 import { MenuFuncConfComponent, MenuFuncConfDetailComponent } from './menu_func/menu_func.component';
 import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent } from './role/role.component';
 import { UserRoleConfComponent, UserRoleConfDetailComponent } from './user_role/user_role.component';
-import { SimpleDemoComponent } from './image/demo.component';
 import { ImageUploadComponent } from './image/upload_image.component';
+import { ImageConfComponent } from './image/image.component';
 
 import { FuncService } from './func/func.service';
 import { MenuService } from './menu/menu.service';
 import { MenuFuncService } from './menu_func/menu_func.service';
 import { RoleService } from './role/role.service';
 import { UserRoleService } from './user_role/user_role.service';
+import { ImageService } from './image/image.service';
 
 @NgModule({
 	declarations: [
@@ -50,8 +51,8 @@ import { UserRoleService } from './user_role/user_role.service';
 		UserRoleConfComponent,
 		UserRoleConfDetailComponent,
 		
-		SimpleDemoComponent,
-		ImageUploadComponent
+		ImageUploadComponent,
+		ImageConfComponent
 	],
 	imports: [
 		CommonModule,
@@ -75,7 +76,8 @@ import { UserRoleService } from './user_role/user_role.service';
 		MenuService,
 		MenuFuncService,
 		RoleService,
-		UserRoleService
+		UserRoleService,
+		ImageService
 	],
 	bootstrap: [
 		ManageComponent

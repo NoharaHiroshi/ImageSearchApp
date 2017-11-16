@@ -1,0 +1,20 @@
+<h3>
+	<i class="fa fa-angle-right"></i> 图片列表 <span class="sub-title">Image LIst</span> 
+</h3>
+	<div class="row mt">
+		<div *ngFor="let item of image_list">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
+				<div class="project-wrapper">
+					<div class="project">
+						<div class="photo-wrapper">
+							<div class="photo">
+								<a class="fancybox" href="/{{item.img_preview_url}}"><img class="img-responsive" src="/{{item.img_preview_url}}" alt=""></a>
+							</div>
+							<div class="overlay"></div>
+						</div>
+					</div>
+				</div>
+			</div><!-- col-lg-4 -->
+		</div>
+	</div><!-- /row -->
+

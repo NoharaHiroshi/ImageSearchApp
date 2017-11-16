@@ -36,5 +36,28 @@ def upload_image():
         print e
         abort(400)
 
+
+@manage.route('/image_list', methods=['GET'])
+@login_required
+def image_list():
+    result = {
+        'response': 'ok',
+        'image_list': []
+    }
+    try:
+        with get_session() as db_session:
+            _img_list = list()
+            query = db_session.query(Img).all()
+            for img in query:
+                img_dict = img.to_dict()
+                _img_list.append(img_dict)
+            result.update({
+                'image_list': _img_list
+            })
+            return jsonify(result)
+    except Exception as e:
+        print e
+        abort(400)
+
 if __name__ == '__main__':
     pass
