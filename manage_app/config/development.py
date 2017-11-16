@@ -17,9 +17,9 @@ ICON_UPLOAD_SRC = os.path.join(UPLOAD_SRC, 'icon').replace('\\', '/')
 MATERIAL_SRC = os.path.join(UPLOAD_SRC, 'material').replace('\\', '/')
 
 # 缩略图默认大小
-THUMBNAIL_IMG_HEIGHT = 400
+THUMBNAIL_IMG_HEIGHT = 200
 # 预览图默认大小
-PREVIEW_IMG_HEIGHT = 800
+PREVIEW_IMG_HEIGHT = 400
 
 if __name__ == '__main__':
     print UPLOAD_SRC
