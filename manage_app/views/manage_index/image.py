@@ -27,11 +27,10 @@ def upload_image():
         if None in [file_objects]:
             result.update({
                 'response': 'fail',
-                'info': u'请检查参数是否填写完整'
+                'info': u'请上传图片'
             })
         else:
-            for file_obj in file_objects:
-                save_images(file_obj, auto_commit=True)
+            save_images(file_objects)
         return jsonify(result)
     except Exception as e:
         print e

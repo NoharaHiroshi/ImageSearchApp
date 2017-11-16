@@ -8,6 +8,7 @@ import { MenuFuncConfComponent, MenuFuncConfDetailComponent } from './menu_func/
 import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent } from './role/role.component';
 import { UserRoleConfComponent, UserRoleConfDetailComponent } from './user_role/user_role.component';
 import { SimpleDemoComponent } from './image/demo.component';
+import { ImageUploadComponent } from './image/upload_image.component';
 
 // 根路由器
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
 	{ path: 'user_role_conf/add', component: UserRoleConfDetailComponent },
 	
 	{ path: 'image_demo', component: SimpleDemoComponent },
+	{ path: 'image_upload', component: ImageUploadComponent },
 ];
 
 @NgModule({

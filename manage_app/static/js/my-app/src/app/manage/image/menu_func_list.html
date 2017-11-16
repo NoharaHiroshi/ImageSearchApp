@@ -1,0 +1,41 @@
+﻿<div *ngIf="isLoading">
+	<loading></loading>
+</div>
+<div *ngIf="!isLoading">
+	<h3>
+		<i class="fa fa-angle-right"></i> 菜单功能列表 <span class="sub-title">MenuFunc List</span> 
+	</h3>
+	<div class="showback">
+		<button type="button" class="btn btn-theme" [routerLink]="['add']"><i class="fa fa-plus"></i> <span class="button-name">上传图片 </span></button>
+		<button type="button" class="btn btn-theme02" (click)="refresh()"><i class="fa fa-refresh"></i> <span class="button-name">刷新 </span></button>
+		<button type="button" class="btn btn-theme04" (click)="del()"><i class="fa fa-trash-o"></i> <span class="button-name">删除 </span></button>
+	</div>
+	<div class="row mt">
+		<div class="col-md-12">
+			<div class="content-panel">
+				<table class="table table-striped table-advance table-hover">
+					<thead>
+						<tr>
+							<th>
+								<input icheck class="all-icheck" type="checkbox">
+							</th>
+							<th><i class="fa fa-bullhorn"></i> 菜单功能名称 </th>
+							<th><i class="fa fa-bookmark"></i> 所属菜单 </th>
+							<th class="hidden-phone"><i class="fa fa-question-circle"></i> 菜单功能代码 </th>
+							<th><i class="fa fa-bookmark"></i> 所属功能 </th>
+						</tr>
+					</thead>
+					<tbody *ngIf="menu_func_list">
+						<tr *ngFor="let menu_func of menu_func_list">
+							<td><input icheck class="icheck" name="checked" type="checkbox" value={{menu_func.id}} ></td>
+							<td><a [routerLink]="['detail', menu_func.id]">{{ menu_func.name }}</a></td>
+							<td>{{ menu_func.menu_name }}</td>
+							<td class="hidden-phone">{{ menu_func.menu_func_code }}</td>
+							<td>{{ menu_func.func_name}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div><!-- /content-panel -->
+		</div><!-- /col-md-12 -->
+	</div><!-- /row -->
+</div>

@@ -2364,3 +2364,17 @@ label {
 .user-role-detail-p {
 	margin-top: 5px;
 }
+
+.upload-img{
+		padding: 5px 10px;
+		position: relative;
+		text-decoration: none;
+	}
+	
+.change-img{
+	position: absolute;
+	overflow: hidden;
+	right: 0;
+	top: 0;
+	opacity: 0;
+}

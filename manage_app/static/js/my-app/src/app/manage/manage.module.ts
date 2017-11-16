@@ -22,6 +22,7 @@ import { MenuFuncConfComponent, MenuFuncConfDetailComponent } from './menu_func/
 import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent } from './role/role.component';
 import { UserRoleConfComponent, UserRoleConfDetailComponent } from './user_role/user_role.component';
 import { SimpleDemoComponent } from './image/demo.component';
+import { ImageUploadComponent } from './image/upload_image.component';
 
 import { FuncService } from './func/func.service';
 import { MenuService } from './menu/menu.service';
@@ -49,7 +50,8 @@ import { UserRoleService } from './user_role/user_role.service';
 		UserRoleConfComponent,
 		UserRoleConfDetailComponent,
 		
-		SimpleDemoComponent
+		SimpleDemoComponent,
+		ImageUploadComponent
 	],
 	imports: [
 		CommonModule,
