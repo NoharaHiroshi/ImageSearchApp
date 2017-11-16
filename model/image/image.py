@@ -5,6 +5,7 @@ from sqlalchemy import Column, Integer, String, BigInteger
 from model.base import Base, IdGenerator
 from manage_app.config import config
 
+
 class Image(Base):
     __tablename__ = 'image'
 

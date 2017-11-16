@@ -8,7 +8,7 @@ DEBUG = True
 ROOT_SRC = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 # 上传路径
-UPLOAD_SRC = os.path.join(ROOT_SRC, 'static/resource').replace('\\', '/')
+UPLOAD_SRC = os.path.join(ROOT_SRC, 'manage_app/static/resource').replace('\\', '/')
 # 背景图片上传路径
 IMG_UPLOAD_SRC = os.path.join(UPLOAD_SRC, 'img').replace('\\', '/')
 # Icon上传路径
