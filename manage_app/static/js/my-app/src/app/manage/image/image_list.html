@@ -3,12 +3,6 @@
 </h3>
 <div class="row mt">
 	<div class="image-wrapper">
-		<div id="con1_1">
-			<ng-container *ngFor="let item of image_list">
-				<div class="product_list"> 
-					<a href="#"><img src="/static/{{ item.img_preview_url }}"></a>
-				</div>
-			</ng-container>
-		</div>
+		<image-list [image_list]="image_list"></image-list>
 	</div>
 </div><!-- /row -->

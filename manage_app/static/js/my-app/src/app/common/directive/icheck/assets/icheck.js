@@ -8,7 +8,7 @@
  */
 
 (function($) {
-  console.log('iCheck');
+  console.log('iCheck has Loaded');
 
   // Cached vars
   var _iCheck = 'iCheck',

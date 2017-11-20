@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { LeftNavComponent } from './left_nav/left_nav.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ZtreeComponent } from './ztree/ztree.component';
+import { MasonryComponent } from './masonry/masonry.component';
 
 // Service
 import { CommonService } from './common.service';
@@ -23,6 +24,7 @@ import { IcheckDirective } from './directive/icheck/icheck.directive';
 		LeftNavComponent,
 		LoadingComponent,
 		ZtreeComponent,
+		MasonryComponent,
 		
 		IcheckDirective,
 	],
@@ -38,6 +40,7 @@ import { IcheckDirective } from './directive/icheck/icheck.directive';
 		LeftNavComponent,
 		LoadingComponent,
 		ZtreeComponent,
+		MasonryComponent,
 		
 		IcheckDirective,
 	],
