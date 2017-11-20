@@ -9,12 +9,13 @@ declare var $: any;
 	templateUrl: './image_list.html'
 })
 export class ImageQueryComponent {
-	@Input() image_query_url: string;
+	const url = '127.0.0.1:8888/manage/iamge_list'
 	
 	constructor() {};
 	
 	ngOnInit(): void { 
 		// 流体式布局
+		console.log($.fn);
 		$("#demo").waterfall({
 			itemClass: ".box",
 			minColCount: 2,
@@ -25,7 +26,7 @@ export class ImageQueryComponent {
 					{ "src": "03.jpg" }, { "src": "04.jpg" }, { "src": "02.jpg" }, { "src": "05.jpg" }, { "src": "01.jpg" }, { "src": "06.jpg" }
 				]};
 				var str = "";
-				var templ = '<div class="box" style="opacity:0;filter:alpha(opacity=0);"><div class="pic"><img src="img/{{src}}" /></div></div>'
+				var templ = '<div class="box" style="opacity:0;filter:alpha(opacity=0);"><div class="pic"><img src="/static/{{src}}" /></div></div>'
 
 				for(var i = 0; i < data.data.length; i++) {
 					str += templ.replace("{{src}}", data.data[i].src);

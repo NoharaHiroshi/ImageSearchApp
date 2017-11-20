@@ -10,7 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { LeftNavComponent } from './left_nav/left_nav.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ZtreeComponent } from './ztree/ztree.component';
-import { ImageQueryComponent } from './masonry/masonry.component';
+import { ImageQueryComponent } from './image_list/image_list.component';
 
 // Service
 import { CommonService } from './common.service';
