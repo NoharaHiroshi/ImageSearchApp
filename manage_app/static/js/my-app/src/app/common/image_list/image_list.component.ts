@@ -15,7 +15,6 @@ export class ImageQueryComponent {
 	
 	ngOnInit(): void { 
 		// 流体式布局
-		console.log($.fn);
 		$("#demo").waterfall({
 			itemClass: ".box",
 			minColCount: 2,
