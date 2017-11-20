@@ -20,9 +20,10 @@ export class ImageConfComponent extends ListBaseComponent{
 	
 	getPagerData(): void {
 		this.isLoading = true;
-		this.service.getImages().then(data => {
+		/* this.service.getImages().then(data => {
         	this.image_list = data.image_list;
 			this.isLoading = false;
-        });
+        }); */
+		
 	}
 }
