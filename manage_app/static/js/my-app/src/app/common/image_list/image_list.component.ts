@@ -18,25 +18,23 @@ export class ImageQueryComponent {
 		$("#demo").waterfall({
 			itemCls: "witem",
 			maxPage: 5, 
-			fitWidth: true, 
-			resizeable: true,
 			isFadeIn: true,
 			checkImagesLoaded: false,
 			dataType: 'json', 
+			fitWidth: true,
 			callbacks: {
 				loadingFinished: function($loading: any, isBeyondMaxPage: any) {
 					if (!isBeyondMaxPage) {
 						$loading.fadeOut();
 					}else{
 						$loading.hide();
-						$('#page-Navigation').show();
 					}
 				},
 				renderData: function (data: any, dataType: any) {
 					if (dataType === 'json'){
 						var str = "";
 						var templ = `<div class="witem">
-											<img src="/static/[src]" height="200"/>
+											<img src="/static/[src]" height="200px"/>
 									</div>`
 
 						for(var i = 0; i < data.image_list.length; i++) {
@@ -50,7 +48,8 @@ export class ImageQueryComponent {
 			},
 			path: function(page: any){
 				return query_url + page;
-			}
+			},
+			debug: true
 		});
 	}
 }
