@@ -2409,3 +2409,35 @@ label {
 	white-space:normal; 
 	width:200px;
 }
+
+/*
+ * waterfall
+ */
+.witem {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 192px;
+    padding: 15px;
+    line-height: 1.5;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(34, 25, 25, .4);
+    -moz-box-shadow: 0 1px 3px rgba(34, 25, 25, .4);
+    -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, .4);
+    filter: progid:DXImageTransform.Microsoft.Shadow(color = #adacac, direction = 135, strength = 2);
+}
+.witem img {
+    display: block;
+}
+
+.witem:hover {
+    box-shadow: 0 1px 5px rgba(34, 25, 25, .8);
+    -moz-box-shadow: 0 1px 5px rgba(34, 25, 25, .8);
+    -webkit-box-shadow: 0 1px 5px rgba(34, 25, 25, .8);
+    filter: progid:DXImageTransform.Microsoft.Shadow(color = #979797, direction = 135, strength = 3);
+}
+
+#trigger {
+	padding: 10px 30px 20px 30px;
+}
+#trigger a { margin-right: 30px;}

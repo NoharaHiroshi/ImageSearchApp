@@ -6,33 +6,50 @@ declare var $: any;
 
 @Component({
     selector: 'image-list',
-	templateUrl: './image_list.html'
+	templateUrl: './image_list.html',
 })
 export class ImageQueryComponent {
-	const url = '127.0.0.1:8888/manage/iamge_list'
 	
 	constructor() {};
 	
-	ngOnInit(): void { 
+	ngOnInit(): void {
+		const query_url = 'http://127.0.0.1:8888/manage/image_list?page=';
 		// 流体式布局
 		$("#demo").waterfall({
-			itemClass: ".box",
-			minColCount: 2,
-			spacingHeight: 10,
+			itemCls: "item",
+			maxPage: 5,
+			checkImagesLoaded: false,
 			resizeable: true,
-			ajaxCallback: function(success, end) {
-				var data = {"data": [
-					{ "src": "03.jpg" }, { "src": "04.jpg" }, { "src": "02.jpg" }, { "src": "05.jpg" }, { "src": "01.jpg" }, { "src": "06.jpg" }
-				]};
-				var str = "";
-				var templ = '<div class="box" style="opacity:0;filter:alpha(opacity=0);"><div class="pic"><img src="/static/{{src}}" /></div></div>'
+			dataType: 'json', 
+			callbacks: {
+				loadingFinished: function($loading: any, isBeyondMaxPage: any) {
+					if (!isBeyondMaxPage) {
+						$loading.fadeOut();
+					}else{
+						$loading.hide();
+						$('#page-Navigation').show();
+					}
+				},
+				renderData: function (data: any, dataType: any) {
+					if (dataType === 'json'){
+						var str = "";
+						var templ = `<div class="witem">
+											<img src="/static/[src]" width="[width]" height="[height]"/>
+									</div>`
 
-				for(var i = 0; i < data.data.length; i++) {
-					str += templ.replace("{{src}}", data.data[i].src);
+						for(var i = 0; i < data.image_list.length; i++) {
+							let _str = ''
+							_str = templ.replace("[src]", data.image_list[i].img_preview_url);
+							_str = _str.replace("[width]", data.image_list[i].width);
+							_str = _str.replace("[height]", data.image_list[i].height);
+							str += _str;
+						}
+						$(str).appendTo($("#demo"));
+					}
 				}
-				$(str).appendTo($("#div1"));
-				success();
-				end();
+			},
+			path: function(page: any){
+				return query_url + page;
 			}
 		});
 	}

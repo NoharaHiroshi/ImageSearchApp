@@ -44,6 +44,7 @@ def image_list():
         'response': 'ok',
         'image_list': []
     }
+    page = request.args.get('page', 1)
     try:
         with get_session() as db_session:
             _img_list = list()

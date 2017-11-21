@@ -9,7 +9,7 @@ import { ImageService } from './image.service';
 
 @Component({
   selector: 'image-root',
-  templateUrl: './image_list.html',
+  templateUrl: './image_list.html'
 })
 export class ImageConfComponent extends ListBaseComponent{
 	image_list: Image[];
@@ -19,10 +19,10 @@ export class ImageConfComponent extends ListBaseComponent{
 	}
 	
 	getPagerData(): void {
-		this.isLoading = true;
+		/* this.isLoading = true;
 		this.service.getImages().then(data => {
         	this.image_list = data.image_list;
 			this.isLoading = false;
-        });
+        }); */
 	}
 }
