@@ -208,6 +208,12 @@
                 maxCol = options.maxCol,
                 cols = Math.floor(containerWidth / (colWidth + gutterWidth)),
                 col = Math.max(cols, minCol );
+				
+				console.log($container);
+				console.log("containerWidth: " + containerWidth);
+				/* console.log("colWidth: " + colWidth);
+				console.log("gutterWidth: " + gutterWidth);
+				console.log("cols: " + cols); */
 
             /*if ( !maxCol ) {
                 return col;
@@ -273,10 +279,10 @@
 
             // fixMarginLeft
             if ( align === 'center' ) {
-				console.log('this.$element.width(): ' + this.$element.width()); // 833
+				/* console.log('this.$element.width(): ' + this.$element.width()); // 833
 				console.log('colWidth: ' + colWidth); // 240
 				console.log('len: ' + len); // 1
-				console.log('gutterWidth: ' + gutterWidth); // 10 
+				console.log('gutterWidth: ' + gutterWidth); // 10  */
                 fixMarginLeft = (this.$element.width() - colWidth * len  - gutterWidth * (len - 1) ) /2;
                 fixMarginLeft = fixMarginLeft > 0 ? fixMarginLeft : 0;
             } else if ( align === 'left' ) {
@@ -357,8 +363,6 @@
                 left: (colWidth + gutterWidth) * colIndex  + fixMarginLeft,
                 top: colHeightArray[colIndex]
             };
-			
-			console.log(position); // {left: 296.5, top: 1200}
 
             // push to style queue
             this.styleQueue.push({ $el: $item, style: position });

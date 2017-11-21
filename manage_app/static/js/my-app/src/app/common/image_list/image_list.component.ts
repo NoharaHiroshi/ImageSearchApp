@@ -19,9 +19,7 @@ export class ImageQueryComponent {
 			itemCls: "witem",
 			maxPage: 5, 
 			isFadeIn: true,
-			checkImagesLoaded: false,
 			dataType: 'json', 
-			fitWidth: true,
 			callbacks: {
 				loadingFinished: function($loading: any, isBeyondMaxPage: any) {
 					if (!isBeyondMaxPage) {
@@ -48,8 +46,7 @@ export class ImageQueryComponent {
 			},
 			path: function(page: any){
 				return query_url + page;
-			},
-			debug: true
+			}
 		});
 	}
 }

@@ -60,4 +60,4 @@ def save_images(images, image_type='img'):
         db_session.commit()
 
 if __name__ == '__main__':
-    pass
+    print config.IMG_UPLOAD_SRC
