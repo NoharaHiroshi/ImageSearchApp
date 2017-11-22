@@ -9,7 +9,6 @@ declare var $: any;
 	templateUrl: './image_list.html',
 })
 export class ImageQueryComponent {
-	
 	constructor() {};
 	
 	ngOnInit(): void {
@@ -17,7 +16,6 @@ export class ImageQueryComponent {
 		// 流体式布局
 		$("#demo").waterfall({
 			itemCls: "witem",
-			maxPage: 5, 
 			isFadeIn: true,
 			dataType: 'json', 
 			callbacks: {
@@ -30,6 +28,15 @@ export class ImageQueryComponent {
 				},
 				renderData: function (data: any, dataType: any) {
 					if (dataType === 'json'){
+						var max_page = data.meta.all_page,
+							cur_page = data.meta.cur_page;
+						
+						if (cur_page == max_page) {
+							$("#demo").waterfall('pause', function() {
+								$('#demo-info').html('<p style="color:#666;">没有更多内容...</p>')
+							});
+						}
+						
 						var str = "";
 						var templ = `<div class="witem">
 											<img src="/static/[src]" height="200px"/>
