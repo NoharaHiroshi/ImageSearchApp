@@ -357,12 +357,14 @@
 			console.log('colWidth: ' + colWidth); // 240
 			console.log('gutterWidth: ' + gutterWidth); // 10
 			console.log('colIndex: ' + colIndex); // 0
-			console.log('fixMarginLeft: ' + fixMarginLeft); // 296.5
+			console.log('fixMarginLeft: ' + fixMarginLeft); // 106.5
 
             position = {
                 left: (colWidth + gutterWidth) * colIndex  + fixMarginLeft,
                 top: colHeightArray[colIndex]
             };
+			
+			console.log(position);
 
             // push to style queue
             this.styleQueue.push({ $el: $item, style: position });

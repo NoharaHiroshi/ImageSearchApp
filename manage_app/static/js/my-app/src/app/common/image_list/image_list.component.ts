@@ -17,6 +17,9 @@ export class ImageQueryComponent {
 		$("#demo").waterfall({
 			itemCls: "witem",
 			isFadeIn: true,
+			colWidth: 255,
+			gutterWidth: 15,
+			gutterHeight: 15,
 			dataType: 'json', 
 			callbacks: {
 				loadingFinished: function($loading: any, isBeyondMaxPage: any) {
@@ -39,7 +42,7 @@ export class ImageQueryComponent {
 						
 						var str = "";
 						var templ = `<div class="witem">
-											<img src="/static/[src]" height="200px"/>
+											<img src="/static/[src]" width="225"/>
 									</div>`
 
 						for(var i = 0; i < data.image_list.length; i++) {
