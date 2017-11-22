@@ -209,8 +209,8 @@
                 cols = Math.floor(containerWidth / (colWidth + gutterWidth)),
                 col = Math.max(cols, minCol );
 				
-				console.log($container);
-				console.log("containerWidth: " + containerWidth);
+				/* console.log($container);
+				console.log("containerWidth: " + containerWidth); */
 				/* console.log("colWidth: " + colWidth);
 				console.log("gutterWidth: " + gutterWidth);
 				console.log("cols: " + cols); */
@@ -354,17 +354,15 @@
                 colIndex = minColIndex;
             }
 			
-			console.log('colWidth: ' + colWidth); // 240
+			/* console.log('colWidth: ' + colWidth); // 240
 			console.log('gutterWidth: ' + gutterWidth); // 10
 			console.log('colIndex: ' + colIndex); // 0
-			console.log('fixMarginLeft: ' + fixMarginLeft); // 106.5
+			console.log('fixMarginLeft: ' + fixMarginLeft); // 106.5 */
 
             position = {
                 left: (colWidth + gutterWidth) * colIndex  + fixMarginLeft,
                 top: colHeightArray[colIndex]
             };
-			
-			console.log(position);
 
             // push to style queue
             this.styleQueue.push({ $el: $item, style: position });

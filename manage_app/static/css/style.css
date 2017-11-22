@@ -2410,9 +2410,7 @@ label {
 	width:200px;
 }
 
-/*
- * waterfall
- */
+/* waterfall插件 */
 .witem {
     position: absolute;
     top: 0;
@@ -2430,13 +2428,36 @@ label {
 }
 
 .witem:hover {
-    box-shadow: 0 1px 5px rgba(34, 25, 25, .8);
-    -moz-box-shadow: 0 1px 5px rgba(34, 25, 25, .8);
-    -webkit-box-shadow: 0 1px 5px rgba(34, 25, 25, .8);
-    filter: progid:DXImageTransform.Microsoft.Shadow(color = #979797, direction = 135, strength = 3);
+    box-shadow: 0 0 0 3px #68dff0;
+    -moz-box-shadow: 0 0 0 3px #68dff0;
+    -webkit-box-shadow: 0 0 0 3px #68dff0;
 }
 
 #trigger {
 	padding: 10px 30px 20px 30px;
 }
 #trigger a { margin-right: 30px;}
+
+/* 图片功能条 */
+.image-func_toolbar{
+	position: fixed;
+	z-index: 999;
+	padding: 10px 20px;
+	bottom: 0px;
+	background: #fff;
+	filter: alpha(Opacity=80);
+	-moz-opacity: 0.8;
+	opacity: 0.8; 
+	width: 100%;
+}
+
+.image-func_toolbar:hover{
+	filter: alpha(Opacity=100);
+	-moz-opacity: 1;
+	opacity: 1; 
+}
+
+/* 图片选择 */
+.image-selected {
+	box-shadow: 0 0 0 3px #68dff0;
+}
