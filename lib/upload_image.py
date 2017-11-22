@@ -36,12 +36,12 @@ def save_images(images, image_type='img'):
             mode = im.mode
             im.save(os.path.join(upload_src, 'original', '.'.join([original_name, file_format.lower()])).replace('\\', '/'))
             # 预览图（高度固定）
-            preview_height = int(config.THUMBNAIL_IMG_HEIGHT)
+            preview_height = int(config.PREVIEW_IMG_HEIGHT)
             preview_width = int(width / (float(height) / preview_height))
             preview_im.thumbnail((preview_width, preview_height))
             preview_im.save(os.path.join(upload_src, 'preview', '.'.join([preview_name, file_format.lower()])).replace('\\', '/'))
             # 缩略图（等比例缩放）
-            thumb_height = int(config.PREVIEW_IMG_HEIGHT)
+            thumb_height = int(config.THUMBNAIL_IMG_HEIGHT)
             thumb_width = int(width / (float(height) / thumb_height))
             thumb_im.thumbnail((thumb_width, thumb_height))
             thumb_im.save(os.path.join(upload_src, 'thumbnail', '.'.join([thumbnail_name, file_format.lower()])).replace('\\', '/'))
