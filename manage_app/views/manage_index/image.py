@@ -8,7 +8,7 @@ from flask import render_template, abort, g, redirect, url_for, request, jsonify
 from flask.ext.login import current_user, login_user, logout_user, login_required
 from flask import current_app as app
 from sqlalchemy import or_, func, and_
-from lib.upload_image import save_images
+from lib.upload_image import save_images, delete_images
 from lib.paginator import SQLAlchemyPaginator
 from model.session import get_session
 from model.image.image import Image as Img
@@ -39,7 +39,6 @@ def upload_image():
 
 
 @manage.route('/image_list', methods=['GET'])
-@login_required
 def image_list():
     result = {
         'response': 'ok',
@@ -75,6 +74,29 @@ def image_list():
             return jsonify(result)
     except Exception as e:
         print e
+        abort(400)
+
+
+@manage.route('/image_list/delete', methods=['POST'])
+def delete_image():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    ids = request.form.get('ids').split(',')
+    try:
+        if ids[0]:
+            # 删除记录的同时，删除本地文件
+            with get_session() as db_session:
+                delete_image(ids=ids)
+        else:
+            result.update({
+                'response': 'fail',
+                'info': u'当前未选择任何图片'
+            })
+        return jsonify(result)
+    except Exception as e:
+        app.my_logger.error(traceback.format_exc(e))
         abort(400)
 
 if __name__ == '__main__':

@@ -59,5 +59,29 @@ def save_images(images, image_type='img'):
             db_session.add(img)
         db_session.commit()
 
+
+def delete_images(ids, image_type='img'):
+    # 选择图片存储位置
+    if image_type == 'img':
+        upload_src = config.IMG_UPLOAD_SRC
+    elif image_type == 'icon':
+        upload_src = config.ICON_UPLOAD_SRC
+    else:
+        upload_src = config.IMG_UPLOAD_SRC
+    with get_session() as db_session:
+        query = db_session.query(Img).filter(
+            Img.id.in_(ids)
+        ).all()
+        for img in query:
+            full_src = os.path.join(upload_src, 'original', '.'.join([img.url, img.format.lower()])).replace('\\', '/')
+            preview_src = os.path.join(upload_src, 'preview', '.'.join([img.preview_url, img.format.lower()])).replace('\\', '/')
+            thumb_src = os.path.join(upload_src, 'thumbnail', '.'.join([img.thumbnail_url, img.format.lower()])).replace('\\', '/')
+            for src in [full_src, preview_src, thumb_src]:
+                if os.path.isfile(src):
+                    os.remove(src)
+            db_session.delete(img)
+        db_session.commit()
+
+
 if __name__ == '__main__':
     print config.IMG_UPLOAD_SRC
