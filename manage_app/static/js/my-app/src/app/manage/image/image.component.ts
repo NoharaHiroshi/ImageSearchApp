@@ -25,7 +25,8 @@ export class ImageConfComponent extends ListBaseComponent{
 		let obj_list = [];
 		let objs = $('.image-selected');
 		for(let obj of objs){
-			obj_list.push(obj.attr('id'));
+			console.log(obj);
+			obj_list.push(obj.id);
 		}
 		let del_ids = obj_list.join(',');
 		let self = this;

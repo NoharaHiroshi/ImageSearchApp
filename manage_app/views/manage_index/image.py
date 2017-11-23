@@ -78,7 +78,7 @@ def image_list():
 
 
 @manage.route('/image_list/delete', methods=['POST'])
-def delete_image():
+def delete_image_list():
     result = {
         'response': 'ok',
         'info': ''
@@ -87,8 +87,7 @@ def delete_image():
     try:
         if ids[0]:
             # 删除记录的同时，删除本地文件
-            with get_session() as db_session:
-                delete_image(ids=ids)
+            delete_images(ids=ids)
         else:
             result.update({
                 'response': 'fail',

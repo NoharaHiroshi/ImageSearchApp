@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 require('./waterfall.js');
 
+declare var swal: any;
 declare var $: any;
 
 @Component({
@@ -13,6 +14,7 @@ export class ImageQueryComponent {
 	
 	ngOnInit(): void {
 		const query_url = 'http://127.0.0.1:8888/manage/image_list?page=';
+		let self = this;
 		// 流体式布局
 		$("#demo").waterfall({
 			itemCls: "witem",
@@ -54,10 +56,10 @@ export class ImageQueryComponent {
 						}
 						$(str).appendTo($("#demo"));
 						
-						$('.witem').click(function () {
-							$(this).toggleClass('image-selected');
+						// 需要先解绑，再绑定
+						$('.witem').unbind('click').click(function() {
+							$(this).toggleClass("image-selected");
 						});
-						
 					}
 				}
 			},
