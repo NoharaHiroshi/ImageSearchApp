@@ -10,9 +10,21 @@ declare var $: any;
 	templateUrl: './image_list.html',
 })
 export class ImageQueryComponent {
+	@Output() delIds = new EventEmitter<any>();  
+	
 	constructor() {};
 	
-	ngOnInit(): void {
+	selectIds(): void {
+		let obj_list = [];
+		let objs = $('.image-selected');
+		for(let obj of objs){
+			obj_list.push(obj.id);
+		}
+		let del_ids = obj_list.join(',');
+		this.delIds.emit(del_ids);
+	}
+	
+	getImageList(): void {
 		const query_url = 'http://127.0.0.1:8888/manage/image_list?page=';
 		let self = this;
 		// 流体式布局
@@ -59,6 +71,7 @@ export class ImageQueryComponent {
 						// 需要先解绑，再绑定
 						$('.witem').unbind('click').click(function() {
 							$(this).toggleClass("image-selected");
+							self.selectIds();
 						});
 					}
 				}
@@ -67,5 +80,21 @@ export class ImageQueryComponent {
 				return query_url + page;
 			}
 		});
+	}
+	
+	ngOnInit(): void {
+		this.getImageList();
+	}
+	
+	// 父组件调用子组件中的方法
+	refresh(): void {
+		$('.witem').remove();
+		$('#demo').remove();
+		$('#demo-info').remove();
+		$('#waterfall-loading').remove();
+		$('#waterfall-message').remove();
+		$("#image-list").append(`<div id="demo"></div>
+		<div id="demo-info" style="font-size: 14px; text-align: center;"></div>`);
+		this.getImageList();
 	}
 }

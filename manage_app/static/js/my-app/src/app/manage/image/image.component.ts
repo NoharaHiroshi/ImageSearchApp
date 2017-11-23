@@ -16,19 +16,19 @@ import { ImageService } from './image.service';
 })
 export class ImageConfComponent extends ListBaseComponent{
 	image_list: Image[];
+	del_ids: any;
+	is_refresh: boolean = false;
 	
 	constructor(private service: ImageService) {
 		super();
 	}
 	
+	getDelIds(del_ids: any): void{
+		this.del_ids = del_ids;
+	}
+	
 	del(): void {
-		let obj_list = [];
-		let objs = $('.image-selected');
-		for(let obj of objs){
-			console.log(obj);
-			obj_list.push(obj.id);
-		}
-		let del_ids = obj_list.join(',');
+		let del_ids = this.del_ids;
 		let self = this;
 		swal({
 			title: '删除',
