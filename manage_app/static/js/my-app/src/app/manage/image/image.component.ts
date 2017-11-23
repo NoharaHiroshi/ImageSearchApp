@@ -1,7 +1,7 @@
 declare var swal: any;
 declare var $: any;
 
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { Location }  from '@angular/common';
@@ -9,6 +9,7 @@ import { Location }  from '@angular/common';
 import { ListBaseComponent } from '../../common/base.component';
 import { Image } from '../../model/image';
 import { ImageService } from './image.service';
+import { ImageQueryComponent } from '../../common/image_list/image_list.component';
 
 @Component({
   selector: 'image-root',
@@ -26,6 +27,9 @@ export class ImageConfComponent extends ListBaseComponent{
 	getDelIds(del_ids: any): void{
 		this.del_ids = del_ids;
 	}
+	
+	@ViewChild(ImageQueryComponent)
+	private imageQueryComponent: ImageQueryComponent;
 	
 	del(): void {
 		let del_ids = this.del_ids;
@@ -59,5 +63,13 @@ export class ImageConfComponent extends ListBaseComponent{
 				self.refresh();
 			}
 		});
+	}
+	
+	AfterViewInit(): void {
+		
+	}
+	
+	refresh(): void {
+		this.imageQueryComponent.refresh();
 	}
 }
