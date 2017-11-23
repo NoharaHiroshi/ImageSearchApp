@@ -15,7 +15,7 @@ export class ImageService extends BaseService {
 		super(http);
 	}
 	
-	getImages(): Promise<any> {
+	getImageInfo(): Promise<any> {
 		const url = `/manage/image_list`; 
 		let self = this;
 	    return this.http.get(url)
@@ -24,6 +24,7 @@ export class ImageService extends BaseService {
 						let json = res.json();
 	            	    let image_list = self.jsonListToObjectList(json.image_list, Image);
 	           	        json['image_list'] = image_list;
+						json['meta'] = json.meta;
 	            	    return json;
 	               })
 	               .catch(this.handleError);

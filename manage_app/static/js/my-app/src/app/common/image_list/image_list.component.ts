@@ -33,11 +33,13 @@ export class ImageQueryComponent {
 			colWidth: 255,
 			gutterWidth: 15,
 			gutterHeight: 15,
+			maxPage: 7,
 			dataType: 'json', 
 			checkImagesLoaded: false,
 			callbacks: {
 				loadingFinished: function($loading: any, isBeyondMaxPage: any) {
 					if (!isBeyondMaxPage) {
+						console.log("isBeyondMaxPage: " + isBeyondMaxPage);
 						$loading.fadeOut();
 					}else{
 						$loading.hide();
@@ -47,12 +49,16 @@ export class ImageQueryComponent {
 					if (dataType === 'json'){
 						var max_page = data.meta.all_page,
 							cur_page = data.meta.cur_page;
+							
+						$("#demo").waterfall('option', {
+							maxPage: max_page
+						}, function() {})
 						
-						if (cur_page == max_page) {
+						/* if (cur_page == max_page) {
 							$("#demo").waterfall('pause', function() {
 								$('#demo-info').html('<p style="color:#666;">没有更多内容...</p>')
 							});
-						}
+						} */
 						
 						var str = "";
 						// colWidth = gutterWidth * 2 + width
@@ -88,13 +94,6 @@ export class ImageQueryComponent {
 	
 	// 父组件调用子组件中的方法
 	refresh(): void {
-		$('.witem').remove();
-		$('#demo').remove();
-		$('#demo-info').remove();
-		$('#waterfall-loading').remove();
-		$('#waterfall-message').remove();
-		$("#image-list").append(`<div id="demo"></div>
-		<div id="demo-info" style="font-size: 14px; text-align: center;"></div>`);
-		this.getImageList();
+		
 	}
 }
