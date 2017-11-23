@@ -56,7 +56,7 @@
                  */
                 loadingStart: function($loading) {
                     $loading.show();
-                    //console.log('loading', 'start');
+                    console.log('loading', 'start');
                 },
 
                 /*
@@ -67,9 +67,9 @@
                 loadingFinished: function($loading, isBeyondMaxPage) {
                     if ( !isBeyondMaxPage ) {
                         $loading.fadeOut();
-                        //console.log('loading finished');
+                        console.log('loading finished');
                     } else {
-                        //console.log('loading isBeyondMaxPage');
+                        console.log('loading isBeyondMaxPage');
                         $loading.remove();
                     }
                 },
@@ -186,9 +186,8 @@
                 overflow: 'scroll'
             });
 
-
             this.$element.css(this.options.containerStyle).addClass(prefix + '-container');
-            this.$element.after('<div id="' + prefix + '-loading">' +options.loadingMsg+ '</div><div id="' + prefix + '-message" style="text-align:center;color:#999;"></div>');
+            //this.$element.after('<div id="' + prefix + '-loading">' +options.loadingMsg+ '</div><div id="' + prefix + '-message" style="text-align:center;color:#999;"></div>');
 
             this.$loading = $('#' + prefix + '-loading');
             this.$message = $('#' + prefix + '-message');

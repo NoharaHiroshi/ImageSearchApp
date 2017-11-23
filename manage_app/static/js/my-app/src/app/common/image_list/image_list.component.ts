@@ -37,14 +37,13 @@ export class ImageQueryComponent {
 			dataType: 'json', 
 			checkImagesLoaded: false,
 			callbacks: {
-				loadingFinished: function($loading: any, isBeyondMaxPage: any) {
-					if (!isBeyondMaxPage) {
-						console.log("isBeyondMaxPage: " + isBeyondMaxPage);
-						$loading.fadeOut();
-					}else{
-						$loading.hide();
-					}
-				},
+				loadingFinished: function($loading, isBeyondMaxPage) {
+                    if ( !isBeyondMaxPage ) {} else {
+						$("#demo").waterfall('pause', function() {
+							$('#demo-info').html('<p style="color:#666;">没有更多内容...</p>')
+						});
+                    }
+                },
 				renderData: function (data: any, dataType: any) {
 					if (dataType === 'json'){
 						var max_page = data.meta.all_page,
@@ -53,12 +52,6 @@ export class ImageQueryComponent {
 						$("#demo").waterfall('option', {
 							maxPage: max_page
 						}, function() {})
-						
-						/* if (cur_page == max_page) {
-							$("#demo").waterfall('pause', function() {
-								$('#demo-info').html('<p style="color:#666;">没有更多内容...</p>')
-							});
-						} */
 						
 						var str = "";
 						// colWidth = gutterWidth * 2 + width
@@ -94,6 +87,5 @@ export class ImageQueryComponent {
 	
 	// 父组件调用子组件中的方法
 	refresh(): void {
-		
+		window.location.reload();
 	}
-}
