@@ -6,6 +6,7 @@ import 'rxjs/add/operator/timeout';
 import 'rxjs/Rx';
 
 import { Image } from '../../model/image';
+import { ImageSeries } from '../../model/image_series';
 
 import { BaseService } from '../../common/base.service';
 
@@ -16,18 +17,31 @@ export class ImageService extends BaseService {
 	}
 	
 	getImageInfo(): Promise<any> {
-		const url = `/manage/image_list`; 
+		const url = `/manage/image_info`; 
 		let self = this;
 	    return this.http.get(url)
 	               .toPromise()
 	               .then(function(res){
 						let json = res.json();
-	            	    let image_list = self.jsonListToObjectList(json.image_list, Image);
-	           	        json['image_list'] = image_list;
-						json['meta'] = json.meta;
+	            	    let image_series_list = self.jsonListToObjectList(json.image_series_list, Image);
+	           	        json['image_series_list'] = image_series_list;
 	            	    return json;
 	               })
 	               .catch(this.handleError);
+	}
+	
+	update(imageSeries: ImageSeries): Promise<any> {
+		const url = '/manage/image_series_list/update';
+	    return this.postForm(url, JSON.stringify(imageSeries));
+	}
+	
+	setCover(image_id: String, series_id: String): Promise<any> {
+		const url = '/manage/set_image_cover';
+		let params = {
+			'image_id': image_id,
+			'series_id': series_id
+		}
+	    return this.postForm(url, JSON.stringify(params));
 	}
 	
 	del(ids: String): Promise<{}> {

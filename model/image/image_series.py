@@ -17,15 +17,17 @@ class ImageSeries(Base):
     # 描述
     desc = Column(String(255))
     # 封面图
-    cover_image_id = Column(BigInteger, index=True, nullable=False)\
-
+    cover_image_id = Column(BigInteger)
 
     @property
     def cover_image_url(self):
         with get_session() as db_session:
-            cover_image = db_session.query(Image).get(self.cover_image_id)
-            if cover_image:
-                url = cover_image.img_full_url
+            if self.cover_image_id:
+                cover_image = db_session.query(Image).get(self.cover_image_id)
+                if cover_image:
+                    url = cover_image.img_full_url
+                else:
+                    url = ""
             else:
                 url = ""
         return url
@@ -33,10 +35,11 @@ class ImageSeries(Base):
     @property
     def count(self):
         with get_session() as db_session:
-            images_count = db_session.query(ImageSeriesRel).filter(
+            image_count = db_session.query(ImageSeriesRel).filter(
                 ImageSeriesRel.image_series_id == self.id
             ).count()
-        return images_count
+            image_count = image_count if image_count else 0
+        return image_count
 
     def to_dict(self):
         return {

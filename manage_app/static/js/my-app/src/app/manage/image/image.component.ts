@@ -1,14 +1,18 @@
 declare var swal: any;
 declare var $: any;
 
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { Location }  from '@angular/common';
 
 import { ListBaseComponent } from '../../common/base.component';
+
 import { Image } from '../../model/image';
+import { ImageSeries } from '../../model/image_series';
+
 import { ImageService } from './image.service';
+
 import { ImageQueryComponent } from '../../common/image_list/image_list.component';
 
 @Component({
@@ -16,13 +20,20 @@ import { ImageQueryComponent } from '../../common/image_list/image_list.componen
   templateUrl: './image_list.html'
 })
 export class ImageConfComponent extends ListBaseComponent{
-	image_list: Image[];
+	all_image_series: ImageSeries[];
+	
 	del_ids: any;
 	is_refresh: boolean = false;
 	
 	constructor(private service: ImageService) {
 		super();
 	}
+	
+	ngOnInit(): void {
+		this.service.getImageInfo().then(data => {
+        	this.all_image_series = data.image_series_list;
+        });
+	}	
 	
 	getDelIds(del_ids: any): void{
 		this.del_ids = del_ids;
@@ -71,5 +82,42 @@ export class ImageConfComponent extends ListBaseComponent{
 	
 	refresh(): void {
 		this.imageQueryComponent.refresh();
+	}
+	
+	setCover(): void {
+		let image_id = this.del_ids;
+		let tpl = '';
+		let self = this;
+		for(let image_series of this.all_image_series){
+			tpl += '<option value="' + image_series.id + '">' + image_series.name + '</option>'
+		}
+		swal({
+			title: '设置专题封面',
+			html:
+				'<select id="set_cover" style="width: 60%; display: block; margin: 5px auto; height: 30px;">'
+				+ tpl +
+				'</select>'
+			showCloseButton: true,
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '确定',
+			cancelButtonText: '取消',
+			confirmButtonClass: 'btn btn-theme04 margin-right10',
+			cancelButtonClass: 'btn btn-theme03',
+		}).then(function(isConfirm: boolean) {
+			if(isConfirm === true){
+				let series_id = $('#set_cover').val()
+				self.service.setCover(image_id, series_id).then(data =>{
+					if(data['response'] == 'ok'){
+						swal('已设置');
+						self.refresh();
+					}else{
+						swal('设置失败', data['info']);
+						self.refresh();
+					}
+				})
+			}
+		});
 	}
 }
