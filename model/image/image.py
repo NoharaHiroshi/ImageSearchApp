@@ -8,18 +8,22 @@ from model.base import Base, IdGenerator
 class Image(Base):
     __tablename__ = 'image'
 
+    TYPE_COMMON, TYPE_COVER = range(2)
+
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 名称
     name = Column(String(100), index=True)
     # 作者
     author = Column(String(100), default=u'未知', index=True)
+    # 类型
+    type = Column(Integer, default=TYPE_COMMON)
     # 图片url
     url = Column(String(255), nullable=False)
     # 预览图
     preview_url = Column(String(255), nullable=False)
     # 缩略图
     thumbnail_url = Column(String(255), nullable=False)
-    # 类型
+    # 格式
     format = Column(String(10), nullable=False, default=u'UNKNOWN')
     # 描述
     desc = Column(String(255))
@@ -53,6 +57,7 @@ class Image(Base):
             'preview_url': self.preview_url,
             'thumbnail_url': self.thumbnail_url,
             'format': self.format,
+            'type': self.type,
             'desc': self.desc,
             'width': self.width,
             'height': self.height,

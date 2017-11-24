@@ -23,6 +23,7 @@ import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailCom
 import { UserRoleConfComponent, UserRoleConfDetailComponent } from './user_role/user_role.component';
 import { ImageUploadComponent } from './image/upload_image.component';
 import { ImageConfComponent } from './image/image.component';
+import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent } from './image/image_series.component';
 
 import { FuncService } from './func/func.service';
 import { MenuService } from './menu/menu.service';
@@ -30,6 +31,7 @@ import { MenuFuncService } from './menu_func/menu_func.service';
 import { RoleService } from './role/role.service';
 import { UserRoleService } from './user_role/user_role.service';
 import { ImageService } from './image/image.service';
+import { ImageSeriesService } from './image/image_series.service';
 
 @NgModule({
 	declarations: [
@@ -52,7 +54,10 @@ import { ImageService } from './image/image.service';
 		UserRoleConfDetailComponent,
 		
 		ImageUploadComponent,
-		ImageConfComponent
+		ImageConfComponent,
+		
+		ImageSeriesConfComponent,
+		ImageSeriesConfDetailComponent
 	],
 	imports: [
 		CommonModule,
@@ -77,7 +82,8 @@ import { ImageService } from './image/image.service';
 		MenuFuncService,
 		RoleService,
 		UserRoleService,
-		ImageService
+		ImageService,
+		ImageSeriesService
 	],
 	bootstrap: [
 		ManageComponent

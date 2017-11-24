@@ -12,6 +12,7 @@ from lib.upload_image import save_images, delete_images
 from lib.paginator import SQLAlchemyPaginator
 from model.session import get_session
 from model.image.image import Image as Img
+from model.image.image_series import ImageSeriesRel, ImageSeries
 
 from route import manage
 
@@ -103,10 +104,43 @@ def delete_image_list():
 def image_series_list():
     result = {
         'response': 'ok',
+        'image_series_list': [],
         'info': ''
     }
     try:
-        pass
+        with get_session() as db_session:
+            query = db_session.query(ImageSeries).all()
+            _image_series_list = list()
+            for image_series in query:
+                image_series_dict = image_series.to_dict()
+                _image_series_list.append(image_series_dict)
+            result['image_series_list'] = _image_series_list
+        return jsonify(result)
+    except Exception as e:
+        print e
+        abort(400)
+
+
+@manage.route('/image_series_list/detail', methods=['GET'])
+def get_image_series_detail():
+    result = {
+        'response': 'ok',
+        'info': '',
+        'image_series': ''
+    }
+    try:
+        _id = request.args.get('id')
+        with get_session() as db_session:
+            image_series = db_session.query(ImageSeries).get(_id)
+            if image_series:
+                image_series_dict = image_series.to_dict()
+                result['image_series'] = image_series_dict
+            else:
+                result.update({
+                    'response': 'fail',
+                    'info': u'当前系列不存在'
+                })
+        return jsonify(result)
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))
         abort(400)

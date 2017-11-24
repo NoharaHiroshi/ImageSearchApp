@@ -9,6 +9,7 @@ import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailCom
 import { UserRoleConfComponent, UserRoleConfDetailComponent } from './user_role/user_role.component';
 import { ImageUploadComponent } from './image/upload_image.component';
 import { ImageConfComponent } from './image/image.component';
+import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent } from './image/image_series.component';
 
 // 根路由器
 const routes: Routes = [
@@ -35,6 +36,10 @@ const routes: Routes = [
 	
 	{ path: 'image_upload', component: ImageUploadComponent },
 	{ path: 'image_conf', component: ImageConfComponent },
+	
+	{ path: 'image_series_conf', component: ImageSeriesConfComponent },
+	{ path: 'image_series_conf/detail/:id', component: ImageSeriesConfDetailComponent },
+	{ path: 'image_series_conf/add', component: ImageSeriesConfDetailComponent },
 ];
 
 @NgModule({

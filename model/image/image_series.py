@@ -2,6 +2,8 @@
 
 from sqlalchemy import Column, Integer, String, BigInteger
 from model.base import Base, IdGenerator
+from model.session import get_session
+from model.image.image import Image
 
 
 class ImageSeries(Base):
@@ -14,21 +16,37 @@ class ImageSeries(Base):
     author = Column(String(100), default=u'未知', index=True)
     # 描述
     desc = Column(String(255))
-    # 标签
-    tag_ids = Column(String(255))
-    # 标签名
-    tag_names = Column(String(255))
     # 封面图
-    cover_image_id = Column(BigInteger, index=True, nullable=False)
+    cover_image_id = Column(BigInteger, index=True, nullable=False)\
+
+
+    @property
+    def cover_image_url(self):
+        with get_session() as db_session:
+            cover_image = db_session.query(Image).get(self.cover_image_id)
+            if cover_image:
+                url = cover_image.img_full_url
+            else:
+                url = ""
+        return url
+
+    @property
+    def count(self):
+        with get_session() as db_session:
+            images_count = db_session.query(ImageSeriesRel).filter(
+                ImageSeriesRel.image_series_id == self.id
+            ).count()
+        return images_count
 
     def to_dict(self):
         return {
             'id': str(self.id),
+            'name': self.name,
             'author': self.author,
             'desc': self.desc,
-            'tag_ids': self.tag_ids,
-            'tag_names': self.tag_names,
-            'cover_image_id': str(self.cover_image_id)
+            'cover_image_id': str(self.cover_image_id),
+            'cover_image_url': self.cover_image_url,
+            'count': self.count,
         }
 
 
@@ -50,6 +68,9 @@ class ImageSeriesRel(Base):
             'id': str(self.id),
             'image_id': str(self.image_id),
             'image_name': self.image_name,
-            'image_series_id': str(self.iamge_series_id),
-            'image_series_name': self.iamge_series_name
+            'image_series_id': str(self.image_series_id),
+            'image_series_name': self.image_series_name
         }
+
+if __name__ == '__main__':
+    print IdGenerator.gen()

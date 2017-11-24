@@ -3,7 +3,7 @@
 </div>
 <div *ngIf="!isLoading">
 	<h3>
-		<i class="fa fa-angle-right"></i> 菜单列表 <span class="sub-title">Menu List</span> 
+		<i class="fa fa-angle-right"></i> 专题列表 <span class="sub-title">ImageSeries List</span> 
 	</h3>
 	<div class="showback">
 		<button type="button" class="btn btn-theme" [routerLink]="['add']"><i class="fa fa-plus"></i> <span class="button-name">添加 </span></button>
@@ -19,24 +19,26 @@
 							<th>
 								<input icheck class="all-icheck" type="checkbox">
 							</th>
-							<th><i class="fa fa-bullhorn"></i> 菜单名称 </th>
-							<th class="hidden-phone"><i class="fa fa-question-circle"></i> 菜单代码 </th>
-							<th><i class="fa fa-bookmark"></i> 链接 </th>
-							<th><i class="fa fa-bookmark"></i> 排序 </th>
-							<th><i class="fa fa-bookmark"></i> 移动 </th>
+							<th><i class="fa fa-question-circle"></i> 专题名称 </th>
+							<th><i class="fa fa-bullhorn"></i> 专题封面 </th>
+							<th><i class="fa fa-question-circle"></i> 创建者 </th>
+							<th><i class="fa fa-bookmark"></i> 图片数量 </th>
+							<th><i class="fa fa-bookmark"></i> 操作 </th>
 						</tr>
 					</thead>
-					<tbody *ngIf="menu_list">
-						<tr *ngFor="let menu of menu_list">
-							<td><input icheck class="icheck" name="checked" type="checkbox" value={{menu.id}} ></td>
-							<td><a [routerLink]="['detail', menu.id]">{{ menu.menu_name }}</a></td>
-							<td class="hidden-phone">{{ menu.code }}</td>
-							<td>{{ menu.url }}</td>
-							<td>{{ menu.sort }}</td>
-							<td>
-								<button type="button" class="btn btn-theme min-btn" (click)="changeUpSort(menu.id)"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
-								<button type="button" class="btn btn-theme03 min-btn" (click)="changeDownSort(menu.id)"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
-							</td>
+					<tbody *ngIf="image_series_list">
+						<tr *ngFor="let image_series of image_series_list">
+							<td class="td-center"><input icheck class="icheck" name="checked" type="checkbox" value={{image_series.id}} ></td>
+							<td class="td-center"><a [routerLink]="['detail', image_series.id]">{{ image_series.name }}</a></td>
+							<ng-container *ngIf="image_series.cover_image_url">
+								<td class="td-center"><a [routerLink]="['detail', image_series.id]"><img src="/static/{{image_series.cover_image_url}}" style="width: 200px;"></a></td>
+							</ng-container>
+							<ng-container *ngIf="!image_series.cover_image_url">
+								<td class="td-center">请前往图片配置中选择封面图</td>
+							</ng-container>
+							<td class="td-center">{{ image_series.author }}</td>
+							<td class="td-center">{{ image_series.count }}</td>
+							<td class="td-center"><a [routerLink]="['detail', image_series.id]">编辑专题</a></td>
 						</tr>
 					</tbody>
 				</table>
