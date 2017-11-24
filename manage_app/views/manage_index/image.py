@@ -98,5 +98,18 @@ def delete_image_list():
         app.my_logger.error(traceback.format_exc(e))
         abort(400)
 
+
+@manage.route('/image_series_list', methods=['GET'])
+def image_series_list():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    try:
+        pass
+    except Exception as e:
+        app.my_logger.error(traceback.format_exc(e))
+        abort(400)
+
 if __name__ == '__main__':
     pass

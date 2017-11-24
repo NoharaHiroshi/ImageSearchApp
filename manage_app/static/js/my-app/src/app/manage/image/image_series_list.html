@@ -1,0 +1,46 @@
+﻿<div *ngIf="isLoading">
+	<loading></loading>
+</div>
+<div *ngIf="!isLoading">
+	<h3>
+		<i class="fa fa-angle-right"></i> 菜单列表 <span class="sub-title">Menu List</span> 
+	</h3>
+	<div class="showback">
+		<button type="button" class="btn btn-theme" [routerLink]="['add']"><i class="fa fa-plus"></i> <span class="button-name">添加 </span></button>
+		<button type="button" class="btn btn-theme02" (click)="refresh()"><i class="fa fa-refresh"></i> <span class="button-name">刷新 </span></button>
+		<button type="button" class="btn btn-theme04" (click)="del()"><i class="fa fa-trash-o"></i> <span class="button-name">删除 </span></button>
+	</div>
+	<div class="row mt">
+		<div class="col-md-12">
+			<div class="content-panel">
+				<table class="table table-striped table-advance table-hover">
+					<thead>
+						<tr>
+							<th>
+								<input icheck class="all-icheck" type="checkbox">
+							</th>
+							<th><i class="fa fa-bullhorn"></i> 菜单名称 </th>
+							<th class="hidden-phone"><i class="fa fa-question-circle"></i> 菜单代码 </th>
+							<th><i class="fa fa-bookmark"></i> 链接 </th>
+							<th><i class="fa fa-bookmark"></i> 排序 </th>
+							<th><i class="fa fa-bookmark"></i> 移动 </th>
+						</tr>
+					</thead>
+					<tbody *ngIf="menu_list">
+						<tr *ngFor="let menu of menu_list">
+							<td><input icheck class="icheck" name="checked" type="checkbox" value={{menu.id}} ></td>
+							<td><a [routerLink]="['detail', menu.id]">{{ menu.menu_name }}</a></td>
+							<td class="hidden-phone">{{ menu.code }}</td>
+							<td>{{ menu.url }}</td>
+							<td>{{ menu.sort }}</td>
+							<td>
+								<button type="button" class="btn btn-theme min-btn" (click)="changeUpSort(menu.id)"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+								<button type="button" class="btn btn-theme03 min-btn" (click)="changeDownSort(menu.id)"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div><!-- /content-panel -->
+		</div><!-- /col-md-12 -->
+	</div><!-- /row -->
+</div>

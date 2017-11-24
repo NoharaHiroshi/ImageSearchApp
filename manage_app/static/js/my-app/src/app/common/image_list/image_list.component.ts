@@ -37,7 +37,7 @@ export class ImageQueryComponent {
 			dataType: 'json', 
 			checkImagesLoaded: false,
 			callbacks: {
-				loadingFinished: function($loading, isBeyondMaxPage) {
+				loadingFinished: function($loading: any, isBeyondMaxPage: any) {
                     if ( !isBeyondMaxPage ) {} else {
 						$("#demo").waterfall('pause', function() {
 							$('#demo-info').html('<p style="color:#666;">没有更多内容...</p>')

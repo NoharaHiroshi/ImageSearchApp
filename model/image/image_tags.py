@@ -28,6 +28,8 @@ class ImageTagsRel(Base):
     type = Column(Integer, default=TYPE_IMAGE, index=True)
     # 标签ID
     tag_id = Column(BigInteger, nullable=False, index=True)
+    # 标签名称
+    tag_name = Column(String(100), nullable=False, index=True)
     # 图片ID/图片系列ID
     image_id = Column(BigInteger, nullable=False, index=True)
 
@@ -36,5 +38,6 @@ class ImageTagsRel(Base):
             'id': str(self.id),
             'type': self.type,
             'tag_id': str(self.tag_id),
+            'tag_name': self.tag_name,
             'image_id': str(self.image_id)
         }

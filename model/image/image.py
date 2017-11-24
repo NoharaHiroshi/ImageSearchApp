@@ -23,14 +23,6 @@ class Image(Base):
     format = Column(String(10), nullable=False, default=u'UNKNOWN')
     # 描述
     desc = Column(String(255))
-    # 系列ID
-    series_id = Column(BigInteger)
-    # 系列名称
-    series_name = Column(String(100))
-    # 标签
-    tag_ids = Column(String(255))
-    # 标签名
-    tag_names = Column(String(255))
     # 宽
     width = Column(Integer)
     # 高
@@ -62,10 +54,6 @@ class Image(Base):
             'thumbnail_url': self.thumbnail_url,
             'format': self.format,
             'desc': self.desc,
-            'series_id': str(self.series_id),
-            'series_name': self.series_name,
-            'tag_ids': self.tag_ids,
-            'tag_names': self.tag_names,
             'width': self.width,
             'height': self.height,
             'mode': self.mode,
