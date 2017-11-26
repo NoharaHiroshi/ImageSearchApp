@@ -59,8 +59,6 @@ class ImageSeriesRel(Base):
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 图片ID
     image_id = Column(BigInteger, index=True)
-    # 图片名称
-    image_name = Column(String(100), index=True)
     # 系列ID
     image_series_id = Column(BigInteger, index=True)
     # 系列名称
@@ -70,7 +68,6 @@ class ImageSeriesRel(Base):
         return {
             'id': str(self.id),
             'image_id': str(self.image_id),
-            'image_name': self.image_name,
             'image_series_id': str(self.image_series_id),
             'image_series_name': self.image_series_name
         }

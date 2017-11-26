@@ -1,10 +1,10 @@
 # coding:utf-8
 
 import os
-from PIL import Image
+from PIL import Image as Img
 from manage_app.config import config
 from model.session import get_session
-from model.image.image import Image as Img
+from model.image.image import Image
 from model.base import IdGenerator, HashName
 
 
@@ -25,7 +25,7 @@ def save_images(images, image_type='img'):
             else:
                 upload_src = config.IMG_UPLOAD_SRC
             # 图像处理
-            im = Image.open(image)
+            im = Img.open(image)
             preview_im = im.copy()
             thumb_im = im.copy()
             # 长宽
@@ -46,7 +46,7 @@ def save_images(images, image_type='img'):
             thumb_im.thumbnail((thumb_width, thumb_height))
             thumb_im.save(os.path.join(upload_src, 'thumbnail', '.'.join([thumbnail_name, file_format.lower()])).replace('\\', '/'))
             # 数据库存储
-            img = Img()
+            img = Image()
             img.id = _id
             img.name = file_name
             img.url = original_name
@@ -69,8 +69,8 @@ def delete_images(ids, image_type='img'):
     else:
         upload_src = config.IMG_UPLOAD_SRC
     with get_session() as db_session:
-        query = db_session.query(Img).filter(
-            Img.id.in_(ids)
+        query = db_session.query(Image).filter(
+            Image.id.in_(ids)
         ).all()
         for img in query:
             full_src = os.path.join(upload_src, 'original', '.'.join([img.url, img.format.lower()])).replace('\\', '/')

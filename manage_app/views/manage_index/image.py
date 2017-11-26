@@ -78,6 +78,11 @@ def image_list():
             _img_list = list()
             for img in paginator.page(page):
                 img_dict = img.to_dict()
+                img_series_obj = db_session.query(ImageSeriesRel).filter(
+                    ImageSeriesRel.image_id == img.id
+                ).all()
+                img_series_name = [image_series.image_series_name for image_series in img_series_obj]
+                img_dict['image_series'] = img_series_name
                 _img_list.append(img_dict)
 
             result.update({
@@ -145,6 +150,47 @@ def set_image_cover():
             result.update({
                 'response': 'fail',
                 'info': u'设置专题封面只能选择一张图片'
+            })
+        return jsonify(result)
+    except Exception as e:
+        app.my_logger.error(traceback.format_exc(e))
+        abort(400)
+
+
+@manage.route('/add_image_to_series', methods=['POST'])
+def add_image_to_series():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    image_ids = request.form.get('image_id').split(',')
+    series_id = request.form.get('series_id')
+    try:
+        if len(image_ids) > 0 and image_ids[0] != u'':
+            with get_session() as db_session:
+                image_series = db_session.query(ImageSeries).get(series_id)
+                if image_series:
+                    all_image = db_session.query(ImageSeriesRel).filter(
+                        ImageSeriesRel.image_series_id == series_id
+                    ).all()
+                    all_image_ids = [str(image.image_id) for image in all_image]
+                    add_image_ids = set(image_ids) - set(all_image_ids)
+                    for image_id in add_image_ids:
+                        image_series_rel = ImageSeriesRel()
+                        image_series_rel.image_id = image_id
+                        image_series_rel.image_series_id = series_id
+                        image_series_rel.image_series_name = image_series.name
+                        db_session.add(image_series_rel)
+                    db_session.commit()
+                else:
+                    result.update({
+                        'response': 'fail',
+                        'info': u'当前选择的专题不存在'
+                    })
+        else:
+            result.update({
+                'response': 'fail',
+                'info': u'请选择图片'
             })
         return jsonify(result)
     except Exception as e:

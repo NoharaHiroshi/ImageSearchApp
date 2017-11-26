@@ -33,7 +33,6 @@ export class ImageQueryComponent {
 			colWidth: 255,
 			gutterWidth: 15,
 			gutterHeight: 15,
-			maxPage: 7,
 			dataType: 'json', 
 			checkImagesLoaded: false,
 			callbacks: {
@@ -57,11 +56,23 @@ export class ImageQueryComponent {
 						// colWidth = gutterWidth * 2 + width
 						var templ = `<div class="witem" id="image_id">
 										<img src="/static/[src]" width="225"/>
+										<div style="position: relative; margin-top: 10px;">
+											['series_name']
+										</div>
 									</div>`
 
 						for(var i = 0; i < data.image_list.length; i++) {
-							let _str = ''
-							_str = templ.replace("[src]", data.image_list[i].img_thumbnail_url);
+							let _str = '';
+							_str = templ.replace("[src]", data.image_list[i].img_preview_url);
+							
+							let series_name = '';
+							let image_series = data.image_list[i].image_series;
+							for(let s_name of image_series){
+								series_name += '<span><button class="btn btn-theme03" style="padding: 2px 4px;">' + s_name + '</button></span>'
+							}
+							
+							_str = _str.replace("['series_name']", series_name);
+							
 							_str = _str.replace("image_id", data.image_list[i].id);
 							str += _str;
 						}
@@ -89,3 +100,4 @@ export class ImageQueryComponent {
 	refresh(): void {
 		window.location.reload();
 	}
+}

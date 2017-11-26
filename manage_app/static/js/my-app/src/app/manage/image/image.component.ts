@@ -96,7 +96,7 @@ export class ImageConfComponent extends ListBaseComponent{
 			html:
 				'<select id="set_cover" style="width: 60%; display: block; margin: 5px auto; height: 30px;">'
 				+ tpl +
-				'</select>'
+				'</select>',
 			showCloseButton: true,
 			showCancelButton: true,
 			confirmButtonColor: '#3085d6',
@@ -114,7 +114,42 @@ export class ImageConfComponent extends ListBaseComponent{
 						self.refresh();
 					}else{
 						swal('设置失败', data['info']);
+					}
+				})
+			}
+		});
+	}
+	
+	addImageToSeries(): void {
+		let image_id = this.del_ids;
+		let tpl = '';
+		let self = this;
+		for(let image_series of this.all_image_series){
+			tpl += '<option value="' + image_series.id + '">' + image_series.name + '</option>'
+		}
+		swal({
+			title: '添加图片至专题',
+			html:
+				'<select id="add_image_to_series" style="width: 60%; display: block; margin: 5px auto; height: 30px;">'
+				+ tpl +
+				'</select>',
+			showCloseButton: true,
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '确定',
+			cancelButtonText: '取消',
+			confirmButtonClass: 'btn btn-theme04 margin-right10',
+			cancelButtonClass: 'btn btn-theme03',
+		}).then(function(isConfirm: boolean) {
+			if(isConfirm === true){
+				let series_id = $('#add_image_to_series').val()
+				self.service.addImageToSeries(image_id, series_id).then(data =>{
+					if(data['response'] == 'ok'){
+						swal('已设置');
 						self.refresh();
+					}else{
+						swal('设置失败', data['info']);
 					}
 				})
 			}
