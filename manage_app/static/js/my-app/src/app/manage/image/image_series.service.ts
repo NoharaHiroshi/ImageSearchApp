@@ -54,4 +54,13 @@ export class ImageSeriesService extends BaseService {
 		}
 		return this.postForm(url, JSON.stringify(params));
 	}
+	
+	removeImageFromSeries(image_ids: String, series_id: String): Promise<{}> {
+		const url = '/manage/image_series_list/remove_image_from_series';
+		let params = {
+			'image_id': image_ids,
+			'series_id': series_id
+		}
+		return this.postForm(url, JSON.stringify(params));
+	}
 }

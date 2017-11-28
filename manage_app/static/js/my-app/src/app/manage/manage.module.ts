@@ -23,7 +23,7 @@ import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailCom
 import { UserRoleConfComponent, UserRoleConfDetailComponent } from './user_role/user_role.component';
 import { ImageUploadComponent } from './image/upload_image.component';
 import { ImageConfComponent } from './image/image.component';
-import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent } from './image/image_series.component';
+import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent, ImageSeriesSetComponent } from './image/image_series.component';
 
 import { FuncService } from './func/func.service';
 import { MenuService } from './menu/menu.service';
@@ -57,7 +57,8 @@ import { ImageSeriesService } from './image/image_series.service';
 		ImageConfComponent,
 		
 		ImageSeriesConfComponent,
-		ImageSeriesConfDetailComponent
+		ImageSeriesConfDetailComponent,
+		ImageSeriesSetComponent
 	],
 	imports: [
 		CommonModule,

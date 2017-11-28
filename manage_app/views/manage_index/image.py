@@ -17,6 +17,7 @@ from model.image.image_series import ImageSeriesRel, ImageSeries
 from route import manage
 
 
+# ———————————————————— 上传图片 ————————————————————
 @manage.route('/upload_image', methods=['POST'])
 @login_required
 def upload_image():
@@ -39,6 +40,7 @@ def upload_image():
         abort(400)
 
 
+# ———————————————————— 专题信息 ————————————————————
 @manage.route('/image_info', methods=['GET'])
 def image_info():
     result = {
@@ -59,6 +61,7 @@ def image_info():
         abort(400)
 
 
+# ———————————————————— 图片列表相关操作 ————————————————————
 @manage.route('/image_list', methods=['GET'])
 def image_list():
     result = {
@@ -103,6 +106,7 @@ def image_list():
         abort(400)
 
 
+# 删除图片
 @manage.route('/image_list/delete', methods=['POST'])
 def delete_image_list():
     result = {
@@ -125,6 +129,7 @@ def delete_image_list():
         abort(400)
 
 
+# 设置专题封面
 @manage.route('/set_image_cover', methods=['POST'])
 def set_image_cover():
     result = {
@@ -157,13 +162,14 @@ def set_image_cover():
         abort(400)
 
 
+# 将图片添加至专题
 @manage.route('/add_image_to_series', methods=['POST'])
 def add_image_to_series():
     result = {
         'response': 'ok',
         'info': ''
     }
-    image_ids = request.form.get('image_id').split(',')
+    image_ids = request.form.get('image_id', u'').split(',')
     series_id = request.form.get('series_id')
     try:
         if len(image_ids) > 0 and image_ids[0] != u'':
@@ -198,6 +204,7 @@ def add_image_to_series():
         abort(400)
 
 
+# ———————————————————— 图片专题相关操作 ————————————————————
 @manage.route('/image_series_list', methods=['GET'])
 def image_series_list():
     result = {
@@ -279,6 +286,110 @@ def update_image_series_detail():
         return jsonify(result)
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))
+        abort(400)
+
+
+@manage.route('/image_series_list/delete', methods=['POST'])
+def delete_image_series():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    ids = request.form.get('ids').split(',')
+    try:
+        # 删除专题时，会将该专题中所有的专题与图片关系删除
+        with get_session() as db_session:
+            for _id in ids:
+                image_series = db_session.query(ImageSeries).get(_id)
+                if image_series:
+                    # 删除专题
+                    db_session.delete(image_series)
+
+                    # 删除关系
+                    db_session.query(ImageSeriesRel).filter(
+                        ImageSeriesRel.image_series_id == _id
+                    ).delete(synchronize_session=False)
+            db_session.commit()
+        return jsonify(result)
+    except Exception as e:
+        print e
+        abort(400)
+
+
+@manage.route('/image_series_list/series_image_list', methods=['GET'])
+def series_image_list():
+    result = {
+        'response': 'ok',
+        'image_list': [],
+        'meta': {}
+    }
+    limit = 5
+    page = request.args.get('page', 1)
+    series_id = request.args.get('series_id')
+    try:
+        with get_session() as db_session:
+            query = db_session.query(Img).join(
+                ImageSeriesRel, Img.id == ImageSeriesRel.image_id
+            ).filter(
+                ImageSeriesRel.image_series_id == series_id
+            )
+
+            paginator = SQLAlchemyPaginator(query, limit)
+            page = paginator.get_validate_page(page)
+
+            _img_list = list()
+            for img in paginator.page(page):
+                img_dict = img.to_dict()
+                img_series_obj = db_session.query(ImageSeriesRel).filter(
+                    ImageSeriesRel.image_id == img.id
+                ).all()
+                img_series_name = [image_series.image_series_name for image_series in img_series_obj]
+                img_dict['image_series'] = img_series_name
+                _img_list.append(img_dict)
+
+            result.update({
+                'image_list': _img_list
+            })
+
+            result.update({
+                'meta': {
+                    'cur_page': page,
+                    'all_page': paginator.max_page,
+                    'count': paginator.count
+                }
+            })
+
+            return jsonify(result)
+    except Exception as e:
+        print e
+        abort(400)
+
+
+@manage.route('/image_series_list/remove_image_from_series', methods=['POST'])
+def remove_image_from_series():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    try:
+        image_ids = request.form.get('image_id', u'').split(',')
+        series_id = request.form.get('series_id')
+        print image_ids, series_id
+        if len(image_ids) > 0 and image_ids[0] != u'':
+            with get_session() as db_session:
+                db_session.query(ImageSeriesRel).filter(
+                    ImageSeriesRel.image_series_id == series_id,
+                    ImageSeriesRel.image_id.in_(image_ids)
+                ).delete(synchronize_session=False)
+                db_session.commit()
+        else:
+            result.update({
+                'response': 'fail',
+                'info': u'请选择图片'
+            })
+        return jsonify(result)
+    except Exception as e:
+        print e
         abort(400)
 
 if __name__ == '__main__':

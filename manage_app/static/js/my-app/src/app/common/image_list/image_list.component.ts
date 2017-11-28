@@ -10,6 +10,7 @@ declare var $: any;
 	templateUrl: './image_list.html',
 })
 export class ImageQueryComponent {
+	@Input() queryUrl: any;
 	@Output() delIds = new EventEmitter<any>();  
 	
 	constructor() {};
@@ -25,7 +26,6 @@ export class ImageQueryComponent {
 	}
 	
 	getImageList(): void {
-		const query_url = 'http://127.0.0.1:8888/manage/image_list?page=';
 		let self = this;
 		// 流体式布局
 		$("#demo").waterfall({
@@ -87,7 +87,7 @@ export class ImageQueryComponent {
 				}
 			},
 			path: function(page: any){
-				return query_url + page;
+				return self.queryUrl + page;
 			}
 		});
 	}
