@@ -83,5 +83,18 @@ def delete_images(ids, image_type='img'):
         db_session.commit()
 
 
+def image_series_color(index):
+    index = int(index)
+    color_list = [
+        '#4b91cf', '#6a77d7', '#8c6bd4', '#b86acf', '#6adadb', '#6cdcaa',
+        '#6ce07d', '#89e26c', '#bde56b', '#e7d46b', '#e69f6b', '#ed6b6b',
+        '#e74b4c', '#6aa6d8', '#8f97e0', '#a58cdd', '#c78cdc', '#8ee4e5',
+        '#8ce79a', '#8ce79a', '#a3e88d', '#ceeb8e', '#ebe08e', '#edb68d',
+        '#f18d8d', '#ed6b6b'
+    ]
+    color_list_len = len(color_list)
+    _index = index % color_list_len
+    return color_list[_index]
+
 if __name__ == '__main__':
-    print config.IMG_UPLOAD_SRC
+    print image_series_color(33)

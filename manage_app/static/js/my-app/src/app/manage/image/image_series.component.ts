@@ -125,6 +125,10 @@ export class ImageSeriesSetComponent extends ListBaseComponent{
 		this.query_url = 'http://127.0.0.1:8888/manage/image_series_list/series_image_list?series_id=' + this.route.params._value.id + '&page=';
 	}
 	
+	goBack(): void {
+		this.router.navigate(['/image_series_conf']);
+	}
+	
 	getDelIds(del_ids: any): void{
 		this.del_ids = del_ids;
 	}
