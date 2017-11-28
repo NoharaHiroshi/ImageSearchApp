@@ -1,5 +1,17 @@
+<style>
+.filterinput {
+    background-color: rgba(249, 244, 244, 0);
+    border: thin solid #797979;
+    text-indent: 0.5em;
+    color: #797979;
+	position: relative;
+	float: right;
+	width: 15%;
+}
+</style>
 <h3>
 	<i class="fa fa-angle-right"></i> 图片列表 <span class="sub-title">Image List</span> 
+	<input type="text" class="filterinput">
 </h3>
 <image-list (delIds)="getDelIds($event)" [queryUrl]="query_url"></image-list>
 <div class="row mt">
