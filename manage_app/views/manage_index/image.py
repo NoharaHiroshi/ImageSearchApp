@@ -226,6 +226,7 @@ def image_series_list():
         abort(400)
 
 
+# 专题详情
 @manage.route('/image_series_list/detail', methods=['GET'])
 def get_image_series_detail():
     result = {
@@ -251,6 +252,7 @@ def get_image_series_detail():
         abort(400)
 
 
+# 更新专题
 @manage.route('/image_series_list/update', methods=['POST'])
 def update_image_series_detail():
     result = {
@@ -289,6 +291,7 @@ def update_image_series_detail():
         abort(400)
 
 
+# 删除专题
 @manage.route('/image_series_list/delete', methods=['POST'])
 def delete_image_series():
     result = {
@@ -316,6 +319,7 @@ def delete_image_series():
         abort(400)
 
 
+# 专题图片
 @manage.route('/image_series_list/series_image_list', methods=['GET'])
 def series_image_list():
     result = {
@@ -365,6 +369,7 @@ def series_image_list():
         abort(400)
 
 
+# 将图片移除专题
 @manage.route('/image_series_list/remove_image_from_series', methods=['POST'])
 def remove_image_from_series():
     result = {
@@ -374,7 +379,6 @@ def remove_image_from_series():
     try:
         image_ids = request.form.get('image_id', u'').split(',')
         series_id = request.form.get('series_id')
-        print image_ids, series_id
         if len(image_ids) > 0 and image_ids[0] != u'':
             with get_session() as db_session:
                 db_session.query(ImageSeriesRel).filter(
