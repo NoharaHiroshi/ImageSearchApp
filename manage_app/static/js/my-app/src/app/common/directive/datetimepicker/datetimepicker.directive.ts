@@ -64,7 +64,7 @@ export class DateTimePickerDirective implements OnInit, OnChanges {
             let date = changes['date'];
 
             if (!!options) {
-                $.map(options.currentValue, (value, key) => {
+                $.map(options.currentValue, (value: any, key: any) => {
                     dpe[key](value);
                 });
             }
