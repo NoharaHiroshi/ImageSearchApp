@@ -6,6 +6,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { HttpModule, RequestOptions } from '@angular/http';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { A2Edatetimepicker } from '../common/directive/datetimepicker/datetimepicker.module';
 
 import { ModalModule } from 'angular2-modal';
 import { ManageRoutingModule } from './manage.routing.module';
@@ -69,6 +70,7 @@ import { ImageSeriesService } from './image/image_series.service';
 		RouterModule,
 		BrowserAnimationsModule,
 		
+		A2Edatetimepicker,
 		ModalModule.forRoot(),
 		SharedModule, // 共用控件
 		

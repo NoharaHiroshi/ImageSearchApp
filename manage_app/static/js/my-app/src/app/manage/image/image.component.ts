@@ -20,6 +20,8 @@ import { ImageQueryComponent } from '../../common/image_list/image_list.componen
   templateUrl: './image_list.html'
 })
 export class ImageConfComponent extends ListBaseComponent{
+	startDate = '';
+    endDate = '';
 	all_image_series: ImageSeries[];
 	// 图片请求地址
 	query_url = 'http://127.0.0.1:8888/manage/image_list?page=';
