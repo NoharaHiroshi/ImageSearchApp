@@ -29,7 +29,7 @@
 							<td class="td-center"><input icheck class="icheck" name="checked" type="checkbox" value={{image_tag.id}} ></td>
 							<td class="td-center"><a [routerLink]="['detail', image_tag.id]">{{ image_tag.name }}</a></td>
 							<td class="td-center">{{ image_tag.count }}</td>
-							<td class="td-center"><a [routerLink]="['set', image_series.id]">编辑标签</a></td>
+							<td class="td-center"><a [routerLink]="['set', image_tag.id]">编辑标签</a></td>
 						</tr>
 					</tbody>
 				</table>
