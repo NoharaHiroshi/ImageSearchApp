@@ -10,6 +10,7 @@ import { UserRoleConfComponent, UserRoleConfDetailComponent } from './user_role/
 import { ImageUploadComponent } from './image/upload_image.component';
 import { ImageConfComponent } from './image/image.component';
 import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent, ImageSeriesSetComponent } from './image/image_series.component';
+import { ImageTagConfComponent, ImageTagConfDetailComponent, ImageTagSetComponent } from './image/image_tag.component';
 
 // 根路由器
 const routes: Routes = [
@@ -41,6 +42,11 @@ const routes: Routes = [
 	{ path: 'image_series_conf/detail/:id', component: ImageSeriesConfDetailComponent },
 	{ path: 'image_series_conf/add', component: ImageSeriesConfDetailComponent },
 	{ path: 'image_series_conf/set/:id', component: ImageSeriesSetComponent },
+	
+	{ path: 'image_tag_conf', component: ImageTagConfComponent },
+	{ path: 'image_tag_conf/detail/:id', component: ImageTagConfDetailComponent },
+	{ path: 'image_tag_conf/add', component: ImageTagConfDetailComponent },
+	{ path: 'image_tag_conf/set/:id', component: ImageTagSetComponent },
 ];
 
 @NgModule({

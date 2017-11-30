@@ -11,14 +11,6 @@
 		<input type="text">
 	</div>
 </h3>
-<div class="control-container">
-	<div class="col-sm-3">
-		<div class="input-group">
-			<input type="text" class="form-control" a2e-datetimepicker [options]="" name="endDate" [(ngModel)]="endDate" #endDate1 (blur)="endDate = endDate1.value"/>
-			<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-		</div>
-	</div>
-</div>
 <image-list (delIds)="getDelIds($event)" [queryUrl]="query_url"></image-list>
 <div class="row mt">
 	<div class="image-func_toolbar">

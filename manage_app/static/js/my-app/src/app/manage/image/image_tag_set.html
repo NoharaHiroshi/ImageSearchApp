@@ -1,0 +1,11 @@
+<h3>
+	<i class="fa fa-angle-right"></i> 标签编辑 <span class="sub-title">ImageTag Edit</span> 
+</h3>
+<image-list (delIds)="getDelIds($event)" [queryUrl]="query_url"></image-list>
+<div class="row mt">
+	<div class="image-func_toolbar">
+		<button type="button" class="btn btn-theme03" (click)="goBack()"><i class="fa fa-reply"></i> <span class="button-name">返回 </span></button>
+		<button type="button" class="btn btn-theme02" (click)="refresh()"><i class="fa fa-refresh"></i> <span class="button-name">刷新 </span></button>
+		<button type="button" class="btn btn-theme04" (click)="removeImageFromTag()"><i class="fa fa-trash-o"></i> <span class="button-name">删除 </span></button>
+	</div>
+</div>

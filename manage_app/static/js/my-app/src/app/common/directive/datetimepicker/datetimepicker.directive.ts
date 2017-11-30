@@ -35,6 +35,9 @@ export class DateTimePickerDirective implements OnInit, OnChanges {
     }
 
     ngOnInit(): void {
+		console.log('datetimepicker');
+		console.log(typeof(this.date));
+		
         if(!!this.options){
         	$.extend(this.default_options, this.options);
         }
@@ -43,7 +46,6 @@ export class DateTimePickerDirective implements OnInit, OnChanges {
     		this.date = null;
     	}
     	
-		console.log($.fn);
         this.dpElement.datetimepicker(this.default_options);
         this.dpElement.data('DateTimePicker').date(this.date);
 

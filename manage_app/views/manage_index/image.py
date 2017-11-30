@@ -13,6 +13,7 @@ from lib.paginator import SQLAlchemyPaginator
 from model.session import get_session
 from model.image.image import Image as Img
 from model.image.image_series import ImageSeriesRel, ImageSeries
+from model.image.image_tags import ImageTags, ImageTagsRel
 
 from route import manage
 
@@ -395,6 +396,55 @@ def remove_image_from_series():
     except Exception as e:
         print e
         abort(400)
+
+
+# ———————————————————— 图片标签相关操作 ————————————————————
+@manage.route('/image_tag_list', methods=['GET'])
+def image_tag_list():
+    result = {
+        'response': 'ok',
+        'image_tag_list': [],
+        'info': ''
+    }
+    try:
+        with get_session() as db_session:
+            all_image_tag = db_session.query(ImageTags).all()
+            _image_tag_list = list()
+            for image_tag in all_image_tag:
+                image_tag_dict = image_tag.to_dict()
+                _image_tag_list.append(image_tag_dict)
+            result['image_tag_list'] = _image_tag_list
+        return jsonify(result)
+    except Exception as e:
+        print e
+        abort(400)
+
+
+# 标签详情
+@manage.route('/image_tag_list/detail', methods=['GET'])
+def get_image_tag_detail():
+    result = {
+        'response': 'ok',
+        'info': '',
+        'image_tag': ''
+    }
+    try:
+        _id = request.args.get('id')
+        with get_session() as db_session:
+            image_tag = db_session.query(ImageTags).get(_id)
+            if image_tag:
+                image_tag_dict = image_tag.to_dict()
+                result['image_tag'] = image_tag_dict
+            else:
+                result.update({
+                    'response': 'fail',
+                    'info': u'当前标签不存在'
+                })
+        return jsonify(result)
+    except Exception as e:
+        app.my_logger.error(traceback.format_exc(e))
+        abort(400)
+
 
 if __name__ == '__main__':
     pass

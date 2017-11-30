@@ -6,6 +6,8 @@ from manage_app.config import config
 from model.session import get_session
 from model.image.image import Image
 from model.base import IdGenerator, HashName
+from model.image.image_tags import ImageTags, ImageTagsRel
+from model.image.image_series import ImageSeries, ImageSeriesRel
 
 
 def save_images(images, image_type='img'):
@@ -60,6 +62,7 @@ def save_images(images, image_type='img'):
         db_session.commit()
 
 
+# 删除图片时，需要解绑专题和标签的联系
 def delete_images(ids, image_type='img'):
     # 选择图片存储位置
     if image_type == 'img':
@@ -72,6 +75,12 @@ def delete_images(ids, image_type='img'):
         query = db_session.query(Image).filter(
             Image.id.in_(ids)
         ).all()
+        db_session.query(ImageSeriesRel).filter(
+            ImageSeriesRel.image_id.in_(ids)
+        ).delete(synchronize_session=False)
+        db_session.query(ImageTagsRel).filter(
+            ImageTagsRel.image_id.in_(ids)
+        ).delete(synchronize_session=False)
         for img in query:
             full_src = os.path.join(upload_src, 'original', '.'.join([img.url, img.format.lower()])).replace('\\', '/')
             preview_src = os.path.join(upload_src, 'preview', '.'.join([img.preview_url, img.format.lower()])).replace('\\', '/')

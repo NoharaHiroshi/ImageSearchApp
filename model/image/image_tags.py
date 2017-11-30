@@ -2,6 +2,7 @@
 
 from sqlalchemy import Column, Integer, String, BigInteger
 from model.base import Base, IdGenerator
+from model.session import get_session
 
 
 class ImageTags(Base):
@@ -10,10 +11,20 @@ class ImageTags(Base):
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     name = Column(String(30), nullable=False, index=True)
 
+    @property
+    def count(self):
+        with get_session() as db_session:
+            image_count = db_session.query(ImageTagsRel).filter(
+                ImageTagsRel.tag_id == self.id
+            ).count()
+            image_count = image_count if image_count else 0
+        return image_count
+
     def to_dict(self):
         return {
             'id': str(self.id),
-            'name': self.name
+            'name': self.name,
+            'count': self.count
         }
 
 
@@ -41,3 +52,6 @@ class ImageTagsRel(Base):
             'tag_name': self.tag_name,
             'image_id': str(self.image_id)
         }
+
+if __name__ == '__main__':
+    print IdGenerator.gen()
