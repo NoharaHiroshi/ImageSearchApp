@@ -446,5 +446,68 @@ def get_image_tag_detail():
         abort(400)
 
 
+# 标签更新
+@manage.route('/image_tag_list/update', methods=['POST'])
+def update_image_tag_detail():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    image_tag_id = request.form.get('id')
+    image_tag_name = request.form.get('name')
+    try:
+        if None in [image_tag_name]:
+            result.update({
+                'response': 'fail',
+                'info': u'请检查参数是否填写完整'
+            })
+        else:
+            with get_session() as db_session:
+                if not image_tag_id:
+                    image_tag = ImageTags()
+                    image_tag.name = image_tag_name
+                    db_session.add(image_tag)
+                else:
+                    image_tag = db_session.query(ImageTags).get(image_tag_id)
+                    if image_tag:
+                        image_tag.name = image_tag_name
+                    else:
+                        result['response'] = 'fail'
+                        result['info'] = u'当前对象不存在'
+                db_session.commit()
+        return jsonify(result)
+    except Exception as e:
+        app.my_logger.error(traceback.format_exc(e))
+        abort(400)
+
+
+# 删除标签
+@manage.route('/image_tag_list/delete', methods=['POST'])
+def delete_image_tag():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    ids = request.form.get('ids').split(',')
+    try:
+        # 删除标签时，会将该标签中所有的标签与图片关系删除
+        with get_session() as db_session:
+            for _id in ids:
+                image_tag = db_session.query(ImageTags).get(_id)
+                if image_tag:
+                    # 删除专题
+                    db_session.delete(image_tag)
+
+                    # 删除关系
+                    db_session.query(ImageTagsRel).filter(
+                        ImageTagsRel.image_tag_id == _id
+                    ).delete(synchronize_session=False)
+            db_session.commit()
+        return jsonify(result)
+    except Exception as e:
+        print e
+        abort(400)
+
+
 if __name__ == '__main__':
     pass
