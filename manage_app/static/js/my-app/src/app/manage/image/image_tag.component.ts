@@ -122,7 +122,7 @@ export class ImageTagSetComponent extends ListBaseComponent{
 	ngOnInit(): void {
 		let self = this;
 		// 图片请求地址
-		this.query_url = 'http://127.0.0.1:8888/manage/image_tag_list/series_image_list?series_id=' + this.route.params._value.id + '&page=';
+		this.query_url = 'http://127.0.0.1:8888/manage/image_tag_list/tag_image_list?tag_id=' + this.route.params._value.id + '&page=';
 	}
 	
 	goBack(): void {

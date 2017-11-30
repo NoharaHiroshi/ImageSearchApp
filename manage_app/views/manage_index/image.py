@@ -339,31 +339,31 @@ def series_image_list():
                 ImageSeriesRel.image_series_id == series_id
             )
 
-            paginator = SQLAlchemyPaginator(query, limit)
-            page = paginator.get_validate_page(page)
+            image_series = db_session.query(ImageSeries).get(series_id)
+            if image_series:
+                paginator = SQLAlchemyPaginator(query, limit)
+                page = paginator.get_validate_page(page)
 
-            _img_list = list()
-            for img in paginator.page(page):
-                img_dict = img.to_dict()
-                img_series_obj = db_session.query(ImageSeriesRel).filter(
-                    ImageSeriesRel.image_id == img.id
-                ).all()
-                img_series_name = [image_series.image_series_name for image_series in img_series_obj]
-                img_dict['image_series'] = img_series_name
-                _img_list.append(img_dict)
+                _img_list = list()
+                for img in paginator.page(page):
+                    img_dict = img.to_dict()
+                    img_dict['image_series'] = [image_series.name]
+                    _img_list.append(img_dict)
 
-            result.update({
-                'image_list': _img_list
-            })
+                result.update({
+                    'image_list': _img_list
+                })
 
-            result.update({
-                'meta': {
-                    'cur_page': page,
-                    'all_page': paginator.max_page,
-                    'count': paginator.count
-                }
-            })
-
+                result.update({
+                    'meta': {
+                        'cur_page': page,
+                        'all_page': paginator.max_page,
+                        'count': paginator.count
+                    }
+                })
+            else:
+                result['response'] = 'fail'
+                result['info'] = u'当前专题不存在'
             return jsonify(result)
     except Exception as e:
         print e
@@ -506,6 +506,57 @@ def delete_image_tag():
         return jsonify(result)
     except Exception as e:
         print e
+        abort(400)
+
+
+# 标签图片
+@manage.route('/image_tag_list/tag_image_list', methods=['GET'])
+def tag_image_list():
+    result = {
+        'response': 'ok',
+        'image_list': [],
+        'meta': {}
+    }
+    limit = 5
+    page = request.args.get('page', 1)
+    tag_id = request.args.get('tag_id')
+    try:
+        with get_session() as db_session:
+            query = db_session.query(Img).join(
+                ImageTagsRel, Img.id == ImageTagsRel.image_id
+            ).filter(
+                ImageTagsRel.tag_id == tag_id
+            )
+
+            tag = db_session.query(ImageTags).get(tag_id)
+            if tag:
+                paginator = SQLAlchemyPaginator(query, limit)
+                page = paginator.get_validate_page(page)
+
+                _img_list = list()
+                for img in paginator.page(page):
+                    img_dict = img.to_dict()
+                    img_dict['image_tag'] = [tag.name]
+                    _img_list.append(img_dict)
+
+                result.update({
+                    'image_list': _img_list
+                })
+
+                result.update({
+                    'meta': {
+                        'cur_page': page,
+                        'all_page': paginator.max_page,
+                        'count': paginator.count
+                    }
+                })
+            else:
+                result['response'] = 'fail'
+                result['info'] = u'当前标签不存在'
+
+            return jsonify(result)
+    except Exception as e:
+        print e.message
         abort(400)
 
 
