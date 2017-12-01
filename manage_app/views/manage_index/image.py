@@ -96,6 +96,11 @@ def image_list():
                 ).all()
                 img_series_name = [image_series.image_series_name for image_series in img_series_obj]
                 img_dict['image_series'] = img_series_name
+                image_tag_obj = db_session.query(ImageTagsRel).filter(
+                    ImageTagsRel.image_id == img.id
+                ).all()
+                img_tag_name = [image_tag.tag_name for image_tag in image_tag_obj]
+                img_dict['image_tag'] = img_tag_name
                 _img_list.append(img_dict)
 
             result.update({
@@ -235,7 +240,7 @@ def add_image_to_tag():
                     add_image_ids = set(image_ids) - set(all_image_ids)
                     for image_id in add_image_ids:
                         image_tag_rel = ImageTagsRel()
-                        image_tag_rel.tag_id = tag_id,
+                        image_tag_rel.tag_id = tag_id
                         image_tag_rel.image_id = image_id
                         image_tag_rel.tag_name = image_tag.name
                         image_tag_rel.type = ImageTagsRel.TYPE_IMAGE

@@ -38,6 +38,7 @@ export class ImageConfComponent extends ListBaseComponent{
 	ngOnInit(): void {
 		this.service.getImageInfo().then(data => {
         	this.all_image_series = data.image_series_list;
+			this.all_image_tag = data.image_tag_list;
         });
 	}	
 	

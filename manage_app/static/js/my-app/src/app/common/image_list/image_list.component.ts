@@ -59,6 +59,9 @@ export class ImageQueryComponent {
 										<div style="position: relative; margin-top: 10px;">
 											['series_name']
 										</div>
+										<div style="position: relative; margin-top: 10px;">
+											['tag_name']
+										</div>
 									</div>`
 
 						for(var i = 0; i < data.image_list.length; i++) {
@@ -71,7 +74,17 @@ export class ImageQueryComponent {
 								series_name += '<span><button class="btn btn-theme03" style="padding: 2px 4px;">' + s_name + '</button></span>'
 							}
 							
+							let tag_name = '';
+							let image_tag = data.image_list[i].image_tag;
+							if(image_tag.length > 0){
+								tag_name += '<span style="margin-right: 5px;">Tags:</span>';
+								for(let t_name of image_tag){
+									tag_name += '<span style="margin-right: 5px;"><i>' + t_name + '</i></span>'
+								}
+							}
+							
 							_str = _str.replace("['series_name']", series_name);
+							_str = _str.replace("['tag_name']", tag_name);
 							
 							_str = _str.replace("image_id", data.image_list[i].id);
 							str += _str;
