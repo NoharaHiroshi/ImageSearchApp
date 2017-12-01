@@ -46,7 +46,8 @@ def upload_image():
 def image_info():
     result = {
         'response': 'ok',
-        'image_series_list': []
+        'image_series_list': [],
+        'iamge_tag_list': []
     }
     try:
         with get_session() as db_session:
@@ -56,6 +57,14 @@ def image_info():
                 image_series_dict = image_series.to_dict()
                 _image_series_list.append(image_series_dict)
             result['image_series_list'] = _image_series_list
+
+            all_image_tag = db_session.query(ImageTags).all()
+            _image_tag_list = list()
+            for image_tag in all_image_tag:
+                image_tag_dict = image_tag.to_dict()
+                _image_tag_list.append(image_tag_dict)
+            result['image_tag_list'] = _image_tag_list
+
         return jsonify(result)
     except Exception as e:
         print e
@@ -193,6 +202,49 @@ def add_image_to_series():
                     result.update({
                         'response': 'fail',
                         'info': u'当前选择的专题不存在'
+                    })
+        else:
+            result.update({
+                'response': 'fail',
+                'info': u'请选择图片'
+            })
+        return jsonify(result)
+    except Exception as e:
+        app.my_logger.error(traceback.format_exc(e))
+        abort(400)
+
+
+# 将图片添加至标签
+@manage.route('/add_image_to_tag', methods=['POST'])
+def add_image_to_tag():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    image_ids = request.form.get('image_id', u'').split(',')
+    tag_id = request.form.get('tag_id')
+    try:
+        if len(image_ids) > 0 and image_ids[0] != u'':
+            with get_session() as db_session:
+                image_tag = db_session.query(ImageTags).get(tag_id)
+                if image_tag:
+                    all_image = db_session.query(ImageTagsRel).filter(
+                        ImageTagsRel.tag_id == tag_id
+                    ).all()
+                    all_image_ids = [str(image.image_id) for image in all_image]
+                    add_image_ids = set(image_ids) - set(all_image_ids)
+                    for image_id in add_image_ids:
+                        image_tag_rel = ImageTagsRel()
+                        image_tag_rel.tag_id = tag_id,
+                        image_tag_rel.image_id = image_id
+                        image_tag_rel.tag_name = image_tag.name
+                        image_tag_rel.type = ImageTagsRel.TYPE_IMAGE
+                        db_session.add(image_tag_rel)
+                    db_session.commit()
+                else:
+                    result.update({
+                        'response': 'fail',
+                        'info': u'当前选择的标签不存在'
                     })
         else:
             result.update({
@@ -557,6 +609,34 @@ def tag_image_list():
             return jsonify(result)
     except Exception as e:
         print e.message
+        abort(400)
+
+
+# 将图片移除标签
+@manage.route('/image_tag_list/remove_image_from_tag', methods=['POST'])
+def remove_image_from_tag():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    try:
+        image_ids = request.form.get('image_id', u'').split(',')
+        tag_id = request.form.get('tag_id')
+        if len(image_ids) > 0 and image_ids[0] != u'':
+            with get_session() as db_session:
+                db_session.query(ImageTagsRel).filter(
+                    ImageTagsRel.tag_id == tag_id,
+                    ImageTagsRel.image_id.in_(image_ids)
+                ).delete(synchronize_session=False)
+                db_session.commit()
+        else:
+            result.update({
+                'response': 'fail',
+                'info': u'请选择图片'
+            })
+        return jsonify(result)
+    except Exception as e:
+        print e
         abort(400)
 
 

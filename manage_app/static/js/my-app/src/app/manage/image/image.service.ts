@@ -53,6 +53,15 @@ export class ImageService extends BaseService {
 	    return this.postForm(url, JSON.stringify(params));
 	}
 	
+	addImageToTag(image_id: String, tag_id: String): Promise<any> {
+		const url = '/manage/add_image_to_tag';
+		let params = {
+			'image_id': image_id,
+			'tag_id': tag_id
+		}
+	    return this.postForm(url, JSON.stringify(params));
+	}
+	
 	del(ids: String): Promise<{}> {
 		const url = '/manage/image_list/delete';
 		let params = {

@@ -10,6 +10,7 @@ import { ListBaseComponent } from '../../common/base.component';
 
 import { Image } from '../../model/image';
 import { ImageSeries } from '../../model/image_series';
+import { ImageTag } from '../../model/image_tag';
 
 import { ImageService } from './image.service';
 
@@ -23,6 +24,7 @@ export class ImageConfComponent extends ListBaseComponent{
 	startDate = '';
     endDate = '';
 	all_image_series: ImageSeries[];
+	all_image_tag: ImageTag[];
 	// 图片请求地址
 	query_url = 'http://127.0.0.1:8888/manage/image_list?page=';
 	
@@ -149,6 +151,42 @@ export class ImageConfComponent extends ListBaseComponent{
 			if(isConfirm === true){
 				let series_id = $('#add_image_to_series').val()
 				self.service.addImageToSeries(image_id, series_id).then(data =>{
+					if(data['response'] == 'ok'){
+						swal('已设置');
+						self.refresh();
+					}else{
+						swal('设置失败', data['info']);
+					}
+				})
+			}
+		});
+	}
+	
+	addImageToTag(): void {
+		let image_id = this.del_ids;
+		let tpl = '';
+		let self = this;
+		for(let image_tag of this.all_image_tag){
+			tpl += '<option value="' + image_tag.id + '">' + image_tag.name + '</option>'
+		}
+		swal({
+			title: '添加图片至标签',
+			html:
+				'<select id="add_image_to_tag" style="width: 60%; display: block; margin: 5px auto; height: 30px;">'
+				+ tpl +
+				'</select>',
+			showCloseButton: true,
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '确定',
+			cancelButtonText: '取消',
+			confirmButtonClass: 'btn btn-theme04 margin-right10',
+			cancelButtonClass: 'btn btn-theme03',
+		}).then(function(isConfirm: boolean) {
+			if(isConfirm === true){
+				let tag_id = $('#add_image_to_tag').val()
+				self.service.addImageToTag(image_id, tag_id).then(data =>{
 					if(data['response'] == 'ok'){
 						swal('已设置');
 						self.refresh();
