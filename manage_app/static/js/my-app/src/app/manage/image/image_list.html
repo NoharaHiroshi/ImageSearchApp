@@ -1,16 +1,8 @@
-<style>
-.query-search {
-	position: relative;
-	float: right;
-	width: 15%;
-}
-</style>
 <h3>
 	<i class="fa fa-angle-right"></i> 图片列表 <span class="sub-title">Image List</span> 
-	<div class="query-search">
-		<input type="text">
-	</div>
 </h3>
+<div class="showback">
+</div>
 <image-list (delIds)="getDelIds($event)" [queryUrl]="query_url"></image-list>
 <div class="row mt">
 	<div class="image-func_toolbar">
