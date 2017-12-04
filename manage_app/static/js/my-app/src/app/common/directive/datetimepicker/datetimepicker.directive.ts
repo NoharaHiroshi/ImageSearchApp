@@ -11,8 +11,8 @@ import {
     OnChanges,
     SimpleChanges
 } from '@angular/core';
-import {SetOptions} from 'eonasdan-bootstrap-datetimepicker';
-import * as moment from 'moment';
+import 'eonasdan-bootstrap-datetimepicker';
+import 'moment';
 
 @Directive({
     selector: '[a2e-datetimepicker]'
@@ -30,6 +30,7 @@ export class DateTimePickerDirective implements OnInit, OnChanges {
     private dpElement: any;
 
     constructor(el: ElementRef, renderer: Renderer) {
+		console.log($.fn);
         let $parent = $(el.nativeElement.parentNode);
         this.dpElement = $parent.hasClass('input-group') ? $parent : $(el.nativeElement);
     }

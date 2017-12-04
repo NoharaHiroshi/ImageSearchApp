@@ -2,6 +2,23 @@
 	<i class="fa fa-angle-right"></i> 图片列表 <span class="sub-title">Image List</span> 
 </h3>
 <div class="showback">
+	<div style="padding-left: 0px;display: inline-block;width: 12%;" align="left">
+		<div class="input-group" align="left">
+			<input type="text" class="form-control" a2e-datetimepicker [options]="" name="startDate" [(ngModel)]="startDate" #startDate1 (blur)="startDate = startDate1.value"/>
+			<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		</div>
+	</div>
+	<div class="col-sm-split" style="display: inline-block;padding: 0 10px;"> 
+		<div class="input-group ">
+			<label class="control-label" style="margin-top: 10px;">-</label>
+		</div>
+	</div>
+	<div style="display: inline-block;width: 12%;">
+		<div class="input-group">
+			<input type="text" class="form-control" a2e-datetimepicker [options]="" name="endDate" [(ngModel)]="endDate" #endDate1 (blur)="endDate = endDate1.value"/>
+			<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+		</div>
+	</div>
 </div>
 <image-list (delIds)="getDelIds($event)" [queryUrl]="query_url"></image-list>
 <div class="row mt">
