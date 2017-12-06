@@ -200,7 +200,7 @@
         _getColumns : function() {
             var options = this.options,
                 $container = options.fitWidth ?  this.$element.parent() : this.$element,
-                containerWidth = $container[0].tagName === 'BODY' ? $container.width() - 20 : $container.width(),  // if $container[0].tagName === 'BODY', fix browser scrollbar
+                containerWidth = $container.width(),  // if $container[0].tagName === 'BODY', fix browser scrollbar
                 colWidth = options.colWidth,
                 gutterWidth = options.gutterWidth,
                 minCol = options.minCol,
@@ -208,7 +208,7 @@
                 cols = Math.floor(containerWidth / (colWidth + gutterWidth)),
                 col = Math.max(cols, minCol );
 				
-				console.log($container[0].tagname);
+				/* console.log($container[0]); */
 				/* console.log($container[0]);
 				console.log("containerWidth: " + containerWidth); */
 				/* console.log("colWidth: " + colWidth);

@@ -37,6 +37,7 @@ export class ImageQueryComponent {
 			checkImagesLoaded: false,
 			callbacks: {
 				loadingFinished: function($loading: any, isBeyondMaxPage: any) {
+					console.log("isBeyondMaxPage: " + isBeyondMaxPage);
                     if ( !isBeyondMaxPage ) {} else {
 						$("#demo").waterfall('pause', function() {
 							$('#demo-info').html('<p style="color:#666;">没有更多内容...</p>')
@@ -115,6 +116,7 @@ export class ImageQueryComponent {
 			<div id="demo"></div>
 			<div id="demo-info" style="font-size: 14px; text-align: center;"></div>
 		`)
+		console.log($('#image-list'))
 	}
 	
 	queryImages(queryUrl: any): void {
