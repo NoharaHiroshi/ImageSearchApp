@@ -208,7 +208,8 @@
                 cols = Math.floor(containerWidth / (colWidth + gutterWidth)),
                 col = Math.max(cols, minCol );
 				
-				/* console.log($container);
+				console.log($container[0].tagname);
+				/* console.log($container[0]);
 				console.log("containerWidth: " + containerWidth); */
 				/* console.log("colWidth: " + colWidth);
 				console.log("gutterWidth: " + gutterWidth);

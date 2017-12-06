@@ -91,6 +91,11 @@ export class ImageConfComponent extends ListBaseComponent{
 		this.imageQueryComponent.refresh();
 	}
 	
+	queryImages(): void {
+		this.query_url = 'http://127.0.0.1:8888/manage/image_list?start_date=' + this.startDate + '&end_date=' + this.endDate +'&page=';
+		this.imageQueryComponent.queryImages(this.query_url);
+	}
+	
 	setCover(): void {
 		let image_id = this.del_ids;
 		let tpl = '';

@@ -12,7 +12,7 @@ import {
     SimpleChanges
 } from '@angular/core';
 import 'eonasdan-bootstrap-datetimepicker';
-import 'moment';
+import * as moment from 'moment';
 
 @Directive({
     selector: '[a2e-datetimepicker]'
@@ -20,25 +20,31 @@ import 'moment';
 export class DateTimePickerDirective implements OnInit, OnChanges {
 
     @Input() date: moment.Moment;
-    @Input() options: SetOptions;
+    @Input() options: any;
     
     @Output() onChange: EventEmitter<moment.Moment> = new EventEmitter<moment.Moment>();
     @Output() onClick: EventEmitter<any> = new EventEmitter<any>();
     
-    default_options = {format: 'YYYY-MM-DD', keepOpen: false, showClose:true, viewMode: 'days', locale: 'zh-CN', useCurrent: false, allowInputToggle: true, showClear:true, ignoreReadonly:true};
+    default_options = {
+		format: 'YYYY-MM-DD', 
+		keepOpen: false, 
+		showClose:true, 
+		viewMode: 'days', 
+		locale: 'zh-CN', 
+		useCurrent: false, 
+		allowInputToggle: true, 
+		showClear:true, 
+		ignoreReadonly:true
+	};
     
     private dpElement: any;
 
     constructor(el: ElementRef, renderer: Renderer) {
-		console.log($.fn);
         let $parent = $(el.nativeElement.parentNode);
         this.dpElement = $parent.hasClass('input-group') ? $parent : $(el.nativeElement);
     }
 
-    ngOnInit(): void {
-		console.log('datetimepicker');
-		console.log(typeof(this.date));
-		
+    ngOnInit(): void {		
         if(!!this.options){
         	$.extend(this.default_options, this.options);
         }

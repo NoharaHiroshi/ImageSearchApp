@@ -2,6 +2,7 @@
 
 import traceback
 import time
+import datetime
 import os
 from PIL import Image
 from flask import render_template, abort, g, redirect, url_for, request, jsonify, session
@@ -81,9 +82,19 @@ def image_list():
     }
     limit = 5
     page = request.args.get('page', 1)
+    start_date = request.args.get('start_date', None)
+    end_date = request.args.get('end_date', None)
     try:
         with get_session() as db_session:
             query = db_session.query(Img)
+
+            if start_date and end_date:
+                _start_date = datetime.datetime.strptime(start_date, '%Y-%m-%d')
+                _end_date = datetime.datetime.strptime(end_date, '%Y-%m-%d')
+                query = query.filter(
+                    Img.created_date >= _start_date,
+                    Img.created_date <= _end_date
+                )
 
             paginator = SQLAlchemyPaginator(query, limit)
             page = paginator.get_validate_page(page)

@@ -109,6 +109,23 @@ export class ImageQueryComponent {
 		this.getImageList();
 	}
 	
+	imageDestory(): void {
+		$('#image-list').empty();
+		$('#image-list').append(`
+			<div id="demo"></div>
+			<div id="demo-info" style="font-size: 14px; text-align: center;"></div>
+		`)
+	}
+	
+	queryImages(queryUrl: any): void {
+		this.queryUrl = queryUrl;
+		this.imageDestory();
+		let self = this;
+		setTimeout(function(){
+			self.getImageList();
+		}, 100)
+	}
+	
 	// 父组件调用子组件中的方法
 	refresh(): void {
 		window.location.reload();
