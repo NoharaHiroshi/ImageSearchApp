@@ -11,6 +11,7 @@ import { ImageUploadComponent } from './image/upload_image.component';
 import { ImageConfComponent } from './image/image.component';
 import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent, ImageSeriesSetComponent } from './image/image_series.component';
 import { ImageTagConfComponent, ImageTagConfDetailComponent, ImageTagSetComponent } from './image/image_tag.component';
+import { ImageDemoConfComponent } from './image/image_demo.component';
 
 // 根路由器
 const routes: Routes = [
@@ -47,6 +48,7 @@ const routes: Routes = [
 	{ path: 'image_tag_conf/detail/:id', component: ImageTagConfDetailComponent },
 	{ path: 'image_tag_conf/add', component: ImageTagConfDetailComponent },
 	{ path: 'image_tag_conf/set/:id', component: ImageTagSetComponent },
+	{ path: 'image_demo_conf', component: ImageDemoConfComponent }
 ];
 
 @NgModule({

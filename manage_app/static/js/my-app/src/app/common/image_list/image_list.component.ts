@@ -34,6 +34,7 @@ export class ImageQueryComponent {
 			gutterWidth: 15,
 			gutterHeight: 15,
 			dataType: 'json', 
+			resizable: false,
 			checkImagesLoaded: false,
 			callbacks: {
 				loadingFinished: function($loading: any, isBeyondMaxPage: any) {
