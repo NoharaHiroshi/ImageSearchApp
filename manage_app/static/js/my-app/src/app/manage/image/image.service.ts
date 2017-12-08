@@ -30,6 +30,20 @@ export class ImageService extends BaseService {
 	               .catch(this.handleError);
 	}
 	
+	getImages(page: number): Promise<any> {
+		const url = `/manage/image_list?page=${page}`; 
+		let self = this;
+	    return this.http.get(url)
+	               .toPromise()
+	               .then(function(res){
+						let json = res.json();
+	            	    let image_list = self.jsonListToObjectList(json.image_list, Image);
+	           	        json['image_list'] = image_list;
+	            	    return json;
+	               })
+	               .catch(this.handleError);
+	}
+	
 	update(imageSeries: ImageSeries): Promise<any> {
 		const url = '/manage/image_series_list/update';
 	    return this.postForm(url, JSON.stringify(imageSeries));

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 require('./masonry.min.js');
 
@@ -9,14 +9,16 @@ declare var $: any;
     selector: 'masonry',
 	templateUrl: './masonry.html',
 })
-export class MasonryComponent {
+export class MasonryComponent implements OnInit {
+	@Input() image_list: any;
 	
 	ngOnInit(): void {	
-		console.log($.fn);
-		$('#demo').masonry({
-			// options... 
-			itemSelector: '.witem',
-			columnWidth: 200
-		});
+		setTimeout(function(){
+			$('#demo').masonry({
+				// options... 
+				itemSelector: '.witem',
+				columnWidth: 20 //每两列之间的间隙为5像素
+			});
+		}, 100)
 	}
 }
