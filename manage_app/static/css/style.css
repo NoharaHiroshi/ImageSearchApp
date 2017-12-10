@@ -2422,6 +2422,7 @@ label {
     -moz-box-shadow: 0 1px 3px rgba(34, 25, 25, .4);
     -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, .4);
     filter: progid:DXImageTransform.Microsoft.Shadow(color = #adacac, direction = 135, strength = 2);
+	margin: 5px; 
 }
 .witem img {
     display: block;
@@ -2463,7 +2464,3 @@ label {
 }
 
 /* masonry插件 */
-.image-loading{
-	height: 225px;
-	width: 225px;
-}

@@ -68,8 +68,8 @@ export class MasonryComponent implements OnInit {
 			if(all_image_loaded == true){
 				$(this.demo.nativeElement).masonry({
 					// options... 
+					columnWidth: 150,
 					itemSelector: '.witem',
-					columnWidth: 20 //每两列之间的间隙为5像素
 				});
 			}
 		}
