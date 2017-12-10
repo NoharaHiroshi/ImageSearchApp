@@ -1,9 +1,11 @@
 <div class="row mt" id="image-list">
 	<div id="demo" #demo>
-		<ng-container *ngFor="let image of image_list">
-			<div class="witem" #witem>
-				<img src="/static/{{image.img_preview_url}}" width="225"/>
-			</div>
+		<ng-container *ngIf="image_list">
+			<ng-container *ngFor="let image of image_list">
+				<div class="witem" #witem>
+					<img src="/static/{{image.img_preview_url}}" height="225" class="witem-image"/>
+				</div>
+			</ng-container>
 		</ng-container>
 	</div>
 	<div id="demo-info" style="font-size: 14px; text-align: center;"></div>

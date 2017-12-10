@@ -2461,3 +2461,9 @@ label {
 .image-selected {
 	box-shadow: 0 0 0 3px #68dff0;
 }
+
+/* masonry插件 */
+.image-loading{
+	height: 225px;
+	width: 225px;
+}
