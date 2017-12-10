@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ViewChildren, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 
 require('./masonry.min.js');
 
@@ -11,14 +11,27 @@ declare var $: any;
 })
 export class MasonryComponent implements OnInit {
 	@Input() image_list: any;
+	isLoading: boolean = true;
 	
-	ngOnInit(): void {	
-		setTimeout(function(){
-			$('#demo').masonry({
+	@ViewChildren('witem')
+	witems: ElementRef;
+	
+	@ViewChild('demo')
+	demo: ElementRef;
+	
+	constructor(private elem: ElementRef){}
+	
+	ngOnInit(): void {
+	}
+	
+	ngAfterViewInit(): void {
+		setTimeout(() => {
+			$(this.demo.nativeElement).masonry({
 				// options... 
 				itemSelector: '.witem',
 				columnWidth: 20 //每两列之间的间隙为5像素
 			});
-		}, 100)
+		}, 300);
 	}
+	
 }
