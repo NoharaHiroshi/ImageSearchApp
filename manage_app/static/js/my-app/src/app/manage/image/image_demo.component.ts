@@ -1,7 +1,7 @@
 declare var swal: any;
 declare var $: any;
 
-import { Component, AfterViewInit, ViewChild, OnInit, OnChanges, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked } from '@angular/core';
+import { Component, ViewChild, OnInit, OnChanges, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { Location }  from '@angular/common';
