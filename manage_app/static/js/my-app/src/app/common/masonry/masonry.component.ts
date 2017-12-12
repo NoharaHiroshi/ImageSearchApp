@@ -70,6 +70,7 @@ export class MasonryComponent implements OnInit {
 					// options... 
 					columnWidth: 150,
 					itemSelector: '.witem',
+					isFitWidth: true
 				});
 			}
 		}
