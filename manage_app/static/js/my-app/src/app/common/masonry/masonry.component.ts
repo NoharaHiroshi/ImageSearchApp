@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChildren, ViewChild, ElementRef, OnInit, OnChanges, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked} from '@angular/core';
 
 require('./masonry.min.js');
+require('./AnimOnScroll.js');
 
 declare var swal: any;
 declare var $: any;
@@ -27,6 +28,8 @@ export class MasonryComponent implements OnInit {
 	
 	ngOnInit(): void {
 		console.log('masonry.ngOnInit');
+		console.log('jquery.fn: ');
+		console.log($.fn);
 		// debugger;
 		// 此时image_list还未返回值，因此witem还未渲染;
 	}
@@ -72,7 +75,9 @@ export class MasonryComponent implements OnInit {
 					itemSelector: '.witem',
 					isFitWidth: true
 				});
+
 			}
+			console.log(window);
 		}
 	}
 }
