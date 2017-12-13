@@ -69,7 +69,10 @@ export class MasonryComponent implements OnInit {
 				console.log('window height: ' + $(window).height());
 				console.log('scroll height: ' + $(window).scrollTop()); */
 				for(let image_div of image_divs){
-					console.log($(image_div).offset().top - $(window).scrollTop());
+					console.log(image_div);
+					console.log('image_div height: ' + $(image_div).offset().top);
+					// console.log('window height: ' + $('#demo').scrollTop());
+					// console.log($(image_div).offset().top - $(window).scrollTop());
 				}
 				/* setTimeout(function(){
 					$("#demo").animate({
