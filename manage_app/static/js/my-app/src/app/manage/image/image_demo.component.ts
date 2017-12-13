@@ -47,7 +47,7 @@ export class ImageDemoConfComponent extends ListBaseComponent{
         });
 	}	
 	
-	ngAfterContentInit(): void{
+	/* ngAfterContentInit(): void{
 		console.log('demo.ngAfterContentInit');
 	}
 	
@@ -61,5 +61,5 @@ export class ImageDemoConfComponent extends ListBaseComponent{
 	
 	ngAfterViewChecked(): void{
 		console.log('demo.AfterViewChecked');
-	}
+	} */
 }

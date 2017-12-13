@@ -80,7 +80,7 @@ def image_list():
         'image_list': [],
         'meta': {}
     }
-    limit = 60
+    limit = 20
     page = request.args.get('page', 1)
     start_date = request.args.get('start_date', None)
     end_date = request.args.get('end_date', None)
