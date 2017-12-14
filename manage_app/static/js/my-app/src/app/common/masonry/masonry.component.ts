@@ -43,6 +43,8 @@ export class MasonryComponent implements OnInit {
 	} */
 	
 	ngAfterViewChecked(): void{
+		// 第一次debug：图片未完全加载
+		// 第二次debug：图片完全加载，但masonry未生效
 		// console.log('masonry.ngAfterViewChecked');
 		if(this.image_list){
 			let all_image_loaded: boolean = false;
@@ -81,16 +83,22 @@ export class MasonryComponent implements OnInit {
 							count++;
 						}
 					}
+					let _count = count + 1;
 					row_num_list.push({
+						elems: image_divs.slice(i, i + _count),
 						height: $(image_divs[i]).offset().top,
-						count:(count + 1)
+						count: _count
 					})
 					i += count;
 				}
-				console.log(row_num_list);
 				for(let i=0; i<row_num_list.length; i++){
-					
+					let count: number = row_num_list[i].count;
+					let _width: number = (demo_width - 5 * (count - 1)) / count;
+					for(let elem of row_num_list[i].elems){
+						$(elem).width(_width);
+					}
 				}
+				debugger;
 				// 监听当前页的可视区域
 				$(window).scroll(function(event){
 					// console.log($(window).scrollTop());
