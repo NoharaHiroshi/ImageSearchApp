@@ -45,19 +45,25 @@ export class MasonryComponent implements OnInit {
 	ngAfterViewChecked(): void{
 		// 第一次debug：图片未完全加载
 		// 第二次debug：图片完全加载，但masonry未生效
-		// console.log('masonry.ngAfterViewChecked');
+		console.log('masonry.ngAfterViewChecked');
+		console.log(this.image_list);
 		if(this.image_list){
-			let all_image_loaded: boolean = false;
+			console.log('ok!');
+			let all_image_loaded: boolean = true;
 			// this.image_list获取到之后，立即渲染模板，生成witem
 			// console.log('--> this.demo.nativeElement');
 			// console.log(this.demo.nativeElement);
 			// 出现排布问题是因为masonry重新排布图片时，图片未加载完毕，未能有效获取宽高信息
 			let image_doms = $('.witem-image');
 			// 当所有图片都加载完成时，改变标记状态
+			// 利用图片未加载时高度为0的特性判断是否加载完成
 			for(let image_dom of image_doms){
-				$(image_dom).load(function(){});
+				if(image_dom.width === 0){
+					all_image_loaded = false;
+					break;
+				}
 			}
-			all_image_loaded = true;
+			debugger
 			if(all_image_loaded == true){
 				$(this.demo.nativeElement).masonry({
 					// options... 
@@ -98,7 +104,6 @@ export class MasonryComponent implements OnInit {
 						$(elem).width(_width);
 					}
 				}
-				debugger;
 				// 监听当前页的可视区域
 				$(window).scroll(function(event){
 					// console.log($(window).scrollTop());
