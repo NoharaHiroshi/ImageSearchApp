@@ -59,21 +59,43 @@ export class MasonryComponent implements OnInit {
 			if(all_image_loaded == true){
 				$(this.demo.nativeElement).masonry({
 					// options... 
-					columnWidth: 150,
 					itemSelector: '.witem',
-					isFitWidth: true
+					isFitWidth: true,
+					isResizableL: true,
+					isAnimated: false,
+					// 给定间隔行宽度，如果不给出，默认使用第一张图的宽度，因此这里给出1
+					columnWidth: 1
 				});
+				// debugger;
 				// masonry 提供布局
+				// 获取容器宽度
+				let demo_width = $('#demo').width(),
+					demo_top = $('#demo').offset().top;
 				let image_divs = $('.witem');
-				/* console.log('demo height: ' + image_divs.height());
-				console.log('window height: ' + $(window).height());
-				console.log('scroll height: ' + $(window).scrollTop()); */
-				for(let image_div of image_divs){
-					console.log(image_div);
-					console.log('image_div height: ' + $(image_div).offset().top);
-					// console.log('window height: ' + $('#demo').scrollTop());
-					// console.log($(image_div).offset().top - $(window).scrollTop());
+				// 获取每一行有几张图
+				let row_num_list: any = [];
+				for(let i=0; i<image_divs.length; i++){
+					let count: number = 0;
+					for(let j=i+1; j<image_divs.length; j++){
+						if($(image_divs[i]).offset().top == $(image_divs[j]).offset().top){
+							count++;
+						}
+					}
+					row_num_list.push({
+						height: $(image_divs[i]).offset().top,
+						count:(count + 1)
+					})
+					i += count;
 				}
+				console.log(row_num_list);
+				for(let i=0; i<row_num_list.length; i++){
+					
+				}
+				// 监听当前页的可视区域
+				$(window).scroll(function(event){
+					// console.log($(window).scrollTop());
+					
+				});
 				/* setTimeout(function(){
 					$("#demo").animate({
 						opacity:'1'

@@ -1,9 +1,9 @@
 <div class="row mt" id="image-list" style="margin: 0 auto; width:90%">
-	<div id="demo" #demo style="margin: 0 auto; opacity: 0;">
+	<div id="demo" #demo style="margin: 0 auto;">
 		<ng-container *ngIf="image_list">
 			<ng-container *ngFor="let image of image_list">
 				<div class="witem" #witem>
-					<img src="/static/{{image.img_preview_url}}" width="250" class="witem-image"/>
+					<img src="/static/{{image.img_preview_url}}" height="250" class="witem-image"/>
 				</div>
 			</ng-container>
 		</ng-container>
