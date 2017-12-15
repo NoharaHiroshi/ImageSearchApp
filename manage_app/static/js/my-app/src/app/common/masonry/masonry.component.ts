@@ -12,6 +12,8 @@ declare var $: any;
 export class MasonryComponent implements OnInit {
 	@Input() image_list: any;
 	isLoading: boolean = true;
+	// 图片流是否初始化
+	isInit: boolean = true;
 	
 	@ViewChildren('witem')
 	witems: ElementRef;
@@ -42,29 +44,37 @@ export class MasonryComponent implements OnInit {
 		console.log('masonry.ngAfterContentChecked');
 	} */
 	
+	isAllImageLoaded(image_doms: any[]): void{
+		console.log('isAllImageLoaded');
+		let self = this;
+		let all_image_loaded: boolean = true;
+		for(let image_dom of image_doms){
+			if(image_dom.width == 0){
+				all_image_loaded = false;
+				if(!all_image_loaded){
+					// 递归调用
+					setTimeout(function(){
+						self.isAllImageLoaded(image_doms)
+					}, 200)
+				}
+			}
+		}
+		console.log('timeInterval end');
+		return true;
+	}
+	
 	ngAfterViewChecked(): void{
 		// 第一次debug：图片未完全加载
 		// 第二次debug：图片完全加载，但masonry未生效
 		console.log('masonry.ngAfterViewChecked');
-		console.log(this.image_list);
 		if(this.image_list){
-			console.log('ok!');
-			let all_image_loaded: boolean = true;
 			// this.image_list获取到之后，立即渲染模板，生成witem
-			// console.log('--> this.demo.nativeElement');
-			// console.log(this.demo.nativeElement);
 			// 出现排布问题是因为masonry重新排布图片时，图片未加载完毕，未能有效获取宽高信息
 			let image_doms = $('.witem-image');
 			// 当所有图片都加载完成时，改变标记状态
 			// 利用图片未加载时高度为0的特性判断是否加载完成
-			for(let image_dom of image_doms){
-				if(image_dom.width === 0){
-					all_image_loaded = false;
-					break;
-				}
-			}
-			debugger
-			if(all_image_loaded == true){
+			// 设置计时器
+			if(this.isAllImageLoaded(image_doms) && this.isInit){
 				$(this.demo.nativeElement).masonry({
 					// options... 
 					itemSelector: '.witem',
@@ -74,8 +84,6 @@ export class MasonryComponent implements OnInit {
 					// 给定间隔行宽度，如果不给出，默认使用第一张图的宽度，因此这里给出1
 					columnWidth: 1
 				});
-				// debugger;
-				// masonry 提供布局
 				// 获取容器宽度
 				let demo_width = $('#demo').width(),
 					demo_top = $('#demo').offset().top;
@@ -103,19 +111,14 @@ export class MasonryComponent implements OnInit {
 					for(let elem of row_num_list[i].elems){
 						$(elem).width(_width);
 					}
+					this.isInit = false;
 				}
 				// 监听当前页的可视区域
-				$(window).scroll(function(event){
+				/* $(window).scroll(function(event){
 					// console.log($(window).scrollTop());
 					
-				});
-				/* setTimeout(function(){
-					$("#demo").animate({
-						opacity:'1'
-					}, 100);
-				}, 100); */
+				}); */
 			}
-			
 		}
 	}
 }
