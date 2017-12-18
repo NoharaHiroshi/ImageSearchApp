@@ -106,12 +106,12 @@ def image_list():
                     ImageSeriesRel.image_id == img.id
                 ).all()
                 img_series_name = [image_series.image_series_name for image_series in img_series_obj]
-                img_dict['image_series'] = img_series_name
+                img_dict['image_series'] =img_series_name if img_series_name else [u'无']
                 image_tag_obj = db_session.query(ImageTagsRel).filter(
                     ImageTagsRel.image_id == img.id
                 ).all()
                 img_tag_name = [image_tag.tag_name for image_tag in image_tag_obj]
-                img_dict['image_tag'] = img_tag_name
+                img_dict['image_tag'] = img_tag_name if img_tag_name else [u'无']
                 _img_list.append(img_dict)
 
             result.update({
