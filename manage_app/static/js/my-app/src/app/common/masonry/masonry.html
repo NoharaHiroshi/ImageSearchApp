@@ -2,8 +2,24 @@
 	<div id="demo" #demo style="margin: 0 auto;">
 		<ng-container *ngIf="image_list">
 			<ng-container *ngFor="let image of image_list">
-				<div class="witem" #witem>
-					<img src="/static/{{image.img_preview_url}}" height="250" class="witem-image"/>
+				<div class="witem" #witem data-w="" data-h="" style="height:200px; width:200px;">
+					<div class="witem-box">
+						<img src="/static/{{image.img_preview_url}}" class="witem-image"/>
+					</div>
+					<div class="witem-info">
+						<p>
+							<span>series：</span>
+							<ng-container *ngFor="let series_name of image.image_series">
+								<span>{{series_name}}</span>
+							</ng-container>
+						</p>
+						<p>
+							<span>tags：</span>
+							<ng-container *ngFor="let tag_name of image.image_tag">
+								<span>{{tag_name}}</span>
+							</ng-container>
+						</p>
+					</div>
 				</div>
 			</ng-container>
 		</ng-container>

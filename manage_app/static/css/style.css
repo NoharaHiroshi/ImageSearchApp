@@ -2412,20 +2412,46 @@ label {
 
 /* waterfall插件 */
 .witem {
-    position: absolute;
-    top: 0;
     z-index: 1;
-    padding: 10px;
     line-height: 1.5;
     background-color: #fff;
-    box-shadow: 0 1px 3px rgba(34, 25, 25, .4);
-    -moz-box-shadow: 0 1px 3px rgba(34, 25, 25, .4);
-    -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, .4);
+	position: relative;
+    overflow: hidden;
+	float: left !important;
+    box-shadow: 0 5px 5px rgba(34, 25, 25, .4);
+    -moz-box-shadow: 0 5px 5px rgba(34, 25, 25, .4);
+    -webkit-box-shadow: 0 5px 5px rgba(34, 25, 25, .4);
     filter: progid:DXImageTransform.Microsoft.Shadow(color = #adacac, direction = 135, strength = 2);
-	margin: 5px; 
+	margin: 0 15px 25px;
 }
 .witem img {
-    display: block;
+    display: inline;
+	width: 100%;
+    min-height: 200px;
+}
+
+.witem-box {
+	width: 100%;
+    overflow: hidden;
+}
+
+.witem-info {
+	z-index: 5;
+    height: 50px;
+	line-height: 20px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    background: rgba(0,0,0,.4);
+    text-indent: 21px;
+    color: #fff;
+    font-size: 12px;
+    transition: all .2s;
+}
+
+.witem-info p {
+	margin: 3px 0;
 }
 
 .witem:hover {
