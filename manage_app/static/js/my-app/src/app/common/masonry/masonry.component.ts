@@ -34,10 +34,6 @@ export class MasonryComponent implements OnInit {
 	@ViewChild('demo')
 	demo: ElementRef;
 	
-	/* ngOnChanges(): void {
-		console.log('masonry.ngOnChanges');
-	} */
-	
 	constructor(private elem: ElementRef){}
 	
 	ngOnInit(): void {}

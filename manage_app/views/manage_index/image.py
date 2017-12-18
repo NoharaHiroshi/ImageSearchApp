@@ -82,8 +82,8 @@ def image_list():
     }
     limit = 20
     page = request.args.get('page', 1)
-    start_date = request.args.get('start_date', None)
-    end_date = request.args.get('end_date', None)
+    start_date = request.args.get('startDate', None)
+    end_date = request.args.get('endDate', None)
     try:
         with get_session() as db_session:
             query = db_session.query(Img)
@@ -95,6 +95,8 @@ def image_list():
                     Img.created_date >= _start_date,
                     Img.created_date <= _end_date
                 )
+
+            query = query.order_by(-Img.created_date)
 
             paginator = SQLAlchemyPaginator(query, limit)
             page = paginator.get_validate_page(page)

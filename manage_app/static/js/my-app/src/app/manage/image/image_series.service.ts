@@ -29,6 +29,20 @@ export class ImageSeriesService extends BaseService {
 	               .catch(this.handleError);
 	}
 	
+	getImages(page: number, series_id: any): Promise<any> {
+		let self = this;
+		const url = `/manage/image_series_list/series_image_list?page=${page}&series_id=${series_id}`; 
+	    return this.http.get(url)
+	               .toPromise()
+	               .then(function(res){
+						let json = res.json();
+	            	    let image_list = self.jsonListToObjectList(json.image_list, Image);
+	           	        json['image_list'] = image_list;
+	            	    return json;
+	               })
+	               .catch(this.handleError);
+	}
+	
 	getDetail(id: String): Promise<{}> {
 		const url = '/manage/image_series_list/detail?id=' + id; 
 		let self = this;

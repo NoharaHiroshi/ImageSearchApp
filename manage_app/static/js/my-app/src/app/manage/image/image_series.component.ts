@@ -110,19 +110,21 @@ export class ImageSeriesConfDetailComponent extends ListBaseComponent{
 })
 export class ImageSeriesSetComponent extends ListBaseComponent{
 	all_image_series: ImageSeries[];
-	query_url: any;
+	all_image: Image[];
+	page: number = 1;
 	
 	del_ids: any;
-	is_refresh: boolean = false;
 	
 	constructor(private service: ImageSeriesService, public route: ActivatedRoute, public router: Router) {
 		super();
 	}
 	
-	ngOnInit(): void {
-		let self = this;
-		// 图片请求地址
-		this.query_url = 'http://127.0.0.1:8888/manage/image_series_list/series_image_list?series_id=' + this.route.params._value.id + '&page=';
+	getPagerData(): void {
+		this.isLoading = true;
+		this.route.params.switchMap((params: Params) => this.service.getImages(this.page, params['id'])).subscribe(data => {
+			this.all_image = data.image_list;
+			this.isLoading = false;
+		});
 	}
 	
 	goBack(): void {
@@ -132,9 +134,6 @@ export class ImageSeriesSetComponent extends ListBaseComponent{
 	getDelIds(del_ids: any): void{
 		this.del_ids = del_ids;
 	}
-	
-	@ViewChild(ImageQueryComponent)
-	private imageQueryComponent: ImageQueryComponent;
 	
 	removeImageFromSeries(): void {
 		let series_id = this.route.params._value.id;
@@ -169,13 +168,5 @@ export class ImageSeriesSetComponent extends ListBaseComponent{
 				self.refresh();
 			}
 		});
-	}
-	
-	AfterViewInit(): void {
-		
-	}
-	
-	refresh(): void {
-		this.imageQueryComponent.refresh();
 	}
 }

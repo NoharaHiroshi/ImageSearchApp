@@ -1,37 +1,42 @@
-<h3>
-	<i class="fa fa-angle-right"></i> 图片配置 <span class="sub-title">Image Conf</span> 
-</h3>
-<div class="showback">
-	<div style="padding-left: 0px;display: inline-block;width: 12%;" align="left">
-		<div class="input-group" align="left">
-			<input type="text" class="form-control" a2e-datetimepicker [options]="" name="startDate" [(ngModel)]="startDate" #startDate1 (blur)="startDate = startDate1.value"/>
-			<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-		</div>
-	</div>
-	<div class="col-sm-split" style="display: inline-block;padding: 0 10px;"> 
-		<div class="input-group ">
-			<label class="control-label" style="margin-top: 10px;">-</label>
-		</div>
-	</div>
-	<div style="display: inline-block;width: 12%;">
-		<div class="input-group">
-			<input type="text" class="form-control" a2e-datetimepicker [options]="" name="endDate" [(ngModel)]="endDate" #endDate1 (blur)="endDate = endDate1.value"/>
-			<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-		</div>
-	</div>
-	<div style="display: inline-block;padding: 0 10px;">
-		<div class="input-group">
-			<button type="button" (click)="queryImages()" class="btn btn-theme02"><span class="button-name">查询 </span></button>
-		</div>
-	</div>
+<div *ngIf="isLoading">
+	<loading></loading>
 </div>
-<masonry [image_list]="all_image" (delIds)="getDelIds($event)" [type]="'background'"></masonry>
-<div class="row mt">
-	<div class="image-func_toolbar">
-		<button type="button" class="btn btn-theme02" (click)="refresh()"><i class="fa fa-refresh"></i> <span class="button-name">刷新 </span></button>
-		<button type="button" class="btn btn-theme04" (click)="del()"><i class="fa fa-trash-o"></i> <span class="button-name">删除 </span></button>
-		<button type="button" class="btn btn-theme03" (click)="setCover()"><i class="fa fa-picture-o"></i> <span class="button-name">设置专题封面 </span></button>
-		<button type="button" class="btn btn-success" (click)="addImageToSeries()"><i class="fa fa-plus"></i> <span class="button-name">添加图片至专题 </span></button>
-		<button type="button" class="btn btn-success" (click)="addImageToTag()"><i class="fa fa-plus"></i> <span class="button-name">添加图片至标签 </span></button>
+<div *ngIf="!isLoading">
+	<h3>
+		<i class="fa fa-angle-right"></i> 图片配置 <span class="sub-title">Image Conf</span> 
+	</h3>
+	<div class="showback">
+		<div style="padding-left: 0px;display: inline-block;width: 12%;" align="left">
+			<div class="input-group" align="left">
+				<input type="text" class="form-control" a2e-datetimepicker [options]="" name="startDate" [(ngModel)]="queryParams.startDate" #startDate1 (blur)="queryParams.startDate = startDate1.value"/>
+				<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+			</div>
+		</div>
+		<div class="col-sm-split" style="display: inline-block;padding: 0 10px;"> 
+			<div class="input-group ">
+				<label class="control-label" style="margin-top: 10px;">-</label>
+			</div>
+		</div>
+		<div style="display: inline-block;width: 12%;">
+			<div class="input-group">
+				<input type="text" class="form-control" a2e-datetimepicker [options]="" name="endDate" [(ngModel)]="queryParams.endDate" #endDate1 (blur)="queryParams.endDate = endDate1.value"/>
+				<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+			</div>
+		</div>
+		<div style="display: inline-block;padding: 0 10px;">
+			<div class="input-group">
+				<button type="button" (click)="queryImages()" class="btn btn-theme02"><span class="button-name">查询 </span></button>
+			</div>
+		</div>
+	</div>
+	<masonry [image_list]="all_image" (delIds)="getDelIds($event)" [type]="'background'"></masonry>
+	<div class="row mt">
+		<div class="image-func_toolbar">
+			<button type="button" class="btn btn-theme02" (click)="refresh()"><i class="fa fa-refresh"></i> <span class="button-name">刷新 </span></button>
+			<button type="button" class="btn btn-theme04" (click)="del()"><i class="fa fa-trash-o"></i> <span class="button-name">删除 </span></button>
+			<button type="button" class="btn btn-theme03" (click)="setCover()"><i class="fa fa-picture-o"></i> <span class="button-name">设置专题封面 </span></button>
+			<button type="button" class="btn btn-success" (click)="addImageToSeries()"><i class="fa fa-plus"></i> <span class="button-name">添加图片至专题 </span></button>
+			<button type="button" class="btn btn-success" (click)="addImageToTag()"><i class="fa fa-plus"></i> <span class="button-name">添加图片至标签 </span></button>
+		</div>
 	</div>
 </div>

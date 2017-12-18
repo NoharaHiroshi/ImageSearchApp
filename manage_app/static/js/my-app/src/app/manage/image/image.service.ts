@@ -30,9 +30,10 @@ export class ImageService extends BaseService {
 	               .catch(this.handleError);
 	}
 	
-	getImages(page: number): Promise<any> {
-		const url = `/manage/image_list?page=${page}`; 
+	getImages(page: number, queryParams: {}): Promise<any> {
 		let self = this;
+		queryParams = $.param(queryParams);
+		const url = `/manage/image_list?page=${page}&${queryParams}`; 
 	    return this.http.get(url)
 	               .toPromise()
 	               .then(function(res){

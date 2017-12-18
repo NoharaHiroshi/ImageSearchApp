@@ -24,29 +24,31 @@ export class ImageDemoConfComponent extends ListBaseComponent{
 	all_image_tag: ImageTag[];
 	all_image: Image[];
 	
-	startDate = '';
-    endDate = '';
 	page: number = 1;
 	
+	queryParams = {
+		startDate: '',
+		endDate: '',
+		name: ''
+	};
+	
 	del_ids: any;
-	is_refresh: boolean = false;
 	
 	constructor(private service: ImageService) {
 		super();
 	}
 	
-	// 父子组件渲染顺序：
-	// demo.ngOnInit => demo.ngAfterContentInit => demo.ngAfterContentChecked => masonry.ngOnChanges => masonry.ngOnInit 
-	// => masonry.ngAfterContentInit => masonry.ngAfterContentChecked => masonry.ngAfterViewInit => masonry.ngAfterViewChecked
-	ngOnInit(): void {
+	getPagerData(): void {
+		this.isLoading = true;
 		this.service.getImageInfo().then(data => {
         	this.all_image_series = data.image_series_list;
 			this.all_image_tag = data.image_tag_list;
         });
-		this.service.getImages(this.page).then(data => {
+		this.service.getImages(this.page, this.queryParams).then(data => {
         	this.all_image = data.image_list;
+			this.isLoading = false;
         });
-	}	
+	}
 	
 	getDelIds(del_ids: any): void{
 		this.del_ids = del_ids;
@@ -54,10 +56,6 @@ export class ImageDemoConfComponent extends ListBaseComponent{
 	
 	@ViewChild(MasonryComponent)
 	private masonryComponent: MasonryComponent;
-	
-	refresh(): void {
-		this.imageQueryComponent.refresh();
-	}
 	
 	del(): void {
 		let del_ids = this.del_ids;
@@ -91,6 +89,12 @@ export class ImageDemoConfComponent extends ListBaseComponent{
 				self.refresh();
 			}
 		});
+	}
+	
+	queryImages(): void {
+		this.service.getImages(this.page, this.queryParams).then(data => {
+        	this.all_image = data.image_list;
+        });
 	}
 	
 	setCover(): void {
@@ -199,10 +203,5 @@ export class ImageDemoConfComponent extends ListBaseComponent{
 				})
 			}
 		});
-	}
-	
-	// 父组件调用子组件中的方法
-	refresh(): void {
-		window.location.reload();
 	}
 }
