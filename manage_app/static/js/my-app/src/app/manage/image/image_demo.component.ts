@@ -50,7 +50,6 @@ export class ImageDemoConfComponent extends ListBaseComponent{
 	
 	getDelIds(del_ids: any): void{
 		this.del_ids = del_ids;
-		console.log(del_ids);
 	}
 	
 	@ViewChild(MasonryComponent)
