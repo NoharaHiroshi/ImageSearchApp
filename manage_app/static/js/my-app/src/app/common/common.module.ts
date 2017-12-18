@@ -12,6 +12,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { ZtreeComponent } from './ztree/ztree.component';
 import { ImageQueryComponent } from './image_list/image_list.component';
 import { MasonryComponent } from './masonry/masonry.component';
+import { PageComponent } from './paging/paging.component';
 
 // Service
 import { CommonService } from './common.service';
@@ -27,6 +28,7 @@ import { IcheckDirective } from './directive/icheck/icheck.directive';
 		ZtreeComponent,
 		ImageQueryComponent,
 		MasonryComponent,
+		PageComponent,
 		
 		IcheckDirective,
 	],
@@ -44,6 +46,7 @@ import { IcheckDirective } from './directive/icheck/icheck.directive';
 		ZtreeComponent,
 		ImageQueryComponent,
 		MasonryComponent,
+		PageComponent,
 		
 		IcheckDirective,
 	],

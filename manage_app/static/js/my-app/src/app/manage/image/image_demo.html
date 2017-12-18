@@ -30,6 +30,7 @@
 		</div>
 	</div>
 	<masonry [image_list]="all_image" (delIds)="getDelIds($event)" [type]="'background'"></masonry>
+	<paging [current_page]="page_info.cur_page" [all_page]="page_info.all_page" [all_num]="page_info.count" (selected_page)="getPageNum($event)"></paging>
 	<div class="row mt">
 		<div class="image-func_toolbar">
 			<button type="button" class="btn btn-theme02" (click)="refresh()"><i class="fa fa-refresh"></i> <span class="button-name">刷新 </span></button>

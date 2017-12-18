@@ -9,6 +9,7 @@ import { ListBaseComponent } from '../../common/base.component';
 
 import { ImageSeriesService } from './image_series.service'
 import { ImageSeries } from '../../model/image_series';
+import { Image } from '../../model/image';
 
 import { ImageService } from './image.service'
 import { ImageQueryComponent } from '../../common/image_list/image_list.component';

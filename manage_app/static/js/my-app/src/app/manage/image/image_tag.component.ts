@@ -9,6 +9,7 @@ import { ListBaseComponent } from '../../common/base.component';
 
 import { ImageTagService } from './image_tag.service'
 import { ImageTag } from '../../model/image_tag';
+import { Image } from '../../model/image';
 
 import { ImageService } from './image.service'
 import { ImageQueryComponent } from '../../common/image_list/image_list.component';
@@ -110,19 +111,21 @@ export class ImageTagConfDetailComponent extends ListBaseComponent{
 })
 export class ImageTagSetComponent extends ListBaseComponent{
 	all_image_tag: ImageTag[];
-	query_url: any;
+	all_image: Image[];
+	page: number = 1;
 	
 	del_ids: any;
-	is_refresh: boolean = false;
 	
 	constructor(private service: ImageTagService, public route: ActivatedRoute, public router: Router) {
 		super();
 	}
 	
-	ngOnInit(): void {
-		let self = this;
-		// 图片请求地址
-		this.query_url = 'http://127.0.0.1:8888/manage/image_tag_list/tag_image_list?tag_id=' + this.route.params._value.id + '&page=';
+	getPagerData(): void {
+		this.isLoading = true;
+		this.route.params.switchMap((params: Params) => this.service.getImages(this.page, params['id'])).subscribe(data => {
+			this.all_image = data.image_list;
+			this.isLoading = false;
+		});
 	}
 	
 	goBack(): void {
@@ -169,13 +172,5 @@ export class ImageTagSetComponent extends ListBaseComponent{
 				self.refresh();
 			}
 		});
-	}
-	
-	AfterViewInit(): void {
-		
-	}
-	
-	refresh(): void {
-		this.imageQueryComponent.refresh();
 	}
 }

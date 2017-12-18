@@ -108,7 +108,7 @@ def image_list():
                     ImageSeriesRel.image_id == img.id
                 ).all()
                 img_series_name = [image_series.image_series_name for image_series in img_series_obj]
-                img_dict['image_series'] =img_series_name if img_series_name else [u'无']
+                img_dict['image_series'] = img_series_name if img_series_name else [u'无']
                 image_tag_obj = db_session.query(ImageTagsRel).filter(
                     ImageTagsRel.image_id == img.id
                 ).all()
@@ -418,6 +418,11 @@ def series_image_list():
                 for img in paginator.page(page):
                     img_dict = img.to_dict()
                     img_dict['image_series'] = [image_series.name]
+                    image_tag_obj = db_session.query(ImageTagsRel).filter(
+                        ImageTagsRel.image_id == img.id
+                    ).all()
+                    img_tag_name = [image_tag.tag_name for image_tag in image_tag_obj]
+                    img_dict['image_tag'] = img_tag_name if img_tag_name else [u'无']
                     _img_list.append(img_dict)
 
                 result.update({
@@ -606,6 +611,11 @@ def tag_image_list():
                 _img_list = list()
                 for img in paginator.page(page):
                     img_dict = img.to_dict()
+                    img_series_obj = db_session.query(ImageSeriesRel).filter(
+                        ImageSeriesRel.image_id == img.id
+                    ).all()
+                    img_series_name = [image_series.image_series_name for image_series in img_series_obj]
+                    img_dict['image_series'] = img_series_name if img_series_name else [u'无']
                     img_dict['image_tag'] = [tag.name]
                     _img_list.append(img_dict)
 

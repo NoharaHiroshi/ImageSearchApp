@@ -2490,3 +2490,57 @@ label {
 }
 
 /* masonry插件 */
+
+/* paging插件 */
+.page_div {
+	margin-top: 20px auto;
+	height: 70px;
+	font-size: 15px;
+	font-family: "microsoft yahei";
+	color: #666666;
+	padding-left: 20px;
+	box-sizing: border-box;
+}
+
+.page_div a {
+	min-width: 30px;
+	height: 28px;
+	border: 1px solid #dce0e0!important;
+	text-align: center;
+	margin: 0 4px;
+	cursor: pointer;
+	line-height: 28px;
+	color: #666666;
+	font-size: 13px;
+	display: inline-block;
+}
+
+#firstPage,
+#lastPage {
+	width: 50px;
+	color: #0099FF;
+	border: 1px solid #0099FF!important;
+}
+
+#prePage,
+#nextPage {
+	width: 70px;
+	color: #0099FF;
+	border: 1px solid #0099FF!important;
+}
+
+.page_div .current {
+	background-color: #0099FF;
+	border-color: #0099FF;
+	color: #FFFFFF;
+}
+
+.totalPages {
+	margin: 0 10px;
+}
+
+.totalPages span,
+.totalSize span {
+	color: #0099FF;
+	margin: 0 5px;
+}

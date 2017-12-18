@@ -23,6 +23,7 @@ export class ImageDemoConfComponent extends ListBaseComponent{
 	all_image_series: ImageSeries[];
 	all_image_tag: ImageTag[];
 	all_image: Image[];
+	page_info: any;
 	
 	page: number = 1;
 	
@@ -46,12 +47,18 @@ export class ImageDemoConfComponent extends ListBaseComponent{
         });
 		this.service.getImages(this.page, this.queryParams).then(data => {
         	this.all_image = data.image_list;
+			this.page_info = data.meta;
 			this.isLoading = false;
         });
 	}
 	
 	getDelIds(del_ids: any): void{
 		this.del_ids = del_ids;
+	}
+	
+	getPageNum(page: any): void{
+		this.page = page;
+		this.getPagerData();
 	}
 	
 	@ViewChild(MasonryComponent)
