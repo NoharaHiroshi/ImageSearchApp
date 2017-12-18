@@ -80,7 +80,7 @@ def image_list():
         'image_list': [],
         'meta': {}
     }
-    limit = 20
+    limit = 40
     page = request.args.get('page', 1)
     start_date = request.args.get('startDate', None)
     end_date = request.args.get('endDate', None)
@@ -398,7 +398,7 @@ def series_image_list():
         'image_list': [],
         'meta': {}
     }
-    limit = 5
+    limit = 40
     page = request.args.get('page', 1)
     series_id = request.args.get('series_id')
     try:
@@ -592,7 +592,7 @@ def tag_image_list():
         'image_list': [],
         'meta': {}
     }
-    limit = 5
+    limit = 40
     page = request.args.get('page', 1)
     tag_id = request.args.get('tag_id')
     try:

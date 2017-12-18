@@ -16,6 +16,7 @@ import { ImageDemoConfComponent } from './image/image_demo.component';
 
 // 根路由器
 const routes: Routes = [
+	{ path: '',   redirectTo: 'dashboard_conf', pathMatch: 'full' },
 	{ path: 'dashboard_conf', component: DashboardConfComponent },
 
 	{ path: 'func_conf', component: FuncConfComponent },
