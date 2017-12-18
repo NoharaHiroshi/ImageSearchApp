@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
 
+import { DashboardConfComponent } from './dashboard/dashboard.component';
 import { ManageComponent } from './manage.component';
 import { FuncConfComponent, FuncConfDetailComponent } from './func/func.component';
 import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.component';
@@ -15,6 +16,8 @@ import { ImageDemoConfComponent } from './image/image_demo.component';
 
 // 根路由器
 const routes: Routes = [
+	{ path: 'dashboard_conf', component: DashboardConfComponent },
+
 	{ path: 'func_conf', component: FuncConfComponent },
 	{ path: 'func_conf/detail/:id', component: FuncConfDetailComponent },
 	{ path: 'func_conf/add', component: FuncConfDetailComponent },

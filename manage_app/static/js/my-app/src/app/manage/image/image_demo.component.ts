@@ -99,9 +99,7 @@ export class ImageDemoConfComponent extends ListBaseComponent{
 	}
 	
 	queryImages(): void {
-		this.service.getImages(this.page, this.queryParams).then(data => {
-        	this.all_image = data.image_list;
-        });
+		this.getPagerData();
 	}
 	
 	setCover(): void {

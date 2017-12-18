@@ -17,6 +17,7 @@ import { HeaderService } from '../common/header/header.service';
 
 import { ManageComponent } from './manage.component';
 
+import { DashboardConfComponent } from './dashboard/dashboard.component';
 import { FuncConfComponent, FuncConfDetailComponent } from './func/func.component';
 import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.component';
 import { MenuFuncConfComponent, MenuFuncConfDetailComponent } from './menu_func/menu_func.component';
@@ -28,6 +29,7 @@ import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent, ImageSeriesSe
 import { ImageTagConfComponent, ImageTagConfDetailComponent, ImageTagSetComponent } from './image/image_tag.component';
 import { ImageDemoConfComponent } from './image/image_demo.component';
 
+import { DashboardService } from './dashboard/dashboard.service';
 import { FuncService } from './func/func.service';
 import { MenuService } from './menu/menu.service';
 import { MenuFuncService } from './menu_func/menu_func.service';
@@ -40,6 +42,7 @@ import { ImageTagService } from './image/image_tag.service';
 @NgModule({
 	declarations: [
 		ManageComponent,
+		DashboardConfComponent,
 		
 		MenuConfComponent,
 		MenuConfDetailComponent,
