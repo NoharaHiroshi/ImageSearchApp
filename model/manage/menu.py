@@ -26,6 +26,8 @@ class Menu(Base):
     icon_info = Column(String(60))
     # url
     url = Column(String(50))
+    # 所属模块
+    module = Column(String(50), default=u'manage', index=True)
 
     @classmethod
     def set_count(cls, parent_id=0, sort=None):
@@ -81,7 +83,8 @@ class Menu(Base):
             'parent_id': str(self.parent_id),
             'icon_info': self.icon_info,
             'url': self.url,
-            'sub_menus': self.sub_menus
+            'sub_menus': self.sub_menus,
+            'module': self.module
         }
 
 if __name__ == '__main__':

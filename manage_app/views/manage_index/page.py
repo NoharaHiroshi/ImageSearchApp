@@ -5,6 +5,7 @@ from flask import render_template, abort, g, jsonify, request
 from flask.ext.login import current_user
 from flask import current_app as app
 
+from manage_app.config import config
 from model.session import get_session
 from model.manage.menu import Menu
 
@@ -16,12 +17,14 @@ def nav_list():
     result = {
         'response': 'ok',
         'menu_list': [],
-        'menu_title': '系统管理'
+        'menu_title': ''
     }
+    module = request.args.get('module', None)
     try:
         with get_session() as db_session:
             all_parent_menu = db_session.query(Menu).filter(
-                Menu.parent_id == 0
+                Menu.parent_id == 0,
+                Menu.module == module,
             ).order_by(Menu.sort).all()
             for parent_menu in all_parent_menu:
                 parent_menu_dict = parent_menu.to_dict()
@@ -41,15 +44,7 @@ def header_info():
     try:
         if current_user.is_authenticated():
             # 模块url
-            module_list = [
-                {
-                    u'name': u'系统管理',
-                    u'url': u'http://127.0.0.1:8888/manage'
-                }, {
-                    u'name': u'网站管理',
-                    u'url': u'http://127.0.0.1:8888/website'
-                }
-            ]
+            module_list = config.MODULES
             user_dict = current_user.to_dict()
             result['module_list'] = module_list
             result['user'] = user_dict
