@@ -26,6 +26,10 @@ def nav_list():
                 Menu.parent_id == 0,
                 Menu.module == module,
             ).order_by(Menu.sort).all()
+            module_list = config.MODULES
+            for m in module_list:
+                if m.get('code') == module:
+                    result['menu_title'] = m.get('name', '')
             for parent_menu in all_parent_menu:
                 parent_menu_dict = parent_menu.to_dict()
                 result['menu_list'].append(parent_menu_dict)
