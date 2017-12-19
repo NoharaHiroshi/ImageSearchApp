@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
 
-import { WebsiteComponent } from './manage.component';
+import { WebsiteComponent } from './website.component';
 
 // 根路由器
 const routes: Routes = [

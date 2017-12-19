@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ModalModule } from 'angular2-modal';
 import { FileUploadModule } from 'ng2-file-upload';
 import { HttpModule, RequestOptions } from '@angular/http';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -36,7 +37,7 @@ import { WebsiteComponent } from './website.component';
 		WebsiteRoutingModule, // 根路由器放在最后
 	],
 	providers: [
-		{ provide: LocationStrategy, useClass: HashLocationStrategy },
+		// { provide: LocationStrategy, useClass: HashLocationStrategy },
 		HeaderService,
 		LeftNavService
 	],
