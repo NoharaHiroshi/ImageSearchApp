@@ -8,7 +8,7 @@ declare var $: any;
     selector: 'paging',
 	templateUrl: './paging.html',
 })
-export class PageComponent implements OnInit {
+export class PageComponent{
 	@Input() current_page: number;
 	@Input() all_page: number;
 	@Input() all_num: number;
@@ -20,7 +20,7 @@ export class PageComponent implements OnInit {
 			pageNo: this.current_page,
 			totalPage: this.all_page,
 			totalSize: this.all_num,
-			callback: function(num) {
+			callback: function(num: number) {
 				self.selected_page.emit(num);
 			}
 		})

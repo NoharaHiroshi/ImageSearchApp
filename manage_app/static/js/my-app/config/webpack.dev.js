@@ -21,6 +21,7 @@ module.exports = webpackMerge(commonConfig, {
 		'common/vendor' : [ './src/vendor.ts' ], // Angular、Lodash、bootstrap.css......
 		
 		'app/manage' : [ './src/manage_main.ts' ], // 管理模块
+		'app/website' : [ './src/website_main.ts' ], // 网站管理模块
 	},
 	// 打包entry对象中的文件，并以key(对应[name])作为打包后文件的名字，输出到dist/debug
 	output: {

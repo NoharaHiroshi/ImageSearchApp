@@ -40,7 +40,18 @@ def header_info():
     }
     try:
         if current_user.is_authenticated():
+            # 模块url
+            module_list = [
+                {
+                    u'name': u'系统管理',
+                    u'url': u'http://127.0.0.1:8888/manage'
+                }, {
+                    u'name': u'网站管理',
+                    u'url': u'http://127.0.0.1:8888/website'
+                }
+            ]
             user_dict = current_user.to_dict()
+            result['module_list'] = module_list
             result['user'] = user_dict
         return jsonify(result)
     except Exception as e:
