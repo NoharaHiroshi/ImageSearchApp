@@ -11,6 +11,7 @@ from sqlalchemy import or_, func, and_
 from model.session import get_session
 from model.manage.user import User
 from model.image.image import Image
+from model.image.image_series import ImageSeries
 
 from lib.aes_encrypt import AESCipher
 
@@ -30,15 +31,21 @@ def dashboard_info():
         with get_session() as db_session:
             # 图片数量
             all_pic_obj = db_session.query(Image)
+            all_pic_count = all_pic_obj.count()
+            result['dashboard_info']['all_pic_count'] = all_pic_count
+
             # 昨日上传图片
             upload_pic_obj = all_pic_obj.filter(
                 Image.created_date >= yesterday_start,
                 Image.created_date <= yesterday_end
             )
-            all_pic_count = all_pic_obj.count()
             upload_pic_count = upload_pic_obj.count()
-            result['dashboard_info']['all_pic_count'] = all_pic_count
             result['dashboard_info']['upload_pic_count'] = upload_pic_count
+
+            # 专题数量
+            all_series_obj = db_session.query(ImageSeries)
+            all_series_count = all_series_obj.count()
+            result['dashboard_info']['all_series_count'] = all_series_count
         return jsonify(result)
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))
