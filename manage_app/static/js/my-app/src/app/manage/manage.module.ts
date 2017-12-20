@@ -91,6 +91,7 @@ import { ImageTagService } from './image/image_tag.service';
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
 		HeaderService,
 		LeftNavService,
+		DashboardService,
 		FuncService,
 		MenuService,
 		MenuFuncService,

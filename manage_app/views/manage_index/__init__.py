@@ -6,3 +6,4 @@ from permission import *
 from role import *
 from page import *
 from image import *
+from dashboard import *
