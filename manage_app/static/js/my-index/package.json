@@ -4,13 +4,13 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-	"start": "webpack --config config/webpack.dev.js --progress --profile",
-	"start_prod": "webpack --config config/webpack.product.js --progress --profile --bail",
-	"build": "webpack --config config/webpack.dev.js --progress --profile --bail",
-	"test": "ng test",
-	"lint": "ng lint",
-	"e2e": "ng e2e",
-	"webpack": "webpack"
+    "start": "webpack --config config/webpack.dev.js --progress --profile",
+    "start_prod": "webpack --config config/webpack.product.js --progress --profile --bail",
+    "build": "webpack --config config/webpack.dev.js --progress --profile --bail",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "webpack": "webpack"
   },
   "private": true,
   "dependencies": {
