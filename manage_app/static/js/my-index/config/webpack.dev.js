@@ -19,6 +19,8 @@ module.exports = webpackMerge(commonConfig, {
 	entry : {
 		'common/polyfills' : './src/polyfills.ts', // 运行Angular时所需的一些标准js
 		'common/vendor' : [ './src/vendor.ts' ], // Angular、Lodash、bootstrap.css......
+		
+		'app/index' : [ './src/index_main.ts' ], // 管理模块
 	},
 	// 打包entry对象中的文件，并以key(对应[name])作为打包后文件的名字，输出到dist/debug
 	output: {
@@ -31,7 +33,7 @@ module.exports = webpackMerge(commonConfig, {
 		filename: '[name].js'
 	},
 	devServer: {
-		port: 2222,
+		port: 3333,
 		historyApiFallback: true
 	},
 	watch: true,
