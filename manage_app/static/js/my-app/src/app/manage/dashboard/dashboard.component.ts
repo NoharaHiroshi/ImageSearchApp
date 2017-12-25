@@ -17,11 +17,14 @@ import { DashboardInfo } from '../../model/dashboard';
 export class DashboardConfComponent extends ListBaseComponent implements OnInit{
 	dashboard_info: DashboardInfo;
 	
-	constructor(private service: DashboardService) {}
+	constructor(private service: DashboardService) {
+		super();
+	}
 	
 	ngOnInit(): void {
 		this.service.getDashboardInfo().then(data => {
-        	this.dashboard_info = data.dashboard_info
+        	this.dashboard_info = data.dashboard_info;
+			this.isLoading = false;
         });
 	}
 }

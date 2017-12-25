@@ -3,7 +3,7 @@ html.fssopen, html.fssopen body{ /* class added to HTML element when full screen
 	height: 100%;
 	top: 0;
 	left: 0;
-  margin: 0;
+	margin: 0;
 	overflow: hidden;
 }
 
@@ -13,7 +13,7 @@ section.dd_fullscreenslider{
 	top: 0;
 	width: 100%;
 	height: 100%;
-  z-index: 2000;
+	z-index: 2000;
 	font-size: 16px; /* base font size */
 	visibility: visible;
 	overflow: hidden;
@@ -32,9 +32,9 @@ div.slidewrapper{ /* wrapper DIV that surrounds the ARTICLE elements inside .dd_
 }
 
 ul.fssnav{ /* UL list dynamically added by script for Slider navigation */
-  list-style: none;
-  padding: 0;
-  margin: 0;
+	list-style: none;
+	padding: 0;
+	margin: 0;
 	position: fixed;
 	top: 50%; /* vertically center menu */
 	right: 20px; /* distance from right edge of screen */
@@ -42,51 +42,51 @@ ul.fssnav{ /* UL list dynamically added by script for Slider navigation */
 }
 
 ul.fssnav li{
-  margin-bottom: 15px;
+	margin-bottom: 15px;
 }
 
 ul.fssnav li a{
-  text-decoration: none;
-  border: 5px solid white; /* border color of nav links */
-  border-radius: 50%;
-  width: 10px; /* dimensions of nav links */
-  height: 10px;
-  display: block;
+	text-decoration: none;
+	border: 5px solid white; /* border color of nav links */
+	border-radius: 50%;
+	width: 10px; /* dimensions of nav links */
+	height: 10px;
+	display: block;
 	position: relative;
-  text-indent: -500px;
+	text-indent: -500px;
 	outline: none;
-  overflow: hidden;
+	overflow: hidden;
 }
 
 ul.fssnav li a::after{ /* create "fill" element inside A */
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 100%;
-  left: 0;
-  background: white; /* color of "fill" element */
-  transition: top 0.5s; /* transition for "fill up" effect */
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 100%;
+	left: 0;
+	background: white; /* color of "fill" element */
+	transition: top 0.5s; /* transition for "fill up" effect */
 }
 
 ul.fssnav li.selected a::after{
-  top: 0; /* fill up selected A element from bottom to top */
+	top: 0; /* fill up selected A element from bottom to top */
 }
 
 
 section.dd_fullscreenslider article.slide{ /* CSS for each slide */
-  width: 100%;
-  height: 100%;
+	width: 100%;
+	height: 100%;
 	display: block;
 	font-family: 'Lato', sans-serif; /* Use google font */
 	font-size: 1.2em;
 	line-height: 2em;
 	color: white;
 	overflow: hidden;
-  -webkit-box-sizing: border-box; /* include padding/ border as part of declared menu width */
-  -moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box; /* include padding/ border as part of declared menu width */
+	-moz-box-sizing: border-box;
 	z-index: 1000;
-  background: #E56464;
+	background: #E56464;
 	-webkit-transform: translate3d(0, 0, 0); /* to prevent flickering in iOS */
 }
 
@@ -118,35 +118,35 @@ section.dd_fullscreenslider article.slide:nth-of-type(4){ /* 4th demo slide bgco
 }
 
 section.dd_fullscreenslider div.closex{ /* Large x close button inside Slider */
-  width: 50px;
-  height: 50px;
+	width: 50px;
+	height: 50px;
 	overflow: hidden;
-  display: block;
-  position: fixed;
-  cursor: pointer;
+	display: block;
+	position: fixed;
+	cursor: pointer;
 	text-indent: -1000px;
 	opacity: 0.8;
-  z-index: 1001;
-  top: 5px;
-  right: 3px;
+	z-index: 1001;
+	top: 5px;
+	right: 3px;
 }
 
 section.dd_fullscreenslider div.closex::before, section.dd_fullscreenslider div.closex::after{ /* render large x inside close button */
-  content: "";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 6px;
-  background: white; /* color of x button */
-  top: 50%;
-  margin-top: -3px;
-  -ms-transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+	content: "";
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 6px;
+	background: white; /* color of x button */
+	top: 50%;
+	margin-top: -3px;
+	-ms-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
 }
 
 section.dd_fullscreenslider div.closex::after{ /* render large cross inside close button */
-  -ms-transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
-  transform: rotate(-135deg);
+	-ms-transform: rotate(-135deg);
+	-webkit-transform: rotate(-135deg);
+	transform: rotate(-135deg);
 }
