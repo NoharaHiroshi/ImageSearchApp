@@ -5,6 +5,7 @@
 		<title>网站首页</title>
 		<link rel="stylesheet" href="/static/index/css/ddfullscreenslider.css">
 		<link rel="stylesheet" href="/static/index/css/skippr.css">
+		<link rel="stylesheet" href="/static/index/css/style.css">
 		
 		<script src="/static/index/js/jquery-1.11.3.min.js"></script>
 		<script src="/static/index/js/jquery.mousewheel.min.js"></script>
@@ -17,11 +18,11 @@
 				<article class="slide">
 					<div id="container">
 						<div id="theTarget">
-							<div style="background-image: url(/static/index/img/test1.jpg)"></div>
-							<div style="background-image: url(/static/index/img/test2.jpg)"></div>
-							<div style="background-image: url(/static/index/img/test3.jpg)"></div>
-							<div style="background-image: url(/static/index/img/test4.jpg)"></div>
-							<div style="background-image: url(/static/index/img/test5.jpg)"></div>
+							<img src="{{ url_for('static', filename='index/img/test1.jpg') }}">
+							<img src="{{ url_for('static', filename='index/img/test2.jpg') }}">
+							<img src="{{ url_for('static', filename='index/img/test3.jpg') }}">
+							<img src="{{ url_for('static', filename='index/img/test4.jpg') }}">
+							<img src="{{ url_for('static', filename='index/img/test5.jpg') }}">
 						</div>    
 					</div>
 				</article>
@@ -68,9 +69,9 @@
 					speed: 1000,
 					easing: 'easeOutQuart',
 					navType: 'block',
-					childrenElementType: 'div',
+					childrenElementType: 'img',
 					arrows: true,
-					autoPlay: false,
+					autoPlay: true,
 					autoPlayDuration: 5000,
 					keyboardOnAlways: true,
 					hidePrevious: false
