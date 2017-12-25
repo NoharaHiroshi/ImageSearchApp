@@ -86,7 +86,6 @@ section.dd_fullscreenslider article.slide{ /* CSS for each slide */
 	-webkit-box-sizing: border-box; /* include padding/ border as part of declared menu width */
 	-moz-box-sizing: border-box;
 	z-index: 1000;
-	background: #E56464;
 	-webkit-transform: translate3d(0, 0, 0); /* to prevent flickering in iOS */
 }
 
