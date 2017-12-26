@@ -25,7 +25,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	width: 60%;
 	margin: 0 auto;
 	text-align: center;
-	padding: 24px 0;
+	padding: 20px 0 5px 0;
 }
 
 /* 搜索框 */
@@ -61,7 +61,7 @@ color: #bbb;
     line-height: 35px;
     display: inline-block;
     vertical-align: middle;
-    border: 1px solid #ffd777;
+    border: 1px solid #ffbe40;
     border-radius: 4px;
     position: relative;
     padding: 5px 10px;
@@ -80,7 +80,7 @@ color: #bbb;
 	padding: 0;
 	line-height: 47px;
     text-align: center;
-	background: #ffd777;
+	background: #ffbe40;
     border-radius: 0 4px 4px 0;
 	cursor: pointer;
     vertical-align: middle;
@@ -136,3 +136,160 @@ color: #bbb;
 	font-size: 12px;
 	float: right;
 }
+
+/* 导航 */
+.nav {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.cbp-hrmenu {
+	width: 100%;
+	border-bottom: 4px solid #ffbe40;
+}
+
+/* general ul style */
+.cbp-hrmenu ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+/* first level ul style */
+.cbp-hrmenu > ul,
+.cbp-hrmenu .cbp-hrsub-inner {
+	width: 70%;
+	max-width: 70em;
+	margin: 0 auto;
+	padding: 0 1.875em;
+}
+
+.cbp-hrmenu > ul > li {
+	display: inline-block;
+}
+
+.cbp-hrmenu > ul > li > a {
+	font-weight: 700;
+	padding: 0.5em 1em;
+	font-size: 16px;
+	color: #999 !important;
+	text-decoration: none !important;
+	display: inline-block;
+	font-family: 微软雅黑;
+}
+
+.cbp-hrmenu > ul > li > a:hover {
+	color: #ffbe40 !important;
+}
+
+.cbp-hrmenu > ul > li.cbp-hropen a,
+.cbp-hrmenu > ul > li.cbp-hropen > a:hover {
+	font-size: 15px;
+	color: #fff !important;
+	background: #ffbe40 !important;
+	text-decoration: none !important;
+}
+
+/* sub-menu */
+.cbp-hrmenu .cbp-hrsub {
+	display: none;
+	position: absolute;
+	background: #ffbe40;
+	width: 100%;
+	left: 0;
+	z-index: 111;
+}
+
+.cbp-hropen .cbp-hrsub {
+	display: block;
+	padding-bottom: 3em;
+	z-index: 111;
+}
+
+.cbp-hrmenu .cbp-hrsub-inner > div {
+	width: 33%;
+	float: left;
+	padding: 0 2em 0;
+}
+
+.cbp-hrmenu .cbp-hrsub-inner:before,
+.cbp-hrmenu .cbp-hrsub-inner:after {
+	content: " ";
+	display: table;
+}
+
+.cbp-hrmenu .cbp-hrsub-inner:after {
+	clear: both;
+}
+
+.cbp-hrmenu .cbp-hrsub-inner > div a {
+	line-height: 2em;
+	color: #fff !important;
+}
+
+.cbp-hrsub h4 {
+	color: #fff !important;
+	padding: 2em 0 0.6em;
+	margin: 0;
+	font-size: 120%;
+	font-weight: 300;
+}
+
+/* Examples for media queries */
+
+@media screen and (max-width: 52.75em) { 
+
+	.cbp-hrmenu {
+		font-size: 80%;
+	}
+
+}
+
+@media screen and (max-width: 43em) { 
+
+	.cbp-hrmenu {
+		font-size: 120%;
+		border: none;
+	}
+
+	.cbp-hrmenu > ul,
+	.cbp-hrmenu .cbp-hrsub-inner {
+		width: 100%;
+		padding: 0;
+	}
+
+	.cbp-hrmenu .cbp-hrsub-inner {
+		padding: 0 2em;
+		font-size: 75%;
+	}
+
+	.cbp-hrmenu > ul > li {
+		display: block;
+		border-bottom: 4px solid #ffbe40;
+	}
+
+	.cbp-hrmenu > ul > li > a { 
+		display: block;
+		padding: 1em 3em;
+	}
+
+	.cbp-hrmenu .cbp-hrsub { 
+		position: relative;
+	}
+
+	.cbp-hrsub h4 {
+		padding-top: 0.6em;
+	}
+
+}
+
+@media screen and (max-width: 36em) { 
+	.cbp-hrmenu .cbp-hrsub-inner > div {
+		width: 100%;
+		float: none;
+		padding: 0 2em;
+	}
+}
+
+
+

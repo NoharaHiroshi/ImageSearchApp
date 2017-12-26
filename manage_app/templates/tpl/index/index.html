@@ -11,6 +11,7 @@
 		<script src="/static/index/js/jquery.mousewheel.min.js"></script>
 		<script src="/static/index/js/ddfullscreenslider.js"></script>
 		<script src="/static/index/js/jquery.SuperSlide.2.1.1.js"></script>
+		<script src="/static/index/js/modernizr.custom.js"></script>
 		
 	</head>
 	<body>
@@ -23,7 +24,7 @@
 							<div class="input-search-btn">
 								<i class="fa fa-search"></i>
 							</div>
-							<div class="input-recommond-search" id="recommond">
+							<div class="input-recommond-search" id="recommond" style="display:none;">
 								<p>
 									<span class="input-recommond-search-tag">元旦</span>
 									<span class="input-recommond-search-result">703266 结果</span>
@@ -40,6 +41,90 @@
 								<span>圣诞</span>
 							</div>
 						</div>
+					</div>
+					<div class="nav">
+						<nav id="cbp-hrmenu" class="cbp-hrmenu">
+							<ul>
+								<li>
+									<a href="#">素材</a>
+									<div class="cbp-hrsub">
+										<div class="cbp-hrsub-inner"> 
+											<div>
+												<h4>平面设计</h4>
+												<ul>
+													<li><a href="#">Catch the Bullet</a></li>
+													<li><a href="#">Snoopydoo</a></li>
+													<li><a href="#">Fallen Angel</a></li>
+													<li><a href="#">Sui Maker</a></li>
+													<li><a href="#">Wave Master</a></li>
+													<li><a href="#">Golf Pro</a></li>
+												</ul>
+											</div>
+											<div>
+												<h4>淘宝电商</h4>
+												<ul>
+													<li><a href="#">Gadget Finder</a></li>
+													<li><a href="#">Green Tree Express</a></li>
+													<li><a href="#">Green Tree Pro</a></li>
+													<li><a href="#">Wobbler 3.0</a></li>
+													<li><a href="#">Coolkid</a></li>
+												</ul>
+											</div>
+											<div>
+												<h4>节日促销</h4>
+												<ul>
+													<li><a href="#">Learn Thai</a></li>
+													<li><a href="#">Math Genius</a></li>
+													<li><a href="#">Chemokid</a></li>
+												</ul>
+											</div>
+										</div><!-- /cbp-hrsub-inner -->
+									</div><!-- /cbp-hrsub -->
+								</li>
+								<li>
+									<a href="#">背景</a>
+									<div class="cbp-hrsub">
+										<div class="cbp-hrsub-inner">
+											<div>
+												<h4>Education &amp; Learning</h4>
+												<ul>
+													<li><a href="#">Learn Thai</a></li>
+													<li><a href="#">Math Genius</a></li>
+													<li><a href="#">Chemokid</a></li>
+												</ul>
+												<h4>Professionals</h4>
+												<ul>
+													<li><a href="#">Success 1.0</a></li>
+													<li><a href="#">Moneymaker</a></li>
+												</ul>
+											</div>
+											<div>
+												<h4>Entertainment</h4>
+												<ul>
+													<li><a href="#">Gadget Finder</a></li>
+													<li><a href="#">Green Tree Express</a></li>
+													<li><a href="#">Green Tree Pro</a></li>
+													<li><a href="#">Holy Cannoli</a></li>
+													<li><a href="#">Wobbler 3.0</a></li>
+													<li><a href="#">Coolkid</a></li>
+												</ul>
+											</div>
+											<div>
+												<h4>Games</h4>
+												<ul>
+													<li><a href="#">Catch the Bullet</a></li>
+													<li><a href="#">Snoopydoo</a></li>
+													<li><a href="#">Fallen Angel</a></li>
+													<li><a href="#">Sui Maker</a></li>
+													<li><a href="#">Wave Master</a></li>
+													<li><a href="#">Golf Pro</a></li>
+												</ul>
+											</div>
+										</div><!-- /cbp-hrsub-inner -->
+									</div><!-- /cbp-hrsub -->
+								</li>
+							</ul>
+						</nav>
 					</div>
 					<div class="banner-box">
 						<div class="bd">
@@ -131,8 +216,11 @@
 				$("#main-search").blur(function(){
 					$('#recommond').hide();
 				});
+				
+				/* 导航条 */
+				cbpHorizontalMenu.init();
 			});
 		</script>
-
+		<script src="/static/index/js/cbpHorizontalMenu.min.js"></script>
 	</body>
 </html>
