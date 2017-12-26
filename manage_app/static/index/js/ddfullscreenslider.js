@@ -162,7 +162,8 @@ var ddfullscreenslider = (function($){
 			}
 			var initialy = -$window.outerHeight() * selectedindx
 			$wrapper.data({dy: dy})
-  		$(document).bind(swipeevts.move, function(e){
+		// 去掉鼠标控制，解放input事件
+  		/* $(document).bind(swipeevts.move, function(e){
 				if (bypassdrag){
 					return
 				}
@@ -180,10 +181,10 @@ var ddfullscreenslider = (function($){
   			return false //cancel default drag action
   		})
 			if (e.type == "mousedown")
-  			return false //cancel default drag action
+  			return false //cancel default drag action */
   	})
 
-  	$(document).bind(swipeevts.end, function(e){
+  	/* $(document).bind(swipeevts.end, function(e){
   		$(document).unbind(swipeevts.move)
 			if (!swipestart || bypassdrag)
 				return
@@ -199,7 +200,7 @@ var ddfullscreenslider = (function($){
 					return false
 			}
 			swipestart = false
-  	})
+  	}) */
 
 		/** CSS3 transition ontransitionend event  set up */
 

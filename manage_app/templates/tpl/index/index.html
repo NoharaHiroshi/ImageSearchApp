@@ -19,9 +19,25 @@
 				<article class="slide">
 					<div class="search-input">
 						<div class="input-border">
-							<input type="text" class="input-content" placeholder="输入关键词搜索">
+							<input type="text" id="main-search" class="input-content" placeholder="输入关键词搜索">
 							<div class="input-search-btn">
 								<i class="fa fa-search"></i>
+							</div>
+							<div class="input-recommond-search" id="recommond">
+								<p>
+									<span class="input-recommond-search-tag">元旦</span>
+									<span class="input-recommond-search-result">703266 结果</span>
+								</p>
+								<p>
+									<span class="input-recommond-search-tag">圣诞节</span>
+									<span class="input-recommond-search-result">622148 结果</span>
+								</p>
+							</div>
+						</div>
+						<div class="input-hot-search">
+							<div class="input-hot-search-div">
+								<span style="color: #333;">热门资源：</span>
+								<span>圣诞</span>
 							</div>
 						</div>
 					</div>
@@ -109,7 +125,12 @@
 				});
 				
 				/* 搜索框 */
-				
+				$("#main-search").focus(function(){
+					$('#recommond').show();
+				});
+				$("#main-search").blur(function(){
+					$('#recommond').hide();
+				});
 			});
 		</script>
 
