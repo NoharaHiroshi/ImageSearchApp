@@ -1,9 +1,55 @@
 @charset "utf-8";
 /* css 重置 */
+body{ background: #fbfbfb;}
 body,div,ul,li,dl,dt,dd,h2,p{padding:0;margin:0;font-family:"微软雅黑";}
 ul{list-style:none ;}
 img{border:none;}
 a{blr:expression(this.onFocus=this.blur());outline:none;}
+
+/* 顶部设置 */
+.header-content {
+	width: 100%;
+    min-width: 1240px;
+    height: 50px;
+    background: #f1f1f1;
+    position: relative;
+}
+
+.header-info {
+	width: 70%;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.header-logo {
+	float: left;
+    overflow: hidden;
+}
+
+.logo {
+	padding: 14px 0 10px;
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+}
+
+.header-logo-span {
+	line-height: 50px;
+	font-size: 15px;
+	color: #666;
+	margin-right: 15px;
+}
+
+.header-login {
+	float: right;
+    overflow: hidden;
+}
+
+.header-login span {
+	line-height: 50px;
+	font-size: 15px;
+	color: #666;
+}
 
 /* 轮播图设置 */
 .banner-box{min-width:1200px;height:320px;position:relative;overflow:hidden;}
@@ -25,7 +71,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	width: 60%;
 	margin: 0 auto;
 	text-align: center;
-	padding: 20px 0 5px 0;
+	padding: 40px 0 5px 0;
 }
 
 /* 搜索框 */
@@ -43,28 +89,32 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 }
 
 .input-content::-webkit-input-placeholder { 
-color: #bbb; 
+	color: #bbb; 
+	font-family:"微软雅黑";
 } 
 .input-content:-moz-placeholder { 
-color: #bbb; 
+	color: #bbb; 
+	font-family:"微软雅黑";
 } 
 .input-content::-moz-placeholder { 
-color: #bbb; 
+	color: #bbb; 
+	font-family:"微软雅黑";
 } 
 .input-content:-ms-input-placeholder { 
-color: #bbb; 
+	color: #bbb; 
+	font-family:"微软雅黑";
 } 
 
 .input-border {
 	height: 35px;
-    width: 570px;
+    width: 630px;
     line-height: 35px;
     display: inline-block;
     vertical-align: middle;
     border: 1px solid #ffbe40;
     border-radius: 4px;
     position: relative;
-    padding: 5px 10px;
+    padding: 3px 10px 8px 10px;
     background-color: #fff;
 }
 
@@ -91,7 +141,7 @@ color: #bbb;
 	position: relative;
 	margin: 0 auto;
     color: #888;
-	width: 590px;
+	width: 630px;
     height: 30px;
 	vertical-align: middle;
     line-height: 30px;
@@ -111,7 +161,7 @@ color: #bbb;
 	padding: 5px 10px;
 	line-height: 14px;
 	color: #888;
-    width: 500px;
+    width: 560px;
     position: absolute;
     top: 50px;
     left: 0;
@@ -175,7 +225,7 @@ color: #bbb;
 	color: #999 !important;
 	text-decoration: none !important;
 	display: inline-block;
-	font-family: 微软雅黑;
+	font-family: "微软雅黑";
 }
 
 .cbp-hrmenu > ul > li > a:hover {
