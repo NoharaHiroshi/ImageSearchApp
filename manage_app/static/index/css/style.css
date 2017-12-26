@@ -1,0 +1,75 @@
+@charset "utf-8";
+/* css 重置 */
+body,div,ul,li,dl,dt,dd,h2,p{padding:0;margin:0;font-family:"微软雅黑";}
+ul{list-style:none ;}
+img{border:none;}
+a{blr:expression(this.onFocus=this.blur());outline:none;}
+
+/* 轮播图设置 */
+.banner-box{min-width:1200px;height:320px;position:relative;overflow:hidden;}
+.banner-box .bd{ width:100% !important;}
+.banner-box .bd li .m-width {width:1200px;margin:0 auto;overflow:hidden;}
+.banner-box .bd li{width:100% !important;height:320px;}
+.banner-box .bd li a{display:block;background-size:auto;}
+
+.banner-btn{width:1200px;position:absolute;top:120px;left:50%;margin-left:-600px;}
+.banner-btn a{display:block;width:49px;height:104px;position:absolute;top:0;filter:alpha(opacity=0);-moz-opacity:0;-khtml-opacity:0;opacity:0;}
+.banner-btn a.prev{left:10px;background:url(../img/foot.png) no-repeat 0 0;} 
+.banner-btn a.next{right:10px;background:url(../img/foot.png) no-repeat -49px 0;}
+
+.banner-box .hd {position:absolute;top:175px;left:537px;}
+.banner-box .hd ul li{width:12px;height:12px;border-radius :50%;text-indent:-9999px;margin-right:20px;border: 1px #fff solid;float:left;cursor:pointer;}
+.banner-box .hd ul li.on{background:#fff;}
+
+.search-input {
+	width: 60%;
+	margin: 0 auto;
+	text-align: center;
+	padding: 24px 0;
+}
+
+/* 搜索框 */
+.input-content {
+	text-indent: 10px;
+    width: 100%;
+    height: 30px;
+    outline: 0;
+    border: 0;
+    line-height: 30px;
+    font-size: 15px;
+    color: #999;
+	position: relative;
+	display: inline-block;
+}
+
+.input-border {
+	height: 35px;
+    width: 570px;
+    line-height: 35px;
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid #ffd777;
+    border-radius: 4px;
+    position: relative;
+    padding: 5px 10px;
+    background-color: #fff;
+}
+
+.input-search-btn {
+	display: inline-block;
+	position: absolute;
+	color: #fff;
+	top: -1px;
+    right: -1px;
+    width: 70px;
+    height: 47px;
+	margin: 0;
+	padding: 0;
+	line-height: 47px;
+    text-align: center;
+	background: #ffd777;
+    border-radius: 0 4px 4px 0;
+	cursor: pointer;
+    vertical-align: middle;
+	font-size: 22px;
+}

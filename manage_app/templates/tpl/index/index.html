@@ -4,26 +4,52 @@
 		<meta charset="utf-8">
 		<title>网站首页</title>
 		<link rel="stylesheet" href="/static/index/css/ddfullscreenslider.css">
-		<link rel="stylesheet" href="/static/index/css/skippr.css">
+		<link rel="stylesheet" href="/static/index/css/font-awesome.css">
 		<link rel="stylesheet" href="/static/index/css/style.css">
 		
 		<script src="/static/index/js/jquery-1.11.3.min.js"></script>
 		<script src="/static/index/js/jquery.mousewheel.min.js"></script>
 		<script src="/static/index/js/ddfullscreenslider.js"></script>
-		<script src="/static/index/js/skippr.js"></script>
+		<script src="/static/index/js/jquery.SuperSlide.2.1.1.js"></script>
+		
 	</head>
 	<body>
 		<section id="dowebok" class="dd_fullscreenslider">
 			<div class="slidewrapper">
 				<article class="slide">
-					<div id="container">
-						<div id="theTarget">
-							<img src="{{ url_for('static', filename='index/img/test1.jpg') }}">
-							<img src="{{ url_for('static', filename='index/img/test2.jpg') }}">
-							<img src="{{ url_for('static', filename='index/img/test3.jpg') }}">
-							<img src="{{ url_for('static', filename='index/img/test4.jpg') }}">
-							<img src="{{ url_for('static', filename='index/img/test5.jpg') }}">
-						</div>    
+					<div class="search-input">
+						<div class="input-border">
+							<input type="text" class="input-content" placeholder="输入关键词搜索">
+							<div class="input-search-btn">
+								<i class="fa fa-search"></i>
+							</div>
+						</div>
+					</div>
+					<div class="banner-box">
+						<div class="bd">
+							<ul>          	    
+								<li style="background:rgb(255, 240, 216);">
+									<div class="m-width">
+									<a href="javascript:void(0);"><img src="{{ url_for('static', filename='index/img/test1.jpg') }}" /></a>
+									</div>
+								</li>
+								<li style="background:rgb(10, 184, 135)">
+									<div class="m-width">
+									<a href="javascript:void(0);"><img src="{{ url_for('static', filename='index/img/test2.jpg') }}" /></a>
+									</div>
+								</li>
+								<li style="background:rgb(254, 222, 165);">
+									<div class="m-width">
+									<a href="javascript:void(0);"><img src="{{ url_for('static', filename='index/img/test3.jpg') }}" /></a>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="banner-btn">
+							<a class="prev" href="javascript:void(0);"></a>
+							<a class="next" href="javascript:void(0);"></a>
+							<div class="hd"><ul></ul></div>
+						</div>
 					</div>
 				</article>
 
@@ -64,19 +90,26 @@
 						console.log('滚动到了第 ' + (index + 1) + ' 屏');
 					}
 				});
-				$("#theTarget").skippr({
-					transition: 'slide',
-					speed: 1000,
-					easing: 'easeOutQuart',
-					navType: 'block',
-					childrenElementType: 'img',
-					arrows: true,
-					autoPlay: true,
-					autoPlayDuration: 5000,
-					keyboardOnAlways: true,
-					hidePrevious: false
-
+				/* 轮播图 */
+				$(".banner-box").hover(function(){
+					$(".prev,.next").stop(true,false).fadeTo("show",0.8);
+				},function(){
+					$(".prev,.next").stop(true,false).fadeTo("show",0);
 				});
+				
+				$(".banner-box").slide({
+					titCell:".hd ul",
+					mainCell:".bd ul",
+					effect:"fold",
+					interTime:3500,
+					delayTime:500,
+					autoPlay:true,
+					autoPage:true, 
+					trigger:"click" 
+				});
+				
+				/* 搜索框 */
+				
 			});
 		</script>
 
