@@ -110,28 +110,22 @@ figure.effect-apollo figcaption::before {
 }
 
 figure.effect-apollo p {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	margin: 3em;
-	padding: 0 1em;
-	max-width: 150px;
-	border-right: 4px solid #fff;
-	text-align: right;
+	margin-top: 10px;
+	text-align: center;
 	opacity: 0;
 	-webkit-transition: opacity 0.35s;
 	transition: opacity 0.35s;
 }
 
 figure.effect-apollo h2 {
-	text-align: left;
-	font-size: 18px;
-	margin-left: 10px;
+	margin-top: 55px;
+	text-align: center;
+	font-size: 26px;
 	opacity: 0;
 }
 
 figure.effect-apollo:hover img {
-	opacity: 0.6;
+	opacity: 0.5;
 	-webkit-transform: scale3d(1,1,1);
 	transform: scale3d(1,1,1);
 }

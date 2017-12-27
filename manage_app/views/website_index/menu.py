@@ -5,12 +5,12 @@ from flask import render_template, abort, g, jsonify, request
 from flask import current_app as app
 
 from model.session import get_session
-from model.manage.menu import Menu
+from model.website.menu import WebsiteMenu
 
-from route import manage
+from route import website
 
 
-@manage.route('/menu_list', methods=['GET'])
+@website.route('/website_menu_list', methods=['GET'])
 def menu_list():
     result = {
         'response': 'ok',
@@ -18,7 +18,7 @@ def menu_list():
     }
     try:
         _menu_list = list()
-        _menu_list = Menu.get_menu_select_info(_menu_list)
+        _menu_list = WebsiteMenu.get_menu_select_info(_menu_list)
         result['menu_list'] = _menu_list
         return jsonify(result)
     except Exception as e:
@@ -26,7 +26,7 @@ def menu_list():
         abort(400)
 
 
-@manage.route('/menu_list/detail', methods=['GET'])
+@website.route('/website_menu_list/detail', methods=['GET'])
 def get_menu_detail():
     result = {
         'response': 'ok',
@@ -35,10 +35,10 @@ def get_menu_detail():
     try:
         func_id = request.args.get('id')
         menu_select_info = list()
-        menu_select_info = Menu.get_menu_select_info(menu_select_info)
+        menu_select_info = WebsiteMenu.get_menu_select_info(menu_select_info)
         result['menu_select_info'] = menu_select_info
         with get_session() as db_session:
-            menu = db_session.query(Menu).get(func_id)
+            menu = db_session.query(WebsiteMenu).get(func_id)
             if menu:
                 menu_dict = menu.to_dict()
                 result['menu'] = menu_dict
@@ -48,7 +48,7 @@ def get_menu_detail():
         abort(400)
 
 
-@manage.route('/menu_list/update', methods=['POST'])
+@website.route('/website_menu_list/update', methods=['POST'])
 def update_menu_detail():
     result = {
         'response': 'ok',
@@ -70,25 +70,23 @@ def update_menu_detail():
         else:
             with get_session() as db_session:
                 if not menu_id:
-                    menu = Menu()
+                    menu = WebsiteMenu()
                     menu.name = menu_name
                     menu.code = menu_code
                     menu.parent_id = parent_id
                     menu.icon_info = icon_info
                     # 设置同层级菜单的排序位置
-                    menu.sort = Menu.set_count(parent_id)
+                    menu.sort = WebsiteMenu.set_count(parent_id)
                     menu.url = url
-                    menu.module = module
                     db_session.add(menu)
                 else:
-                    menu = db_session.query(Menu).get(menu_id)
+                    menu = db_session.query(WebsiteMenu).get(menu_id)
                     if menu:
                         menu.name = menu_name
                         menu.code = menu_code
                         menu.parent_id = parent_id
                         menu.icon_info = icon_info
                         menu.url = url
-                        menu.module = module
                     else:
                         result['response'] = 'fail'
                         result['info'] = u'当前对象不存在'
@@ -99,7 +97,7 @@ def update_menu_detail():
         abort(400)
 
 
-@manage.route('/menu_list/delete', methods=['POST'])
+@website.route('/website_menu_list/delete', methods=['POST'])
 def delete_menu_detail():
     result = {
         'response': 'ok',
@@ -109,8 +107,8 @@ def delete_menu_detail():
         ids = request.form.get('ids').split(',')
         if ids[0]:
             with get_session() as db_session:
-                db_session.query(Menu).filter(
-                    Menu.id.in_(ids)
+                db_session.query(WebsiteMenu).filter(
+                    WebsiteMenu.id.in_(ids)
                 ).delete(synchronize_session=False)
                 db_session.commit()
         else:
@@ -125,7 +123,7 @@ def delete_menu_detail():
 
 
 # 调整菜单排序
-@manage.route('/menu_list/menu_sort_change', methods=['POST'])
+@website.route('/website_menu_list/menu_sort_change', methods=['POST'])
 def change_menu_sort():
     result = {
         'response': 'ok',
@@ -141,13 +139,13 @@ def change_menu_sort():
                     'info': u'请检查参数是否填写完整'
                 })
             else:
-                menu = db_session.query(Menu).get(menu_id)
+                menu = db_session.query(WebsiteMenu).get(menu_id)
                 if menu:
                     # 只能在同一层级中移动位置
                     if change_method == 'up':
-                        _menu = db_session.query(Menu).filter(
-                            Menu.parent_id == menu.parent_id,
-                            Menu.sort < menu.sort
+                        _menu = db_session.query(WebsiteMenu).filter(
+                            WebsiteMenu.parent_id == menu.parent_id,
+                            WebsiteMenu.sort < menu.sort
                         ).first()
                         if _menu:
                             _sort = menu.sort
@@ -159,9 +157,9 @@ def change_menu_sort():
                                 'info': u'当前菜单已位于最顶端'
                             })
                     if change_method == 'down':
-                        _menu = db_session.query(Menu).filter(
-                            Menu.parent_id == menu.parent_id,
-                            Menu.sort > menu.sort
+                        _menu = db_session.query(WebsiteMenu).filter(
+                            WebsiteMenu.parent_id == menu.parent_id,
+                            WebsiteMenu.sort > menu.sort
                         ).first()
                         if _menu:
                             _sort = menu.sort

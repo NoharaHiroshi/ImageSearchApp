@@ -1,5 +1,5 @@
 <h3>
-	<i class="fa fa-angle-right"></i> 菜单编辑 <span class="sub-title">Menu Edit</span> 
+	<i class="fa fa-angle-right"></i> 网站菜单编辑 <span class="sub-title">WebsiteMenu Edit</span> 
 </h3>
 <div class="row mt" *ngIf="menu">
 	<div class="col-lg-12">
@@ -38,16 +38,6 @@
 						<ng-container *ngFor="let m of menu_select_info">
 							<option [value]="m.id">{{ m.menu_name }}</option>
 						</ng-container>
-					  </select>
-				  </div>
-			  </div>
-			  <div class="form-group">
-				  <label class="col-sm-2 col-sm-2 control-label">所属模块</label>
-				  <div class="col-sm-4">
-					  <select class="form-control" name="module" [(ngModel)]="menu.module">
-						<option value="" selected="selected">指定所属菜单</option>
-							<option value="manage">管理模块</option>
-							<option value="website">网站模块</option>
 					  </select>
 				  </div>
 			  </div>

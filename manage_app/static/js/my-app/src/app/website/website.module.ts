@@ -15,11 +15,17 @@ import { SharedModule } from '../common/common.module';
 import { LeftNavService } from '../common/left_nav/left_nav.service';
 import { HeaderService } from '../common/header/header.service';
 
+import { WebsiteMenuConfComponent, WebsiteMenuConfDetailComponent } from './menu/website_menu.component';
+
+import { WebsiteMenuService } from './menu/website_menu.service';
+
 import { WebsiteComponent } from './website.component';
 
 @NgModule({
 	declarations: [
 		WebsiteComponent,
+		WebsiteMenuConfComponent,
+		WebsiteMenuConfDetailComponent
 	],
 	imports: [
 		CommonModule,
@@ -39,7 +45,8 @@ import { WebsiteComponent } from './website.component';
 	providers: [
 		// { provide: LocationStrategy, useClass: HashLocationStrategy },
 		HeaderService,
-		LeftNavService
+		LeftNavService,
+		WebsiteMenuService
 	],
 	bootstrap: [
 		WebsiteComponent

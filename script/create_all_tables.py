@@ -14,6 +14,8 @@ from model.image.image import Image
 from model.image.image_series import ImageSeries, ImageSeriesRel
 from model.image.image_tags import ImageTags, ImageTagsRel
 
+from model.website.menu import WebsiteMenu
+
 
 def create_all_tables():
     Base.metadata.create_all(engine)

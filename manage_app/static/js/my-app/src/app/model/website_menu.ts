@@ -1,4 +1,4 @@
-export class Menu {
+export class WebsiteMenu {
 	id: string;
 	name: string;
 	code: string;
@@ -6,8 +6,7 @@ export class Menu {
 	url: string;
 	sort: number;
 	parent_id: number = 0;
-	sub_menus: Menu[];
+	sub_menus: WebsiteMenu[];
 	created_date: string;
 	modified_date: string;
-	module: string;
 }
