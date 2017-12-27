@@ -4,184 +4,240 @@
 		<meta charset="utf-8">
 		<title>网站首页</title>
 		<link rel="stylesheet" href="/static/index/css/ddfullscreenslider.css">
-		<link rel="stylesheet" href="/static/index/css/font-awesome.css">
+		<link rel="stylesheet" href="/static/index/css/img-normalize.css" />
+		<link rel="stylesheet" href="/static/index/css/img-set.css" />
 		<link rel="stylesheet" href="/static/index/css/style.css">
+		<link rel="stylesheet" href="/static/index/css/font-awesome.css">
 		
 		<script src="/static/index/js/jquery-1.11.3.min.js"></script>
-		<script src="/static/index/js/jquery.mousewheel.min.js"></script>
-		<script src="/static/index/js/ddfullscreenslider.js"></script>
 		<script src="/static/index/js/jquery.SuperSlide.2.1.1.js"></script>
 		<script src="/static/index/js/modernizr.custom.js"></script>
 		
 	</head>
 	<body>
-		<section id="dowebok" class="dd_fullscreenslider">
-			<div class="slidewrapper">
-				<article class="slide">
-					<header>
-						<div class="header-content">
-							<div class="header-info">
-								<div class="header-logo">
-									<span class="header-logo-span">首页</span>
-								</div>
-								<div class="header-login">
-									<span>登录</span>
-								</div>
-							</div>
-						</div>
-					</header>
-					<div class="search-input">
-						<div class="input-border">
-							<input type="text" id="main-search" class="input-content" placeholder="输入关键词搜索">
-							<div class="input-search-btn">
-								<i class="fa fa-search"></i>
-							</div>
-							<div class="input-recommond-search" id="recommond" style="display:none;">
-								<p>
-									<span class="input-recommond-search-tag">元旦</span>
-									<span class="input-recommond-search-result">703266 结果</span>
-								</p>
-								<p>
-									<span class="input-recommond-search-tag">圣诞节</span>
-									<span class="input-recommond-search-result">622148 结果</span>
-								</p>
-							</div>
-						</div>
-						<div class="input-hot-search">
-							<div class="input-hot-search-div">
-								<span style="color: #333;">热门资源：</span>
-								<span>圣诞</span>
-							</div>
-						</div>
+		<header>
+			<div class="header-content">
+				<div class="header-info">
+					<div class="header-logo">
+						<span class="header-logo-span">首页</span>
 					</div>
-					<div class="nav">
-						<nav id="cbp-hrmenu" class="cbp-hrmenu">
-							<ul>
-								<li>
-									<a href="#">素材</a>
-									<div class="cbp-hrsub">
-										<div class="cbp-hrsub-inner"> 
-											<div>
-												<h4>平面设计</h4>
-												<ul>
-													<li><a href="#">Catch the Bullet</a></li>
-													<li><a href="#">Snoopydoo</a></li>
-													<li><a href="#">Fallen Angel</a></li>
-													<li><a href="#">Sui Maker</a></li>
-													<li><a href="#">Wave Master</a></li>
-													<li><a href="#">Golf Pro</a></li>
-												</ul>
-											</div>
-											<div>
-												<h4>淘宝电商</h4>
-												<ul>
-													<li><a href="#">Gadget Finder</a></li>
-													<li><a href="#">Green Tree Express</a></li>
-													<li><a href="#">Green Tree Pro</a></li>
-													<li><a href="#">Wobbler 3.0</a></li>
-													<li><a href="#">Coolkid</a></li>
-												</ul>
-											</div>
-											<div>
-												<h4>节日促销</h4>
-												<ul>
-													<li><a href="#">Learn Thai</a></li>
-													<li><a href="#">Math Genius</a></li>
-													<li><a href="#">Chemokid</a></li>
-												</ul>
-											</div>
-										</div><!-- /cbp-hrsub-inner -->
-									</div><!-- /cbp-hrsub -->
-								</li>
-								<li>
-									<a href="#">背景</a>
-									<div class="cbp-hrsub">
-										<div class="cbp-hrsub-inner">
-											<div>
-												<h4>广告设计</h4>
-												<ul>
-													<li><a href="#">Learn Thai</a></li>
-													<li><a href="#">Math Genius</a></li>
-													<li><a href="#">Chemokid</a></li>
-												</ul>
-												<ul>
-													<li><a href="#">Success 1.0</a></li>
-													<li><a href="#">Moneymaker</a></li>
-												</ul>
-											</div>
-											<div>
-												<h4>装饰设计</h4>
-												<ul>
-													<li><a href="#">Gadget Finder</a></li>
-													<li><a href="#">Green Tree Express</a></li>
-													<li><a href="#">Green Tree Pro</a></li>
-													<li><a href="#">Holy Cannoli</a></li>
-													<li><a href="#">Wobbler 3.0</a></li>
-													<li><a href="#">Coolkid</a></li>
-												</ul>
-											</div>
-											<div>
-												<h4>商业设计</h4>
-												<ul>
-													<li><a href="#">Catch the Bullet</a></li>
-													<li><a href="#">Snoopydoo</a></li>
-													<li><a href="#">Fallen Angel</a></li>
-													<li><a href="#">Sui Maker</a></li>
-													<li><a href="#">Wave Master</a></li>
-													<li><a href="#">Golf Pro</a></li>
-												</ul>
-											</div>
-										</div><!-- /cbp-hrsub-inner -->
-									</div><!-- /cbp-hrsub -->
-								</li>
-							</ul>
-						</nav>
+					<div class="header-login">
+						<span>登录</span>
 					</div>
-					<div class="banner-box">
-						<div class="bd">
-							<ul>          	    
-								<li style="background:rgb(255, 240, 216);">
-									<div class="m-width">
-									<a href="javascript:void(0);"><img src="{{ url_for('static', filename='index/img/test1.jpg') }}" /></a>
-									</div>
-								</li>
-								<li style="background:rgb(10, 184, 135)">
-									<div class="m-width">
-									<a href="javascript:void(0);"><img src="{{ url_for('static', filename='index/img/test2.jpg') }}" /></a>
-									</div>
-								</li>
-								<li style="background:rgb(254, 222, 165);">
-									<div class="m-width">
-									<a href="javascript:void(0);"><img src="{{ url_for('static', filename='index/img/test3.jpg') }}" /></a>
-									</div>
-								</li>
-							</ul>
-						</div>
-						<div class="banner-btn">
-							<a class="prev" href="javascript:void(0);"></a>
-							<a class="next" href="javascript:void(0);"></a>
-							<div class="hd"><ul></ul></div>
-						</div>
-					</div>
-				</article>
-
-				<article class="slide">
-					<p style="position: relative; top: 35%; font: 700 60px 'Microsoft Yahei'; text-align: center;">第二屏</p>
-				</article>
-
-				<article class="slide">
-					<p style="position: relative; top: 35%; font: 700 60px 'Microsoft Yahei'; text-align: center;">第三屏</p>
-				</article>
-
-				<article class="slide">
-					<p style="position: relative; top: 35%; font: 700 60px 'Microsoft Yahei'; text-align: center;">第四屏</p>
-				</article>
-
-				<article class="slide">
-					<p style="position: relative; top: 35%; font: 700 60px 'Microsoft Yahei'; text-align: center;">第五屏</p>
-				</article>
+				</div>
 			</div>
-		</section>
+		</header>
+		<div class="search-input">
+			<div class="input-border">
+				<input type="text" id="main-search" class="input-content" placeholder="输入关键词搜索">
+				<div class="input-search-btn">
+					<i class="fa fa-search"></i>
+				</div>
+				<div class="input-recommond-search" id="recommond" style="display:none;">
+					<p>
+						<span class="input-recommond-search-tag">元旦</span>
+						<span class="input-recommond-search-result">703266 结果</span>
+					</p>
+					<p>
+						<span class="input-recommond-search-tag">圣诞节</span>
+						<span class="input-recommond-search-result">622148 结果</span>
+					</p>
+				</div>
+			</div>
+			<div class="input-hot-search">
+				<div class="input-hot-search-div">
+					<span style="color: #333;">热门资源：</span>
+					<span>圣诞</span>
+				</div>
+			</div>
+		</div>
+		<div class="nav-box">
+			<nav id="cbp-hrmenu" class="cbp-hrmenu">
+				<ul>
+					<li>
+						<a href="#">素材</a>
+						<div class="cbp-hrsub">
+							<div class="cbp-hrsub-inner"> 
+								<div>
+									<h4>平面设计</h4>
+									<ul>
+										<li><a href="#">Catch the Bullet</a></li>
+										<li><a href="#">Snoopydoo</a></li>
+										<li><a href="#">Fallen Angel</a></li>
+										<li><a href="#">Sui Maker</a></li>
+										<li><a href="#">Wave Master</a></li>
+										<li><a href="#">Golf Pro</a></li>
+									</ul>
+								</div>
+								<div>
+									<h4>淘宝电商</h4>
+									<ul>
+										<li><a href="#">Gadget Finder</a></li>
+										<li><a href="#">Green Tree Express</a></li>
+										<li><a href="#">Green Tree Pro</a></li>
+										<li><a href="#">Wobbler 3.0</a></li>
+										<li><a href="#">Coolkid</a></li>
+									</ul>
+								</div>
+								<div>
+									<h4>节日促销</h4>
+									<ul>
+										<li><a href="#">Learn Thai</a></li>
+										<li><a href="#">Math Genius</a></li>
+										<li><a href="#">Chemokid</a></li>
+									</ul>
+								</div>
+							</div><!-- /cbp-hrsub-inner -->
+						</div><!-- /cbp-hrsub -->
+					</li>
+					<li>
+						<a href="#">背景</a>
+						<div class="cbp-hrsub">
+							<div class="cbp-hrsub-inner">
+								<div>
+									<h4>广告设计</h4>
+									<ul>
+										<li><a href="#">Learn Thai</a></li>
+										<li><a href="#">Math Genius</a></li>
+										<li><a href="#">Chemokid</a></li>
+									</ul>
+									<ul>
+										<li><a href="#">Success 1.0</a></li>
+										<li><a href="#">Moneymaker</a></li>
+									</ul>
+								</div>
+								<div>
+									<h4>装饰设计</h4>
+									<ul>
+										<li><a href="#">Gadget Finder</a></li>
+										<li><a href="#">Green Tree Express</a></li>
+										<li><a href="#">Green Tree Pro</a></li>
+										<li><a href="#">Holy Cannoli</a></li>
+										<li><a href="#">Wobbler 3.0</a></li>
+										<li><a href="#">Coolkid</a></li>
+									</ul>
+								</div>
+								<div>
+									<h4>商业设计</h4>
+									<ul>
+										<li><a href="#">Catch the Bullet</a></li>
+										<li><a href="#">Snoopydoo</a></li>
+										<li><a href="#">Fallen Angel</a></li>
+										<li><a href="#">Sui Maker</a></li>
+										<li><a href="#">Wave Master</a></li>
+										<li><a href="#">Golf Pro</a></li>
+									</ul>
+								</div>
+							</div><!-- /cbp-hrsub-inner -->
+						</div><!-- /cbp-hrsub -->
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="banner-box">
+			<div class="bd">
+				<ul>          	    
+					<li style="background:rgb(255, 240, 216);">
+						<div class="m-width">
+						<a href="javascript:void(0);"><img src="{{ url_for('static', filename='index/img/test1.jpg') }}" /></a>
+						</div>
+					</li>
+					<li style="background:rgb(10, 184, 135)">
+						<div class="m-width">
+						<a href="javascript:void(0);"><img src="{{ url_for('static', filename='index/img/test2.jpg') }}" /></a>
+						</div>
+					</li>
+					<li style="background:rgb(254, 222, 165);">
+						<div class="m-width">
+						<a href="javascript:void(0);"><img src="{{ url_for('static', filename='index/img/test3.jpg') }}" /></a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="banner-btn">
+				<a class="prev" href="javascript:void(0);"></a>
+				<a class="next" href="javascript:void(0);"></a>
+				<div class="hd"><ul></ul></div>
+			</div>
+		</div>
+		<div class="slogan-box">
+			<div class="slogan-content">
+				<div class="slogan-item">
+					<span class="slogan-item-title">海量资源</span>
+					<span class="slogan-item-content">精选素材，每日更新</span>
+				</div>
+				<div class="slogan-item">
+					<span class="slogan-item-title">免费精品</span>
+					<span class="slogan-item-content">精选资源，免费下载</span>
+				</div>
+				<div class="slogan-item">
+					<span class="slogan-item-title">优选专题</span>
+					<span class="slogan-item-content">精心挑选，想你所想</span>
+				</div>
+				<div class="slogan-item">
+					<span class="slogan-item-title">急速下载</span>
+					<span class="slogan-item-content">满速下载，提升效率</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="series-box">
+			<div class="series-content">
+				<div class="series-title">
+					精选专题
+				</div>
+				<div class="series-item-content">
+					<div class="series-item">
+						<div class="grid">
+							<figure class="effect-apollo">
+								<img src="{{ url_for('static', filename='index/img/series_1.jpg') }}">
+								<figcaption>
+									<h2>精选2018</h2>
+									<p>精选2018素材</p>
+									<a href="#">更多</a>
+								</figcaption>		
+							</figure>
+						</div>
+					</div>
+					<div class="series-item">
+						<div class="grid">
+							<figure class="effect-apollo">
+								<img class="series-item-img" src="{{ url_for('static', filename='index/img/series_2.jpg') }}">
+							<figcaption>
+									<h2>精选2018</h2>
+									<p>精选2018素材</p>
+									<a href="#">更多</a>
+								</figcaption>		
+							</figure>
+						</div>
+					</div>
+					<div class="series-item">
+						<div class="grid">
+							<figure class="effect-apollo">
+								<img class="series-item-img" src="{{ url_for('static', filename='index/img/series_3.jpg') }}">
+							<figcaption>
+									<h2>精选2018</h2>
+									<p>精选2018素材</p>
+									<a href="#">更多</a>
+								</figcaption>		
+							</figure>
+						</div>
+					</div>
+					<div class="series-item">
+						<div class="grid">
+							<figure class="effect-apollo">
+								<img class="series-item-img" src="{{ url_for('static', filename='index/img/series_4.jpg') }}">
+							<figcaption>
+									<h2>精选2018</h2>
+									<p>精选2018素材</p>
+									<a href="#">更多</a>
+								</figcaption>		
+							</figure>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		{% if config.DEBUG %}
 			<script type="text/javascript" src="/static/dist/debug/common/polyfills.js"></script>
@@ -194,14 +250,7 @@
 		{% endif %}
 
 		<script>
-			var fss;
 			$(function() {
-				fss = new ddfullscreenslider({
-					sliderid: 'dowebok',
-					onslide: function($slide, index) {
-						console.log('滚动到了第 ' + (index + 1) + ' 屏');
-					}
-				});
 				/* 轮播图 */
 				$(".banner-box").hover(function(){
 					$(".prev,.next").stop(true,false).fadeTo("show",0.8);

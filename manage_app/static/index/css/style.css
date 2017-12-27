@@ -188,7 +188,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 }
 
 /* 导航 */
-.nav {
+.nav-box {
 	width: 100%;
 	margin: 0 auto;
 }
@@ -340,5 +340,69 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	}
 }
 
+/* slogan */
+.slogan-box {
+	width: 100%;
+}
 
+.slogan-content {
+	width: 1200px;
+	margin: 0 auto;
+	padding: 20px 30px;
+	text-align: center;
+}
 
+.slogan-item {
+	width: 20%;
+	display: inline-block;
+}
+
+.slogan-item-title {
+	display: block;
+	font-size: 18px;
+    line-height: 26px;
+    margin-top: 3px;
+	color: #535353;
+}
+
+.slogan-item-content {
+	display: block;
+	font-size: 14px;
+    line-height: 20px;
+    margin-top: 3px;
+	color: #828282;
+}
+
+/* 系列 */
+.series-box {
+	margin-top: 20px;
+}
+
+.series-content {
+	width: 1200px;
+	margin: 0 auto;
+	background: #fff;
+	padding: 30px;
+}
+
+.series-title {
+	color: #828282;
+	padding: 10px 0 25px 0;
+	font-size: 26px;
+	line-height: 26px;
+}
+
+.series-item-content {
+	background: #fff;
+}
+
+.series-item {
+	width: 270px;
+	display: inline-block;
+	margin-right: 26px;
+	margin-bottom: 23px;
+	overflow: hidden;
+}
+
+.series-item-img {
+}
