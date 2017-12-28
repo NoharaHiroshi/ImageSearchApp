@@ -333,6 +333,7 @@ def update_image_series_detail():
     image_series_id = request.form.get('id')
     image_series_name = request.form.get('name')
     image_series_desc = request.form.get('desc')
+    image_series_type = request.form.get('type')
     try:
         if None in [image_series_name]:
             result.update({
@@ -346,12 +347,14 @@ def update_image_series_detail():
                     image_series.name = image_series_name
                     image_series.desc = image_series_desc
                     image_series.author = current_user.name
+                    image_series.type = image_series_type
                     db_session.add(image_series)
                 else:
                     image_series = db_session.query(ImageSeries).get(image_series_id)
                     if image_series:
                         image_series.name = image_series_name
                         image_series.desc = image_series_desc
+                        image_series.type = image_series_type
                     else:
                         result['response'] = 'fail'
                         result['info'] = u'当前对象不存在'

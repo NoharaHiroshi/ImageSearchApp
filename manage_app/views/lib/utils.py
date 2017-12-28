@@ -44,3 +44,4 @@ def get_all_series():
                 'count': paginator.count
             }
         })
+    return jsonify(result)

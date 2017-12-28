@@ -1,19 +1,19 @@
 {
-  "name": "my-index",
-  "version": "0.0.0",
-  "license": "MIT",
-  "scripts": {
-    "ng": "ng",
-    "start": "webpack --config config/webpack.dev.js --progress --profile",
-    "start_prod": "webpack --config config/webpack.product.js --progress --profile --bail",
-    "build": "webpack --config config/webpack.dev.js --progress --profile --bail",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "webpack": "webpack"
-  },
-  "private": true,
-  "dependencies": {
+	"name": "my-index",
+	"version": "0.0.0",
+	"license": "MIT",
+	"scripts": {
+		"ng": "ng",
+		"start": "webpack --config config/webpack.dev.js --progress --profile",
+		"start_prod": "webpack --config config/webpack.product.js --progress --profile --bail",
+		"build": "webpack --config config/webpack.dev.js --progress --profile --bail",
+		"test": "ng test",
+		"lint": "ng lint",
+		"e2e": "ng e2e",
+		"webpack": "webpack"
+	},
+	"private": true,
+	"dependencies": {
 		"@angular/animations": "^4.0.3",
 		"@angular/common": "4.1.2",
 		"@angular/compiler": "4.1.2",
@@ -30,14 +30,15 @@
 		"jquery": "2.1.4",
 		"jquery-flot": "^0.8.3",
 		"jquery-ui": "^1.12.1",
+		"masonry-layout": "latest",
 		"ng2-auto-complete": "^0.12.0",
 		"ng2-eonasdan-datetimepicker": "0.0.5",
 		"ng2-file-upload": "^1.2.1",
+		"ng2-select": "^2.0.0",
 		"ngx-ueditor": "^1.0.4",
 		"rxjs": "5.4.0",
 		"zone.js": "0.8.10",
-		"ztree": "^3.5.24",
-		"masonry-layout": "latest"
+		"ztree": "^3.5.24"
 	},
 	"devDependencies": {
 		"@angular/cli": "^1.4.2",

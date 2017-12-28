@@ -96,6 +96,7 @@ export class WebsiteMenuConfComponent extends ListBaseComponent{
 export class WebsiteMenuConfDetailComponent extends ListBaseComponent{
 	menu: WebsiteMenu;
 	menu_select_info: any;
+	all_series_list: any;
 	
 	constructor(private service: WebsiteMenuService, public route: ActivatedRoute, public router: Router) {
 		super();
@@ -107,9 +108,10 @@ export class WebsiteMenuConfDetailComponent extends ListBaseComponent{
 	        .subscribe(res => {
 	        	this.menu = res['menu'];
 				this.menu_select_info = res['menu_select_info'];
+				this.all_series_list = res['all_series_list'];
 				setTimeout(function(){
 					self.loadAfter();
-				}, 100);
+				}, 200);
 	        });
 	}
 	
@@ -133,11 +135,9 @@ export class WebsiteMenuConfDetailComponent extends ListBaseComponent{
 	loadAfter(): void  {
 		let self = this;
 		const url = `/lib/get_all_series`; 
-		console.log($.fn);
-		/* $('#series_select').val(self.menu.connect_id).select2({
+		$('#series_select').val(self.menu.connect_id).select2({
             placeholder: '请选择专题',
             allowClear: true,
-            multiple: false,
             ajax: {
                 url: url,
                 dataType: 'json',
@@ -157,7 +157,7 @@ export class WebsiteMenuConfDetailComponent extends ListBaseComponent{
             initSelection: function(element:any, callback:any){
             	var data = [], _series_id = self.menu.connect_id;
                 if(undefined !== _series_id){
-                    var _series = self.menu.all_series_list;
+                    var _series = self.all_series_list;
                     for(var i = 0; i < _series.length; i++) {
                     	data.push({id: _series[i].id, name: _series[i].name})
                     }
@@ -173,5 +173,6 @@ export class WebsiteMenuConfDetailComponent extends ListBaseComponent{
             }
         }).on('change', function(){
         	self.menu.connect_id = $('#series_select').val()
-        }); */
+        });
+	}
 }

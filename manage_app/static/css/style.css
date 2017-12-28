@@ -2544,3 +2544,9 @@ label {
 	color: #0099FF;
 	margin: 0 5px;
 }
+
+/* select2*/
+.select2-container {
+	height: auto !important;
+    padding: 0px;
+}

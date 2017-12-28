@@ -6,11 +6,10 @@ export class WebsiteMenu {
 	type_text: string;
 	icon_info: string;
 	url: string;
-	connect_id: number = 0;
+	connect_id: number;
 	sort: number;
 	parent_id: number = 0;
 	sub_menus: WebsiteMenu[];
 	created_date: string;
 	modified_date: string;
-	all_series_list: any[];
 }
