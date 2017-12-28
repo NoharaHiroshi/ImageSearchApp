@@ -26,13 +26,20 @@
 						</tr>
 					</thead>
 					<tbody *ngIf="menu_func_list">
-						<tr *ngFor="let menu_func of menu_func_list">
-							<td><input icheck class="icheck" name="checked" type="checkbox" value={{menu_func.id}} ></td>
-							<td><a [routerLink]="['detail', menu_func.id]">{{ menu_func.name }}</a></td>
-							<td>{{ menu_func.menu_name }}</td>
-							<td class="hidden-phone">{{ menu_func.menu_func_code }}</td>
-							<td>{{ menu_func.func_name}}</td>
-						</tr>
+						<ng-container *ngIf="menu_func_list.length">
+							<tr *ngFor="let menu_func of menu_func_list">
+								<td><input icheck class="icheck" name="checked" type="checkbox" value={{menu_func.id}} ></td>
+								<td><a [routerLink]="['detail', menu_func.id]">{{ menu_func.name }}</a></td>
+								<td>{{ menu_func.menu_name }}</td>
+								<td class="hidden-phone">{{ menu_func.menu_func_code }}</td>
+								<td>{{ menu_func.func_name}}</td>
+							</tr>
+						</ng-container>
+						<ng-container *ngIf="!menu_func_list.length">
+							<tr>
+								<td style="text-align: center;" colspan=5>当前还未添加任何菜单功能，请<a [routerLink]="['add']">点击添加</a></td>
+							</tr>
+						</ng-container>
 					</tbody>
 				</table>
 			</div><!-- /content-panel -->

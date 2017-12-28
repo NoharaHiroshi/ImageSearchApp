@@ -19,6 +19,15 @@
 				  </div>
 			  </div>
 			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">专题类型</label>
+				  <div class="col-sm-4">
+					  <select class="form-control" name="type" [(ngModel)]="imageSeries.type">
+						<option value=0>普通专题</option>
+						<option value=1>分类专题</option>
+					  </select>
+				  </div>
+			  </div>
+			  <div class="form-group">
 				  <label class="col-sm-2 col-sm-2 control-label"></label>
 				  <div class="col-sm-4">
 					  <button type="button" type="submit" [disabled]="isDisabledButton" class="btn btn-theme03" (click)="save()">保存</button>

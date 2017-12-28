@@ -27,18 +27,25 @@
 						</tr>
 					</thead>
 					<tbody *ngIf="user_role_list">
-						<tr *ngFor="let user_role of user_role_list">
-							<td class="td-center"><input icheck class="icheck" name="checked" type="checkbox" value={{user_role.id}}></td>
-							<td class="td-center"><a [routerLink]="['detail', user_role.id]">{{ user_role.name }}</a></td>
-							<td class="td-center">{{ user_role.email }}</td>
-							<td class="td-center">{{ user_role.status_text }}</td>
-							<td class="td-center">{{ user_role.type_text }}</td>
-							<td class="td-center">
-								<ng-container *ngFor="let role of user_role.roles">
-									<div>{{ role['name'] }}</div>
-								</ng-container>
-							</td>
-						</tr>
+						<ng-container *ngIf="user_role_list.length">
+							<tr *ngFor="let user_role of user_role_list">
+								<td class="td-center"><input icheck class="icheck" name="checked" type="checkbox" value={{user_role.id}}></td>
+								<td class="td-center"><a [routerLink]="['detail', user_role.id]">{{ user_role.name }}</a></td>
+								<td class="td-center">{{ user_role.email }}</td>
+								<td class="td-center">{{ user_role.status_text }}</td>
+								<td class="td-center">{{ user_role.type_text }}</td>
+								<td class="td-center">
+									<ng-container *ngFor="let role of user_role.roles">
+										<div>{{ role['name'] }}</div>
+									</ng-container>
+								</td>
+							</tr>
+						</ng-container>
+						<ng-container *ngIf="!user_role_list.length">
+							<tr>
+								<td style="text-align: center;" colspan=6>当前还未给用户分配角色，请<a [routerLink]="['add']">点击</a>为用户分配角色</td>
+							</tr>
+						</ng-container>
 					</tbody>
 				</table>
 			</div><!-- /content-panel -->

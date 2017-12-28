@@ -25,12 +25,19 @@
 						</tr>
 					</thead>
 					<tbody *ngIf="role_list">
-						<tr *ngFor="let role of role_list">
-							<td><input icheck class="icheck" name="checked" type="checkbox" value={{role.id}} ></td>
-							<td><a [routerLink]="['detail', role.id]">{{ role.name }}</a></td>
-							<td class="hidden-phone">{{ role.desc }}</td>
-							<td><a [routerLink]="['permission', role.id]">权限配置</a></td>
-						</tr>
+						<ng-container *ngIf="role_list.length">
+							<tr *ngFor="let role of role_list">
+								<td><input icheck class="icheck" name="checked" type="checkbox" value={{role.id}} ></td>
+								<td><a [routerLink]="['detail', role.id]">{{ role.name }}</a></td>
+								<td class="hidden-phone">{{ role.desc }}</td>
+								<td><a [routerLink]="['permission', role.id]">权限配置</a></td>
+							</tr>
+						</ng-container>
+						<ng-container *ngIf="!role_list.length">
+							<tr>
+								<td style="text-align: center;" colspan=4>当前还未添加任何角色，请<a [routerLink]="['add']">点击添加</a></td>
+							</tr>
+						</ng-container>
 					</tbody>
 				</table>
 			</div><!-- /content-panel -->

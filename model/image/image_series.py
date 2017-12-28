@@ -9,15 +9,29 @@ from model.image.image import Image
 class ImageSeries(Base):
     __tablename__ = 'image_series'
 
+    # 专题类型：普通专题、分类专题
+    TYPE_COMMON, TYPE_CATEGORY = range(2)
+
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 名称
     name = Column(String(100), index=True)
+    # 类型
+    type = Column(Integer, default=TYPE_COMMON, index=True)
     # 作者
     author = Column(String(100), default=u'未知', index=True)
     # 描述
     desc = Column(String(255))
     # 封面图
     cover_image_id = Column(BigInteger)
+
+    @property
+    def type_text(self):
+        s = {
+            self.TYPE_COMMON: u'普通专题',
+            self.TYPE_CATEGORY: u'分类专题',
+        }
+
+        return s.get(self.type, u'普通专题')
 
     @property
     def cover_image_url(self):
@@ -45,6 +59,8 @@ class ImageSeries(Base):
         return {
             'id': str(self.id),
             'name': self.name,
+            'type': self.type,
+            'type_text': self.type_text,
             'author': self.author,
             'desc': self.desc,
             'cover_image_id': str(self.cover_image_id),

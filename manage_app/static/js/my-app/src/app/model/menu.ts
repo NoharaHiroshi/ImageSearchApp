@@ -9,5 +9,5 @@ export class Menu {
 	sub_menus: Menu[];
 	created_date: string;
 	modified_date: string;
-	module: string;
+	module: string = "manage";
 }

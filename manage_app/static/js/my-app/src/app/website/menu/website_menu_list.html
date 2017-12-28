@@ -27,17 +27,24 @@
 						</tr>
 					</thead>
 					<tbody *ngIf="menu_list">
-						<tr *ngFor="let menu of menu_list">
-							<td><input icheck class="icheck" name="checked" type="checkbox" value={{menu.id}} ></td>
-							<td><a [routerLink]="['detail', menu.id]">{{ menu.menu_name }}</a></td>
-							<td class="hidden-phone">{{ menu.code }}</td>
-							<td>{{ menu.url }}</td>
-							<td>{{ menu.sort }}</td>
-							<td>
-								<button type="button" class="btn btn-theme min-btn" (click)="changeUpSort(menu.id)"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
-								<button type="button" class="btn btn-theme03 min-btn" (click)="changeDownSort(menu.id)"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
-							</td>
-						</tr>
+						<ng-container *ngIf="menu_list.length">
+							<tr *ngFor="let menu of menu_list">
+								<td><input icheck class="icheck" name="checked" type="checkbox" value={{menu.id}} ></td>
+								<td><a [routerLink]="['detail', menu.id]">{{ menu.menu_name }}</a></td>
+								<td class="hidden-phone">{{ menu.code }}</td>
+								<td>{{ menu.url }}</td>
+								<td>{{ menu.sort }}</td>
+								<td>
+									<button type="button" class="btn btn-theme min-btn" (click)="changeUpSort(menu.id)"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+									<button type="button" class="btn btn-theme03 min-btn" (click)="changeDownSort(menu.id)"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
+								</td>
+							</tr>
+						</ng-container>
+						<ng-container *ngIf="!menu_list.length">
+							<tr>
+								<td style="text-align: center;" colspan=6>当前还未添加任何菜单，请<a [routerLink]="['add']">点击添加</a></td>
+							</tr>
+						</ng-container>
 					</tbody>
 				</table>
 			</div><!-- /content-panel -->

@@ -25,12 +25,19 @@
 						</tr>
 					</thead>
 					<tbody *ngIf="func_list">
-						<tr *ngFor="let func of func_list">
-							<td><input icheck class="icheck" name="checked" type="checkbox" value={{func.id}} ></td>
-							<td><a [routerLink]="['detail', func.id]">{{ func.name }}</a></td>
-							<td class="hidden-phone">{{ func.code }}</td>
-							<td>{{ func.desc }}</td>
-						</tr>
+						<ng-container *ngIf="func_list.length">
+							<tr *ngFor="let func of func_list">
+								<td><input icheck class="icheck" name="checked" type="checkbox" value={{func.id}} ></td>
+								<td><a [routerLink]="['detail', func.id]">{{ func.name }}</a></td>
+								<td class="hidden-phone">{{ func.code }}</td>
+								<td>{{ func.desc }}</td>
+							</tr>
+						</ng-container>
+						<ng-container *ngIf="!func_list.length">
+							<tr>
+								<td style="text-align: center;" colspan=4>当前还未添加任何功能，请<a [routerLink]="['add']">点击添加</a></td>
+							</tr>
+						</ng-container>
 					</tbody>
 				</table>
 			 </div><!-- /content-panel -->
