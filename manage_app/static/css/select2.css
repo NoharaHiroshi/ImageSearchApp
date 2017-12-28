@@ -26,6 +26,10 @@ Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
           box-sizing: border-box; /* css3 */
 }
 
+.select2-hidden-accessible {
+	display: none;
+}
+
 .select2-container .select2-choice {
     display: block;
     height: 34px;

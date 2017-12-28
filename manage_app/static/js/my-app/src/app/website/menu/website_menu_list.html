@@ -20,6 +20,7 @@
 								<input icheck class="all-icheck" type="checkbox">
 							</th>
 							<th><i class="fa fa-bullhorn"></i> 菜单名称 </th>
+							<th><i class="hidden-phone"></i> 链接类型 </th>
 							<th class="hidden-phone"><i class="fa fa-question-circle"></i> 菜单代码 </th>
 							<th><i class="fa fa-bookmark"></i> 链接 </th>
 							<th><i class="fa fa-bookmark"></i> 排序 </th>
@@ -31,6 +32,7 @@
 							<tr *ngFor="let menu of menu_list">
 								<td><input icheck class="icheck" name="checked" type="checkbox" value={{menu.id}} ></td>
 								<td><a [routerLink]="['detail', menu.id]">{{ menu.menu_name }}</a></td>
+								<td>{{ menu.type_text }}</td>
 								<td class="hidden-phone">{{ menu.code }}</td>
 								<td>{{ menu.url }}</td>
 								<td>{{ menu.sort }}</td>
@@ -42,7 +44,7 @@
 						</ng-container>
 						<ng-container *ngIf="!menu_list.length">
 							<tr>
-								<td style="text-align: center;" colspan=6>当前还未添加任何菜单，请<a [routerLink]="['add']">点击添加</a></td>
+								<td style="text-align: center;" colspan=7>当前还未添加任何菜单，请<a [routerLink]="['add']">点击添加</a></td>
 							</tr>
 						</ng-container>
 					</tbody>
