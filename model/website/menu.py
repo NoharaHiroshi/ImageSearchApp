@@ -13,11 +13,18 @@ class WebsiteMenu(Base):
         UniqueConstraint('code', name='code'),
     )
 
+    # 类型（按照链接的页面分类）：二级首页、详情页
+    TYPE_SECOND_INDEX, TYPE_DEFAULT_PAGE = range(2)
+
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 名称
     name = Column(String(50), nullable=False, index=True)
+    # 链接类型
+    type = Column(Integer, nullable=TYPE_SECOND_INDEX, index=True)
     # 代码
     code = Column(String(50), nullable=False, index=True)
+    # 关联id
+    connect_id = Column(BigInteger, index=True)
     # 排序
     sort = Column(Integer, default=0, index=True)
     # 父级ID
@@ -26,6 +33,14 @@ class WebsiteMenu(Base):
     icon_info = Column(String(60))
     # url
     url = Column(String(50))
+
+    @property
+    def type_text(self):
+        s = {
+            self.TYPE_SECOND_INDEX: u'二级首页',
+            self.TYPE_DEFAULT_PAGE: u'默认列表页'
+        }
+        return s.get(self.type, u'未知链接类型')
 
     @classmethod
     def set_count(cls, parent_id=0, sort=None):
@@ -76,7 +91,10 @@ class WebsiteMenu(Base):
         return {
             'id': str(self.id),
             'name': self.name,
+            'type': self.type,
+            'type_text': self.type_text,
             'code': self.code,
+            'connect_id': str(self.connect_id),
             'sort': self.sort,
             'parent_id': str(self.parent_id),
             'icon_info': self.icon_info,

@@ -43,7 +43,7 @@ import { WebsiteComponent } from './website.component';
 		WebsiteRoutingModule, // 根路由器放在最后
 	],
 	providers: [
-		// { provide: LocationStrategy, useClass: HashLocationStrategy },
+		{ provide: LocationStrategy, useClass: HashLocationStrategy },
 		HeaderService,
 		LeftNavService,
 		WebsiteMenuService

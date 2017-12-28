@@ -31,7 +31,7 @@ class ImageSeries(Base):
             self.TYPE_CATEGORY: u'分类专题',
         }
 
-        return s.get(self.type, u'普通专题')
+        return s.get(self.type, u'未知专题类型')
 
     @property
     def cover_image_url(self):
@@ -54,6 +54,16 @@ class ImageSeries(Base):
             ).count()
             image_count = image_count if image_count else 0
         return image_count
+
+    @classmethod
+    def get_all_series(cls):
+        all_series_list = list()
+        with get_session() as db_session:
+            all_series = db_session.query(cls).all()
+            for series in all_series:
+                series_dict = series.to_dict()
+                all_series_list.append(series_dict)
+        return all_series_list
 
     def to_dict(self):
         return {

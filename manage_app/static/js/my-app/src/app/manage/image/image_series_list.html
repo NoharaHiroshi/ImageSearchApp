@@ -21,6 +21,7 @@
 							</th>
 							<th><i class="fa fa-question-circle"></i> 专题名称 </th>
 							<th><i class="fa fa-bullhorn"></i> 专题封面 </th>
+							<th><i class="fa fa-bullhorn"></i> 专题类型 </th>
 							<th><i class="fa fa-question-circle"></i> 创建者 </th>
 							<th><i class="fa fa-bookmark"></i> 图片数量 </th>
 							<th><i class="fa fa-bookmark"></i> 操作 </th>
@@ -36,6 +37,7 @@
 							<ng-container *ngIf="!image_series.cover_image_url">
 								<td class="td-center">请前往图片配置中选择封面图</td>
 							</ng-container>
+							<td class="td-center">{{ image_series.type_text }}</td>
 							<td class="td-center">{{ image_series.author }}</td>
 							<td class="td-center">{{ image_series.count }}</td>
 							<td class="td-center"><a [routerLink]="['set', image_series.id]">编辑专题</a></td>

@@ -9,6 +9,8 @@ import { ListBaseComponent } from '../../common/base.component';
 import { WebsiteMenu } from '../../model/website_menu';
 import { WebsiteMenuService } from './website_menu.service';
 
+require("../lib/select2.js");
+
 @Component({
   selector: 'website-menu-root',
   templateUrl: './website_menu_list.html',
@@ -105,6 +107,9 @@ export class WebsiteMenuConfDetailComponent extends ListBaseComponent{
 	        .subscribe(res => {
 	        	this.menu = res['menu'];
 				this.menu_select_info = res['menu_select_info'];
+				setTimeout(function(){
+					self.loadAfter();
+				}, 100);
 	        });
 	}
 	
@@ -124,4 +129,49 @@ export class WebsiteMenuConfDetailComponent extends ListBaseComponent{
 			}
 		});
 	}
+	
+	loadAfter(): void  {
+		let self = this;
+		const url = `/lib/get_all_series`; 
+		console.log($.fn);
+		/* $('#series_select').val(self.menu.connect_id).select2({
+            placeholder: '请选择专题',
+            allowClear: true,
+            multiple: false,
+            ajax: {
+                url: url,
+                dataType: 'json',
+                quietMillis: 100,
+                data: function (search:any, page:any) {
+                    return {
+                    	name: search,
+                        limit: 10,
+                        page: page,
+                    };
+                },
+                results: function (data:any, page:any) {
+                    var more = (page * 10) < data.meta.total;
+                    return {results: data['data_list'], more: more};
+                }
+            },
+            initSelection: function(element:any, callback:any){
+            	var data = [], _series_id = self.menu.connect_id;
+                if(undefined !== _series_id){
+                    var _series = self.menu.all_series_list;
+                    for(var i = 0; i < _series.length; i++) {
+                    	data.push({id: _series[i].id, name: _series[i].name})
+                    }
+                    callback(data);
+                }
+            },
+            formatSelection: function(data:any){
+                return data.name;
+            },
+            formatResult: function(data:any){
+            	var s = "<div style='padding: 5px;'>" + data.name + "</div>";
+                return  s;
+            }
+        }).on('change', function(){
+        	self.menu.connect_id = $('#series_select').val()
+        }); */
 }

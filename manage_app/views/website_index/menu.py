@@ -6,6 +6,7 @@ from flask import current_app as app
 
 from model.session import get_session
 from model.website.menu import WebsiteMenu
+from model.image.image_series import ImageSeries
 
 from route import website
 
@@ -33,12 +34,13 @@ def get_menu_detail():
         'menu': '',
     }
     try:
-        func_id = request.args.get('id')
+        menu_id = request.args.get('id')
         menu_select_info = list()
         menu_select_info = WebsiteMenu.get_menu_select_info(menu_select_info)
         result['menu_select_info'] = menu_select_info
+        result['all_series_list'] = ImageSeries.get_all_series()
         with get_session() as db_session:
-            menu = db_session.query(WebsiteMenu).get(func_id)
+            menu = db_session.query(WebsiteMenu).get(menu_id)
             if menu:
                 menu_dict = menu.to_dict()
                 result['menu'] = menu_dict
@@ -60,9 +62,10 @@ def update_menu_detail():
         menu_code = request.form.get('code')
         parent_id = request.form.get('parent_id')
         icon_info = request.form.get('icon_info')
-        module = request.form.get('module')
+        menu_type = request.form.get('type')
+        connect_id = request.form.get('connect_id')
         url = request.form.get('url')
-        if None in [menu_name, menu_code, parent_id]:
+        if None in [menu_name, menu_code, parent_id, menu_type, connect_id]:
             result.update({
                 'response': 'fail',
                 'info': u'请检查参数是否填写完整'
@@ -75,6 +78,8 @@ def update_menu_detail():
                     menu.code = menu_code
                     menu.parent_id = parent_id
                     menu.icon_info = icon_info
+                    menu.connect_id = connect_id
+                    menu.type = menu_type
                     # 设置同层级菜单的排序位置
                     menu.sort = WebsiteMenu.set_count(parent_id)
                     menu.url = url
@@ -84,6 +89,8 @@ def update_menu_detail():
                     if menu:
                         menu.name = menu_name
                         menu.code = menu_code
+                        menu.type = menu_type
+                        menu.connect_id = connect_id
                         menu.parent_id = parent_id
                         menu.icon_info = icon_info
                         menu.url = url

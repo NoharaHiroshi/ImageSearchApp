@@ -8,5 +8,4 @@ export class ImageSeries {
 	count: string;
 	type: number = 0;
 	type_text: string;
-	all_type: any[];
 }
