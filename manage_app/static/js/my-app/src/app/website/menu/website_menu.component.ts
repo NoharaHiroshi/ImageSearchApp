@@ -144,7 +144,7 @@ export class WebsiteMenuConfDetailComponent extends ListBaseComponent{
                 quietMillis: 100,
                 data: function (search:any, page:any) {
                     return {
-                    	name: search,
+                    	search: search,
                         limit: 10,
                         page: page,
                     };

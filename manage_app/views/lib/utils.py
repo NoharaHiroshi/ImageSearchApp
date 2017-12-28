@@ -23,8 +23,8 @@ def get_all_series():
         query = db_session.query(ImageSeries).order_by(-ImageSeries.modified_date)
 
         if search:
-            query.filter(
-                ImageSeries.name.like(u'%%%s%%' % search)
+            query = query.filter(
+                ImageSeries.name.like('%%%s%%' % search)
             )
 
         paginator = SQLAlchemyPaginator(query, limit)
