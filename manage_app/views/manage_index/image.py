@@ -48,7 +48,7 @@ def image_info():
     result = {
         'response': 'ok',
         'image_series_list': [],
-        'iamge_tag_list': []
+        'image_tag_list': []
     }
     try:
         with get_session() as db_session:

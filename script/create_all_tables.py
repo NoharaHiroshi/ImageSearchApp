@@ -15,6 +15,7 @@ from model.image.image_series import ImageSeries, ImageSeriesRel
 from model.image.image_tags import ImageTags, ImageTagsRel
 
 from model.website.menu import WebsiteMenu
+from model.website.hot_search import WebsiteHotSearch
 
 
 def create_all_tables():
