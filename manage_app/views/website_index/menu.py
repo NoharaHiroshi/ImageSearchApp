@@ -44,6 +44,11 @@ def get_menu_detail():
             if menu:
                 menu_dict = menu.to_dict()
                 result['menu'] = menu_dict
+            else:
+                result.update({
+                    'response': 'fail',
+                    'info': u'当前菜单不存在'
+                })
         return jsonify(result)
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))

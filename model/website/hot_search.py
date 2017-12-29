@@ -26,11 +26,20 @@ class WebsiteHotSearch(Base):
     # 排名
     ranking = Column(Integer, default=1, index=True)
 
+    @property
+    def status_text(self):
+        s = {
+            self.STATUS_CLOSE: u'关闭',
+            self.STATUS_NORMAL: u'开启'
+        }
+        return s.get(self.status)
+
     def to_dict(self):
         return {
             'id': str(self.id),
             'name': self.name,
             'connect_id': str(self.connect_id),
             'status': self.status,
+            'status_text': self.status_text,
             'ranking': self.ranking
         }

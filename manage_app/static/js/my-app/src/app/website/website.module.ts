@@ -16,8 +16,10 @@ import { LeftNavService } from '../common/left_nav/left_nav.service';
 import { HeaderService } from '../common/header/header.service';
 
 import { WebsiteMenuConfComponent, WebsiteMenuConfDetailComponent } from './menu/website_menu.component';
+import { HotSearchConfComponent, HotSearchConfDetailComponent } from './hot_search/hot_search.component';
 
 import { WebsiteMenuService } from './menu/website_menu.service';
+import { HotSearchService } from './hot_search/hot_search.service';
 
 import { WebsiteComponent } from './website.component';
 
@@ -25,7 +27,9 @@ import { WebsiteComponent } from './website.component';
 	declarations: [
 		WebsiteComponent,
 		WebsiteMenuConfComponent,
-		WebsiteMenuConfDetailComponent
+		WebsiteMenuConfDetailComponent,
+		HotSearchConfComponent,
+		HotSearchConfDetailComponent
 	],
 	imports: [
 		CommonModule,
@@ -46,7 +50,8 @@ import { WebsiteComponent } from './website.component';
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
 		HeaderService,
 		LeftNavService,
-		WebsiteMenuService
+		WebsiteMenuService,
+		HotSearchService
 	],
 	bootstrap: [
 		WebsiteComponent
