@@ -23,3 +23,11 @@ def website_manage_index():
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))
         abort(400)
+
+
+@website.route('/website_info', methods=['GET'])
+def get_website_info():
+    try:
+        pass
+    except Exception as e:
+        print e

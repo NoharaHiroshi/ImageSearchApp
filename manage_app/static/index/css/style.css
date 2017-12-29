@@ -72,6 +72,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	margin: 0 auto;
 	text-align: center;
 	padding: 40px 0 5px 0;
+	margin-bottom: 10px;
 }
 
 /* 搜索框 */
@@ -114,7 +115,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
     border: 1px solid #ffbe40;
     border-radius: 4px;
     position: relative;
-    padding: 3px 10px 8px 10px;
+    padding: 4px 10px 6px 10px;
     background-color: #fff;
 }
 
@@ -139,7 +140,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 
 .input-hot-search {
 	position: relative;
-	margin: 0 auto;
+	margin: 5px auto;
     color: #888;
 	width: 630px;
     height: 30px;
@@ -154,6 +155,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 
 .input-hot-search span {
 	margin-right: 5px;
+	font-size: 13px;
 }
 
 .input-recommond-search {
@@ -182,6 +184,136 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 }
 
 .input-recommond-search-result {
+	color: #aaa;
+	font-size: 12px;
+	float: right;
+}
+
+/* 搜索框（固定） */
+.header-content-fix {
+	width: 100%;
+    min-width: 1240px;
+    background: #f1f1f1;
+    position: fixed;
+	z-index: 200;
+	top: 0px;
+}
+
+.search-fix {
+	width: 60%;
+	margin: 0 auto;
+	text-align: center;
+	padding: 10px 20px;
+}
+
+.input-content-fix  {
+	text-indent: 10px;
+    width: 100%;
+    height: 30px;
+    outline: 0;
+    border: 0;
+    line-height: 30px;
+    font-size: 15px;
+    color: #999;
+	position: relative;
+	display: inline-block;
+}
+
+.input-content-fix ::-webkit-input-placeholder { 
+	color: #bbb; 
+	font-family:"微软雅黑";
+} 
+.input-content-fix:-moz-placeholder { 
+	color: #bbb; 
+	font-family:"微软雅黑";
+} 
+.input-content-fix ::-moz-placeholder { 
+	color: #bbb; 
+	font-family:"微软雅黑";
+} 
+.input-content-fix :-ms-input-placeholder { 
+	color: #bbb; 
+	font-family:"微软雅黑";
+} 
+
+.input-border-fix {
+	height: 30px;
+    width: 530px;
+    line-height: 30px;
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid #ffbe40;
+    border-radius: 4px;
+    position: relative;
+    padding: 4px 10px 6px 10px;
+    background-color: #fff;
+}
+
+.input-search-btn-fix {
+	display: inline-block;
+	position: absolute;
+	color: #fff;
+	top: -1px;
+    right: -1px;
+    width: 70px;
+    height: 42px;
+	margin: 0;
+	padding: 0;
+	line-height: 42px;
+    text-align: center;
+	background: #ffbe40;
+    border-radius: 0 4px 4px 0;
+	cursor: pointer;
+    vertical-align: middle;
+	font-size: 22px;
+}
+
+.input-hot-search-fix {
+	position: relative;
+	margin: 5px auto;
+    color: #888;
+	width: 630px;
+    height: 30px;
+	vertical-align: middle;
+    line-height: 30px;
+    font-size: 12px;
+}
+
+.input-hot-search-div-fix{
+	float: left;
+}
+
+.input-hot-search-fix span {
+	margin-right: 5px;
+	font-size: 13px;
+}
+
+.input-recommond-search-fix {
+	font-size: 14px;
+	padding: 5px 10px;
+	line-height: 14px;
+	color: #888;
+    width: 460px;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background-color: #fff;
+    overflow: hidden;
+    -webkit-box-shadow: 0 3px 7px 0 rgba(0,0,0,.16);
+    box-shadow: 0 3px 7px 0 rgba(0,0,0,.16);
+    z-index: 303;
+}
+
+.input-recommond-search-fix p {
+	margin: 15px 10px;
+	overflow: hidden;
+}
+
+.input-recommond-search-tag-fix {
+	float: left;
+}
+
+.input-recommond-search-result-fix {
 	color: #aaa;
 	font-size: 12px;
 	float: right;
@@ -375,14 +507,14 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 
 /* 系列 */
 .series-box {
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 .series-content {
 	width: 1200px;
 	margin: 0 auto;
 	background: #fff;
-	padding: 30px;
+	padding: 30px 30px 0 30px;
 }
 
 .series-title {
@@ -390,6 +522,14 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	padding: 10px 0 25px 0;
 	font-size: 26px;
 	line-height: 26px;
+}
+
+.series-subtitle {
+	color: #989898;
+	padding: 10px 0 25px 0;
+	font-size: 14px;
+	line-height: 26px;
+	margin-left: 20px;
 }
 
 .series-item-content {
@@ -400,9 +540,13 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	width: 270px;
 	display: inline-block;
 	margin-right: 26px;
-	margin-bottom: 23px;
+	margin-bottom: 10px;
 	overflow: hidden;
 }
 
-.series-item-img {
+.series-item-font {
+	font-size: 13px;
+	text-align: center;
+	padding: 10px 5px;
+	color: #555;
 }
