@@ -288,8 +288,13 @@
 			</div>
 		</div>
 		
+		<div class="left-navigation-box">
+			<div class="left-navigation-item" onClick="go('1')">精选专题</div>
+			<div class="left-navigation-item" onClick="go('2')">热门下载</div>
+		</div>
+		
 		<div class="series-box">
-			<div class="series-content">
+			<div class="series-content" id="guide-1">
 				<div class="series-title">
 					<span>精选专题</span>
 					<span class="series-subtitle">
@@ -351,7 +356,7 @@
 					</div>
 				</div>
 			</div> <!-- /精选专题 -->
-			<div class="series-content">
+			<div class="series-content" id="guide-2">
 				<div class="series-title">
 					<span>热门下载</span>
 					<span class="series-subtitle">
@@ -362,7 +367,7 @@
 					<div class="series-item">
 						<div class="grid">
 							<figure class="effect-apollo">
-								<img src="{{ url_for('static', filename='index/img/series_1.jpg') }}">
+								<img src="{{ url_for('static', filename='index/img/series_5.jpg') }}">
 								<figcaption>
 									<h2>精选2018</h2>
 									<p>精选2018素材</p>
@@ -370,12 +375,12 @@
 								</figcaption>		
 							</figure>
 						</div>
-						<div class="series-item-font">精选2018</div>
+						<div class="series-item-font">电商 · 开启美化元旦</div>
 					</div>
 					<div class="series-item">
 						<div class="grid">
 							<figure class="effect-apollo">
-								<img class="series-item-img" src="{{ url_for('static', filename='index/img/series_2.jpg') }}">
+								<img class="series-item-img" src="{{ url_for('static', filename='index/img/series_6.jpg') }}">
 							<figcaption>
 									<h2>电商年终促销</h2>
 									<p>淘宝电商年终促销素材</p>
@@ -388,7 +393,7 @@
 					<div class="series-item">
 						<div class="grid">
 							<figure class="effect-apollo">
-								<img class="series-item-img" src="{{ url_for('static', filename='index/img/series_3.jpg') }}">
+								<img class="series-item-img" src="{{ url_for('static', filename='index/img/series_7.jpg') }}">
 							<figcaption>
 									<h2>猴年素材</h2>
 									<p>猴年素材，一网打尽</p>
@@ -401,7 +406,7 @@
 					<div class="series-item">
 						<div class="grid">
 							<figure class="effect-apollo">
-								<img class="series-item-img" src="{{ url_for('static', filename='index/img/series_4.jpg') }}">
+								<img class="series-item-img" src="{{ url_for('static', filename='index/img/series_8.jpg') }}">
 							<figcaption>
 									<h2>精选2018</h2>
 									<p>精选2018素材</p>
@@ -471,6 +476,15 @@
 				
 				/* 导航条 */
 				cbpHorizontalMenu.init();
+				
+				/* 左侧锚点*/
+				
+				go = function(name){
+					var top = $('#guide-' + name).offset().top;
+					$('html, body').animate({
+						scrollTop: top
+					}, 500)
+				}
 			});
 		</script>
 		<script src="/static/index/js/cbpHorizontalMenu.min.js"></script>

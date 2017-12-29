@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* css 重置 */
-body{ background: #fbfbfb;}
+body{ background: #f9f9f9;}
 body,div,ul,li,dl,dt,dd,h2,p{padding:0;margin:0;font-family:"微软雅黑";}
 ul{list-style:none ;}
 img{border:none;}
@@ -549,4 +549,31 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	text-align: center;
 	padding: 10px 5px;
 	color: #555;
+}
+
+/* 左侧锚点 */
+.left-navigation-box {
+	position: fixed;
+	left: 2%;
+	top: 50%;
+	width: 70px;
+	box-shadow: 2px 0 3px rgba(0,0,0,0.1);
+	background: #fff;
+	z-index: 300;
+}
+
+.left-navigation-item {
+	text-align: center;
+	padding: 15px;
+	color: #888;
+	font-size: 14px;
+    cursor: pointer;
+}
+
+.left-navigation-item:hover {
+	transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+	color: #fff;
+	background: #ffbe40;
 }
