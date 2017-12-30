@@ -293,6 +293,7 @@
 			<div class="left-navigation-item" id="left_nav_2" onClick="go('2')">热门下载</div>
 			<div class="left-navigation-item" id="left_nav_3" onClick="go('3')">电商海报</div>
 			<div class="left-navigation-item" id="left_nav_4" onClick="go('4')">电商海报</div>
+			<div class="left-navigation-item" onClick="go('top')"><i class="fa fa-chevron-up"></i>TOP</div>
 		</div>
 		
 		<div class="series-box">
@@ -301,6 +302,9 @@
 					<span>精选专题</span>
 					<span class="series-subtitle">
 						小编精心整理热门专题，想你所想
+					</span>
+					<span class="series-more">
+						<a href="#">更多 ></a>
 					</span>
 				</div>
 				<div class="series-item-content">
@@ -364,6 +368,9 @@
 					<span class="series-subtitle">
 						看看大家都在关注哪些素材吧
 					</span>
+					<span class="series-more">
+						<a href="#">更多 ></a>
+					</span>
 				</div>
 				<div class="series-item-content">
 					<div class="series-item">
@@ -425,6 +432,9 @@
 					<span>电商海报</span>
 					<span class="series-subtitle">
 						看看大家都在关注哪些素材吧
+					</span>
+					<span class="series-more">
+						<a href="#">更多 ></a>
 					</span>
 				</div>
 				<div class="series-item-content">
@@ -488,12 +498,15 @@
 					<span class="series-subtitle">
 						看看大家都在关注哪些素材吧
 					</span>
+					<span class="series-more">
+						<a href="#">更多 ></a>
+					</span>
 				</div>
 				<div class="series-item-content">
 					<div class="series-item">
 						<div class="grid">
 							<figure class="effect-apollo">
-								<img src="{{ url_for('static', filename='index/img/series_5.jpg') }}">
+								<img class="series-item-img" src="{{ url_for('static', filename='index/img/series_12.jpg') }}">
 								<figcaption>
 									<h2>精选2018</h2>
 									<p>精选2018素材</p>
@@ -506,7 +519,7 @@
 					<div class="series-item">
 						<div class="grid">
 							<figure class="effect-apollo">
-								<img class="series-item-img" src="{{ url_for('static', filename='index/img/series_6.jpg') }}">
+								<img class="series-item-img" src="{{ url_for('static', filename='index/img/series_9.jpg') }}">
 							<figcaption>
 									<h2>电商年终促销</h2>
 									<p>淘宝电商年终促销素材</p>
@@ -519,7 +532,7 @@
 					<div class="series-item">
 						<div class="grid">
 							<figure class="effect-apollo">
-								<img class="series-item-img" src="{{ url_for('static', filename='index/img/series_7.jpg') }}">
+								<img class="series-item-img" src="{{ url_for('static', filename='index/img/series_10.jpg') }}">
 							<figcaption>
 									<h2>猴年素材</h2>
 									<p>猴年素材，一网打尽</p>
@@ -532,7 +545,7 @@
 					<div class="series-item">
 						<div class="grid">
 							<figure class="effect-apollo">
-								<img class="series-item-img" src="{{ url_for('static', filename='index/img/series_8.jpg') }}">
+								<img class="series-item-img" src="{{ url_for('static', filename='index/img/series_11.jpg') }}">
 							<figcaption>
 									<h2>精选2018</h2>
 									<p>精选2018素材</p>
@@ -544,6 +557,31 @@
 					</div>
 				</div>
 			</div> <!-- /元素背景 -->
+		</div>
+		
+		<div class="footer-box">
+			<div class="footer-content">
+				<div class="footer-item-content" style="width: 200px;">
+					<div class="footer-item-title">数据统计</div>
+					<div class="footer-item-info">注册用户总数： 79362</div>
+					<div class="footer-item-info">昨日注册用户数：362</div>
+					<div class="footer-item-info">素材总数： 2094672</div>
+					<div class="footer-item-info">昨日上传素材数：1247</div>
+					<div class="footer-item-info">昨日下载：6491</div>
+				</div>
+				<div class="footer-item-content" style="width: 170px;">
+					<div class="footer-item-title">关于我们</div>
+					<div class="footer-item-info">关于我们</div>
+					<div class="footer-item-info">意见反馈</div>
+					<div class="footer-item-info">版权声明</div>
+				</div>
+				<div class="footer-item-content" style="width: 170px;">
+					<div class="footer-item-title">友情连接</div>
+					<div class="footer-item-info">虎嗅网</div>
+					<div class="footer-item-info">花瓣网</div>
+					<div class="footer-item-info">人人都是产品经理</div>
+				</div>
+			</div>
 		</div>
 
 		{% if config.DEBUG %}
@@ -626,7 +664,11 @@
 				/* 左侧锚点*/
 				
 				go = function(name){
-					var top = $('#guide-' + name).offset().top - 62;
+					if(name == 'top'){
+						var top = 0;
+					}else{
+						var top = $('#guide-' + name).offset().top - 62;
+					}
 					$('html, body').animate({
 						scrollTop: top
 					}, 500)
