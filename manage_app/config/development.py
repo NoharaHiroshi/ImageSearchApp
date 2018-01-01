@@ -15,6 +15,8 @@ IMG_UPLOAD_SRC = os.path.join(UPLOAD_SRC, 'img').replace('\\', '/')
 ICON_UPLOAD_SRC = os.path.join(UPLOAD_SRC, 'icon').replace('\\', '/')
 # 素材上传路径
 MATERIAL_SRC = os.path.join(UPLOAD_SRC, 'material').replace('\\', '/')
+# banner上传路径
+BANNER_UPLOAD_SRC = os.path.join(UPLOAD_SRC, 'banner').replace('\\', '/')
 
 # 模块配置
 MODULES = [

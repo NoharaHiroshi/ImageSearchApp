@@ -5,6 +5,7 @@ from PIL import Image as Img
 from manage_app.config import config
 from model.session import get_session
 from model.image.image import Image
+from model.website.banner import Banner
 from model.base import IdGenerator, HashName
 from model.image.image_tags import ImageTags, ImageTagsRel
 from model.image.image_series import ImageSeries, ImageSeriesRel
@@ -104,6 +105,35 @@ def image_series_color(index):
     color_list_len = len(color_list)
     _index = index % color_list_len
     return color_list[_index]
+
+
+def save_banner_images(images):
+    with get_session() as db_session:
+        for image in images:
+            _id = IdGenerator.gen()
+            file_name = image.filename
+            banner_name = HashName.gen(_id, info="banner")
+            upload_src = config.BANNER_UPLOAD_SRC
+            # 图像处理
+            im = Img.open(image)
+
+            # 长宽
+            width, height = im.size
+            # 格式
+            file_format = im.format
+            # 模式
+            mode = im.mode
+            im.save(os.path.join(upload_src, '.'.join([banner_name, file_format.lower()])).replace('\\', '/'))
+            img = Banner()
+            img.id = _id
+            img.name = file_name
+            img.url = banner_name
+            img.format = file_format
+            img.width = width
+            img.mode = mode
+            img.height = height
+            db_session.add(img)
+        db_session.commit()
 
 if __name__ == '__main__':
     print image_series_color(33)

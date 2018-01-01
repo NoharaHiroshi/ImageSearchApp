@@ -9,9 +9,6 @@ from model.session import get_session
 class WebsiteMenu(Base):
     __tablename__ = 'website_menu'
 
-    __table_args__ = (
-        UniqueConstraint('code', name='code'),
-    )
 
     # 类型（按照链接的页面分类）：二级首页、详情页
     TYPE_SECOND_INDEX, TYPE_DEFAULT_PAGE = range(2)
@@ -21,8 +18,6 @@ class WebsiteMenu(Base):
     name = Column(String(50), nullable=False, index=True)
     # 链接类型
     type = Column(Integer, nullable=TYPE_SECOND_INDEX, index=True)
-    # 代码
-    code = Column(String(50), nullable=False, index=True)
     # 关联id
     connect_id = Column(BigInteger, index=True)
     # 排序
@@ -31,8 +26,6 @@ class WebsiteMenu(Base):
     parent_id = Column(BigInteger, default=0, index=True)
     # 图标信息
     icon_info = Column(String(60))
-    # url
-    url = Column(String(50))
 
     @property
     def type_text(self):
@@ -93,11 +86,9 @@ class WebsiteMenu(Base):
             'name': self.name,
             'type': self.type,
             'type_text': self.type_text,
-            'code': self.code,
             'connect_id': str(self.connect_id),
             'sort': self.sort,
             'parent_id': str(self.parent_id),
             'icon_info': self.icon_info,
-            'url': self.url,
             'sub_menus': self.sub_menus
         }

@@ -21,8 +21,6 @@
 							</th>
 							<th><i class="fa fa-bullhorn"></i> 菜单名称 </th>
 							<th><i class="hidden-phone"></i> 链接类型 </th>
-							<th class="hidden-phone"><i class="fa fa-question-circle"></i> 菜单代码 </th>
-							<th><i class="fa fa-bookmark"></i> 链接 </th>
 							<th><i class="fa fa-bookmark"></i> 排序 </th>
 							<th><i class="fa fa-bookmark"></i> 移动 </th>
 						</tr>
@@ -33,8 +31,6 @@
 								<td><input icheck class="icheck" name="checked" type="checkbox" value={{menu.id}} ></td>
 								<td><a [routerLink]="['detail', menu.id]">{{ menu.menu_name }}</a></td>
 								<td>{{ menu.type_text }}</td>
-								<td class="hidden-phone">{{ menu.code }}</td>
-								<td>{{ menu.url }}</td>
 								<td>{{ menu.sort }}</td>
 								<td>
 									<button type="button" class="btn btn-theme min-btn" (click)="changeUpSort(menu.id)"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
@@ -44,7 +40,7 @@
 						</ng-container>
 						<ng-container *ngIf="!menu_list.length">
 							<tr>
-								<td style="text-align: center;" colspan=7>当前还未添加任何菜单，请<a [routerLink]="['add']">点击添加</a></td>
+								<td style="text-align: center;" colspan=5>当前还未添加任何菜单，请<a [routerLink]="['add']">点击添加</a></td>
 							</tr>
 						</ng-container>
 					</tbody>
