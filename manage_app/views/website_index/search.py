@@ -22,7 +22,7 @@ def get_hot_search():
         with get_session() as db_session:
             query = db_session.query(WebsiteHotSearch, ImageSeries).join(
                 ImageSeries, ImageSeries.id == WebsiteHotSearch.connect_id
-            ).order_by(-WebsiteHotSearch.ranking).all()
+            ).order_by(WebsiteHotSearch.ranking).all()
             _hot_search_list = list()
             for hot_search, image_series in query:
                 hot_search_dict = hot_search.to_dict()

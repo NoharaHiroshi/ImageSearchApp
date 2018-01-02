@@ -22,21 +22,6 @@ export class BannerConfComponent extends ListBaseComponent{
 		super();
 	}
 	
-	public uploader: FileUploader = new FileUploader({
-		url: "http://127.0.0.1:8888/manage/upload_image",
-		itemAlias: "uploadedfile"
-	});
-	public hasBaseDropZoneOver:boolean = false;
-	public hasAnotherDropZoneOver:boolean = false;
-
-	public fileOverBase(e:any):void {
-		this.hasBaseDropZoneOver = e;
-	}
-
-	public fileOverAnother(e:any):void {
-		this.hasAnotherDropZoneOver = e;
-	}
-	
 	getPagerData(): void {
 		this.isLoading = true;
 		this.service.getBanner().then(data => {
@@ -87,9 +72,39 @@ export class BannerConfComponent extends ListBaseComponent{
 export class BannerConfDetailComponent extends ListBaseComponent{
 	banner: Banner;
 	all_series_list: any;
+	banner_img: any;
 	
 	constructor(private service: BannerService, public route: ActivatedRoute, public router: Router) {
 		super();
+	}
+	
+	public uploader: FileUploader = new FileUploader({
+		url: "http://127.0.0.1:8888/website/banner_list/update",
+		itemAlias: "uploadedfile"
+	});
+	public hasBaseDropZoneOver:boolean = false;
+	public hasAnotherDropZoneOver:boolean = false;
+
+	public fileOverBase(e:any):void {
+		this.hasBaseDropZoneOver = e;
+	}
+
+	public fileOverAnother(e:any):void {
+		this.hasAnotherDropZoneOver = e;
+	}
+	
+	selectedFileOnChanged() {
+		// 这里是文件选择完成后的操作处理
+		let reader = new FileReader();
+		let self = this;
+		reader.readAsDataURL(this.uploader.queue[0].some);
+		reader.onload = function(e){
+			self.banner_img = this.result;
+		}
+	}	
+	
+	clearAllImg(): void {
+		this.uploader.clearQueue();
 	}
 	
 	ngOnInit(): void {

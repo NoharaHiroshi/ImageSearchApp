@@ -90,4 +90,4 @@ def update_banner():
                 db_session.commit()
         return jsonify(result)
     except Exception as e:
-        print e
+        print e.message
