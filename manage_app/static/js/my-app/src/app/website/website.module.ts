@@ -17,9 +17,11 @@ import { HeaderService } from '../common/header/header.service';
 
 import { WebsiteMenuConfComponent, WebsiteMenuConfDetailComponent } from './menu/website_menu.component';
 import { HotSearchConfComponent, HotSearchConfDetailComponent } from './hot_search/hot_search.component';
+import { BannerConfComponent, BannerConfDetailComponent } from './banner/banner.component';
 
 import { WebsiteMenuService } from './menu/website_menu.service';
 import { HotSearchService } from './hot_search/hot_search.service';
+import { BannerService } from './banner/banner.service';
 
 import { WebsiteComponent } from './website.component';
 
@@ -29,7 +31,9 @@ import { WebsiteComponent } from './website.component';
 		WebsiteMenuConfComponent,
 		WebsiteMenuConfDetailComponent,
 		HotSearchConfComponent,
-		HotSearchConfDetailComponent
+		HotSearchConfDetailComponent,
+		BannerConfComponent,
+		BannerConfDetailComponent
 	],
 	imports: [
 		CommonModule,
@@ -51,7 +55,8 @@ import { WebsiteComponent } from './website.component';
 		HeaderService,
 		LeftNavService,
 		WebsiteMenuService,
-		HotSearchService
+		HotSearchService,
+		BannerService
 	],
 	bootstrap: [
 		WebsiteComponent

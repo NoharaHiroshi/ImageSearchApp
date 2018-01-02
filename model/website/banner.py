@@ -21,6 +21,8 @@ class Banner(Base):
     type = Column(Integer, default=TYPE_CONTENT_INDEX, index=True)
     # 关联对象
     connect_id = Column(BigInteger, nullable=False, index=True)
+    # 关联名称
+    connect_name = Column(String(60), index=True)
     # 格式
     format = Column(String(10), nullable=False, default=u'UNKNOWN')
     # 宽
@@ -51,6 +53,7 @@ class Banner(Base):
             'type': self.type,
             'type_text': self.type_text,
             'connect_id': str(self.connect_id),
+            'connect_name': self.connect_name,
             'url': self.url,
             'width': self.width,
             'height': self.height,
