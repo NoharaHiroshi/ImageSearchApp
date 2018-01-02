@@ -9,17 +9,18 @@ from model.session import get_session
 class WebsiteMenu(Base):
     __tablename__ = 'website_menu'
 
-
-    # 类型（按照链接的页面分类）：二级首页、详情页
-    TYPE_SECOND_INDEX, TYPE_DEFAULT_PAGE = range(2)
+    # 类型（按照链接的页面分类）：内容页、图片页
+    TYPE_CONTENT_INDEX, TYPE_IMG_PAGE = range(2)
 
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 名称
     name = Column(String(50), nullable=False, index=True)
     # 链接类型
-    type = Column(Integer, nullable=TYPE_SECOND_INDEX, index=True)
+    type = Column(Integer, nullable=TYPE_CONTENT_INDEX, index=True)
     # 关联id
     connect_id = Column(BigInteger, index=True)
+    # 关联名称
+    connect_name = Column(String(60), index=True)
     # 排序
     sort = Column(Integer, default=0, index=True)
     # 父级ID
@@ -30,8 +31,8 @@ class WebsiteMenu(Base):
     @property
     def type_text(self):
         s = {
-            self.TYPE_SECOND_INDEX: u'二级首页',
-            self.TYPE_DEFAULT_PAGE: u'默认列表页'
+            self.TYPE_CONTENT_INDEX: u'内容页',
+            self.TYPE_IMG_PAGE: u'图片页'
         }
         return s.get(self.type, u'未知链接类型')
 
@@ -87,6 +88,7 @@ class WebsiteMenu(Base):
             'type': self.type,
             'type_text': self.type_text,
             'connect_id': str(self.connect_id),
+            'connect_name': self.connect_name,
             'sort': self.sort,
             'parent_id': str(self.parent_id),
             'icon_info': self.icon_info,

@@ -64,13 +64,13 @@ def update_menu_detail():
     try:
         menu_id = request.form.get('id')
         menu_name = request.form.get('name')
-        menu_code = request.form.get('code')
         parent_id = request.form.get('parent_id')
         icon_info = request.form.get('icon_info')
         menu_type = request.form.get('type')
         connect_id = request.form.get('connect_id')
+        connect_name = request.form.get('connect_name')
         url = request.form.get('url')
-        if None in [menu_name, menu_code, parent_id, menu_type, connect_id]:
+        if None in [menu_name, parent_id, menu_type, connect_id]:
             result.update({
                 'response': 'fail',
                 'info': u'请检查参数是否填写完整'
@@ -80,10 +80,10 @@ def update_menu_detail():
                 if not menu_id:
                     menu = WebsiteMenu()
                     menu.name = menu_name
-                    menu.code = menu_code
                     menu.parent_id = parent_id
                     menu.icon_info = icon_info
                     menu.connect_id = connect_id
+                    menu.connect_name = connect_name
                     menu.type = menu_type
                     # 设置同层级菜单的排序位置
                     menu.sort = WebsiteMenu.set_count(parent_id)
@@ -93,9 +93,9 @@ def update_menu_detail():
                     menu = db_session.query(WebsiteMenu).get(menu_id)
                     if menu:
                         menu.name = menu_name
-                        menu.code = menu_code
                         menu.type = menu_type
                         menu.connect_id = connect_id
+                        menu.connect_name = connect_name
                         menu.parent_id = parent_id
                         menu.icon_info = icon_info
                         menu.url = url

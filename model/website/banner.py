@@ -9,8 +9,8 @@ from model.session import get_session
 class Banner(Base):
     __tablename__ = 'website_banner'
 
-    # 类型（按照链接的页面分类）：二级首页、详情页
-    TYPE_SECOND_INDEX, TYPE_DEFAULT_PAGE = range(2)
+    # 类型（按照链接的页面分类）：内容页、图片页
+    TYPE_CONTENT_INDEX, TYPE_IMG_PAGE = range(2)
 
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 名称
@@ -18,7 +18,7 @@ class Banner(Base):
     # 图片url
     url = Column(String(255), nullable=False)
     # 类型
-    type = Column(Integer, default=TYPE_SECOND_INDEX, index=True)
+    type = Column(Integer, default=TYPE_CONTENT_INDEX, index=True)
     # 关联对象
     connect_id = Column(BigInteger, nullable=False, index=True)
     # 格式
@@ -35,12 +35,21 @@ class Banner(Base):
         img_url = 'resource/img/banner/%s.%s' % (self.url, self.format.lower())
         return img_url
 
+    @property
+    def type_text(self):
+        s = {
+            self.TYPE_SECOND_INDEX: u'内容页',
+            self.TYPE_DEFAULT_PAGE: u'图片页'
+        }
+        return s.get(self.type)
+
     def to_dict(self):
         return {
             'id': str(self.id),
             'name': self.name,
             'format': self.format,
             'type': self.type,
+            'type_text': self.type_text,
             'connect_id': str(self.connect_id),
             'url': self.url,
             'width': self.width,

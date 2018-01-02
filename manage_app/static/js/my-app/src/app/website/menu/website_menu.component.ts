@@ -123,7 +123,7 @@ export class WebsiteMenuConfDetailComponent extends ListBaseComponent{
 		this.service.update(this.menu).then(res => {
 			this.isDisabledButton = true;
 			if(res.response=='fail'){
-				console.log('fail', '保存失败');
+				console.log('fail', res.info);
 				this.isDisabledButton = false;
 			}else{
 				console.log('success', '保存成功');
@@ -134,6 +134,7 @@ export class WebsiteMenuConfDetailComponent extends ListBaseComponent{
 	
 	loadAfter(): void  {
 		let self = this;
+		let data_name: string;
 		const url = `/lib/get_all_series`; 
 		$('#series_select').val(self.menu.connect_id).select2({
             placeholder: '请选择专题',
@@ -155,24 +156,27 @@ export class WebsiteMenuConfDetailComponent extends ListBaseComponent{
                 }
             },
             initSelection: function(element:any, callback:any){
-            	var data = [], _series_id = self.menu.connect_id;
+            	var data = {}, 
+					_series_id = self.menu.connect_id,
+					_series_name = self.menu.connect_name;
                 if(undefined !== _series_id){
-                    var _series = self.all_series_list;
-                    for(var i = 0; i < _series.length; i++) {
-                    	data.push({id: _series[i].id, name: _series[i].name})
-                    }
-                    callback(data);
+                    data = ({id: _series_id, name: _series_name});
                 }
+				callback(data);
             },
+			// 用于渲染当前选择
             formatSelection: function(data:any){
+				data_name = data.name;
                 return data.name;
             },
+			// 用于渲染结果
             formatResult: function(data:any){
             	var s = "<div style='padding: 5px;'>" + data.name + "</div>";
-                return  s;
+                return s;
             }
         }).on('change', function(){
         	self.menu.connect_id = $('#series_select').val()
+			self.menu.connect_name = data_name;
         });
 	}
 }

@@ -5,6 +5,7 @@ export class WebsiteMenu {
 	type_text: string;
 	icon_info: string;
 	connect_id: number;
+	connect_name: string;
 	sort: number;
 	parent_id: number = 0;
 	sub_menus: WebsiteMenu[];
