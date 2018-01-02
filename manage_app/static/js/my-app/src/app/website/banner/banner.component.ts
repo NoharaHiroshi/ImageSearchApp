@@ -4,6 +4,7 @@ declare var swal: any;
 import { Component, OnInit, OnChanges, Input} from '@angular/core';
 import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { Location }  from '@angular/common';
+import { FileUploader } from 'ng2-file-upload';
 
 import { ListBaseComponent } from '../../common/base.component';
 import { Banner } from '../../model/banner';
@@ -19,6 +20,21 @@ export class BannerConfComponent extends ListBaseComponent{
 	
 	constructor(private service: BannerService) {
 		super();
+	}
+	
+	public uploader: FileUploader = new FileUploader({
+		url: "http://127.0.0.1:8888/manage/upload_image",
+		itemAlias: "uploadedfile"
+	});
+	public hasBaseDropZoneOver:boolean = false;
+	public hasAnotherDropZoneOver:boolean = false;
+
+	public fileOverBase(e:any):void {
+		this.hasBaseDropZoneOver = e;
+	}
+
+	public fileOverAnother(e:any):void {
+		this.hasAnotherDropZoneOver = e;
 	}
 	
 	getPagerData(): void {
