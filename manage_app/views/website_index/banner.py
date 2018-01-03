@@ -6,9 +6,10 @@ from flask import current_app as app
 
 from model.session import get_session
 from model.website.banner import Banner
+from model.image.image import Image
 from model.image.image_series import ImageSeries
 
-from lib.upload_image import save_banner_images
+from lib.upload_image import save_images
 
 from route import website
 
@@ -77,7 +78,7 @@ def update_banner():
         else:
             with get_session() as db_session:
                 if not banner_id:
-                    save_banner_images(file_objects, request.form)
+                    save_images(file_objects, t=Image.TYPE_BANNER)
                 else:
                     banner = db_session.query(Banner).get(banner_id)
                     if banner:

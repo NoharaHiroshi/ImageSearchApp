@@ -11,7 +11,9 @@ from model.image.image_tags import ImageTags, ImageTagsRel
 from model.image.image_series import ImageSeries, ImageSeriesRel
 
 
-def save_images(images, image_type='img'):
+# image模型上传方法: 图片实例对象存储在同一位置，在数据层区分类型
+def save_images(images, t=Image.TYPE_COMMON):
+    image_id_list = list()
     with get_session() as db_session:
         for image in images:
             _id = IdGenerator.gen()
@@ -20,13 +22,8 @@ def save_images(images, image_type='img'):
             preview_name = HashName.gen(_id, info="preview")
             thumbnail_name = HashName.gen(_id, info="thumbnail")
 
-            # 背景图片处理方式
-            if image_type == 'img':
-                upload_src = config.IMG_UPLOAD_SRC
-            elif image_type == 'icon':
-                upload_src = config.ICON_UPLOAD_SRC
-            else:
-                upload_src = config.IMG_UPLOAD_SRC
+            upload_src = config.IMG_UPLOAD_SRC
+
             # 图像处理
             im = Img.open(image)
             preview_im = im.copy()
@@ -52,6 +49,7 @@ def save_images(images, image_type='img'):
             img = Image()
             img.id = _id
             img.name = file_name
+            img.type = t
             img.url = original_name
             img.preview_url = preview_name
             img.thumbnail_url = thumbnail_name
@@ -60,7 +58,10 @@ def save_images(images, image_type='img'):
             img.mode = mode
             img.height = height
             db_session.add(img)
+            image_id_list.append(_id)
         db_session.commit()
+    # 返回存储的图片id列表
+    return image_id_list
 
 
 # 删除图片时，需要解绑专题和标签的联系
@@ -106,38 +107,6 @@ def image_series_color(index):
     _index = index % color_list_len
     return color_list[_index]
 
-
-def save_banner_images(images, params):
-    name = params.get('name')
-    connect_id = params.get('connect_id')
-    connect_name = params.get('connect_name')
-    with get_session() as db_session:
-        for image in images:
-            _id = IdGenerator.gen()
-            banner_name = HashName.gen(_id, info="banner")
-            upload_src = config.BANNER_UPLOAD_SRC
-            # 图像处理
-            im = Img.open(image)
-
-            # 长宽
-            width, height = im.size
-            # 格式
-            file_format = im.format
-            # 模式
-            mode = im.mode
-            im.save(os.path.join(upload_src, '.'.join([banner_name, file_format.lower()])).replace('\\', '/'))
-            img = Banner()
-            img.id = _id
-            img.name = name
-            img.connect_id = connect_id
-            img.connect_name = connect_name
-            img.url = banner_name
-            img.format = file_format
-            img.width = width
-            img.mode = mode
-            img.height = height
-            db_session.add(img)
-        db_session.commit()
 
 if __name__ == '__main__':
     print image_series_color(33)

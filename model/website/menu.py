@@ -10,13 +10,13 @@ class WebsiteMenu(Base):
     __tablename__ = 'website_menu'
 
     # 类型（按照链接的页面分类）：内容页、图片页
-    TYPE_CONTENT_INDEX, TYPE_IMG_PAGE = range(2)
+    TYPE_CONTENT_PAGE, TYPE_IMG_PAGE = range(2)
 
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 名称
     name = Column(String(50), nullable=False, index=True)
     # 链接类型
-    type = Column(Integer, nullable=TYPE_CONTENT_INDEX, index=True)
+    type = Column(Integer, nullable=TYPE_CONTENT_PAGE, index=True)
     # 关联id
     connect_id = Column(BigInteger, index=True)
     # 关联名称
@@ -31,7 +31,7 @@ class WebsiteMenu(Base):
     @property
     def type_text(self):
         s = {
-            self.TYPE_CONTENT_INDEX: u'内容页',
+            self.TYPE_CONTENT_PAGE: u'内容页',
             self.TYPE_IMG_PAGE: u'图片页'
         }
         return s.get(self.type, u'未知链接类型')

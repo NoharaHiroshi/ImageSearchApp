@@ -8,7 +8,8 @@ from model.base import Base, IdGenerator
 class Image(Base):
     __tablename__ = 'image'
 
-    TYPE_COMMON, TYPE_COVER = range(2)
+    # 类型： 通常、封面、轮播图
+    TYPE_COMMON, TYPE_COVER, TYPE_BANNER = range(3)
 
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 名称
@@ -36,12 +37,12 @@ class Image(Base):
 
     @property
     def img_full_url(self):
-        img_url = 'resource/img/original/%s.%s' %(self.url, self.format.lower())
+        img_url = 'resource/img/original/%s.%s' % (self.url, self.format.lower())
         return img_url
 
     @property
     def img_preview_url(self):
-        img_url = 'resource/img/preview/%s.%s' %(self.preview_url, self.format.lower())
+        img_url = 'resource/img/preview/%s.%s' % (self.preview_url, self.format.lower())
         return img_url
 
     @property
