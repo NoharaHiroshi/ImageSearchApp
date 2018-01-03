@@ -58,6 +58,32 @@ def get_banner_detail():
         print e
 
 
+@website.route('/banner/upload', methods=['POST'])
+def banner_upload():
+    result = {
+        'response': 'ok',
+        'info': '',
+        'img_id_list': []
+    }
+    file_objects = request.files.getlist('uploadedfile')
+    try:
+        if None in [file_objects]:
+            result.update({
+                'response': 'fail',
+                'info': u'请上传图片'
+            })
+        else:
+            # 存储banner图片
+            img_id_list = save_images(file_objects, t=Image.TYPE_BANNER)
+            result['img_id_list'] = img_id_list
+    except:
+        result.update({
+            'response': 'fail',
+            'info': u'图片上传失败'
+        })
+    return jsonify(result)
+
+
 @website.route('/banner_list/update', methods=['POST'])
 def update_banner():
     result = {

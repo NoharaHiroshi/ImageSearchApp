@@ -58,7 +58,7 @@ def save_images(images, t=Image.TYPE_COMMON):
             img.mode = mode
             img.height = height
             db_session.add(img)
-            image_id_list.append(_id)
+            image_id_list.append(str(_id))
         db_session.commit()
     # 返回存储的图片id列表
     return image_id_list

@@ -79,7 +79,7 @@ export class BannerConfDetailComponent extends ListBaseComponent{
 	}
 	
 	public uploader: FileUploader = new FileUploader({
-		url: "http://127.0.0.1:8888/website/banner_list/update",
+		url: "http://127.0.0.1:8888/website/banner/upload",
 		itemAlias: "uploadedfile"
 	});
 	public hasBaseDropZoneOver:boolean = false;
@@ -100,6 +100,17 @@ export class BannerConfDetailComponent extends ListBaseComponent{
 		reader.readAsDataURL(this.uploader.queue[0].some);
 		reader.onload = function(e){
 			self.banner_img = this.result;
+		}
+		this.uploader.uploadAll();
+		this.uploader.onCompleteItem = (item: FileItem, response: string, status: number, headers: ParsedResponseHeaders) => {
+			// 上传成功
+			let res = JSON.parse(response);
+			if(res.response == 'ok'){
+				self.banner.img_id = res.img_id_list[0];
+				console.log(res.img_id_list[0]);
+			}else{
+				swal('图片选择失败');
+			}
 		}
 	}	
 	
