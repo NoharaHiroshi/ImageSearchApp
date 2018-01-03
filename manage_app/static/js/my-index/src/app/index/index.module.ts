@@ -12,6 +12,7 @@ import { ModalModule } from 'angular2-modal';
 
 import { SharedModule } from '../common/common.module';
 import { HeaderService } from '../common/header/header.service';
+import { FooterService } from '../common/footer/footer.service';
 import { IndexRoutingModule } from './index.routing.module';
 
 import { MainPageComponent } from './index/main_page.component';
@@ -42,7 +43,8 @@ import { IndexComponent } from './index.component';
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
 		HeaderService,
-		MainPageService
+		MainPageService,
+		FooterService
 	],
 	bootstrap: [
 		IndexComponent
