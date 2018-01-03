@@ -26,6 +26,8 @@ def banner_list():
             all_banner = db_session.query(Banner).all()
             for banner in all_banner:
                 banner_dict = banner.to_dict()
+                img_url = banner.get_banner_img(db_session)
+                banner_dict['img_url'] = img_url
                 _banner_list.append(banner_dict)
         result['banner_list'] = _banner_list
         return jsonify(result)
@@ -92,11 +94,12 @@ def update_banner():
     }
     banner_id = request.form.get('id')
     name = request.form.get('name')
+    img_id = request.form.get('img_id')
+    _type = request.form.get('type')
     connect_id = request.form.get('connect_id')
     connect_name = request.form.get('connect_name')
-    file_objects = request.files.getlist('uploadedfile')
     try:
-        if None in [name, connect_id, file_objects]:
+        if None in [name, connect_id, img_id]:
             result.update({
                 'response': 'fail',
                 'info': u'请检查参数是否填写完整'
@@ -104,13 +107,21 @@ def update_banner():
         else:
             with get_session() as db_session:
                 if not banner_id:
-                    save_images(file_objects, t=Image.TYPE_BANNER)
+                    banner = Banner()
+                    banner.name = name
+                    banner.connect_id = connect_id
+                    banner.connect_name = connect_name
+                    banner.type = _type
+                    banner.img_id = img_id
+                    db_session.add(banner)
                 else:
                     banner = db_session.query(Banner).get(banner_id)
                     if banner:
                         banner.name = name
                         banner.connect_id = connect_id
                         banner.connect_name = connect_name
+                        banner.type = _type
+                        banner.img_id = img_id
                     else:
                         result['response'] = 'fail'
                         result['info'] = u'当前对象不存在'

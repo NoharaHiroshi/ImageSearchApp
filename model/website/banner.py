@@ -4,6 +4,7 @@ from sqlalchemy import Column, Integer, String, BigInteger
 from sqlalchemy import UniqueConstraint
 from model.base import Base, IdGenerator
 from model.session import get_session
+from model.image.image import Image
 
 
 class Banner(Base):
@@ -24,11 +25,18 @@ class Banner(Base):
     # 关联名称
     connect_name = Column(String(60), index=True)
 
+    def get_banner_img(self, db_session):
+        img = db_session.query(Image).get(self.img_id)
+        if img:
+            return img.img_full_url
+        else:
+            return ''
+
     @property
     def type_text(self):
         s = {
-            self.TYPE_SECOND_PAGE: u'内容页',
-            self.TYPE_DEFAULT_PAGE: u'图片页'
+            self.TYPE_CONTENT_PAGE: u'内容页',
+            self.TYPE_IMG_PAGE: u'图片页'
         }
         return s.get(self.type)
 

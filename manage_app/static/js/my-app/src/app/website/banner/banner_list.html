@@ -29,7 +29,8 @@
 						<ng-container *ngIf="banner_list.length">
 							<tr *ngFor="let banner of banner_list">
 								<td><input icheck class="icheck" name="checked" type="checkbox" value={{banner.id}} ></td>
-								<td><a [routerLink]="['detail', banner.id]">{{ banner.url }}</a></td>
+								<td><a [routerLink]="['detail', banner.id]"><img style="height: 200px;" src="/static/{{banner.img_url}}" ></a></td>
+								<td><a [routerLink]="['detail', banner.id]">{{ banner.name }}</a></td>
 								<td>{{ banner.type_text }}</td>
 								<td>{{ banner.connect_name }}</td>
 							</tr>
