@@ -42,7 +42,6 @@ def get_website_header():
             all_hot_search = db_session.query(WebsiteHotSearch).filter(
                 WebsiteHotSearch.status == WebsiteHotSearch.STATUS_NORMAL
             ).all()
-            all_menu = db_session.query(WebsiteMenu).all()
             _banner_list = list()
             _hot_search_list = list()
             _menu_list = list()
@@ -51,9 +50,7 @@ def get_website_header():
                 img_url = banner.get_banner_img(db_session)
                 banner_dict['img_url'] = img_url
                 _banner_list.append(banner_dict)
-            for menu in all_menu:
-                menu_dict = menu.to_dict()
-                _menu_list.append(menu_dict)
+            _menu_list = WebsiteMenu.get_menu_select_info(_menu_list)
             for hot_search in all_hot_search:
                 hot_search_dict = hot_search.to_dict()
                 _hot_search_list.append(hot_search_dict)

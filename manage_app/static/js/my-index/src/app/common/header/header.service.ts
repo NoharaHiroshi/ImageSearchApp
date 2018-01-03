@@ -26,9 +26,14 @@ export class HeaderService extends BaseService {
 						let json = res.json();
 						let banner_list = self.jsonListToObjectList(json.banner_list, Banner);
 						let website_menu_list = self.jsonListToObjectList(json.menu_list, WebsiteMenu);
+						let website_menu_list = self.jsonListToObjectList(json.menu_list, WebsiteMenu);
+					    for(let website_menu of website_menu_list){
+							let _sub_menus = website_menu.sub_menus;
+							website_menu.sub_menus = self.jsonListToObjectList(_sub_menus, WebsiteMenu)
+						} 
+	           	        json['website_menu_list'] = website_menu_list;
 						let hot_search_list = self.jsonListToObjectList(json.hot_search_list, HotSearch);
 						json['banner_list'] = banner_list;
-						json['website_menu_list'] = website_menu_list;
 						json['hot_search_list'] = hot_search_list;
 	            	    return json;
 	               })
