@@ -18,6 +18,8 @@ class Banner(Base):
     name = Column(String(20), index=True)
     # 图片id
     img_id = Column(BigInteger, nullable=False, index=True)
+    # 背景颜色
+    background_color = Column(String(10), nullable=False)
     # 类型
     type = Column(Integer, default=TYPE_CONTENT_PAGE, index=True)
     # 关联对象
@@ -44,6 +46,7 @@ class Banner(Base):
         return {
             'id': str(self.id),
             'img_id': str(self.img_id),
+            'background_color': self.background_color,
             'name': self.name,
             'type': self.type,
             'type_text': self.type_text,

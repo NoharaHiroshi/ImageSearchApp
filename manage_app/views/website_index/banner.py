@@ -98,6 +98,7 @@ def update_banner():
     _type = request.form.get('type')
     connect_id = request.form.get('connect_id')
     connect_name = request.form.get('connect_name')
+    background_color = request.form.get('background_color')
     try:
         if None in [name, connect_id, img_id]:
             result.update({
@@ -113,6 +114,7 @@ def update_banner():
                     banner.connect_name = connect_name
                     banner.type = _type
                     banner.img_id = img_id
+                    banner.background_color = background_color
                     db_session.add(banner)
                 else:
                     banner = db_session.query(Banner).get(banner_id)
@@ -122,6 +124,7 @@ def update_banner():
                         banner.connect_name = connect_name
                         banner.type = _type
                         banner.img_id = img_id
+                        banner.background_color = background_color
                     else:
                         result['response'] = 'fail'
                         result['info'] = u'当前对象不存在'

@@ -1,0 +1,201 @@
+<!--header start-->
+<header>
+	<div class="header-content">
+		<div class="header-info">
+			<div class="header-logo">
+				<span class="header-logo-span">首页</span>
+			</div>
+			<div class="header-login">
+				<span>登录</span>
+			</div>
+		</div>
+	</div>
+	<div class="header-content-fix" style="display: none;">
+		<div class="search-fix">
+			<div class="search-input-fix">
+				<div class="input-border-fix">
+					<input type="text" id="main-search-fix" class="input-content-fix" placeholder="输入关键词搜索">
+					<div class="input-search-btn-fix">
+						<i class="fa fa-search"></i>
+					</div>
+					<div class="input-recommond-search-fix" id="recommond-fix" style="display:none;">
+						<ng-container *ngFor="let hot_search of hot_search_list">
+						<p>
+							<span class="input-recommond-search-tag-fix">{{hot_search.name}}</span>
+							<span class="input-recommond-search-result-fix">703266 结果</span>
+						</p>
+						</ng-container>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+<div class="search-input">
+	<div class="input-border">
+		<input type="text" id="main-search" class="input-content" placeholder="输入关键词搜索">
+		<div class="input-search-btn">
+			<i class="fa fa-search"></i>
+		</div>
+		<div class="input-recommond-search" id="recommond" style="display:none;">
+			<ng-container *ngFor="let hot_search of hot_search_list">
+				<p>
+					<span class="input-recommond-search-tag">{{hot_search.name}}</span>
+					<span class="input-recommond-search-result">703266 结果</span>
+				</p>
+			</ng-container>
+		</div>
+	</div>
+	<div class="input-hot-search">
+		<div class="input-hot-search-div">
+			<span style="color: #555;">热门资源：</span>
+			<span>圣诞</span>
+			<span style="color: #ffbe40">新年</span>
+			<span style="color: #ffbe40">元旦</span>
+			<span>年会</span>
+		</div>
+	</div>
+</div>
+<div class="nav-box">
+	<nav id="cbp-hrmenu" class="cbp-hrmenu">
+		<ul>
+			<li>
+				<a href="#">素材</a>
+				<div class="cbp-hrsub">
+					<div class="cbp-hrsub-inner"> 
+						<div>
+							<h4>平面设计</h4>
+							<ul>
+								<li><a href="#">Catch the Bullet</a></li>
+								<li><a href="#">Snoopydoo</a></li>
+								<li><a href="#">Fallen Angel</a></li>
+								<li><a href="#">Sui Maker</a></li>
+								<li><a href="#">Wave Master</a></li>
+								<li><a href="#">Golf Pro</a></li>
+							</ul>
+						</div>
+						<div>
+							<h4>淘宝电商</h4>
+							<ul>
+								<li><a href="#">Gadget Finder</a></li>
+								<li><a href="#">Green Tree Express</a></li>
+								<li><a href="#">Green Tree Pro</a></li>
+								<li><a href="#">Wobbler 3.0</a></li>
+								<li><a href="#">Coolkid</a></li>
+							</ul>
+						</div>
+						<div>
+							<h4>节日促销</h4>
+							<ul>
+								<li><a href="#">Learn Thai</a></li>
+								<li><a href="#">Math Genius</a></li>
+								<li><a href="#">Chemokid</a></li>
+							</ul>
+						</div>
+					</div><!-- /cbp-hrsub-inner -->
+				</div><!-- /cbp-hrsub -->
+			</li>
+			<li>
+				<a href="#">背景</a>
+				<div class="cbp-hrsub">
+					<div class="cbp-hrsub-inner">
+						<div>
+							<h4>广告设计</h4>
+							<ul>
+								<li><a href="#">Learn Thai</a></li>
+								<li><a href="#">Math Genius</a></li>
+								<li><a href="#">Chemokid</a></li>
+							</ul>
+							<ul>
+								<li><a href="#">Success 1.0</a></li>
+								<li><a href="#">Moneymaker</a></li>
+							</ul>
+						</div>
+						<div>
+							<h4>装饰设计</h4>
+							<ul>
+								<li><a href="#">Gadget Finder</a></li>
+								<li><a href="#">Green Tree Express</a></li>
+								<li><a href="#">Green Tree Pro</a></li>
+								<li><a href="#">Holy Cannoli</a></li>
+								<li><a href="#">Wobbler 3.0</a></li>
+								<li><a href="#">Coolkid</a></li>
+							</ul>
+						</div>
+						<div>
+							<h4>商业设计</h4>
+							<ul>
+								<li><a href="#">Catch the Bullet</a></li>
+								<li><a href="#">Snoopydoo</a></li>
+								<li><a href="#">Fallen Angel</a></li>
+								<li><a href="#">Sui Maker</a></li>
+								<li><a href="#">Wave Master</a></li>
+								<li><a href="#">Golf Pro</a></li>
+							</ul>
+						</div>
+					</div><!-- /cbp-hrsub-inner -->
+				</div><!-- /cbp-hrsub -->
+			</li>
+			<li>
+				<a href="#">平面设计</a>
+				<div class="cbp-hrsub">
+					<div class="cbp-hrsub-inner">
+						<div>
+							<h4>广告设计</h4>
+							<ul>
+								<li><a href="#">Learn Thai</a></li>
+								<li><a href="#">Math Genius</a></li>
+								<li><a href="#">Chemokid</a></li>
+							</ul>
+							<ul>
+								<li><a href="#">Success 1.0</a></li>
+								<li><a href="#">Moneymaker</a></li>
+							</ul>
+						</div>
+						<div>
+							<h4>装饰设计</h4>
+							<ul>
+								<li><a href="#">Gadget Finder</a></li>
+								<li><a href="#">Green Tree Express</a></li>
+								<li><a href="#">Green Tree Pro</a></li>
+								<li><a href="#">Holy Cannoli</a></li>
+								<li><a href="#">Wobbler 3.0</a></li>
+								<li><a href="#">Coolkid</a></li>
+							</ul>
+						</div>
+						<div>
+							<h4>商业设计</h4>
+							<ul>
+								<li><a href="#">Catch the Bullet</a></li>
+								<li><a href="#">Snoopydoo</a></li>
+								<li><a href="#">Fallen Angel</a></li>
+								<li><a href="#">Sui Maker</a></li>
+								<li><a href="#">Wave Master</a></li>
+								<li><a href="#">Golf Pro</a></li>
+							</ul>
+						</div>
+					</div><!-- /cbp-hrsub-inner -->
+				</div><!-- /cbp-hrsub -->
+			</li>
+		</ul>
+	</nav>
+</div>
+<div class="banner-box">
+	<div class="bd">
+		<ul>          	    
+			<ng-container *ngFor="let banner of banner_list">
+				<li [style.background]="banner.background_color">
+					<div class="m-width">
+					<a href="javascript:void(0);"><img style="width: 1200px; height: 300px;" src="/static/{{banner.img_url}}" /></a>
+					</div>
+				</li>
+			</ng-container>
+		</ul>
+	</div>
+	<div class="banner-btn">
+		<a class="prev" href="javascript:void(0);"></a>
+		<a class="next" href="javascript:void(0);"></a>
+		<div class="hd"><ul></ul></div>
+	</div>
+</div>
+<!--header end-->

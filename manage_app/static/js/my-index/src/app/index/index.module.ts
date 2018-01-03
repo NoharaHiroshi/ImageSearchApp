@@ -11,14 +11,18 @@ import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/c
 import { ModalModule } from 'angular2-modal';
 
 import { SharedModule } from '../common/common.module';
+import { HeaderService } from '../common/header/header.service';
 import { IndexRoutingModule } from './index.routing.module';
 
+import { MainPageComponent } from './index/main_page.component';
+import { MainPageService } from './index/main_page.service';
 
 import { IndexComponent } from './index.component';
 
 @NgModule({
 	declarations: [
 		IndexComponent,
+		MainPageComponent,
 	],
 	imports: [
 		CommonModule,
@@ -37,6 +41,8 @@ import { IndexComponent } from './index.component';
 	],
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
+		HeaderService,
+		MainPageService
 	],
 	bootstrap: [
 		IndexComponent
