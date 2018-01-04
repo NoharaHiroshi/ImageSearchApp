@@ -25,7 +25,11 @@ export class WebsiteMenuService extends BaseService {
 	            	    let menu_list = self.jsonListToObjectList(json.menu_list, WebsiteMenu);
 					    for(let menu of menu_list){
 							let _sub_menus = menu.sub_menus;
-							menu.sub_menus = self.jsonListToObjectList(_sub_menus, WebsiteMenu)
+							menu.sub_menus = self.jsonListToObjectList(_sub_menus, WebsiteMenu);
+							for(let sub_menu of menu.sub_menus){
+								let _third_menus = sub_menu.sub_menus;
+								sub_menu.sub_menus = self.jsonListToObjectList(_third_menus, WebsiteMenu);
+							}
 						} 
 	           	        json['menu_list'] = menu_list;
 	            	    return json;

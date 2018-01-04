@@ -12,7 +12,7 @@ class WebsiteMenu(Base):
     # 类型（按照链接的页面分类）：内容页、图片页
     TYPE_CONTENT_PAGE, TYPE_IMG_PAGE = range(2)
 
-    # 导航类型：是否是链接类型（或者是分类类型）
+    # 导航类型：链接类型、分类类型
     IS_CONNECTED, IS_CATEGORY = range(2)
 
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
@@ -109,6 +109,3 @@ class WebsiteMenu(Base):
             'icon_info': self.icon_info,
             'sub_menus': self.sub_menus
         }
-
-if __name__ == '__main__':
-    print WebsiteMenu.get_menu_select_info()
