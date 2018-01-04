@@ -102,7 +102,7 @@ export class BannerConfDetailComponent extends ListBaseComponent{
 			self.banner_img = this.result;
 		}
 		this.uploader.uploadAll();
-		this.uploader.onCompleteItem = (item: FileItem, response: string, status: number, headers: ParsedResponseHeaders) => {
+		this.uploader.onCompleteItem = (item: any, response: string, status: number, headers: any) => {
 			// 上传成功
 			let res = JSON.parse(response);
 			if(res.response == 'ok'){

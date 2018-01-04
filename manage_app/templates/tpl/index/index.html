@@ -32,17 +32,7 @@
 				<div class='cube'></div>
 			</div>
 		</index-root>
-
-		{% if config.DEBUG %}
-			<script type="text/javascript" src="/static/dist/debug/common/polyfills.js"></script>
-			<script type="text/javascript" src="/static/dist/debug/common/vendor.js"></script>
-			<script type="text/javascript" src="/static/dist/debug/app/index.js"></script>
-		{% else %}
-			<script type="text/javascript" src="/static/dist/prod/polyfills.js"></script>
-			<script type="text/javascript" src="/static/dist/prod/vendor.js"></script>
-			<script type="text/javascript" src="/static/dist/prod/index.js"></script>
-		{% endif %}
-
+		
 		<script>
 			$(function() {
 				var header_fix_height = $('.header-content-fix').height();
@@ -50,14 +40,10 @@
 					var h = $('.series-content').eq(index).offset().top - header_fix_height - 1; 
 					return h;
 				}
+				
 				/* 搜索框 */
 				window.onscroll = function() {
 					var topScroll = $(window).scrollTop();//滚动的距离,距离顶部的距离
-					if(topScroll > 180){  
-						$(".header-content-fix").show();
-					}else{
-						$(".header-content-fix").hide();
-					}
 					if(topScroll < get_elem_height(1) && topScroll > get_elem_height(0)){
 						$('#left_nav_1').addClass('left_current').siblings().removeClass("left_current");
 						
@@ -73,23 +59,77 @@
 						$('.left-navigation-item').removeClass("left_current");
 					}
 				}
-				/* 轮播图 */
-				$(".banner-box").hover(function(){
-					$(".prev,.next").stop(true,false).fadeTo("show",0.8);
-				},function(){
-					$(".prev,.next").stop(true,false).fadeTo("show",0);
-				});
 				
-				$(".banner-box").slide({
-					titCell:".hd ul",
-					mainCell:".bd ul",
-					effect:"fold",
-					interTime:3500,
-					delayTime:500,
-					autoPlay:true,
-					autoPage:true, 
-					trigger:"click" 
-				});
+				/* 左侧锚点*/
+				go = function(name){
+					if(name == 'top'){
+						var top = 0;
+					}else{
+						var top = $('#guide-' + name).offset().top - 62;
+					}
+					$('html, body').animate({
+						scrollTop: top
+					}, 500)
+				}
+			});
+		</script>
+
+		{% if config.DEBUG %}
+			<script type="text/javascript" src="/static/dist/debug/common/polyfills.js"></script>
+			<script type="text/javascript" src="/static/dist/debug/common/vendor.js"></script>
+			<script type="text/javascript" src="/static/dist/debug/app/index.js"></script>
+		{% else %}
+			<script type="text/javascript" src="/static/dist/prod/polyfills.js"></script>
+			<script type="text/javascript" src="/static/dist/prod/vendor.js"></script>
+			<script type="text/javascript" src="/static/dist/prod/index.js"></script>
+		{% endif %}
+		
+		<script src="/static/index/js/cbpHorizontalMenu.min.js"></script>
+		<script>
+			$(function() {
+				/* 查找某个动态DOM是否已经生成 */
+				elem_is_exists = function(elem, func) {
+					if($(elem).length == 0){
+						console.log('wait... ' + elem);
+						setTimeout(function(){
+							elem_is_exists(elem, func);
+						}, 100);
+					}else{
+						console.log('get elem ' + elem);
+						func();
+					}
+				}
+			
+				/* 搜索框 */
+				window.onscroll = function() {
+					var topScroll = $(window).scrollTop();//滚动的距离,距离顶部的距离
+					if(topScroll > 180){  
+						$(".header-content-fix").show();
+					}else{
+						$(".header-content-fix").hide();
+					}
+				}
+			
+				/* 轮播图 */		
+				banner = function(){ 
+					$(".banner-box").hover(function(){
+						$(".prev,.next").stop(true,false).fadeTo("show",0.8);
+					},function(){
+						$(".prev,.next").stop(true,false).fadeTo("show",0);
+					});
+				
+					$(".banner-box").slide({
+						titCell:".hd ul",
+						mainCell:".bd ul",
+						effect:"fold",
+						interTime:3500,
+						delayTime:500,
+						autoPlay:true,
+						autoPage:true, 
+						trigger:"click" 
+					});
+				}
+				elem_is_exists('.banner-box li', banner);
 				
 				/* 搜索框 */
 				$("#main-search").focus(function(){
@@ -107,22 +147,8 @@
 				});
 				
 				/* 导航条 */
-				cbpHorizontalMenu.init();
-				
-				/* 左侧锚点*/
-				
-				go = function(name){
-					if(name == 'top'){
-						var top = 0;
-					}else{
-						var top = $('#guide-' + name).offset().top - 62;
-					}
-					$('html, body').animate({
-						scrollTop: top
-					}, 500)
-				}
+				elem_is_exists('#cbp-hrmenu > ul > li', cbpHorizontalMenu.init);
 			});
 		</script>
-		<script src="/static/index/js/cbpHorizontalMenu.min.js"></script>
 	</body>
 </html>

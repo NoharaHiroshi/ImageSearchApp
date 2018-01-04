@@ -18,7 +18,7 @@ export class HeaderService extends BaseService {
 	}
 	
 	getInfo(): Promise<any> {
-		const url = `/website/header`; 
+		const url = `/header`; 
 		let self = this;
 	    return this.http.get(url)
 	               .toPromise()
@@ -26,10 +26,13 @@ export class HeaderService extends BaseService {
 						let json = res.json();
 						let banner_list = self.jsonListToObjectList(json.banner_list, Banner);
 						let website_menu_list = self.jsonListToObjectList(json.menu_list, WebsiteMenu);
-						let website_menu_list = self.jsonListToObjectList(json.menu_list, WebsiteMenu);
 					    for(let website_menu of website_menu_list){
 							let _sub_menus = website_menu.sub_menus;
-							website_menu.sub_menus = self.jsonListToObjectList(_sub_menus, WebsiteMenu)
+							website_menu.sub_menus = self.jsonListToObjectList(_sub_menus, WebsiteMenu);
+							for(let sub_menu of website_menu.sub_menus){
+								let _third_menus = sub_menu.sub_menus;
+								sub_menu.sub_menus = self.jsonListToObjectList(_third_menus, WebsiteMenu);
+							}
 						} 
 	           	        json['website_menu_list'] = website_menu_list;
 						let hot_search_list = self.jsonListToObjectList(json.hot_search_list, HotSearch);
