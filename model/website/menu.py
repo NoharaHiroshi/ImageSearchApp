@@ -12,11 +12,16 @@ class WebsiteMenu(Base):
     # 类型（按照链接的页面分类）：内容页、图片页
     TYPE_CONTENT_PAGE, TYPE_IMG_PAGE = range(2)
 
+    # 导航类型：是否是链接类型（或者是分类类型）
+    IS_CONNECTED, IS_CATEGORY = range(2)
+
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 名称
     name = Column(String(50), nullable=False, index=True)
     # 链接类型
-    type = Column(Integer, nullable=TYPE_CONTENT_PAGE, index=True)
+    type = Column(Integer, default=TYPE_CONTENT_PAGE, index=True)
+    # 导航类型
+    connect_type = Column(Integer, default=IS_CONNECTED, index=True)
     # 关联id
     connect_id = Column(BigInteger, index=True)
     # 关联名称
@@ -35,6 +40,14 @@ class WebsiteMenu(Base):
             self.TYPE_IMG_PAGE: u'图片页'
         }
         return s.get(self.type, u'未知链接类型')
+
+    @property
+    def connect_type_text(self):
+        s = {
+            self.IS_CONNECTED: u'链接类型',
+            self.IS_CATEGORY: u'分类类型'
+        }
+        return s.get(self.connect_type, u'未知链接类型')
 
     @classmethod
     def set_count(cls, parent_id=0, sort=None):
@@ -87,6 +100,8 @@ class WebsiteMenu(Base):
             'name': self.name,
             'type': self.type,
             'type_text': self.type_text,
+            'connect_type': self.connect_type,
+            'connect_type_text': self.connect_type_text,
             'connect_id': str(self.connect_id),
             'connect_name': self.connect_name,
             'sort': self.sort,
@@ -94,3 +109,6 @@ class WebsiteMenu(Base):
             'icon_info': self.icon_info,
             'sub_menus': self.sub_menus
         }
+
+if __name__ == '__main__':
+    print WebsiteMenu.get_menu_select_info()
