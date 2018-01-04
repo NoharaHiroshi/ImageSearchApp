@@ -17,6 +17,8 @@ var cbpHorizontalMenu = (function() {
 
 	function init() {
 		$menuItems.on( 'click', open );
+		console.log('插件内部');
+		console.log($listItems);
 		$listItems.on( 'click', function( event ) { event.stopPropagation(); } );
 	}
 

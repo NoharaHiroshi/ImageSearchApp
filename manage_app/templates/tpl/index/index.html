@@ -84,11 +84,13 @@
 			<script type="text/javascript" src="/static/dist/prod/index.js"></script>
 		{% endif %}
 		
-		<script src="/static/index/js/cbpHorizontalMenu.min.js"></script>
+		<script src="/static/index/js/cbpHorizontalMenu.js"></script>
 		<script>
 			$(function() {
 				/* 查找某个动态DOM是否已经生成 */
 				elem_is_exists = function(elem, func) {
+					console.log('轮询函数内部');
+					console.log($(elem));
 					if($(elem).length == 0){
 						console.log('wait... ' + elem);
 						setTimeout(function(){
