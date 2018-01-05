@@ -84,20 +84,15 @@
 			<script type="text/javascript" src="/static/dist/prod/index.js"></script>
 		{% endif %}
 		
-		<script src="/static/index/js/cbpHorizontalMenu.js"></script>
 		<script>
 			$(function() {
 				/* 查找某个动态DOM是否已经生成 */
-				elem_is_exists = function(elem, func) {
-					console.log('轮询函数内部');
-					console.log($(elem));
+				var elem_is_exists = function(elem, func) {
 					if($(elem).length == 0){
-						console.log('wait... ' + elem);
 						setTimeout(function(){
 							elem_is_exists(elem, func);
 						}, 100);
 					}else{
-						console.log('get elem ' + elem);
 						func();
 					}
 				}
@@ -113,7 +108,7 @@
 				}
 			
 				/* 轮播图 */		
-				banner = function(){ 
+				var banner = function(){ 
 					$(".banner-box").hover(function(){
 						$(".prev,.next").stop(true,false).fadeTo("show",0.8);
 					},function(){
@@ -149,7 +144,55 @@
 				});
 				
 				/* 导航条 */
-				elem_is_exists('#cbp-hrmenu > ul > li', cbpHorizontalMenu.init);
+				
+				var menu = function() {
+					var cbpHorizontalMenuFunc = function() {
+
+						var $listItems = $( '#cbp-hrmenu > ul > li' ),
+							$menuItems = $listItems.children( 'a' ),
+							$body = $( 'body' ),
+							current = -1;
+
+						function init() {
+							$menuItems.on( 'click', open );
+							$listItems.on( 'click', function( event ) { event.stopPropagation(); } );
+						}
+
+						function open( event ) {
+
+							if( current !== -1 ) {
+								$listItems.eq( current ).removeClass( 'cbp-hropen' );
+							}
+
+							var $item = $( event.currentTarget ).parent( 'li' ),
+								idx = $item.index();
+
+							if( current === idx ) {
+								$item.removeClass( 'cbp-hropen' );
+								current = -1;
+							}
+							else {
+								$item.addClass( 'cbp-hropen' );
+								current = idx;
+								$body.off( 'click' ).on( 'click', close );
+							}
+
+							return false;
+
+						}
+
+						function close( event ) {
+							$listItems.eq( current ).removeClass( 'cbp-hropen' );
+							current = -1;
+						}
+
+						return { init : init };
+
+					}
+					var cbpHorizontalMenu = cbpHorizontalMenuFunc();
+					cbpHorizontalMenu.init();
+				}
+				elem_is_exists('#cbp-hrmenu > ul > li', menu);
 			});
 		</script>
 	</body>
