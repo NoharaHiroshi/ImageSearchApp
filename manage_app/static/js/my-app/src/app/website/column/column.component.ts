@@ -111,7 +111,7 @@ export class ColumnConfDetailComponent extends ListBaseComponent{
 export class ColumnConfSetDetailComponent extends ListBaseComponent{
 	column: Column;
 	column_series_rel_list: ColumnSeries[];
-	series_id_list: any[];
+	series_id_list: string;
 	
 	constructor(private service: ColumnService, public route: ActivatedRoute, public router: Router) {
 		super();
@@ -138,7 +138,7 @@ export class ColumnConfSetDetailComponent extends ListBaseComponent{
 				this.isDisabledButton = false;
 			}else{
 				console.log('success', '保存成功');
-				this.refresh();
+				location.reload();
 			}
 		});
 	}
