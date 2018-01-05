@@ -32,9 +32,30 @@
 				<div class='cube'></div>
 			</div>
 		</index-root>
+
+		{% if config.DEBUG %}
+			<script type="text/javascript" src="/static/dist/debug/common/polyfills.js"></script>
+			<script type="text/javascript" src="/static/dist/debug/common/vendor.js"></script>
+			<script type="text/javascript" src="/static/dist/debug/app/index.js"></script>
+		{% else %}
+			<script type="text/javascript" src="/static/dist/prod/polyfills.js"></script>
+			<script type="text/javascript" src="/static/dist/prod/vendor.js"></script>
+			<script type="text/javascript" src="/static/dist/prod/index.js"></script>
+		{% endif %}
 		
 		<script>
-			$(function() {
+			$(function() {			
+				/* 查找某个动态DOM是否已经生成 */
+				var elem_is_exists = function(elem, func) {
+					if($(elem).length == 0){
+						setTimeout(function(){
+							elem_is_exists(elem, func);
+						}, 100);
+					}else{
+						func();
+					}
+				}
+				
 				var header_fix_height = $('.header-content-fix').height();
 				get_elem_height = function(index) {
 					var h = $('.series-content').eq(index).offset().top - header_fix_height - 1; 
@@ -58,6 +79,11 @@
 					}else{
 						$('.left-navigation-item').removeClass("left_current");
 					}
+					if(topScroll > 180){  
+						$(".header-content-fix").show();
+					}else{
+						$(".header-content-fix").hide();
+					}
 				}
 				
 				/* 左侧锚点*/
@@ -70,41 +96,6 @@
 					$('html, body').animate({
 						scrollTop: top
 					}, 500)
-				}
-			});
-		</script>
-
-		{% if config.DEBUG %}
-			<script type="text/javascript" src="/static/dist/debug/common/polyfills.js"></script>
-			<script type="text/javascript" src="/static/dist/debug/common/vendor.js"></script>
-			<script type="text/javascript" src="/static/dist/debug/app/index.js"></script>
-		{% else %}
-			<script type="text/javascript" src="/static/dist/prod/polyfills.js"></script>
-			<script type="text/javascript" src="/static/dist/prod/vendor.js"></script>
-			<script type="text/javascript" src="/static/dist/prod/index.js"></script>
-		{% endif %}
-		
-		<script>
-			$(function() {
-				/* 查找某个动态DOM是否已经生成 */
-				var elem_is_exists = function(elem, func) {
-					if($(elem).length == 0){
-						setTimeout(function(){
-							elem_is_exists(elem, func);
-						}, 100);
-					}else{
-						func();
-					}
-				}
-			
-				/* 搜索框 */
-				window.onscroll = function() {
-					var topScroll = $(window).scrollTop();//滚动的距离,距离顶部的距离
-					if(topScroll > 180){  
-						$(".header-content-fix").show();
-					}else{
-						$(".header-content-fix").hide();
-					}
 				}
 			
 				/* 轮播图 */		

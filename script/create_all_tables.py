@@ -17,6 +17,7 @@ from model.image.image_tags import ImageTags, ImageTagsRel
 from model.website.menu import WebsiteMenu
 from model.website.hot_search import WebsiteHotSearch
 from model.website.banner import Banner
+from model.website.column import WebsiteColumnSeriesRel, WebsiteColumn
 
 
 def create_all_tables():

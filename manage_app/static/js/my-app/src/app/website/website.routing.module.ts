@@ -6,6 +6,7 @@ import { WebsiteComponent } from './website.component';
 import { WebsiteMenuConfComponent, WebsiteMenuConfDetailComponent } from './menu/website_menu.component';
 import { HotSearchConfComponent, HotSearchConfDetailComponent } from './hot_search/hot_search.component';
 import { BannerConfComponent, BannerConfDetailComponent } from './banner/banner.component';
+import { ColumnConfComponent, ColumnConfDetailComponent, ColumnConfSetDetailComponent } from './column/column.component';
 
 // 根路由器
 const routes: Routes = [
@@ -20,6 +21,11 @@ const routes: Routes = [
 	{ path: 'banner_conf', component: BannerConfComponent },
 	{ path: 'banner_conf/detail/:id', component: BannerConfDetailComponent},
 	{ path: 'banner_conf/add', component: BannerConfDetailComponent},
+	
+	{ path: 'column_conf', component: ColumnConfComponent },
+	{ path: 'column_conf/detail/:id', component: ColumnConfDetailComponent},
+	{ path: 'column_conf/add', component: ColumnConfDetailComponent},
+	{ path: 'column_conf/set/:id', component: ColumnConfSetDetailComponent},
 ];
 
 @NgModule({
