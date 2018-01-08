@@ -211,3 +211,55 @@ def set_delete_column():
         return jsonify(result)
     except Exception as e:
         print e
+
+
+@website.route('/column_list/set_visible', methods=['POST'])
+def set_visible_column():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    ids = request.form.get('ids').split(',')
+    try:
+        if ids[0]:
+            with get_session() as db_session:
+                query = db_session.query(WebsiteColumnSeriesRel).filter(
+                    WebsiteColumnSeriesRel.id.in_(ids)
+                ).all()
+                for column_rel in query:
+                    column_rel.type = WebsiteColumnSeriesRel.TYPE_SHOW
+                db_session.commit()
+        else:
+            result.update({
+                'response': 'fail',
+                'info': u'当前未选择任何数据'
+            })
+            return jsonify(result)
+    except Exception as e:
+        print e
+
+
+@website.route('/column_list/set_hidden', methods=['POST'])
+def set_hidden_column():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    ids = request.form.get('ids').split(',')
+    try:
+        if ids[0]:
+            with get_session() as db_session:
+                query = db_session.query(WebsiteColumnSeriesRel).filter(
+                    WebsiteColumnSeriesRel.id.in_(ids)
+                ).all()
+                for column_rel in query:
+                    column_rel.type = WebsiteColumnSeriesRel.TYPE_HIDDEN
+                db_session.commit()
+        else:
+            result.update({
+                'response': 'fail',
+                'info': u'当前未选择任何数据'
+            })
+            return jsonify(result)
+    except Exception as e:
+        print e

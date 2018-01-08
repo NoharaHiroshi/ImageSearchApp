@@ -86,4 +86,20 @@ export class ColumnService extends BaseService {
 		}
 		return this.postForm(url, JSON.stringify(params));
 	}
+	
+	set_visible(ids: String): Promise<{}> {
+		const url = '/website/column_list/set_visible';
+		let params = {
+			'ids': ids
+		}
+		return this.postForm(url, JSON.stringify(params));
+	}
+	
+	set_hidden(ids: String): Promise<{}> {
+		const url = '/website/column_list/set_hidden';
+		let params = {
+			'ids': ids
+		}
+		return this.postForm(url, JSON.stringify(params));
+	}
 }

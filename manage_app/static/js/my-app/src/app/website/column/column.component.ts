@@ -177,6 +177,74 @@ export class ColumnConfSetDetailComponent extends ListBaseComponent{
 		});
 	}
 	
+	visible(): void {
+		let del_ids = this.selectChecked();
+		let self = this;
+		swal({
+			title: '显示设置',
+			text: '确定显示当前专题？',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '删除',
+			cancelButtonText: '取消',
+			confirmButtonClass: 'btn btn-theme04 margin-right10',
+			cancelButtonClass: 'btn btn-theme03',
+			buttonsStyling: false
+		}).then(function(isConfirm: boolean) {
+			if(isConfirm === true){
+				self.service.set_visible(del_ids).then(data =>{
+					if(data['response'] == 'ok'){
+						swal('已设置');
+						self.refresh();
+					}else{
+						swal('设置失败', data['info']);
+						self.refresh();
+					}
+				})
+			}else if (isConfirm === false){
+				self.refresh();
+			}else{
+				self.refresh();
+			}
+		});
+	}
+	
+	hidden(): void {
+		let del_ids = this.selectChecked();
+		let self = this;
+		swal({
+			title: '显示设置',
+			text: '确定隐藏当前专题？',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '删除',
+			cancelButtonText: '取消',
+			confirmButtonClass: 'btn btn-theme04 margin-right10',
+			cancelButtonClass: 'btn btn-theme03',
+			buttonsStyling: false
+		}).then(function(isConfirm: boolean) {
+			if(isConfirm === true){
+				self.service.set_hidden(del_ids).then(data =>{
+					if(data['response'] == 'ok'){
+						swal('已设置');
+						self.refresh();
+					}else{
+						swal('设置失败', data['info']);
+						self.refresh();
+					}
+				})
+			}else if (isConfirm === false){
+				self.refresh();
+			}else{
+				self.refresh();
+			}
+		});
+	}
+	
 	goBack(): void {
 		this.router.navigate(['/column_conf']);
 	}
