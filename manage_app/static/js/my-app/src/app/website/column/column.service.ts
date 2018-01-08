@@ -70,7 +70,7 @@ export class ColumnService extends BaseService {
 				   .catch(this.handleError);
 	} 
 	
-	set(column_id: string, series_id_list: any[]): Promise<any> {
+	set(column_id: string, series_id_list: string): Promise<any> {
 		let info = {
 			'column_id': column_id,
 			'series_id_list': series_id_list

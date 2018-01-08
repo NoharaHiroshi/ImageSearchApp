@@ -9,6 +9,7 @@ from model.session import get_session
 from model.website.menu import WebsiteMenu
 from model.website.banner import Banner
 from model.website.hot_search import WebsiteHotSearch
+from model.website.column import WebsiteColumn, WebsiteColumnSeriesRel
 
 from route import index
 
@@ -58,6 +59,24 @@ def get_index_header():
                 'menu_list': _menu_list,
                 'hot_search_list': _hot_search_list
             })
+        return jsonify(result)
+    except Exception as e:
+        print e
+
+
+@index.route('/main_page', methods=['GET'])
+def get_index_main_page():
+    result = {
+        'response': 'ok',
+        'column_list': [],
+    }
+    try:
+        with get_session() as db_session:
+            all_column = db_session.query(WebsiteColumn).all()
+            if all_column:
+                for column in all_column:
+                    column_dict = column.to_dict()
+                    result['column_list'].append(column_dict)
         return jsonify(result)
     except Exception as e:
         print e

@@ -85,18 +85,6 @@
 						$(".header-content-fix").hide();
 					}
 				}
-				
-				/* 左侧锚点*/
-				go = function(name){
-					if(name == 'top'){
-						var top = 0;
-					}else{
-						var top = $('#guide-' + name).offset().top - 62;
-					}
-					$('html, body').animate({
-						scrollTop: top
-					}, 500)
-				}
 			
 				/* 轮播图 */		
 				var banner = function(){ 
