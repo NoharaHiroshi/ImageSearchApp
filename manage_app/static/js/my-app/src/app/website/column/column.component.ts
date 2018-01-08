@@ -185,9 +185,9 @@ export class ColumnConfSetDetailComponent extends ListBaseComponent{
 			text: '确定显示当前专题？',
 			type: 'warning',
 			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
+			confirmButtonColor: '#37bc9b',
 			cancelButtonColor: '#d33',
-			confirmButtonText: '删除',
+			confirmButtonText: '确定',
 			cancelButtonText: '取消',
 			confirmButtonClass: 'btn btn-theme04 margin-right10',
 			cancelButtonClass: 'btn btn-theme03',
@@ -219,9 +219,9 @@ export class ColumnConfSetDetailComponent extends ListBaseComponent{
 			text: '确定隐藏当前专题？',
 			type: 'warning',
 			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
+			confirmButtonColor: '#37bc9b',
 			cancelButtonColor: '#d33',
-			confirmButtonText: '删除',
+			confirmButtonText: '确定',
 			cancelButtonText: '取消',
 			confirmButtonClass: 'btn btn-theme04 margin-right10',
 			cancelButtonClass: 'btn btn-theme03',
@@ -251,7 +251,7 @@ export class ColumnConfSetDetailComponent extends ListBaseComponent{
 	
 	loadAfter(): void  {
 		let self = this;
-		const url = `/lib/get_all_series`; 
+		const url = `/lib/get_column_all_series`; 
 		$('#series_select').select2({
             placeholder: '请选择专题',
             allowClear: true,
@@ -265,6 +265,7 @@ export class ColumnConfSetDetailComponent extends ListBaseComponent{
                     	search: search,
                         limit: 10,
                         page: page,
+						column_id: self.column.id
                     };
                 },
                 results: function (data:any, page:any) {

@@ -234,7 +234,7 @@ def set_visible_column():
                 'response': 'fail',
                 'info': u'当前未选择任何数据'
             })
-            return jsonify(result)
+        return jsonify(result)
     except Exception as e:
         print e
 
@@ -260,6 +260,6 @@ def set_hidden_column():
                 'response': 'fail',
                 'info': u'当前未选择任何数据'
             })
-            return jsonify(result)
+        return jsonify(result)
     except Exception as e:
         print e
