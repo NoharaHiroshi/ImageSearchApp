@@ -147,6 +147,7 @@ def get_column_set():
                 ).all()
                 for column_series, image_series in all_column_series_list:
                     column_series_rel = image_series.to_dict()
+                    column_series_rel['id'] = str(column_series.id)
                     column_series_rel['type_text'] = column_series.type_text
                     result['column_series_rel_list'].append(column_series_rel)
             else:
@@ -183,6 +184,30 @@ def set_update_column():
                         column_series_rel.series_id = series_id
                         db_session.add(column_series_rel)
                     db_session.commit()
+        return jsonify(result)
+    except Exception as e:
+        print e
+
+
+@website.route('/column_list/set_delete', methods=['POST'])
+def set_delete_column():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    ids = request.form.get('ids').split(',')
+    try:
+        if ids[0]:
+            with get_session() as db_session:
+                db_session.query(WebsiteColumnSeriesRel).filter(
+                    WebsiteColumnSeriesRel.id.in_(ids)
+                ).delete(synchronize_session=False)
+                db_session.commit()
+        else:
+            result.update({
+                'response': 'fail',
+                'info': u'当前未选择任何数据'
+            })
         return jsonify(result)
     except Exception as e:
         print e

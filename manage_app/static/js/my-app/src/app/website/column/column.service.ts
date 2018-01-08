@@ -78,4 +78,12 @@ export class ColumnService extends BaseService {
 		const url = '/website/column_list/set_update';
 	    return this.postForm(url, JSON.stringify(info));
 	}
+	
+	set_del(ids: String): Promise<{}> {
+		const url = '/website/column_list/set_delete';
+		let params = {
+			'ids': ids
+		}
+		return this.postForm(url, JSON.stringify(params));
+	}
 }
