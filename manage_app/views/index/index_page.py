@@ -6,7 +6,7 @@ from flask import render_template, abort, g, jsonify, request
 from flask import current_app as app
 
 from model.session import get_session
-from model.image.image_series import ImageSeries
+from model.image.image_series import ImageSeries, ImageSeriesCategoryRel, ImageSeriesCategory, ImageSeriesRel
 from model.website.menu import WebsiteMenu
 from model.website.banner import Banner
 from model.website.hot_search import WebsiteHotSearch
@@ -93,5 +93,34 @@ def get_index_main_page():
                     column_dict['series_list'] = series_list[:4]
                     result['column_list'].append(column_dict)
         return jsonify(result)
+    except Exception as e:
+        print e
+
+
+@index.route('/series_page', methods=['GET'])
+def get_series_page():
+    result = {
+        'response': 'ok',
+        'series_list': []
+    }
+    # 当前connect_id为专题分类id
+    connect_id = request.args.get('connect_id')
+    try:
+        with get_session() as db_session:
+            query = db_session.query(ImageSeriesCategoryRel).join(
+                ImageSeriesCategory, ImageSeriesCategory.id == ImageSeriesCategoryRel.category_id
+            ).filter(
+                ImageSeriesCategory.id == connect_id
+            ).all()
+            image_series_ids = [image_series_category_rel.image_id for image_series_category_rel in query]
+            all_image_series = db_session.query(ImageSeries).filter(
+                ImageSeries.id.in_(image_series_ids)
+            ).all()
+            _image_series_list = list()
+            for image_series in all_image_series:
+                image_series_dict = image_series.to_dict()
+                _image_series_list.append(image_series_dict)
+            request['series_list'] = _image_series_list
+            return jsonify(result)
     except Exception as e:
         print e

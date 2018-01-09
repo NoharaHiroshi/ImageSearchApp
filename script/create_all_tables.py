@@ -11,7 +11,7 @@ from model.icon.icon import Icon
 from model.icon.icon_series import IconSeries
 from model.icon.icon_tags import IconTags, IconTagsRel
 from model.image.image import Image
-from model.image.image_series import ImageSeries, ImageSeriesRel
+from model.image.image_series import ImageSeries, ImageSeriesRel, ImageSeriesCategory, ImageSeriesCategoryRel
 from model.image.image_tags import ImageTags, ImageTagsRel
 
 from model.website.menu import WebsiteMenu

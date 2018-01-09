@@ -6,10 +6,49 @@ from model.session import get_session
 from model.image.image import Image
 
 
+class ImageSeriesCategory(Base):
+    __tablename__ = 'image_series_category'
+
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
+    # 名称
+    name = Column(String(100), index=True)
+    # 描述
+    desc = Column(String(225))
+
+    def to_dict(self):
+        return {
+            'id': str(self.id),
+            'name': self.name,
+            'desc': self.desc
+        }
+
+
+class ImageSeriesCategoryRel(Base):
+    __tablename__ = 'image_series_category_rel'
+
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
+    # 专题分类id
+    category_id = Column(BigInteger, nullable=False, index=True)
+    # 专题id
+    series_id = Column(BigInteger, nullable=False, index=True)
+    # 分类名称
+    category_name = Column(String(100), index=True)
+
+    def to_dict(self):
+        return {
+            'id': str(self.id),
+            'category_id': str(self.category_id),
+            'series_id': str(self.series_id),
+            'category_name': self.category_name
+        }
+
+
 class ImageSeries(Base):
     __tablename__ = 'image_series'
 
     # 专题类型：普通专题、分类专题
+    # 普通专题主要是基于某一关键词的集合，例如2018、元旦、新年等
+    # 分类专题是基于某一类图片素材而集合成的类，例如免抠元素、背景图片
     TYPE_COMMON, TYPE_CATEGORY = range(2)
 
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
