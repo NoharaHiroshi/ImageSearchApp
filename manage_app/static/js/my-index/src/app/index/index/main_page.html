@@ -21,8 +21,8 @@
 
 <div class="left-navigation-box">
 	<ng-container *ngIf="column_list">
-		<ng-container *ngFor="let column of column_list">
-			<div class="left-navigation-item" id="left_nav_{{column.ranking}}" (click)="go(column.ranking)">{{column.name}}</div>
+		<ng-container *ngFor="let column of column_list; let i = index;">
+			<div class="left-navigation-item" id="left_nav_{{i}}" (click)="go(i)">{{column.name}}</div>
 		</ng-container>
 	</ng-container>
 	<div class="left-navigation-item" (click)="go('top')"><i class="fa fa-chevron-up"></i>TOP</div>
@@ -30,8 +30,8 @@
 
 <div class="series-box">
 	<ng-container *ngIf="column_list">
-		<ng-container *ngFor="let column of column_list">
-			<div class="series-content" id="guide-{{column.ranking}}">
+		<ng-container *ngFor="let column of column_list; let i = index;">
+			<div class="series-content" id="guide-{{i}}">
 				<div class="series-title">
 					<span>{{column.name}}</span>
 					<span class="series-subtitle">
