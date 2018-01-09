@@ -1,4 +1,4 @@
-import ImageSeries from './image_series';
+import { ImageSeries } from './image_series';
 
 export class Column {
 	id: string;

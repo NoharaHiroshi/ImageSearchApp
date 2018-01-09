@@ -10,9 +10,15 @@ class WebsiteMenu(Base):
     __tablename__ = 'website_menu'
 
     # 类型（按照链接的页面分类）：内容页、图片页
-    TYPE_CONTENT_PAGE, TYPE_IMG_PAGE = range(2)
+    # 详细解释一下，防止忘记：通过menu类别的不同，调用不同模板
+    # 内容页：例如活动公告、关于网站等已文字为主的页面
+    # 图片页：图片列表页，展示某一类、某一专题、某一标签的图片列表
+    # 专题页：用来展示某一类相关专题
+    TYPE_CONTENT_PAGE, TYPE_IMG_PAGE, TYPE_SERIES_PAGE = range(3)
 
     # 导航类型：链接类型、分类类型
+    # 导航类型：用来区分当前导航是用来为子级导航分类的，还是拥有实际跳转链接
+    # 例如二级导航是分类导航，没有链接；三级导航是链接导航，拥有链接
     IS_CONNECTED, IS_CATEGORY = range(2)
 
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
@@ -37,7 +43,8 @@ class WebsiteMenu(Base):
     def type_text(self):
         s = {
             self.TYPE_CONTENT_PAGE: u'内容页',
-            self.TYPE_IMG_PAGE: u'图片页'
+            self.TYPE_IMG_PAGE: u'图片页',
+            self.TYPE_SERIES_PAGE: u'专题页'
         }
         return s.get(self.type, u'未知链接类型')
 

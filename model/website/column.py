@@ -34,6 +34,7 @@ class WebsiteColumn(Base):
 class WebsiteColumnSeriesRel(Base):
     __tablename__ = 'website_column_series_rel'
 
+    # 默认链接专题
     # 类型：首页隐藏、首页显示
     TYPE_HIDDEN, TYPE_SHOW = range(2)
 
