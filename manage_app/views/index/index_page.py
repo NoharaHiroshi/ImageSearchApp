@@ -6,6 +6,7 @@ from flask import render_template, abort, g, jsonify, request
 from flask import current_app as app
 
 from model.session import get_session
+from model.image.image_series import ImageSeries
 from model.website.menu import WebsiteMenu
 from model.website.banner import Banner
 from model.website.hot_search import WebsiteHotSearch
@@ -76,6 +77,15 @@ def get_index_main_page():
             if all_column:
                 for column in all_column:
                     column_dict = column.to_dict()
+                    series_list = list()
+                    column_all_series = db_session.query(ImageSeries).join(
+                        WebsiteColumnSeriesRel, WebsiteColumnSeriesRel.series_id == ImageSeries.id
+                    ).order_by(-ImageSeries.created_date).all()
+                    for column_series in column_all_series:
+                        column_series_dict = column_series.to_dict()
+                        series_list.append(column_series_dict)
+                    # 首页只显示4个最新添加的专题
+                    column_dict['series_list'] = series_list[:4]
                     result['column_list'].append(column_dict)
         return jsonify(result)
     except Exception as e:

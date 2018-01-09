@@ -42,58 +42,21 @@
 					</span>
 				</div>
 				<div class="series-item-content">
-					<div class="series-item">
-						<div class="grid">
-							<figure class="effect-apollo">
-								<img src="/static/index/img/series_1.jpg">
-								<figcaption>
-									<h2>精选2018</h2>
-									<p>精选2018素材</p>
-									<a href="#">更多</a>
-								</figcaption>		
-							</figure>
+					<ng-container *ngFor="let series of column.series_list">
+						<div class="series-item">
+							<div class="grid">
+								<figure class="effect-apollo">
+									<img src="/static/{{series.cover_image_url}}">
+									<figcaption>
+										<h2>{{series.name}}</h2>
+										<p>{{series.desc}}</p>
+										<a href="#">更多</a>
+									</figcaption>		
+								</figure>
+							</div>
+							<div class="series-item-font">{{series.name}}</div>
 						</div>
-						<div class="series-item-font">精选2018</div>
-					</div>
-					<div class="series-item">
-						<div class="grid">
-							<figure class="effect-apollo">
-								<img class="series-item-img" src="/static/index/img/series_2.jpg">
-							<figcaption>
-									<h2>电商年终促销</h2>
-									<p>淘宝电商年终促销素材</p>
-									<a href="#">更多</a>
-								</figcaption>		
-							</figure>
-						</div>
-						<div class="series-item-font">电商年终促销素材</div>
-					</div>
-					<div class="series-item">
-						<div class="grid">
-							<figure class="effect-apollo">
-								<img class="series-item-img" src="/static/index/img/series_3.jpg">
-							<figcaption>
-									<h2>猴年素材</h2>
-									<p>猴年素材，一网打尽</p>
-									<a href="#">更多</a>
-								</figcaption>		
-							</figure>
-						</div>
-						<div class="series-item-font">猴年素材</div>
-					</div>
-					<div class="series-item">
-						<div class="grid">
-							<figure class="effect-apollo">
-								<img class="series-item-img" src="/static/index/img/series_4.jpg">
-							<figcaption>
-									<h2>精选2018</h2>
-									<p>精选2018素材</p>
-									<a href="#">更多</a>
-								</figcaption>		
-							</figure>
-						</div>
-						<div class="series-item-font">精选2018素材</div>
-					</div>
+					</ng-container>
 				</div>
 			</div>
 		</ng-container>

@@ -8,6 +8,7 @@ import { Location }  from '@angular/common';
 import { MainPageService } from './main_page.service';
 import { ListBaseComponent } from '../../common/base.component';
 
+import { ImageSeries } from '../../../../../my-app/src/app/model/image_series';
 import { Column } from '../../../../../my-app/src/app/model/column';
 
 @Component({
