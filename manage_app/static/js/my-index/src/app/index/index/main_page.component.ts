@@ -22,8 +22,12 @@ export class MainPageComponent extends ListBaseComponent implements OnInit{
 	}
 	
 	ngOnInit(): void {
+		let self = this;
 		this.service.getMainPageInfo().then(data => {
 			this.column_list = data.column_list;
+			setTimeout(function(){
+				self.loadAfter();
+			}, 100);
         });
 	}
 	
@@ -39,31 +43,38 @@ export class MainPageComponent extends ListBaseComponent implements OnInit{
 		}, 500)
 	}
 	
-	loadAfter(): void  {
-		let self = this;
+	// 获取栏目的高度
+	get_elem_height(index: number): any {
 		let header_fix_height = $('.header-content-fix').height();
-		get_elem_height = function(index) {
-			var h = $('.series-content').eq(index).offset().top - header_fix_height - 1; 
-			return h;
-		}
-		
-		/* 搜索框 */
-		window.onscroll = function() {
-			var topScroll = $(window).scrollTop();//滚动的距离,距离顶部的距离
-			if(topScroll < get_elem_height(1) && topScroll > get_elem_height(0)){
-				$('#left_nav_1').addClass('left_current').siblings().removeClass("left_current");
-				
-			}else if(topScroll < get_elem_height(2) && topScroll > get_elem_height(1)){
-				$('#left_nav_2').addClass('left_current').siblings().removeClass("left_current");
-				
-			}else if(topScroll < get_elem_height(3) && topScroll > get_elem_height(2)){
-				$('#left_nav_3').addClass('left_current').siblings().removeClass("left_current");
-				
-			}else if(topScroll > get_elem_height(3)){
-				$('#left_nav_4').addClass('left_current').siblings().removeClass("left_current");
+		let h = $('.series-content').eq(index).offset().top - header_fix_height - 1; 
+		return h;
+	}
+	
+	// 设置左侧锚点是否激活
+	set_current_left_nav(top_scroll: number): void {
+		let last_elem_id = this.column_list.length - 1;
+		for(let i=0; i<this.column_list.length; i++){
+			if(top_scroll > this.get_elem_height(last_elem_id)){
+				$('#left_nav_' + last_elem_id).addClass('left_current').siblings().removeClass("left_current");
+			}else if(i< last_elem_id){
+				let next = i + 1;
+				if(top_scroll < this.get_elem_height(next) && top_scroll > this.get_elem_height(i)){
+					$('#left_nav_' + i).addClass('left_current').siblings().removeClass("left_current");
+					break;
+				}
 			}else{
 				$('.left-navigation-item').removeClass("left_current");
 			}
+		}
+	}
+	
+	loadAfter(): void  {
+		let self = this;
+		
+		/* 搜索框 */
+		window.onscroll = function() {
+			let topScroll = $(window).scrollTop();//滚动的距离,距离顶部的距离
+			self.set_current_left_nav(topScroll);
 			if(topScroll > 180){  
 				$(".header-content-fix").show();
 			}else{
