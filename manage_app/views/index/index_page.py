@@ -78,9 +78,14 @@ def get_index_main_page():
                 for column in all_column:
                     column_dict = column.to_dict()
                     series_list = list()
-                    column_all_series = db_session.query(ImageSeries).join(
-                        WebsiteColumnSeriesRel, WebsiteColumnSeriesRel.series_id == ImageSeries.id
-                    ).order_by(-ImageSeries.created_date).all()
+                    column_all_series_rel = db_session.query(WebsiteColumnSeriesRel).filter(
+                        WebsiteColumnSeriesRel.column_id == column.id,
+                        WebsiteColumnSeriesRel.type == WebsiteColumnSeriesRel.TYPE_SHOW
+                    ).all()
+                    all_series_ids = [series_rel.series_id for series_rel in column_all_series_rel]
+                    column_all_series = db_session.query(ImageSeries).filter(
+                        ImageSeries.id.in_(all_series_ids)
+                    ).all()
                     for column_series in column_all_series:
                         column_series_dict = column_series.to_dict()
                         series_list.append(column_series_dict)
