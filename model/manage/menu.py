@@ -84,7 +84,9 @@ class Menu(Base):
             'icon_info': self.icon_info,
             'url': self.url,
             'sub_menus': self.sub_menus,
-            'module': self.module
+            'module': self.module,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
 if __name__ == '__main__':

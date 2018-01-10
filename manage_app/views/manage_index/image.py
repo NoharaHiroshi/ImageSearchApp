@@ -685,6 +685,11 @@ def image_series_category_list():
             _image_series_category_list = list()
             for image_series_category in all_image_series_category:
                 image_series_category_dict = image_series_category.to_dict()
+                image_series = db_session.query(ImageSeriesCategoryRel).filter(
+                    ImageSeriesCategoryRel.category_id == image_series_category.id
+                ).all()
+                count = len(image_series)
+                image_series_category_dict['count'] = count
                 _image_series_category_list.append(image_series_category_dict)
             result['image_series_category_list'] = _image_series_category_list
         return jsonify(result)

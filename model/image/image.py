@@ -64,5 +64,7 @@ class Image(Base):
             'height': self.height,
             'mode': self.mode,
             'img_preview_url': self.img_preview_url,
-            'img_thumbnail_url': self.img_thumb_url
+            'img_thumbnail_url': self.img_thumb_url,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }

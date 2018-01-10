@@ -114,5 +114,7 @@ class WebsiteMenu(Base):
             'sort': self.sort,
             'parent_id': str(self.parent_id),
             'icon_info': self.icon_info,
-            'sub_menus': self.sub_menus
+            'sub_menus': self.sub_menus,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }

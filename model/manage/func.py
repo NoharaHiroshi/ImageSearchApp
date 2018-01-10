@@ -55,7 +55,9 @@ class MenuFunc(Base):
             'name': self.name,
             'menu_id': str(self.menu_id),
             'func_id': str(self.func_id),
-            'menu_func_code': self.menu_func_code
+            'menu_func_code': self.menu_func_code,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
 if __name__ == '__main__':

@@ -179,7 +179,7 @@ export class ImageSeriesCategoryConfSetDetailComponent extends ListBaseComponent
 	}
 	
 	goBack(): void {
-		this.router.navigate(['/column_conf']);
+		this.router.navigate(['/image_series_category_conf']);
 	}
 	
 	loadAfter(): void  {

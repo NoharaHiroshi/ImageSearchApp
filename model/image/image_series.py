@@ -19,7 +19,9 @@ class ImageSeriesCategory(Base):
         return {
             'id': str(self.id),
             'name': self.name,
-            'desc': self.desc
+            'desc': self.desc,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
 
@@ -42,7 +44,9 @@ class ImageSeriesCategoryRel(Base):
             'category_id': str(self.category_id),
             'series_id': str(self.series_id),
             'category_name': self.category_name,
-            'series_name': self.series_name
+            'series_name': self.series_name,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
 
@@ -118,6 +122,8 @@ class ImageSeries(Base):
             'cover_image_id': str(self.cover_image_id),
             'cover_image_url': self.cover_image_url,
             'count': self.count,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
 
@@ -137,7 +143,9 @@ class ImageSeriesRel(Base):
             'id': str(self.id),
             'image_id': str(self.image_id),
             'image_series_id': str(self.image_series_id),
-            'image_series_name': self.image_series_name
+            'image_series_name': self.image_series_name,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
 if __name__ == '__main__':

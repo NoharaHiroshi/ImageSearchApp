@@ -21,6 +21,9 @@
 							</th>
 							<th><i class="fa fa-question-circle"></i> 专题分类名称 </th>
 							<th><i class="fa fa-question-circle"></i> 描述 </th>
+							<th><i class="fa fa-question-circle"></i> 专题数量 </th>
+							<th><i class="fa fa-question-circle"></i> 创建时间 </th>
+							<th><i class="fa fa-question-circle"></i> 修改时间 </th>
 							<th><i class="fa fa-bookmark"></i> 操作 </th>
 						</tr>
 					</thead>
@@ -29,6 +32,9 @@
 							<td class="td-center"><input icheck class="icheck" name="checked" type="checkbox" value={{image_series_category.id}} ></td>
 							<td class="td-center"><a [routerLink]="['detail', image_series_category.id]">{{ image_series_category.name }}</a></td>
 							<td class="td-center">{{ image_series_category.desc }}</td>
+							<td class="td-center">{{ image_series_category.count }}</td>
+							<td class="td-center">{{ image_series_category.created_date }}</td>
+							<td class="td-center">{{ image_series_category.modified_date }}</td>
 							<td class="td-center"><a [routerLink]="['set', image_series_category.id]">编辑专题分类</a></td>
 						</tr>
 					</tbody>

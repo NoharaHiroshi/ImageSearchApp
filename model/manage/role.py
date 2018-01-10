@@ -29,7 +29,9 @@ class Role(Base):
         return {
             'id': str(self.id),
             'name': self.name,
-            'desc': self.desc
+            'desc': self.desc,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
 

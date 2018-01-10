@@ -53,4 +53,6 @@ class Banner(Base):
             'type_text': self.type_text,
             'connect_id': str(self.connect_id),
             'connect_name': self.connect_name,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }

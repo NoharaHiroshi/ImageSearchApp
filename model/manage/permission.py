@@ -20,5 +20,7 @@ class RolePermissionRel(Base):
             'id': str(self.id),
             'role_id': str(self.role_id),
             'menu_func_id': str(self.menu_func_id),
-            'menu_func_name': self.menu_func_name
+            'menu_func_name': self.menu_func_name,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }

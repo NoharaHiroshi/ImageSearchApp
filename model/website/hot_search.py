@@ -41,5 +41,7 @@ class WebsiteHotSearch(Base):
             'connect_id': str(self.connect_id),
             'status': self.status,
             'status_text': self.status_text,
-            'ranking': self.ranking
+            'ranking': self.ranking,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }

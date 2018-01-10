@@ -27,7 +27,9 @@ class WebsiteColumn(Base):
             'id': str(self.id),
             'name': self.name,
             'sub_title': self.sub_title,
-            'ranking': self.ranking
+            'ranking': self.ranking,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
 
@@ -60,6 +62,8 @@ class WebsiteColumnSeriesRel(Base):
             'column_id': str(self.column_id),
             'series_id': str(self.series_id),
             'type': self.type,
-            'type_text': self.type_text
+            'type_text': self.type_text,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }
 

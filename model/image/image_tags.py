@@ -24,7 +24,9 @@ class ImageTags(Base):
         return {
             'id': str(self.id),
             'name': self.name,
-            'count': self.count
+            'count': self.count,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
 
@@ -50,7 +52,9 @@ class ImageTagsRel(Base):
             'type': self.type,
             'tag_id': str(self.tag_id),
             'tag_name': self.tag_name,
-            'image_id': str(self.image_id)
+            'image_id': str(self.image_id),
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
 if __name__ == '__main__':
