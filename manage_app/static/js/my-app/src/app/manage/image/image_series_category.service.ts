@@ -6,6 +6,7 @@ import 'rxjs/add/operator/timeout';
 import 'rxjs/Rx';
 
 import { ImageSeriesCategory } from '../../model/image_series_category';
+import { ImageSeriesCategoryRel } from '../../model/image_series_category_rel';
 
 import { BaseService } from '../../common/base.service';
 
@@ -49,6 +50,37 @@ export class ImageSeriesCategoryService extends BaseService {
 	
 	del(ids: String): Promise<{}> {
 		const url = '/manage/image_series_category_list/delete';
+		let params = {
+			'ids': ids
+		}
+		return this.postForm(url, JSON.stringify(params));
+	}
+	
+	getSetDetail(id: String): Promise<{}> {
+		const url = '/manage/image_series_category_list/set?id=' + id; 
+		let self = this;
+		return this.http.get(url)
+				   .toPromise()
+				   .then(res => {
+						let json = res.json()
+						json['image_series_category'] = self.jsonToObject(json.image_series_category, ImageSeriesCategory);
+						json['image_series_category_rel_list'] = self.jsonListToObjectList(json.image_series_category_rel_list, ImageSeriesCategoryRel);
+						return json;
+				   })
+				   .catch(this.handleError);
+	} 
+	
+	set(image_series_category_id: string, series_id_list: string): Promise<any> {
+		let info = {
+			'image_series_category_id': image_series_category_id,
+			'series_id_list': series_id_list
+		}
+		const url = '/manage/image_series_category_list/set_update';
+	    return this.postForm(url, JSON.stringify(info));
+	}
+	
+	set_del(ids: String): Promise<{}> {
+		const url = '/manage/image_series_category_list/set_delete';
 		let params = {
 			'ids': ids
 		}

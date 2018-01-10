@@ -784,5 +784,96 @@ def delete_image_series_category():
         print e
         abort(400)
 
+
+# 设置分类专题
+@manage.route('/image_series_category_list/set', methods=['GET'])
+def get_column_set():
+    result = {
+        'response': 'ok',
+        'info': '',
+        'image_series_category': '',
+        'image_series_category_rel_list': []
+    }
+    _id = request.args.get('id')
+    try:
+        with get_session() as db_session:
+            image_series_category = db_session.query(ImageSeriesCategory).get(_id)
+            if image_series_category:
+                image_series_category_dict = image_series_category.to_dict()
+                result['image_series_category'] = image_series_category_dict
+                all_category_series_rel_list = db_session.query(ImageSeriesCategoryRel, ImageSeries).join(
+                    ImageSeries, ImageSeries.id == ImageSeriesCategoryRel.series_id
+                ).filter(
+                    ImageSeriesCategoryRel.category_id == image_series_category.id
+                ).all()
+                for category_series_rel, image_series in all_category_series_rel_list:
+                    category_series_rel_dict = image_series.to_dict()
+                    category_series_rel_dict['id'] = str(category_series_rel.id)
+                    result['image_series_category_rel_list'].append(category_series_rel_dict)
+            else:
+                result.update({
+                    'response': 'fail',
+                    'info': u'当前分类不存在'
+                })
+        return jsonify(result)
+    except Exception as e:
+        print e
+
+
+@manage.route('/image_series_category_list/set_update', methods=['POST'])
+def set_update_column():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    image_series_category_id = request.form.get('image_series_category_id')
+    series_id_list = request.form.get('series_id_list')
+    try:
+        if None in [image_series_category_id, series_id_list]:
+            result.update({
+                'response': 'fail',
+                'info': u'请检查参数是否填写完整'
+            })
+        else:
+            ids = series_id_list.split(',')
+            if ids[0]:
+                with get_session() as db_session:
+                    image_series_category = db_session.query(ImageSeriesCategory).get(image_series_category_id)
+                    if image_series_category:
+                        for series_id in ids:
+                            image_series_category_rel = ImageSeriesCategoryRel()
+                            image_series_category_rel.category_id = image_series_category_id
+                            image_series_category_rel.series_id = series_id
+                            image_series_category_rel.category_name = image_series_category.name
+                            db_session.add(image_series_category_rel)
+                    db_session.commit()
+        return jsonify(result)
+    except Exception as e:
+        print e
+
+
+@manage.route('/image_series_category_list/set_delete', methods=['POST'])
+def set_delete_column():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    ids = request.form.get('ids').split(',')
+    try:
+        if ids[0]:
+            with get_session() as db_session:
+                db_session.query(ImageSeriesCategoryRel).filter(
+                    ImageSeriesCategoryRel.id.in_(ids)
+                ).delete(synchronize_session=False)
+                db_session.commit()
+        else:
+            result.update({
+                'response': 'fail',
+                'info': u'当前未选择任何数据'
+            })
+        return jsonify(result)
+    except Exception as e:
+        print e
+
 if __name__ == '__main__':
     pass

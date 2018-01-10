@@ -28,7 +28,7 @@ import { ImageConfComponent } from './image/image.component';
 import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent, ImageSeriesSetComponent } from './image/image_series.component';
 import { ImageTagConfComponent, ImageTagConfDetailComponent, ImageTagSetComponent } from './image/image_tag.component';
 import { ImageDemoConfComponent } from './image/image_demo.component';
-import { ImageSeriesCategoryConfComponent, ImageSeriesCategoryConfDetailComponent} from './image/image_series_category.component';
+import { ImageSeriesCategoryConfComponent, ImageSeriesCategoryConfDetailComponent, ImageSeriesCategoryConfSetDetailComponent} from './image/image_series_category.component';
 
 import { DashboardService } from './dashboard/dashboard.service';
 import { FuncService } from './func/func.service';
@@ -76,6 +76,7 @@ import { ImageSeriesCategoryService } from './image/image_series_category.servic
 		
 		ImageSeriesCategoryConfComponent,
 		ImageSeriesCategoryConfDetailComponent,
+		ImageSeriesCategoryConfSetDetailComponent
 	],
 	imports: [
 		CommonModule,
