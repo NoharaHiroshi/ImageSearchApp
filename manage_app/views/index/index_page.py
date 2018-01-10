@@ -124,6 +124,9 @@ def get_series_list_page():
             _image_series_list = list()
             for image_series in all_image_series:
                 image_series_dict = image_series.to_dict()
+                width, height = image_series.get_cover_img_info()
+                image_series_dict['width'] = width
+                image_series_dict['height'] = height
                 _image_series_list.append(image_series_dict)
             result['series_list'] = _image_series_list
         return jsonify(result)

@@ -92,6 +92,17 @@ class ImageSeries(Base):
                 url = ""
         return url
 
+    def get_cover_img_info(self):
+        with get_session() as db_session:
+            width = 0
+            height = 0
+            if self.cover_image_id:
+                cover_image = db_session.query(Image).get(self.cover_image_id)
+                if cover_image:
+                    width = cover_image.width
+                    height = cover_image.height
+            return width, height
+
     @property
     def count(self):
         with get_session() as db_session:

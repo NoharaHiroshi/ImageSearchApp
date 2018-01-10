@@ -647,3 +647,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	background: #fff;
 	padding: 30px 30px 0 30px;
 }
+
+.series-item {
+	
+}
