@@ -33,13 +33,16 @@ class ImageSeriesCategoryRel(Base):
     series_id = Column(BigInteger, nullable=False, index=True)
     # 分类名称
     category_name = Column(String(100), index=True)
+    # 专题名称
+    series_name = Column(String(100), index=True)
 
     def to_dict(self):
         return {
             'id': str(self.id),
             'category_id': str(self.category_id),
             'series_id': str(self.series_id),
-            'category_name': self.category_name
+            'category_name': self.category_name,
+            'series_name': self.series_name
         }
 
 

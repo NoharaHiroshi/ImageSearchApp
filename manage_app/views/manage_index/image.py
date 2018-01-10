@@ -841,10 +841,12 @@ def set_update_column():
                     image_series_category = db_session.query(ImageSeriesCategory).get(image_series_category_id)
                     if image_series_category:
                         for series_id in ids:
+                            image_series = db_session.query(ImageSeries).get(series_id)
                             image_series_category_rel = ImageSeriesCategoryRel()
                             image_series_category_rel.category_id = image_series_category_id
                             image_series_category_rel.series_id = series_id
                             image_series_category_rel.category_name = image_series_category.name
+                            image_series_category_rel.series_name = image_series.name
                             db_session.add(image_series_category_rel)
                     db_session.commit()
         return jsonify(result)
