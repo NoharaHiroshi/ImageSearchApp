@@ -1,0 +1,13 @@
+<div class="image-series-box">
+	<div class="image-series-content">
+		<ng-container *ngIf="series_list">
+			<ng-container *ngFor="let series of series_list">
+				<div class="witem" #witem data-w="" data-h="" style="height:200px; width:200px;">
+					<div class="witem-box">
+						<img src="/static/{{series.cover_image_url}}" class="witem-image"/>
+					</div>
+				</div>
+			</ng-container>
+		</ng-container>
+	</div>
+</div>

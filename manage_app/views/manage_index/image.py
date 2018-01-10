@@ -734,6 +734,7 @@ def update_image_series_category_detail():
     image_series_category_id = request.form.get('id')
     image_series_category_name = request.form.get('name')
     image_series_category_desc = request.form.get('desc')
+    now = datetime.datetime.now()
     try:
         if None in [image_series_category_name]:
             result.update({
@@ -752,6 +753,7 @@ def update_image_series_category_detail():
                     if image_series_category:
                         image_series_category.name = image_series_category_name
                         image_series_category.desc = image_series_category_desc
+                        image_series_category.modified_date = now
                     else:
                         result['response'] = 'fail'
                         result['info'] = u'当前对象不存在'

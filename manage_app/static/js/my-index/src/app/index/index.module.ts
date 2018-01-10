@@ -18,12 +18,16 @@ import { IndexRoutingModule } from './index.routing.module';
 import { MainPageComponent } from './index/main_page.component';
 import { MainPageService } from './index/main_page.service';
 
+import { ImageSeriesListComponent } from './image_series_list/image_series_list.component';
+import { ImageSeriesListService } from './image_series_list/image_series_list.service';
+
 import { IndexComponent } from './index.component';
 
 @NgModule({
 	declarations: [
 		IndexComponent,
 		MainPageComponent,
+		ImageSeriesListComponent
 	],
 	imports: [
 		CommonModule,
@@ -44,7 +48,8 @@ import { IndexComponent } from './index.component';
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
 		HeaderService,
 		MainPageService,
-		FooterService
+		FooterService,
+		ImageSeriesListService
 	],
 	bootstrap: [
 		IndexComponent

@@ -635,3 +635,15 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	padding: 5px;
 	color: #666;
 }
+
+/* 专题列表页 */
+.image-series-box {
+	margin-top: 10px;
+}
+
+.image-series-content {
+	width: 1200px;
+	margin: 0 auto;
+	background: #fff;
+	padding: 30px 30px 0 30px;
+}

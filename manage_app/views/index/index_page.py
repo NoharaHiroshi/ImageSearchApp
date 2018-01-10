@@ -97,22 +97,27 @@ def get_index_main_page():
         print e
 
 
-@index.route('/series_page', methods=['GET'])
-def get_series_page():
+@index.route('/series_list_page', methods=['GET'])
+def get_series_list_page():
     result = {
         'response': 'ok',
+        'series_category': '',
         'series_list': []
     }
     # 当前connect_id为专题分类id
-    connect_id = request.args.get('connect_id')
+    connect_id = request.args.get('id')
     try:
         with get_session() as db_session:
+            image_series_category = db_session.query(ImageSeriesCategory).get(connect_id)
+            image_series_category_dict = image_series_category.to_dict()
+            result['series_category'] = image_series_category_dict
+
             query = db_session.query(ImageSeriesCategoryRel).join(
                 ImageSeriesCategory, ImageSeriesCategory.id == ImageSeriesCategoryRel.category_id
             ).filter(
                 ImageSeriesCategory.id == connect_id
             ).all()
-            image_series_ids = [image_series_category_rel.image_id for image_series_category_rel in query]
+            image_series_ids = [image_series_category_rel.series_id for image_series_category_rel in query]
             all_image_series = db_session.query(ImageSeries).filter(
                 ImageSeries.id.in_(image_series_ids)
             ).all()
@@ -120,7 +125,7 @@ def get_series_page():
             for image_series in all_image_series:
                 image_series_dict = image_series.to_dict()
                 _image_series_list.append(image_series_dict)
-            request['series_list'] = _image_series_list
-            return jsonify(result)
+            result['series_list'] = _image_series_list
+        return jsonify(result)
     except Exception as e:
         print e
