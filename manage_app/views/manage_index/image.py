@@ -13,7 +13,7 @@ from lib.upload_image import save_images, delete_images
 from lib.paginator import SQLAlchemyPaginator
 from model.session import get_session
 from model.image.image import Image as Img
-from model.image.image_series import ImageSeriesRel, ImageSeries
+from model.image.image_series import ImageSeriesRel, ImageSeries, ImageSeriesCategory, ImageSeriesCategoryRel
 from model.image.image_tags import ImageTags, ImageTagsRel
 
 from route import manage
@@ -670,6 +670,119 @@ def remove_image_from_tag():
         print e
         abort(400)
 
+
+# ———————————————————— 专题分类相关操作 ————————————————————
+@manage.route('/image_series_category_list', methods=['GET'])
+def image_series_category_list():
+    result = {
+        'response': 'ok',
+        'image_series_category_list': [],
+        'info': ''
+    }
+    try:
+        with get_session() as db_session:
+            all_image_series_category = db_session.query(ImageSeriesCategory).all()
+            _image_series_category_list = list()
+            for image_series_category in all_image_series_category:
+                image_series_category_dict = image_series_category.to_dict()
+                _image_series_category_list.append(image_series_category_dict)
+            result['image_series_category_list'] = _image_series_category_list
+        return jsonify(result)
+    except Exception as e:
+        print e
+        abort(400)
+
+
+# 专题分类详情
+@manage.route('/image_series_category_list/detail', methods=['GET'])
+def get_image_series_category_detail():
+    result = {
+        'response': 'ok',
+        'info': '',
+        'image_series_category': ''
+    }
+    try:
+        _id = request.args.get('id')
+        with get_session() as db_session:
+            data = db_session.query(ImageSeriesCategory).get(_id)
+            if data:
+                data_dict = data.to_dict()
+                result['image_series_category'] = data_dict
+            else:
+                result.update({
+                    'response': 'fail',
+                    'info': u'当前标签不存在'
+                })
+        return jsonify(result)
+    except Exception as e:
+        app.my_logger.error(traceback.format_exc(e))
+        abort(400)
+
+
+# 专题分类更新
+@manage.route('/image_series_category_list/update', methods=['POST'])
+def update_image_series_category_detail():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    image_series_category_id = request.form.get('id')
+    image_series_category_name = request.form.get('name')
+    image_series_category_desc = request.form.get('desc')
+    try:
+        if None in [image_series_category_name]:
+            result.update({
+                'response': 'fail',
+                'info': u'请检查参数是否填写完整'
+            })
+        else:
+            with get_session() as db_session:
+                if not image_series_category_id:
+                    image_series_category = ImageSeriesCategory()
+                    image_series_category.name = image_series_category_name
+                    image_series_category.desc = image_series_category_desc
+                    db_session.add(image_series_category)
+                else:
+                    image_series_category = db_session.query(ImageSeriesCategory).get(image_series_category_id)
+                    if image_series_category:
+                        image_series_category.name = image_series_category_name
+                        image_series_category.desc = image_series_category_desc
+                    else:
+                        result['response'] = 'fail'
+                        result['info'] = u'当前对象不存在'
+                db_session.commit()
+        return jsonify(result)
+    except Exception as e:
+        app.my_logger.error(traceback.format_exc(e))
+        abort(400)
+
+
+# 删除分类专题
+@manage.route('/image_series_category_list/delete', methods=['POST'])
+def delete_image_series_category():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    ids = request.form.get('ids').split(',')
+    try:
+        # 删除分类专题时，会将该分类中的所有专题关系删除
+        with get_session() as db_session:
+            for _id in ids:
+                image_series_category = db_session.query(ImageSeriesCategory).get(_id)
+                if image_series_category:
+                    # 删除专题分类
+                    db_session.delete(image_series_category)
+
+                    # 删除关系
+                    db_session.query(ImageSeriesCategoryRel).filter(
+                        ImageSeriesCategoryRel.category_id == _id
+                    ).delete(synchronize_session=False)
+            db_session.commit()
+        return jsonify(result)
+    except Exception as e:
+        print e
+        abort(400)
 
 if __name__ == '__main__':
     pass

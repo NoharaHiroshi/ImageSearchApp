@@ -1,0 +1,64 @@
+<div class="slogan-box">
+	<div class="slogan-content">
+		<div class="slogan-item">
+			<span class="slogan-item-title">海量资源</span>
+			<span class="slogan-item-content">精选素材，每日更新</span>
+		</div>
+		<div class="slogan-item">
+			<span class="slogan-item-title">免费精品</span>
+			<span class="slogan-item-content">精选资源，免费下载</span>
+		</div>
+		<div class="slogan-item">
+			<span class="slogan-item-title">优选专题</span>
+			<span class="slogan-item-content">精心挑选，想你所想</span>
+		</div>
+		<div class="slogan-item">
+			<span class="slogan-item-title">急速下载</span>
+			<span class="slogan-item-content">满速下载，提升效率</span>
+		</div>
+	</div>
+</div>
+
+<div class="left-navigation-box">
+	<ng-container *ngIf="column_list">
+		<ng-container *ngFor="let column of column_list; let i = index;">
+			<div class="left-navigation-item" id="left_nav_{{i}}" (click)="go(i)">{{column.name}}</div>
+		</ng-container>
+	</ng-container>
+	<div class="left-navigation-item" (click)="go('top')"><i class="fa fa-chevron-up"></i>TOP</div>
+</div>
+
+<div class="series-box">
+	<ng-container *ngIf="column_list">
+		<ng-container *ngFor="let column of column_list; let i = index;">
+			<div class="series-content" id="guide-{{i}}">
+				<div class="series-title">
+					<span>{{column.name}}</span>
+					<span class="series-subtitle">
+						{{column.sub_title}}
+					</span>
+					<span class="series-more">
+						<a href="#">更多 ></a>
+					</span>
+				</div>
+				<div class="series-item-content">
+					<ng-container *ngFor="let series of column.series_list">
+						<div class="series-item">
+							<div class="grid">
+								<figure class="effect-apollo">
+									<img src="/static/{{series.cover_image_url}}">
+									<figcaption>
+										<h2>{{series.name}}</h2>
+										<p>{{series.desc}}</p>
+										<a href="#">更多</a>
+									</figcaption>		
+								</figure>
+							</div>
+							<div class="series-item-font">{{series.name}}</div>
+						</div>
+					</ng-container>
+				</div>
+			</div>
+		</ng-container>
+	</ng-container>
+</div>

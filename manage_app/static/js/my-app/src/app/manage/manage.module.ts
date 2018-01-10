@@ -28,6 +28,7 @@ import { ImageConfComponent } from './image/image.component';
 import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent, ImageSeriesSetComponent } from './image/image_series.component';
 import { ImageTagConfComponent, ImageTagConfDetailComponent, ImageTagSetComponent } from './image/image_tag.component';
 import { ImageDemoConfComponent } from './image/image_demo.component';
+import { ImageSeriesCategoryConfComponent, ImageSeriesCategoryConfDetailComponent} from './image/image_series_category.component';
 
 import { DashboardService } from './dashboard/dashboard.service';
 import { FuncService } from './func/func.service';
@@ -38,6 +39,7 @@ import { UserRoleService } from './user_role/user_role.service';
 import { ImageService } from './image/image.service';
 import { ImageSeriesService } from './image/image_series.service';
 import { ImageTagService } from './image/image_tag.service';
+import { ImageSeriesCategoryService } from './image/image_series_category.service';
 
 @NgModule({
 	declarations: [
@@ -70,7 +72,10 @@ import { ImageTagService } from './image/image_tag.service';
 		ImageTagConfComponent,
 		ImageTagConfDetailComponent,
 		ImageTagSetComponent,
-		ImageDemoConfComponent
+		ImageDemoConfComponent,
+		
+		ImageSeriesCategoryConfComponent,
+		ImageSeriesCategoryConfDetailComponent,
 	],
 	imports: [
 		CommonModule,
@@ -100,6 +105,7 @@ import { ImageTagService } from './image/image_tag.service';
 		ImageService,
 		ImageSeriesService,
 		ImageTagService,
+		ImageSeriesCategoryService
 	],
 	bootstrap: [
 		ManageComponent

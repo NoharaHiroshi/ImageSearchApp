@@ -13,6 +13,7 @@ import { ImageConfComponent } from './image/image.component';
 import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent, ImageSeriesSetComponent } from './image/image_series.component';
 import { ImageTagConfComponent, ImageTagConfDetailComponent, ImageTagSetComponent } from './image/image_tag.component';
 import { ImageDemoConfComponent } from './image/image_demo.component';
+import { ImageSeriesCategoryConfComponent, ImageSeriesCategoryConfDetailComponent} from './image/image_series_category.component';
 
 // 根路由器
 const routes: Routes = [
@@ -47,6 +48,10 @@ const routes: Routes = [
 	{ path: 'image_series_conf/detail/:id', component: ImageSeriesConfDetailComponent },
 	{ path: 'image_series_conf/add', component: ImageSeriesConfDetailComponent },
 	{ path: 'image_series_conf/set/:id', component: ImageSeriesSetComponent },
+	
+	{ path: 'image_series_category_conf', component: ImageSeriesCategoryConfComponent },
+	{ path: 'image_series_category_conf/detail/:id', component: ImageSeriesCategoryConfDetailComponent },
+	{ path: 'image_series_category_conf/add', component: ImageSeriesCategoryConfDetailComponent },
 	
 	{ path: 'image_tag_conf', component: ImageTagConfComponent },
 	{ path: 'image_tag_conf/detail/:id', component: ImageTagConfDetailComponent },
