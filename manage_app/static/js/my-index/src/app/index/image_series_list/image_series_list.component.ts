@@ -11,7 +11,7 @@ import { ListBaseComponent } from '../../common/base.component';
 import { ImageSeries } from '../../../../../my-app/src/app/model/image_series';
 import { ImageSeriesCategory } from '../../../../../my-app/src/app/model/image_series_category';
 
-require('../../lib/jquery.flex-images.js');
+require('../../lib/masonry.min.js');
 
 @Component({
   selector: 'image-series-list-root',
@@ -39,21 +39,13 @@ export class ImageSeriesListComponent extends ListBaseComponent implements OnIni
 	
 	ngAfterViewChecked(): void{
 		let self = this;
-		let _height = 280;
-		let demo_width = $('#demo').width(),
-			series_divs = $('.sitem');
+		var $container = $('#demo');
 		if(this.series_list){
-			if(this.series_list.length == series_divs.length){
-				for(let i=0; i<series_divs.length; i++){
-					let series_div = series_divs[i],
-						series_obj = this.series_list[i],
-						_w = _height / series_obj.height * series_obj.width,
-						_h = _height;
-					$(series_div).attr('data-w', _w);
-					$(series_div).attr('data-h', _h);
-				}
-			}
-			$(this.demo.nativeElement).flexImages({rowHeight: 300, container: '.sitem' });
+			$container.masonry({  
+				itemSelector: '.sitem',  
+				gutter: 20,  
+				isAnimated: true,  
+			});  
 		}
 	}
 }
