@@ -1,15 +1,18 @@
 <div class="image-series-box">
-	<div class="image-series-content">
-		<div id="demo" #demo style="margin: 0 auto;">
-			<ng-container *ngIf="series_list">
-				<ng-container *ngFor="let series of series_list">
-					<div class="series-item" #series-item data-w="" data-h="" style="height:200px; width:200px;">
-						<div class="series-item-box">
-							<img src="/static/{{series.cover_image_url}}" class="series-item-image"/>
+	<ng-container *ngIf="series_category">
+		<div class="image-series-title">{{series_category.name}}</div>
+		<div class="image-series-content">
+			<div id="demo" #demo style="margin: 0 auto; overflow:hidden;">
+				<ng-container *ngIf="series_list">
+					<ng-container *ngFor="let series of series_list">
+						<div class="sitem" #sitem data-w="" data-h="" style="height:200px; width:200px;">
+							<div class="sitem-box">
+								<img src="/static/{{series.cover_image_url}}" class="series-item-image"/>
+							</div>
 						</div>
-					</div>
+					</ng-container>
 				</ng-container>
-			</ng-container>
+			</div>
 		</div>
-	</div>
+	</ng-container>
 </div>

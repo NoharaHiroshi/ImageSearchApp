@@ -41,7 +41,7 @@ export class ImageSeriesListComponent extends ListBaseComponent implements OnIni
 		let self = this;
 		let _height = 280;
 		let demo_width = $('#demo').width(),
-			series_divs = $('.series-item');
+			series_divs = $('.sitem');
 		if(this.series_list){
 			if(this.series_list.length == series_divs.length){
 				for(let i=0; i<series_divs.length; i++){
@@ -53,7 +53,7 @@ export class ImageSeriesListComponent extends ListBaseComponent implements OnIni
 					$(series_div).attr('data-h', _h);
 				}
 			}
-			$(this.demo.nativeElement).flexImages({rowHeight: 300, container: '.series-item' });
+			$(this.demo.nativeElement).flexImages({rowHeight: 300, container: '.sitem' });
 		}
 	}
 }
