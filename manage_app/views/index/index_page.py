@@ -119,7 +119,7 @@ def get_series_list_page():
     # 当前connect_id为专题分类id
     connect_id = request.args.get('id')
     page = request.args.get('page', 1)
-    limit = 20
+    limit = 12
     try:
         with get_session() as db_session:
             image_series_category = db_session.query(ImageSeriesCategory).get(connect_id)
