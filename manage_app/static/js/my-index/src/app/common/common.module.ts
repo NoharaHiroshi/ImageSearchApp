@@ -8,6 +8,7 @@ import { CommonModule} from '@angular/common'
 // Component
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { PageComponent } from './paging/paging.component';
 
 // Service
 import { CommonService } from './common.service';
@@ -16,7 +17,8 @@ import { CommonService } from './common.service';
 @NgModule({
 	declarations: [
 		HeaderComponent,
-		FooterComponent
+		FooterComponent,
+		PageComponent
 	],
 	imports: [
 		BrowserModule,
@@ -27,7 +29,8 @@ import { CommonService } from './common.service';
 	],
 	exports: [
 		HeaderComponent,
-		FooterComponent
+		FooterComponent,
+		PageComponent
 	],
 	providers: [ CommonService ],
 })

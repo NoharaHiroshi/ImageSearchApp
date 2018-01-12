@@ -648,7 +648,28 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	color: #666;
 	font-family: 'Microsoft YaHei';
 	text-align: center;
-	padding: 30px 0;
+	padding: 30px 0 0 0;
+}
+
+.image-series-info {
+	text-align: center;
+	color: #888;
+	width: 600px;
+	margin: 0 auto;
+	font-size: 12px;
+	padding: 20px 0 30px 0;
+}
+
+.image-series-info span {
+	padding: 0 10px;
+}
+
+.image-series-desc {
+	color: #666;
+	font-size: 13px;
+	width: 1100px;
+	margin: 0 auto;
+	padding: 0 30px 40px 30px;
 }
 
 .image-series-content {
@@ -680,47 +701,84 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 }
 
 .sitem-info {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	background: #000;
-	bottom: 0px;
-	font-size: 12px;
-	color: #888;
-	filter: alpha(Opacity=0);
-	-moz-opacity: 0;
-	opacity: 0; 
+	z-index: 5;
+    height: 350px;
+	line-height: 20px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    background: rgba(0,0,0,.4);
+    text-indent: 21px;
+    color: #fff;
+    font-size: 12px;
+    transition: all .2s;
 }
 
-.sitem-info-collect {
-	right: 70px;
-	bottom: 20px;
-	padding: 10px 5px;
+/* paging插件 */
+.page_div {
+	height: 30px;
+	font-size: 16px;
+	font-family: "microsoft yahei";
+	color: #666666;
+	padding-left: 20px;
+	box-sizing: border-box;
 }
 
-.sitem-info-preview {
-	right: 20px;
-	bottom: 20px;
-	padding: 10px 5px;
+.page_div a {
+	min-width: 35px;
+	height: 35px;
+	border: 1px solid #ffbe40!important;
+	border-radius :10%;
+	text-align: center;
+	margin: 0 4px;
+	cursor: pointer;
+	line-height: 35px;
+	color: #666666;
+	font-size: 14px;
+	display: inline-block;
 }
 
-.sitem-info:hover {
-	filter: alpha(Opacity=40);
-	-moz-opacity: 0.4;
-	opacity: 0.4; 
-	-webkit-transition: all .28s ease;
-    transition: all .28s ease;
+#firstPage,
+#lastPage {
+	width: 50px;
+	color: #ffbe40;
+	border: 1px solid #ffbe40!important;
+	border-radius :10%;
 }
 
-.sitem-info:hover  +.sitem-operation{
-	
-}
-
-.sitem-operation {
-	position: absolute;
-	top: -75px;
-    right: 0;
-    padding-right: 10px;
-    text-align: right;
+#firstPage:hover, #lastPage:hover{
 	color: #fff;
+	background-color: #ffbe40;
+	border: 1px solid #ffbe40!important;
+}
+
+#prePage,
+#nextPage {
+	width: 70px;
+	color: #ffbe40;
+	border: 1px solid #ffbe40!important;
+	border-radius :10%;
+}
+
+#prePage:hover,
+#nextPage:hover {
+	color: #fff;
+	background-color: #ffbe40;
+	border: 1px solid #ffbe40!important;
+}
+
+.page_div .current {
+	background-color: #ffbe40;
+	color: #FFFFFF;
+}
+
+.totalPages {
+	margin: 0 10px;
+}
+
+.totalPages span,
+.totalSize span {
+	color: #ffbe40;
+	margin: 0 5px;
 }

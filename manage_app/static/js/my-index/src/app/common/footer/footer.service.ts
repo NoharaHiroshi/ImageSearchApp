@@ -14,7 +14,7 @@ export class FooterService extends BaseService {
 	}
 	
 	getInfo(): Promise<any> {
-		const url = `/website/header`; 
+		const url = `/footer`; 
 		let self = this;
 	    return this.http.get(url)
 	               .toPromise()

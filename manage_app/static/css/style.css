@@ -2493,8 +2493,8 @@ label {
 
 /* paging插件 */
 .page_div {
-	margin-top: 20px auto;
-	height: 70px;
+	margin: 20px auto;
+	height: 30px;
 	font-size: 15px;
 	font-family: "microsoft yahei";
 	color: #666666;
@@ -2505,7 +2505,7 @@ label {
 .page_div a {
 	min-width: 30px;
 	height: 28px;
-	border: 1px solid #dce0e0!important;
+	border: 1px solid #0099FF!important;
 	text-align: center;
 	margin: 0 4px;
 	cursor: pointer;

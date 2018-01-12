@@ -16,8 +16,8 @@ export class ImageSeriesListService extends BaseService {
 		super(http);
 	}
 	
-	getDetail(id: String): Promise<{}> {
-		const url = `/series_list_page?id=` + id; 
+	getDetail(id: String, page: number): Promise<{}> {
+		const url = `/series_list_page?id=` + id + `&page=` + page; 
 		let self = this;
 		return this.http.get(url)
 				   .toPromise().then(res => {

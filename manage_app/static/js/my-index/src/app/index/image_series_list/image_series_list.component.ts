@@ -20,24 +20,33 @@ require('../../lib/masonry.min.js');
 export class ImageSeriesListComponent extends ListBaseComponent implements OnInit{
 	series_category: ImageSeriesCategory;
 	series_list: ImageSeries[];
+	page_info: any;
+	page: number = 1;
 	
 	constructor(private service: ImageSeriesListService, public route: ActivatedRoute, public router: Router, private elem: ElementRef) {
 		super();
 	}
 	
-	ngOnInit(): void {
+	getPagerData(): void {
 		let self = this;
-        this.route.params.switchMap((params: Params) => this.service.getDetail(params['id']||'0'))
+        this.route.params.switchMap((params: Params) => this.service.getDetail(params['id']||'0', this.page))
 	        .subscribe(res => {
 				this.series_category = res['series_category'];
 	        	this.series_list = res['series_list'];
+				this.page_info = res['meta'];
+				this.isLoading = false;
 	        });
+	}
+	
+	getPageNum(page: any): void{
+		this.page = page;
+		this.getPagerData();
 	}
 	
 	@ViewChild('demo')
 	demo: ElementRef;
 	
-	ngAfterViewChecked(): void{
+	ngAfterViewInit(): void{
 		let self = this;
 		var $container = $('#demo');
 		if(this.series_list){

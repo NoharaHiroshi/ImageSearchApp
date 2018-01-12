@@ -4,6 +4,7 @@ import traceback
 import ujson
 from flask import render_template, abort, g, jsonify, request
 from flask import current_app as app
+from lib.paginator import SQLAlchemyPaginator
 
 from model.session import get_session
 from model.image.image_series import ImageSeries, ImageSeriesCategoryRel, ImageSeriesCategory, ImageSeriesRel
@@ -65,6 +66,17 @@ def get_index_header():
         print e
 
 
+@index.route('/footer', methods=['GET'])
+def get_footer():
+    result = {
+        'response': ''
+    }
+    try:
+        return jsonify(result)
+    except Exception as e:
+        print e
+
+
 @index.route('/main_page', methods=['GET'])
 def get_index_main_page():
     result = {
@@ -106,6 +118,8 @@ def get_series_list_page():
     }
     # 当前connect_id为专题分类id
     connect_id = request.args.get('id')
+    page = request.args.get('page', 1)
+    limit = 20
     try:
         with get_session() as db_session:
             image_series_category = db_session.query(ImageSeriesCategory).get(connect_id)
@@ -118,17 +132,28 @@ def get_series_list_page():
                 ImageSeriesCategory.id == connect_id
             ).all()
             image_series_ids = [image_series_category_rel.series_id for image_series_category_rel in query]
-            all_image_series = db_session.query(ImageSeries).filter(
+            query = db_session.query(ImageSeries).filter(
                 ImageSeries.id.in_(image_series_ids)
-            ).all()
+            ).order_by(-ImageSeries.created_date)
+
+            paginator = SQLAlchemyPaginator(query, limit)
+            page = paginator.get_validate_page(page)
+
             _image_series_list = list()
-            for image_series in all_image_series:
+            for image_series in paginator.page(page):
                 image_series_dict = image_series.to_dict()
                 width, height = image_series.get_cover_img_info()
                 image_series_dict['width'] = width
                 image_series_dict['height'] = height
                 _image_series_list.append(image_series_dict)
             result['series_list'] = _image_series_list
+            result.update({
+                'meta': {
+                    'cur_page': page,
+                    'all_page': paginator.max_page,
+                    'count': paginator.count
+                }
+            })
         return jsonify(result)
     except Exception as e:
         print e
