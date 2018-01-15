@@ -17,11 +17,11 @@
 		</div>
 		<div class="image-series-desc"> {{series_category.desc}}</div>
 		<div class="image-series-content">
-			<div id="demo" #demo style="margin: 0 auto; overflow:hidden;">
+			<div id="demo" style="margin: 0 auto; overflow:hidden;">
 				<ng-container *ngIf="series_list">
 					<ng-container *ngFor="let series of series_list">
-						<div class="sitem" #sitem>
-							<div class="grid">
+						<div class="series-item">
+							<div class="grid sitem-border">
 								<figure class="effect-apollo">
 									<img class="series-item-image" width="{{series.width}}" height="{{series.height}}" src="/static/{{series.cover_image_url}}">
 									<figcaption>
@@ -31,6 +31,7 @@
 									</figcaption>		
 								</figure>
 							</div>
+							<div class="series-item-font">{{series.name}}</div>
 						</div>
 					</ng-container>
 				</ng-container>

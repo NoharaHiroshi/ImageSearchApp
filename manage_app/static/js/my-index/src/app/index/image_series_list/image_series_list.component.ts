@@ -46,7 +46,7 @@ export class ImageSeriesListComponent extends ListBaseComponent implements OnIni
 	@ViewChild('demo')
 	demo: ElementRef;
 	
-	ngAfterViewInit(): void{
+	/* ngAfterViewInit(): void{
 		let self = this;
 		var $container = $('#demo');
 		if(this.series_list){
@@ -56,5 +56,5 @@ export class ImageSeriesListComponent extends ListBaseComponent implements OnIni
 				isAnimated: true,  
 			});  
 		}
-	}
+	} */
 }

@@ -563,7 +563,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 .series-item-font {
 	font-size: 13px;
 	text-align: center;
-	padding: 10px 5px;
+	padding: 15px 5px 10px 5px;
 	color: #555;
 }
 
@@ -718,6 +718,13 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
     color: #fff;
     font-size: 12px;
     transition: all .2s;
+}
+
+.sitem-border {
+	box-shadow: 0 5px 5px rgba(34, 25, 25, .4);
+    -moz-box-shadow: 0 5px 5px rgba(34, 25, 25, .4);
+    -webkit-box-shadow: 0 5px 5px rgba(34, 25, 25, .4);
+    filter: progid:DXImageTransform.Microsoft.Shadow(color = #adacac, direction = 135, strength = 2);
 }
 
 /* paging插件 */
