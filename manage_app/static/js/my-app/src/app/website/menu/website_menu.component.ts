@@ -178,5 +178,49 @@ export class WebsiteMenuConfDetailComponent extends ListBaseComponent{
         	self.menu.connect_id = $('#series_select').val()
 			self.menu.connect_name = data_name;
         });
+		
+		const _url = `/lib/get_all_series_category`; 
+		$('#series_category_select').val(self.menu.connect_id).select2({
+            placeholder: '请选择专题分类',
+            allowClear: true,
+            ajax: {
+                url: _url,
+                dataType: 'json',
+                quietMillis: 100,
+                data: function (search:any, page:any) {
+                    return {
+                    	search: search,
+                        limit: 10,
+                        page: page,
+                    };
+                },
+                results: function (data:any, page:any) {
+                    var more = (page * 10) < data.meta.total;
+                    return {results: data['data_list'], more: more};
+                }
+            },
+            initSelection: function(element:any, callback:any){
+            	var data = {}, 
+					_series_id = self.menu.connect_id,
+					_series_name = self.menu.connect_name;
+                if(undefined !== _series_id){
+                    data = ({id: _series_id, name: _series_name});
+                }
+				callback(data);
+            },
+			// 用于渲染当前选择
+            formatSelection: function(data:any){
+				data_name = data.name;
+                return data.name;
+            },
+			// 用于渲染结果
+            formatResult: function(data:any){
+            	var s = "<div style='padding: 5px;'>" + data.name + "</div>";
+                return s;
+            }
+        }).on('change', function(){
+        	self.menu.connect_id = $('#series_select').val()
+			self.menu.connect_name = data_name;
+        });
 	}
 }

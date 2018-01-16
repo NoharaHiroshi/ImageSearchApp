@@ -4,8 +4,6 @@ export class WebsiteMenu {
 	type: number = 0;
 	type_text: string;
 	icon_info: string;
-	connect_type: number = 0;
-	connect_type_text: string;
 	connect_id: number;
 	connect_name: string;
 	sort: number;

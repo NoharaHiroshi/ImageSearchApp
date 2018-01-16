@@ -11,23 +11,17 @@ class WebsiteMenu(Base):
 
     # 类型（按照链接的页面分类）：内容页、图片页
     # 详细解释一下，防止忘记：通过menu类别的不同，调用不同模板
+    # 无跳转：无跳转页面
     # 内容页：例如活动公告、关于网站等已文字为主的页面
     # 图片页：图片列表页，展示某一类、某一专题、某一标签的图片列表
     # 专题页：用来展示某一类相关专题
-    TYPE_CONTENT_PAGE, TYPE_IMG_PAGE, TYPE_SERIES_PAGE = range(3)
-
-    # 导航类型：链接类型、分类类型
-    # 导航类型：用来区分当前导航是用来为子级导航分类的，还是拥有实际跳转链接
-    # 例如二级导航是分类导航，没有链接；三级导航是链接导航，拥有链接
-    IS_CONNECTED, IS_CATEGORY = range(2)
+    TYPE_NULL, TYPE_CONTENT_PAGE, TYPE_IMG_PAGE, TYPE_SERIES_PAGE = range(4)
 
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 名称
     name = Column(String(50), nullable=False, index=True)
     # 链接类型
     type = Column(Integer, default=TYPE_CONTENT_PAGE, index=True)
-    # 导航类型
-    connect_type = Column(Integer, default=IS_CONNECTED, index=True)
     # 关联id
     connect_id = Column(BigInteger, index=True)
     # 关联名称
@@ -42,19 +36,12 @@ class WebsiteMenu(Base):
     @property
     def type_text(self):
         s = {
+            self.TYPE_NULL: u'无跳转',
             self.TYPE_CONTENT_PAGE: u'内容页',
-            self.TYPE_IMG_PAGE: u'图片页',
-            self.TYPE_SERIES_PAGE: u'专题页'
+            self.TYPE_IMG_PAGE: u'图片列表页',
+            self.TYPE_SERIES_PAGE: u'专题列表页'
         }
         return s.get(self.type, u'未知链接类型')
-
-    @property
-    def connect_type_text(self):
-        s = {
-            self.IS_CONNECTED: u'链接类型',
-            self.IS_CATEGORY: u'分类类型'
-        }
-        return s.get(self.connect_type, u'未知链接类型')
 
     @classmethod
     def set_count(cls, parent_id=0, sort=None):
@@ -107,8 +94,6 @@ class WebsiteMenu(Base):
             'name': self.name,
             'type': self.type,
             'type_text': self.type_text,
-            'connect_type': self.connect_type,
-            'connect_type_text': self.connect_type_text,
             'connect_id': str(self.connect_id),
             'connect_name': self.connect_name,
             'sort': self.sort,

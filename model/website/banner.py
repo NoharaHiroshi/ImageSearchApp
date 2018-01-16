@@ -10,8 +10,8 @@ from model.image.image import Image
 class Banner(Base):
     __tablename__ = 'website_banner'
 
-    # 类型（按照链接的页面分类）：内容页、图片页、专题页
-    TYPE_CONTENT_PAGE, TYPE_IMG_PAGE, TYPE_SERIES_PAGE = range(3)
+    # 类型（按照链接的页面分类）：无跳转、内容页、图片页、专题页
+    TYPE_NULL, TYPE_CONTENT_PAGE, TYPE_IMG_PAGE, TYPE_SERIES_PAGE = range(4)
 
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 名称
@@ -37,9 +37,10 @@ class Banner(Base):
     @property
     def type_text(self):
         s = {
+            self.TYPE_NULL: u'无跳转',
             self.TYPE_CONTENT_PAGE: u'内容页',
-            self.TYPE_IMG_PAGE: u'图片页',
-            self.TYPE_SERIES_PAGE: u'专题页'
+            self.TYPE_IMG_PAGE: u'图片列表页',
+            self.TYPE_SERIES_PAGE: u'专题列表页'
         }
         return s.get(self.type, u'未知链接类型')
 

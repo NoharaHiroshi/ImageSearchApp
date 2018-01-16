@@ -13,32 +13,30 @@
 				  </div>
 			  </div>
 			  <div class="form-group">
-				  <label class="col-sm-2 col-sm-2 control-label">导航类型</label>
+				  <label class="col-sm-2 col-sm-2 control-label">类型</label>
 				  <div class="col-sm-4">
-					  <select class="form-control" name="type" [(ngModel)]="menu.connect_type">
-						<option value=0 selected="selected">链接类型</option>
-						<option value=1>分类类型</option>
+					  <select class="form-control" name="type" [(ngModel)]="menu.type">
+						<option value=0 selected="selected">无跳转</option>
+						<option value=1 selected="selected">内容页</option>
+						<option value=2>图片列表页</option>
+						<option value=3>专题列表页</option>
 					  </select>
 				  </div>
 			  </div>
-			  <div [ngStyle]="{'display':menu.connect_type == 0 ? 'block': 'none'}">
+			  <div [ngStyle]="{'display':menu.type == 2 ? 'block': 'none'}">
 				  <div class="form-group">
-					  <label class="col-sm-2 col-sm-2 control-label">链接类型</label>
-					  <div class="col-sm-4">
-						  <select class="form-control" name="type" [(ngModel)]="menu.type">
-							<option value=0 selected="selected">内容页</option>
-							<option value=1>图片页</option>
-							<option value=2>专题页</option>
-						  </select>
-					  </div>
+						<label class="col-sm-2 col-sm-2 control-label">选择专题</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="series_select" name="series_select">
+						</div>
 				  </div>
-				  <div [ngStyle]="{'display':menu.type == 1 ? 'block': 'none'}">
-					  <div class="form-group">
-							<label class="col-sm-2 col-sm-2 control-label">选择专题</label>
-							<div class="col-sm-4">
-								<input type="text" class="form-control" id="series_select" name="series_select">
-							</div>
-					  </div>
+			  </div>
+			  <div [ngStyle]="{'display':menu.type == 3 ? 'block': 'none'}">
+				  <div class="form-group">
+						<label class="col-sm-2 col-sm-2 control-label">选择专题分类</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="series_category_select" name="series_category_select">
+						</div>
 				  </div>
 			  </div>
 			  <div class="form-group">

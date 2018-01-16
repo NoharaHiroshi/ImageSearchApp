@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HeaderService } from './header.service';
+import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { ListBaseComponent } from '../base.component';
 
 import { Banner } from '../../../../../my-app/src/app/model/banner';
@@ -19,7 +20,7 @@ export class HeaderComponent implements OnInit {
 	website_menu_list: any[];
 	hot_search_list: any[];
 	
-	constructor(private service: HeaderService) {}
+	constructor(private service: HeaderService, public route: ActivatedRoute, public router: Router) {}
 	
 	ngOnInit(): void {
 		this.service.getInfo().then(data => {
