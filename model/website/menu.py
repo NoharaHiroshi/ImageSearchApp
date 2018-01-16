@@ -21,7 +21,7 @@ class WebsiteMenu(Base):
     # 名称
     name = Column(String(50), nullable=False, index=True)
     # 链接类型
-    type = Column(Integer, default=TYPE_CONTENT_PAGE, index=True)
+    type = Column(Integer, default=TYPE_NULL, index=True)
     # 关联id
     connect_id = Column(BigInteger, index=True)
     # 关联名称
