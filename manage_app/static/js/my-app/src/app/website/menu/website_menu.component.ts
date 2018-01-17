@@ -135,6 +135,10 @@ export class WebsiteMenuConfDetailComponent extends ListBaseComponent{
 	loadAfter(): void  {
 		let self = this;
 		let data_name: string;
+		$('#select_type').change(function(){
+			self.menu.connect_id = 0;
+			self.menu.connect_name = '';
+		});
 		const url = `/lib/get_all_series`; 
 		$('#series_select').val(self.menu.connect_id).select2({
             placeholder: '请选择专题',
@@ -219,7 +223,7 @@ export class WebsiteMenuConfDetailComponent extends ListBaseComponent{
                 return s;
             }
         }).on('change', function(){
-        	self.menu.connect_id = $('#series_select').val()
+        	self.menu.connect_id = $('#series_category_select').val()
 			self.menu.connect_name = data_name;
         });
 	}
