@@ -75,7 +75,7 @@
 									<h4><a href="#" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
 								</ng-container>
 								<ng-container *ngIf="sub_menu.type == 3">
-									<h4><a [routerLink]="['image_series_list', sub_menu.connect_id]" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
+									<h4><a [routerLink]="['image_series_list', sub_menu.connect_id]" target="_blank" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
 								</ng-container>
 								<ul>
 									<li *ngFor="let third_menu of sub_menu.sub_menus">
