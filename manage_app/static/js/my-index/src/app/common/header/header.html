@@ -64,29 +64,27 @@
 					<a href="#">{{website_menu.name}}</a>
 					<div class="cbp-hrsub">
 						<div class="cbp-hrsub-inner"> 
-							<ng-container *ngIf="sub_menu.type == 0">
-								<h4><a href="#" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
-							</ng-container>
-							<!-- 内容页 -->
-							<ng-container *ngIf="sub_menu.type == 1">
-								<h4><a href="#" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
-							</ng-container>
-							<!-- 图片列表页 -->
-							<ng-container *ngIf="third_menu.type == 2">
-								<h4><a href="#" style="font-size: 20px;">{{third_menu.name}}</a></h4>
-							</ng-container>
-							<!-- 专题列表页 -->
-							<ng-container *ngIf="third_menu.type == 3">
-								<h4><a [routerLink]="['image_series_list', third_menu.id]" style="font-size: 20px;">{{third_menu.name}}</a></h4>
-							</ng-container>
+							<div *ngFor="let sub_menu of website_menu.sub_menus">
+								<ng-container *ngIf="sub_menu.type == 1">
+									<h4><a href="#" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
+								</ng-container>
+								<ng-container *ngIf="sub_menu.type == 1">
+									<h4><a href="#" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
+								</ng-container>
+								<ng-container *ngIf="sub_menu.type == 2">
+									<h4><a href="#" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
+								</ng-container>
+								<ng-container *ngIf="sub_menu.type == 3">
+									<h4><a [routerLink]="['image_series_list', sub_menu.connect_id]" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
+								</ng-container>
 								<ul>
 									<li *ngFor="let third_menu of sub_menu.sub_menus">
-										<ng-container *ngIf="sub_menu.type == 0">
-											<a href="#">{{sub_menu.name}}</a>
+										<ng-container *ngIf="third_menu.type == 0">
+											<a href="#">{{third_menu.name}}</a>
 										</ng-container>
 										<!-- 内容页 -->
-										<ng-container *ngIf="sub_menu.type == 1">
-											<a href="#">{{sub_menu.name}}</a>
+										<ng-container *ngIf="third_menu.type == 1">
+											<a href="#">{{third_menu.name}}</a>
 										</ng-container>
 										<!-- 图片列表页 -->
 										<ng-container *ngIf="third_menu.type == 2">
