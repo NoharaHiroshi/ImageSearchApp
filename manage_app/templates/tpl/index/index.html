@@ -99,11 +99,12 @@
 
 						var $listItems = $( '#cbp-hrmenu > ul > li' ),
 							$menuItems = $listItems.children( 'a' ),
+							$menuAll = $('.cbp-hover'),
 							$body = $( 'body' ),
 							current = -1;
 
 						function init() {
-							$menuItems.on( 'click', open );
+							$menuAll.on('mouseover mouseout', open);
 							$listItems.on( 'click', function( event ) { event.stopPropagation(); } );
 						}
 

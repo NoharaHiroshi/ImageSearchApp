@@ -3,7 +3,7 @@
 	<div class="header-content">
 		<div class="header-info">
 			<div class="header-logo">
-				<span class="header-logo-span">首页</span>
+				<span class="header-logo-span"><a href="/" style="text-decoration:none; color: #666;">首页</a></span>
 			</div>
 			<div class="header-login">
 				<span>登录</span>
@@ -61,8 +61,8 @@
 		<ul>
 			<ng-container *ngFor="let website_menu of website_menu_list">
 				<li>
-					<a href="#">{{website_menu.name}}</a>
-					<div class="cbp-hrsub">
+					<a href="#" class="cbp-hover">{{website_menu.name}}</a>
+					<div class="cbp-hrsub cbp-hover">
 						<div class="cbp-hrsub-inner"> 
 							<div *ngFor="let sub_menu of website_menu.sub_menus">
 								<ng-container *ngIf="sub_menu.type == 1">
@@ -78,23 +78,25 @@
 									<h4><a [routerLink]="['image_series_list', sub_menu.connect_id]" target="_blank" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
 								</ng-container>
 								<ul>
-									<li *ngFor="let third_menu of sub_menu.sub_menus">
-										<ng-container *ngIf="third_menu.type == 0">
-											<a href="#">{{third_menu.name}}</a>
-										</ng-container>
-										<!-- 内容页 -->
-										<ng-container *ngIf="third_menu.type == 1">
-											<a href="#">{{third_menu.name}}</a>
-										</ng-container>
-										<!-- 图片列表页 -->
-										<ng-container *ngIf="third_menu.type == 2">
-											<a href="#">{{third_menu.name}}</a>
-										</ng-container>
-										<!-- 专题列表页 -->
-										<ng-container *ngIf="third_menu.type == 3">
-											<a [routerLink]="['image_series_list', third_menu.id]">{{third_menu.name}}</a>
-										</ng-container>
-									</li>
+									<ng-container *ngFor="let third_menu of sub_menu.sub_menus">
+										<li>
+											<ng-container *ngIf="third_menu.type == 0">
+												<a href="#">{{third_menu.name}}</a>
+											</ng-container>
+											<!-- 内容页 -->
+											<ng-container *ngIf="third_menu.type == 1">
+												<a href="#">{{third_menu.name}}</a>
+											</ng-container>
+											<!-- 图片列表页 -->
+											<ng-container *ngIf="third_menu.type == 2">
+												<a href="#">{{third_menu.name}}</a>
+											</ng-container>
+											<!-- 专题列表页 -->
+											<ng-container *ngIf="third_menu.type == 3">
+												<a [routerLink]="['image_series_list', third_menu.id]">{{third_menu.name}}</a>
+											</ng-container>
+										</li>
+									</ng-container>
 								</ul>
 							</div>
 						</div>
