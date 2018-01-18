@@ -50,7 +50,7 @@ export class ImageListComponent extends ListBaseComponent implements OnInit{
 	ngAfterViewInit(): void{
 		let self = this;
 		var $container = $('#demo');
-		if(this.series_list){
+		if(this.image_list){
 			$container.masonry({  
 				itemSelector: '.sitem',  
 				gutter: 20,  
