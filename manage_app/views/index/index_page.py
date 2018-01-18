@@ -8,6 +8,7 @@ from lib.paginator import SQLAlchemyPaginator
 
 from model.session import get_session
 from model.image.image_series import ImageSeries, ImageSeriesCategoryRel, ImageSeriesCategory, ImageSeriesRel
+from model.image.image import Image
 from model.website.menu import WebsiteMenu
 from model.website.banner import Banner
 from model.website.hot_search import WebsiteHotSearch
@@ -147,6 +148,53 @@ def get_series_list_page():
                 image_series_dict['height'] = height
                 _image_series_list.append(image_series_dict)
             result['series_list'] = _image_series_list
+            result.update({
+                'meta': {
+                    'cur_page': page,
+                    'all_page': paginator.max_page,
+                    'count': paginator.count
+                }
+            })
+        return jsonify(result)
+    except Exception as e:
+        print e
+
+
+@index.route('/image_list_page', methods=['GET'])
+def get_image_list_page():
+    result = {
+        'response': 'ok',
+        'image_series': '',
+        'image_list': []
+    }
+    # 当前connect_id为专题id
+    connect_id = request.args.get('id')
+    page = request.args.get('page', 1)
+    limit = 12
+    try:
+        with get_session() as db_session:
+            image_series = db_session.query(ImageSeries).get(connect_id)
+            image_series_dict = image_series.to_dict()
+            result['image_series'] = image_series_dict
+
+            query = db_session.query(ImageSeriesRel).join(
+                ImageSeries, ImageSeries.id == ImageSeriesRel.image_series_id
+            ).filter(
+                ImageSeries.id == connect_id
+            ).all()
+            image_ids = [image_rel.image_id for image_rel in query]
+            query = db_session.query(Image).filter(
+                Image.id.in_(image_ids)
+            ).order_by(-Image.created_date)
+
+            paginator = SQLAlchemyPaginator(query, limit)
+            page = paginator.get_validate_page(page)
+
+            _image_list = list()
+            for image in paginator.page(page):
+                image_dict = image.to_dict()
+                _image_list.append(image_dict)
+            result['image_list'] = _image_list
             result.update({
                 'meta': {
                     'cur_page': page,

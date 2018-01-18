@@ -21,13 +21,17 @@ import { MainPageService } from './index/main_page.service';
 import { ImageSeriesListComponent } from './image_series_list/image_series_list.component';
 import { ImageSeriesListService } from './image_series_list/image_series_list.service';
 
+import { ImageListComponent } from './image_list/image_list.component';
+import { ImageListService } from './image_list/image_list.service';
+
 import { IndexComponent } from './index.component';
 
 @NgModule({
 	declarations: [
 		IndexComponent,
 		MainPageComponent,
-		ImageSeriesListComponent
+		ImageSeriesListComponent,
+		ImageListComponent
 	],
 	imports: [
 		CommonModule,
@@ -49,7 +53,8 @@ import { IndexComponent } from './index.component';
 		HeaderService,
 		MainPageService,
 		FooterService,
-		ImageSeriesListService
+		ImageSeriesListService,
+		ImageListService
 	],
 	bootstrap: [
 		IndexComponent
