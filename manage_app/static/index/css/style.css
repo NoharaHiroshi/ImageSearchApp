@@ -805,7 +805,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 /* 专题页 */
 
 .image-list-title {
-	width: 1200px;
+	width: 1400px;
 	margin: 0 auto;
 	font-size: 25px;
 	color: #666;
@@ -836,7 +836,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 }
 
 .image-list-content {
-	width: 1200px;
+	width: 1400px;
 	margin: 0 auto;
 	padding: 0 30px 20px 30px;
 }
@@ -850,19 +850,19 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	background: #fff;
 }
 
-.image-item-border {
-	box-shadow: 0 5px 5px rgba(34, 25, 25, .4);
-    -moz-box-shadow: 0 5px 5px rgba(34, 25, 25, .4);
-    -webkit-box-shadow: 0 5px 5px rgba(34, 25, 25, .4);
-    filter: progid:DXImageTransform.Microsoft.Shadow(color = #adacac, direction = 135, strength = 2);
-}
-
 .image-item {
-	width: 270px;
+	width: 250px;
 	display: inline-block;
 	margin-right: 26px;
-	margin-bottom: 30px;
+	margin-bottom: 40px;
 	overflow: hidden;
+	-moz-box-shadow: -2px 20px 20px rgba(0,0,0,0.4);
+    -webkit-box-shadow: -2px 20px 20px rgba(0,0,0,0.4);
+    -ms-box-shadow: -2px 20px 20px rgba(0,0,0,0.4);
+    box-shadow: -2px 20px 20px rgba(0,0,0,0.4);
+    -ms-transition: transform .2s;
+    -webkit-transition: transform .2s;
+    -moz-transition: transform .2s;
 }
 
 .image-item-font {
