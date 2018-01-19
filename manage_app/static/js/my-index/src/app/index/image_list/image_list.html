@@ -1,7 +1,7 @@
-<div class="image-series-box">
+<div class="image-list-box">
 	<ng-container *ngIf="image_series">
-		<div class="image-series-title"> - {{image_series.name}} - </div>
-		<div class="image-series-info">
+		<div class="image-list-title"> - {{image_series.name}} - </div>
+		<div class="image-list-info">
 			<span>
 				<i class="fa fa-eye" aria-hidden="true"></i>
 				3364
@@ -15,15 +15,15 @@
 				{{image_series.created_date}}
 			</span>
 		</div>
-		<div class="image-series-desc"> {{image_series.desc}}</div>
-		<div class="image-series-content">
+		<div class="image-list-desc"> {{image_series.desc}}</div>
+		<div class="image-list-content">
 			<div id="demo" style="margin: 0 auto; overflow:hidden;">
 				<ng-container *ngIf="image_list">
 					<ng-container *ngFor="let image of image_list">
-						<div class="series-item">
-							<div class="grid sitem-border">
+						<div class="image-item">
+							<div class="grid image-item-border">
 								<figure class="effect-apollo">
-									<img class="series-item-image" width="{{image.width}}" height="{{image.height}}" src="/static/{{image.img_preview_url}}">
+									<img class="image-item-image" width="{{image.width}}" height="{{image.height}}" src="/static/{{image.img_preview_url}}">
 									<figcaption>
 										<h2>下载</h2>
 										<p>收藏</p>

@@ -9,7 +9,7 @@ import { ImageListComponent } from './image_list/image_list.component';
 const routes: Routes = [
 	{ path: '',  component: MainPageComponent },
 	{ path: 'image_series_list/:id', component: ImageSeriesListComponent },
-	{ path: 'image_series/:id', component: ImageListComponent }
+	{ path: 'image_list/:id', component: ImageListComponent }
 ];
 
 @NgModule({

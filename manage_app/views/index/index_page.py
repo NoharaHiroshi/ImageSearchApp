@@ -170,38 +170,40 @@ def get_image_list_page():
     # 当前connect_id为专题id
     connect_id = request.args.get('id')
     page = request.args.get('page', 1)
-    limit = 12
+    limit = 20
     try:
         with get_session() as db_session:
             image_series = db_session.query(ImageSeries).get(connect_id)
-            image_series_dict = image_series.to_dict()
-            result['image_series'] = image_series_dict
+            if image_series:
+                image_series_dict = image_series.to_dict()
+                result['image_series'] = image_series_dict
 
-            query = db_session.query(ImageSeriesRel).join(
-                ImageSeries, ImageSeries.id == ImageSeriesRel.image_series_id
-            ).filter(
-                ImageSeries.id == connect_id
-            ).all()
-            image_ids = [image_rel.image_id for image_rel in query]
-            query = db_session.query(Image).filter(
-                Image.id.in_(image_ids)
-            ).order_by(-Image.created_date)
+                query = db_session.query(ImageSeriesRel).join(
+                    ImageSeries, ImageSeries.id == ImageSeriesRel.image_series_id
+                ).filter(
+                    ImageSeries.id == connect_id
+                ).all()
 
-            paginator = SQLAlchemyPaginator(query, limit)
-            page = paginator.get_validate_page(page)
+                image_ids = [image_rel.image_id for image_rel in query]
+                query = db_session.query(Image).filter(
+                    Image.id.in_(image_ids)
+                ).order_by(-Image.created_date)
 
-            _image_list = list()
-            for image in paginator.page(page):
-                image_dict = image.to_dict()
-                _image_list.append(image_dict)
-            result['image_list'] = _image_list
-            result.update({
-                'meta': {
-                    'cur_page': page,
-                    'all_page': paginator.max_page,
-                    'count': paginator.count
-                }
-            })
+                paginator = SQLAlchemyPaginator(query, limit)
+                page = paginator.get_validate_page(page)
+
+                _image_list = list()
+                for image in paginator.page(page):
+                    image_dict = image.to_dict()
+                    _image_list.append(image_dict)
+                result['image_list'] = _image_list
+                result.update({
+                    'meta': {
+                        'cur_page': page,
+                        'all_page': paginator.max_page,
+                        'count': paginator.count
+                    }
+                })
         return jsonify(result)
     except Exception as e:
         print e

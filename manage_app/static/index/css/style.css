@@ -800,3 +800,74 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	color: #ffbe40;
 	margin: 0 5px;
 }
+
+
+/* 专题页 */
+
+.image-list-title {
+	width: 1200px;
+	margin: 0 auto;
+	font-size: 25px;
+	color: #666;
+	font-family: 'Microsoft YaHei';
+	text-align: center;
+	padding: 30px 0 0 0;
+}
+
+.image-list-info {
+	text-align: center;
+	color: #888;
+	width: 600px;
+	margin: 0 auto;
+	font-size: 12px;
+	padding: 20px 0 30px 0;
+}
+
+.image-list-info span {
+	padding: 0 10px;
+}
+
+.image-list-desc {
+	color: #666;
+	font-size: 13px;
+	width: 1100px;
+	margin: 0 auto;
+	padding: 0 30px 40px 30px;
+}
+
+.image-list-content {
+	width: 1200px;
+	margin: 0 auto;
+	padding: 0 30px 20px 30px;
+}
+
+.image-item-title {
+	text-align: center;
+	padding: 10px;
+}
+
+.image-item-content {
+	background: #fff;
+}
+
+.image-item-border {
+	box-shadow: 0 5px 5px rgba(34, 25, 25, .4);
+    -moz-box-shadow: 0 5px 5px rgba(34, 25, 25, .4);
+    -webkit-box-shadow: 0 5px 5px rgba(34, 25, 25, .4);
+    filter: progid:DXImageTransform.Microsoft.Shadow(color = #adacac, direction = 135, strength = 2);
+}
+
+.image-item {
+	width: 270px;
+	display: inline-block;
+	margin-right: 26px;
+	margin-bottom: 30px;
+	overflow: hidden;
+}
+
+.image-item-font {
+	font-size: 13px;
+	text-align: center;
+	padding: 15px 5px 10px 5px;
+	color: #555;
+}
