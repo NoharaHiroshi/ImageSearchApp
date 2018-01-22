@@ -12,7 +12,6 @@
 	max-height: 270px;
 	width: 48%;
 	height: auto;
-	background: #000;
 	text-align: center;
 	cursor: pointer;
 }
@@ -22,7 +21,6 @@
 	display: block;
 	min-height: 100%;
 	max-width: 100%;
-	opacity: 0.8;
 }
 
 .grid figure figcaption {
