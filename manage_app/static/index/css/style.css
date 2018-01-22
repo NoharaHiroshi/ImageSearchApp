@@ -366,7 +366,6 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 
 .cbp-hrmenu > ul > li.cbp-hropen a,
 .cbp-hrmenu > ul > li.cbp-hropen > a:hover {
-	font-size: 15px;
 	color: #fff !important;
 	background: #ffbe40 !important;
 	text-decoration: none !important;

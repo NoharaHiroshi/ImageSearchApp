@@ -50,7 +50,7 @@
 									<figcaption>
 										<h2>{{series.name}}</h2>
 										<p>{{series.desc}}</p>
-										<a href="#">更多</a>
+										<a [routerLink]="['image_list', series.id]" target="_blank">更多</a>
 									</figcaption>		
 								</figure>
 							</div>
