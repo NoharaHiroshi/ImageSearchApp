@@ -554,8 +554,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 .series-item {
 	width: 270px;
 	display: inline-block;
-	margin-right: 26px;
-	margin-bottom: 10px;
+	margin: 0 13px 40px 13px;
 	overflow: hidden;
 }
 
@@ -852,8 +851,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 .image-item {
 	width: 250px;
 	display: inline-block;
-	margin-right: 26px;
-	margin-bottom: 40px;
+	margin: 0 13px 40px 13px;
 	overflow: hidden;
 	-moz-box-shadow: -2px 20px 20px rgba(0,0,0,0.4);
     -webkit-box-shadow: -2px 20px 20px rgba(0,0,0,0.4);

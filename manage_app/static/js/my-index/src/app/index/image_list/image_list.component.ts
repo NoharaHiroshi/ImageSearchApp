@@ -55,6 +55,7 @@ export class ImageListComponent extends ListBaseComponent implements OnInit{
 				itemSelector: '.sitem',  
 				gutter: 20,  
 				isAnimated: true,  
+				fitWidth: true
 			});  
 		}
 	}
