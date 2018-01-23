@@ -207,3 +207,27 @@ def get_image_list_page():
         return jsonify(result)
     except Exception as e:
         print e
+
+
+@index.route('/image_detail', methods=['GET'])
+def get_image_detail():
+    result = {
+        'response': 'ok',
+        'image': '',
+        'info': ''
+    }
+    image_id = request.args.get('id')
+    try:
+        with get_session() as db_session:
+            image = db_session.query(Image).get(image_id)
+            if image:
+                image_dict = image.to_dict()
+                result['image'] = image_dict
+            else:
+                result.update({
+                    'response': 'fail',
+                    'info': u'抱歉~图片好像走丢了...'
+                })
+        return jsonify(result)
+    except Exception as e:
+        print e
