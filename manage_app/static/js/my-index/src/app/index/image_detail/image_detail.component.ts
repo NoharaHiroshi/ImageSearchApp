@@ -18,6 +18,7 @@ import { ImageSeriesCategory } from '../../../../../my-app/src/app/model/image_s
 })
 export class ImageDetailComponent extends ListBaseComponent implements OnInit{
 	image: Image;
+	image_url: String;
 	
 	constructor(private service: ImageDetailService, public route: ActivatedRoute, public router: Router, private elem: ElementRef) {
 		super();
@@ -30,6 +31,12 @@ export class ImageDetailComponent extends ListBaseComponent implements OnInit{
 				this.image = res['image'];
 				this.isLoading = false;
 	        });
+	}
+	
+	downloadSourceImage(image_id: String): void {
+		this.service.getSourceImage(params['id']).subscribe(res => {
+			this.image_url = res['img_full_url'];
+		})
 	}
 
 }
