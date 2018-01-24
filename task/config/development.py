@@ -2,3 +2,5 @@
 
 # 这一行不能删
 from task.config.base import *
+
+TASK_NAME = u'tasks'
