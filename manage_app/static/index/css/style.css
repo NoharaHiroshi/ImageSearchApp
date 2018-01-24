@@ -912,9 +912,75 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	width: 100%;
 	line-height: 45px;
 	border-radius: 3px;
-	padding: 10px;
+	padding: 8 10px;
 	font-size: 18px;
 	text-align: center;
 	text-decoration: none;
 	color: #fff;
+	display: block;
+	margin-bottom: 20px;
+}
+
+.download-png:hover {
+	opacity: .8;
+    filter: alpha(opacity=80);
+}
+
+.download-source {
+	background-color: #50ae55;
+	width: 100%;
+	line-height: 45px;
+	border-radius: 3px;
+	padding: 8 10px;
+	font-size: 18px;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	display: block;
+	margin-bottom: 20px;
+}
+
+.download-source:hover {
+	opacity: .8;
+    filter: alpha(opacity=80);
+}
+
+.download-collect {
+	margin-top: 20px;
+	background-color: #ffbe40;
+	width: 100%;
+	line-height: 45px;
+	border-radius: 3px;
+	padding: 8 10px;
+	font-size: 18px;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+	display: block;
+	margin-bottom: 20px;
+}
+
+.download-collect:hover {
+	opacity: .8;
+    filter: alpha(opacity=80);
+}
+
+.image-operation-info {
+	border-bottom: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+	font-size: 14px;
+	color: #666;
+	overflow: hidden;
+	height: 40px;
+	line-height: 40px;
+}
+
+.image-operation-info-download {
+	float: left;
+	margin-left: 10px;
+}
+
+.image-operation-info-view {
+	float: right;
+	margin-right: 10px;
 }
