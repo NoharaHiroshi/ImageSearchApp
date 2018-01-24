@@ -901,6 +901,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	padding: 20px;
 	background-color: #fff;
 	float: right;
+	margin-bottom: 25px;
 }
 
 .image-operation {
@@ -971,8 +972,8 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	font-size: 14px;
 	color: #666;
 	overflow: hidden;
-	height: 40px;
-	line-height: 40px;
+	height: 60px;
+	line-height: 60px;
 }
 
 .image-operation-info-download {
@@ -983,4 +984,24 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 .image-operation-info-view {
 	float: right;
 	margin-right: 10px;
+}
+
+.image-sider-info {
+	font-size: 14px;
+	color: #666;
+	position: relative;
+	display: inline-block;
+	width: 300px;
+	padding: 20px;
+	background-color: #fff;
+	float: right;
+}
+
+.image-sider-info p {
+	margin-bottom: 10px;
+}
+
+.image-sider-info span {
+	color: #888;
+	margin-left: 10px;
 }
