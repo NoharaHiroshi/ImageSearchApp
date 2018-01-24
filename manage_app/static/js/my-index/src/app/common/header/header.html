@@ -65,14 +65,14 @@
 					<div class="cbp-hrsub cbp-hover">
 						<div class="cbp-hrsub-inner"> 
 							<div *ngFor="let sub_menu of website_menu.sub_menus">
-								<ng-container *ngIf="sub_menu.type == 1">
-									<h4><a href="#" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
+								<ng-container *ngIf="sub_menu.type == 0">
+									<h4><a href="#" target="_blank" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
 								</ng-container>
 								<ng-container *ngIf="sub_menu.type == 1">
-									<h4><a href="#" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
+									<h4><a href="#" target="_blank" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
 								</ng-container>
 								<ng-container *ngIf="sub_menu.type == 2">
-									<h4><a href="#" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
+									<h4><a [routerLink]="['image_list', sub_menu.connect_id]" target="_blank" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
 								</ng-container>
 								<ng-container *ngIf="sub_menu.type == 3">
 									<h4><a [routerLink]="['image_series_list', sub_menu.connect_id]" target="_blank" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
@@ -89,11 +89,11 @@
 											</ng-container>
 											<!-- 图片列表页 -->
 											<ng-container *ngIf="third_menu.type == 2">
-												<a href="#">{{third_menu.name}}</a>
+												<a [routerLink]="['image_list', third_menu.connect_id]" target="_blank" >{{third_menu.name}}</a>
 											</ng-container>
 											<!-- 专题列表页 -->
 											<ng-container *ngIf="third_menu.type == 3">
-												<a [routerLink]="['image_series_list', third_menu.id]">{{third_menu.name}}</a>
+												<a [routerLink]="['image_series_list', third_menu.connect_id]" target="_blank">{{third_menu.name}}</a>
 											</ng-container>
 										</li>
 									</ng-container>

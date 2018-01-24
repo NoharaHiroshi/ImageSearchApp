@@ -1,5 +1,14 @@
 <div class="image-detail-box">
 	<ng-container *ngIf="image">
-		<img width="{{image.width}}" height="{{image.height}}" src="/static/{{image.img_preview_url}}">
+		<div class="image-detail-content">
+			<div class="image-main-content">
+				<img src="/static/{{image.img_preview_url}}">
+			</div>
+			<div class="image-sider-content">
+				<div class="image-operation">
+					<a class="download-png" href="#">下载PNG</a>
+				</div>
+			</div>
+		</div>
 	</ng-container>
 </div>

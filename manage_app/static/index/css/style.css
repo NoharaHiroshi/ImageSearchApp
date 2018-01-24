@@ -868,3 +868,53 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	padding: 15px 5px 10px 5px;
 	color: #555;
 }
+
+/* 图片详情页 */
+.image-detail-box {
+	margin-top: 50px;
+}
+
+.image-detail-content {
+	position: relative;
+	width: 1200px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.image-main-content {
+	position: relative;
+	display: inline-block;
+	width: 800px;
+	padding: 20px;
+	background-color: #fff;
+	float: left;
+}
+
+.image-main-content img {
+	width: 100%;
+}
+
+.image-sider-content {
+	position: relative;
+	display: inline-block;
+	width: 300px;
+	padding: 20px;
+	background-color: #fff;
+	float: right;
+}
+
+.image-operation {
+	width: 100%;
+}
+
+.download-png {
+	background-color: #4e9fef;
+	width: 100%;
+	line-height: 45px;
+	border-radius: 3px;
+	padding: 10px;
+	font-size: 18px;
+	text-align: center;
+	text-decoration: none;
+	color: #fff;
+}
