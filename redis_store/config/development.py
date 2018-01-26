@@ -9,3 +9,5 @@ COMMON_DB = 0
 PERMISSION_DB = 1
 # 代理IP缓存库
 PROXY_DB = 2
+# 用户下载缓存库
+DOWNLOADING_DB = 4
