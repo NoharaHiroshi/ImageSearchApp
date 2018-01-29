@@ -3,17 +3,17 @@
 from kombu import Queue
 
 CELERY_QUEUES = (
-    Queue('test', routing_key='add'),
+    Queue('downloading', routing_key='downloading'),
 )
 
 CELERY_ROUTES = {
-    'tasks.test.add': {
-        'queue': 'test',
-        'routing_key': 'add',
+    'tasks.downloading_task.get_image_full_url': {
+        'queue': 'downloading',
+        'routing_key': 'downloading',
     }
 }
 
-# 导入队列
+# 导入模块
 CELERY_IMPORTS = (
-    'tasks.test'
+    'tasks.downloading_task'
 )
