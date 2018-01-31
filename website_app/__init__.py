@@ -3,21 +3,17 @@
 from flask import Flask, render_template, redirect, request, abort, url_for, jsonify
 from lib.log import create_log
 from flask.ext.login import LoginManager, login_url
-from views.manage_index.route import manage as manage_route
-from views.lib.route import lib as lib_route
-from views.website_index.route import website as website_route
+from views.index.route import index as index_route
 from redis_store import common_redis
 
 from model.config import config as model_config
 from model.session import get_session
-from model.manage.user import User
+from model.website.customer import Customer
 
 DEFAULT_APP_NAME = __name__
 
 BLUEPRINTS = (
-    (manage_route, '/manage'),
-    (lib_route, '/lib'),
-    (website_route, '/website'),
+    (index_route, ''),
 )
 
 
@@ -30,7 +26,7 @@ def configure_blueprints(app, blueprints):
 def configure_login_manager(app):
     login_manager = LoginManager()
     # 指定登陆页面的视图
-    login_manager.login_view = 'manage.login'
+    login_manager.login_view = 'index.login'
     # 会话的保护程度
     login_manager.session_protection = "strong"
     login_manager.login_message = u'请登录系统之后进行操作'
@@ -41,12 +37,12 @@ def configure_login_manager(app):
 
     # 回调函数返回User实例
     @login_manager.user_loader
-    def load_user(user_id):
+    def load_customer(customer_id):
 
         with get_session() as db_session:
-            user = db_session.query(User).get(user_id)
-            if user:
-                return user
+            customer = db_session.query(Customer).get(customer_id)
+            if customer:
+                return customer
             else:
                 return None
 
@@ -54,7 +50,7 @@ def configure_login_manager(app):
 
 
 def configure_logger(app):
-    app.my_logger = create_log('platform')
+    app.my_logger = create_log('website')
 
 
 def configure_redis(app):
