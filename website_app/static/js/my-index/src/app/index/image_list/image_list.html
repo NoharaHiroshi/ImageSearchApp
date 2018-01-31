@@ -1,0 +1,41 @@
+<div class="image-list-box">
+	<ng-container *ngIf="image_series">
+		<div class="image-list-title"> - {{image_series.name}} - </div>
+		<div class="image-list-info">
+			<span>
+				<i class="fa fa-eye" aria-hidden="true"></i>
+				3364
+			</span>
+			<span>
+				<i class="fa fa-star-o" aria-hidden="true"></i>
+				992
+			</span>
+			<span>
+				<i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+				{{image_series.created_date}}
+			</span>
+		</div>
+		<div class="image-list-desc"> {{image_series.desc}}</div>
+		<div class="image-list-content">
+			<div id="demo" style="margin: 0 auto; overflow:hidden;">
+				<ng-container *ngIf="image_list">
+					<ng-container *ngFor="let image of image_list">
+						<div class="image-item">
+							<div class="grid">
+								<figure class="effect-zoe">
+									<img class="image-item-image" width="{{image.width}}" height="{{image.height}}" src="/static/{{image.img_preview_url}}">
+									<figcaption>
+										<h2>下载</h2>
+										<span><i class="fa fa-star-o"></i></span>
+										<a [routerLink]="['/image_detail', image.id]" target="_blank">更多</a>
+									</figcaption>		
+								</figure>
+							</div>
+						</div>
+					</ng-container>
+				</ng-container>
+			</div>
+		</div>
+		<paging [current_page]="page_info.cur_page" [all_page]="page_info.all_page" [all_num]="page_info.count" (selected_page)="getPageNum($event)"></paging>
+	</ng-container>
+</div>

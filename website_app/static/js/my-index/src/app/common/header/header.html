@@ -1,0 +1,127 @@
+<!--header start-->
+<header>
+	<div class="header-content">
+		<div class="header-info">
+			<div class="header-logo">
+				<span class="header-logo-span"><a [routerLink]="['']" style="text-decoration:none; color: #666;" target="_blank">首页</a></span>
+			</div>
+			<div class="header-login">
+				<span>登录</span>
+			</div>
+		</div>
+	</div>
+	<div class="header-content-fix" style="display: none;">
+		<div class="search-fix">
+			<div class="search-input-fix">
+				<div class="input-border-fix">
+					<input type="text" id="main-search-fix" class="input-content-fix" placeholder="输入关键词搜索">
+					<div class="input-search-btn-fix">
+						<i class="fa fa-search"></i>
+					</div>
+					<div class="input-recommond-search-fix" id="recommond-fix" style="display:none;">
+						<ng-container *ngFor="let hot_search of hot_search_list">
+						<p>
+							<span class="input-recommond-search-tag-fix">{{hot_search.name}}</span>
+							<span class="input-recommond-search-result-fix">703266 结果</span>
+						</p>
+						</ng-container>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+<div class="search-input">
+	<div class="input-border">
+		<input type="text" id="main-search" class="input-content" placeholder="输入关键词搜索">
+		<div class="input-search-btn">
+			<i class="fa fa-search"></i>
+		</div>
+		<div class="input-recommond-search" id="recommond" style="display:none;">
+			<ng-container *ngFor="let hot_search of hot_search_list">
+				<p>
+					<span class="input-recommond-search-tag">{{hot_search.name}}</span>
+					<span class="input-recommond-search-result">703266 结果</span>
+				</p>
+			</ng-container>
+		</div>
+	</div>
+	<div class="input-hot-search">
+		<div class="input-hot-search-div">
+			<span style="color: #555;">热门资源：</span>
+			<span>圣诞</span>
+			<span style="color: #ffbe40">新年</span>
+			<span style="color: #ffbe40">元旦</span>
+			<span>年会</span>
+		</div>
+	</div>
+</div>
+<div class="nav-box">
+	<nav id="cbp-hrmenu" class="cbp-hrmenu">
+		<ul>
+			<ng-container *ngFor="let website_menu of website_menu_list">
+				<li>
+					<a href="#" class="cbp-hover">{{website_menu.name}}</a>
+					<div class="cbp-hrsub cbp-hover">
+						<div class="cbp-hrsub-inner"> 
+							<div *ngFor="let sub_menu of website_menu.sub_menus">
+								<ng-container *ngIf="sub_menu.type == 0">
+									<h4><a href="#" target="_blank" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
+								</ng-container>
+								<ng-container *ngIf="sub_menu.type == 1">
+									<h4><a href="#" target="_blank" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
+								</ng-container>
+								<ng-container *ngIf="sub_menu.type == 2">
+									<h4><a [routerLink]="['image_list', sub_menu.connect_id]" target="_blank" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
+								</ng-container>
+								<ng-container *ngIf="sub_menu.type == 3">
+									<h4><a [routerLink]="['image_series_list', sub_menu.connect_id]" target="_blank" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
+								</ng-container>
+								<ul>
+									<ng-container *ngFor="let third_menu of sub_menu.sub_menus">
+										<li>
+											<ng-container *ngIf="third_menu.type == 0">
+												<a href="#">{{third_menu.name}}</a>
+											</ng-container>
+											<!-- 内容页 -->
+											<ng-container *ngIf="third_menu.type == 1">
+												<a href="#">{{third_menu.name}}</a>
+											</ng-container>
+											<!-- 图片列表页 -->
+											<ng-container *ngIf="third_menu.type == 2">
+												<a [routerLink]="['image_list', third_menu.connect_id]" target="_blank" >{{third_menu.name}}</a>
+											</ng-container>
+											<!-- 专题列表页 -->
+											<ng-container *ngIf="third_menu.type == 3">
+												<a [routerLink]="['image_series_list', third_menu.connect_id]" target="_blank">{{third_menu.name}}</a>
+											</ng-container>
+										</li>
+									</ng-container>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</li>
+			</ng-container>
+		</ul>
+	</nav>
+</div>
+<div class="banner-box">
+	<div class="bd">
+		<ul>          	    
+			<ng-container *ngFor="let banner of banner_list">
+				<li [style.background]="banner.background_color">
+					<div class="m-width">
+					<a href="javascript:void(0);"><img style="width: 1200px; height: 300px;" src="/static/{{banner.img_url}}" /></a>
+					</div>
+				</li>
+			</ng-container>
+		</ul>
+	</div>
+	<div class="banner-btn">
+		<a class="prev" href="javascript:void(0);"></a>
+		<a class="next" href="javascript:void(0);"></a>
+		<div class="hd"><ul></ul></div>
+	</div>
+</div>
+<!--header end-->
