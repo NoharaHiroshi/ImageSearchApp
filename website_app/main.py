@@ -1,7 +1,7 @@
 # coding=utf-8
 
-from manage_app import create_app
-from manage_app.config import config
+from website_app import create_app
+from website_app.config import config
 
 app = create_app(config)
 

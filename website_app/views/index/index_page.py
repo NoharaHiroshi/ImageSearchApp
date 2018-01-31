@@ -21,7 +21,7 @@ from route import index
 @index.route('/', methods=['GET'])
 def index_page():
     try:
-        return render_template('tpl/index/index.html')
+        return render_template('tpl/index.html')
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))
         abort(400)

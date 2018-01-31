@@ -18,6 +18,7 @@ from model.website.menu import WebsiteMenu
 from model.website.hot_search import WebsiteHotSearch
 from model.website.banner import Banner
 from model.website.column import WebsiteColumnSeriesRel, WebsiteColumn
+from model.website.customer import Customer
 
 
 def create_all_tables():

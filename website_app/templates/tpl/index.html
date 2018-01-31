@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<title>网站首页</title>
+		<link rel="stylesheet" href="/static/index/css/ddfullscreenslider.css">
+		<link rel="stylesheet" href="/static/index/css/img-normalize.css" />
+		<link rel="stylesheet" href="/static/index/css/img-set.css" />
+		<link rel="stylesheet" href="/static/index/css/style.css">
+		<link rel="stylesheet" href="/static/index/css/font-awesome.css">
+		
+		<script src="/static/index/js/jquery-1.11.3.min.js"></script>
+		<script src="/static/index/js/jquery.SuperSlide.2.1.1.js"></script>
+		<script src="/static/index/js/modernizr.custom.js"></script>
+		
+	</head>
+	<body>
+		<index-root>
+			<!--Loading 动画-->
+			<link rel="stylesheet" href="{{ url_for('static', filename='css/loading_style.css') }}" type="text/css" />
+			<script src="{{ url_for('static', filename='js/lib/loading.min.js') }}"></script>
+			<div style="text-align:center;clear:both;"></div>
+			<div class='loading-base'>
+				<div class='cube'></div>
+				<div class='cube'></div>
+				<div class='cube'></div>
+				<div class='cube'></div>
+				<div class='cube'></div>
+				<div class='cube'></div>
+				<div class='cube'></div>
+				<div class='cube'></div>
+				<div class='cube'></div>
+			</div>
+		</index-root>
+
+		{% if config.DEBUG %}
+			<script type="text/javascript" src="/static/dist/debug/common/polyfills.js"></script>
+			<script type="text/javascript" src="/static/dist/debug/common/vendor.js"></script>
+			<script type="text/javascript" src="/static/dist/debug/app/index.js"></script>
+		{% else %}
+			<script type="text/javascript" src="/static/dist/prod/polyfills.js"></script>
+			<script type="text/javascript" src="/static/dist/prod/vendor.js"></script>
+			<script type="text/javascript" src="/static/dist/prod/index.js"></script>
+		{% endif %}
+		
+		<script>
+			$(function() {			
+				/* 查找某个动态DOM是否已经生成 */
+				var elem_is_exists = function(elem, func) {
+					if($(elem).length == 0){
+						setTimeout(function(){
+							elem_is_exists(elem, func);
+						}, 100);
+					}else{
+						func();
+					}
+				}
+			
+				/* 轮播图 */		
+				var banner = function(){ 
+					$(".banner-box").hover(function(){
+						$(".prev,.next").stop(true,false).fadeTo("show",0.8);
+					},function(){
+						$(".prev,.next").stop(true,false).fadeTo("show",0);
+					});
+				
+					$(".banner-box").slide({
+						titCell:".hd ul",
+						mainCell:".bd ul",
+						effect:"fold",
+						interTime:3500,
+						delayTime:500,
+						autoPlay:true,
+						autoPage:true, 
+						trigger:"click" 
+					});
+				}
+				elem_is_exists('.banner-box li', banner);
+				
+				/* 搜索框 */
+				$("#main-search").focus(function(){
+					$('#recommond').show();
+				});
+				$("#main-search").blur(function(){
+					$('#recommond').hide();
+				});
+				
+				$("#main-search-fix").focus(function(){
+					$('#recommond-fix').show();
+				});
+				$("#main-search-fix").blur(function(){
+					$('#recommond-fix').hide();
+				});
+				
+				/* 导航条 */
+				
+				var menu = function() {
+					var cbpHorizontalMenuFunc = function() {
+
+						var $listItems = $( '#cbp-hrmenu > ul > li' ),
+							$menuItems = $listItems.children( 'a' ),
+							$menuAll = $('.cbp-hover'),
+							$body = $( 'body' ),
+							current = -1;
+
+						function init() {
+							$menuAll.on('mouseover mouseout', open);
+							$listItems.on( 'click', function( event ) { event.stopPropagation(); } );
+						}
+
+						function open( event ) {
+
+							if( current !== -1 ) {
+								$listItems.eq( current ).removeClass( 'cbp-hropen' );
+							}
+
+							var $item = $( event.currentTarget ).parent( 'li' ),
+								idx = $item.index();
+
+							if( current === idx ) {
+								$item.removeClass( 'cbp-hropen' );
+								current = -1;
+							}
+							else {
+								$item.addClass( 'cbp-hropen' );
+								current = idx;
+								$body.off( 'click' ).on( 'click', close );
+							}
+
+							return false;
+
+						}
+
+						function close( event ) {
+							$listItems.eq( current ).removeClass( 'cbp-hropen' );
+							current = -1;
+						}
+
+						return { init : init };
+
+					}
+					var cbpHorizontalMenu = cbpHorizontalMenuFunc();
+					cbpHorizontalMenu.init();
+				}
+				elem_is_exists('#cbp-hrmenu > ul > li', menu);
+			});
+		</script>
+	</body>
+</html>
