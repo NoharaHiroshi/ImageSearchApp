@@ -16,6 +16,7 @@ from model.website.hot_search import WebsiteHotSearch
 from model.website.column import WebsiteColumn, WebsiteColumnSeriesRel
 
 from route import index
+from website_app.config import config
 
 
 @index.route('/', methods=['GET'])

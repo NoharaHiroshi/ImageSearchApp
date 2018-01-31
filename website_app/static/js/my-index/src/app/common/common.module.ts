@@ -13,6 +13,8 @@ import { PageComponent } from './paging/paging.component';
 // Service
 import { CommonService } from './common.service';
 
+import { AppConfig } from '../../config/app_config';
+
 
 @NgModule({
 	declarations: [
@@ -32,7 +34,7 @@ import { CommonService } from './common.service';
 		FooterComponent,
 		PageComponent
 	],
-	providers: [ CommonService ],
+	providers: [ CommonService, AppConfig ],
 })
 export class SharedModule { 
 }

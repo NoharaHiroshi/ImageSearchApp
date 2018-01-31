@@ -34,9 +34,11 @@ export class ImageDetailComponent extends ListBaseComponent implements OnInit{
 	}
 	
 	downloadSourceImage(image_id: String): void {
-		this.service.getSourceImage(params['id']).subscribe(res => {
-			this.image_url = res['img_full_url'];
-		})
+		let self = this;
+		this.route.params.switchMap((params: Params) => this.service.getSourceImage(params['id']))
+			.subscribe(res => {
+				this.image_url = res['img_full_url'];
+			});
 	}
 
 }

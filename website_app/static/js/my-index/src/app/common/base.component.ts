@@ -4,7 +4,7 @@ import { Component, Input, OnInit, Output, EventEmitter, ViewChild} from '@angul
 import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { Modal } from 'angular2-modal/plugins/bootstrap';
 
-import { AppConfig} from '../../config/app_config';
+import { AppConfig } from '../../config/app_config';
 
 @Component({
     selector: 'list-base',

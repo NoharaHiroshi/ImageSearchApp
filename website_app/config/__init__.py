@@ -4,7 +4,7 @@ import os
 
 ENV = os.environ.get('ENV', 'development')
 
-print 'WEBSITE_APP: 已加载（%s）' % ENV
+print 'WEBSITE: 已加载（%s）' % ENV
 
 if ENV == 'development':
     import development as config

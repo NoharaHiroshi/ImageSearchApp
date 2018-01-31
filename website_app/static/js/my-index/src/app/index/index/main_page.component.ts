@@ -4,6 +4,7 @@ declare var swal: any;
 import { Component, OnInit, OnChanges, Input} from '@angular/core';
 import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { Location }  from '@angular/common';
+import { AppConfig } from '../../../config/app_config';
 
 import { MainPageService } from './main_page.service';
 import { ListBaseComponent } from '../../common/base.component';
@@ -18,7 +19,7 @@ import { Column } from '../../model/column';
 export class MainPageComponent extends ListBaseComponent implements OnInit{
 	column_list: Column[];
 	
-	constructor(private service: MainPageService) {
+	constructor(private config: AppConfig, private service: MainPageService) {
 		super();
 	}
 	
