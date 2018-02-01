@@ -2,6 +2,7 @@
 
 import traceback
 import ujson
+import os
 from flask import render_template, abort, g, jsonify, request
 from flask import current_app as app
 from flask import send_from_directory
@@ -14,8 +15,6 @@ from model.website.menu import WebsiteMenu
 from model.website.banner import Banner
 from model.website.hot_search import WebsiteHotSearch
 from model.website.column import WebsiteColumn, WebsiteColumnSeriesRel
-
-from tasks.downloading_task import download_image
 
 from route import index
 from website_app.config import config
@@ -265,7 +264,11 @@ def get_image_full_url():
     try:
         with get_session() as db_session:
             image = db_session.query(Image).get(image_id)
-            if image:
-                download_image.delay(image)
+            file_url = image.img_full_url
+            file_full_path = os.path.join(config.DOWNLOAD_SRC, file_url).replace('/', '\\')
+            file_name = file_full_path.split('\\')[-1]
+            file_dir = '\\'.join(file_full_path.split('\\')[:-1])
+            if os.path.isfile(file_full_path):
+                return send_from_directory(file_dir, file_name, as_attachment=True)
     except Exception as e:
         print e
