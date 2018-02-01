@@ -3,12 +3,14 @@
 import traceback
 import ujson
 import os
-from flask import render_template, abort, g, jsonify, request
+from flask import render_template, abort, g, jsonify, request, session, redirect, url_for
+from flask.ext.login import current_user, login_user, logout_user, login_required
 from flask import current_app as app
 from flask import send_from_directory
 from lib.paginator import SQLAlchemyPaginator
 
 from model.session import get_session
+from model.website.customer import Customer
 from model.image.image_series import ImageSeries, ImageSeriesCategoryRel, ImageSeriesCategory, ImageSeriesRel
 from model.image.image import Image
 from model.website.menu import WebsiteMenu
@@ -66,6 +68,44 @@ def get_index_header():
                 'hot_search_list': _hot_search_list
             })
         return jsonify(result)
+    except Exception as e:
+        print e
+
+
+@index.route('/login', methods=['GET', 'POST'])
+def login():
+    try:
+        # 持久会话
+        session.permanent = True
+        context = {}
+
+        # 对已登录用户进行跳转
+        if current_user.is_authenticated():
+            return redirect(url_for('index.index_page'))
+
+        # 登陆
+        if request.method == 'POST':
+            result = {
+                'response': 'ok',
+                'info': ''
+            }
+            name = request.form.get('name')
+            phone = request.form.get('phone')
+            with get_session() as db_session:
+                customer = db_session.query(Customer).filter(
+                    Customer.phone == phone
+                ).first()
+                if customer:
+                    login_user(customer)
+                    result['url'] = url_for('manage.index')
+                    return jsonify(result)
+                else:
+                    result.update({
+                        'response': 'fail',
+                        'info': u'当前用户不存在'
+                    })
+                    return jsonify(result)
+        return render_template('tpl/login.html', **context)
     except Exception as e:
         print e
 
