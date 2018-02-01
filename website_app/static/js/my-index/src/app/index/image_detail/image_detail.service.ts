@@ -32,6 +32,16 @@ export class ImageDetailService extends BaseService {
 					.catch(this.handleError);
 	}
 	
+	checkDownloadImage(id: String): Promise<any> {
+		const url = `/check_image?id=` + id;
+		let self = this;
+		return this.http.get(url)
+			.toPromise().then(res => {
+				let json = res.json();
+				return json;
+			}).catch(this.handleError);
+	}
+	
 	getSourceImage(id: String): Promise<any> {
 		const url = `/image_full_url?id=` + id;
 		let self = this;

@@ -7,7 +7,7 @@ CELERY_QUEUES = (
 )
 
 CELERY_ROUTES = {
-    'tasks.downloading_task.get_image_full_url': {
+    'tasks.downloading_task.download_image': {
         'queue': 'downloading',
         'routing_key': 'downloading',
     }

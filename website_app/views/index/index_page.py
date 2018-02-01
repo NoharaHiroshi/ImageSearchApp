@@ -6,7 +6,6 @@ from flask import render_template, abort, g, jsonify, request
 from flask import current_app as app
 from flask import send_from_directory
 from lib.paginator import SQLAlchemyPaginator
-from lib.download_image import download
 
 from model.session import get_session
 from model.image.image_series import ImageSeries, ImageSeriesCategoryRel, ImageSeriesCategory, ImageSeriesRel
@@ -15,6 +14,8 @@ from model.website.menu import WebsiteMenu
 from model.website.banner import Banner
 from model.website.hot_search import WebsiteHotSearch
 from model.website.column import WebsiteColumn, WebsiteColumnSeriesRel
+
+from tasks.downloading_task import download_image
 
 from route import index
 from website_app.config import config
@@ -236,24 +237,35 @@ def get_image_detail():
         print e
 
 
-@index.route('/image_full_url', methods=['GET'])
-def get_image_full_url():
+@index.route('/check_image', methods=['GET'])
+def check_image():
     result = {
         'response': 'ok',
         'info': '',
-        'image': ''
     }
     image_id = request.args.get('id')
     try:
         with get_session() as db_session:
             image = db_session.query(Image).get(image_id)
             if image:
-                return download(image)
+                pass
             else:
                 result.update({
                     'response': 'fail',
-                    'info': u'抱歉~图片好像走丢了...'
+                    'info': u'图片不存在'
                 })
-                return jsonify(result)
+            return jsonify(result)
+    except Exception as e:
+        print e
+
+
+@index.route('/image_full_url', methods=['GET'])
+def get_image_full_url():
+    image_id = request.args.get('id')
+    try:
+        with get_session() as db_session:
+            image = db_session.query(Image).get(image_id)
+            if image:
+                download_image.delay(image)
     except Exception as e:
         print e

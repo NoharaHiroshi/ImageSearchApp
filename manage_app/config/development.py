@@ -16,9 +16,6 @@ ICON_UPLOAD_SRC = os.path.join(UPLOAD_SRC, 'icon').replace('\\', '/')
 # 素材上传路径
 MATERIAL_SRC = os.path.join(UPLOAD_SRC, 'material').replace('\\', '/')
 
-# 下载路径
-DOWNLOAD_SRC = os.path.join(ROOT_SRC, 'manage_app/static/').replace('\\', '/')
-
 # 模块配置
 MODULES = [
     {

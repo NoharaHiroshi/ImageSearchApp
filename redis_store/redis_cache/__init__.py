@@ -7,6 +7,3 @@ from redis_store.config import config
 common_redis = redis.StrictRedis(host=config.REDIS_HOST, port=config.REDIS_PORT, db=config.COMMON_DB)
 # 代理redis
 proxy_redis = redis.StrictRedis(host=config.REDIS_HOST, port=config.REDIS_PORT, db=config.PROXY_DB)
-
-if __name__ == '__main__':
-    print common_redis.get('a')

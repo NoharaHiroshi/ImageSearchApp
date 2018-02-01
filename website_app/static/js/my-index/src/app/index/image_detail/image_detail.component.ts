@@ -35,11 +35,24 @@ export class ImageDetailComponent extends ListBaseComponent implements OnInit{
 	        });
 	}
 	
+	checkImage(): void {
+		let self = this;
+		this.route.params.switchMap((params: Params) => this.service.checkDownloadImage(params['id']))
+			.subscribe(res => {
+				let response = res['response'];
+				if(response == 'ok'){
+					this.downloadSourceImage();
+				}else{
+					console.log(res['info']);
+				}
+			});
+	}
+	
 	downloadSourceImage(): void {
 		let self = this;
 		this.route.params.switchMap((params: Params) => this.service.getSourceImage(params['id']))
 			.subscribe(url => {
-				$('#download_png').attr({'href': url, 'download': 'test.jpeg'});
+				$('#download_png').attr({'href': url, 'download': self.image.name});
 				$('#download_png')[0].click();
 			});
 	}
