@@ -6,6 +6,7 @@ from flask import render_template, abort, g, jsonify, request
 from flask import current_app as app
 from flask import send_from_directory
 from lib.paginator import SQLAlchemyPaginator
+from lib.download_image import download
 
 from model.session import get_session
 from model.image.image_series import ImageSeries, ImageSeriesCategoryRel, ImageSeriesCategory, ImageSeriesRel
@@ -239,19 +240,20 @@ def get_image_detail():
 def get_image_full_url():
     result = {
         'response': 'ok',
-        'info': ''
+        'info': '',
+        'image': ''
     }
     image_id = request.args.get('id')
     try:
         with get_session() as db_session:
             image = db_session.query(Image).get(image_id)
             if image:
-                img_full_url = image.img_full_url
+                return download(image)
             else:
                 result.update({
                     'response': 'fail',
                     'info': u'抱歉~图片好像走丢了...'
                 })
-            return send_from_directory(img_full_url)
+                return jsonify(result)
     except Exception as e:
         print e

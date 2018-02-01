@@ -2,12 +2,13 @@
 	<ng-container *ngIf="image">
 		<div class="image-detail-content">
 			<div class="image-main-content">
-				<img src="/static/{{image.img_preview_url}}">
+				<img src="{{config.resource_url}}/static/{{image.img_preview_url}}">
 			</div>
 			<div class="image-sider-content">
 				<div class="image-operation">
-					<a class="download-png" href="#">下载PNG</a>
-					<a class="download-collect" href="#">收藏</a>
+					<a style="display: none;" id="download_png" href=""></a>
+					<button class="download-png" (click)="downloadSourceImage()">下载PNG</button>
+					<button class="download-collect">收藏</button>
 				</div>
 				<div class="image-operation-info">
 					<span class="image-operation-info-download">下载：3396</span>

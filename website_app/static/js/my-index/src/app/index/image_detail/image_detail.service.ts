@@ -1,9 +1,11 @@
 declare var $: any;
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response, RequestOptions, RequestMethod } from '@angular/http';
+import { Headers, Http, Response, RequestOptions, RequestMethod, ResponseContentType } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/Rx';
+
+require('../../lib/blob');
 
 import { ImageSeries } from '../../model/image_series';
 import { Image } from '../../model/image';
@@ -30,14 +32,15 @@ export class ImageDetailService extends BaseService {
 					.catch(this.handleError);
 	}
 	
-	getSourceImage(id: String): Promise<{}> {
+	getSourceImage(id: String): Promise<any> {
 		const url = `/image_full_url?id=` + id;
 		let self = this;
-		return this.http.get(url)
-				   .toPromise().then(res => {
-						let json = res.json();
-						return json;
-					})
-					.catch(this.handleError);
+		let headers = new Headers({ 'Content-Disposition': 'attachement' }); 
+		let options = new RequestOptions({ responseType: ResponseContentType.Blob, headers: headers });
+		return this.http.get(url, options).toPromise()
+		.then(data => {
+			let url= window.URL.createObjectURL(data['_body']);
+			return url;
+		});
 	}
 }

@@ -11,6 +11,8 @@ import { ListBaseComponent } from '../../common/base.component';
 import { ImageSeries } from '../../model/image_series';
 import { ImageSeriesCategory } from '../../model/image_series_category';
 
+import { AppConfig } from '../../../config/app_config';
+
 require('../../lib/masonry.min.js');
 
 @Component({
@@ -23,7 +25,7 @@ export class ImageSeriesListComponent extends ListBaseComponent implements OnIni
 	page_info: any;
 	page: number = 1;
 	
-	constructor(private service: ImageSeriesListService, public route: ActivatedRoute, public router: Router, private elem: ElementRef) {
+	constructor(private config: AppConfig, private service: ImageSeriesListService, public route: ActivatedRoute, public router: Router, private elem: ElementRef) {
 		super();
 	}
 	

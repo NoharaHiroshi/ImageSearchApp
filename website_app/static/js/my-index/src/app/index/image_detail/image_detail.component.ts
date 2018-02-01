@@ -12,6 +12,8 @@ import { Image } from '../../model/image';
 import { ImageSeries } from '../../model/image_series';
 import { ImageSeriesCategory } from '../../model/image_series_category';
 
+import { AppConfig } from '../../../config/app_config';
+
 @Component({
   selector: 'image-detail-root',
   templateUrl: './image_detail.html',
@@ -20,7 +22,7 @@ export class ImageDetailComponent extends ListBaseComponent implements OnInit{
 	image: Image;
 	image_url: String;
 	
-	constructor(private service: ImageDetailService, public route: ActivatedRoute, public router: Router, private elem: ElementRef) {
+	constructor(private config: AppConfig, private service: ImageDetailService, public route: ActivatedRoute, public router: Router, private elem: ElementRef) {
 		super();
 	}
 	
@@ -33,11 +35,12 @@ export class ImageDetailComponent extends ListBaseComponent implements OnInit{
 	        });
 	}
 	
-	downloadSourceImage(image_id: String): void {
+	downloadSourceImage(): void {
 		let self = this;
 		this.route.params.switchMap((params: Params) => this.service.getSourceImage(params['id']))
-			.subscribe(res => {
-				this.image_url = res['img_full_url'];
+			.subscribe(url => {
+				$('#download_png').attr({'href': url, 'download': 'test.jpeg'});
+				$('#download_png')[0].click();
 			});
 	}
 

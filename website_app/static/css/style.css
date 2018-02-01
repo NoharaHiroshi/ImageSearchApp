@@ -920,6 +920,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	color: #fff;
 	display: block;
 	margin-bottom: 20px;
+	border: none;
 }
 
 .download-png:hover {
@@ -939,6 +940,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	color: #fff;
 	display: block;
 	margin-bottom: 20px;
+	border: none;
 }
 
 .download-source:hover {
@@ -959,6 +961,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	color: #fff;
 	display: block;
 	margin-bottom: 20px;
+	border: none;
 }
 
 .download-collect:hover {
