@@ -7,6 +7,7 @@ import 'rxjs/Rx';
 import { Banner } from '../../model/banner';
 import { WebsiteMenu } from '../../model/website_menu';
 import { HotSearch } from '../../model/hot_search';
+import { Customer } from '../../model/customer';
 
 import { BaseService } from '../base.service';
 
@@ -24,6 +25,9 @@ export class HeaderService extends BaseService {
 	               .toPromise()
 	               .then(function(res){
 						let json = res.json();
+						let customer = self.jsonToObject(json.customer, Customer);
+						json['customer'] = customer;
+						console.log(customer);
 						let banner_list = self.jsonListToObjectList(json.banner_list, Banner);
 						let website_menu_list = self.jsonListToObjectList(json.menu_list, WebsiteMenu);
 					    for(let website_menu of website_menu_list){

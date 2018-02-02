@@ -6,7 +6,12 @@
 				<span class="header-logo-span"><a [routerLink]="['']" style="text-decoration:none; color: #666;" target="_blank">首页</a></span>
 			</div>
 			<div class="header-login">
-				<span>登录</span>
+				<ng-container *ngIf="customer">
+					<span>{{customer.name}}</span>
+				</ng-container>
+				<ng-container *ngIf="!customer">
+					<span>登录</span>
+				</ng-container>
 			</div>
 		</div>
 	</div>

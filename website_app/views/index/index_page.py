@@ -37,7 +37,8 @@ def get_index_header():
         'response': 'ok',
         'banner_list': [],
         'menu_list': [],
-        'hot_search_list': []
+        'hot_search_list': [],
+        'customer': ''
     }
     try:
         with get_session() as db_session:
@@ -67,6 +68,11 @@ def get_index_header():
                 'menu_list': _menu_list,
                 'hot_search_list': _hot_search_list
             })
+            if current_user.is_authenticated():
+                customer_dict = current_user.to_dict()
+                result.update({
+                    'customer': customer_dict
+                })
         return jsonify(result)
     except Exception as e:
         print e
@@ -97,8 +103,7 @@ def login():
                 ).first()
                 if customer:
                     login_user(customer)
-                    result['url'] = url_for('manage.index')
-                    return jsonify(result)
+                    return redirect(url_for('index.index_page'))
                 else:
                     result.update({
                         'response': 'fail',

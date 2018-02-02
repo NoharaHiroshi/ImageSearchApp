@@ -1,12 +1,13 @@
 # coding=utf-8
 
+from flask.ext.login import UserMixin, AnonymousUserMixin
 from sqlalchemy import Column, Integer, String, BigInteger
 from model.base import Base, IdGenerator
 
 from model.session import get_session
 
 
-class Customer(Base):
+class Customer(Base, UserMixin):
     __tablename__ = 'website_customer'
 
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
@@ -24,3 +25,11 @@ class Customer(Base):
             'phone': self.phone,
             'email': self.email
         }
+
+if __name__ == '__main__':
+    with get_session() as db_session:
+        customer = Customer()
+        customer.name = u'小新'
+        customer.phone = u'18222109895'
+        db_session.add(customer)
+        db_session.commit()
