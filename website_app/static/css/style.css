@@ -1033,27 +1033,61 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	margin: 0 auto;
 	font-size: 20px;
 	font-family: 'Microsoft YaHei';
-	height: 400px;
+	height: 800px;
+	overflow: hidden;
 	background-image: url('/static/img/boardwalk.jpg');
 }
 
 .login-block {
-	width: 600px;
+	width: 500px;
     height: 420px;
 	margin: 0 auto;
     border-radius: 4px;
     background-color: #fff;
+	margin-top: 180px;
 	box-shadow: 0 4px 6px 0 rgba(0,0,0,.2);
 }
 
 .login-form-header {
 	height: 60px;
     text-align: center;
-	padding: 20px 10px;
 	color: #666;
+	margin-bottom: 50px;
 }
 
 .login-form-header div {
 	display: inline-block;
 	width: 40%;
+	color: #666;
+	padding: 10px 0 15px 0;
+}
+
+.login-form-content {
+	padding: 20px 10px;
+	text-align: center;
+}
+
+.login-form-content  div {
+	display: inline-block;
+	width: 45%;
+	color: #666;
+	font-size: 16px;
+	text-align: center;
+}
+
+.login-form-content  p {
+	color: #666;
+	font-size: 15px;
+}
+
+.common-login div {
+	width: 100%;
+}
+
+.weixin-login div {
+	width: 100%;
+}
+
+.selected-border {
+	border-bottom: 2px solid #ffbe40;
 }
