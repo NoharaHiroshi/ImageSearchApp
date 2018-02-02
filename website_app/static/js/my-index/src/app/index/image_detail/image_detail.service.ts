@@ -5,8 +5,6 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/Rx';
 
-require('../../lib/blob');
-
 import { ImageSeries } from '../../model/image_series';
 import { Image } from '../../model/image';
 import { ImageSeriesCategory } from '../../model/image_series_category';

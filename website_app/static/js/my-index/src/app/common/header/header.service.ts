@@ -27,7 +27,6 @@ export class HeaderService extends BaseService {
 						let json = res.json();
 						let customer = self.jsonToObject(json.customer, Customer);
 						json['customer'] = customer;
-						console.log(customer);
 						let banner_list = self.jsonListToObjectList(json.banner_list, Banner);
 						let website_menu_list = self.jsonListToObjectList(json.menu_list, WebsiteMenu);
 					    for(let website_menu of website_menu_list){

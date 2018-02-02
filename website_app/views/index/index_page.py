@@ -8,6 +8,7 @@ from flask.ext.login import current_user, login_user, logout_user, login_require
 from flask import current_app as app
 from flask import send_from_directory
 from lib.paginator import SQLAlchemyPaginator
+from lib.login_required import login_required
 
 from model.session import get_session
 from model.website.customer import Customer
