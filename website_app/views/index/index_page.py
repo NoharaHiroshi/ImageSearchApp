@@ -8,7 +8,6 @@ from flask.ext.login import current_user, login_user, logout_user, login_require
 from flask import current_app as app
 from flask import send_from_directory
 from lib.paginator import SQLAlchemyPaginator
-from lib.login_required import login_required
 
 from model.session import get_session
 from model.website.customer import Customer
@@ -283,6 +282,7 @@ def get_image_detail():
 
 
 @index.route('/check_image', methods=['GET'])
+@login_required
 def check_image():
     result = {
         'response': 'ok',
@@ -305,6 +305,7 @@ def check_image():
 
 
 @index.route('/image_full_url', methods=['GET'])
+@login_required
 def get_image_full_url():
     image_id = request.args.get('id')
     try:
