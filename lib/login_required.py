@@ -1,7 +1,7 @@
 # coding=utf-8
 
 from functools import wraps
-from flask import current_app, render_template, request, redirect, url_for
+from flask import current_app, render_template, request, redirect, url_for, jsonify
 from flask.ext.login import current_user
 
 
@@ -11,6 +11,9 @@ def login_required(func):
         if current_user.is_authenticated():
             return func(*args, **kwargs)
         else:
-            context = {}
-            return render_template('tpl/login.html', **context)
+            result = {
+                'response': 'NeedLogin',
+                'info': u'未登陆，请返回登陆页面'
+            }
+            return jsonify(result)
     return wrapper

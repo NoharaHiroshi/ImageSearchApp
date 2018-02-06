@@ -27,6 +27,17 @@ export class ListBaseComponent implements OnInit {
         this.getPagerData();
     }
 	
+	authCheck(json: any){
+		let response = json['response'];
+		if(response == 'NeedLogin'){
+			// 返回登录界面
+			window.location.href='/login';
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
 	selectChecked(): String {
 		let obj_list = [];
 		let objs = $('input[name="checked"]:checked');

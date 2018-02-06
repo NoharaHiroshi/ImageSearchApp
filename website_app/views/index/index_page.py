@@ -4,10 +4,11 @@ import traceback
 import ujson
 import os
 from flask import render_template, abort, g, jsonify, request, session, redirect, url_for
-from flask.ext.login import current_user, login_user, logout_user, login_required
+from flask.ext.login import current_user, login_user, logout_user
 from flask import current_app as app
 from flask import send_from_directory
 from lib.paginator import SQLAlchemyPaginator
+from lib.login_required import login_required
 
 from model.session import get_session
 from model.website.customer import Customer
