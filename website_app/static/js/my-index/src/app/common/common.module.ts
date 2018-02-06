@@ -9,6 +9,7 @@ import { CommonModule} from '@angular/common'
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { PageComponent } from './paging/paging.component';
+import { LoginComponent } from './login/login.component';
 
 // Service
 import { CommonService } from './common.service';
@@ -20,7 +21,8 @@ import { AppConfig } from '../../config/app_config';
 	declarations: [
 		HeaderComponent,
 		FooterComponent,
-		PageComponent
+		PageComponent,
+		LoginComponent
 	],
 	imports: [
 		BrowserModule,
@@ -32,7 +34,8 @@ import { AppConfig } from '../../config/app_config';
 	exports: [
 		HeaderComponent,
 		FooterComponent,
-		PageComponent
+		PageComponent,
+		LoginComponent
 	],
 	providers: [ CommonService, AppConfig ],
 })
