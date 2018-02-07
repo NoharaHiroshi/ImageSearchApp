@@ -4,6 +4,7 @@
 		<div class="modal-table-call">
 			<div class="login-wrap">
 				<div class="login-hearder">
+				<div class="login-close"></div>
 					登录
 				</div>
 				<div class="login-content">
@@ -21,38 +22,6 @@
 						<p class="cutting-line">
 							<span>或</span>
 						</p>
-						<div class="phone-box">
-							<div class="login-form">
-								<div class="input-inline">
-									<div class="input-icon i-phone">
-									</div>
-									<input id="phone" maxlength="11" type="text" autocomplete="off" placeholder="请输入 11 位手机号" value="">
-									<p class="warning-text">
-										<i class="danger-icon"></i><span>该帐号还未注册，<a href="#" class="text-green">去注册</a></span>
-									</p>
-								</div>
-								<div id="sendcode-captcha" class="input-inline captcha">
-									<input id="img-code" type="text" autocomplete="off" placeholder="图形验证码" value="" maxlength="6" style="width: 188px;"><img alt="加载中..." id="img-captcha" src="" style="margin-left: 10px;vertical-align: bottom; cursor:pointer;"><a onclick="$('#img-captcha').click();" style="display:inline-block;width:20px;height:20px;vertical-align:middle;margin-left: 8px;cursor: pointer;background-image:url('#');"></a>
-									<p class="warning-text">
-									</p>
-								</div>
-								<div class="input-inline captcha">
-									<input id="captcha" type="text" maxlength="6" autocomplete="off" placeholder="请输入验证码">
-									<div class="btn-captcha qt-btn btn-green">
-										<a href="javascript:void(0);">发送验证码</a>
-									</div>
-									<p class="warning-text">
-										<i class="danger-icon"></i><span>该帐号还未注册，<a href="#" class="text-green">去注册</a></span>
-									</p>
-								</div>
-								<div class="login-submit qt-btn btn-green-linear disabled" id="submit-phone">
-									<a href="#">登录</a>
-								</div>
-								<p class="login-switch">
-									<a href="#" class="j-accountLogin fl">帐号密码登录</a><a href="#" class="fr">立即注册</a>
-								</p>
-							</div>
-						</div>
 						<div class="account-box">
 							<div class="login-form">
 								<div class="input-inline">
@@ -78,15 +47,15 @@
 									<a href="#">登录</a>
 								</div>
 								<p class="login-switch clearfix">
-									<a href="#" class="fl j-phoneLogin">手机验证码登录</a><a href="#" class="fr">忘记密码？</a><a href="#">立即注册</a>
+									<a href="#" class="fr">忘记密码？</a><a href="#">立即注册</a>
 								</p>
 							</div>
 						</div>
 					</div>
 					<div class="login-footer">
 						<p class="login-type">
-							<a href="javascript:;" class="j-accountLogin" rel="external nofollow">帐号密码登录</a>
-							<a href="#">立即注册</a>
+							<a href="javascript:;" class="phone-login">帐号密码登录</a>
+							<a href="javascript:;" class="phone-register">立即注册</a>
 						</p>
 					</div>
 				</div>

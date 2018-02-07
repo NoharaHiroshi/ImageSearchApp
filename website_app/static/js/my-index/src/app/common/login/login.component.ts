@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChildren, ViewChild, ElementRef, OnInit, OnChanges, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked} from '@angular/core';
 
 import { LoginService } from './login.service';
 import { ActivatedRoute, Params, Router }   from '@angular/router';
@@ -19,4 +19,12 @@ declare var $: any;
 })
 
 export class LoginComponent{
+	
+	ngAfterViewChecked(): void {
+		let self = this;
+		$('.phone-login').click(function(){
+			$('.login-box').show();
+			$('.account-box').show();
+		})
+	}
 }

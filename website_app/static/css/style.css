@@ -1046,6 +1046,20 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
     transition: all .28s;
 }
 
+.login-others span {
+	font-size: 14px;
+}
+
+.login-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: url(http://icon.qiantucdn.com/images/login/login_v6.png) -100px -168px no-repeat;
+    height: 20px;
+    width: 17px;
+    cursor: pointer;
+}
+
 .login-wrap .account-box, .login-wrap .login-box, .login-wrap .phone-box {
     display: none;
 }
@@ -1134,6 +1148,30 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	background-position: 0 0;
 }
 
+.logo-qq:hover i {
+	background-position: 0 -84px;
+}
+
 .logo-weixin i {
 	background-position: -168px 0;
+}
+
+.logo-weixin:hover  i {
+	background-position: -168px -84px;
+}
+
+.phone-login {
+	background-color: Transparent; 
+	border-style: none;
+	outline: none;   
+	color: #666;
+	font-size: 14px;	
+}
+
+.phone-register {
+	background-color: Transparent; 
+	border-style: none;
+	outline: none; 
+	color: #666;
+	font-size: 14px;	
 }
