@@ -19,6 +19,12 @@ declare var $: any;
 })
 export class LoginComponent{
 	@Input() isLogin: any;
+	@Output() returnLoginOpen = new EventEmitter<any>();  
+	
+	closeLogin(): void {
+		this.isLogin = false;
+		this.returnLoginOpen.emit(this.isLogin);
+	}
 	
 	ngAfterViewChecked(): void {
 		if(this.isLogin){

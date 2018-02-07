@@ -24,4 +24,4 @@
 		</div>
 	</ng-container>
 </div>
-<login [isLogin]="isLoginOpen"></login>
+<login [isLogin]="isLoginOpen" (returnLoginOpen)="returnLogin($event)"></login>
