@@ -25,6 +25,16 @@ export class LoginComponent{
 		$('.phone-login').click(function(){
 			$('.login-box').show();
 			$('.account-box').show();
+			$('.other-login').show();
+			$('.login-others').hide();
+			$(this).hide();
+		})
+		$('.other-login').click(function(){
+			$('.login-others').show();
+			$('.phone-login').show();
+			$('.login-box').hide();
+			$('.account-box').hide();
+			$(this).hide();
 		})
 	}
 }

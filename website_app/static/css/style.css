@@ -1065,7 +1065,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 }
 
 .login-wrap .login-footer {
-    margin-top: 60px;
+    margin-top: 40px;
 	border: 0;
 }
 
@@ -1115,12 +1115,12 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 
 .login-wrap {
     text-align: center;
-    color: #10c55b;
+    color: #ffbe40;
 }
 
 .login-type {
 	text-align: center;
-    color: #10c55b;
+    color: #ffbe40;
 	height: 45px;
 	line-height: 45px;
 }
@@ -1168,10 +1168,64 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	font-size: 14px;	
 }
 
+.phone-form-box {
+	margin-top: 15px;
+}
+
 .phone-register {
 	background-color: Transparent; 
 	border-style: none;
 	outline: none; 
 	color: #666;
 	font-size: 14px;	
+}
+
+.login-form {
+	width: 300px;
+    margin: 0 auto;
+}
+
+.login-input-item {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.login-input-item input{
+	border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    outline: 0;
+	width: 260px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #ccc;
+    padding-left: 40px;
+}
+
+.login-input-submit-a {
+	color: #fff !important;
+}
+
+.login-input-submit {
+	width: 300px;
+    height: 40px;
+    line-height: 40px;
+	background-color: #ffbe40;
+	border-radius: 4px;
+	color: #fff;
+}
+
+.login-other-operation {
+	margin-top: 15px;
+	font-size: 14px;
+}
+
+.login-other-operation a {
+	padding: 10px;
+}
+
+.input-icon {
+	position: absolute;
+	top: 10px;
+	left: 15px;
 }
