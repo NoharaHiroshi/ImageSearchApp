@@ -16,6 +16,7 @@ export class ListBaseComponent implements OnInit {
 	public isConfirm = false;
 	public curPage = 1;
 	public queryParams = {};
+	public isLoginOpen = false;
 	
     getPagerData(): void {}
 	
@@ -30,10 +31,10 @@ export class ListBaseComponent implements OnInit {
 	authCheck(json: any){
 		let response = json['response'];
 		if(response == 'NeedLogin'){
-			// 返回登录界面
-			window.location.href='/login';
+			this.isLoginOpen = true;
 			return false;
 		}else{
+			this.isLoginOpen = false;
 			return true;
 		}
 	}

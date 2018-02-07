@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentChecked, AfterViewInit } from '@angular/core';
 
 import { HeaderService } from './header.service';
 import { ActivatedRoute, Params, Router }   from '@angular/router';
@@ -18,13 +18,15 @@ declare var $: any;
   templateUrl: './header.html',
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent extends ListBaseComponent implements OnInit {
 	banner_list: any[];
 	website_menu_list: any[];
 	hot_search_list: any[];
 	customer: Customer;
 	
-	constructor(private service: HeaderService, public config: AppConfig, public route: ActivatedRoute, public router: Router) {}
+	constructor(private service: HeaderService, public config: AppConfig, public route: ActivatedRoute, public router: Router) {
+		super();
+	}
 	
 	ngOnInit(): void {
 		this.service.getInfo().then(data => {

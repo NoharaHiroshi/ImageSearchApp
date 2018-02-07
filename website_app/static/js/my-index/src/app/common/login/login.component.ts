@@ -17,10 +17,15 @@ declare var $: any;
   selector: 'login',
   templateUrl: './login.html',
 })
-
 export class LoginComponent{
+	@Input() isLogin: any;
 	
 	ngAfterViewChecked(): void {
+		if(this.isLogin){
+			$('.login-modal').show();
+		}else{
+			$('.login-modal').hide();
+		}
 		let self = this;
 		$('.phone-login').click(function(){
 			$('.login-box').show();
