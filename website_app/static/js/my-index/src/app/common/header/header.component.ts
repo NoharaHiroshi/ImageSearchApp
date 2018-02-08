@@ -46,4 +46,8 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 			}
 		});
 	}
+	
+	login(): void {
+		
+	}
 }

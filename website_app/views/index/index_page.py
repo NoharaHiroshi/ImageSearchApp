@@ -90,7 +90,6 @@ def login():
         session.permanent = True
         phone = request.form.get('phone')
         password = request.form.get('password')
-        print phone, password
 
         # 对已登录用户进行跳转
         if current_user.is_authenticated():

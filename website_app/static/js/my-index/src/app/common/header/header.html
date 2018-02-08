@@ -8,10 +8,10 @@
 			<div class="header-login">
 				<ng-container *ngIf="customer">
 					<span>{{customer.name}}</span>
-					<a href="javascript:;" class="header-logout" (click)="logout()">退出</a>
+					<a href="javascript:;" class="header-logout-item" (click)="logout()">退出</a>
 				</ng-container>
 				<ng-container *ngIf="!customer">
-					<span>登录</span>
+					<a href="javascript:;" class="header-login-item" (click)="login()">登录</a>
 				</ng-container>
 			</div>
 		</div>

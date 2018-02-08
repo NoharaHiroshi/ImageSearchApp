@@ -45,7 +45,13 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
     overflow: hidden;
 }
 
-.header-logout {
+.header-logout-item {
+	text-decoration: none;
+	color: #666;
+	font-size: 15px;
+}
+
+.header-login-item {
 	text-decoration: none;
 	color: #666;
 	font-size: 15px;
