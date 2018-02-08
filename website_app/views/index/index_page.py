@@ -79,39 +79,48 @@ def get_index_header():
         print e
 
 
-@index.route('/login', methods=['GET', 'POST'])
+@index.route('/login', methods=['POST'])
 def login():
     try:
+        result = {
+            'response': 'ok',
+            'info': ''
+        }
         # 持久会话
         session.permanent = True
-        context = {}
+        phone = request.form.get('phone')
+        password = request.form.get('password')
+        print phone, password
 
         # 对已登录用户进行跳转
         if current_user.is_authenticated():
-            return redirect(url_for('index.index_page'))
-
-        # 登陆
-        if request.method == 'POST':
-            result = {
-                'response': 'ok',
-                'info': ''
-            }
-            name = request.form.get('name')
-            phone = request.form.get('phone')
+            return jsonify(result)
+        else:
             with get_session() as db_session:
                 customer = db_session.query(Customer).filter(
                     Customer.phone == phone
                 ).first()
                 if customer:
                     login_user(customer)
-                    return redirect(url_for('index.index_page'))
                 else:
                     result.update({
                         'response': 'fail',
                         'info': u'当前用户不存在'
                     })
-                    return jsonify(result)
-        return render_template('tpl/login.html', **context)
+            return jsonify(result)
+    except Exception as e:
+        print e
+
+
+@index.route('/logout', methods=['GET'])
+def logout():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    try:
+        logout_user()
+        return jsonify(result)
     except Exception as e:
         print e
 

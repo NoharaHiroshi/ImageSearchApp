@@ -33,7 +33,17 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
         	this.banner_list = data.banner_list;
 			this.website_menu_list = data.website_menu_list;
 			this.hot_search_list = data.hot_search_list;
-			this.customer = data.customer;
+			if(JSON.stringify(data.customer) != "{}"){
+				this.customer = data.customer;
+			}
         });
+	}
+	
+	logout(): void {
+		this.service.logout().then(data => {
+			if(data['response'] == "ok"){
+				window.location.reload();
+			}
+		});
 	}
 }

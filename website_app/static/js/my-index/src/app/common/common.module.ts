@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 
 // Service
 import { CommonService } from './common.service';
+import { LoginService } from './login/login.service';
 
 import { AppConfig } from '../../config/app_config';
 
@@ -37,7 +38,7 @@ import { AppConfig } from '../../config/app_config';
 		PageComponent,
 		LoginComponent
 	],
-	providers: [ CommonService, AppConfig ],
+	providers: [ CommonService, AppConfig, LoginService ],
 })
 export class SharedModule { 
 }

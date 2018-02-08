@@ -27,6 +27,7 @@ export class HeaderService extends BaseService {
 						let json = res.json();
 						let customer = self.jsonToObject(json.customer, Customer);
 						json['customer'] = customer;
+						console.log(json['customer']);
 						let banner_list = self.jsonListToObjectList(json.banner_list, Banner);
 						let website_menu_list = self.jsonListToObjectList(json.menu_list, WebsiteMenu);
 					    for(let website_menu of website_menu_list){
@@ -44,6 +45,18 @@ export class HeaderService extends BaseService {
 	            	    return json;
 	               })
 	               .catch(this.handleError);
+	}
+	
+	logout(): Promise<any> {
+		const url = `/logout`;
+		let self = this;
+		return this.http.get(url)
+		.toPromise()
+		.then(function(res){
+			let json = res.json();
+			return json;
+		})
+		.catch(this.handleError);
 	}
 
 }

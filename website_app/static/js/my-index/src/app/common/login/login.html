@@ -23,20 +23,22 @@
 							<div class="login-form">
 								<div class="login-input-item">
 									<div class="input-icon"><i class="fa fa-user" ></i></div>
-									<input id="phone" type="text" autocomplete="off" placeholder="请输入手机号">
+									<input id="phone" type="text" name="phone" [(ngModel)]="phone"  placeholder="请输入手机号">
 									<p class="warning-text"></p>
 								</div>
 								<div class="login-input-item">
 									<div class="input-icon"><i class="fa fa-lock" ></i></div>
-									<input id="passwd" type="password" autocomplete="off" placeholder="请输入密码">
+									<input id="passwd" type="password" name="password" [(ngModel)]="password" placeholder="请输入密码">
 									<p class="warning-text"></p>
 								</div>
-								<div class="login-input-item captcha account-captcha" style="display:none;">
-									<input id="img-code2" type="text" autocomplete="off" placeholder="图形验证码" value="" maxlength="6" style="width: 188px;"><img alt="加载中..." id="img-captcha2" src="" style="margin-left: 10px;vertical-align: bottom; cursor:pointer;"><a onclick="$('#img-captcha2').click();" style="display:inline-block;width:20px;height:20px;vertical-align:middle;margin-left: 8px;cursor: pointer;background-image:url('#');"></a>
+								<div class="login-input-item login-captcha" style="display:none;">
+									<input id="img-code2" type="text" name="captcha" [(ngModel)]="captcha" placeholder="图形验证码" maxlength="4" style="width: 188px;">
+									<img alt="加载中..." id="img-captcha2" src="" style="margin-left: 10px;vertical-align: bottom; cursor:pointer;">
+									<a onclick="$('#img-captcha2').click();" style="display:inline-block;width:20px;height:20px;vertical-align:middle;margin-left: 8px;cursor: pointer;background-image:url('#');"></a>
 									<p class="warning-text"></p>
 								</div>
-								<div class="login-input-submit" id="submit-passwd">
-									<a class="login-input-submit-a" href="#">登录</a>
+								<div class="login-input-submit" (click)="login()">
+									登陆
 								</div>
 								<p class="login-other-operation">
 									<a href="#" class="fr">忘记密码？</a>

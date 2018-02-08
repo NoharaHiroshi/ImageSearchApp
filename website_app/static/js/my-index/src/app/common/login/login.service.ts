@@ -17,5 +17,10 @@ export class LoginService extends BaseService {
 	constructor(http: Http) { 
 		super(http);
 	}
+	
+	login(params: any): Promise<any> {
+		const url = '/login';
+	    return this.postForm(url, JSON.stringify(params));
+	}
 
 }

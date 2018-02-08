@@ -45,6 +45,12 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
     overflow: hidden;
 }
 
+.header-logout {
+	text-decoration: none;
+	color: #666;
+	font-size: 15px;
+}
+
 .header-login span {
 	line-height: 50px;
 	font-size: 15px;
@@ -1200,10 +1206,6 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
     font-size: 14px;
     color: #ccc;
     padding-left: 40px;
-}
-
-.login-input-submit-a {
-	color: #fff !important;
 }
 
 .login-input-submit {

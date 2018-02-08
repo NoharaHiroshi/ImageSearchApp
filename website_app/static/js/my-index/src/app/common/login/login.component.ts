@@ -21,18 +21,43 @@ export class LoginComponent{
 	@Input() isLogin: any;
 	@Output() returnLoginOpen = new EventEmitter<any>();  
 	
+	phone: string;
+	password: string;
+	captcha: string;
+	
+	constructor(private service: LoginService) {}
+	
 	closeLogin(): void {
 		this.isLogin = false;
 		this.returnLoginOpen.emit(this.isLogin);
 	}
 	
+	login(): void {
+		let self = this;
+		let params = {
+			'phone': this.phone,
+			'password': this.password,
+			'captcha': this.captcha
+		}
+		this.service.login(params).then(res => {
+			if(res.response=='fail'){
+				console.log('fail', '登陆失败');
+			}else{
+				console.log('success', '登陆成功');
+				this.isLogin = false;
+				this.returnLoginOpen.emit(this.isLogin);
+				window.location.reload();
+			}
+		});
+	}
+	
 	ngAfterViewChecked(): void {
+		let self = this;
 		if(this.isLogin){
 			$('.login-modal').show();
 		}else{
 			$('.login-modal').hide();
 		}
-		let self = this;
 		$('.phone-login').click(function(){
 			$('.login-box').show();
 			$('.account-box').show();
