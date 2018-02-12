@@ -305,21 +305,15 @@ def check_image():
             image = db_session.query(Image).get(image_id)
             if image:
                 download_key = u'download_image_%s' % current_user.id
-                expired_time = 10
                 download_max_times = 2
                 download_times = common_redis.get(download_key)
                 if download_times:
                     download_times = int(download_times)
-                    if download_times > download_max_times:
+                    if download_times >= download_max_times:
                         result.update({
                             'response': 'fail',
-                            'info': u'超出最大下载次数'
+                            'info': u'超过最大下载次数'
                         })
-                    else:
-                        download_times += 1
-                        common_redis.setex(download_key, expired_time, download_times)
-                else:
-                    common_redis.setex(download_key, expired_time, 1)
             else:
                 result.update({
                     'response': 'fail',
@@ -337,6 +331,23 @@ def get_image_full_url():
     try:
         with get_session() as db_session:
             image = db_session.query(Image).get(image_id)
+            # 防止跳过图片检验直接访问该链接
+            download_key = u'download_image_%s' % current_user.id
+            expired_time = 100
+            download_max_times = 2
+            download_times = common_redis.get(download_key)
+            if download_times:
+                download_times = int(download_times)
+                if download_times >= download_max_times:
+                    return jsonify({
+                        'response': 'fail',
+                        'info': u'超过最大下载次数'
+                    })
+                else:
+                    download_times += 1
+                    common_redis.setex(download_key, expired_time, download_times)
+            else:
+                common_redis.setex(download_key, expired_time, 1)
             file_url = image.img_full_url
             file_full_path = os.path.join(config.DOWNLOAD_SRC, file_url).replace('/', '\\')
             file_name = file_full_path.split('\\')[-1]
