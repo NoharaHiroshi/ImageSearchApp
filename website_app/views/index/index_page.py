@@ -10,6 +10,8 @@ from flask import send_from_directory
 from lib.paginator import SQLAlchemyPaginator
 from lib.login_required import login_required
 
+from redis_store.redis_cache import common_redis
+
 from model.session import get_session
 from model.website.customer import Customer
 from model.image.image_series import ImageSeries, ImageSeriesCategoryRel, ImageSeriesCategory, ImageSeriesRel
@@ -302,7 +304,22 @@ def check_image():
         with get_session() as db_session:
             image = db_session.query(Image).get(image_id)
             if image:
-                pass
+                download_key = u'download_image_%s' % current_user.id
+                expired_time = 10
+                download_max_times = 2
+                download_times = common_redis.get(download_key)
+                if download_times:
+                    download_times = int(download_times)
+                    if download_times > download_max_times:
+                        result.update({
+                            'response': 'fail',
+                            'info': u'超出最大下载次数'
+                        })
+                    else:
+                        download_times += 1
+                        common_redis.setex(download_key, expired_time, download_times)
+                else:
+                    common_redis.setex(download_key, expired_time, 1)
             else:
                 result.update({
                     'response': 'fail',
@@ -328,3 +345,4 @@ def get_image_full_url():
                 return send_from_directory(file_dir, file_name, as_attachment=True)
     except Exception as e:
         print e
+
