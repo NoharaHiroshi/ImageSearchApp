@@ -2,13 +2,34 @@
 
 import os
 from PIL import Image as Img
+from PIL import ImageDraw
+from PIL import ImageFont
 from manage_app.config import config
 from model.session import get_session
 from model.image.image import Image
 from model.website.banner import Banner
 from model.base import IdGenerator, HashName
 from model.image.image_tags import ImageTags, ImageTagsRel
-from model.image.image_series import ImageSeries, ImageSeriesRel
+from model.image.image_series import ImageSeries, ImageSeriesRel\
+
+
+
+# 为图片添加文字水印
+def add_watermark_text(im, text):
+    # param im: 原始图片
+    # param text: 水印文字
+    # return: 添加水印后的图片
+    width = im.size[0]
+    height = im.size[1]
+    rgba_im = im.convert('RGBA')
+    font = ImageFont.truetype(font=config.WATERMARK_IMG_FONT_TYPE, size=20)
+    text_overlay = Img.new('RGBA', rgba_im.size, (255, 255, 255, 0))
+    image_draw = ImageDraw.Draw(text_overlay)
+    text_size_x, text_size_y = image_draw.textsize(text, font=font)
+    text_xy = (width - text_size_x, height - text_size_y)
+    image_draw.text(text_xy, text, font=font, fill=(76, 234, 124, 180))
+    image_with_text = Img.alpha_composite(rgba_im, text_overlay)
+    return image_with_text
 
 
 # image模型上传方法: 图片实例对象存储在同一位置，在数据层区分类型
@@ -36,9 +57,11 @@ def save_images(images, t=Image.TYPE_COMMON):
             mode = im.mode
             im.save(os.path.join(upload_src, 'original', '.'.join([original_name, file_format.lower()])).replace('\\', '/'))
             # 预览图（高度固定）
+            # 2018-02-26 预览图添加水印
             preview_height = int(config.PREVIEW_IMG_HEIGHT)
             preview_width = int(width / (float(height) / preview_height))
             preview_im.thumbnail((preview_width, preview_height))
+            preview_im = add_watermark_text(preview_im, config.WATERMARK_IMG_FONT)
             preview_im.save(os.path.join(upload_src, 'preview', '.'.join([preview_name, file_format.lower()])).replace('\\', '/'))
             # 缩略图（等比例缩放）
             thumb_height = int(config.THUMBNAIL_IMG_HEIGHT)
