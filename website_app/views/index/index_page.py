@@ -15,6 +15,7 @@ from redis_store.redis_cache import common_redis
 from model.session import get_session
 from model.website.customer import Customer
 from model.image.image_series import ImageSeries, ImageSeriesCategoryRel, ImageSeriesCategory, ImageSeriesRel
+from model.image.image_download_history import ImageDownloadHistory
 from model.image.image import Image
 from model.website.menu import WebsiteMenu
 from model.website.banner import Banner
@@ -308,7 +309,7 @@ def check_image():
             image = db_session.query(Image).get(image_id)
             if image:
                 download_key = u'download_image_%s' % current_user.id
-                download_max_times = 2
+                download_max_times = config.FREE_DOWNLOAD_TIMES
                 download_times = common_redis.get(download_key)
                 if download_times:
                     download_times = int(download_times)
@@ -336,8 +337,8 @@ def get_image_full_url():
             image = db_session.query(Image).get(image_id)
             # 防止跳过图片检验直接访问该链接
             download_key = u'download_image_%s' % current_user.id
-            expired_time = 100
-            download_max_times = 2
+            expired_time = config.FREE_DOWNLOAD_EXPIRED_TIME
+            download_max_times = config.FREE_DOWNLOAD_TIMES
             download_times = common_redis.get(download_key)
             if download_times:
                 download_times = int(download_times)
@@ -351,6 +352,17 @@ def get_image_full_url():
                     common_redis.setex(download_key, expired_time, download_times)
             else:
                 common_redis.setex(download_key, expired_time, 1)
+
+            # 记录当前用户下载记录
+            download_history = ImageDownloadHistory()
+            download_history.customer_id = current_user.id
+            download_history.customer_name = current_user.name
+            download_history.image_id = image.id
+            db_session.add(download_history)
+            # 图片下载次数+1
+            image.download_count += 1
+            db_session.commit()
+
             file_url = image.img_full_url
             file_full_path = os.path.join(config.DOWNLOAD_SRC, file_url).replace('/', '\\')
             file_name = file_full_path.split('\\')[-1]

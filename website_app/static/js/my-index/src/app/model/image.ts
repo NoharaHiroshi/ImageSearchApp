@@ -15,4 +15,6 @@ export class Image {
 	mode: string;
 	img_preview_url: string;
 	img_thumbnail_url: string;
+	view_count: string;
+	download_count: string;
 }

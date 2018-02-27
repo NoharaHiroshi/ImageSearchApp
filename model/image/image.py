@@ -36,6 +36,8 @@ class Image(Base):
     mode = Column(String(10))
     # 浏览次数
     view_count = Column(Integer, default=0, nullable=False, index=True)
+    # 下载次数
+    download_count = Column(Integer, default=0, nullable=False, index=True)
 
     @property
     def img_full_url(self):
@@ -69,5 +71,6 @@ class Image(Base):
             'img_thumbnail_url': self.img_thumb_url,
             'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
             'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
-            'view_count': self.view_count
+            'view_count': self.view_count,
+            'download_count': self.download_count
         }
