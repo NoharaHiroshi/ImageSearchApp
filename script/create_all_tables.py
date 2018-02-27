@@ -13,6 +13,7 @@ from model.icon.icon_tags import IconTags, IconTagsRel
 from model.image.image import Image
 from model.image.image_series import ImageSeries, ImageSeriesRel, ImageSeriesCategory, ImageSeriesCategoryRel
 from model.image.image_tags import ImageTags, ImageTagsRel
+from model.image.image_download_history import ImageDownloadHistory
 
 from model.website.menu import WebsiteMenu
 from model.website.hot_search import WebsiteHotSearch

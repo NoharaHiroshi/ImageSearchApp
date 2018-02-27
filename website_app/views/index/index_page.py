@@ -280,6 +280,9 @@ def get_image_detail():
         with get_session() as db_session:
             image = db_session.query(Image).get(image_id)
             if image:
+                # 图片浏览量+1
+                image.view_count += 1
+                db_session.commit()
                 image_dict = image.to_dict()
                 result['image'] = image_dict
             else:
