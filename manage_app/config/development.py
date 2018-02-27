@@ -34,11 +34,11 @@ THUMBNAIL_IMG_HEIGHT = 200
 # 预览图默认大小
 PREVIEW_IMG_HEIGHT = 400
 # 水印文字/文件
-WATERMARK_IMG_FONT = 'DuiPic'
+WATERMARK_IMG_FONT = u'- DuiPic.com -'
 # 水印文字字体路径
 WATERMARK_IMG_FONT_SRC = os.path.join(ROOT_SRC, 'website_app/static/fonts').replace('\\', '/')
 # 水印文字字体
-WATERMARK_IMG_FONT_TYPE = os.path.join(WATERMARK_IMG_FONT_SRC, 'fontawesome-webfont.ttf').replace('\\', '/')
+WATERMARK_IMG_FONT_TYPE = os.path.join(WATERMARK_IMG_FONT_SRC, 'Microsoft-YaHei.ttf').replace('\\', '/')
 
 if __name__ == '__main__':
     print WATERMARK_IMG_FONT_TYPE

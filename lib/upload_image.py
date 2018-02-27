@@ -21,13 +21,19 @@ def add_watermark_text(im, text):
     # return: 添加水印后的图片
     width = im.size[0]
     height = im.size[1]
+    # 原始图片转换为RGBA模式
     rgba_im = im.convert('RGBA')
-    font = ImageFont.truetype(font=config.WATERMARK_IMG_FONT_TYPE, size=20)
+    # 选择字体类型
+    font = ImageFont.truetype(font=config.WATERMARK_IMG_FONT_TYPE, size=30)
     text_overlay = Img.new('RGBA', rgba_im.size, (255, 255, 255, 0))
     image_draw = ImageDraw.Draw(text_overlay)
+    # 返回给定字符串的大小，以像素为单位
     text_size_x, text_size_y = image_draw.textsize(text, font=font)
-    text_xy = (width - text_size_x, height - text_size_y)
-    image_draw.text(text_xy, text, font=font, fill=(76, 234, 124, 180))
+    # 居中显示水印
+    text_xy = (int((width - text_size_x) // 2), int((height - text_size_y) // 2))
+    # font用于指定所有字体，fill用于填充字体颜色
+    image_draw.text(text_xy, text, font=font, fill=(255, 255, 255, 40))
+    # 复合图像，两张图像的尺寸需要一致，并且同为RGBA模式
     image_with_text = Img.alpha_composite(rgba_im, text_overlay)
     return image_with_text
 
