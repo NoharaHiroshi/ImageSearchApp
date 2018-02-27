@@ -57,9 +57,4 @@ export class ImageDetailComponent extends ListBaseComponent implements OnInit{
 				$('#download_png')[0].click();
 			});
 	}
-	
-	returnLogin(isLogin: any): void {
-		this.isLoginOpen = isLogin;
-	}
-
 }

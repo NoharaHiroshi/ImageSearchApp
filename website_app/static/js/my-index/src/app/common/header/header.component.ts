@@ -48,6 +48,14 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 	}
 	
 	login(): void {
+		this.isLoginOpen = true;
+	}
+	
+	returnLogin(isLogin: any): void {
+		this.isLoginOpen = isLogin;
+	}
+	
+	searchImage(): void {
 		
 	}
 }
