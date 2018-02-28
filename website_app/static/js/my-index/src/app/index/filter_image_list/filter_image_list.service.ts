@@ -17,8 +17,8 @@ export class FilterImageListService extends BaseService {
 		super(http);
 	}
 	
-	getDetail(id: String, page: number): Promise<{}> {
-		const url = `/filter_image_list_page?id=` + id + `&page=` + page; 
+	getDetail(search: String, page: number): Promise<{}> {
+		const url = `/filter_image_list?search=` + search + `&page=` + page; 
 		let self = this;
 		return this.http.get(url)
 				   .toPromise().then(res => {

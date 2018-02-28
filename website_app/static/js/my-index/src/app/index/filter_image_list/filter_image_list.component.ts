@@ -5,7 +5,7 @@ import { Component, Input, Output, EventEmitter, ViewChildren, ViewChild, Elemen
 import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { Location }  from '@angular/common';
 
-import { FilterImageListService } from './image_list.service';
+import { FilterImageListService } from './filter_image_list.service';
 import { ListBaseComponent } from '../../common/base.component';
 
 import { Image } from '../../model/image';
@@ -26,13 +26,13 @@ export class FilterImageListComponent extends ListBaseComponent implements OnIni
 	page_info: any;
 	page: number = 1;
 	
-	constructor(private config: AppConfig, private service: ImageListService, public route: ActivatedRoute, public router: Router, private elem: ElementRef) {
+	constructor(private config: AppConfig, private service: FilterImageListService, public route: ActivatedRoute, public router: Router, private elem: ElementRef) {
 		super();
 	}
 	
 	getPagerData(): void {
 		let self = this;
-        this.route.params.switchMap((params: Params) => this.service.getDetail(params['id']||'0', this.page))
+        this.route.params.switchMap((params: Params) => this.service.getDetail(params['search']||'', this.page))
 	        .subscribe(res => {
 				this.image_series = res['image_series'];
 	        	this.image_list = res['image_list'];

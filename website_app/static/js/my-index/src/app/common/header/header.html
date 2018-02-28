@@ -21,8 +21,8 @@
 		<div class="search-fix">
 			<div class="search-input-fix">
 				<div class="input-border-fix">
-					<input type="text" id="main-search-fix" class="input-content-fix" placeholder="输入关键词搜索">
-					<div class="input-search-btn-fix">
+					<input type="text" id="main-search-fix" class="input-content-fix" placeholder="输入关键词搜索" name="min-search" [(ngModel)]="search">
+					<div class="input-search-btn-fix" (click)="searchImage()">
 						<i class="fa fa-search"></i>
 					</div>
 					<div class="input-recommond-search-fix" id="recommond-fix" style="display:none;">
@@ -40,7 +40,7 @@
 </header>
 <div class="search-input">
 	<div class="input-border">
-		<input type="text" id="main-search" class="input-content" placeholder="输入关键词搜索">
+		<input type="text" id="main-search" class="input-content" placeholder="输入关键词搜索" name="main-search" [(ngModel)]="search">
 		<div class="input-search-btn" (click)="searchImage()">
 			<i class="fa fa-search"></i>
 		</div>

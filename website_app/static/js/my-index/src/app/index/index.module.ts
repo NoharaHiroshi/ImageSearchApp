@@ -27,6 +27,9 @@ import { ImageListService } from './image_list/image_list.service';
 import { ImageDetailComponent } from './image_detail/image_detail.component';
 import { ImageDetailService } from './image_detail/image_detail.service';
 
+import { FilterImageListComponent } from './filter_image_list/filter_image_list.component';
+import { FilterImageListService } from './filter_image_list/filter_image_list.service';
+
 import { IndexComponent } from './index.component';
 
 @NgModule({
@@ -35,7 +38,8 @@ import { IndexComponent } from './index.component';
 		MainPageComponent,
 		ImageSeriesListComponent,
 		ImageListComponent,
-		ImageDetailComponent
+		ImageDetailComponent,
+		FilterImageListComponent
 	],
 	imports: [
 		CommonModule,
@@ -59,7 +63,8 @@ import { IndexComponent } from './index.component';
 		FooterService,
 		ImageSeriesListService,
 		ImageListService,
-		ImageDetailService
+		ImageDetailService,
+		FilterImageListService
 	],
 	bootstrap: [
 		IndexComponent

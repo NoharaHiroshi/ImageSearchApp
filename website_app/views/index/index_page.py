@@ -383,19 +383,24 @@ def get_filter_image_list():
     }
     # 搜索条件是按照标签进行搜索
     search = request.args.get('search')
+    page = request.args.get('page', 1)
+    limit = 20
     try:
         all_selected_images = list()
         with get_session() as db_session:
             image_tags = db_session.query(ImageTags).filter(
-                ImageTags.name.like('%%s%%' % search)
+                ImageTags.name.like('%' + search + '%')
             ).all()
             for image_tag in image_tags:
-                tag_images = db_session.query(Image).join(
+                query = db_session.query(Image).join(
                     ImageTagsRel, ImageTagsRel.image_id == Image.id
                 ).filter(
                     ImageTagsRel.tag_id == image_tag.id
-                ).all()
-                for tag_image in tag_images:
+                )
+                paginator = SQLAlchemyPaginator(query, limit)
+                page = paginator.get_validate_page(page)
+
+                for tag_image in paginator.page(page):
                     tag_image_dict = tag_image.to_dict()
                     all_selected_images.append(tag_image_dict)
         result.update({
@@ -404,6 +409,5 @@ def get_filter_image_list():
         return jsonify(result)
     except Exception as e:
         print e
-
 
 

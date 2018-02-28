@@ -57,8 +57,11 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 	}
 	
 	searchImage(): void {
-		this.service.searchImage().then(data => {
-			
-		})
+		console.log(this.search)
+		if(this.search){
+			this.router.navigate(['filter_image_list'], {queryParams: {search: this.search}});
+		}else{
+			console.log('请输入搜索内容');
+		}
 	}
 }
