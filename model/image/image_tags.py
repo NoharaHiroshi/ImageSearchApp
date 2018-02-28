@@ -57,5 +57,32 @@ class ImageTagsRel(Base):
             'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }
 
+
+# 图片标签分组，主要用于推荐相似标签
+class ImageTagsGroup(Base):
+    __tablename__ = 'image_tags_group'
+
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
+    # 标签分组名
+    name = Column(String(45), nullable=False, index=True)
+
+    def to_dict(self):
+        return {
+            'id': str(self.id),
+            'name': self.name
+        }
+
+
+# 标签分组与标签之间的关系表
+class ImageTagdGroupRel(Base):
+    __tablename__ = 'image_tags_group_rel'
+
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
+    # 标签组ID
+    tag_group_id = Column(BigInteger, index=True, nullable=False)
+    # 图片ID
+    tag_id = Column(BigInteger, index=True, nullable=False)
+
+
 if __name__ == '__main__':
     print IdGenerator.gen()
