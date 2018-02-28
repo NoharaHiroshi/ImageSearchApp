@@ -382,30 +382,36 @@ def get_filter_image_list():
         'image_list': []
     }
     # 搜索条件是按照标签进行搜索
-    search = request.args.get('search')
+    search = request.args.get('search', '')
     page = request.args.get('page', 1)
     limit = 20
     try:
         all_selected_images = list()
         with get_session() as db_session:
-            image_tags = db_session.query(ImageTags).filter(
+            image_query = db_session.query(ImageTagsRel).join(
+                ImageTags, ImageTags.id == ImageTagsRel.tag_id
+            ).filter(
                 ImageTags.name.like('%' + search + '%')
             ).all()
-            for image_tag in image_tags:
-                query = db_session.query(Image).join(
-                    ImageTagsRel, ImageTagsRel.image_id == Image.id
-                ).filter(
-                    ImageTagsRel.tag_id == image_tag.id
-                )
-                paginator = SQLAlchemyPaginator(query, limit)
-                page = paginator.get_validate_page(page)
+            image_ids = [image_tag.image_id for image_tag in image_query]
+            query = db_session.query(Image).filter(
+                Image.id.in_(image_ids)
+            )
+            paginator = SQLAlchemyPaginator(query, limit)
+            page = paginator.get_validate_page(page)
 
-                for tag_image in paginator.page(page):
-                    tag_image_dict = tag_image.to_dict()
-                    all_selected_images.append(tag_image_dict)
-        result.update({
-            'image_list': all_selected_images
-        })
+            for tag_image in paginator.page(page):
+                tag_image_dict = tag_image.to_dict()
+                all_selected_images.append(tag_image_dict)
+            result.update({
+                'image_list': all_selected_images,
+                'search': search,
+                'meta': {
+                    'cur_page': page,
+                    'all_page': paginator.max_page,
+                    'count': paginator.count
+                }
+            })
         return jsonify(result)
     except Exception as e:
         print e

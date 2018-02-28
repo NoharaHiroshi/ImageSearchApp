@@ -32,13 +32,14 @@ export class FilterImageListComponent extends ListBaseComponent implements OnIni
 	
 	getPagerData(): void {
 		let self = this;
-        this.route.params.switchMap((params: Params) => this.service.getDetail(params['search']||'', this.page))
-	        .subscribe(res => {
-				this.image_series = res['image_series'];
-	        	this.image_list = res['image_list'];
-				this.page_info = res['meta'];
-				this.isLoading = false;
-	        });
+        this.route.queryParams.switchMap(params => this.service.getDetail(params['search'] || '', this.page))
+		.subscribe(res => {
+			this.image_series = res['image_series'];
+			this.image_list = res['image_list'];
+			this.page_info = res['meta'];
+			this.search = res['search'];
+			this.isLoading = false;
+		});
 	}
 	
 	getPageNum(page: any): void{

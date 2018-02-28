@@ -23,8 +23,6 @@ export class FilterImageListService extends BaseService {
 		return this.http.get(url)
 				   .toPromise().then(res => {
 						let json = res.json();
-						let image_series = self.jsonToObject(json.image_series, ImageSeries);
-						json['image_series'] = image_series;
 						let image_list = self.jsonListToObjectList(json.image_list, Image);
 						json['image_list'] = image_list;
 						return json;
