@@ -1260,7 +1260,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 
 .filter-image-list-category {
 	font-weight: 700;
-	margin-bottom: 15px;
+	margin-bottom: 20px;
 }
 
 .filter-image-list-category span {

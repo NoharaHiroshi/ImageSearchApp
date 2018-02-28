@@ -373,13 +373,47 @@ def get_image_full_url():
     except Exception as e:
         print e
 
+'''
+    针对路由的使用，需要事先设置路由列表，路由列表是路由与组件的映射关系列表
+    在设置路由列表之前，先引入需要的路由库
+    import { RouterModule, Routes }  from '@angular/router';
+
+    const routes: Routes = [
+        { path: '',  component: MainPageComponent },
+        { path: 'image_series_list/:id', component: ImageSeriesListComponent },
+        { path: 'image_list/:id', component: ImageListComponent },
+        { path: 'image_detail/:id', component: ImageDetailComponent },
+        { path: 'filter_image_list', component: FilterImageListComponent }
+    ];
+    路由列表中的每一项都有path和component两个参数，分别代表当前路由及路由所指向的组件
+    当URL发生变化时，Angular就会从路由列表中按序寻找匹配的路由，并实例化所对应的组件，渲染当前组件的视图，直观感觉上就像是跳转到了其他页面。
+
+    当然，这只是一个路由列表的配置，现在还不能起到任何作用，我们需要把它装载到Angular
+    新建一个angular模块
+    @NgModule({
+        imports: [ RouterModule.forRoot(routes, { enableTracing: true, useHash: true }) ],
+        exports: [ RouterModule ]
+    })
+    export class IndexRoutingModule {}
+    类似于Python的装饰器，我们用ngModel将js的类变成一个Angular模块
+    imports： [ RouterModule.forRoot(routes, { enableTracing: true, useHash: true }) ]
+    使用 RouterModule.forRoot 方法将我们刚刚创建的路由列表routes装载起来
+    export： [ RouterModule ]
+    输出设置路由列表后的 RouterModule
+
+    至此，简单的路由模块就构建完毕了， 在根模块中引入路由模块，让该路由器可以在任何地方使用
+    URL改变了，也通过路由列表找到了对应的组件，但是渲染在什么地方呢？
+    <RouterOutlet></RouterOutlet>就是显示视图的地方
+'''
+
 
 @index.route('/filter_image_list', methods=['GET'])
 def get_filter_image_list():
     result = {
         'response': 'ok',
         'info': '',
-        'image_list': []
+        'image_list': [],
+        'all_image_format': []
     }
     # 搜索条件是按照标签进行搜索
     search = request.args.get('search', '')
@@ -387,6 +421,7 @@ def get_filter_image_list():
     limit = 20
     try:
         all_selected_images = list()
+        all_image_format = Image.all_image_format()
         with get_session() as db_session:
             image_query = db_session.query(ImageTagsRel).join(
                 ImageTags, ImageTags.id == ImageTagsRel.tag_id
@@ -408,6 +443,7 @@ def get_filter_image_list():
                 'image_list': all_selected_images,
                 'search': search,
                 'search_count': search_count,
+                'all_image_format': all_image_format,
                 'meta': {
                     'cur_page': page,
                     'all_page': paginator.max_page,

@@ -54,6 +54,11 @@ class Image(Base):
         img_url = 'resource/img/thumbnail/%s.%s' % (self.thumbnail_url, self.format.lower())
         return img_url
 
+    @classmethod
+    def all_image_format(cls):
+        all_format = ['JPG', 'PNG', 'PSD', 'AI', 'CDR']
+        return all_format
+
     def to_dict(self):
         return {
             'id': str(self.id),
