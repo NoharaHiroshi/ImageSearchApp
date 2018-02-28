@@ -397,6 +397,7 @@ def get_filter_image_list():
             query = db_session.query(Image).filter(
                 Image.id.in_(image_ids)
             )
+            search_count = query.count() if query.count() else 0
             paginator = SQLAlchemyPaginator(query, limit)
             page = paginator.get_validate_page(page)
 
@@ -406,6 +407,7 @@ def get_filter_image_list():
             result.update({
                 'image_list': all_selected_images,
                 'search': search,
+                'search_count': search_count,
                 'meta': {
                     'cur_page': page,
                     'all_page': paginator.max_page,

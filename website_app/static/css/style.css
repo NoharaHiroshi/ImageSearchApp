@@ -1238,3 +1238,33 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	top: 10px;
 	left: 15px;
 }
+
+/* 搜索页 */
+.filter-image-list-box {
+	width: 1200px;
+	margin: 0 auto;
+	font-size: 15px;
+	color: #666;
+	font-family: 'Microsoft YaHei';
+	padding: 30px 0 0 0;
+}
+
+.filter-image-list-search {
+	margin-bottom: 15px;
+}
+
+.filter-image-count {
+	font-size: 14px;
+	margin-left: 20px;
+}
+
+.filter-image-list-category {
+	font-weight: 700;
+	margin-bottom: 15px;
+}
+
+.filter-image-list-category span {
+	margin-left: 10px;
+	margin-right: 10px;
+	font-weight: 100;
+}

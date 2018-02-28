@@ -25,6 +25,8 @@ export class FilterImageListComponent extends ListBaseComponent implements OnIni
 	image_list: Image[];
 	page_info: any;
 	page: number = 1;
+	search: any;
+	search_count: number;
 	
 	constructor(private config: AppConfig, private service: FilterImageListService, public route: ActivatedRoute, public router: Router, private elem: ElementRef) {
 		super();
@@ -38,6 +40,7 @@ export class FilterImageListComponent extends ListBaseComponent implements OnIni
 			this.image_list = res['image_list'];
 			this.page_info = res['meta'];
 			this.search = res['search'];
+			this.search_count = res['search_count'];
 			this.isLoading = false;
 		});
 	}
