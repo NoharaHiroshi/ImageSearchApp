@@ -27,7 +27,6 @@ export class HeaderService extends BaseService {
 						let json = res.json();
 						let customer = self.jsonToObject(json.customer, Customer);
 						json['customer'] = customer;
-						console.log(json['customer']);
 						let banner_list = self.jsonListToObjectList(json.banner_list, Banner);
 						let website_menu_list = self.jsonListToObjectList(json.menu_list, WebsiteMenu);
 					    for(let website_menu of website_menu_list){
@@ -57,6 +56,17 @@ export class HeaderService extends BaseService {
 			return json;
 		})
 		.catch(this.handleError);
+	}
+	
+	searchImage(): Promise<any> {
+		const url = '/filter_image_list';
+		let self = this;
+		return this.http.get(url).toPromise().then(function(res){
+			let json = res.json();
+			let image_list = self.jsonListToObjectList(json.image_list, Image);
+			json['image_list'] = image_list;
+			return json;
+		}).catch(this.handleError);
 	}
 
 }

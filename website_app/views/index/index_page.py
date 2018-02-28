@@ -17,6 +17,7 @@ from model.website.customer import Customer
 from model.image.image_series import ImageSeries, ImageSeriesCategoryRel, ImageSeriesCategory, ImageSeriesRel
 from model.image.image_download_history import ImageDownloadHistory
 from model.image.image import Image
+from model.image.image_tags import ImageTags, ImageTagsRel
 from model.website.menu import WebsiteMenu
 from model.website.banner import Banner
 from model.website.hot_search import WebsiteHotSearch
@@ -371,4 +372,38 @@ def get_image_full_url():
                 return send_from_directory(file_dir, file_name, as_attachment=True)
     except Exception as e:
         print e
+
+
+@index.route('/filter_image_list', methods=['GET'])
+def get_filter_image_list():
+    result = {
+        'response': 'ok',
+        'info': '',
+        'image_list': []
+    }
+    # 搜索条件是按照标签进行搜索
+    search = request.args.get('search')
+    try:
+        all_selected_images = list()
+        with get_session() as db_session:
+            image_tags = db_session.query(ImageTags).filter(
+                ImageTags.name.like('%%s%%' % search)
+            ).all()
+            for image_tag in image_tags:
+                tag_images = db_session.query(Image).join(
+                    ImageTagsRel, ImageTagsRel.image_id == Image.id
+                ).filter(
+                    ImageTagsRel.tag_id == image_tag.id
+                ).all()
+                for tag_image in tag_images:
+                    tag_image_dict = tag_image.to_dict()
+                    all_selected_images.append(tag_image_dict)
+        result.update({
+            'image_list': all_selected_images
+        })
+        return jsonify(result)
+    except Exception as e:
+        print e
+
+
 

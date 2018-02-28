@@ -22,6 +22,7 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 	banner_list: any[];
 	website_menu_list: any[];
 	hot_search_list: any[];
+	search: any;
 	customer: Customer;
 	
 	constructor(private service: HeaderService, public config: AppConfig, public route: ActivatedRoute, public router: Router) {
@@ -56,6 +57,8 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 	}
 	
 	searchImage(): void {
-		
+		this.service.searchImage().then(data => {
+			
+		})
 	}
 }
