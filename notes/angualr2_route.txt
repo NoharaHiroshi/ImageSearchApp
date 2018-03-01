@@ -11,6 +11,9 @@
         { path: 'image_detail/:id', component: ImageDetailComponent },
         { path: 'filter_image_list', component: FilterImageListComponent }
     ];
+
+    需要注意的是：path的路径前端不能加“/”，否则无法解析Url
+
     路由列表中的每一项都有path和component两个参数，分别代表当前路由及路由所指向的组件
     当URL发生变化时，Angular就会从路由列表中按序寻找匹配的路由，并实例化所对应的组件，渲染当前组件的视图，直观感觉上就像是跳转到了其他页面。
 
@@ -109,3 +112,23 @@
         // 这一行是可选的，因为默认的LocationStrategy是PathLocationStrategy
         ]
     })
+
+    前端路由的优缺点
+    优点：
+    1.从性能和用户体验的层面来比较的话，后端路由每次访问一个新页面的时候都要向服务器发送请求，然后服务器再响应请求，这个过程肯定会有延迟。
+    而前端路由在访问一个新页面的时候仅仅是变换了一下路径而已，没有了网络延迟，对于用户体验来说会有相当大的提升。
+    2.在某些场合中，用ajax请求，可以让页面无刷新，页面变了但Url没有变化，用户不能获取到想要的url地址，用前端路由做单页面网页就很好的解决了这个问题。
+
+    缺点：
+    使用浏览器的前进，后退键的时候会重新发送请求，没有合理地利用缓存。
+
+五、视图中的路由跳转
+    类似：
+    <a [routerLink]="['/image_list', series.id]">图片列表</a>
+    当前链接基于根目录跳转
+
+    <a [routerLink]="['../image_detail', image.id]">图片列表</a>
+    ../这样的链接会相对于当前链接跳转，跳转后的链接image_list/image_detail/1
+
+    点击之后就会在路由列表中查找相应的路由，其中“/image_list”就是路由列表中配置的路由路径， series.id就是路由参数
+    另外还可以提供查询参数queryParams，锚点参数Fragment
