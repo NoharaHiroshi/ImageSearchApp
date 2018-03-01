@@ -1,0 +1,111 @@
+一、路由的简单使用
+
+    针对路由的使用，需要事先设置路由列表，路由列表是路由与组件的映射关系列表
+    在设置路由列表之前，先引入需要的路由库
+    import { RouterModule, Routes }  from '@angular/router';
+
+    const routes: Routes = [
+        { path: '',  component: MainPageComponent },
+        { path: 'image_series_list/:id', component: ImageSeriesListComponent },
+        { path: 'image_list/:id', component: ImageListComponent },
+        { path: 'image_detail/:id', component: ImageDetailComponent },
+        { path: 'filter_image_list', component: FilterImageListComponent }
+    ];
+    路由列表中的每一项都有path和component两个参数，分别代表当前路由及路由所指向的组件
+    当URL发生变化时，Angular就会从路由列表中按序寻找匹配的路由，并实例化所对应的组件，渲染当前组件的视图，直观感觉上就像是跳转到了其他页面。
+
+    当然，这只是一个路由列表的配置，现在还不能起到任何作用，我们需要把它装载到Angular
+    新建一个angular模块
+    @NgModule({
+        imports: [ RouterModule.forRoot(routes, { enableTracing: true, useHash: true }) ],
+        exports: [ RouterModule ]
+    })
+    export class IndexRoutingModule {}
+    类似于Python的装饰器，我们用ngModel将js的类变成一个Angular模块
+
+    其中：
+    imports： [ RouterModule.forRoot(routes, { enableTracing: true, useHash: true }) ]
+    使用 RouterModule.forRoot 方法将我们刚刚创建的路由列表routes装载起来
+    export： [ RouterModule ]
+    输出设置路由列表后的 RouterModule
+
+    至此，简单的路由模块就构建完毕了， 在根模块中引入路由模块，让该路由器可以在任何地方使用
+
+二、 关于RouterOutlet
+    URL改变了，也通过路由列表找到了对应的组件，但是渲染在什么地方呢？
+
+    下面文件为根模块对应组件的模板文件
+    <!-- 头部 -->
+    <website-header-root></website-header-root>
+
+    <!-- 内容 -->
+    <router-outlet></router-outlet>
+
+    <!-- 底部 -->
+    <website-footer-root></website-footer-root>
+
+
+    <RouterOutlet></RouterOutlet>就是显示子视图的地方，或者换句话说，它就是子视图的占位符，是每个路由对应组件的容器
+
+    除此之外，RouteOutlet还可以嵌套，之后会详细介绍
+
+三、 路由跳转规律
+    import { RouterModule, Routes, ActivatedRoute Router }  from '@angular/router';
+    constructor(public route: ActivatedRoute, public router: Router) {}
+
+    1.this.router.navigate(['user', 1]);
+    以根路由为起点跳转
+    2.this.router.navigate(['user', 1],{relativeTo: route});
+    相对当前路由跳转，route是ActivatedRoute的实例，使用需要导入ActivatedRoute
+    3.this.router.navigate(['user', 1],{ queryParams: { id: 1 } });
+    路由中传参数 /user/1?id=1,查询参数，用于路由跳转，返回时候，带回去一些参数，搜索条件，分页，等等
+    4.this.router.navigate(['view', 1], { preserveQueryParams: true });
+    默认值为false，设为true，保留之前路由中的查询参数/user?id=1 to /view?id=1
+    5.this.router.navigate(['user', 1],{ fragment: 'top' });
+    路由中锚点跳转 /user/1#top
+    6.this.router.navigate(['/view'], { preserveFragment: true });
+    默认值为false，设为true，保留之前路由中的锚点/user/1#top to /view#top
+    7.this.router.navigate(['/user',1], { skipLocationChange: true });
+    默认值为false，设为true路由跳转时浏览器中的url会保持不变，但是传入的参数依然有效
+    8.this.router.navigate(['/user',1], { replaceUrl: true });
+    未设置时默认为true，设置为false路由不会进行跳转
+
+四、 关于使用Hash风格的URL还是使用HTML5风格的URL
+    官方给出的建议是，尽量使用HTML5风格的URL，但什么情况下需要使用Hash风格的URL？目前就我碰到的情况，使用Hash是因为HTML5的URL会干扰
+    对后台的数据请求
+
+    带‘#'和不带‘#'原理上有什么区别呢？
+    先说一下前端路由，以前路由都是后台做的，通过用户请求的url导航到具体的html页面，现在我们在前端可以利用 Angular、vue、react等通过
+    配置文件，达到前端控制路由跳转的功能。
+
+    前端路由的实现方法：
+
+    通过Hash实现 当url的Hash发生改变时，触发hashChange注册的回调
+    （低版本没有hashChange事件，通过轮回检测url实现），回调中去进行不同的操作，进行不同的内容展示。
+    使用hash来实现的话，URI规则中要带上#，路由中#后边的内容就是hash，我们常说的锚点严格来说应该是页面中的a[name]等元素。
+    HTML5的history api操作浏览器的session history实现基于history实现的路由中不带#，就是原始的路由
+
+    Angular2使用Hash路由
+    1、通过设置useHash为true实现Hash路由
+    @NgModule({
+        imports:[RouterModule.forRoot(routes,{useHash:true})]
+    })
+    2、通过设置HashLocationStragegy实现Hash路由
+    @NgModule({
+        imports:[RouterModule.forRoot(routes)],
+        providers:[
+            {provide: LocationStrategy, useClass: HashLocationStrategy}
+        ]
+    })
+
+    Angular2使用HTML5路由
+    改用 PathLocationStrategy（angular2的默认策略，也就是HTML5路由），使用这个路由的常规路径不带#
+    这种策略需要后台配置支持，如果后台没有正确的配置，当用户在浏览器从一个路由跳往另外一个路由或者刷新时就会返回404
+    需要在后端覆盖所有的路由情况（后端可以通过nginx或者apache等配置）。
+    @NgModule({
+        imports:[RouterModule.forRoot(routes)],
+        providers:[
+        {provide: LocationStrategy, useClass: PathLocationStrategy}
+        // 这一行是可选的，因为默认的LocationStrategy是PathLocationStrategy
+        ]
+    })
