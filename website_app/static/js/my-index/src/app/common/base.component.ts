@@ -16,7 +16,6 @@ export class ListBaseComponent implements OnInit {
 	public isConfirm = false;
 	public curPage = 1;
 	public queryParams = {};
-	public isLoginOpen = false;
 	
     getPagerData(): void {}
 	
@@ -27,17 +26,6 @@ export class ListBaseComponent implements OnInit {
     refresh(): void {
         this.getPagerData();
     }
-	
-	authCheck(json: any){
-		let response = json['response'];
-		if(response == 'NeedLogin'){
-			this.isLoginOpen = true;
-			return false;
-		}else{
-			this.isLoginOpen = false;
-			return true;
-		}
-	}
 	
 	selectChecked(): String {
 		let obj_list = [];

@@ -10,6 +10,8 @@ import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/c
 
 import { ModalModule } from 'angular2-modal';
 
+import { AppConfig } from '../../config/app_config';
+
 import { SharedModule } from '../common/common.module';
 import { HeaderService } from '../common/header/header.service';
 import { FooterService } from '../common/footer/footer.service';
@@ -58,6 +60,7 @@ import { IndexComponent } from './index.component';
 	],
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
+		AppConfig,
 		HeaderService,
 		MainPageService,
 		FooterService,

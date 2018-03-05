@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppConfig } from '../../config/app_config';
 
 declare var $: any;
 
@@ -7,5 +8,5 @@ declare var $: any;
 	templateUrl: './index.html',
 })
 export class IndexComponent {
-	
+	constructor(public config: AppConfig){}
 }
