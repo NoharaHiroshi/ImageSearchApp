@@ -1,0 +1,122 @@
+一、如何在angular2中使用全局变量
+    1、将全局变量放入文件中，然后引用
+    最简单的实现方法，是将全局变量放入文件中，然后引用它们
+    实例代码：
+    //
+    // ===== File app_config.ts
+    //
+    'use strict';
+
+    export const static_url='http://127.0.0.1:8888';
+    要在另一个文件中使用这些全局变量，请使用import命令：import * as config from './app_config';
+
+    示例代码：
+    //
+    // ===== File image.component.ts
+    //
+    import {Component, OnInit} from 'angular2/core';
+    import {Router} from 'angular2/router';
+    import {ImageService} from './image.service';
+    import {ImageDetailComponent} from './image_detail.component';
+    import {Image} from '../model/Image';
+    import * as config from './app_config';  //<==== this one
+
+    export class ImageComponent implements OnInit {
+        public images: Image[];
+        public image: Image;
+
+        public image_url: string = config.static_url + "/resource";
+    }
+
+    上述方法是比较推荐的。
+
+    2、共享服务也是不错的方法（共享同一个实例）
+
+    export class ConfigService {
+        static_url: string;
+    }
+
+    但是，当需要在整个应用程序中共享同一个实例的时候，注册时需要非常小心。在注册应用程序时，需要定义它：
+    bootstrap(AppComponent, [ConfigService]);
+
+    但不要在组件的providers属性中再次定义它：
+
+    @Component({
+        (...)
+        providers: [ ConfigService ], // 这样是错误的
+        (...)
+    })
+
+    否则，将为该组件及其子组件创建一个新的服务实例。
+    可以注意到，当全局属性需要更改时，还可以在服务中定义Observable属性以通知应用程序的部分：
+
+    export class ConfigService {
+        config: string;
+        configUpdate: Observable<string>;
+        configObserver: Observer;
+
+        constructor() {
+            this.configUpdate = Observable.create((observer:Observer) => {
+                this.configObserver = observer;
+            });
+        }
+
+        updateConfig(newValue:string) {
+            this.config = newValue;
+            this.configObserver.next(this.config);
+        }
+    }
+
+    ！！！剩下的方法，详细可以参见https://www.cnblogs.com/sybboy/p/8075146.html
+
+
+    3、添加包含全局变量的服务
+
+    最好的方法是添加包含全局变量的服务，并将其注入到组件中，而不在@Component注释中使用providers标记。通过这种方式，可以在组件之间共享信息。
+
+    拥有全局变量的示例服务：
+
+    import { Injectable } from '@angular/core'
+
+    @Injectable()
+    export class SomeSharedService {
+        public globalVar = '';
+    }
+
+    更新全局变量值的示例组件：
+
+    import { SomeSharedService } from '../services/index';
+
+    @Component({
+        templateUrl: '...'
+    })
+    export class UpdatingComponent {
+
+        constructor(private someSharedService: SomeSharedService) { }
+
+        updateValue() {
+            this.someSharedService.globalVar = 'updated value';
+        }
+    }
+
+    读取全局变量值的示例组件：
+
+    import { SomeSharedService } from '../services/index';
+
+    @Component({
+      templateUrl: '...'
+    })
+    export class ReadingComponent {
+
+    constructor(private someSharedService: SomeSharedService) { }
+
+        readValue() {
+            let valueReadOut = this.someSharedService.globalVar;
+            // do something with the value read out
+        }
+    }
+
+    请注意，providers：[SomeSharedService]， 即已经在模型中添加了服务，就不应该再在@Component中添加当前服务了。
+    这样将保持SomeSharedService始终只有一个实例。如果在组件中添加，则会注入新创建的实例。
+
+
