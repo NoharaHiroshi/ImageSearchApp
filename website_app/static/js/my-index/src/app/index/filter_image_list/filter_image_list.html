@@ -1,9 +1,10 @@
 <div class="filter-image-list-box">
 	<ng-container *ngIf="image_list">
 		<div class="filter-image-list-search">查询条件：{{search}} <span class="filter-image-count">共查询 <span style="color: #ffbe40">{{search_count}}</span> 结果</span></div>
-		<div class="filter-image-list-category">分类 :
+		<div class="filter-image-list-format">分类 :
+			<span><a href="javascript:;" (click)="selectedFormat('all')">全部</a></span>
 			<ng-container *ngFor="let format of all_image_format">
-				<span>{{format}}</span>
+				<span><a href="javascript:;" (click)="selectedFormat(format)">{{format}}</a></span>
 			</ng-container>
 		</div>
 		<div class="filter-image-list-sort">排序 : 

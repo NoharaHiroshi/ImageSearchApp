@@ -385,6 +385,7 @@ def get_filter_image_list():
     # 搜索条件是按照标签进行搜索
     search = request.args.get('search', '')
     page = request.args.get('page', 1)
+    image_format = request.args.get('format', u'all')
     limit = 20
     try:
         all_selected_images = list()
@@ -399,6 +400,10 @@ def get_filter_image_list():
             query = db_session.query(Image).filter(
                 Image.id.in_(image_ids)
             )
+            if image_format != u'all':
+                query = query.filter(
+                    Image.format == image_format
+                )
             search_count = query.count() if query.count() else 0
             paginator = SQLAlchemyPaginator(query, limit)
             page = paginator.get_validate_page(page)

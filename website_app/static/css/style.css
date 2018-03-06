@@ -1259,15 +1259,29 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	margin-left: 20px;
 }
 
-.filter-image-list-category {
+.filter-image-list-format {
 	font-weight: 700;
 	margin-bottom: 20px;
 }
 
-.filter-image-list-category span {
+.filter-image-list-format span {
 	margin-left: 10px;
 	margin-right: 10px;
 	font-weight: 100;
+}
+
+.filter-image-list-format a {
+	text-decoration: none;
+	color: #666;
+}
+
+.filter-image-list-format a:hover {
+	color: #ffbe40;
+}
+
+.filter-image-list-format a:focus {
+	outline:none;
+	color: #ffbe40;
 }
 
 .filter-image-list-sort {
@@ -1279,4 +1293,18 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	margin-left: 10px;
 	margin-right: 10px;
 	font-weight: 100;
+}
+
+.filter-image-list-sort a {
+	text-decoration: none;
+	color: #666;
+}
+
+.filter-image-list-sort a:hover {
+	color: #ffbe40;
+}
+
+.filter-image-list-sort a:focus {
+	outline:none;
+	color: #ffbe40;
 }

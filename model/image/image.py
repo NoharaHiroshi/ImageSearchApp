@@ -56,7 +56,7 @@ class Image(Base):
 
     @classmethod
     def all_image_format(cls):
-        all_format = [u'全部', u'JPG', u'PNG', u'PSD', u'AI', u'CDR']
+        all_format = [u'JPEG', u'PNG', u'PSD', u'AI', u'CDR']
         return all_format
 
     def to_dict(self):

@@ -23,6 +23,7 @@ require('../../lib/masonry.min.js');
 export class FilterImageListComponent extends ListBaseComponent implements OnInit{
 	image_series: ImageSeries;
 	image_list: Image[];
+	all_image_format: any[];
 	page_info: any;
 	page: number = 1;
 	search: any;
@@ -51,8 +52,18 @@ export class FilterImageListComponent extends ListBaseComponent implements OnIni
 		this.getPagerData();
 	}
 	
-	selectedCategory(category: any): void {
-		
+	selectedFormat(format: any): void {
+		let self = this;
+        this.route.queryParams.switchMap(params => this.service.getDetail(params['search'] || '', this.page, format))
+		.subscribe(res => {
+			this.image_series = res['image_series'];
+			this.image_list = res['image_list'];
+			this.page_info = res['meta'];
+			this.search = res['search'];
+			this.search_count = res['search_count'];
+			this.all_image_format = res['all_image_format'];
+			this.isLoading = false;
+		});
 	}
 	
 	@ViewChild('demo')
