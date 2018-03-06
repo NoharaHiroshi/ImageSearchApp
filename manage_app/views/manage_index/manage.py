@@ -13,6 +13,15 @@ from model.manage.user import User
 from lib.aes_encrypt import AESCipher
 
 from route import manage
+from route import index
+
+
+@index.route('/', methods=['GET'])
+def main_index():
+    try:
+        return redirect(url_for('manage.index'))
+    except Exception as e:
+        print e
 
 
 @manage.route('/', methods=['GET'])
