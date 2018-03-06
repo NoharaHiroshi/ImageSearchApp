@@ -41,6 +41,7 @@ export class FilterImageListComponent extends ListBaseComponent implements OnIni
 			this.page_info = res['meta'];
 			this.search = res['search'];
 			this.search_count = res['search_count'];
+			this.all_image_format = res['all_image_format'];
 			this.isLoading = false;
 		});
 	}
@@ -48,6 +49,10 @@ export class FilterImageListComponent extends ListBaseComponent implements OnIni
 	getPageNum(page: any): void{
 		this.page = page;
 		this.getPagerData();
+	}
+	
+	selectedCategory(category: any): void {
+		
 	}
 	
 	@ViewChild('demo')

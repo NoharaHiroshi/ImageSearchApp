@@ -1250,7 +1250,8 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 }
 
 .filter-image-list-search {
-	margin-bottom: 15px;
+	margin-bottom: 20px;
+	font-weight: 700;
 }
 
 .filter-image-count {
@@ -1264,6 +1265,17 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 }
 
 .filter-image-list-category span {
+	margin-left: 10px;
+	margin-right: 10px;
+	font-weight: 100;
+}
+
+.filter-image-list-sort {
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+
+.filter-image-list-sort span {
 	margin-left: 10px;
 	margin-right: 10px;
 	font-weight: 100;
