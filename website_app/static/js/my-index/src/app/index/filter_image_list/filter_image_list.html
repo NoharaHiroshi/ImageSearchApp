@@ -7,11 +7,10 @@
 				<span><a href="javascript:;" (click)="selectedFormat(format)">{{format}}</a></span>
 			</ng-container>
 		</div>
-		<div class="filter-image-list-sort">排序 : 
-			<span>推荐</span>
-			<span>最近上传</span>
-			<span>热门下载</span>
-			<span>热门浏览</span>
+		<div class="filter-image-list-sort">排序 :
+			<ng-container *ngFor="let sort of all_image_sort i=index">
+				<span><a href="javascript:;" (click)="selectedSorted(all_image_sort_str[i])">{{sort}}</a></span>
+			</ng-container>
 		</div>
 		<div class="image-list-content">
 			<div id="demo" style="margin: 0 auto; overflow:hidden;">

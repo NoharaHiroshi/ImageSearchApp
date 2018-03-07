@@ -1,7 +1,7 @@
 # coding=utf-8
 
 import os
-from sqlalchemy import Column, Integer, String, BigInteger
+from sqlalchemy import Column, Integer, String, BigInteger, Boolean
 from model.base import Base, IdGenerator
 
 
@@ -38,6 +38,8 @@ class Image(Base):
     view_count = Column(Integer, default=0, nullable=False, index=True)
     # 下载次数
     download_count = Column(Integer, default=0, nullable=False, index=True)
+    # 是否推荐
+    is_recommend = Column(Boolean, default=False, index=True)
 
     @property
     def img_full_url(self):
@@ -59,6 +61,16 @@ class Image(Base):
         all_format = [u'JPEG', u'PNG', u'PSD', u'AI', u'CDR']
         return all_format
 
+    @classmethod
+    def all_image_sort(cls):
+        all_sort = {
+            u'created_date': u'上传时间',
+            u'recommend': u'编辑推荐',
+            u'download': u'热门下载',
+            u'view': u'最多浏览'
+        }
+        return all_sort
+
     def to_dict(self):
         return {
             'id': str(self.id),
@@ -72,6 +84,7 @@ class Image(Base):
             'width': self.width,
             'height': self.height,
             'mode': self.mode,
+            'is_recommend': self.is_recommend,
             'img_preview_url': self.img_preview_url,
             'img_thumbnail_url': self.img_thumb_url,
             'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),

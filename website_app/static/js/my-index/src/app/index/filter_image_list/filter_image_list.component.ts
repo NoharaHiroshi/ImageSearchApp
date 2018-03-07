@@ -43,6 +43,8 @@ export class FilterImageListComponent extends ListBaseComponent implements OnIni
 			this.search = res['search'];
 			this.search_count = res['search_count'];
 			this.all_image_format = res['all_image_format'];
+			this.all_image_sort = res['all_image_sort'];
+			this.all_image_sort_str = res['all_image_sort_str'];
 			this.isLoading = false;
 		});
 	}
@@ -62,6 +64,24 @@ export class FilterImageListComponent extends ListBaseComponent implements OnIni
 			this.search = res['search'];
 			this.search_count = res['search_count'];
 			this.all_image_format = res['all_image_format'];
+			this.all_image_sort = res['all_image_sort'];
+			this.all_image_sort_str = res['all_image_sort_str'];
+			this.isLoading = false;
+		});
+	}
+	
+	selectedSorted(sort: any): void {
+		let self = this;
+        this.route.queryParams.switchMap(params => this.service.getDetail(params['search'] || '', this.page, format, sort))
+		.subscribe(res => {
+			this.image_series = res['image_series'];
+			this.image_list = res['image_list'];
+			this.page_info = res['meta'];
+			this.search = res['search'];
+			this.search_count = res['search_count'];
+			this.all_image_format = res['all_image_format'];
+			this.all_image_sort = res['all_image_sort'];
+			this.all_image_sort_str = res['all_image_sort_str'];
 			this.isLoading = false;
 		});
 	}

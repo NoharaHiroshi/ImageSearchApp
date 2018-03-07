@@ -386,10 +386,14 @@ def get_filter_image_list():
     search = request.args.get('search', '')
     page = request.args.get('page', 1)
     image_format = request.args.get('format', u'all')
+    sort = request.args.get('sort', u'created_date')
     limit = 20
     try:
         all_selected_images = list()
         all_image_format = Image.all_image_format()
+        all_image_sort_dict = Image.all_image_sort()
+        all_image_sort = [sort for sort in all_image_sort_dict]
+        all_image_sort_str = [sort_str for sort_str in all_image_sort_dict.keys()]
         with get_session() as db_session:
             image_query = db_session.query(ImageTagsRel).join(
                 ImageTags, ImageTags.id == ImageTagsRel.tag_id
@@ -400,10 +404,23 @@ def get_filter_image_list():
             query = db_session.query(Image).filter(
                 Image.id.in_(image_ids)
             )
+            # 图片格式
             if image_format != u'all':
                 query = query.filter(
                     Image.format == image_format
                 )
+            # 图片排序
+            if sort == u'created_date':
+                query = query.order_by(-Image.created_date)
+            elif sort == u'recommend':
+                query = query.filter(
+                    Image.is_recommend == True
+                ).order_by(-Image.created_date)
+            elif sort == u'download':
+                query = query.order_by(-Image.download_count)
+            elif sort == u'view':
+                query = query.order_by(-Image.view_count)
+
             search_count = query.count() if query.count() else 0
             paginator = SQLAlchemyPaginator(query, limit)
             page = paginator.get_validate_page(page)
@@ -416,6 +433,8 @@ def get_filter_image_list():
                 'search': search,
                 'search_count': search_count,
                 'all_image_format': all_image_format,
+                'all_image_sort': all_image_sort,
+                'all_image_sort_str': all_image_sort_str,
                 'meta': {
                     'cur_page': page,
                     'all_page': paginator.max_page,
