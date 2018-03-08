@@ -386,14 +386,14 @@ def get_filter_image_list():
     search = request.args.get('search', '')
     page = request.args.get('page', 1)
     image_format = request.args.get('format', u'all')
-    sort = request.args.get('sort', u'created_date')
+    selected_sort = request.args.get('sort', u'created_date')
     limit = 20
     try:
         all_selected_images = list()
         all_image_format = Image.all_image_format()
         all_image_sort_dict = Image.all_image_sort()
         all_image_sort = [sort for sort in all_image_sort_dict]
-        all_image_sort_str = [sort_str for sort_str in all_image_sort_dict.keys()]
+        all_image_sort_str = [sort_str for sort_str in all_image_sort_dict.values()]
         with get_session() as db_session:
             image_query = db_session.query(ImageTagsRel).join(
                 ImageTags, ImageTags.id == ImageTagsRel.tag_id
@@ -410,15 +410,15 @@ def get_filter_image_list():
                     Image.format == image_format
                 )
             # 图片排序
-            if sort == u'created_date':
+            if selected_sort == u'created_date':
                 query = query.order_by(-Image.created_date)
-            elif sort == u'recommend':
+            elif selected_sort == u'recommend':
                 query = query.filter(
                     Image.is_recommend == True
                 ).order_by(-Image.created_date)
-            elif sort == u'download':
+            elif selected_sort == u'download':
                 query = query.order_by(-Image.download_count)
-            elif sort == u'view':
+            elif selected_sort == u'view':
                 query = query.order_by(-Image.view_count)
 
             search_count = query.count() if query.count() else 0
