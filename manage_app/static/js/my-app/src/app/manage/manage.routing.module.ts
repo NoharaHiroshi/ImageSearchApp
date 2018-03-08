@@ -14,6 +14,7 @@ import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent, ImageSeriesSe
 import { ImageTagConfComponent, ImageTagConfDetailComponent, ImageTagSetComponent } from './image/image_tag.component';
 import { ImageDemoConfComponent } from './image/image_demo.component';
 import { ImageSeriesCategoryConfComponent, ImageSeriesCategoryConfDetailComponent, ImageSeriesCategoryConfSetDetailComponent} from './image/image_series_category.component';
+import { ImageRecommendTagConfComponent, ImageRecommendTagConfDetailComponent } from './image/image_recommend_tag.component';
 
 // 根路由器
 const routes: Routes = [
@@ -59,6 +60,10 @@ const routes: Routes = [
 	{ path: 'image_tag_conf/add', component: ImageTagConfDetailComponent },
 	{ path: 'image_tag_conf/set/:id', component: ImageTagSetComponent },
 	{ path: 'image_demo_conf', component: ImageDemoConfComponent }
+	
+	{ path: 'image_recommend_tag_conf', component: ImageRecommendTagConfComponent },
+	{ path: 'image_recommend_tag_conf/detail/:id', component: ImageRecommendTagConfDetailComponent },
+	{ path: 'image_recommend_tag_conf/add', component: ImageRecommendTagConfDetailComponent },
 ];
 
 @NgModule({

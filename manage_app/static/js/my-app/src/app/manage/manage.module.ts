@@ -29,6 +29,7 @@ import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent, ImageSeriesSe
 import { ImageTagConfComponent, ImageTagConfDetailComponent, ImageTagSetComponent } from './image/image_tag.component';
 import { ImageDemoConfComponent } from './image/image_demo.component';
 import { ImageSeriesCategoryConfComponent, ImageSeriesCategoryConfDetailComponent, ImageSeriesCategoryConfSetDetailComponent} from './image/image_series_category.component';
+import { ImageRecommendTagConfComponent, ImageRecommendTagConfDetailComponent } from './image/image_recommend_tag.component';
 
 import { DashboardService } from './dashboard/dashboard.service';
 import { FuncService } from './func/func.service';
@@ -40,6 +41,7 @@ import { ImageService } from './image/image.service';
 import { ImageSeriesService } from './image/image_series.service';
 import { ImageTagService } from './image/image_tag.service';
 import { ImageSeriesCategoryService } from './image/image_series_category.service';
+import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 
 @NgModule({
 	declarations: [
@@ -76,7 +78,10 @@ import { ImageSeriesCategoryService } from './image/image_series_category.servic
 		
 		ImageSeriesCategoryConfComponent,
 		ImageSeriesCategoryConfDetailComponent,
-		ImageSeriesCategoryConfSetDetailComponent
+		ImageSeriesCategoryConfSetDetailComponent,
+		
+		ImageRecommendTagConfComponent,
+		ImageRecommendTagConfDetailComponent
 	],
 	imports: [
 		CommonModule,
@@ -106,7 +111,8 @@ import { ImageSeriesCategoryService } from './image/image_series_category.servic
 		ImageService,
 		ImageSeriesService,
 		ImageTagService,
-		ImageSeriesCategoryService
+		ImageSeriesCategoryService,
+		ImageRecommendTagService
 	],
 	bootstrap: [
 		ManageComponent
