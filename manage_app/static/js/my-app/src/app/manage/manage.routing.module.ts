@@ -59,7 +59,7 @@ const routes: Routes = [
 	{ path: 'image_tag_conf/detail/:id', component: ImageTagConfDetailComponent },
 	{ path: 'image_tag_conf/add', component: ImageTagConfDetailComponent },
 	{ path: 'image_tag_conf/set/:id', component: ImageTagSetComponent },
-	{ path: 'image_demo_conf', component: ImageDemoConfComponent }
+	{ path: 'image_demo_conf', component: ImageDemoConfComponent },
 	
 	{ path: 'image_recommend_tag_conf', component: ImageRecommendTagConfComponent },
 	{ path: 'image_recommend_tag_conf/detail/:id', component: ImageRecommendTagConfDetailComponent },
