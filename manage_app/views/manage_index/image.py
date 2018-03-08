@@ -895,10 +895,22 @@ def get_recommend_tag_list():
         _image_recommend_tag_list = list()
         with get_session() as db_session:
             query = db_session.query(ImageRecommendTags).all()
+            tags = db_session.query(ImageTags).join(
+                ImageRecommendTagsRel, ImageRecommendTagsRel.tag_id == ImageTags.id
+            )
             for image_recommend_tag in query:
+                image_recommend_tag_id = image_recommend_tag.id
+                _tags = tags.filter(
+                    ImageRecommendTagsRel.recommend_tag_id == image_recommend_tag_id
+                )
+                tag_count = _tags.count()
+                tag_member = ','.join([t.name for t in _tags])
                 image_recommend_tag_dict = image_recommend_tag.to_dict()
+                image_recommend_tag_dict['count'] = tag_count
+                image_recommend_tag_dict['member'] = tag_member
                 _image_recommend_tag_list.append(image_recommend_tag_dict)
             result['image_recommend_tag_list'] = _image_recommend_tag_list
+        return jsonify(result)
     except Exception as e:
         print e
 
