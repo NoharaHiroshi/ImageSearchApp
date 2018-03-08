@@ -7,19 +7,16 @@ import { Location }  from '@angular/common';
 
 import { ListBaseComponent } from '../../common/base.component';
 
-import { ImageRecommendTagService } from './image_tag.service'
-import { ImageTag } from '../../model/image_tag';
-import { Image } from '../../model/image';
+import { ImageRecommendTagService } from './image_recommend_tag.service'
+import { ImageRecommendTag } from '../../model/image_recommend_tag';
 
-import { ImageService } from './image.service'
-import { ImageQueryComponent } from '../../common/image_list/image_list.component';
 
 @Component({
   selector: 'image-recommend-tag-root',
   templateUrl: './image_recommend_tag_list.html',
 })
 export class ImageRecommendTagConfComponent extends ListBaseComponent{
-	image_recommend_tag_list: ImageTag[];
+	image_recommend_tag_list: ImageRecommendTag[];
 	
 	constructor(private service: ImageRecommendTagService) {
 		super();

@@ -14,7 +14,7 @@ from lib.paginator import SQLAlchemyPaginator
 from model.session import get_session
 from model.image.image import Image as Img
 from model.image.image_series import ImageSeriesRel, ImageSeries, ImageSeriesCategory, ImageSeriesCategoryRel
-from model.image.image_tags import ImageTags, ImageTagsRel
+from model.image.image_tags import ImageTags, ImageTagsRel, ImageRecommendTagsRel, ImageRecommendTags
 
 from route import manage
 
@@ -881,6 +881,24 @@ def set_delete_column():
                 'info': u'当前未选择任何数据'
             })
         return jsonify(result)
+    except Exception as e:
+        print e
+
+
+@manage.route('/image_recommend_tag_list', methods=['Get'])
+def get_recommend_tag_list():
+    result = {
+        'response': 'ok',
+        'image_recommend_tag_list': []
+    }
+    try:
+        _image_recommend_tag_list = list()
+        with get_session() as db_session:
+            query = db_session.query(ImageRecommendTags).all()
+            for image_recommend_tag in query:
+                image_recommend_tag_dict = image_recommend_tag.to_dict()
+                _image_recommend_tag_list.append(image_recommend_tag_dict)
+            result['image_recommend_tag_list'] = _image_recommend_tag_list
     except Exception as e:
         print e
 

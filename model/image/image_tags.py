@@ -59,8 +59,8 @@ class ImageTagsRel(Base):
 
 
 # 图片标签分组，主要用于推荐相似标签
-class ImageTagsGroup(Base):
-    __tablename__ = 'image_tags_group'
+class ImageRecommendTags(Base):
+    __tablename__ = 'image_recommend_tags'
 
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 标签分组名
@@ -74,13 +74,13 @@ class ImageTagsGroup(Base):
 
 
 # 标签分组与标签之间的关系表
-class ImageTagdGroupRel(Base):
-    __tablename__ = 'image_tags_group_rel'
+class ImageRecommendTagsRel(Base):
+    __tablename__ = 'image_recommend_tags_rel'
 
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 标签组ID
-    tag_group_id = Column(BigInteger, index=True, nullable=False)
-    # 图片ID
+    recommend_tag_id = Column(BigInteger, index=True, nullable=False)
+    # 标签ID
     tag_id = Column(BigInteger, index=True, nullable=False)
 
 

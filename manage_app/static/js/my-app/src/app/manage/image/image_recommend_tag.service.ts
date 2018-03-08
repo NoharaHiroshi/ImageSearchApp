@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/Rx';
 
-import { ImageTag } from '../../model/image_tag';
+import { ImageRecommendTag } from '../../model/image_recommend_tag';
 
 import { BaseService } from '../../common/base.service';
 
@@ -22,7 +22,7 @@ export class ImageRecommendTagService extends BaseService {
 	               .toPromise()
 	               .then(function(res){
 						let json = res.json();
-	            	    let image_recommend_tag_list = self.jsonListToObjectList(json.image_recommend_tag_list, ImageTag);
+	            	    let image_recommend_tag_list = self.jsonListToObjectList(json.image_recommend_tag_list, ImageRecommendTag);
 	           	        json['image_recommend_tag_list'] = image_recommend_tag_list;
 	            	    return json;
 	               })
@@ -36,15 +36,15 @@ export class ImageRecommendTagService extends BaseService {
 				   .toPromise()
 				   .then(res => {
 						let json = res.json()
-						json['image_recommend_tag'] = self.jsonToObject(json.image_recommend_tag, ImageTag);
+						json['image_recommend_tag'] = self.jsonToObject(json.image_recommend_tag, ImageRecommendTag);
 						return json;
 				   })
 				   .catch(this.handleError);
 	} 
 	
-	update(imageTag: ImageTag): Promise<any> {
+	update(imageRecommendTag: ImageRecommendTag): Promise<any> {
 		const url = '/manage/image_recommend_tag_list/update';
-	    return this.postForm(url, JSON.stringify(imageTag));
+	    return this.postForm(url, JSON.stringify(imageRecommendTag));
 	}
 	
 	del(ids: String): Promise<{}> {
