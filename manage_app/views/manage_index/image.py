@@ -922,15 +922,29 @@ def get_recommend_tag_detail():
     result = {
         'response': 'ok',
         'info': '',
-        'image_recommend_tag': ''
+        'image_recommend_tag': '',
+        'tag_ids': [],
+        'tag_names': []
     }
     try:
         _id = request.args.get('id')
         with get_session() as db_session:
             data = db_session.query(ImageRecommendTags).get(_id)
             if data:
+                # 查找与之相关的标签
+                tags = db_session.query(ImageTags).join(
+                    ImageRecommendTagsRel, ImageRecommendTagsRel.tag_id == ImageTags.id
+                ).filter(
+                    ImageRecommendTagsRel.recommend_tag_id == _id
+                ).all()
+                tag_ids = [str(tag.id) for tag in tags]
+                tag_names = [tag.name for tag in tags]
                 data_dict = data.to_dict()
-                result['image_recommend_tag'] = data_dict
+                result.update({
+                   'image_recommend_tag': data_dict,
+                    'tag_names': tag_names,
+                    'tag_ids': tag_ids
+                })
             else:
                 result.update({
                     'response': 'fail',
@@ -953,7 +967,6 @@ def update_image_recommend_tag_detail():
     name = request.form.get('name')
     tag_ids = request.form.get('tag_ids')
     tag_id_list = tag_ids.split(',')
-    print tag_id_list
     try:
         if None in [name, tag_ids]:
             result.update({

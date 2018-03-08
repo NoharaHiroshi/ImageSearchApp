@@ -24,6 +24,8 @@ export class ImageRecommendTagService extends BaseService {
 						let json = res.json();
 	            	    let image_recommend_tag_list = self.jsonListToObjectList(json.image_recommend_tag_list, ImageRecommendTag);
 	           	        json['image_recommend_tag_list'] = image_recommend_tag_list;
+						json['tag_ids'] = json.tag_ids;
+						json['tag_names'] = json.tag_names;
 	            	    return json;
 	               })
 	               .catch(this.handleError);

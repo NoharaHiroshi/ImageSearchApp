@@ -49,6 +49,8 @@ export class ImageRecommendTagConfDetailComponent extends ListBaseComponent{
         this.route.params.switchMap((params: Params) => this.service.getDetail(params['id']||'0'))
 	        .subscribe(res => {
 	        	this.imageRecommendTag = res['image_recommend_tag'];
+				this.tag_ids = res['tag_ids'];
+				this.tag_names = res['tag_names'];
 				setTimeout(function(){
 					self.loadAfter();
 				}, 200);
@@ -98,16 +100,15 @@ export class ImageRecommendTagConfDetailComponent extends ListBaseComponent{
                 }
             },
             initSelection: function(element:any, callback:any){
-            	var data = {}, 
+            	var data = [], 
 					_tag_ids = self.tag_ids,
 					_tag_names = self.tag_names;
-                if(undefined !== _tag_ids){
-                    data = ({id: _tag_ids, name: _tag_names});
-                }
+				_tag_ids.forEach(function(_tag_id, i){
+					data.push({id: _tag_id, name: _tag_names[i]});
+				});
 				callback(data);
             },
             formatSelection: function(data:any){
-				data_name = data.name;
                 return data.name;
             },
             formatResult: function(data:any){
@@ -116,7 +117,6 @@ export class ImageRecommendTagConfDetailComponent extends ListBaseComponent{
             }
         }).on('change', function(){
         	self.tag_ids = $('#tag_select').val();
-			console.log(self.tag_ids);
         });
 	}
 }
