@@ -11,6 +11,7 @@ from flask import current_app as app
 from sqlalchemy import or_, func, and_
 from lib.upload_image import save_images, delete_images
 from lib.paginator import SQLAlchemyPaginator
+from model.base import IdGenerator
 from model.session import get_session
 from model.image.image import Image as Img
 from model.image.image_series import ImageSeriesRel, ImageSeries, ImageSeriesCategory, ImageSeriesCategoryRel
@@ -913,6 +914,93 @@ def get_recommend_tag_list():
         return jsonify(result)
     except Exception as e:
         print e
+
+
+# 推荐专题组详情
+@manage.route('/image_recommend_tag_list/detail', methods=['GET'])
+def get_recommend_tag_detail():
+    result = {
+        'response': 'ok',
+        'info': '',
+        'image_recommend_tag': ''
+    }
+    try:
+        _id = request.args.get('id')
+        with get_session() as db_session:
+            data = db_session.query(ImageRecommendTags).get(_id)
+            if data:
+                data_dict = data.to_dict()
+                result['image_recommend_tag'] = data_dict
+            else:
+                result.update({
+                    'response': 'fail',
+                    'info': u'当前推荐标签组不存在'
+                })
+        return jsonify(result)
+    except Exception as e:
+        app.my_logger.error(traceback.format_exc(e))
+        abort(400)
+
+
+# 推荐专题组更新
+@manage.route('/image_recommend_tag_list/update', methods=['POST'])
+def update_image_recommend_tag_detail():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    _id = request.form.get('id')
+    name = request.form.get('name')
+    tag_ids = request.form.get('tag_ids')
+    tag_id_list = tag_ids.split(',')
+    print tag_id_list
+    try:
+        if None in [name, tag_ids]:
+            result.update({
+                'response': 'fail',
+                'info': u'请检查参数是否填写完整'
+            })
+        else:
+            with get_session() as db_session:
+                if not _id:
+                    _new_id = IdGenerator.gen()
+                    recommend_tag = ImageRecommendTags()
+                    recommend_tag.id = _new_id
+                    recommend_tag.name = name
+                    for tag_id in tag_id_list:
+                        recommend_tag_rel = ImageRecommendTagsRel()
+                        recommend_tag_rel.tag_id = tag_id
+                        recommend_tag_rel.recommend_tag_id = _new_id
+                        db_session.add(recommend_tag_rel)
+                    db_session.add(recommend_tag)
+                else:
+                    recommend_tag = db_session.query(ImageRecommendTags).get(_id)
+                    if recommend_tag:
+                        recommend_tag.name = name
+                        has_tags = db_session.query(ImageRecommendTagsRel).filter(
+                            ImageRecommendTagsRel.recommend_tag_id == _id
+                        ).all()
+                        has_tag_id_list = set([str(tag.id) for tag in has_tags])
+                        # 删除的标签关系
+                        del_tag_id_list = has_tag_id_list - set(tag_id_list)
+                        db_session.query(ImageRecommendTagsRel).filter(
+                            ImageRecommendTagsRel.tag_id.in_(del_tag_id_list)
+                        ).delete(synchronize_session=False)
+                        # 新增的标签关系
+                        add_tag_id_list = set(tag_id_list) - has_tag_id_list
+                        for add_tag_id in add_tag_id_list:
+                            new_tags_rel = ImageRecommendTagsRel()
+                            new_tags_rel.recommend_tag_id = _id
+                            new_tags_rel.tag_id = add_tag_id
+                            db_session.add(new_tags_rel)
+                    else:
+                        result['response'] = 'fail'
+                        result['info'] = u'当前对象不存在'
+                db_session.commit()
+        return jsonify(result)
+    except Exception as e:
+        app.my_logger.error(traceback.format_exc(e))
+        abort(400)
 
 if __name__ == '__main__':
     pass

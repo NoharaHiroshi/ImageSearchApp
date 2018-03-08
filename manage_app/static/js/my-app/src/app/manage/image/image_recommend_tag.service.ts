@@ -44,6 +44,7 @@ export class ImageRecommendTagService extends BaseService {
 	
 	update(imageRecommendTag: ImageRecommendTag): Promise<any> {
 		const url = '/manage/image_recommend_tag_list/update';
+		console.log(JSON.stringify(imageRecommendTag));
 	    return this.postForm(url, JSON.stringify(imageRecommendTag));
 	}
 	

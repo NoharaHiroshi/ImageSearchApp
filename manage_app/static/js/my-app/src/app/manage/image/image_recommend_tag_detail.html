@@ -1,17 +1,23 @@
 <h3>
-	<i class="fa fa-angle-right"></i> 标签编辑 <span class="sub-title">ImageTag Edit</span> 
+	<i class="fa fa-angle-right"></i> 推荐标签组编辑 <span class="sub-title">ImageRecommendTag Edit</span> 
 </h3>
-<div class="row mt" *ngIf="imageTag">
+<div class="row mt" *ngIf="imageRecommendTag">
 	<div class="col-lg-12">
 	  <div class="form-panel">
 		  <h5 class="mb return"><a href="javascript:void(0);" (click)="goBack()"><i class="fa fa-reply"></i> 返回 </a></h5>
 		  <form class="form-horizontal style-form" method="get">
 			  <div class="form-group">
-				  <label class="col-sm-2 col-sm-2 control-label">专题名称</label>
+				  <label class="col-sm-2 col-sm-2 control-label">推荐标签组名称</label>
 				  <div class="col-sm-4">
-					  <input type="text" class="form-control" name="name" [(ngModel)]="imageTag.name" placeholder="添加标签名称">
+					  <input type="text" class="form-control" name="name" [(ngModel)]="imageRecommendTag.name" placeholder="添加推荐标签组名称">
 				  </div>
-			  </div>	  
+			  </div>
+			  <div class="form-group">
+				<label class="col-sm-2 col-sm-2 control-label">选择标签</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="tag_select" name="tag_select">
+				</div>
+			  </div>
 			  <div class="form-group">
 				  <label class="col-sm-2 col-sm-2 control-label"></label>
 				  <div class="col-sm-4">

@@ -3,7 +3,7 @@
 </div>
 <div *ngIf="!isLoading">
 	<h3>
-		<i class="fa fa-angle-right"></i> 推荐标签列表 <span class="sub-title">ImageRecommendTag List</span> 
+		<i class="fa fa-angle-right"></i> 推荐标签组列表 <span class="sub-title">ImageRecommendTag List</span> 
 	</h3>
 	<div class="showback">
 		<button type="button" class="btn btn-theme" [routerLink]="['add']"><i class="fa fa-plus"></i> <span class="button-name">添加 </span></button>
@@ -20,8 +20,8 @@
 								<input icheck class="all-icheck" type="checkbox">
 							</th>
 							<th><i class="fa fa-question-circle"></i> 推荐标签组名称 </th>
-							<th><i class="fa fa-bookmark"></i> 推荐标签数量 </th>
-							<th><i class="fa fa-bookmark"></i> 推荐标签成员 </th>
+							<th><i class="fa fa-bookmark"></i> 推荐标签组数量 </th>
+							<th><i class="fa fa-bookmark"></i> 推荐标签组成员 </th>
 						</tr>
 					</thead>
 					<tbody *ngIf="image_recommend_tag_list">

@@ -6,6 +6,7 @@ from model.session import get_session
 
 from model.image.image_series import ImageSeries
 from model.image.image_series import ImageSeriesCategory
+from model.image.image_tags import ImageRecommendTagsRel, ImageRecommendTags, ImageTags, ImageTagsRel
 from model.website.column import WebsiteColumnSeriesRel
 
 from route import lib
@@ -125,6 +126,44 @@ def get_all_series_category():
         for series_category in paginator.page(page):
             series_category_dict = series_category.to_dict()
             _data_list.append(series_category_dict)
+
+        result['data_list'] = _data_list
+        result.update({
+            'meta': {
+                'cur_page': page,
+                'all_page': paginator.max_page,
+                'count': paginator.count
+            }
+        })
+    return jsonify(result)
+
+
+@lib.route('/get_all_tags', methods=['GET'])
+def get_all_tag():
+    result = {
+        'response': 'ok',
+        'meta': '',
+        'data_list': []
+    }
+    search = request.args.get('search')
+    limit = request.args.get('limit', 10)
+    page = request.args.get('page', 1)
+    with get_session() as db_session:
+        query = db_session.query(ImageTags).order_by(-ImageTags.created_date)
+
+        if search:
+            query = query.filter(
+                ImageTags.name.like('%%%s%%' % search)
+            )
+
+        paginator = SQLAlchemyPaginator(query, limit)
+        page = paginator.get_validate_page(page)
+
+        _data_list = list()
+
+        for tag in paginator.page(page):
+            tag_dict = tag.to_dict()
+            _data_list.append(tag_dict)
 
         result['data_list'] = _data_list
         result.update({
