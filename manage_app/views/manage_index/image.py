@@ -916,7 +916,7 @@ def get_recommend_tag_list():
         print e
 
 
-# 推荐专题组详情
+# 推荐标签组详情
 @manage.route('/image_recommend_tag_list/detail', methods=['GET'])
 def get_recommend_tag_detail():
     result = {
@@ -956,7 +956,7 @@ def get_recommend_tag_detail():
         abort(400)
 
 
-# 推荐专题组更新
+# 推荐标签组更新
 @manage.route('/image_recommend_tag_list/update', methods=['POST'])
 def update_image_recommend_tag_detail():
     result = {
@@ -968,7 +968,7 @@ def update_image_recommend_tag_detail():
     tag_ids = request.form.get('tag_ids')
     tag_id_list = tag_ids.split(',')
     try:
-        if None in [name, tag_ids]:
+        if None in [name] or not tag_id_list:
             result.update({
                 'response': 'fail',
                 'info': u'请检查参数是否填写完整'
@@ -993,7 +993,10 @@ def update_image_recommend_tag_detail():
                         has_tags = db_session.query(ImageRecommendTagsRel).filter(
                             ImageRecommendTagsRel.recommend_tag_id == _id
                         ).all()
-                        has_tag_id_list = set([str(tag.id) for tag in has_tags])
+                        has_tag_id_list = set([str(tag.tag_id) for tag in has_tags])
+                        print has_tag_id_list
+                        print set(tag_id_list)
+                        print has_tag_id_list - set(tag_id_list)
                         # 删除的标签关系
                         del_tag_id_list = has_tag_id_list - set(tag_id_list)
                         db_session.query(ImageRecommendTagsRel).filter(
@@ -1014,6 +1017,35 @@ def update_image_recommend_tag_detail():
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))
         abort(400)
+
+
+# 推荐标签组删除
+@manage.route('/image_recommend_tag_list/delete', methods=['POST'])
+def del_image_recommend_tag():
+    result = {
+        'response': 'ok'
+    }
+    ids = request.form.get('ids').split(',')
+    try:
+        if ids[0]:
+            with get_session() as db_session:
+                db_session.query(ImageRecommendTags).filter(
+                    ImageRecommendTags.id.in_(ids)
+                ).delete(synchronize_session=False)
+                # 同时删除所有的关联关系
+                for _id in ids:
+                    db_session.query(ImageRecommendTagsRel).filter(
+                        ImageRecommendTagsRel.recommend_tag_id == _id
+                    ).delete(synchronize_session=False)
+                db_session.commit()
+        else:
+            result.update({
+                'response': 'fail',
+                'info': u'当前未选择任何数据'
+            })
+        return jsonify(result)
+    except Exception as e:
+        print e
 
 if __name__ == '__main__':
     pass
