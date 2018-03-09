@@ -411,7 +411,6 @@ def get_filter_image_list():
                     ImageRecommendTagsRel.recommend_tag_id == recommend_tag.recommend_tag_id
                 ).all()
                 for recommend_another_tag in recommend_another_tags:
-                    print recommend_another_tag.name
                     if recommend_another_tag.name not in recommend_tag_list:
                         recommend_tag_list.append(recommend_another_tag.name)
 

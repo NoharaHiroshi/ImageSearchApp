@@ -848,7 +848,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 .image-list-content {
 	width: 1200px;
 	margin: 0 auto;
-	padding: 0 30px 20px 30px;
+	padding: 0 20px 20px 0;
 }
 
 .image-item-title {
@@ -862,9 +862,9 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 
 .image-item {
 	width: 270px;
-	display: inline-block;
 	margin: 0 13px 40px 13px;
 	overflow: hidden;
+	float: left;
 	-moz-box-shadow: -2px 20px 20px rgba(0,0,0,0.4);
     -webkit-box-shadow: -2px 20px 20px rgba(0,0,0,0.4);
     -ms-box-shadow: -2px 20px 20px rgba(0,0,0,0.4);
@@ -872,6 +872,10 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
     -ms-transition: transform .2s;
     -webkit-transition: transform .2s;
     -moz-transition: transform .2s;
+}
+
+.image-item img {
+	width: 100%;
 }
 
 .image-item-font {
