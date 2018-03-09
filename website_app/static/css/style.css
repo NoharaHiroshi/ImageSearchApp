@@ -865,6 +865,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	margin: 0 13px 40px 13px;
 	overflow: hidden;
 	float: left;
+	position: relative;
 	-moz-box-shadow: -2px 20px 20px rgba(0,0,0,0.4);
     -webkit-box-shadow: -2px 20px 20px rgba(0,0,0,0.4);
     -ms-box-shadow: -2px 20px 20px rgba(0,0,0,0.4);
@@ -876,6 +877,53 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 
 .image-item img {
 	width: 100%;
+}
+
+.image-item:hover  .image-item-hover {
+	top: 5px !important;
+}
+
+.image-item-hover {
+	width: 100%;
+    position: absolute;
+    top: -180px;
+    right: 0;
+    height: 42px;
+    line-height: 42px;
+    transition: all .2s;
+	font-size: 12px;
+}
+
+.image-item-hover-download {
+	background-color: #ffbe40;
+	border: 1px solid #ffbe40;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 2px;
+	padding: 5px 10px;
+	opacity: 0.8;
+	line-height: 30px;
+	height: 30px;
+}
+
+.image-item-hover-download:hover {
+	opacity: 1;
+}
+
+.image-item-hover-view {
+	background-color: #fff;
+	border: 1px solid #fff;
+	color: #666;
+	text-decoration: none;
+	border-radius: 2px;
+	padding: 5px 10px;
+	opacity: 0.8;
+	line-height: 30px;
+	height: 30px;
+}
+
+.image-item-hover-view:hover {
+	opacity: 1;
 }
 
 .image-item-font {

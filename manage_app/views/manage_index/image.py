@@ -994,9 +994,6 @@ def update_image_recommend_tag_detail():
                             ImageRecommendTagsRel.recommend_tag_id == _id
                         ).all()
                         has_tag_id_list = set([str(tag.tag_id) for tag in has_tags])
-                        print has_tag_id_list
-                        print set(tag_id_list)
-                        print has_tag_id_list - set(tag_id_list)
                         # 删除的标签关系
                         del_tag_id_list = has_tag_id_list - set(tag_id_list)
                         db_session.query(ImageRecommendTagsRel).filter(
