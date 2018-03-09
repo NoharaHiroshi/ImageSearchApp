@@ -1,0 +1,60 @@
+此文档主要用来说明Angular2相关用户事件的响应
+
+第一种：将用户事件绑定到模板上
+    @Component({
+        selector: 'website-header-root',
+        templateUrl: './header.html',
+    })
+    export class HeaderComponent {
+        searchImage(): void {
+            if(this.search){
+                this.router.navigate(['filter_image_list'], {queryParams: {'search': this.search}});
+            }else{
+                console.log('请输入搜索内容');
+            }
+        }
+    }
+其中
+    <div class="input-search-btn-fix" (click)="searchImage()">
+左边为绑定目标与事件：目标是当前button， 事件是click
+右边为执行语句：当用户点击当前button时，执行component中的searchImage()
+
+好，这是用户点击事件，那如何捕捉用户的键盘输入事件呢？
+在Angular2中我们用keyup事件来监听用户的输入
+
+enterSearchImage(event: any): void {
+    this.search = event.target.value;
+    if(this.search){
+			this.router.navigate(['filter_image_list'], {queryParams: {'search': this.search}});
+		}else{
+			console.log('请输入搜索内容');
+		}
+}
+
+<input type="text" id="main-search-fix" class="input-content-fix"  (keyup.enter)="enterSearchImage($event)" placeholder="输入关键词搜索" name="min-search">
+
+同理，左边为绑定目标与事件，目标是当前input， 事件是keyup，如果只想当用户键入回车时才响应，可以使用keyup.enter，称为按键事件过滤。
+右边为执行语句，这次执行语句带了一个参数$event，用来代指用户的操作，用户的操作不同，$event的形态也不同。
+
+另外一个事件：blur，是当元素失去焦点时候触发。
+
+第二种：使用模板引用变量处理用户输入
+
+Angular 有一个叫做 模板引用变量 的语法特性。 这些变量给了我们直接访问元素的能力。 通过在标识符前加上井号 (#) ，我们就能定义一个模板引用变量.
+在一个超简单的模板中实现了一个聪明的按键反馈循环。
+
+@Component({
+    selector: 'loop-back',
+    template: `
+      <input #box (keyup)="0">
+      <p>{{box.value}}</p>
+    `
+})
+export class LoopbackComponent { }
+
+其中(keyup)="0"，它没有实际的意义，只是保持angular2模板语法的完整性，使这个语法成立。
+用户每次键入，这个模板语法就生效一次，这样用户键入的内容就会在输入框下方打印出来。
+
+第三种：通过双向绑定获取用户输入
+
+就是在input中使用[(model)]啦~

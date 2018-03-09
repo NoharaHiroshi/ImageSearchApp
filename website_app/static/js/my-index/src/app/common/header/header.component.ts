@@ -63,4 +63,8 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 			console.log('请输入搜索内容');
 		}
 	}
+	
+	enterSearchImage(event: any): void {
+		this.searchImage();
+	}
 }
