@@ -4,18 +4,27 @@
 	</ng-container>
 	<ng-container *ngIf="!isLoading">
 		<ng-container *ngIf="image_list">
-			<div class="filter-image-list-search">查询条件：{{search}} <span class="filter-image-count">共查询 <span style="color: #ffbe40">{{search_count}}</span> 结果</span></div>
-			<div class="filter-image-list-format">分类 :
-				<span><a href="javascript:;" (click)="selectedFormat('all')">全部</a></span>
-				<ng-container *ngFor="let format of all_image_format">
-					<span><a href="javascript:;" (click)="selectedFormat(format)">{{format}}</a></span>
-				</ng-container>
+			<div class="filter_image_pannel">
+				<div class="filter-image-list-search">查询条件：{{search}} <span class="filter-image-count">共查询 <span style="color: #ffbe40">{{search_count}}</span> 结果</span></div>
+				<div class="filter-image-list-format">分类 :
+					<span><a href="javascript:;" (click)="selectedFormat('all')">全部</a></span>
+					<ng-container *ngFor="let format of all_image_format">
+						<span><a href="javascript:;" (click)="selectedFormat(format)">{{format}}</a></span>
+					</ng-container>
+				</div>
+				<div class="filter-image-list-sort">排序 :
+					<ng-container *ngFor="let sort_str of all_image_sort_str let i = index">
+						<span><a href="javascript:;" (click)="selectedSorted(all_image_sort[i])">{{sort_str}}</a></span>
+					</ng-container>
+				</div>
 			</div>
-			<div class="filter-image-list-sort">排序 :
-				<ng-container *ngFor="let sort_str of all_image_sort_str let i = index">
-					<span><a href="javascript:;" (click)="selectedSorted(all_image_sort[i])">{{sort_str}}</a></span>
-				</ng-container>
-			</div>
+			<ng-container *ngIf="all_recommend_tag.length">
+				<div class="filter-image-list-recommend">为您推荐 :
+					<ng-container *ngFor="let recommend_tag of all_recommend_tag">
+						<span><a href="javascript:;" (click)="selectedRecommendTag(recommend_tag)">{{recommend_tag}}</a></span>
+					</ng-container>
+				</div>
+			</ng-container>
 			<ng-container *ngIf="image_list.length">
 				<div class="image-list-content">
 					<div id="demo" style="margin: 0 auto; overflow:hidden;">

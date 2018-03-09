@@ -1249,6 +1249,12 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	padding: 30px 0 0 0;
 }
 
+.filter_image_pannel {
+	background-color: #fff;
+	padding: 15px 20px;
+	margin-bottom: 30px;
+}
+
 .filter-image-list-search {
 	margin-bottom: 20px;
 	font-weight: 700;
@@ -1286,7 +1292,6 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 
 .filter-image-list-sort {
 	font-weight: 700;
-	margin-bottom: 40px;
 }
 
 .filter-image-list-sort span {
@@ -1307,4 +1312,35 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 .filter-image-list-sort a:focus {
 	outline:none;
 	color: #ffbe40;
+}
+
+.filter-image-list-recommend {
+	font-weight: 700;
+	margin-bottom: 40px;
+	font-size: 14px;
+}
+
+.filter-image-list-recommend span {
+	margin-left: 10px;
+	margin-right: 10px;
+	font-weight: 100;
+}
+
+.filter-image-list-recommend a {
+	text-decoration: none;
+	border: 1px solid #ffbe40;
+	color: #ffbe40;
+	border-radius: 5%;
+	padding: 5px 10px;;
+}
+
+.filter-image-list-recommend a:hover {
+	color: #fff;
+	background-color: #ffbe40;
+}
+
+.filter-image-list-recommend a:focus {
+	outline:none;
+	color: #fff;
+	background-color: #ffbe40;
 }

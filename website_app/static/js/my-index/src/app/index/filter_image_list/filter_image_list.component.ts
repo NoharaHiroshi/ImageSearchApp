@@ -14,6 +14,8 @@ import { ImageSeriesCategory } from '../../model/image_series_category';
 
 import { AppConfig } from '../../../config/app_config';
 
+
+
 require('../../lib/masonry.min.js');
 
 @Component({
@@ -26,6 +28,7 @@ export class FilterImageListComponent extends ListBaseComponent implements OnIni
 	all_image_format: any[];
 	all_image_sort: any[];
 	all_image_sort_str:any[];
+	all_recommend_tag: any[];
 	page_info: any;
 	page: number = 1;
 	search: any;
@@ -50,6 +53,7 @@ export class FilterImageListComponent extends ListBaseComponent implements OnIni
 			this.all_image_format = res['all_image_format'];
 			this.all_image_sort = res['all_image_sort'];
 			this.all_image_sort_str = res['all_image_sort_str'];
+			this.all_recommend_tag = res['recommend_tag_list'];
 			this.isLoading = false;
 		});
 	}
@@ -69,6 +73,9 @@ export class FilterImageListComponent extends ListBaseComponent implements OnIni
 		this.getPagerData();
 	}
 	
+	selectedRecommendTag(tag: any): void {
+		this.router.navigate(['filter_image_list'], {queryParams: {'search': tag}});
+	}
 	
 	@ViewChild('demo')
 	demo: ElementRef;

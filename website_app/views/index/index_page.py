@@ -17,7 +17,7 @@ from model.website.customer import Customer
 from model.image.image_series import ImageSeries, ImageSeriesCategoryRel, ImageSeriesCategory, ImageSeriesRel
 from model.image.image_download_history import ImageDownloadHistory
 from model.image.image import Image
-from model.image.image_tags import ImageTags, ImageTagsRel
+from model.image.image_tags import ImageTags, ImageTagsRel,ImageRecommendTagsRel, ImageRecommendTags
 from model.website.menu import WebsiteMenu
 from model.website.banner import Banner
 from model.website.hot_search import WebsiteHotSearch
@@ -380,7 +380,8 @@ def get_filter_image_list():
         'response': 'ok',
         'info': '',
         'image_list': [],
-        'all_image_format': []
+        'all_image_format': [],
+        'recommend_tag_list': []
     }
     # 搜索条件是按照标签进行搜索
     search = request.args.get('search', '')
@@ -395,6 +396,25 @@ def get_filter_image_list():
         all_image_sort = [sort for sort in all_image_sort_dict]
         all_image_sort_str = [sort_str for sort_str in all_image_sort_dict.values()]
         with get_session() as db_session:
+            # 根据用户搜索条件查询推荐标签分组
+            recommend_tag_list = list()
+            # 找到所有的推荐标签组id
+            recommend_tags = db_session.query(ImageRecommendTagsRel).join(
+                ImageTags, ImageTags.id == ImageRecommendTagsRel.tag_id
+            ).filter(
+                ImageTags.name.like('%' + search + '%')
+            ).all()
+            for recommend_tag in recommend_tags:
+                recommend_another_tags = db_session.query(ImageTags).join(
+                    ImageRecommendTagsRel, ImageRecommendTagsRel.tag_id == ImageTags.id
+                ).filter(
+                    ImageRecommendTagsRel.recommend_tag_id == recommend_tag.recommend_tag_id
+                ).all()
+                for recommend_another_tag in recommend_another_tags:
+                    print recommend_another_tag.name
+                    if recommend_another_tag.name not in recommend_tag_list:
+                        recommend_tag_list.append(recommend_another_tag.name)
+
             image_query = db_session.query(ImageTagsRel).join(
                 ImageTags, ImageTags.id == ImageTagsRel.tag_id
             ).filter(
@@ -435,6 +455,7 @@ def get_filter_image_list():
                 'all_image_format': all_image_format,
                 'all_image_sort': all_image_sort,
                 'all_image_sort_str': all_image_sort_str,
+                'recommend_tag_list': recommend_tag_list,
                 'meta': {
                     'cur_page': page,
                     'all_page': paginator.max_page,
