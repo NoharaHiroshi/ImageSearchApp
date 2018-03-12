@@ -70,7 +70,12 @@
 
     除此之外，RouteOutlet还可以嵌套，之后会详细介绍
 
-三、 路由跳转规律
+    ## RouterOutlet总结 ##
+    1、RouterOutlet放置位置：根组建的模板文件
+    2、RouterOutlet作用：作为子视图的占位符
+    3、RouterOutlet的子视图：路由列表中对应组件渲染后的视图
+
+三、路由跳转规律
     import { RouterModule, Routes, ActivatedRoute Router }  from '@angular/router';
     constructor(public route: ActivatedRoute, public router: Router) {}
 

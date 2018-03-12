@@ -20,6 +20,13 @@ Angular2中的base href 到底有什么意义？
 
 另外一个例子，图片的最终链接是：'http://www.w3school.com.cn/i/eg_smile.gif'
 
+对base href 的补充
+
+    官方例子给出的 <base href="/">是一个相对链接，代表根网址，本地测试环境地址假设为'http://127.0.0.1:8899', 那么当前设置代表的是所有页面的
+    基准URL是http://127.0.0.1:8899/
+
+    假设 <base href="/manage/">同样是一个相对链接，测试环境同上，那么基准URL就是http://127.0.0.1:8899/manage/
+
 ### 总结 ###
     1、base href 为页面上所有相对URL规定基准URL，来告诉路由器该如何合成完整的URL
     2、base href 是以'/'结尾的，代表着某一位置。
