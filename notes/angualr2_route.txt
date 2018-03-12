@@ -101,8 +101,8 @@
     对后台的数据请求
 
     带‘#'和不带‘#'原理上有什么区别呢？
-    先说一下前端路由，以前路由都是后台做的，通过用户请求的url导航到具体的html页面，现在我们在前端可以利用 Angular、vue、react等通过
-    配置文件，达到前端控制路由跳转的功能。
+    先说一下前端路由，以前路由都是后台做的，通过用户请求，url会发送到后台，经过分析，导航到具体的html页面
+    现在我们在前端可以利用 Angular、vue、react等通过配置文件，达到前端控制路由跳转的功能。
 
     前端路由的实现方法：
 
@@ -123,6 +123,13 @@
             {provide: LocationStrategy, useClass: HashLocationStrategy}
         ]
     })
+
+    ## Angular2中Hash路由总结 ##
+    1、使用原因：当页面刷新时，应用根据URL，不会先在Angular路由表中查询，而是在后台路由表中查询，导致404页面未找到
+    2、如何使用：
+        1）在路由模块的RouterModule.forRoot(routes, {useHash: true})方法中配置属性对象
+        2）根模块中providers中添加
+            {provide: LocationStrategy, useClass: HashLocationStrategy}
 
     Angular2使用HTML5路由
     改用 PathLocationStrategy（angular2的默认策略，也就是HTML5路由），使用这个路由的常规路径不带#
