@@ -1,0 +1,25 @@
+Angular2中的base href 到底有什么意义？
+
+一句话：为页面上所有相对URL规定基准URL
+
+大多数带路由的应用都要在index.html的<head>标签下先添加一个<base>元素，来告诉路由器该如何合成导航用的URL。
+
+# src/index.html
+    <base href="/">
+
+以上是官方给出的例子：href给出的基准链接可以是完整的网址，如href="http:www.lands.com/"，也可以是相关链接，如href="/"
+但需要注意的是href是以'/'结尾的，代表着某一位置。
+
+<head>
+    <base href="http://www.w3school.com.cn/i/" />
+</head>
+
+<body>
+    <img src="eg_smile.gif" />
+</body>
+
+另外一个例子，图片的最终链接是：'http://www.w3school.com.cn/i/eg_smile.gif'
+
+### 总结 ###
+    1、base href 为页面上所有相对URL规定基准URL，来告诉路由器该如何合成完整的URL
+    2、base href 是以'/'结尾的，代表着某一位置。

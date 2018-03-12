@@ -34,6 +34,24 @@
 
     至此，简单的路由模块就构建完毕了， 在根模块中引入路由模块，让该路由器可以在任何地方使用
 
+    ## 路由列表的总结 ##
+        1、 路由列表的使用需要导入
+            import { RouterModule， Routes } from '@angular/router';
+
+        2、 路由列表的类型是：Routes
+            const routes: Routes = []
+
+        3、 路由列表的每一项（对象）都包含路由与组件两个属性，path是资源（开头和结尾不能带'/'）
+
+    ## 路由列表的安装总结 ##
+        1、新建一个Angular模块，@ngModule({})
+        2、使用RouterModule.forRoot(路由列表，{配置对象属性})方法，导入安装好路由的RouterModule模块
+            imports：[ RouterModule.forRoot(routes, {useHash： true}) ]
+        3、导出RouterModule
+            exports: [ RouterModule ]
+        4、导出路由模块类
+            export class IndexRoutingModule {}
+
 二、 关于RouterOutlet
     URL改变了，也通过路由列表找到了对应的组件，但是渲染在什么地方呢？
 
