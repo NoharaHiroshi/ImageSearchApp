@@ -1,0 +1,48 @@
+如何在视图中跳转到其他链接？通常使用a标签进行跳转
+
+通常在a标签中加入routerLink，来使路由器可以控制这个a标签
+
+看一下常见的格式
+    <a routerLink='/dashboard/home' routerLinkActive='active'>Home1</a>
+    <a routerLink='/dashboard/home' [routerLinkActive]="['active']">Home2</a>
+    <a routerLink='../home' routerLinkActive="active">Home 2.2 </a>
+    <a [routerLink]="['/dashboard/home']" [routerLinkActive]="['active']">Home3</a>
+    <a [routerLink]="['../home']" [routerLinkActive]="['active']">Home4</a>
+    <a [routerLink]="['../home']" [routerLinkActive]="['active']">Home5</a>
+    <a [routerLinkActive]="['active']" (click)="onSelect()">Home6</a>
+
+可以发现大致分为两种情况
+<a routerLink=''>和<a [routerLink]="['']">，它们有什么区别？
+routerLink是属性，[routerLink]是属性指令
+
+逐条分析一下
+
+1、<a routerLink='/dashboard/home' routerLinkActive='active'>Home1</a>
+   '/dashboard/home': 以'/'开头，说明当前URL是相对于根目录合成最终路由进行导航的，这里我有一个疑问，它现在的根目录是基于base href呢？
+   还是Angular配置中“真正“的根目录呢？经过测试，发现这个'/'相对的根目录是基于base href的。
+   举个例子，<base href="/manage/"> 根目录设置：http://127.0.0.1:8899，
+   <a routerLink='/menu_conf' routerLinkActive='active'>菜单编辑</a>
+   那么a标签最后合成的URL：http://127.0.0.1:8899/manage/menu_conf， 不是http://127.0.0.1:8899/menu_conf
+
+   另外写明的一点是：注意区分路由列表中的path和a标签中的href
+   在路由列表中，path是不能以'/'开头的，否则无法和base href合成最终URL
+   在a标签中，routerLink中的路由是可以以'/'开头的，表示基于根目录跳转，这个根目录就是项目设置的路径 + base href设置的路径（base href是相对路径的情况下）
+
+2、<a routerLink='/dashboard/home' [routerLinkActive]="['active']">Home2</a>
+   第一个是routerLink是属性，后面那个是属性指令，"['active']"列表中的active为什么要加''?因为不加，就会被认为是一个变量而在组件中查找
+
+3、<a routerLink='../home' routerLinkActive="active">Home 2.2 </a>
+   '../home'是相对路径，相对于当前路径的上一级进行跳转，例如现在路径是/dashboard/conf， 点击了当前路径，那么就跳转到了/dashboard/home
+   其实很少用到。
+
+4、5、6其实差不多，只是将属性换成了属性指令。
+
+7、这里的路由跳转使用了方法进行跳转，在组件中定义好了跳转的路由
+   this.router.navigate(['../home'],{relativeTo:this.route});
+   这种方法之后会做介绍。
+   其实前面的不管是属性routerLink还是指令属性[routerLink]，其实最后都转化成组件中的Router的navigate()方法进行导航
+
+## a标签跳转总结 ##
+    1、 a标签可以使用属性routerLink和属性指令[routerLink]进行跳转
+    2、 路由列表中的path不能在前面加'/'，而a标签中的路径前可以加'/'，表示基于根目录，而根目录代表的是base href指定的根目录
+    3、 指令属性[routerLink]='['']', 列表的内外都要记得加上''
