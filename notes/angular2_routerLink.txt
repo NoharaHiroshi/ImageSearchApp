@@ -48,16 +48,58 @@ routerLink是属性，[routerLink]是属性指令
     3、 指令属性[routerLink]='['']', 列表的内外都要记得加上''
 
 关于routerLinkActive
-    routerLinkActive可以区分出正在活动的路由。当关联的routerLink被激活时，路由器会把css类中的active添加到这个元素上。
+    routerLinkActive可以区分出正在活动的路由。当关联的routerLink被激活时，路由器会把routerLinkActive右边的css类（不只是active，可以任意指定）添加到这个元素上。
     这个功能通常用于想要高亮用户选择的路由。
+
     需要注意一点的是，这种样式激活的改变会沿着路由树一直往下传递。父路由和子路由可能同时被激活。
+    <a routerLink="/user/bob" routerLinkActive="active-link">Bob</a>
+    当你点击的路由是'/user'或者是'/user/bob'时，当前a标签都会添加上active-link这个css样式类
     如果想精确匹配，可以把[routerLinkActiveOptions]绑定到{exact: true}表达式。
     如果使用了{ exact: true }，那么只有在其URL与当前URL精确匹配时才会激活指定的RouterLink。
+    <a routerLink="/user/bob" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Bob</a>
 
-    <nav class="app_nav">
-        <div *ngFor="let item of currentUser?.frontSet;let last = last;" [isLast]="last" (lastDone)="initVav()">
-            <a [routerLink]="item.code" [queryParams]="{userName : currentUser.name}" routerLinkActive='active'>
-                  {{item.moduleName}}
-            </a>
-        </div>
-    </nav>
+    如果你想指定多个css类
+    <a routerLink="/user/bob" routerLinkActive="class1 class2">Bob</a>
+    <a routerLink="/user/bob" [routerLinkActive]="['class1', 'class2']">Bob</a>
+    指令方式或者是指令属性方式都是可以的
+    但是我测试过，像这样混着用是错误的, [routerLinkActive]右边必须对应的是"['class1', 'class2']"这种形式
+    <a routerLink="/user/bob" [routerLinkActive]="class1 class2">Bob</a>
+    这样是错误的。
+
+    扩展阅读：
+    比较高阶的用法还有，可以将routerLinkActive的实例分配给模板变量，直接检查isActive状态。
+    <a routerLink="/user/bob" routerLinkActive #rla="routerLinkActive">
+        Bob {{ rla.isActive ? '(already open)' : ''}}
+    </a>
+    其中routerLinkActive作为指令赋值给模板变量rla，这样rla就可以获得路由是否被激活的状态
+
+    另外，routerLinkActive不仅仅只能用在a标签上，看看下面的例子
+    <div routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+        <a routerLink="/user/jim">Jim</a>
+        <a routerLink="/user/bob">Bob</a>
+    </div>
+    当你的路由指向'/user/jim'或者'/user/bob'，div标签上的routerLinkActive同样处于激活状态。
+
+    这是官方的routerLinkActive源码
+    @Directive({
+        selector: '[routerLinkActive]',
+        exportAs: 'routerLinkActive'
+    })
+    class RouterLinkActive implements OnChanges, OnDestroy, AfterContentInit {
+        constructor(router: Router, element: ElementRef, renderer: Renderer2, cdr: ChangeDetectorRef)
+        links: QueryList<RouterLink>
+        linksWithHrefs: QueryList<RouterLinkWithHref>
+        get isActive: boolean
+        routerLinkActiveOptions: {...}
+        set routerLinkActive: string[] | string
+        ngAfterContentInit(): void
+        ngOnChanges(changes: SimpleChanges): void
+        ngOnDestroy(): void
+    }
+
+    ## routerLinkActive总结 ##
+    1、作用：当路由被激活时，可以动态的添加css类到这个路由上。
+    2、routerLinkActive的值并非非得是active，可以任意指定css类
+    3、routerLinkActive的值是多个css类，属性形式需要用空格隔开'class1 class2', 属性指令形式'['class1', 'class2']'，但是不能混用
+    4、routerLinkActive激活是按照树路由顺序，想精确路由，使用[routerLinkActiveOptions]="{exact: true}"
+    5、当前路由激活时，会显示class="指定css类 active"

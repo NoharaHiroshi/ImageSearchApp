@@ -1,6 +1,6 @@
 
 /* Import fonts */
-@import url(http://fonts.googleapis.com/css?family=Ruda:400,700,900);
+/* @import url(http://fonts.googleapis.com/css?family=Ruda:400,700,900); */
 
 /* BASIC THEME CONFIGURATION */
 body {
@@ -371,7 +371,7 @@ ul.sidebar-menu li a{
     transition: all 0.3s ease;
 }
 
-ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
+/* ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
     background: #68dff0;
     color: #fff;
     display: block;
@@ -382,21 +382,21 @@ ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:fo
     -ms-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
-
+ */
 
 ul.sidebar-menu li a i {
     font-size: 15px;
     padding-right: 6px;
 }
 
-ul.sidebar-menu li a:hover i, ul.sidebar-menu li a:focus i {
+/* ul.sidebar-menu li a:hover i, ul.sidebar-menu li a:focus i {
     color: #fff;
 }
 
 ul.sidebar-menu li a.active i {
     color: #fff;
 }
-
+ */
 .mail-info, .mail-info:hover {
     margin: -3px 6px 0 0;
     font-size: 11px;
