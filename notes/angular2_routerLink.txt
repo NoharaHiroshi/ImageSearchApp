@@ -43,6 +43,21 @@ routerLink是属性，[routerLink]是属性指令
    其实前面的不管是属性routerLink还是指令属性[routerLink]，其实最后都转化成组件中的Router的navigate()方法进行导航
 
 ## a标签跳转总结 ##
-    1、 a标签可以使用属性routerLink和属性指令[routerLink]进行跳转
+    1、 a标签可以使用属性routerLink和属性指令[routerLink]进行跳转，属性通常用于没有参数的链接跳转。属性指令通常用于带参数的链接跳转。
     2、 路由列表中的path不能在前面加'/'，而a标签中的路径前可以加'/'，表示基于根目录，而根目录代表的是base href指定的根目录
     3、 指令属性[routerLink]='['']', 列表的内外都要记得加上''
+
+关于routerLinkActive
+    routerLinkActive可以区分出正在活动的路由。当关联的routerLink被激活时，路由器会把css类中的active添加到这个元素上。
+    这个功能通常用于想要高亮用户选择的路由。
+    需要注意一点的是，这种样式激活的改变会沿着路由树一直往下传递。父路由和子路由可能同时被激活。
+    如果想精确匹配，可以把[routerLinkActiveOptions]绑定到{exact: true}表达式。
+    如果使用了{ exact: true }，那么只有在其URL与当前URL精确匹配时才会激活指定的RouterLink。
+
+    <nav class="app_nav">
+        <div *ngFor="let item of currentUser?.frontSet;let last = last;" [isLast]="last" (lastDone)="initVav()">
+            <a [routerLink]="item.code" [queryParams]="{userName : currentUser.name}" routerLinkActive='active'>
+                  {{item.moduleName}}
+            </a>
+        </div>
+    </nav>
