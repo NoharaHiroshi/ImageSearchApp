@@ -49,7 +49,7 @@ this.route.params.switchMap((params: Params) => this.service.getDetail(params['i
 
 2017.03.15日更新
 
-导入ActivatedRoute
+---- 导入ActivatedRoute
 
 这里导入switchMap操作符是因为我们稍后将会处理路由参数的可观察对象Observable。
    import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -82,3 +82,14 @@ this.route.params.switchMap((params: Params) => this.service.getDetail(params['i
       this.func = this.service.getDetail(id);
     }
 路由参数（id）改变后，它无法识别改变后的id，它只能获取初始值。
+
+
+---- 路由可选参数
+
+以下是官方实例，该方法用于返回列表页，并高亮之前进入的对象
+goToHeroes(hero: Hero) {
+    let heroId = hero ? hero.id : null;
+    this.router.navigate(['/heroes', { id: heroId, foo: 'foo' }]);
+}
+返回后，地址栏的URL：localhost:3000/heroes;id=15;foo=foo
+可选路由参数没有使用'&''?'，而是使用';'，用于URL查询字符串中，这种路由形式叫做矩阵URL标记法
