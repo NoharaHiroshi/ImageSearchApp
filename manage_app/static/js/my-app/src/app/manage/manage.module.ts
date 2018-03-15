@@ -11,6 +11,8 @@ import { A2Edatetimepicker } from '../common/directive/datetimepicker/datetimepi
 import { ModalModule } from 'angular2-modal';
 import { ManageRoutingModule } from './manage.routing.module';
 
+import { FuncModule } from './func/func.module';
+
 import { SharedModule } from '../common/common.module';
 import { LeftNavService } from '../common/left_nav/left_nav.service';
 import { HeaderService } from '../common/header/header.service';
@@ -18,7 +20,6 @@ import { HeaderService } from '../common/header/header.service';
 import { ManageComponent } from './manage.component';
 
 import { DashboardConfComponent } from './dashboard/dashboard.component';
-import { FuncConfComponent, FuncConfDetailComponent } from './func/func.component';
 import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.component';
 import { MenuFuncConfComponent, MenuFuncConfDetailComponent } from './menu_func/menu_func.component';
 import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent } from './role/role.component';
@@ -32,7 +33,6 @@ import { ImageSeriesCategoryConfComponent, ImageSeriesCategoryConfDetailComponen
 import { ImageRecommendTagConfComponent, ImageRecommendTagConfDetailComponent } from './image/image_recommend_tag.component';
 
 import { DashboardService } from './dashboard/dashboard.service';
-import { FuncService } from './func/func.service';
 import { MenuService } from './menu/menu.service';
 import { MenuFuncService } from './menu_func/menu_func.service';
 import { RoleService } from './role/role.service';
@@ -50,9 +50,6 @@ import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 		
 		MenuConfComponent,
 		MenuConfDetailComponent,
-		
-		FuncConfComponent,
-		FuncConfDetailComponent,
 		
 		MenuFuncConfComponent,
 		MenuFuncConfDetailComponent,
@@ -96,6 +93,8 @@ import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 		ModalModule.forRoot(),
 		SharedModule, // 共用控件
 		
+		FuncModule, // 功能模块
+		
 		ManageRoutingModule, // 根路由器放在最后
 	],
 	providers: [
@@ -103,7 +102,6 @@ import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 		HeaderService,
 		LeftNavService,
 		DashboardService,
-		FuncService,
 		MenuService,
 		MenuFuncService,
 		RoleService,

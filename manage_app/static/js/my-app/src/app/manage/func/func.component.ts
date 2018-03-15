@@ -80,6 +80,7 @@ export class FuncConfDetailComponent extends ListBaseComponent{
 	        .subscribe(res => {
 	        	this.func = res['func'];
 	        });
+		console.log(this.route.params);
 	}
 	
 	goBack(): void {
