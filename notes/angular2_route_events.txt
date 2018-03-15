@@ -1,0 +1,29 @@
+1、在每次导航从开始到结束的生命周期中，会发生很多导航事件，我们可以在其中合适的时机完成我们想要的操作。（略）
+
+NavigationStart： 导航开始时触发
+
+RoutesRecognized： 本事件会在路由器解析完URL，并识别出了相应的路由时触发
+
+RouteConfigLoadStart： 本事件会在Router对一个路由配置进行惰性加载之前触发。
+
+RouteConfigLoadEnd： 本事件会在路由被惰性加载之后触发。
+
+NavigationEnd： 本事件会在导航成功结束之后触发。
+
+NavigationCancel： 本事件会在导航被取消之后触发。 这可能是因为在导航期间某个路由守卫返回了false。
+
+NavigationError： 这个事件会在导航由于意料之外的错误而失败时触发。
+
+2、名词解释
+
+Router： 路由器
+Routes： 路由列表，即 const routes: Routes = []
+Route： 路由, 即 { path: 'index', component: indexComponent }
+RouterModule: 路由模块， 即routerModule.forRoot(routes)
+RouterOutlet: 路由出口，在根组件模板中 <routerOutlet></routerOutlet>
+RouterLink: 路由链接，a标签中<a routerLink="/">
+RouterLinkActive: 激活路由链接， <a routerLink='/'routerLinkActive="active-class">
+ActivatedRoute: 激活的路由，为路由组件提供服务。
+RouterState： 路由器状态，提供遍历树的快速方法。
+链接参数数组： <a [routerLink]="["/image_list", image.id]">
+路由组件： 带<routerOutlet></routerOutlet>的组件
