@@ -107,3 +107,9 @@ routerLink是属性，[routerLink]是属性指令
     3、routerLinkActive的值是多个css类，属性形式需要用空格隔开'class1 class2', 属性指令形式'['class1', 'class2']'，但是不能混用
     4、routerLinkActive激活是按照树路由顺序，想精确路由，使用[routerLinkActiveOptions]="{exact: true}"
     5、当前路由激活时，会显示class="指定css类 active"
+
+关于带参数的路由
+    { path: 'func_conf/detail/:id', component: FuncConfDetailComponent }
+    其中:id被称为令牌，它为路由参数创建了一个空位。
+    当我们进入/manage/#/func_conf/detail/6480690425115967488的时候，路由就会识别这种URL，id=6480690425115967488
+    经过路由器拆分分析，组件就会接收到由ActivatedRouter提供到的id值

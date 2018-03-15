@@ -1,0 +1,84 @@
+路由器的状态
+
+在导航每个生命周期成功完成时，路由器会构建出一个ActivatedRoute组成的树，它表示路由器的当前状态。
+我们可以在应用中的任何地方用Router服务及其routerState属性来访问当前的RouterState值。
+
+路由器状态为我们提供了从任意激活路由开始向上或向下遍历路由树的一种方式，以获得关于父、子、兄弟路由的信息。
+
+激活的路由
+
+该路由的路径和参数可以通过注入进来的一个名叫ActivatedRoute的路由服务来获取。 它有一大堆有用的信息。
+
+官方的源码
+
+interface ActivatedRoute {
+    snapshot: ActivatedRouteSnapshot
+    url: Observable<UrlSegment[]>
+    params: Observable<Params>
+    queryParams: Observable<Params>
+    fragment: Observable<string>
+    data: Observable<Data>
+    outlet: string
+    component: Type<any> | string | null
+    get routeConfig: Route | null
+    get root: ActivatedRoute
+    get parent: ActivatedRoute | null
+    get firstChild: ActivatedRoute | null
+    get children: ActivatedRoute[]
+    get pathFromRoot: ActivatedRoute[]
+    get paramMap: Observable<ParamMap>
+    get queryParamMap: Observable<ParamMap>
+    toString(): string
+}
+
+除此之外，好像也没讲点什么
+
+上述是官方文档给出的解释，用我的话来讲就是：
+
+当每次路由导航结束后，会根据当前路由器的激活情况，生成一个ActivatedRoute的实例。
+我们可以通过在组件中注入ActivatedRoute来操作它
+constructor(public route: ActivatedRoute) {}
+
+目前这块的资料很少
+项目中常用的有
+this.route.params.switchMap((params: Params) => this.service.getDetail(params['id']||'0'))
+    .subscribe(res => {
+        this.func = res['func'];
+    });
+类似这种，用来获取数据的情况是目前遇到最多的，主要针对这块分析。
+
+2017.03.15日更新
+
+导入ActivatedRoute
+
+这里导入switchMap操作符是因为我们稍后将会处理路由参数的可观察对象Observable。
+   import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
+通常在组件中用构造函数将所需要的服务注入进来。
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private service: FuncService
+    ) {}
+
+我们用ActivatedRoute服务来接收路由的参数，从参数中获取该路由的id。
+    this.route.params.switchMap((params: Params) => this.service.getDetail(params['id']||'0'))
+        .subscribe(res => {
+            this.func = res['func'];
+        });
+由于参数是this.route.params（Observable）提供的，所以我们得用switchMap操作符来根据名字取得id参数。
+
+我们订阅了路由参数的Observable对象。 这种写法暗示着这些路由参数在该组件的生存期内可能会变化。
+当id值发生了变化，会销毁当前组件实例，并重新建立一个新的实例，不过这有可能导致界面抖动，更好的办法是使用同一个组件实例，仅仅更新参数。
+可惜的是，每个组件的NgOnInit周期只会发生一次。但有params这个可观察对象很好的解决了这个问题。
+
+使用路由参数Observable对象，可以保证你在连续访问某一组件的不同对象时，保持同一组件实例，仅仅更新参数。
+比如你有三个对象，和代表这三个对象的列表，你每次都是从列表页进入详情页，再从详情页返回列表页进入下一个对象。那么详情组件实例每次都会被销毁再重建。
+如果详情页有‘上一个’和‘下一个’这样的按钮，可以不经过列表页直接跳转至下一对象的详情页，那么通过Observable对象就可以实现组件不销毁，仅仅更新对象的参数。
+
+如果你可以确保永远不重复使用这个组件，那么可以不使用观察者对象，改用snapshot来获取参数。
+    ngOnInit() {
+      let id = this.route.snapshot.paramMap.get('id');
+      this.func = this.service.getDetail(id);
+    }
+路由参数（id）改变后，它无法识别改变后的id，它只能获取初始值。
