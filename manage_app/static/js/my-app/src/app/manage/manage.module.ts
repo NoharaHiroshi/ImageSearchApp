@@ -15,6 +15,7 @@ import { FuncModule } from './func/func.module';
 import { MenuModule } from './menu/menu.module';
 import { MenuFuncModule } from './menu_func/menu_func.module';
 import { RoleModule } from './role/role.module';
+import { UserRoleModule } from './user_role/user_role.module';
 
 import { SharedModule } from '../common/common.module';
 import { LeftNavService } from '../common/left_nav/left_nav.service';
@@ -23,7 +24,6 @@ import { HeaderService } from '../common/header/header.service';
 import { ManageComponent } from './manage.component';
 
 import { DashboardConfComponent } from './dashboard/dashboard.component';
-import { UserRoleConfComponent, UserRoleConfDetailComponent } from './user_role/user_role.component';
 import { ImageUploadComponent } from './image/upload_image.component';
 import { ImageConfComponent } from './image/image.component';
 import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent, ImageSeriesSetComponent } from './image/image_series.component';
@@ -33,7 +33,6 @@ import { ImageSeriesCategoryConfComponent, ImageSeriesCategoryConfDetailComponen
 import { ImageRecommendTagConfComponent, ImageRecommendTagConfDetailComponent } from './image/image_recommend_tag.component';
 
 import { DashboardService } from './dashboard/dashboard.service';
-import { UserRoleService } from './user_role/user_role.service';
 import { ImageService } from './image/image.service';
 import { ImageSeriesService } from './image/image_series.service';
 import { ImageTagService } from './image/image_tag.service';
@@ -44,10 +43,7 @@ import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 	declarations: [
 		ManageComponent,
 		DashboardConfComponent,
-		
-		UserRoleConfComponent,
-		UserRoleConfDetailComponent,
-		
+
 		ImageUploadComponent,
 		ImageConfComponent,
 		
@@ -84,6 +80,7 @@ import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 		MenuModule, // 菜单模块
 		MenuFuncModule, // 菜单功能模块
 		RoleModule, // 权限模块
+		UserRoleModule, // 用户权限模块
 		
 		ManageRoutingModule, // 根路由器放在最后
 	],
@@ -92,7 +89,6 @@ import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 		HeaderService,
 		LeftNavService,
 		DashboardService,
-		UserRoleService,
 		ImageService,
 		ImageSeriesService,
 		ImageTagService,

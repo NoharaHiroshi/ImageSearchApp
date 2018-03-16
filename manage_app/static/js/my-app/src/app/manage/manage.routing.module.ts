@@ -4,7 +4,6 @@ import { RouterModule, Routes }  from '@angular/router';
 import { DashboardConfComponent } from './dashboard/dashboard.component';
 import { ManageComponent } from './manage.component';
 
-import { UserRoleConfComponent, UserRoleConfDetailComponent } from './user_role/user_role.component';
 import { ImageUploadComponent } from './image/upload_image.component';
 import { ImageConfComponent } from './image/image.component';
 import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent, ImageSeriesSetComponent } from './image/image_series.component';
@@ -17,10 +16,6 @@ import { ImageRecommendTagConfComponent, ImageRecommendTagConfDetailComponent } 
 const routes: Routes = [
 	{ path: '',   redirectTo: 'dashboard_conf', pathMatch: 'full' },
 	{ path: 'dashboard_conf', component: DashboardConfComponent },
-	
-	{ path: 'user_role_conf', component: UserRoleConfComponent },
-	{ path: 'user_role_conf/detail/:id', component: UserRoleConfDetailComponent },
-	{ path: 'user_role_conf/add', component: UserRoleConfDetailComponent },
 	
 	{ path: 'image_upload', component: ImageUploadComponent },
 	{ path: 'image_conf', component: ImageConfComponent },
