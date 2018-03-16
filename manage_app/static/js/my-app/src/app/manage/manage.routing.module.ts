@@ -3,8 +3,7 @@ import { RouterModule, Routes }  from '@angular/router';
 
 import { DashboardConfComponent } from './dashboard/dashboard.component';
 import { ManageComponent } from './manage.component';
-import { MenuFuncConfComponent, MenuFuncConfDetailComponent } from './menu_func/menu_func.component';
-import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent } from './role/role.component';
+
 import { UserRoleConfComponent, UserRoleConfDetailComponent } from './user_role/user_role.component';
 import { ImageUploadComponent } from './image/upload_image.component';
 import { ImageConfComponent } from './image/image.component';
@@ -18,15 +17,6 @@ import { ImageRecommendTagConfComponent, ImageRecommendTagConfDetailComponent } 
 const routes: Routes = [
 	{ path: '',   redirectTo: 'dashboard_conf', pathMatch: 'full' },
 	{ path: 'dashboard_conf', component: DashboardConfComponent },
-	
-	{ path: 'menu_func_conf', component: MenuFuncConfComponent },
-	{ path: 'menu_func_conf/detail/:id', component: MenuFuncConfDetailComponent },
-	{ path: 'menu_func_conf/add', component: MenuFuncConfDetailComponent },
-	
-	{ path: 'role_conf', component: RoleConfComponent },
-	{ path: 'role_conf/detail/:id', component: RoleConfDetailComponent },
-	{ path: 'role_conf/add', component: RoleConfDetailComponent },
-	{ path: 'role_conf/permission/:id', component: RolePermissionConfDetailComponent },
 	
 	{ path: 'user_role_conf', component: UserRoleConfComponent },
 	{ path: 'user_role_conf/detail/:id', component: UserRoleConfDetailComponent },
