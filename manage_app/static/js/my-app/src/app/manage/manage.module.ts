@@ -12,6 +12,7 @@ import { ModalModule } from 'angular2-modal';
 import { ManageRoutingModule } from './manage.routing.module';
 
 import { FuncModule } from './func/func.module';
+import { MenuModule } from './menu/menu.module';
 
 import { SharedModule } from '../common/common.module';
 import { LeftNavService } from '../common/left_nav/left_nav.service';
@@ -20,7 +21,6 @@ import { HeaderService } from '../common/header/header.service';
 import { ManageComponent } from './manage.component';
 
 import { DashboardConfComponent } from './dashboard/dashboard.component';
-import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.component';
 import { MenuFuncConfComponent, MenuFuncConfDetailComponent } from './menu_func/menu_func.component';
 import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent } from './role/role.component';
 import { UserRoleConfComponent, UserRoleConfDetailComponent } from './user_role/user_role.component';
@@ -33,7 +33,6 @@ import { ImageSeriesCategoryConfComponent, ImageSeriesCategoryConfDetailComponen
 import { ImageRecommendTagConfComponent, ImageRecommendTagConfDetailComponent } from './image/image_recommend_tag.component';
 
 import { DashboardService } from './dashboard/dashboard.service';
-import { MenuService } from './menu/menu.service';
 import { MenuFuncService } from './menu_func/menu_func.service';
 import { RoleService } from './role/role.service';
 import { UserRoleService } from './user_role/user_role.service';
@@ -47,9 +46,6 @@ import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 	declarations: [
 		ManageComponent,
 		DashboardConfComponent,
-		
-		MenuConfComponent,
-		MenuConfDetailComponent,
 		
 		MenuFuncConfComponent,
 		MenuFuncConfDetailComponent,
@@ -94,6 +90,7 @@ import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 		SharedModule, // 共用控件
 		
 		FuncModule, // 功能模块
+		MenuModule, // 菜单模块
 		
 		ManageRoutingModule, // 根路由器放在最后
 	],
@@ -102,7 +99,6 @@ import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 		HeaderService,
 		LeftNavService,
 		DashboardService,
-		MenuService,
 		MenuFuncService,
 		RoleService,
 		UserRoleService,
