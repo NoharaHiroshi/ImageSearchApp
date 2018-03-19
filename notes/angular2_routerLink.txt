@@ -119,13 +119,25 @@ routerLink是属性，[routerLink]是属性指令
     1、 最常用的是指定selector，这样渲染父模板的时候，根据选择器，就会渲染相应的组件。
     2、 那么父组件如何渲染呢？ 一般父组件都是直接通过URL访问，因此，父组件甚至不需要指定selector。
 
-在链接参数的数组中，运行使用目录形式的链接来导航
+    ## 关于访问视图中组件的方式 ##
+    1、子组件的渲染依靠选择器，由父组件模板中嵌入子组件选择器渲染。
+    2、父组件由URL访问，可以不指定selector。
 
-    ./或无前导斜线形式是相对于当前路由的。
+关于相对路径的使用
+    1·、a标签导航：在链接参数的数组中，运行使用目录形式的链接来导航
 
-    ../会回到当前路由路径的上一级。
+        ./或无前导斜线形式是相对于当前路由的。
+        ../会回到当前路由路径的上一级。
 
-    用Router.navigate()方法导航的相对路径，必须提供当前ActivatedRoute，来让路由器知道当前在路由树中的位置。
+    2、 组件方法导航：
 
+        用Router.navigate()方法导航的相对路径，必须提供当前ActivatedRoute，以便让路由器知道当前在路由树中的位置。
+        在链接参数数组中，添加一个带有relativeTo属性的对象，并把它设置为当前的ActivatedRoute。
+        这样路由器就会基于当前激活路由的位置来计算出目标URL。
+        例如：
+        constructor(public route: ActivatedRoute);
+        this.route.navigate(['func', func.id],{relativeTo: route});
+
+    为什么a标签中的链接参数数组中不需要使用relativeTo属性呢？因为a标签使用routerLink，当前的路由信息已经包含在routerLink中了。
 
 
