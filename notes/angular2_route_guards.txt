@@ -81,4 +81,86 @@
 
 无组件路由和守护子路由的关系
 
-    CanActivateChild 会在任何子路由被激活之前运行。
+    CanActivateChild 会在任何子路由被激活之前运行。因此可以将路由守卫放置在无组件路由中，来判断访问者的权限。
+
+路由守卫的构造
+
+    import { Injectable }       from '@angular/core';
+    import {
+        CanActivate, Router,
+        ActivatedRouteSnapshot,
+        RouterStateSnapshot
+    }                           from '@angular/router';
+    import { AuthService }      from './auth.service';
+
+    @Injectable()
+    export class AuthGuard implements CanActivate {
+        constructor(private authService: AuthService, private router: Router) {}
+
+        canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+            let url: string = state.url;
+
+            return this.checkLogin(url);
+        }
+
+        checkLogin(url: string): boolean {
+            if (this.authService.isLoggedIn) { return true; }
+
+            // Store the attempted URL for redirecting
+            this.authService.redirectUrl = url;
+
+            // Navigate to the login page with extras
+            this.router.navigate(['/login']);
+            return false;
+        }
+    }
+
+    一、导入
+        1、需要导入注入器：import { Injectable } from '@angular/core';
+        2、需要导入路由器相关： import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+           分别是：路由守卫， 路由器， 激活路由快照， 路由器状态快照
+        3、需要路由守卫相关服务AuthService
+
+    二、接口实现相关
+        interface CanActivate {
+            canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean
+        }
+        接收的第一个参数是激活路由快照，第二个参数是路由器状态快照，返回布尔类型值。
+        # 注意一点：路由守卫最终返回的是能否用户继续访问路由的布尔值。
+
+    三、如何使用
+        canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+            // 获取当前正在访问的路由
+            let url: string = state.url;
+            // 根据路由判断用户是否有权访问
+            return this.checkLogin(url);
+        }
+
+        checkLogin(url: string): boolean {
+            if (this.authService.isLoggedIn) { return true; }
+
+            // 用来存储之前访问的路由，当用户登录后，将跳转到之前访问的路由
+            // 这里有疑问1：为什么要用service的属性呢？是因为Service是只有一个实例吗？Service的的属性相当于是一个全局属性
+            this.authService.redirectUrl = url;
+
+            // 这里有疑问2：跳转链接（/login）之后，路由守卫返回false，不会终止这个正在跳转到/login的动作吗？
+            this.router.navigate(['/login']);
+            return false;
+        }
+
+        先对疑问2做解答，也不能算解答，只是实验一下：
+            1、首先做出假设：分两条线，一条线是this.router.navigate(['/login'])，另一条线是return false。
+            2、运行时发现正常跳转到/login，这个跳转是正常的，没有受到阻塞的。原先的跳转被终止了。
+            3、修改如下：
+                this.router.navigate(['/login']);
+                return true;
+                没有报错，虽然路由守卫返回true，但是路由跳转到了/login，并终止了原先的跳转。
+                #说明：有新的路由跳转，旧的跳转自动被取消。
+            4、修改如下：
+                return false;
+                去掉了跳转，路由守卫返回了false，原来的跳转如预料被阻塞。
+
+
+
+
+
