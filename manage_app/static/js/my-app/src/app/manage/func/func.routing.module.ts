@@ -2,14 +2,22 @@ import { NgModule }             from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FuncConfMainComponent, FuncConfComponent, FuncConfDetailComponent } from './func.component';
 
+import { AuthGuard } from '../../common/auth/auth.service';
+
 const func_routes: Routes = [
 	{ 
 		path: 'func_conf', 
 		component: FuncConfMainComponent, 
+		canActivate: [AuthGuard],
 		children: [
 			{ path: '', component: FuncConfComponent },
-			{ path: 'detail/:id', component: FuncConfDetailComponent },
-			{ path: 'detail/add', component: FuncConfDetailComponent },
+			{ 
+				path: 'detail', 
+				children: [
+					{ path: ':id', component: FuncConfDetailComponent },
+					{ path: 'add', component: FuncConfDetailComponent },
+				] 
+			}
 		] 
 	}
 ]
