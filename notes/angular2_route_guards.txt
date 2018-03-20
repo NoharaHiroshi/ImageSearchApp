@@ -1,0 +1,84 @@
+路由守卫，主要应用在以下场景
+    1、该用户可能无权导航到目标组件。
+    2、该用户导航到此组件之前需要先认证（登陆）
+    3、在导航到目标组件之前，可能先要获取某些信息（比如筛选）
+    4、在离开组件之前，可能需要询问用户是否进行保存。
+
+总的来说，路由守卫就是在用户进入或离开路由之前，做一系列的认证。路由守卫这个名字十分贴切。
+
+具体怎么实现呢？
+
+我们在路由配置中加入路由守卫，当用户进入或跳出该路由时，路由守卫会返回一个值。
+如果为true，则继续路由操作。如果为false，则终止路由操作，或者跳转到另外的路由中。
+
+路由的守卫可以返回一个Observable<boolean>或Promise<boolean>，并且路由器会等待这个可观察对象被解析为true或false。
+
+针对不同的情况，可以选择不同的路由守卫来实现功能
+
+1、CanActivate：这个路由守卫可以用来决定是否激活路由。
+
+2、CanActivateChild： 来处理导航到某子路由的情况。
+
+3、CanDeactivate： 处理从当前路由离开的情况。
+
+4、Resolve： 在路由激活之前获取路由数据。
+
+5、CanLoad： 来处理异步导航到某特性模块的情况。
+
+关于无组件路由
+    在使用angular2配置路由时，或许会看到，有的路由对象只有path和children子路由，并没有配置component，这并不是错误，只是使用了无组件路由。
+    先看看这个路由列表：
+    const func_routes: Routes = [
+        {
+            path: 'func_conf',
+            component: FuncConfMainComponent,
+            children: [
+                { path: '', component: FuncConfComponent },
+                { path: 'detail/:id', component: FuncConfDetailComponent },
+                { path: 'detail/add', component: FuncConfDetailComponent },
+            ]
+        }
+    ]
+    但是这样有一个问题，当你想改变路由路径中detail时，比如改成content，当子路由比较多时，你需要一个一个修改。
+    这个路由列表中，detail/:id和detail/add分别为查看某一已存在的对象和新建一个对象。它们的路由路径中都包含detail。
+    这样，你自然而然就会想能不能把detail提取出来，让:id和add作为一个子路由存在。
+    const func_routes: Routes = [
+        {
+            path: 'func_conf',
+            component: FuncConfMainComponent,
+            children: [
+                { path: '', component: FuncConfComponent },
+                {
+                    path: 'detail',
+                    component: FuncConfMainDetailComponent
+                    children: [
+                        { path: ':id', component: FuncConfDetailComponent },
+                        { path: 'add', component: FuncConfDetailComponent },
+                    ]
+                }
+            ]
+        }
+    ]
+    但是，这样一来，需要为这个没什么用的'detail'写一个单独的component(FuncConfMainDetailComponent)，它不做任何处理，有些浪费。
+    Angular2支持使用无组件路由，就像这样：
+    const func_routes: Routes = [
+        {
+            path: 'func_conf',
+            component: FuncConfMainComponent,
+            children: [
+                { path: '', component: FuncConfComponent },
+                {
+                    path: 'detail',
+                    children: [
+                        { path: ':id', component: FuncConfDetailComponent },
+                        { path: 'add', component: FuncConfDetailComponent },
+                    ]
+                }
+            ]
+        }
+    ]
+    分组路由没有实际意义，只是作为分组使用，但同时它也可以用来守护子路由。
+
+无组件路由和守护子路由的关系
+
+    CanActivateChild 会在任何子路由被激活之前运行。
