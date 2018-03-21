@@ -13,25 +13,6 @@ from model.manage.user import User
 from lib.aes_encrypt import AESCipher
 
 from route import manage
-from route import index
-
-
-@index.route('/', methods=['GET'])
-def main_index():
-    try:
-        return redirect(url_for('manage.index'))
-    except Exception as e:
-        print e
-
-
-@manage.route('/', methods=['GET'])
-@login_required
-def index():
-    try:
-        return render_template('tpl/manage_page.html')
-    except Exception as e:
-        app.my_logger.error(traceback.format_exc(e))
-        abort(400)
 
 
 # 登陆相关

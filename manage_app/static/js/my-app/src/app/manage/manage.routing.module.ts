@@ -13,36 +13,41 @@ import { ImageSeriesCategoryConfComponent, ImageSeriesCategoryConfDetailComponen
 import { ImageRecommendTagConfComponent, ImageRecommendTagConfDetailComponent } from './image/image_recommend_tag.component';
 
 // 根路由器
-const routes: Routes = [
-	{ path: '',   redirectTo: 'dashboard_conf', pathMatch: 'full' },
-	{ path: 'dashboard_conf', component: DashboardConfComponent },
-	
-	{ path: 'image_upload', component: ImageUploadComponent },
-	{ path: 'image_conf', component: ImageConfComponent },
-	
-	{ path: 'image_series_conf', component: ImageSeriesConfComponent },
-	{ path: 'image_series_conf/detail/:id', component: ImageSeriesConfDetailComponent },
-	{ path: 'image_series_conf/add', component: ImageSeriesConfDetailComponent },
-	{ path: 'image_series_conf/set/:id', component: ImageSeriesSetComponent },
-	
-	{ path: 'image_series_category_conf', component: ImageSeriesCategoryConfComponent },
-	{ path: 'image_series_category_conf/detail/:id', component: ImageSeriesCategoryConfDetailComponent },
-	{ path: 'image_series_category_conf/add', component: ImageSeriesCategoryConfDetailComponent },
-	{ path: 'image_series_category_conf/set/:id', component: ImageSeriesCategoryConfSetDetailComponent },
-	
-	{ path: 'image_tag_conf', component: ImageTagConfComponent },
-	{ path: 'image_tag_conf/detail/:id', component: ImageTagConfDetailComponent },
-	{ path: 'image_tag_conf/add', component: ImageTagConfDetailComponent },
-	{ path: 'image_tag_conf/set/:id', component: ImageTagSetComponent },
-	{ path: 'image_demo_conf', component: ImageDemoConfComponent },
-	
-	{ path: 'image_recommend_tag_conf', component: ImageRecommendTagConfComponent },
-	{ path: 'image_recommend_tag_conf/detail/:id', component: ImageRecommendTagConfDetailComponent },
-	{ path: 'image_recommend_tag_conf/add', component: ImageRecommendTagConfDetailComponent },
+const manage_routes: Routes = [
+	{ 
+		path: 'manage', 
+		children: [
+			{ path: '',   redirectTo: 'dashboard_conf', pathMatch: 'full' },
+			{ path: 'dashboard_conf', component: DashboardConfComponent },
+			
+			{ path: 'image_upload', component: ImageUploadComponent },
+			{ path: 'image_conf', component: ImageConfComponent },
+			
+			{ path: 'image_series_conf', component: ImageSeriesConfComponent },
+			{ path: 'image_series_conf/detail/:id', component: ImageSeriesConfDetailComponent },
+			{ path: 'image_series_conf/add', component: ImageSeriesConfDetailComponent },
+			{ path: 'image_series_conf/set/:id', component: ImageSeriesSetComponent },
+			
+			{ path: 'image_series_category_conf', component: ImageSeriesCategoryConfComponent },
+			{ path: 'image_series_category_conf/detail/:id', component: ImageSeriesCategoryConfDetailComponent },
+			{ path: 'image_series_category_conf/add', component: ImageSeriesCategoryConfDetailComponent },
+			{ path: 'image_series_category_conf/set/:id', component: ImageSeriesCategoryConfSetDetailComponent },
+			
+			{ path: 'image_tag_conf', component: ImageTagConfComponent },
+			{ path: 'image_tag_conf/detail/:id', component: ImageTagConfDetailComponent },
+			{ path: 'image_tag_conf/add', component: ImageTagConfDetailComponent },
+			{ path: 'image_tag_conf/set/:id', component: ImageTagSetComponent },
+			{ path: 'image_demo_conf', component: ImageDemoConfComponent },
+			
+			{ path: 'image_recommend_tag_conf', component: ImageRecommendTagConfComponent },
+			{ path: 'image_recommend_tag_conf/detail/:id', component: ImageRecommendTagConfDetailComponent },
+			{ path: 'image_recommend_tag_conf/add', component: ImageRecommendTagConfDetailComponent },
+		] 
+	}
 ];
 
 @NgModule({
-	imports: [ RouterModule.forRoot(routes, { enableTracing: true, useHash: true }) ],
+	imports: [ RouterModule.forChild(manage_routes],
 	exports: [ RouterModule ]
 })
 export class ManageRoutingModule {}

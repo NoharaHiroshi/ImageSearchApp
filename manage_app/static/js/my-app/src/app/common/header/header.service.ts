@@ -16,7 +16,7 @@ export class HeaderService extends BaseService {
 	}
 	
 	getInfo(): Promise<any> {
-		const url = `/manage/header`; 
+		const url = `/header`; 
 		let self = this;
 	    return this.http.get(url)
 	               .toPromise()

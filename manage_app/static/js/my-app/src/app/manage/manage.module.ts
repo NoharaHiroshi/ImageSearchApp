@@ -85,7 +85,6 @@ import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 		ManageRoutingModule, // 根路由器放在最后
 	],
 	providers: [
-		{ provide: LocationStrategy, useClass: HashLocationStrategy },
 		HeaderService,
 		LeftNavService,
 		DashboardService,
@@ -94,9 +93,6 @@ import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 		ImageTagService,
 		ImageSeriesCategoryService,
 		ImageRecommendTagService
-	],
-	bootstrap: [
-		ManageComponent
 	]
 })
 export class ManageModule {

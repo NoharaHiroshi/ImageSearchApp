@@ -4,7 +4,7 @@ from flask import Flask, render_template, redirect, request, abort, url_for, jso
 from lib.log import create_log
 from flask.ext.login import LoginManager, login_url
 from views.manage_index.route import manage as manage_route
-from views.manage_index.route import index as index_route
+from views.index.route import index as index_route
 from views.lib.route import lib as lib_route
 from views.website_index.route import website as website_route
 from redis_store import common_redis
