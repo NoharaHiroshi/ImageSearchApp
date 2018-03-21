@@ -9,6 +9,8 @@ import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/c
 import { A2Edatetimepicker } from '../common/directive/datetimepicker/datetimepicker.module';
 
 import { ModalModule } from 'angular2-modal';
+import { SharedModule } from '../common/common.module';
+
 import { ManageRoutingModule } from './manage.routing.module';
 
 import { FuncModule } from './func/func.module';
@@ -16,12 +18,6 @@ import { MenuModule } from './menu/menu.module';
 import { MenuFuncModule } from './menu_func/menu_func.module';
 import { RoleModule } from './role/role.module';
 import { UserRoleModule } from './user_role/user_role.module';
-
-import { SharedModule } from '../common/common.module';
-import { LeftNavService } from '../common/left_nav/left_nav.service';
-import { HeaderService } from '../common/header/header.service';
-
-import { ManageComponent } from './manage.component';
 
 import { DashboardConfComponent } from './dashboard/dashboard.component';
 import { ImageUploadComponent } from './image/upload_image.component';
@@ -41,7 +37,6 @@ import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 
 @NgModule({
 	declarations: [
-		ManageComponent,
 		DashboardConfComponent,
 
 		ImageUploadComponent,
@@ -85,8 +80,6 @@ import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 		ManageRoutingModule, // 根路由器放在最后
 	],
 	providers: [
-		HeaderService,
-		LeftNavService,
 		DashboardService,
 		ImageService,
 		ImageSeriesService,

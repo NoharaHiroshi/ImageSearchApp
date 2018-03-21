@@ -8,7 +8,7 @@
 	<!--logo end-->
 	<div style="float: left; margin-top: 20px; margin-left: 50px; font-size: 15px; font-weight: 600;">
 		<ng-container *ngFor="let module of module_list">
-			<span style="margin-right: 25px;"><a [href]="module.url" style="color: #fff;">{{module.name}}</a></span>
+			<span style="margin-right: 25px;"><a href="javascript:;" (click)="changeModule(module.code)" style="color: #fff;">{{module.name}}</a></span>
 		</ng-container>
 	</div>
 	<div class="right-nav right-notify-row" *ngIf="user">

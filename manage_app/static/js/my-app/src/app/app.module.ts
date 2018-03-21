@@ -8,6 +8,7 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { A2Edatetimepicker } from './common/directive/datetimepicker/datetimepicker.module';
 
+import { AppConfig } from './config/app_config';
 import { SharedModule } from './common/common.module';
 
 import { ModalModule } from 'angular2-modal';
@@ -45,6 +46,8 @@ import { ManageModule } from './manage/manage.module';
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
 		HeaderService,
 		LeftNavService,
+		
+		AppConfig
 	],
 	bootstrap: [
 		AppComponent

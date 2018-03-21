@@ -6,4 +6,7 @@ import {ToasterConfig} from 'angular2-toaster';
 export class AppConfig {
 	name = '测试项目';
     version = '1.0.0';
+	
+	// 当前Module
+	module = 'manage';
 }
