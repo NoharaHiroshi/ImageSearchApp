@@ -30,10 +30,6 @@
 			showCount : false,
 //			cookie	: 'dcjq-accordion'
 		};
-		
-		console.log('$.fn.dcAccordion');
-		console.log(options);
-
 		//call in the default otions
 		var options = $.extend(defaults, options);
 
@@ -117,7 +113,6 @@
 
 			// Set up accordion
 			function setUpAccordion(){
-				console.log('Activate setUpAccordion');
 				$arrow = '<span class="'+defaults.classArrow+'"></span>';
 				var classParentLi = defaults.classParent+'-li';
 				$('> ul',obj).show();
