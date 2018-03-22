@@ -23,7 +23,7 @@ const banner_routes: Routes = [
 	}
 ]
 
-@ngModule({
+@NgModule({
 	imports: [ RouterModule.forChild(banner_routes) ],
 	exports: [ RouterModule ]
 })

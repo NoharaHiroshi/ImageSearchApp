@@ -11,7 +11,7 @@ import { Banner } from '../../model/banner';
 import { BannerService } from './banner.service';
 
 @Component({
-  template: '<router-outlet></router-outlet>',
+  templateUrl: './banner_main.html',
 })
 export class BannerConfMainComponent {}
 
