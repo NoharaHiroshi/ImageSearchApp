@@ -15,14 +15,14 @@ import { SharedModule } from '../common/common.module';
 import { LeftNavService } from '../common/left_nav/left_nav.service';
 import { HeaderService } from '../common/header/header.service';
 
+import { BannerModule } from './banner/banner.module';
+
 import { WebsiteMenuConfComponent, WebsiteMenuConfDetailComponent } from './menu/website_menu.component';
 import { HotSearchConfComponent, HotSearchConfDetailComponent } from './hot_search/hot_search.component';
-import { BannerConfComponent, BannerConfDetailComponent } from './banner/banner.component';
 import { ColumnConfComponent, ColumnConfDetailComponent, ColumnConfSetDetailComponent } from './column/column.component';
 
 import { WebsiteMenuService } from './menu/website_menu.service';
 import { HotSearchService } from './hot_search/hot_search.service';
-import { BannerService } from './banner/banner.service';
 import { ColumnService } from './column/column.service';
 
 import { WebsiteComponent } from './website.component';
@@ -34,8 +34,6 @@ import { WebsiteComponent } from './website.component';
 		WebsiteMenuConfDetailComponent,
 		HotSearchConfComponent,
 		HotSearchConfDetailComponent,
-		BannerConfComponent,
-		BannerConfDetailComponent,
 		ColumnConfComponent,
 		ColumnConfDetailComponent,
 		ColumnConfSetDetailComponent
@@ -61,11 +59,7 @@ import { WebsiteComponent } from './website.component';
 		LeftNavService,
 		WebsiteMenuService,
 		HotSearchService,
-		BannerService,
 		ColumnService
-	],
-	bootstrap: [
-		WebsiteComponent
 	]
 })
 export class WebsiteModule {

@@ -8,5 +8,5 @@ export class AppConfig {
     version = '1.0.0';
 	
 	// 当前Module
-	module = 'manage';
+	module: any;
 }

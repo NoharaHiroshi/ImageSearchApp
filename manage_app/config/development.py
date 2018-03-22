@@ -21,11 +21,11 @@ MODULES = [
     {
         u'name': u'系统管理',
         u'code': u'manage',
-        u'url': u'http://127.0.0.1:8888/manage'
+        u'url': u'manage'
     }, {
         u'name': u'网站管理',
         u'code': u'website',
-        u'url': u'http://127.0.0.1:8888/website'
+        u'url': u'website'
     }
 ]
 

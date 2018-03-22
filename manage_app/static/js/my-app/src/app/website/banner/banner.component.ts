@@ -10,6 +10,10 @@ import { ListBaseComponent } from '../../common/base.component';
 import { Banner } from '../../model/banner';
 import { BannerService } from './banner.service';
 
+@Component({
+  template: '<router-outlet></router-outlet>',
+})
+export class BannerConfMainComponent {}
 
 @Component({
   selector: 'banner-root',

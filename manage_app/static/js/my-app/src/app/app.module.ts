@@ -7,19 +7,19 @@ import { HttpModule, RequestOptions } from '@angular/http';
 import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { A2Edatetimepicker } from './common/directive/datetimepicker/datetimepicker.module';
+import { ModalModule } from 'angular2-modal';
 
 import { AppConfig } from './config/app_config';
 import { SharedModule } from './common/common.module';
+import { ManageModule } from './manage/manage.module';
+import { WebsiteModule } from './website/website.module';
 
-import { ModalModule } from 'angular2-modal';
+import { AppRoutingModule } from './app.routing.module';
 
 import { LeftNavService } from './common/left_nav/left_nav.service';
 import { HeaderService } from './common/header/header.service';
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app.routing.module';
-
-import { ManageModule } from './manage/manage.module';
 
 @NgModule({
 	declarations: [
@@ -39,6 +39,7 @@ import { ManageModule } from './manage/manage.module';
 		SharedModule, // 共用控件
 		
 		ManageModule, // 后台管理模块
+		WebsiteModule, // 网站管理模块
 		
 		AppRoutingModule, // 根路由器放在最后
 	],
