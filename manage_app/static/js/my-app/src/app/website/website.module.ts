@@ -51,12 +51,11 @@ import { WebsiteComponent } from './website.component';
 		ModalModule.forRoot(),
 		SharedModule, // 共用控件
 		
-		BannerModule // 轮播图模块
+		BannerModule, // 轮播图模块
 		
 		WebsiteRoutingModule, // 根路由器放在最后
 	],
 	providers: [
-		{ provide: LocationStrategy, useClass: HashLocationStrategy },
 		HeaderService,
 		LeftNavService,
 		WebsiteMenuService,

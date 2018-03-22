@@ -17,14 +17,14 @@ export class LeftNavComponent implements OnInit {
 	
 	private _module: any;
 	@Input() 
-	set module(module: any): void {
+	set module(module: any) {
 		if(!module){
 			this._module = 'manage';
 		}else{
 			this._module = module;
 		}
 	}
-	get module(): any {
+	get module() {
 		return this._module;
 	}
 	
