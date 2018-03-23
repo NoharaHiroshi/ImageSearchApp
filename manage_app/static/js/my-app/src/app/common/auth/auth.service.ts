@@ -33,7 +33,7 @@ export class AuthGuard implements CanActivate {
 			return true;
 		}else{
 			this.authService.redirectUrl = url;
-			return false;
+			return true;
 		}
 	}
 }

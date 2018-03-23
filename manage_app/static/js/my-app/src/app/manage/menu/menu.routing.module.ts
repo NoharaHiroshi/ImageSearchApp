@@ -1,12 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { MenuConfComponent, MenuConfDetailComponent } from './menu.component';
+import { MenuConfComponent, MenuConfDetailComponent, MenuConfMainComponent } from './menu.component';
 
 const menu_routes: Routes = [
-	{ path: 'menu_conf', component: MenuConfComponent },
-	{ path: 'menu_conf/detail/:id', component: MenuConfDetailComponent },
-	{ path: 'menu_conf/add', component: MenuConfDetailComponent },
+	{ 
+		path: 'manage',
+		children: [
+			{
+				path: 'menu_conf', 
+				component: MenuConfMainComponent, 
+				children: [
+					{ path: '', component: MenuConfComponent },
+					{ 
+						path: 'detail', 
+						children: [
+							{ path: ':id', component: MenuConfDetailComponent },
+							{ path: 'add', component: MenuConfDetailComponent },
+						] 
+					}
+				] 
+			}
+		]
+	}
 ]
 
 @NgModule({

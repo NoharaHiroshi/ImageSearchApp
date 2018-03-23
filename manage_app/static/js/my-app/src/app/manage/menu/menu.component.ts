@@ -10,6 +10,11 @@ import { Menu } from '../../model/menu';
 import { MenuService } from './menu.service';
 
 @Component({
+	templateUrl: './menu_main.html',
+})
+export class MenuConfMainComponent {}
+
+@Component({
   selector: 'menu-root',
   templateUrl: './menu_list.html',
 })

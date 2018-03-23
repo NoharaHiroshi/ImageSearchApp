@@ -10,6 +10,11 @@ import { MenuFunc } from '../../model/menu_func';
 import { MenuFuncService } from './menu_func.service';
 
 @Component({
+	templateUrl: './menu_func_main.html',
+})
+export class MenuFuncConfMainComponent {}
+
+@Component({
   selector: 'menu-func-root',
   templateUrl: './menu_func_list.html',
 })
