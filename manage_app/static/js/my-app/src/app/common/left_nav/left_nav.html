@@ -11,7 +11,7 @@
 					</a>
 					<ul *ngIf="menu.sub_menus" class="sub">
 						<li *ngFor="let sub_menu of menu.sub_menus">
-							<a routerLink="{{ sub_menu.url }}" routerLinkActive="menu_selected">{{ sub_menu.name }}</a>
+							<a routerLink="{{module}}/{{ sub_menu.url }}" routerLinkActive="menu_selected">{{ sub_menu.name }}</a>
 						</li>
 					</ul>
 				</li>

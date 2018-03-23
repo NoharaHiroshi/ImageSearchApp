@@ -10,6 +10,11 @@ import { UserRole } from '../../model/user_role';
 import { UserRoleService } from './user_role.service';
 
 @Component({
+	templateUrl: './user_role_main.html',
+})
+export class UserRoleConfMainComponent {}
+
+@Component({
   selector: 'user-role-root',
   templateUrl: './user_role_list.html',
 })
@@ -103,7 +108,7 @@ export class UserRoleConfDetailComponent extends ListBaseComponent{
 	}
 	
 	goBack(): void {
-		this.router.navigate(['/user_role_conf']);
+		this.router.navigate(['../..'], {relativeTo: this.route});
 	}
 	
 	save(): void {

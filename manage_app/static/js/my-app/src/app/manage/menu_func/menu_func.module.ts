@@ -6,11 +6,11 @@ import { SharedModule } from '../../common/common.module';
 
 import { MenuFuncRoutingModule } from './menu_func.routing.module';
 import { MenuFuncService } from './menu_func.service';
-import { MenuFuncConfComponent, MenuFuncConfDetailComponent } from './menu_func.component';
+import { MenuFuncConfComponent, MenuFuncConfDetailComponent, MenuFuncConfMainComponent } from './menu_func.component';
 
 @NgModule({
 	imports: [ CommonModule, FormsModule, SharedModule, MenuFuncRoutingModule ],
-	declarations: [ MenuFuncConfComponent, MenuFuncConfDetailComponent ],
+	declarations: [ MenuFuncConfComponent, MenuFuncConfDetailComponent, MenuFuncConfMainComponent ],
 	providers: [ MenuFuncService ]
 })
 export class MenuFuncModule {}

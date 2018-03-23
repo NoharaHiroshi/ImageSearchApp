@@ -6,11 +6,11 @@ import { SharedModule } from '../../common/common.module';
 
 import { RoleRoutingModule } from './role.routing.module';
 import { RoleService } from './role.service';
-import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent } from './role.component';
+import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent, RoleConfMainComponent } from './role.component';
 
 @NgModule({
 	imports: [ CommonModule, FormsModule, SharedModule, RoleRoutingModule ],
-	declarations: [ RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent ],
+	declarations: [ RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent, RoleConfMainComponent ],
 	providers: [ RoleService ]
 })
 export class RoleModule {}

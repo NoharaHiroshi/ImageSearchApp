@@ -1,13 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent } from './role.component';
+import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent, RoleConfMainComponent } from './role.component';
 
 const role_routes: Routes = [
-	{ path: 'role_conf', component: RoleConfComponent },
-	{ path: 'role_conf/detail/:id', component: RoleConfDetailComponent },
-	{ path: 'role_conf/add', component: RoleConfDetailComponent },
-	{ path: 'role_conf/permission/:id', component: RolePermissionConfDetailComponent },
+	{ 
+		path: 'manage',
+		children: [
+			{
+				path: 'role_conf', 
+				component: RoleConfMainComponent, 
+				children: [
+					{ path: '', component: RoleConfComponent },
+					{ 
+						path: 'detail', 
+						children: [
+							{ path: ':id', component: RoleConfDetailComponent },
+							{ path: 'add', component: RoleConfDetailComponent },
+						] 
+					},
+					{ path: 'permission/:id', component: RolePermissionConfDetailComponent },
+				] 
+			}
+		]
+	}
 ]
 
 @NgModule({

@@ -6,11 +6,11 @@ import { SharedModule } from '../../common/common.module';
 
 import { UserRoleRoutingModule } from './user_role.routing.module';
 import { UserRoleService } from './user_role.service';
-import { UserRoleConfComponent, UserRoleConfDetailComponent } from './user_role.component';
+import { UserRoleConfComponent, UserRoleConfDetailComponent, UserRoleConfMainComponent } from './user_role.component';
 
 @NgModule({
 	imports: [ CommonModule, FormsModule, SharedModule, UserRoleRoutingModule ],
-	declarations: [ UserRoleConfComponent, UserRoleConfDetailComponent ],
+	declarations: [ UserRoleConfComponent, UserRoleConfDetailComponent, UserRoleConfMainComponent ],
 	providers: [ UserRoleService ]
 })
 export class UserRoleModule {}

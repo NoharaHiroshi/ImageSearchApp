@@ -10,6 +10,11 @@ import { Role } from '../../model/role';
 import { RoleService } from './role.service';
 
 @Component({
+	templateUrl: './role_main.html',
+})
+export class RoleConfMainComponent {}
+
+@Component({
   selector: 'role-root',
   templateUrl: './role_list.html',
 })
@@ -84,7 +89,7 @@ export class RoleConfDetailComponent extends ListBaseComponent{
 	}
 	
 	goBack(): void {
-		this.router.navigate(['/role_conf']);
+		this.router.navigate(['../..'], {relativeTo: this.route});
 	}
 	
 	save(): void {
@@ -175,7 +180,7 @@ export class RolePermissionConfDetailComponent extends ListBaseComponent{
 	}
 	
 	goBack(): void {
-		this.router.navigate(['/role_conf']);
+		this.router.navigate(['../..'], {relativeTo: this.route});
 	}
 	
 	getSelectedNodes(selected_nodes: any[]): void {
