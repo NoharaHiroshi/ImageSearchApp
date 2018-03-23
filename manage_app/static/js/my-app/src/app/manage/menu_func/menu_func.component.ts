@@ -93,7 +93,7 @@ export class MenuFuncConfDetailComponent extends ListBaseComponent{
 	}
 	
 	goBack(): void {
-		this.router.navigate(['/menu_func_conf']);
+		this.router.navigate(['../..'], {relativeTo: this.route});
 	}
 	
 	save(): void {

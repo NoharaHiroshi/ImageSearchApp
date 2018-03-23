@@ -88,7 +88,7 @@ export class FuncConfDetailComponent extends ListBaseComponent{
 	}
 	
 	goBack(): void {
-		this.router.navigate(['/func_conf']);
+		this.router.navigate(['../..'], {relativeTo: this.route});
 	}
 	
 	save(): void {
