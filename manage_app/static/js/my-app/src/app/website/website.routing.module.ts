@@ -11,18 +11,24 @@ import { ColumnConfComponent, ColumnConfDetailComponent, ColumnConfSetDetailComp
 
 // 根路由器
 const website_routes: Routes = [
-	{ path: 'website_menu_conf', component: WebsiteMenuConfComponent },
-	{ path: 'website_menu_conf/detail/:id', component: WebsiteMenuConfDetailComponent },
-	{ path: 'website_menu_conf/detail/add', component: WebsiteMenuConfDetailComponent },
-	
-	{ path: 'hot_search_conf', component: HotSearchConfComponent },
-	{ path: 'hot_search_conf/detail/:id', component: HotSearchConfDetailComponent},
-	{ path: 'hot_search_conf/detail/add', component: HotSearchConfDetailComponent},
+	{ 
+		path: 'website', 
+		children: [
+			{ path: '', redirectTo: 'website_menu_conf', pathMatch: 'full'},
+			{ path: 'website_menu_conf', component: WebsiteMenuConfComponent },
+			{ path: 'website_menu_conf/detail/:id', component: WebsiteMenuConfDetailComponent },
+			{ path: 'website_menu_conf/detail/add', component: WebsiteMenuConfDetailComponent },
+			
+			{ path: 'hot_search_conf', component: HotSearchConfComponent },
+			{ path: 'hot_search_conf/detail/:id', component: HotSearchConfDetailComponent},
+			{ path: 'hot_search_conf/detail/add', component: HotSearchConfDetailComponent},
 
-	{ path: 'column_conf', component: ColumnConfComponent },
-	{ path: 'column_conf/detail/:id', component: ColumnConfDetailComponent},
-	{ path: 'column_conf/detail/add', component: ColumnConfDetailComponent},
-	{ path: 'column_conf/detail/set/:id', component: ColumnConfSetDetailComponent},
+			{ path: 'column_conf', component: ColumnConfComponent },
+			{ path: 'column_conf/detail/:id', component: ColumnConfDetailComponent},
+			{ path: 'column_conf/detail/add', component: ColumnConfDetailComponent},
+			{ path: 'column_conf/detail/set/:id', component: ColumnConfSetDetailComponent},
+		]
+	}
 ];
 
 @NgModule({

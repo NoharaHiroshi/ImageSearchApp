@@ -1,0 +1,100 @@
+这篇内容主要讲述Angular2的路由跳转
+
+首先先记录我的路由列表
+
+app.routing.module
+
+// 根路由器
+const routes: Routes = [
+	{ path: '',  redirectTo: 'manage', pathMatch: 'full' }
+];
+
+// 管理模块路由器
+const manage_routes: Routes = [
+	{
+		path: 'manage',
+		children: [
+			{ path: '',   redirectTo: 'dashboard_conf', pathMatch: 'full' },
+			{ path: 'dashboard_conf', component: DashboardConfComponent },
+
+			{ path: 'image_upload', component: ImageUploadComponent },
+			{ path: 'image_conf', component: ImageConfComponent },
+
+			...
+		]
+	}
+];
+
+在我在浏览器输入访问地址127.0.0.1:8888（根网址），会首先进入根路由模
+127.0.0.1:8888 => 127.0.0.1:8888/'' 可以这样理解
+因此路由重定向到（redirectTo: 'manage'），即127.0.0.1:8888/manage，进入管理路由列表。
+按照我之前的理解，127.0.0.1:8888/manage => 127.0.0.1:8888/manage/'', 应该会继续向子路由查找剩余部分路由，匹配到
+{ path: '',   redirectTo: 'dashboard_conf', pathMatch: 'full' }，
+然后再次重定向到dashboard_conf，最后期望的路由是127.0.0.1:8888/manage/dashboard_conf
+
+然而经过实验，最终只指向了127.0.0.1:8888/manage，并没有继续在子路由中查找。
+证明path: 'manage'虽然是无组件路由，但仍作为独立路由存在，即可以127.0.0.1:8888/manage独立作为一个页面存在。
+
+然后我又试了这样的做法
+
+const manage_routes: Routes = [
+	{
+		path: 'manage',
+		redirectTo: 'dashboard_conf',
+		pathMatch: 'full'
+		children: [
+			{ path: 'dashboard_conf', component: DashboardConfComponent },
+
+			{ path: 'image_upload', component: ImageUploadComponent },
+			{ path: 'image_conf', component: ImageConfComponent },
+		]
+	}
+];
+
+报错： Invalid configuration of route 'manage': redirectTo and children cannot be used together ;
+重定向和子路由配置无法同时存在。
+
+既然这样还不行，那就不单独创立父路由，将父路由和子路由合并
+
+const manage_routes: Routes = [
+	{
+		{ path: 'manage',   redirectTo: 'manage/dashboard_conf', pathMatch: 'full' },
+		{ path: 'manage/dashboard_conf', component: DashboardConfComponent },
+
+		{ path: 'manage/image_upload', component: ImageUploadComponent },
+		{ path: 'manage/image_conf', component: ImageConfComponent }
+	}
+];
+
+127.0.0.1:8888 => 127.0.0.1:8888/manage
+127.0.0.1:8888/manage => 127.0.0.1:8888/manage/dashboard_conf
+两次重定向
+
+报错Invalid configuration of route ''. One of the following must be provided: component, redirectTo, children or loadChildren
+难道多次重定向不允许吗？难道必须在根路由中指定重定向'manage/dashboard_conf'吗？那样岂不会写的太死了？每个模块应该专注处理自己模块的内容。
+
+发现写错了，没删干净，应该是：
+const manage_routes: Routes = [
+    { path: 'manage',   redirectTo: 'manage/dashboard_conf', pathMatch: 'full' },
+    { path: 'manage/dashboard_conf', component: DashboardConfComponent },
+
+    { path: 'manage/image_upload', component: ImageUploadComponent },
+    { path: 'manage/image_conf', component: ImageConfComponent }
+];
+支持多次跳转
+
+# 关于路由跳转总结
+
+    1、 127.0.0.1:8888 等同于 127.0.0.1:8888/'' 会识别path为''的路由
+    2、 重定向(redirectTo)和子路由(children)不能同时存在
+    3、 无组件路由也会被定位到
+        {
+            path: 'manage',
+            children: [
+                {
+                    path: ''
+                }
+            ]
+        和
+        { path：'manage' }
+        不等同

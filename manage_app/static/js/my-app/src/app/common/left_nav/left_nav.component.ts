@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, OnChanges, DoCheck } from '@angular/core';
+import { Location } from '@angular/common';
+import { ActivatedRoute, Params, Router, Event, NavigationEnd } from '@angular/router';
 import { LeftNavService } from './left_nav.service';
 
 import { Menu } from '../../model/menu';
@@ -15,26 +17,16 @@ export class LeftNavComponent implements OnInit {
 	menu_list: Menu[];
 	menu_title: string;
 	
-	private _module: any;
-	@Input() 
-	set module(module: any) {
-		if(!module){
-			this._module = 'manage';
-		}else{
-			this._module = module;
-		}
-	}
-	get module() {
-		return this._module;
-	}
+	module: string;
 	
-	constructor(private service: LeftNavService) {}
+	constructor(private service: LeftNavService, public route: ActivatedRoute, public router: Router, public location: Location) {}
 	
 	getLeftNav(): void {
+		this.module = this.location.path().split('/')[1];
+		console.log(this.module);
 		this.service.getMenus(this.module).then(data => {
         	this.menu_list = data.menu_list;
 			this.menu_title = data.menu_title;
-			this.activateLeftNav();
         });
 	}
 	
@@ -55,10 +47,14 @@ export class LeftNavComponent implements OnInit {
 	}
 	
 	ngOnInit(): void {
-		this.getLeftNav();
+		let self = this;
+		this.router.events
+			.subscribe((event: Event) => {
+				if (event instanceof NavigationEnd) {
+					self.getLeftNav();
+					self.activateLeftNav(); 
+				}
+			});
 	}
 	
-	ngOnChanges(): void {
-		this.getLeftNav();
-	}
 }
