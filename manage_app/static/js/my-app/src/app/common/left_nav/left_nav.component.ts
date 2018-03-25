@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router, Event, NavigationEnd } from '@angular/r
 import { LeftNavService } from './left_nav.service';
 
 import { Menu } from '../../model/menu';
+import { AppConfig } from '../../config/app_config';
 
 require('./jquery.dcjqaccordion.2.7.js');
 
@@ -19,15 +20,18 @@ export class LeftNavComponent implements OnInit {
 	
 	module: string;
 	
-	constructor(private service: LeftNavService, public route: ActivatedRoute, public router: Router, public location: Location) {}
+	constructor(private service: LeftNavService, public router: Router, public location: Location, public config: AppConfig) {}
 	
 	getLeftNav(): void {
 		this.module = this.location.path().split('/')[1];
-		console.log(this.module);
-		this.service.getMenus(this.module).then(data => {
-        	this.menu_list = data.menu_list;
-			this.menu_title = data.menu_title;
-        });
+		if(this.module != this.config.module){
+			console.log('当前模块: ' + this.module);
+			this.service.getMenus(this.module).then(data => {
+				this.menu_list = data.menu_list;
+				this.menu_title = data.menu_title;
+			});
+			this.config.module = this.module;
+		} 
 	}
 	
 	// 激活左边导航栏样式

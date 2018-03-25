@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { User } from '../../model/user';
@@ -6,6 +7,8 @@ import { Module } from '../../model/module';
 
 import { HeaderService } from './header.service';
 import { ListBaseComponent } from '../base.component';
+
+import { AppConfig } from '../../config/app_config';
 
 declare var $: any;
 
@@ -18,7 +21,7 @@ export class HeaderComponent implements OnInit {
 	user: User;
 	module_list: Module[];
 
-	constructor(private service: HeaderService, public router: Router, public route: ActivatedRoute) {}
+	constructor(private service: HeaderService, public router: Router, public config: AppConfig, public location: Location,) {}
 	
 	ngOnInit(): void {
 		this.service.getInfo().then(data => {
