@@ -83,6 +83,35 @@ const manage_routes: Routes = [
 ];
 支持多次跳转
 
+!!!又有新的情况，website模块
+const website_routes: Routes = [
+	{
+		path: 'website',
+		children: [
+			{ path: '', redirectTo: 'website_menu_conf', pathMatch: 'full'},
+			{ path: 'website_menu_conf', component: WebsiteMenuConfComponent },
+			{ path: 'website_menu_conf/detail/:id', component: WebsiteMenuConfDetailComponent },
+			{ path: 'website_menu_conf/detail/add', component: WebsiteMenuConfDetailComponent },
+
+			{ path: 'hot_search_conf', component: HotSearchConfComponent },
+			{ path: 'hot_search_conf/detail/:id', component: HotSearchConfDetailComponent},
+			{ path: 'hot_search_conf/detail/add', component: HotSearchConfDetailComponent},
+
+			{ path: 'column_conf', component: ColumnConfComponent },
+			{ path: 'column_conf/detail/:id', component: ColumnConfDetailComponent},
+			{ path: 'column_conf/detail/add', component: ColumnConfDetailComponent},
+			{ path: 'column_conf/detail/set/:id', component: ColumnConfSetDetailComponent},
+		]
+	}
+];
+可以实现访问127.0.0.1:8888/website跳转到127.0.0.1:8888/website/website_menu_conf
+说明无组件路由也可以充当重定向路由， 那问题究竟出现在哪里？
+
+终于发现问题，前面的特性模块func_conf等一系列都使用的是无组件路由manage作为前缀，导入之后出现同名父路由，因此之前的跳转被覆盖掉了。
+
+！！！！不要使用父组件嵌套的模式了，老老实实的写路由！！！！不然很容易出错。
+！！！！尽量不要写没有意义的路由！！！！！如果有只是用来分割模块的路由，尽量写在一起！！！！
+
 # 关于路由跳转总结
 
     1、 127.0.0.1:8888 等同于 127.0.0.1:8888/'' 会识别path为''的路由

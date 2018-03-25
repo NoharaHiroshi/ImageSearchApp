@@ -3,7 +3,7 @@ import { RouterModule, Routes }  from '@angular/router';
 
 // 根路由器
 const routes: Routes = [
-	{ path: '',  redirectTo: 'manage', pathMatch: 'full' }
+	{ path: '',  redirectTo: 'website', pathMatch: 'full' }
 ];
 
 @NgModule({

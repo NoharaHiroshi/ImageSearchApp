@@ -5,24 +5,14 @@ import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailCom
 
 const role_routes: Routes = [
 	{ 
-		path: 'manage',
+		path: 'manage/role_conf', 
+		component: RoleConfMainComponent, 
 		children: [
-			{
-				path: 'role_conf', 
-				component: RoleConfMainComponent, 
-				children: [
-					{ path: '', component: RoleConfComponent },
-					{ 
-						path: 'detail', 
-						children: [
-							{ path: ':id', component: RoleConfDetailComponent },
-							{ path: 'add', component: RoleConfDetailComponent },
-						] 
-					},
-					{ path: 'permission/:id', component: RolePermissionConfDetailComponent },
-				] 
-			}
-		]
+			{ path: '', component: RoleConfComponent },
+			{ path: 'detail/:id', component: RoleConfDetailComponent },
+			{ path: 'detail/add', component: RoleConfDetailComponent },
+			{ path: 'permission/:id', component: RolePermissionConfDetailComponent }
+		] 
 	}
 ]
 

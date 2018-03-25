@@ -5,23 +5,13 @@ import { MenuConfComponent, MenuConfDetailComponent, MenuConfMainComponent } fro
 
 const menu_routes: Routes = [
 	{ 
-		path: 'manage',
+		path: 'manage/menu_conf', 
+		component: MenuConfMainComponent, 
 		children: [
-			{
-				path: 'menu_conf', 
-				component: MenuConfMainComponent, 
-				children: [
-					{ path: '', component: MenuConfComponent },
-					{ 
-						path: 'detail', 
-						children: [
-							{ path: ':id', component: MenuConfDetailComponent },
-							{ path: 'add', component: MenuConfDetailComponent },
-						] 
-					}
-				] 
-			}
-		]
+			{ path: '', component: MenuConfComponent },
+			{ path: 'detail/:id', component: MenuConfDetailComponent },
+			{ path: 'detail/add', component: MenuConfDetailComponent }
+		] 
 	}
 ]
 

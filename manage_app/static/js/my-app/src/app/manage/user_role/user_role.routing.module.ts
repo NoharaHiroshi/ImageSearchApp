@@ -5,23 +5,13 @@ import { UserRoleConfComponent, UserRoleConfDetailComponent, UserRoleConfMainCom
 
 const user_role_routes: Routes = [
 	{ 
-		path: 'manage',
+		path: 'manage/user_role_conf', 
+		component: UserRoleConfMainComponent, 
 		children: [
-			{
-				path: 'user_role_conf', 
-				component: UserRoleConfMainComponent, 
-				children: [
-					{ path: '', component: UserRoleConfComponent },
-					{ 
-						path: 'detail', 
-						children: [
-							{ path: ':id', component: UserRoleConfDetailComponent },
-							{ path: 'add', component: UserRoleConfDetailComponent },
-						] 
-					}
-				] 
-			}
-		]
+			{ path: '', component: UserRoleConfComponent },
+			{ path: 'detail/:id', component: UserRoleConfDetailComponent },
+			{ path: 'detail/add', component: UserRoleConfDetailComponent }
+		] 
 	}
 ]
 

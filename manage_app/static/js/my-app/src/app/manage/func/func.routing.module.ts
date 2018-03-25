@@ -6,24 +6,13 @@ import { AuthGuard } from '../../common/auth/auth.service';
 
 const func_routes: Routes = [
 	{ 
-		path: 'manage',
+		path: 'manage/func_conf', 
+		component: FuncConfMainComponent, 
 		children: [
-			{
-				path: 'func_conf', 
-				component: FuncConfMainComponent, 
-				canActivate: [AuthGuard],
-				children: [
-					{ path: '', component: FuncConfComponent },
-					{ 
-						path: 'detail', 
-						children: [
-							{ path: ':id', component: FuncConfDetailComponent },
-							{ path: 'add', component: FuncConfDetailComponent },
-						] 
-					}
-				] 
-			}
-		]
+			{ path: '', component: FuncConfComponent },
+			{ path: 'detail/:id', component: FuncConfDetailComponent },
+			{ path: 'detail/add', component: FuncConfDetailComponent }
+		] 
 	}
 ]
 

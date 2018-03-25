@@ -5,23 +5,13 @@ import { MenuFuncConfComponent, MenuFuncConfDetailComponent, MenuFuncConfMainCom
 
 const menu_func_routes: Routes = [
 	{ 
-		path: 'manage',
+		path: 'manage/menu_func_conf', 
+		component: MenuFuncConfMainComponent, 
 		children: [
-			{
-				path: 'menu_func_conf', 
-				component: MenuFuncConfMainComponent, 
-				children: [
-					{ path: '', component: MenuFuncConfComponent },
-					{ 
-						path: 'detail', 
-						children: [
-							{ path: ':id', component: MenuFuncConfDetailComponent },
-							{ path: 'add', component: MenuFuncConfDetailComponent },
-						] 
-					}
-				] 
-			}
-		]
+			{ path: '', component: MenuFuncConfComponent },
+			{ path: 'detail/:id', component: MenuFuncConfDetailComponent },
+			{ path: 'detail/add', component: MenuFuncConfDetailComponent },
+		] 
 	}
 ]
 
