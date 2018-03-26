@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FileUploadModule } from 'ng2-file-upload';
 import { HttpModule, RequestOptions } from '@angular/http';
@@ -54,4 +54,8 @@ import { AppComponent } from './app.component';
 		AppComponent
 	]
 })
-export class AppModule {}
+export class AppModule {
+	constructor(router: Router) {
+		console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
+	}
+}
