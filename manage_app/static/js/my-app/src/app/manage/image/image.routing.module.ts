@@ -52,6 +52,7 @@ const image_routes: Routes = [
 			{ path: 'detail/:id', component: ImageRecommendTagConfDetailComponent },
 			{ path: 'detail/add', component: ImageRecommendTagConfDetailComponent },
 		]
+	}
 ];
 
 @NgModule({

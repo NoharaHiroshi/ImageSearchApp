@@ -24,7 +24,6 @@ export class LeftNavComponent implements OnInit {
 	
 	getLeftNav(): void {
 		this.module = this.location.path().split('/')[1];
-		console.log('从路由中获得的module: ' + this.module);
 		if(this.module != this.config.module){
 			console.log('当前模块: ' + this.module);
 			this.service.getMenus(this.module).then(data => {
@@ -32,11 +31,13 @@ export class LeftNavComponent implements OnInit {
 				this.menu_title = data.menu_title;
 			});
 			this.config.module = this.module;
+			this.activateLeftNav(); 
 		} 
 	}
 	
 	// 激活左边导航栏样式
 	activateLeftNav(): void {
+		console.log('activateLeftNav');
 		setTimeout(function(){
 			$('.nav-accordion').dcAccordion({
 				eventType: 'click',
@@ -48,7 +49,7 @@ export class LeftNavComponent implements OnInit {
 				autoExpand: true,
 				classExpand: 'dcjq-current-parent'
 			});
-		}, 500);
+		}, 100);
 	}
 	
 	ngOnInit(): void {
@@ -57,7 +58,6 @@ export class LeftNavComponent implements OnInit {
 			.subscribe((event: Event) => {
 				if (event instanceof NavigationEnd) {
 					self.getLeftNav();
-					self.activateLeftNav(); 
 				}
 			});
 	}

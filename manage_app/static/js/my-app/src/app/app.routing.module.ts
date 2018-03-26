@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
+import { AuthGuard } from './common/auth/auth.service';
 
 // 根路由器
 const routes: Routes = [
-	{ path: '',  redirectTo: 'manage', pathMatch: 'full' }
+	{ path: '',  redirectTo: 'manage', pathMatch: 'full'}
 ];
 
 @NgModule({

@@ -18,6 +18,7 @@ import { AppRoutingModule } from './app.routing.module';
 
 import { LeftNavService } from './common/left_nav/left_nav.service';
 import { HeaderService } from './common/header/header.service';
+import { AuthGuard } from './common/auth/auth.service';
 
 import { AppComponent } from './app.component';
 
@@ -47,7 +48,7 @@ import { AppComponent } from './app.component';
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
 		HeaderService,
 		LeftNavService,
-		
+		AuthGuard,
 		AppConfig
 	],
 	bootstrap: [

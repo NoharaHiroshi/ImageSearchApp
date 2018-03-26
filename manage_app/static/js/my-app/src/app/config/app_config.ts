@@ -9,4 +9,9 @@ export class AppConfig {
 	
 	// 当前Module
 	module: any;
+	
+	// 当前用户信息
+	user: any;
+	// 存储临时跳转路由
+	tmp_url: string;
 }

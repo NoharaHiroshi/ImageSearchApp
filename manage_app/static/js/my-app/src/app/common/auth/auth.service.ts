@@ -1,26 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot }   from '@angular/router';
+import { CanActivate, CanActivateChild, Router, ActivatedRouteSnapshot, RouterStateSnapshot }   from '@angular/router';
+import { AppConfig } from '../../config/app_config';
+
 
 @Injectable()
-export class AuthService {
-	isLogined = false;
-	
-	redirectUrl: string;
-	
-	login(): boolean {
-		return Observable.of(true).delay(1000).do(val => this.isLogined = true);
-	}
-	
-	logout(): void {
-		this.isLogined = false;
-	}
-}
-
-@Injectable()
-export class AuthGuard implements CanActivate {
-	constructor(private authService: AuthService, private router: Router) {}
+export class AuthGuard implements CanActivate, CanActivateChild {
+	constructor(private router: Router, private config: AppConfig) {}
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 		// 当前访问路由地址 例如：/func_conf
@@ -28,12 +15,18 @@ export class AuthGuard implements CanActivate {
 		return this.checkLogin(url);
 	}
 	
+	canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+		return this.canActivate(route, state);
+	}
+	
 	checkLogin(url: string): boolean {
-		if(this.authService.isLogined) {
+		console.log('this.config.user: ' + this.config.user);
+		if(this.config.user) {
 			return true;
 		}else{
-			this.authService.redirectUrl = url;
-			return true;
+			this.config.tmp_url = url;
+			this.router.navigate('login');
+			return false;
 		}
 	}
 }
