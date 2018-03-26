@@ -18,45 +18,14 @@ import { MenuModule } from './menu/menu.module';
 import { MenuFuncModule } from './menu_func/menu_func.module';
 import { RoleModule } from './role/role.module';
 import { UserRoleModule } from './user_role/user_role.module';
+import { ImageModule } from './image/image.module';
 
 import { DashboardConfComponent } from './dashboard/dashboard.component';
-import { ImageUploadComponent } from './image/upload_image.component';
-import { ImageConfComponent } from './image/image.component';
-import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent, ImageSeriesSetComponent } from './image/image_series.component';
-import { ImageTagConfComponent, ImageTagConfDetailComponent, ImageTagSetComponent } from './image/image_tag.component';
-import { ImageDemoConfComponent } from './image/image_demo.component';
-import { ImageSeriesCategoryConfComponent, ImageSeriesCategoryConfDetailComponent, ImageSeriesCategoryConfSetDetailComponent} from './image/image_series_category.component';
-import { ImageRecommendTagConfComponent, ImageRecommendTagConfDetailComponent } from './image/image_recommend_tag.component';
-
 import { DashboardService } from './dashboard/dashboard.service';
-import { ImageService } from './image/image.service';
-import { ImageSeriesService } from './image/image_series.service';
-import { ImageTagService } from './image/image_tag.service';
-import { ImageSeriesCategoryService } from './image/image_series_category.service';
-import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 
 @NgModule({
 	declarations: [
 		DashboardConfComponent,
-
-		ImageUploadComponent,
-		ImageConfComponent,
-		
-		ImageSeriesConfComponent,
-		ImageSeriesConfDetailComponent,
-		ImageSeriesSetComponent,
-		
-		ImageTagConfComponent,
-		ImageTagConfDetailComponent,
-		ImageTagSetComponent,
-		ImageDemoConfComponent,
-		
-		ImageSeriesCategoryConfComponent,
-		ImageSeriesCategoryConfDetailComponent,
-		ImageSeriesCategoryConfSetDetailComponent,
-		
-		ImageRecommendTagConfComponent,
-		ImageRecommendTagConfDetailComponent
 	],
 	imports: [
 		CommonModule,
@@ -76,16 +45,12 @@ import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 		MenuFuncModule, // 菜单功能模块
 		RoleModule, // 权限模块
 		UserRoleModule, // 用户权限模块
+		ImageModule, // 图片模块
 		
 		ManageRoutingModule, // 根路由器放在最后
 	],
 	providers: [
 		DashboardService,
-		ImageService,
-		ImageSeriesService,
-		ImageTagService,
-		ImageSeriesCategoryService,
-		ImageRecommendTagService
 	]
 })
 export class ManageModule {

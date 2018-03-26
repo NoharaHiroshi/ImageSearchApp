@@ -24,6 +24,7 @@ export class LeftNavComponent implements OnInit {
 	
 	getLeftNav(): void {
 		this.module = this.location.path().split('/')[1];
+		console.log('从路由中获得的module: ' + this.module);
 		if(this.module != this.config.module){
 			console.log('当前模块: ' + this.module);
 			this.service.getMenus(this.module).then(data => {
@@ -47,7 +48,7 @@ export class LeftNavComponent implements OnInit {
 				autoExpand: true,
 				classExpand: 'dcjq-current-parent'
 			});
-		}, 100);
+		}, 500);
 	}
 	
 	ngOnInit(): void {
