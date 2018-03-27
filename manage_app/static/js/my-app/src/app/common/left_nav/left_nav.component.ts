@@ -49,7 +49,7 @@ export class LeftNavComponent implements OnInit {
 				autoExpand: true,
 				classExpand: 'dcjq-current-parent'
 			});
-		}, 100);
+		}, 300);
 	}
 	
 	ngOnInit(): void {

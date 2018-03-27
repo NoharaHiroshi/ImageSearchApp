@@ -11,14 +11,11 @@ import { ModalModule } from 'angular2-modal';
 
 import { AppConfig } from './config/app_config';
 import { SharedModule } from './common/common.module';
+
 import { ManageModule } from './manage/manage.module';
 import { WebsiteModule } from './website/website.module';
 
 import { AppRoutingModule } from './app.routing.module';
-
-import { LeftNavService } from './common/left_nav/left_nav.service';
-import { HeaderService } from './common/header/header.service';
-import { AuthGuard } from './common/auth/auth.service';
 
 import { AppComponent } from './app.component';
 
@@ -40,16 +37,13 @@ import { AppComponent } from './app.component';
 		SharedModule, // 共用控件
 		
 		ManageModule, // 后台管理模块
-		WebsiteModule, // 网站管理模块
+		//WebsiteModule, // 网站管理模块
 		
 		AppRoutingModule, // 根路由器放在最后
 	],
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
-		HeaderService,
-		LeftNavService,
-		AuthGuard,
-		AppConfig
+		AppConfig,
 	],
 	bootstrap: [
 		AppComponent

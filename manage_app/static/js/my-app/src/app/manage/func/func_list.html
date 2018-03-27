@@ -2,6 +2,9 @@
 	<loading></loading>
 </div>
 <div *ngIf="!isLoading">
+	<h3>
+		<i class="fa fa-angle-right"></i> 功能列表 <span class="sub-title">Func List</span> 
+	</h3>
 	<div class="showback">
 		<button type="button" class="btn btn-theme" [routerLink]="['detail/add']"><i class="fa fa-plus"></i> <span class="button-name">添加 </span></button>
 		<button type="button" class="btn btn-theme02" (click)="refresh()"><i class="fa fa-refresh"></i> <span class="button-name">刷新 </span></button>

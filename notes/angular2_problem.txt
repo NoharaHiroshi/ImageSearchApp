@@ -1,0 +1,51 @@
+遇到的问题
+
+1、 路由守卫中提示报错：Error: No provider for AuthGuard!
+    前提：特性模块中的路由模块已经导入了AuthGuard，特性模块本身也导入了AuthGuard
+
+    # 特性路由模块
+    import { NgModule }             from '@angular/core';
+    import { Routes, RouterModule } from '@angular/router';
+    import { FuncConfMainComponent, FuncConfComponent, FuncConfDetailComponent } from './func.component';
+    import { AuthGuard } from '../../common/auth/auth.service';
+
+    const func_routes: Routes = [
+        {
+            path: 'manage/func_conf',
+            component: FuncConfMainComponent,
+            canActivateChild: ['AuthGuard'],
+            children: [
+                { path: '', component: FuncConfComponent },
+                { path: 'detail/:id', component: FuncConfDetailComponent },
+                { path: 'detail/add', component: FuncConfDetailComponent }
+            ]
+        }
+    ]
+
+    @NgModule({
+        imports: [ RouterModule.forChild(func_routes) ],
+        exports: [ RouterModule ]
+    })
+    export class FuncRoutingModule {}
+
+    # 特性模块
+
+    import { NgModule } from '@angular/core';
+    import { CommonModule }   from '@angular/common';
+    import { FormsModule } from '@angular/forms';
+
+    import { SharedModule } from '../../common/common.module';
+
+    import { FuncRoutingModule } from './func.routing.module';
+    import { FuncConfComponent, FuncConfDetailComponent, FuncConfMainComponent } from './func.component';
+    import { FuncService } from './func.service';
+    import { AuthGuard } from '../../common/auth/auth.service';
+
+    @NgModule({
+        imports: [ CommonModule, FormsModule, SharedModule, FuncRoutingModule ],
+        declarations: [ FuncConfComponent, FuncConfDetailComponent, FuncConfMainComponent ],
+        providers: [ FuncService, AuthGuard ]
+    })
+    export class FuncModule {}
+
+    解决办法： canActivateChild: ['AuthGuard'] => canActivateChild: [AuthGuard]

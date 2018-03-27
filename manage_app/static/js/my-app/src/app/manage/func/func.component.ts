@@ -10,11 +10,6 @@ import { Func } from '../../model/func';
 import { FuncService } from './func.service';
 
 @Component({
-	templateUrl: './func_main.html',
-})
-export class FuncConfMainComponent {}
-
-@Component({
   selector: 'func-root',
   templateUrl: './func_list.html',
 })

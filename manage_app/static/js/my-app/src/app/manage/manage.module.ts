@@ -12,20 +12,25 @@ import { ModalModule } from 'angular2-modal';
 import { SharedModule } from '../common/common.module';
 
 import { ManageRoutingModule } from './manage.routing.module';
+import { ManageComponent } from './manage.component';
 
-import { FuncModule } from './func/func.module';
-import { MenuModule } from './menu/menu.module';
-import { MenuFuncModule } from './menu_func/menu_func.module';
-import { RoleModule } from './role/role.module';
-import { UserRoleModule } from './user_role/user_role.module';
-import { ImageModule } from './image/image.module';
+import { LeftNavService } from '../common/left_nav/left_nav.service';
+import { HeaderService } from '../common/header/header.service';
 
 import { DashboardConfComponent } from './dashboard/dashboard.component';
+import { FuncConfComponent, FuncConfDetailComponent } from './func/func.component';
+
 import { DashboardService } from './dashboard/dashboard.service';
+import { FuncService } from './func/func.service';
 
 @NgModule({
 	declarations: [
+		ManageComponent,
+		
 		DashboardConfComponent,
+		
+		FuncConfComponent,
+		FuncConfDetailComponent
 	],
 	imports: [
 		CommonModule,
@@ -40,17 +45,13 @@ import { DashboardService } from './dashboard/dashboard.service';
 		ModalModule.forRoot(),
 		SharedModule, // 共用控件
 		
-		FuncModule, // 功能模块
-		MenuModule, // 菜单模块
-		MenuFuncModule, // 菜单功能模块
-		RoleModule, // 权限模块
-		UserRoleModule, // 用户权限模块
-		ImageModule, // 图片模块
-		
 		ManageRoutingModule, // 根路由器放在最后
 	],
 	providers: [
 		DashboardService,
+		HeaderService,
+		LeftNavService,
+		FuncService
 	]
 })
 export class ManageModule {
