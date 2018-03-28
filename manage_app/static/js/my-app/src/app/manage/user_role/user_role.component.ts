@@ -10,11 +10,6 @@ import { UserRole } from '../../model/user_role';
 import { UserRoleService } from './user_role.service';
 
 @Component({
-	templateUrl: './user_role_main.html',
-})
-export class UserRoleConfMainComponent {}
-
-@Component({
   selector: 'user-role-root',
   templateUrl: './user_role_list.html',
 })

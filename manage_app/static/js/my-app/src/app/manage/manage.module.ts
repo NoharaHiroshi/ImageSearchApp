@@ -19,9 +19,29 @@ import { HeaderService } from '../common/header/header.service';
 
 import { DashboardConfComponent } from './dashboard/dashboard.component';
 import { FuncConfComponent, FuncConfDetailComponent } from './func/func.component';
+import { MenuConfComponent, MenuConfDetailComponent } from './menu/menu.component';
+import { MenuFuncConfComponent, MenuFuncConfDetailComponent } from './menu_func/menu_func.component';
+import { RoleConfComponent, RoleConfDetailComponent, RolePermissionConfDetailComponent } from './role/role.component';
+import { UserRoleConfComponent, UserRoleConfDetailComponent } from './user_role/user_role.component';
+
+import { ImageUploadComponent } from './image/upload_image.component';
+import { ImageConfComponent } from './image/image.component';
+import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent, ImageSeriesSetComponent } from './image/image_series.component';
+import { ImageTagConfComponent, ImageTagConfDetailComponent, ImageTagSetComponent } from './image/image_tag.component';
+import { ImageDemoConfComponent } from './image/image_demo.component';
 
 import { DashboardService } from './dashboard/dashboard.service';
 import { FuncService } from './func/func.service';
+import { MenuService } from './menu/menu.service';
+import { MenuFuncService } from './menu_func/menu_func.service';
+import { RoleService } from './role/role.service';
+import { UserRoleService } from './user_role/user_role.service';
+
+import { ImageService } from './image/image.service';
+import { ImageRecommendTagService } from './image/image_recommend_tag.service';
+import { ImageSeriesService } from './image/image_series.service';
+import { ImageSeriesCategoryService } from './image/image_series_category.service';
+import { ImageTagService } from './image/image_tag.service';
 
 @NgModule({
 	declarations: [
@@ -30,7 +50,30 @@ import { FuncService } from './func/func.service';
 		DashboardConfComponent,
 		
 		FuncConfComponent,
-		FuncConfDetailComponent
+		FuncConfDetailComponent,
+		
+		MenuConfComponent,
+		MenuConfDetailComponent,
+		
+		MenuFuncConfComponent,
+		MenuFuncConfDetailComponent,
+		
+		RoleConfComponent,
+		RoleConfDetailComponent,
+		RolePermissionConfDetailComponent,
+		
+		UserRoleConfComponent,
+		UserRoleConfDetailComponent,
+		
+		ImageUploadComponent,
+		ImageConfComponent,
+		ImageSeriesConfComponent, 
+		ImageSeriesConfDetailComponent, 
+		ImageSeriesSetComponent,
+		ImageTagConfComponent, 
+		ImageTagConfDetailComponent, 
+		ImageTagSetComponent,
+		ImageDemoConfComponent
 	],
 	imports: [
 		CommonModule,
@@ -51,7 +94,16 @@ import { FuncService } from './func/func.service';
 		DashboardService,
 		HeaderService,
 		LeftNavService,
-		FuncService
+		FuncService,
+		MenuService,
+		MenuFuncService,
+		RoleService,
+		UserRoleService,
+		ImageService,
+		ImageRecommendTagService,
+		ImageSeriesService,
+		ImageSeriesCategoryService,
+		ImageTagService 
 	]
 })
 export class ManageModule {
