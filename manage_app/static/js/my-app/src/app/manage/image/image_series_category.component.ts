@@ -87,7 +87,7 @@ export class ImageSeriesCategoryConfDetailComponent extends ListBaseComponent{
 	}
 	
 	goBack(): void {
-		this.router.navigate(['/image_series_category_conf']);
+		this.router.navigate(['../..'], {relativeTo: this.route});
 	}
 	
 	save(): void {
@@ -179,7 +179,7 @@ export class ImageSeriesCategoryConfSetDetailComponent extends ListBaseComponent
 	}
 	
 	goBack(): void {
-		this.router.navigate(['/image_series_category_conf']);
+		this.router.navigate(['../..'], {relativeTo: this.route});
 	}
 	
 	loadAfter(): void  {

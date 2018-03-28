@@ -27,8 +27,10 @@ import { UserRoleConfComponent, UserRoleConfDetailComponent } from './user_role/
 import { ImageUploadComponent } from './image/upload_image.component';
 import { ImageConfComponent } from './image/image.component';
 import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent, ImageSeriesSetComponent } from './image/image_series.component';
+import { ImageSeriesCategoryConfComponent, ImageSeriesCategoryConfDetailComponent, ImageSeriesCategoryConfSetDetailComponent } from './image/image_series_category.component';
 import { ImageTagConfComponent, ImageTagConfDetailComponent, ImageTagSetComponent } from './image/image_tag.component';
 import { ImageDemoConfComponent } from './image/image_demo.component';
+import { ImageRecommendTagConfComponent, ImageRecommendTagConfDetailComponent } from './image/image_recommend_tag.component';
 
 import { DashboardService } from './dashboard/dashboard.service';
 import { FuncService } from './func/func.service';
@@ -38,10 +40,10 @@ import { RoleService } from './role/role.service';
 import { UserRoleService } from './user_role/user_role.service';
 
 import { ImageService } from './image/image.service';
-import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 import { ImageSeriesService } from './image/image_series.service';
 import { ImageSeriesCategoryService } from './image/image_series_category.service';
 import { ImageTagService } from './image/image_tag.service';
+import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 
 @NgModule({
 	declarations: [
@@ -67,13 +69,23 @@ import { ImageTagService } from './image/image_tag.service';
 		
 		ImageUploadComponent,
 		ImageConfComponent,
+		
 		ImageSeriesConfComponent, 
 		ImageSeriesConfDetailComponent, 
 		ImageSeriesSetComponent,
+		
 		ImageTagConfComponent, 
 		ImageTagConfDetailComponent, 
 		ImageTagSetComponent,
-		ImageDemoConfComponent
+		
+		ImageDemoConfComponent,
+		
+		ImageRecommendTagConfComponent,
+		ImageRecommendTagConfDetailComponent,
+		
+		ImageSeriesCategoryConfComponent, 
+		ImageSeriesCategoryConfDetailComponent,
+		ImageSeriesCategoryConfSetDetailComponent
 	],
 	imports: [
 		CommonModule,
@@ -99,11 +111,13 @@ import { ImageTagService } from './image/image_tag.service';
 		MenuFuncService,
 		RoleService,
 		UserRoleService,
+		
 		ImageService,
 		ImageRecommendTagService,
 		ImageSeriesService,
 		ImageSeriesCategoryService,
-		ImageTagService 
+		ImageTagService,
+		
 	]
 })
 export class ManageModule {

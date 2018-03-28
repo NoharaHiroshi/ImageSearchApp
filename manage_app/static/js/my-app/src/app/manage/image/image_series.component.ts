@@ -88,7 +88,7 @@ export class ImageSeriesConfDetailComponent extends ListBaseComponent{
 	}
 	
 	goBack(): void {
-		this.router.navigate(['/image_series_conf']);
+		this.router.navigate(['../..'], {relativeTo: this.route});
 	}
 	
 	save(): void {
@@ -129,7 +129,7 @@ export class ImageSeriesSetComponent extends ListBaseComponent{
 	}
 	
 	goBack(): void {
-		this.router.navigate(['/image_series_conf']);
+		this.router.navigate(['../..'], {relativeTo: this.route});
 	}
 	
 	getDelIds(del_ids: any): void{
