@@ -1,38 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Dashboard">
-	<title>登陆</title>
-	<base href="/manage/">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" type="text/css" /> 
-	<link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" />
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/style-responsive.css') }}" type="text/css" />
-	<link rel="stylesheet" href="{{ url_for('static', filename='lineicons/style.css') }}">    
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/table-responsive.css') }}" type="text/css" />
-</head>
-<body>
-	<section class="container">
+<section class="container">
 	<div id="login-page">
 		<div class="container">
-
-		  <form class="form-login" action="{{ url_for('manage.login') }}" method="post">
+		  <div class="form-login">
 			<h2 class="form-login-heading">登陆</h2>
 			<div class="login-wrap">
 				<input id="token" name="token" type="hidden" value="{{ token }}">
-				<input type="text" class="form-control" name="account" id="account" value="" placeholder="邮箱/手机号" autofocus>
+				<input type="text" class="form-control" name="username" id="username" [(ngModel)]="username" placeholder="邮箱/手机号" autofocus>
 				<br>
-				<input type="password" class="form-control" name="password" id="password" value="" placeholder="密码">
+				<input type="password" class="form-control" name="password" id="password" [(ngModel)]="password" placeholder="密码">
 				<label class="checkbox">
 					<span class="pull-right">
 						<p class="fail-info" id="login_info"></p>
 					</span>
 				</label>
-				<button class="btn btn-theme btn-block" id="login" type="submit"><i class="fa fa-lock"></i> 登陆</button>
+				<button class="btn btn-theme btn-block" id="login" type="submit" (click)="login()"><i class="fa fa-lock"></i> 登陆</button>
 				<hr>
 				
 				<div class="login-social-link centered">
@@ -46,35 +27,8 @@
 						立即注册
 					</a>
 				</div>
-
 			</div>
-		  </form>	  	
-
+		  </div>	  	
 		</div>
 	</div>
-	
-	</section>
-	<script src="{{ url_for('static', filename='js/lib/jquery.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/lib/jquery-1.8.3.min.js') }}"></script>
-	<script src="{{ url_for('static', filename='js/lib/bootstrap.min.js') }}"></script>
-	<script>
-		$(document).ready(function(){
-			$("#login").click(function(e){
-				e.preventDefault();
-				var data = {
-					'token': $("#token").val(),
-					'account':$("#account").val(),
-					'password':$("#password").val(),
-				}
-				$.post('{{ url_for('manage.login') }}', data, function (res) {
-					if (res.response == 'ok') {
-						window.location.href = res.url;
-					}else{
-						$('#login_info').html(res.info);
-					}
-				});
-			});
-		})
-	</script>
-</body>
-</html>
+</section>

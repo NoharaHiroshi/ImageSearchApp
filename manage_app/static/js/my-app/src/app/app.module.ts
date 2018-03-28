@@ -18,10 +18,13 @@ import { WebsiteModule } from './website/website.module';
 import { AppRoutingModule } from './app.routing.module';
 
 import { AppComponent } from './app.component';
+import { LoginComponent } from './common/login/login.component';
+import { LoginService } from './common/login/login.service';
 
 @NgModule({
 	declarations: [
 		AppComponent,
+		LoginComponent
 	],
 	imports: [
 		CommonModule,
@@ -44,6 +47,7 @@ import { AppComponent } from './app.component';
 	providers: [
 		{ provide: LocationStrategy, useClass: HashLocationStrategy },
 		AppConfig,
+		LoginService
 	],
 	bootstrap: [
 		AppComponent

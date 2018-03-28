@@ -16,6 +16,7 @@ import { ManageComponent } from './manage.component';
 
 import { LeftNavService } from '../common/left_nav/left_nav.service';
 import { HeaderService } from '../common/header/header.service';
+import { AuthGuard } from '../common/auth/auth.service';
 
 import { DashboardConfComponent } from './dashboard/dashboard.component';
 import { FuncConfComponent, FuncConfDetailComponent } from './func/func.component';
@@ -118,6 +119,7 @@ import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 		ImageSeriesCategoryService,
 		ImageTagService,
 		
+		AuthGuard
 	]
 })
 export class ManageModule {

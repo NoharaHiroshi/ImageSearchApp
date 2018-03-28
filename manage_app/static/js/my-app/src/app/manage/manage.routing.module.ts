@@ -17,11 +17,14 @@ import { ImageTagConfComponent, ImageTagConfDetailComponent, ImageTagSetComponen
 import { ImageDemoConfComponent } from './image/image_demo.component';
 import { ImageRecommendTagConfComponent, ImageRecommendTagConfDetailComponent } from './image/image_recommend_tag.component';
 
+import { AuthGuard } from '../common/auth/auth.service';
+
 // 路由器
 const manage_routes: Routes = [
 	{ 
 		path: 'manage', 
 		component: ManageComponent,
+		canActivateChild: [AuthGuard],
 		children: [
 			{ path: '',   redirectTo: 'dashboard_conf', pathMatch: 'full' },
 			{ path: 'dashboard_conf', component: DashboardConfComponent },
