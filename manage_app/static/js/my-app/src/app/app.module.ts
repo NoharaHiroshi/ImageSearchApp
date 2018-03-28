@@ -54,7 +54,8 @@ import { LoginService } from './common/login/login.service';
 	]
 })
 export class AppModule {
-	constructor(router: Router) {
-		console.log('Routes: ', JSON.stringify(router.config, undefined, 2));
+	constructor(config: AppConfig) {
+		console.log('user');
+		console.log(JSON.stringify(config.user));
 	}
 }

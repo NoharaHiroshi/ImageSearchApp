@@ -49,7 +49,8 @@ def get_login_page():
 def login():
     result = {
         'response': 'ok',
-        'info': ''
+        'info': '',
+        'user': ''
     }
     aes_date = request.form.get('token')
     username = request.form.get('username')
@@ -108,6 +109,10 @@ def login():
 
             # 验证身份后，调用Flask-Login中的login_user(),将user实例标记为已登录
             login_user(user)
+            user_dict = user.to_dict()
+            result.update({
+                'user': user_dict
+            })
             return jsonify(result)
         else:
             result.update({

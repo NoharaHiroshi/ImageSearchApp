@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { LoginService } from './login.service';
 import { AppConfig } from '../../config/app_config';
 
@@ -13,7 +14,7 @@ export class LoginComponent {
 	username: string;
 	password: string;
 	
-	constructor(private config: AppConfig, private service: LoginService) {}
+	constructor(private config: AppConfig, private service: LoginService, private router: Router) {}
 	
 	ngOnInit(): void {
 		let self = this;
@@ -28,6 +29,9 @@ export class LoginComponent {
 				console.log('fail', res.info);
 			}else{
 				console.log('success', '登陆成功');
+				this.config.user = res.user;
+				let tmp_url = this.config.tmp_url
+				this.router.navigate([tmp_url]);
 			}
 		});
 	}

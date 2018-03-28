@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions, RequestMethod } from '@angular/http';
 
 import { BaseService } from '../base.service';
+import { User } from '../../model/user';
 
 @Injectable()
 export class LoginService extends BaseService {
@@ -23,13 +24,16 @@ export class LoginService extends BaseService {
 	}
 	
 	login(username: string, password: string, token: string): Promise<any> {
+		let self = this;
 		const url = '/login';
 		let login_info = {
 			'username': username,
 			'password': password,
 			'token': token
 		}
-	    return this.postForm(url, JSON.stringify(login_info));
+		let json = this.postForm(url, JSON.stringify(login_info));
+		json['user'] = self.jsonToObject(json.user, User);
+	    return json;
 	}
 
 }
