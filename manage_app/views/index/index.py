@@ -29,16 +29,23 @@ def main_index():
 def get_login_page():
     result = {
         'response': 'ok',
-        'info': '',
+        'user': '',
         'token': ''
     }
     try:
-        # 验证数据，对时间进行验证，超时时间设定为10分钟
-        date = str(time.time())
-        aes_date = AESCipher.encrypt(date)
-        result.update({
-            'token': aes_date
-        })
+        if current_user.is_authenticated():
+            user = current_user.to_dict()
+            result.update({
+                'response': 'active',
+                'user': user
+            })
+        else:
+            # 验证数据，对时间进行验证，超时时间设定为10分钟
+            date = str(time.time())
+            aes_date = AESCipher.encrypt(date)
+            result.update({
+                'token': aes_date
+            })
         return jsonify(result)
     except Exception as e:
         print e

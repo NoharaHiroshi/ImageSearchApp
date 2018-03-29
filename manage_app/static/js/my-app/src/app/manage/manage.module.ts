@@ -119,7 +119,7 @@ import { ImageRecommendTagService } from './image/image_recommend_tag.service';
 		ImageSeriesCategoryService,
 		ImageTagService,
 		
-		AuthGuard
+		AuthGuard,
 	]
 })
 export class ManageModule {
