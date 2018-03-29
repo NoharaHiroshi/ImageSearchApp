@@ -132,9 +132,13 @@ def login():
 @index.route('/logout', methods=['GET'])
 @login_required
 def logout():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
     try:
         logout_user()
-        return redirect(url_for('manage.login'))
+        return jsonify(result)
     except Exception as e:
         print e
         abort(400)

@@ -8,7 +8,7 @@ import { BaseService } from '../../common/base.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
-	constructor(private router: Router, private config: AppConfig, private service: AuthService) {}
+	constructor(private router: Router, private config: AppConfig) {}
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 		// 当前访问路由地址 例如：/func_conf

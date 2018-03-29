@@ -33,4 +33,13 @@ export class HeaderComponent implements OnInit {
 	changeModule(module_name: string): void {
 		this.router.navigate([module_name]);
 	}
+	
+	logout(): void {
+		this.service.logout().then(data => {
+        	if(data.response == 'ok'){
+				this.config.user = '';
+				this.router.navigate(['/login']);
+			}
+        });
+	}
 }

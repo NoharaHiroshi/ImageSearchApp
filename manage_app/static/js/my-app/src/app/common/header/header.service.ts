@@ -30,5 +30,16 @@ export class HeaderService extends BaseService {
 	               })
 	               .catch(this.handleError);
 	}
-
+	
+	logout(): Promise<any> {
+		const url = `/logout`; 
+		let self = this;
+	    return this.http.get(url)
+	               .toPromise()
+	               .then(function(res){
+						let json = res.json();
+	            	    return json;
+	               })
+	               .catch(this.handleError);
+	}
 }
