@@ -7,25 +7,14 @@
 				<input id="token" name="token" type="hidden" value="{{ token }}">
 				<input type="text" class="form-control" name="username" id="username" [(ngModel)]="username" placeholder="邮箱/手机号" autofocus>
 				<br>
-				<input type="password" class="form-control" name="password" id="password" [(ngModel)]="password" placeholder="密码">
-				<label class="checkbox">
-					<span class="pull-right">
-						<p class="fail-info" id="login_info"></p>
-					</span>
-				</label>
-				<button class="btn btn-theme btn-block" id="login" type="submit" (click)="login()"><i class="fa fa-lock"></i> 登陆</button>
-				<hr>
-				
-				<div class="login-social-link centered">
-				<p>或者您可以使用以下方式登录</p>
-					<button class="btn btn-facebook" type="submit"><i class="fa fa-facebook"></i> Facebook</button>
-					<button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button>
+				<input type="password" class="form-control" name="password" id="password" [(ngModel)]="password" placeholder="密码" style="margin-bottom: 20px;">
+				<div class="login-return" *ngIf="returnInfo">
+					<p class="login-return-info">{{ returnInfo }}</p>
 				</div>
+				<button class="btn btn-block" style="background: #ffd777;" id="login" type="submit" (click)="login()"><i class="fa fa-lock"></i> 登陆</button>
+				<hr style="background: #666;">
 				<div class="registration">
-					还没有账号?<br/>
-					<a class="" href="#">
-						立即注册
-					</a>
+					还没有账号? 联系管理员添加账户
 				</div>
 			</div>
 		  </div>	  	

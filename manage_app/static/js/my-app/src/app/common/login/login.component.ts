@@ -13,6 +13,7 @@ export class LoginComponent {
 	token: string;
 	username: string;
 	password: string;
+	returnInfo: stirng;
 	
 	constructor(private config: AppConfig, private service: LoginService, private router: Router) {}
 	
@@ -33,6 +34,7 @@ export class LoginComponent {
 		this.service.login(this.username, this.password, this.token).then(res => {
 			if(res.response=='fail'){
 				console.log('fail', res.info);
+				this.returnInfo = res.info;
 			}else{
 				console.log('success', '登陆成功');
 				this.config.user = res.user;

@@ -171,7 +171,7 @@ hr {
   margin-top: 20px;
   margin-bottom: 20px;
   border: 0;
-  border-top: 1px solid #797979;
+  border-top: 1px solid #b0b0b0;
 }
 
 
@@ -1946,7 +1946,7 @@ label {
 	margin: 0;
 	padding: 25px 20px;
 	text-align: center;
-	background: #68dff0;
+	background: #ffd777;
 	border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	color: #fff;
@@ -1964,6 +1964,9 @@ label {
 	display: block;
 	margin-top: 20px;
 	margin-bottom: 15px;
+}
+.login-return {
+	padding: 5px 0;
 }
 
 
