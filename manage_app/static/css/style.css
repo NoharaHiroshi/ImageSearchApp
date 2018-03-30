@@ -1968,6 +1968,14 @@ label {
 .login-return {
 	padding: 5px 0;
 }
+.login-btn {
+	background: #ffd777;
+	color: #fff;
+}
+.login-btn:hover {
+	color: #fff !important;
+	background: #ffd355;
+}
 
 
 /*LOCK SCREEN CONF*/

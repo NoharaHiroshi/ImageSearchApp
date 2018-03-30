@@ -7,11 +7,12 @@
 				<input id="token" name="token" type="hidden" value="{{ token }}">
 				<input type="text" class="form-control" name="username" id="username" [(ngModel)]="username" placeholder="邮箱/手机号" autofocus>
 				<br>
-				<input type="password" class="form-control" name="password" id="password" [(ngModel)]="password" placeholder="密码" style="margin-bottom: 20px;">
+				<input type="password" class="form-control" name="password" id="password" [(ngModel)]="password" placeholder="密码">
+				<br>
 				<div class="login-return" *ngIf="returnInfo">
 					<p class="login-return-info">{{ returnInfo }}</p>
 				</div>
-				<button class="btn btn-block" style="background: #ffd777;" id="login" type="submit" (click)="login()"><i class="fa fa-lock"></i> 登陆</button>
+				<button class="btn btn-block login-btn" id="login" type="submit" (click)="login()"><i class="fa fa-sign-in"></i> 登陆</button>
 				<hr style="background: #666;">
 				<div class="registration">
 					还没有账号? 联系管理员添加账户
