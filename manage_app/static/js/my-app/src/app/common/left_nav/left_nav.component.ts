@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, DoCheck } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params, Router, Event, NavigationEnd } from '@angular/router';
 import { LeftNavService } from './left_nav.service';
@@ -23,6 +23,7 @@ export class LeftNavComponent implements OnInit {
 	constructor(private service: LeftNavService, public router: Router, public location: Location, public config: AppConfig) {}
 	
 	getLeftNav(): void {
+		let self = this;
 		this.module = this.location.path().split('/')[1];
 		if(this.module != this.config.module){
 			console.log('当前模块: ' + this.module);
@@ -31,7 +32,7 @@ export class LeftNavComponent implements OnInit {
 				this.menu_title = data.menu_title;
 			});
 			this.config.module = this.module;
-			this.activateLeftNav(); 
+			//this.activateLeftNav(); 
 		} 
 	}
 	
@@ -54,6 +55,7 @@ export class LeftNavComponent implements OnInit {
 	
 	ngOnInit(): void {
 		let self = this;
+		console.log('ngOnInit');
 		this.router.events
 			.subscribe((event: Event) => {
 				if (event instanceof NavigationEnd) {
@@ -62,4 +64,8 @@ export class LeftNavComponent implements OnInit {
 			});
 	}
 	
+	/* ngAfterViewChecked(): void {
+		console.log('ngAfterViewChecked');
+		console.log(this.menu_list);
+	} */
 }

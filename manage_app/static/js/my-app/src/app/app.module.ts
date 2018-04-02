@@ -40,7 +40,7 @@ import { LoginService } from './common/login/login.service';
 		SharedModule, // 共用控件
 		
 		ManageModule, // 后台管理模块
-		//WebsiteModule, // 网站管理模块
+		WebsiteModule, // 网站管理模块
 		
 		AppRoutingModule, // 根路由器放在最后
 	],
@@ -54,8 +54,10 @@ import { LoginService } from './common/login/login.service';
 	]
 })
 export class AppModule {
-	constructor(config: AppConfig) {
+	constructor(config: AppConfig, router: Router) {
 		console.log('user');
 		console.log(JSON.stringify(config.user));
+		console.log('router');
+		console.log(JSON.stringify(router.config, undefined, 2));
 	}
 }

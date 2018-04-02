@@ -11,11 +11,6 @@ import { Banner } from '../../model/banner';
 import { BannerService } from './banner.service';
 
 @Component({
-  templateUrl: './banner_main.html',
-})
-export class BannerConfMainComponent {}
-
-@Component({
   selector: 'banner-root',
   templateUrl: './banner_list.html',
 })

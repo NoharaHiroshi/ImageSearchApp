@@ -48,7 +48,7 @@ def get_login_page():
             })
         return jsonify(result)
     except Exception as e:
-        print e
+        print traceback.format_exc(e)
         abort(400)
 
 

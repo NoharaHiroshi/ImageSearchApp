@@ -1976,6 +1976,14 @@ label {
 	color: #fff !important;
 	background: #ffd355;
 }
+.login-btn:active {
+	color: #fff !important;
+	background: #ffd355;
+}
+.login-btn:focus {
+	outline: 0;
+	color: #fff !important;
+}
 
 
 /*LOCK SCREEN CONF*/

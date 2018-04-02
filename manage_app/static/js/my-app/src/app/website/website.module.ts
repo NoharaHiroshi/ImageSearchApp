@@ -15,17 +15,18 @@ import { SharedModule } from '../common/common.module';
 import { LeftNavService } from '../common/left_nav/left_nav.service';
 import { HeaderService } from '../common/header/header.service';
 
-import { BannerModule } from './banner/banner.module';
-
 import { WebsiteMenuConfComponent, WebsiteMenuConfDetailComponent } from './menu/website_menu.component';
 import { HotSearchConfComponent, HotSearchConfDetailComponent } from './hot_search/hot_search.component';
 import { ColumnConfComponent, ColumnConfDetailComponent, ColumnConfSetDetailComponent } from './column/column.component';
+import { BannerConfComponent, BannerConfDetailComponent } from './banner/banner.component';
 
 import { WebsiteMenuService } from './menu/website_menu.service';
 import { HotSearchService } from './hot_search/hot_search.service';
 import { ColumnService } from './column/column.service';
+import { BannerService } from './banner/banner.service';
 
 import { WebsiteComponent } from './website.component';
+import { AuthGuard } from '../common/auth/auth.service';
 
 @NgModule({
 	declarations: [
@@ -36,7 +37,9 @@ import { WebsiteComponent } from './website.component';
 		HotSearchConfDetailComponent,
 		ColumnConfComponent,
 		ColumnConfDetailComponent,
-		ColumnConfSetDetailComponent
+		ColumnConfSetDetailComponent,
+		BannerConfComponent, 
+		BannerConfDetailComponent, 
 	],
 	imports: [
 		CommonModule,
@@ -51,16 +54,17 @@ import { WebsiteComponent } from './website.component';
 		ModalModule.forRoot(),
 		SharedModule, // 共用控件
 		
-		BannerModule, // 轮播图模块
-		
 		WebsiteRoutingModule, // 根路由器放在最后
 	],
 	providers: [
 		HeaderService,
 		LeftNavService,
+		
 		WebsiteMenuService,
 		HotSearchService,
-		ColumnService
+		ColumnService,
+		BannerService,
+		AuthGuard
 	]
 })
 export class WebsiteModule {
