@@ -81,6 +81,7 @@ export class HotSearchConfDetailComponent extends ListBaseComponent{
         this.route.params.switchMap((params: Params) => this.service.getDetail(params['id']||'0'))
 	        .subscribe(res => {
 	        	this.hot_search = res['hot_search'];
+				this.all_series_list = res['all_series'];
 				setTimeout(function(){
 					self.loadAfter();
 				}, 200);
@@ -88,7 +89,7 @@ export class HotSearchConfDetailComponent extends ListBaseComponent{
 	}
 	
 	goBack(): void {
-		this.router.navigate(['/hot_search_conf']);
+		this.router.navigate(['../..'], {relativeTo: this.route});
 	}
 	
 	save(): void {
@@ -105,6 +106,8 @@ export class HotSearchConfDetailComponent extends ListBaseComponent{
 	}
 	
 	loadAfter(): void  {
+		console.log('loadAfter');
+		console.log(typeof(this.hot_search.connect_id));
 		let self = this;
 		const url = `/lib/get_all_series`; 
 		$('#series_select').val(self.hot_search.connect_id).select2({
@@ -133,6 +136,7 @@ export class HotSearchConfDetailComponent extends ListBaseComponent{
                     for(var i = 0; i < _series.length; i++) {
                     	data.push({id: _series[i].id, name: _series[i].name})
                     }
+					console.log(data);
                     callback(data);
                 }
             },

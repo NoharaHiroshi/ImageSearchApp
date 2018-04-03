@@ -41,12 +41,18 @@ def get_hot_search_detail():
     result = {
         'response': 'ok',
         'info': '',
-        'hot_search': ''
+        'hot_search': '',
+        'all_series': []
     }
     _id = request.args.get('id')
     try:
         with get_session() as db_session:
             hot_search = db_session.query(WebsiteHotSearch).get(_id)
+            all_series = db_session.query(ImageSeries).all()
+            all_series_list = [series.to_dict() for series in all_series]
+            result.update({
+                'all_series': all_series_list
+            })
             if hot_search:
                 hot_search_dict = hot_search.to_dict()
                 result['hot_search'] = hot_search_dict

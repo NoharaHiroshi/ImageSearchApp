@@ -132,3 +132,28 @@ def update_banner():
         return jsonify(result)
     except Exception as e:
         print e.message
+
+
+@website.route('/banner_list/delete', methods=['POST'])
+def delete_banner():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    ids = request.form.get('ids').split(',')
+    try:
+        with get_session() as db_session:
+            if ids[0]:
+                db_session.query(Banner).filter(
+                    Banner.id.in_(ids)
+                ).delete(synchronize_session=False)
+                db_session.commit()
+            else:
+                result.update({
+                    'response': 'fail',
+                    'info': u'当前未选择任何图片'
+                })
+        return jsonify(result)
+    except Exception as e:
+        app.my_logger.error(traceback.format_exc(e))
+        abort(400)
