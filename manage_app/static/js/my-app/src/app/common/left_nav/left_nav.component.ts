@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params, Router, Event, NavigationEnd } from '@angular/router';
 import { LeftNavService } from './left_nav.service';
@@ -25,15 +25,13 @@ export class LeftNavComponent implements OnInit {
 	getLeftNav(): void {
 		let self = this;
 		this.module = this.location.path().split('/')[1];
-		if(this.module != this.config.module){
-			console.log('当前模块: ' + this.module);
-			this.service.getMenus(this.module).then(data => {
-				this.menu_list = data.menu_list;
-				this.menu_title = data.menu_title;
-			});
-			this.config.module = this.module;
-			//this.activateLeftNav(); 
-		} 
+		console.log('当前模块: ' + this.module);
+		this.service.getMenus(this.module).then(data => { 
+			this.menu_list = data.menu_list;
+			this.menu_title = data.menu_title;
+		});
+		this.config.module = this.module;
+		this.activateLeftNav(); 
 	}
 	
 	// 激活左边导航栏样式
@@ -54,18 +52,6 @@ export class LeftNavComponent implements OnInit {
 	}
 	
 	ngOnInit(): void {
-		let self = this;
-		console.log('ngOnInit');
-		this.router.events
-			.subscribe((event: Event) => {
-				if (event instanceof NavigationEnd) {
-					self.getLeftNav();
-				}
-			});
+		this.getLeftNav();
 	}
-	
-	/* ngAfterViewChecked(): void {
-		console.log('ngAfterViewChecked');
-		console.log(this.menu_list);
-	} */
 }
