@@ -21,6 +21,8 @@ class WebsiteHotSearch(Base):
     name = Column(String(50), nullable=False, index=True)
     # 关联id
     connect_id = Column(BigInteger, nullable=False, index=True)
+    # 关联名称
+    connect_name = Column(String(20), index=True)
     # 状态
     status = Column(Integer, default=STATUS_CLOSE, index=True)
     # 排名
@@ -39,6 +41,7 @@ class WebsiteHotSearch(Base):
             'id': str(self.id),
             'name': self.name,
             'connect_id': str(self.connect_id),
+            'connect_name': self.connect_name,
             'status': self.status,
             'status_text': self.status_text,
             'ranking': self.ranking,

@@ -75,6 +75,7 @@ def update_hot_search():
     hot_search_id = request.form.get('id')
     name = request.form.get('name')
     connect_id = request.form.get('connect_id')
+    connect_name = request.form.get('connect_name')
     status = request.form.get('status')
     ranking = request.form.get('ranking')
     try:
@@ -89,6 +90,7 @@ def update_hot_search():
                     hot_search = WebsiteHotSearch()
                     hot_search.name = name
                     hot_search.connect_id = connect_id
+                    hot_search.connect_name = connect_name
                     hot_search.ranking = ranking
                     hot_search.status = status
                     db_session.add(hot_search)
@@ -97,6 +99,7 @@ def update_hot_search():
                     if hot_search:
                         hot_search.name = name
                         hot_search.connect_id = connect_id
+                        hot_search.connect_name = connect_name
                         hot_search.status = status
                         hot_search.ranking = ranking
                     else:
