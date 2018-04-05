@@ -116,7 +116,7 @@ export class WebsiteMenuConfDetailComponent extends ListBaseComponent{
 	}
 	
 	goBack(): void {
-		this.router.navigate(['/website_menu_conf']);
+		this.router.navigate(['../..'], {relativeTo: this.route});
 	}
 	
 	save(): void {

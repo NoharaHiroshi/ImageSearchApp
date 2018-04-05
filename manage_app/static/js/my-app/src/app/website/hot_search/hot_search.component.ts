@@ -115,7 +115,7 @@ export class HotSearchConfDetailComponent extends ListBaseComponent{
             allowClear: true,
             ajax: {
                 url: url,
-                dataType: 'json',
+                dataType: 'json', 
                 quietMillis: 100,
                 data: function (search:any, page:any) {
                     return {
@@ -130,17 +130,16 @@ export class HotSearchConfDetailComponent extends ListBaseComponent{
                 }
             },
             initSelection: function(element:any, callback:any){
-            	var data = [], _series_id = self.hot_search.connect_id;
+            	var data = [], 
+					_series_id = self.hot_search.connect_id,
+					_series_name = self.hot_search.connect_name;
                 if(undefined !== _series_id){
-                    var _series = self.all_series_list;
-                    for(var i = 0; i < _series.length; i++) {
-                    	data.push({id: _series[i].id, name: _series[i].name})
-                    }
-					console.log(data);
-                    callback(data);
+                    data = ({id: _series_id, name: _series_name});
                 }
+				callback(data);
             },
             formatSelection: function(data:any){
+				self.hot_search.connect_name = data.name;
                 return data.name;
             },
             formatResult: function(data:any){

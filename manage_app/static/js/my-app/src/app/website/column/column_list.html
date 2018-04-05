@@ -30,7 +30,7 @@
 								<td><input icheck class="icheck" name="checked" type="checkbox" value={{column.id}} ></td>
 								<td><a [routerLink]="['detail', column.id]">{{ column.name }}</a></td>
 								<td>{{ column.ranking }}</td>
-								<td><a [routerLink]="['set', column.id]">设置专题</a></td>
+								<td><a [routerLink]="['detail/set', column.id]">设置专题</a></td>
 							</tr>
 						</ng-container>
 						<ng-container *ngIf="!column_list.length">

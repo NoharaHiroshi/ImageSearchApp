@@ -87,7 +87,7 @@ export class ColumnConfDetailComponent extends ListBaseComponent{
 	}
 	
 	goBack(): void {
-		this.router.navigate(['/column_conf']);
+		this.router.navigate(['../..'], {relativeTo: this.route});
 	}
 	
 	save(): void {
@@ -246,7 +246,7 @@ export class ColumnConfSetDetailComponent extends ListBaseComponent{
 	}
 	
 	goBack(): void {
-		this.router.navigate(['/column_conf']);
+		this.router.navigate(['../../..'], {relativeTo: this.route});
 	}
 	
 	loadAfter(): void  {

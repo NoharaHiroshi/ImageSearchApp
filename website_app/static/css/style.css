@@ -815,7 +815,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 /* 专题页 */
 
 .image-list-title {
-	width: 1400px;
+	width: 1200px;
 	margin: 0 auto;
 	font-size: 25px;
 	color: #666;
@@ -1129,7 +1129,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 }
 
 .login-wrap .login-footer {
-    margin-top: 40px;
+    margin-top: 20px;
 	border: 0;
 }
 
@@ -1208,6 +1208,14 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
     margin-bottom: 20px;
 }
 
+.login-return-info {
+	font-size: 13px;
+	color: #FF3030;
+	margin-bottom: 15px;
+	text-align: left;
+}
+
+
 .logo-qq i {
 	background-position: 0 0;
 }
@@ -1242,6 +1250,14 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	outline: none; 
 	color: #666;
 	font-size: 14px;	
+}
+
+.return-login {
+	outline: none; 
+	color: #666;
+	font-size: 14px;	
+	background-color: Transparent; 
+	border-style: none;
 }
 
 .login-form {

@@ -23,7 +23,10 @@ export class LoginComponent{
 	
 	phone: string;
 	password: string;
+	verify_password: string;
 	captcha: string;
+	login_info: string；
+	register_info: string;
 	
 	constructor(private service: LoginService) {}
 	
@@ -34,6 +37,7 @@ export class LoginComponent{
 	
 	login(): void {
 		let self = this;
+		this.login_info = '';
 		let params = {
 			'phone': this.phone,
 			'password': this.password,
@@ -42,6 +46,7 @@ export class LoginComponent{
 		this.service.login(params).then(res => {
 			if(res.response=='fail'){
 				console.log('fail', '登陆失败');
+				self.login_info = res.info;
 			}else{
 				console.log('success', '登陆成功');
 				this.isLogin = false;
@@ -51,6 +56,25 @@ export class LoginComponent{
 		});
 	}
 	
+	register(): void {
+		let self = this;
+		let phone_reg = '/^[1][3,4,5,7,8][0-9]{9}$/';
+		let password_reg = '[a-zA-Z0-9_]{8, 15}';
+		this.register_info = '';
+		if(!this.phone || !phone_reg.test(this.phone)){
+			this.register_info = '请输入正确的手机号';
+			return;
+		}
+		if(!this.password || !password_reg.test(this.password)){
+			this.register_info = '请输入8-15位密码';
+			return;
+		}
+		if(!this.verify_password || this.verify_password != this.password){
+			this.register_info = '两次输入的密码不一致';
+			return;
+		}
+	}
+	
 	ngAfterViewChecked(): void {
 		let self = this;
 		if(this.isLogin){
@@ -58,19 +82,69 @@ export class LoginComponent{
 		}else{
 			$('.login-modal').hide();
 		}
+		// 手机号登录
 		$('.phone-login').click(function(){
+			// 手机登录框显示
 			$('.login-box').show();
-			$('.account-box').show();
-			$('.other-login').show();
+			// 第三方登录方式隐藏
 			$('.login-others').hide();
+			// 注册框隐藏
+			$('.login-register-box').hide();
+			// 其他登录方式按钮显示
+			$('.other-login').show();
+			// 立即注册按钮显示
+			$('.phone-register').show();
+			// 返回登陆按钮隐藏
+			$('.return-login').hide();
 			$(this).hide();
-		})
+		});
+		// 其他登录方式
 		$('.other-login').click(function(){
-			$('.login-others').show();
-			$('.phone-login').show();
+			// 手机登录框隐藏
 			$('.login-box').hide();
-			$('.account-box').hide();
+			// 第三方登录方式显示
+			$('.login-others').show();
+			// 注册框隐藏
+			$('.login-register-box').hide();
+			// 立即注册按钮显示
+			$('.phone-register').show();
+			// 返回登陆按钮隐藏
+			$('.return-login').hide();
+			// 手机登陆按钮显示
+			$('.phone-login').show();
 			$(this).hide();
-		})
+		});
+		// 立即注册
+		$('.phone-register').click(function(){
+			// 手机登录框隐藏
+			$('.login-box').hide();
+			// 第三方登录方式隐藏
+			$('.login-others').hide();
+			// 注册框显示
+			$('.login-register-box').show();
+			// 返回登陆按钮显示
+			$('.return-login').show();
+			// 手机登陆按钮隐藏
+			$('.phone-login').hide();
+			// 其他登录方式按钮隐藏
+			$('.other-login').hide();
+			$(this).hide();
+		});
+		// 返回登录
+		$('.return-login').click(function(){
+			// 手机登录框显示
+			$('.login-box').show();
+			// 第三方登录方式隐藏
+			$('.login-others').hide();
+			// 注册框隐藏
+			$('.login-register-box').hide();
+			// 其他登录方式按钮显示
+			$('.other-login').show();
+			// 手机登陆按钮隐藏
+			$('.phone-login').hide();
+			// 立即注册按钮显示
+			$('.phone-register').show();
+			$(this).hide();
+		});
 	}
 }

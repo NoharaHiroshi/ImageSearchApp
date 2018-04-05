@@ -37,6 +37,7 @@
 									<a onclick="$('#img-captcha2').click();" style="display:inline-block;width:20px;height:20px;vertical-align:middle;margin-left: 8px;cursor: pointer;background-image:url('#');"></a>
 									<p class="warning-text"></p>
 								</div>
+								<div class="login-return-info" *ngIf="login_info">{{login_info}}</div>
 								<a href="javascript:;" class="login-input-submit" (click)="login()">登陆</a>
 								<p class="login-other-operation">
 									<a href="#" class="fr">忘记密码？</a>
@@ -44,10 +45,34 @@
 							</div>
 						</div>
 					</div>
+					<div class="login-register-box" style="display: none;">
+						<div class="phone-form-box">
+							<div class="login-form">
+								<div class="login-input-item">
+									<div class="input-icon"><i class="fa fa-user" ></i></div>
+									<input id="phone" type="text" name="phone" [(ngModel)]="phone"  placeholder="请输入手机号">
+									<p class="warning-text"></p>
+								</div>
+								<div class="login-input-item">
+									<div class="input-icon"><i class="fa fa-lock" ></i></div>
+									<input id="passwd" type="password" name="password" [(ngModel)]="password" placeholder="请输入密码">
+									<p class="warning-text"></p>
+								</div>
+								<div class="login-input-item">
+									<div class="input-icon"><i class="fa fa-lock" ></i></div>
+									<input id="passwd" type="password" name="password" [(ngModel)]="password" placeholder="请再次输入密码">
+									<p class="warning-text"></p>
+								</div>
+								<div class="register-return-info" *ngIf="login_info">{{register_info}}</div>
+								<a href="javascript:;" class="login-input-submit" (click)="register()">注册</a>
+							</div>
+						</div>
+					</div>
 					<div class="login-footer">
 						<p class="login-type">
 							<a href="javascript:;" class="phone-login">帐号密码登录</a>
 							<a href="javascript:;" class="other-login" style="display: none;">第三方登录</a>
+							<a href="javascript:;" class="return-login" style="display: none;">返回登录</a>
 							<a href="javascript:;" class="phone-register">立即注册</a>
 						</p>
 					</div>
