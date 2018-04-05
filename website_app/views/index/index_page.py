@@ -3,12 +3,14 @@
 import traceback
 import ujson
 import os
+from sqlalchemy import or_
 from flask import render_template, abort, g, jsonify, request, session, redirect, url_for
 from flask.ext.login import current_user, login_user, logout_user
 from flask import current_app as app
 from flask import send_from_directory
 from lib.paginator import SQLAlchemyPaginator
 from lib.login_required import login_required
+from lib.aes_encrypt import AESCipher
 
 from redis_store.redis_cache import common_redis
 
@@ -83,6 +85,37 @@ def get_index_header():
         print e
 
 
+@index.route('/register', methods=['POST'])
+def register():
+    try:
+        result = {
+            'response': 'ok',
+            'info': ''
+        }
+        name = request.form.get('name')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        with get_session() as db_session:
+            customer = db_session.query(Customer).filter(
+                Customer.email == email
+            ).first()
+            if customer:
+                result.update({
+                    'response': 'fail',
+                    'info': '当前用户已经存在'
+                })
+            else:
+                customer = Customer()
+                customer.email = email
+                customer.name = name
+                customer.password = AESCipher.encrypt(password)
+                db_session.add(customer)
+                db_session.commit()
+        return jsonify(result)
+    except Exception as e:
+        print traceback.format_exc(e)
+
+
 @index.route('/login', methods=['POST'])
 def login():
     try:
@@ -92,8 +125,9 @@ def login():
         }
         # 持久会话
         session.permanent = True
-        phone = request.form.get('phone')
+        user = request.form.get('user')
         password = request.form.get('password')
+        print password
 
         # 对已登录用户进行跳转
         if current_user.is_authenticated():
@@ -101,10 +135,19 @@ def login():
         else:
             with get_session() as db_session:
                 customer = db_session.query(Customer).filter(
-                    Customer.phone == phone
+                    or_(
+                        Customer.email == user,
+                        Customer.phone == user,
+                    )
                 ).first()
                 if customer:
-                    login_user(customer)
+                    if password == AESCipher.decrypt(customer.password):
+                        login_user(customer)
+                    else:
+                        result.update({
+                            'response': 'fail',
+                            'info': u'密码错误'
+                        })
                 else:
                     result.update({
                         'response': 'fail',

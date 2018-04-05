@@ -22,5 +22,10 @@ export class LoginService extends BaseService {
 		const url = '/login';
 	    return this.postForm(url, JSON.stringify(params));
 	}
+	
+	register(params: any): Promise<any> {
+		const url = '/register';
+		return this.postForm(url, JSON.stringify(params));
+	}
 
 }

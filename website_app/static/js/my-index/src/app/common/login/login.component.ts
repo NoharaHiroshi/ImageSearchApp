@@ -21,7 +21,9 @@ export class LoginComponent{
 	@Input() isLogin: any;
 	@Output() returnLoginOpen = new EventEmitter<any>();  
 	
-	phone: string;
+	user: string;
+	name: string;
+	email: string;
 	password: string;
 	verify_password: string;
 	captcha: string;
@@ -39,7 +41,7 @@ export class LoginComponent{
 		let self = this;
 		this.login_info = '';
 		let params = {
-			'phone': this.phone,
+			'user': this.user,
 			'password': this.password,
 			'captcha': this.captcha
 		}
@@ -58,11 +60,21 @@ export class LoginComponent{
 	
 	register(): void {
 		let self = this;
-		let phone_reg = '/^[1][3,4,5,7,8][0-9]{9}$/';
-		let password_reg = '[a-zA-Z0-9_]{8, 15}';
+		let email_reg = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g; 
+		let phone_reg = /^[1][3,4,5,7,8][0-9]{9}$/;
+		let password_reg = /[a-zA-Z0-9_]{8,15}/;
 		this.register_info = '';
-		if(!this.phone || !phone_reg.test(this.phone)){
-			this.register_info = '请输入正确的手机号';
+		let params = {
+			'name': this.name,
+			'email': this.email,
+			'password': this.password
+		}
+		if(!this.name){
+			this.register_info = '请输入您的昵称';
+			return;
+		}
+		if(!this.email || !email_reg.test(this.email)){
+			this.register_info = '请输入正确的邮箱';
 			return;
 		}
 		if(!this.password || !password_reg.test(this.password)){
@@ -73,6 +85,17 @@ export class LoginComponent{
 			this.register_info = '两次输入的密码不一致';
 			return;
 		}
+		this.service.register(params).then(res => {
+			if(res.response=='fail'){
+				console.log('fail', '注册失败');
+				self.register_info = res.info;
+			}else{
+				console.log('success', '注册成功');
+				this.isLogin = false;
+				this.returnLoginOpen.emit(this.isLogin);
+				window.location.reload();
+			}
+		});
 	}
 	
 	ngAfterViewChecked(): void {

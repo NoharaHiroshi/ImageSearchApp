@@ -1208,7 +1208,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
     margin-bottom: 20px;
 }
 
-.login-return-info {
+.login-return-info, .register-return-info {
 	font-size: 13px;
 	color: #FF3030;
 	margin-bottom: 15px;

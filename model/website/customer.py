@@ -11,15 +11,12 @@ from model.session import get_session
 class Customer(Base, UserMixin):
     __tablename__ = 'website_customer'
 
-    # Email登陆，手机号登陆，微信登陆，QQ登陆
-    TYPE_EMAIL, TYPE_PHONE, TYPE_WX, TYPE_QQ = range(4)
-
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
+    email = Column(String(45), index=True, nullable=False, unique=True)
     name = Column(String(45), nullable=False, index=True)
     phone = Column(String(45), index=True)
     open_id = Column(String(225))
-    email = Column(String(45), index=True)
-    password = Column(String(100))
+    password = Column(String(100), nullable=False)
     qq = Column(String(20))
 
     def to_dict(self):
@@ -37,6 +34,7 @@ if __name__ == '__main__':
         customer = Customer()
         customer.name = u'小新'
         customer.phone = u'18222109895'
+        customer.email = u'Lands@qq.com'
         customer.password = AESCipher.encrypt(u'123456')
         db_session.add(customer)
         db_session.commit()
