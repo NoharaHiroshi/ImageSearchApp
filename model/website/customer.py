@@ -26,7 +26,8 @@ class Customer(Base, UserMixin):
             'open_id': self.open_id,
             'email': self.email,
             'phone': self.phone,
-            'qq': self.qq
+            'qq': self.qq,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S')
         }
 
 if __name__ == '__main__':
