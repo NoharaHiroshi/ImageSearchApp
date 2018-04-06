@@ -19,11 +19,13 @@ import { WebsiteMenuConfComponent, WebsiteMenuConfDetailComponent } from './menu
 import { HotSearchConfComponent, HotSearchConfDetailComponent } from './hot_search/hot_search.component';
 import { ColumnConfComponent, ColumnConfDetailComponent, ColumnConfSetDetailComponent } from './column/column.component';
 import { BannerConfComponent, BannerConfDetailComponent } from './banner/banner.component';
+import { CustomerConfComponent, CustomerConfDetailComponent } from './customer/customer.component';
 
 import { WebsiteMenuService } from './menu/website_menu.service';
 import { HotSearchService } from './hot_search/hot_search.service';
 import { ColumnService } from './column/column.service';
 import { BannerService } from './banner/banner.service';
+import { CustomerService } from './customer/customer.service';
 
 import { WebsiteComponent } from './website.component';
 import { AuthGuard } from '../common/auth/auth.service';
@@ -40,6 +42,8 @@ import { AuthGuard } from '../common/auth/auth.service';
 		ColumnConfSetDetailComponent,
 		BannerConfComponent, 
 		BannerConfDetailComponent, 
+		CustomerConfComponent, 
+		CustomerConfDetailComponent
 	],
 	imports: [
 		CommonModule,
@@ -64,6 +68,7 @@ import { AuthGuard } from '../common/auth/auth.service';
 		HotSearchService,
 		ColumnService,
 		BannerService,
+		CustomerService,
 		AuthGuard
 	]
 })

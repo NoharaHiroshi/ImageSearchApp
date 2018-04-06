@@ -7,6 +7,7 @@ import { BannerConfComponent, BannerConfDetailComponent } from './banner/banner.
 import { WebsiteMenuConfComponent, WebsiteMenuConfDetailComponent } from './menu/website_menu.component';
 import { HotSearchConfComponent, HotSearchConfDetailComponent } from './hot_search/hot_search.component';
 import { ColumnConfComponent, ColumnConfDetailComponent, ColumnConfSetDetailComponent } from './column/column.component';
+import { CustomerConfComponent, CustomerConfDetailComponent } from './customer/customer.component';
 
 import { AuthGuard } from '../common/auth/auth.service';
 
@@ -34,6 +35,10 @@ const website_routes: Routes = [
 			{ path: 'column_conf/detail/:id', component: ColumnConfDetailComponent},
 			{ path: 'column_conf/detail/add', component: ColumnConfDetailComponent},
 			{ path: 'column_conf/detail/set/:id', component: ColumnConfSetDetailComponent},
+			
+			{ path: 'customer_conf', component: CustomerConfComponent },
+			{ path: 'customer_conf/detail/:id', component: CustomerConfDetailComponent},
+			{ path: 'customer_conf/detail/add', component: CustomerConfDetailComponent},
 		]
 	}
 ];
