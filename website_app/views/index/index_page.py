@@ -127,7 +127,6 @@ def login():
         session.permanent = True
         user = request.form.get('user')
         password = request.form.get('password')
-        print password
 
         # 对已登录用户进行跳转
         if current_user.is_authenticated():
@@ -155,7 +154,7 @@ def login():
                     })
             return jsonify(result)
     except Exception as e:
-        print e
+        print traceback.format_exc(e)
 
 
 @index.route('/logout', methods=['GET'])

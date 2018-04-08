@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
 
 import { MainPageComponent } from './index/main_page.component';
+import { SendAuthEmailComponent } from './send_auth_email/send_auth_email.component';
 import { ImageSeriesListComponent } from './image_series_list/image_series_list.component';
 import { ImageListComponent } from './image_list/image_list.component';
 import { ImageDetailComponent } from './image_detail/image_detail.component';
@@ -10,6 +11,7 @@ import { FilterImageListComponent } from './filter_image_list/filter_image_list.
 // 根路由器
 const routes: Routes = [
 	{ path: '',  component: MainPageComponent },
+	{ path: 'auth_email',  component: SendAuthEmailComponent },
 	{ path: 'image_series_list/:id', component: ImageSeriesListComponent },
 	{ path: 'image_list/:id', component: ImageListComponent },
 	{ path: 'image_detail/:id', component: ImageDetailComponent },

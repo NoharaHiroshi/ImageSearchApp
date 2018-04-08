@@ -1412,3 +1412,32 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	color: #fff;
 	background-color: #ffbe40;
 }
+
+/* 验证邮箱 */
+.auth-email-box {
+	width: 1200px;
+	margin: 30px auto;
+	padding: 10px 20px;
+	background-color: #fff;
+} 
+
+.auth-email-div {
+	padding: 15px 0;
+}
+
+.auth-email-div p {
+	font-size: 15px;
+	color: #666;
+	padding: 5px 0;
+}
+
+.auth-email-title {
+	font-size: 18px;
+	color: #888;
+}
+
+.auth-email-login {
+	text-decoration: none;
+	color: #666;
+}
+

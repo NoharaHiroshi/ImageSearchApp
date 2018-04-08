@@ -27,7 +27,7 @@ export class LoginComponent{
 	password: string;
 	verify_password: string;
 	captcha: string;
-	login_info: string；
+	login_info: string;
 	register_info: string;
 	
 	constructor(private service: LoginService) {}

@@ -59,74 +59,78 @@ def login():
         'info': '',
         'user': ''
     }
-    aes_date = request.form.get('token')
-    username = request.form.get('username')
-    password = request.form.get('password')
+    try:
+        aes_date = request.form.get('token')
+        print aes_date
+        username = request.form.get('username')
+        password = request.form.get('password')
 
-    if not aes_date:
-        result.update({
-            'response': 'fail',
-            'info': u'请求错误'
-        })
-        return jsonify(result)
-    else:
-        des_date = int(float(AESCipher.decrypt(aes_date)))
-        now = int(time.time())
-        if now - des_date >= 6000:
+        if not aes_date:
             result.update({
                 'response': 'fail',
-                'info': u'当前页面已过期，请刷新后重新登陆'
-            })
-            return jsonify(result)
-
-    if not username:
-        result.update({
-            'response': 'fail',
-            'info': u'请输入邮箱/手机号'
-        })
-        return jsonify(result)
-    if not password:
-        result.update({
-            'response': 'fail',
-            'info': u'请输入密码'
-        })
-        return jsonify(result)
-
-    with get_session() as db_session:
-        user = db_session.query(User).filter(
-            or_(
-                User.email == username,
-                User.phone == username
-            )
-        ).first()
-        if user:
-            if not user.check_password(password):
-                result.update({
-                    'response': 'fail',
-                    'info': u'用户信息或密码填写错误'
-                })
-                return jsonify(result)
-
-            if not user.is_status_active():
-                result.update({
-                    'response': 'fail',
-                    'info': u'当前用户已被锁定，请联络管理员'
-                })
-                return jsonify(result)
-
-            # 验证身份后，调用Flask-Login中的login_user(),将user实例标记为已登录
-            login_user(user)
-            user_dict = user.to_dict()
-            result.update({
-                'user': user_dict
+                'info': u'请求错误'
             })
             return jsonify(result)
         else:
+            des_date = int(float(AESCipher.decrypt(aes_date)))
+            now = int(time.time())
+            if now - des_date >= 6000:
+                result.update({
+                    'response': 'fail',
+                    'info': u'当前页面已过期，请刷新后重新登陆'
+                })
+                return jsonify(result)
+
+        if not username:
             result.update({
                 'response': 'fail',
-                'info': u'当前用户不存在'
+                'info': u'请输入邮箱/手机号'
             })
             return jsonify(result)
+        if not password:
+            result.update({
+                'response': 'fail',
+                'info': u'请输入密码'
+            })
+            return jsonify(result)
+
+        with get_session() as db_session:
+            user = db_session.query(User).filter(
+                or_(
+                    User.email == username,
+                    User.phone == username
+                )
+            ).first()
+            if user:
+                if not user.check_password(password):
+                    result.update({
+                        'response': 'fail',
+                        'info': u'用户信息或密码填写错误'
+                    })
+                    return jsonify(result)
+
+                if not user.is_status_active():
+                    result.update({
+                        'response': 'fail',
+                        'info': u'当前用户已被锁定，请联络管理员'
+                    })
+                    return jsonify(result)
+
+                # 验证身份后，调用Flask-Login中的login_user(),将user实例标记为已登录
+                login_user(user)
+                user_dict = user.to_dict()
+                result.update({
+                    'user': user_dict
+                })
+                return jsonify(result)
+            else:
+                result.update({
+                    'response': 'fail',
+                    'info': u'当前用户不存在'
+                })
+        return jsonify(result)
+    except Exception as e:
+        print traceback.format_exc(e)
 
 
 @index.route('/logout', methods=['GET'])

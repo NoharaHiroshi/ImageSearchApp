@@ -34,6 +34,9 @@ import { FilterImageListService } from './filter_image_list/filter_image_list.se
 
 import { IndexComponent } from './index.component';
 
+import { SendAuthEmailComponent } from './send_auth_email/send_auth_email.component';
+import { SendAuthEmailService } from './send_auth_email/send_auth_email.service';
+
 @NgModule({
 	declarations: [
 		IndexComponent,
@@ -41,7 +44,8 @@ import { IndexComponent } from './index.component';
 		ImageSeriesListComponent,
 		ImageListComponent,
 		ImageDetailComponent,
-		FilterImageListComponent
+		FilterImageListComponent,
+		SendAuthEmailComponent
 	],
 	imports: [
 		CommonModule,
@@ -67,7 +71,8 @@ import { IndexComponent } from './index.component';
 		ImageSeriesListService,
 		ImageListService,
 		ImageDetailService,
-		FilterImageListService
+		FilterImageListService,
+		SendAuthEmailService
 	],
 	bootstrap: [
 		IndexComponent
