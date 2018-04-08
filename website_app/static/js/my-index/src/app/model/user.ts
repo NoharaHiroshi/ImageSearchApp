@@ -10,4 +10,5 @@ export class User {
 	is_type_manage: boolean;
 	is_type_super_manage: boolean;
 	is_status_active: boolean;
+	is_auth: boolean;
 }

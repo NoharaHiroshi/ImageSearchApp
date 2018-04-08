@@ -7,24 +7,10 @@ import os
 from sqlalchemy import or_
 from flask import render_template, abort, g, jsonify, request, session, redirect, url_for
 from flask.ext.login import current_user, login_user, logout_user
-from flask import current_app as app
-from flask import send_from_directory
-from lib.paginator import SQLAlchemyPaginator
 from lib.login_required import login_required
-from lib.aes_encrypt import AESCipher
-
-from redis_store.redis_cache import common_redis
 
 from model.session import get_session
 from model.website.customer import Customer
-from model.image.image_series import ImageSeries, ImageSeriesCategoryRel, ImageSeriesCategory, ImageSeriesRel
-from model.image.image_download_history import ImageDownloadHistory
-from model.image.image import Image
-from model.image.image_tags import ImageTags, ImageTagsRel,ImageRecommendTagsRel, ImageRecommendTags
-from model.website.menu import WebsiteMenu
-from model.website.banner import Banner
-from model.website.hot_search import WebsiteHotSearch
-from model.website.column import WebsiteColumn, WebsiteColumnSeriesRel
 
 from route import index
 from website_app.config import config

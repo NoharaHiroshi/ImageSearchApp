@@ -1433,11 +1433,11 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 
 .auth-email-title {
 	font-size: 18px;
-	color: #888;
+	color: #ffbe40;
 }
 
 .auth-email-login {
 	text-decoration: none;
-	color: #666;
+	color: #ffbe40;
 }
 
