@@ -36,6 +36,7 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 			this.hot_search_list = data.hot_search_list;
 			if(JSON.stringify(data.customer) != "{}"){
 				this.customer = data.customer;
+				this.config.user = data.customer;
 			}
         });
 	}

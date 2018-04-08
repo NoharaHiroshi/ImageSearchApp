@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { CanActivate, CanActivateChild, Router, ActivatedRouteSnapshot, RouterStateSnapshot }   from '@angular/router';
-import { AppConfig } from '../../config/app_config';
+import { AppConfig } from '../../../config/app_config';
 
 import { BaseService } from '../../common/base.service';
 
@@ -27,6 +27,9 @@ export class AuthEmailGuard implements CanActivate, CanActivateChild {
 				this.router.navigate(["/auth_email"]);
 				return false;
 			}
+		}else{
+			this.config.isLoginOpen = false;
+			return false;
 		}
 	}
 }

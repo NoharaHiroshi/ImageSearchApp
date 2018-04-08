@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {ToasterConfig} from 'angular2-toaster';
+import { User } from '../app/model/user';
 
 
 @Injectable()
@@ -8,6 +9,9 @@ export class AppConfig {
     version = '1.0.0';
 	// 静态资源服务器
 	resource_url = 'http://127.0.0.1:8888';
+	
+	// 当前用户
+	user: User;
 	
 	// 登陆页面开关
     isLoginOpen = false;

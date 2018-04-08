@@ -8,14 +8,22 @@ import { ImageListComponent } from './image_list/image_list.component';
 import { ImageDetailComponent } from './image_detail/image_detail.component';
 import { FilterImageListComponent } from './filter_image_list/filter_image_list.component';
 
+import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
+
 // 根路由器
 const routes: Routes = [
-	{ path: '',  component: MainPageComponent },
-	{ path: 'auth_email',  component: SendAuthEmailComponent },
-	{ path: 'image_series_list/:id', component: ImageSeriesListComponent },
-	{ path: 'image_list/:id', component: ImageListComponent },
-	{ path: 'image_detail/:id', component: ImageDetailComponent },
-	{ path: 'filter_image_list', component: FilterImageListComponent }
+	{ 
+		path: '',  
+		component: MainPageComponent,
+		canActivateChild: [AuthEmailGuard],		
+		children: [
+			{ path: 'auth_email',  component: SendAuthEmailComponent },
+			{ path: 'image_series_list/:id', component: ImageSeriesListComponent },
+			{ path: 'image_list/:id', component: ImageListComponent },
+			{ path: 'image_detail/:id', component: ImageDetailComponent },
+			{ path: 'filter_image_list', component: FilterImageListComponent }
+		]
+	}
 ];
 
 @NgModule({
