@@ -2,12 +2,15 @@
 
 import traceback
 import re
+import time
 import ujson
 import os
 from sqlalchemy import or_
 from flask import render_template, abort, g, jsonify, request, session, redirect, url_for
 from flask.ext.login import current_user, login_user, logout_user
 from lib.login_required import login_required
+from lib.aes_encrypt import AESCipher
+from lib.send_email import send_email
 
 from model.session import get_session
 from model.website.customer import Customer
@@ -32,6 +35,46 @@ def get_customer_email_url(email):
     else:
         email_login_url = '#'
     return email_login_url
+
+
+@index.route('/send_auth_email', methods=['GET'])
+@login_required
+def send_auth_email():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    try:
+        if current_user.is_authenticated():
+            if not current_user.is_auth:
+                now = str(int(time.time()))
+                email = current_user.email
+                en_str = '_'.join([email, now])
+                en_info = AESCipher.encrypt(en_str)
+                full_url = config.URL + '?en_str=' + en_info
+                r = send_email(
+                    u'恭喜您注册成功',
+                    u'恭喜您注册成功, 请您点击以下链接 %s 完成验证，该邮件24小时内有效' % full_url,
+                    email
+                )
+                if r.get('response') != 'ok':
+                    result.update({
+                        'response': 'fail',
+                        'info': u'邮件发送失败'
+                    })
+            else:
+                result.update({
+                    'response': 'fail',
+                    'info': u'您已经验证过邮箱了'
+                })
+        else:
+            result.update({
+                'response': 'fail',
+                'info': u'当前用户未登录，请返回登陆'
+            })
+        return jsonify(result)
+    except Exception as e:
+        print traceback.format_exc(e)
 
 
 @index.route('/auth_customer_page', methods=['GET'])
@@ -61,4 +104,4 @@ def auth_customer_page():
         print traceback.format_exc(e)
 
 if __name__ == '__main__':
-    get_customer_email_url('18222109895@163.com')
+    pass

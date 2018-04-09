@@ -17,8 +17,9 @@ SMTP_CONFIG = {
     'port': '25',
     'from_email': 'zhaoyuting@ixianxia.com',
     'user': 'zhaoyuting@ixianxia.com',
-    'pwd': EMAIL_PASSWORD
+    'pwd': EMAIL_PASSWORD if EMAIL_PASSWORD else '9Whd7KckPLX26BAH'
 }
+
 
 def send_email(subject, content, to_someone, **smtp_config):
     result = {
@@ -47,8 +48,13 @@ def send_email(subject, content, to_someone, **smtp_config):
         smtp.quit()
     except Exception as e:
         print traceback.format_exc(e)
+        result = {
+            'response': 'fail',
+            'info': '发送失败'
+        }
+    return result
 
 
 if __name__ == '__main__':
     # send_email(u'测试账户激活', u'这是一封用于测试的邮件', u'380788433@qq.com')
-    print os.environ
+    print os.environ.get('EMAIL_PASSWORD')

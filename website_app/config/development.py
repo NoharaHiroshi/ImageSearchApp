@@ -3,6 +3,9 @@ import os
 
 DEBUG = True
 
+# 网站网址
+URL = 'http://127.0.0.1:8899'
+
 # 静态资源服务器连接地址
 RESOURCE_URL = 'http://127.0.0.1:8888'
 

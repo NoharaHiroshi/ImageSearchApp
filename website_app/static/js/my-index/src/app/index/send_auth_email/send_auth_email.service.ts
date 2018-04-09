@@ -27,4 +27,13 @@ export class SendAuthEmailService extends BaseService {
 						return json;
 					})
 	}
+	
+	sendAuthEmail(): Promise<any>{
+		const url = `/send_auth_email`; 
+		return this.http.get(url)
+				   .toPromise().then(function(res){
+						let json = res.json();
+						return json;
+					})
+	}
 }

@@ -1,7 +1,8 @@
 <div class="auth-email-box">
 	<h1 class="auth-email-title">验证邮箱</h1>
 	<div class="auth-email-div" *ngIf="user">
-		<p>恭喜您已经注册成功! 请登录邮箱<strong> <a class="auth-email-login" href="{{email_login_url}}" target="_blank">{{user.email}}</a> </strong>进行验证。</p>
+		<p>恭喜您已经注册成功!</p>
+		<p>已经发送了一封用于验证的邮件至您的邮箱<strong> <a class="auth-email-login" href="{{email_login_url}}" target="_blank">{{user.email}}</a> </strong>，如果您没有收到，请点击<strong><a href="javascript:;" class="auth-email-login" (click)="sendAuthEmail()"> 此处 </a></strong> 重新发送。</p>
 		<p>如果您验证完成，请点此<strong> <a href="javascript:;" class="auth-email-login">登录</a> </strong></p>
 	</div>
 </div>

@@ -26,8 +26,23 @@ export class SendAuthEmailComponent extends ListBaseComponent implements OnInit{
 	ngOnInit(): void {
 		let self = this;
 		this.service.getUserInfo().then(data => {
-			this.user = data.user;
-			this.email_login_url = data.email_login_url;
+			if(data.response == 'ok'){
+				this.user = data.user;
+				this.email_login_url = data.email_login_url;
+			}else{
+				this.config.isLoginOpen = true;
+			}
         });
+	}
+	
+	sendAuthEmail(): void {
+		let self = this;
+		this.service.sendAuthEmail().then(data => {
+			if(data.response == 'ok'){
+				console.log('发送成功');
+			}else{
+				console.log(data.info);
+			}
+		})
 	}
 }

@@ -61,7 +61,6 @@ def login():
     }
     try:
         aes_date = request.form.get('token')
-        print aes_date
         username = request.form.get('username')
         password = request.form.get('password')
 
