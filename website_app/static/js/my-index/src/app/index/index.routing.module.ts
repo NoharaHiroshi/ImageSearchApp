@@ -12,18 +12,18 @@ import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 
 // 根路由器
 const routes: Routes = [
+	{ path: 'auth_email',  component: SendAuthEmailComponent },
 	{ 
 		path: '',  
-		component: MainPageComponent,
 		canActivateChild: [AuthEmailGuard],		
 		children: [
-			{ path: 'auth_email',  component: SendAuthEmailComponent },
+			{ path: '', component: MainPageComponent },
 			{ path: 'image_series_list/:id', component: ImageSeriesListComponent },
 			{ path: 'image_list/:id', component: ImageListComponent },
 			{ path: 'image_detail/:id', component: ImageDetailComponent },
 			{ path: 'filter_image_list', component: FilterImageListComponent }
 		]
-	}
+	},
 ];
 
 @NgModule({

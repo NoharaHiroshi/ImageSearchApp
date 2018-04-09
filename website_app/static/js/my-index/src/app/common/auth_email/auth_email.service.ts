@@ -8,7 +8,7 @@ import { BaseService } from '../../common/base.service';
 
 @Injectable()
 export class AuthEmailGuard implements CanActivate, CanActivateChild {
-	constructor(private router: Router, private config: AppConfig) {}
+	constructor(private router: Router, public config: AppConfig) {}
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 		let url: string = state.url;
@@ -20,6 +20,7 @@ export class AuthEmailGuard implements CanActivate, CanActivateChild {
 	}
 	
 	checkIsAuth(url: string): boolean {
+		console.log(this.config.user);
 		if(this.config.user) {
 			if(this.config.user.is_auth){
 				return true;
@@ -28,8 +29,7 @@ export class AuthEmailGuard implements CanActivate, CanActivateChild {
 				return false;
 			}
 		}else{
-			this.config.isLoginOpen = false;
-			return false;
+			return true;
 		}
 	}
 }
