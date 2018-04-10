@@ -1,8 +1,9 @@
-export class Disocunt {
+export class Discount {
 	id: string;
 	name: string;
-	status: number;
+	status: number = 0;
 	status_text: string;
+	img_id: string;
 	times: number;
 	price: number;
 	effect_days: number;

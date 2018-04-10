@@ -26,12 +26,13 @@ def get_discount_list():
             result.update({
                 'discount_list': discount_list
             })
+        return jsonify(result)
     except Exception as e:
         print traceback.format_exc(e)
 
 
 @website.route('/discount_list/detail', methods=['GET'])
-def get_disocunt():
+def get_discount():
     result = {
         'response': 'ok',
         'discount': '',
