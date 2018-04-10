@@ -78,7 +78,7 @@ export class BannerConfDetailComponent extends ListBaseComponent{
 	}
 	
 	public uploader: FileUploader = new FileUploader({
-		url: "http://127.0.0.1:8888/website/banner/upload",
+		url: this.config.resource_url + "/website/banner/upload",
 		itemAlias: "uploadedfile"
 	});
 	public hasBaseDropZoneOver:boolean = false;

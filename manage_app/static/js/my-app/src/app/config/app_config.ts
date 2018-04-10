@@ -14,4 +14,7 @@ export class AppConfig {
 	user: User;
 	// 存储临时跳转路由
 	tmp_url: string = '/';
+	
+	// 图片上传服务器
+	resource_url: string = 'http://127.0.0.1:8888';
 }

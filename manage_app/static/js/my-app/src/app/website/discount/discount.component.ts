@@ -10,6 +10,8 @@ import { ListBaseComponent } from '../../common/base.component';
 import { Discount } from '../../model/discount';
 import { DiscountService } from './discount.service';
 
+import { AppConfig } from '../../config/app_config';
+
 
 @Component({
   selector: 'discount-root',
@@ -73,12 +75,12 @@ export class DiscountConfDetailComponent extends ListBaseComponent{
 	discount: Discount;
 	discount_img: any;
 	
-	constructor(private service: DiscountService, public route: ActivatedRoute, public router: Router) {
+	constructor(private service: DiscountService, public route: ActivatedRoute, public router: Router, public config: AppConfig) {
 		super();
 	}
 	
 	public uploader: FileUploader = new FileUploader({
-		url: "http://127.0.0.1:8888/website/discount/upload",
+		url: this.config.resource_url + "/website/discount/upload",
 		itemAlias: "uploadedfile"
 	});
 	public hasBaseDropZoneOver:boolean = false;
