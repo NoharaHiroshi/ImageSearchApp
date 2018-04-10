@@ -30,10 +30,18 @@ class Discount(Base):
     # 权益描述
     description = Column(String(225))
 
+    @property
+    def status_text(self):
+        if self.status == self.STATUS_OFF:
+            return u'关闭'
+        else:
+            return u'开启'
+
     def to_dict(self):
         return {
             'id': str(self.id),
             'status': self.status,
+            'status_text': self.status_text,
             'name': self.name,
             'times': self.times,
             'price': self.price,
@@ -52,7 +60,7 @@ class CustomerDiscount(Base):
     # 会员ID
     customer_id = Column(BigInteger, nullable=False, index=True)
     # 会员名称
-    customer_name = Column(String(40), nullable=False, idnex=True)
+    customer_name = Column(String(40), nullable=False, index=True)
     # 权益ID
     discount_id = Column(BigInteger, nullable=False, index=True)
     # 权益名称

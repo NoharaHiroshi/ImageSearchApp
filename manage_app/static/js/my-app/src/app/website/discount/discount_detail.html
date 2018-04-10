@@ -1,0 +1,80 @@
+<h3>
+	<i class="fa fa-angle-right"></i> 添加权益 <span class="sub-title">Discount Add</span> 
+</h3>
+<div class="row mt" *ngIf="discount">
+	<div class="col-lg-12">
+	  <div class="form-panel">
+		  <h5 class="mb return"><a href="javascript:void(0);" (click)="goBack()"><i class="fa fa-reply"></i> 返回 </a></h5>
+		  <form class="form-horizontal style-form" method="get">
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">权益名称</label>
+				  <div class="col-sm-4">
+					  <input type="text" class="form-control" name="name" [(ngModel)]="discount.name" placeholder="添加权益名称">
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">状态</label>
+				  <div class="col-sm-4">
+					  <select class="form-control" name="status" [(ngModel)]="discount.status">
+						<option value=0 selected="selected">关闭</option>
+						<option value=1>开启</option>
+					  </select>
+				  </div>
+			  </div>			  
+			  <div class="form-group">
+					<label class="col-sm-2 col-sm-2 control-label">下载限制</label>
+					<div class="col-sm-4">
+					  <input type="text" class="form-control" name="times" [(ngModel)]="discount.times" placeholder="用户每天下载次数，0为不限制">
+				  </div>
+				</div>
+			  
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">生效时长</label>
+				  <div class="col-sm-4">
+					  <input type="text" class="form-control" name="effect_days" [(ngModel)]="discount.effect_days" placeholder="生效时长，时间单位为天">
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">价格</label>
+				  <div class="col-sm-4">
+					  <input type="text" class="form-control" name="price" [(ngModel)]="discount.price" placeholder="价格">
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">权益图标</label>
+				  <div class="col-sm-4">
+					  <ng-container *ngIf="!uploader.queue.length">
+						  <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)" [uploader]="uploader" class="well my-drop-zone" style="margin-bottom: 0px;">
+								<div style="text-align: center;">
+									<button type="button" class="btn btn-theme upload-img">
+										<i class="fa fa-plus"></i> 
+										<span class="button-name">点击或拖拽上传图片 </span>
+										<input type="file" class="change-img" ng2FileSelect [uploader]="uploader" (change)="selectedFileOnChanged($event)"/>
+									</button>
+								</div>
+						  </div>
+						  <div style="margin-top: 10px;">（推荐分辨率：1200px * 300px）</div>
+					  </ng-container>
+					  <ng-container *ngIf="uploader.queue.length">
+							<img style="width: 100%" [src]="banner_img" >
+							<button class="btn btn-theme04" style="margin-top:10px;" (click)="clearAllImg()">重新上传</button>
+					  </ng-container>
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">描述</label>
+				  <div class="col-sm-4">
+					  <input type="text" class="form-control" name="description" [(ngModel)]="discount.description" placeholder="描述">
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label"></label>
+				  <div class="col-sm-4">
+					  <button type="button" type="submit" [disabled]="isDisabledButton" class="btn btn-theme03" (click)="save()">保存</button>
+					  <button type="button" type="submit" class="btn btn-theme04">取消</button>
+				  </div>
+			  </div>
+		  </form>
+	  </div>
+	</div><!-- col-lg-12-->      	
+</div><!-- /row -->

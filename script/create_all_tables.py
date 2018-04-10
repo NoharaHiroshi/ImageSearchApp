@@ -20,6 +20,7 @@ from model.website.hot_search import WebsiteHotSearch
 from model.website.banner import Banner
 from model.website.column import WebsiteColumnSeriesRel, WebsiteColumn
 from model.website.customer import Customer
+from model.website.discount import Discount, CustomerDiscount
 
 
 def create_all_tables():

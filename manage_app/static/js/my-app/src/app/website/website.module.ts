@@ -20,12 +20,14 @@ import { HotSearchConfComponent, HotSearchConfDetailComponent } from './hot_sear
 import { ColumnConfComponent, ColumnConfDetailComponent, ColumnConfSetDetailComponent } from './column/column.component';
 import { BannerConfComponent, BannerConfDetailComponent } from './banner/banner.component';
 import { CustomerConfComponent, CustomerConfDetailComponent } from './customer/customer.component';
+import { DiscountConfComponent, DiscountConfDetailComponent } from './discount/discount.component';
 
 import { WebsiteMenuService } from './menu/website_menu.service';
 import { HotSearchService } from './hot_search/hot_search.service';
 import { ColumnService } from './column/column.service';
 import { BannerService } from './banner/banner.service';
 import { CustomerService } from './customer/customer.service';
+import { DiscountService } from './discount/discount.service';
 
 import { WebsiteComponent } from './website.component';
 import { AuthGuard } from '../common/auth/auth.service';
@@ -43,7 +45,9 @@ import { AuthGuard } from '../common/auth/auth.service';
 		BannerConfComponent, 
 		BannerConfDetailComponent, 
 		CustomerConfComponent, 
-		CustomerConfDetailComponent
+		CustomerConfDetailComponent,
+		DiscountConfComponent, 
+		DiscountConfDetailComponent
 	],
 	imports: [
 		CommonModule,
@@ -69,6 +73,8 @@ import { AuthGuard } from '../common/auth/auth.service';
 		ColumnService,
 		BannerService,
 		CustomerService,
+		DiscountService,
+		
 		AuthGuard
 	]
 })

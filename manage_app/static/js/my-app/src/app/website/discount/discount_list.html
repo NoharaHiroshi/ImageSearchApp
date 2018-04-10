@@ -1,0 +1,50 @@
+﻿<div *ngIf="isLoading">
+	<loading></loading>
+</div>
+<div *ngIf="!isLoading">
+	<h3>
+		<i class="fa fa-angle-right"></i> 权益列表 <span class="sub-title">Discount List</span> 
+	</h3>
+	<div class="showback">
+		<button type="button" class="btn btn-theme" [routerLink]="['detail/add']"><i class="fa fa-plus"></i> <span class="button-name">添加 </span></button>
+		<button type="button" class="btn btn-theme02" (click)="refresh()"><i class="fa fa-refresh"></i> <span class="button-name">刷新 </span></button>
+		<button type="button" class="btn btn-theme04" (click)="del()"><i class="fa fa-trash-o"></i> <span class="button-name">删除 </span></button>
+	</div>
+	<div class="row mt">
+		<div class="col-md-12">
+			<div class="content-panel">
+				<table class="table table-striped table-advance table-hover">
+					<thead>
+						<tr>
+							<th>
+								<input icheck class="all-icheck" type="checkbox">
+							</th>
+							<th><i class="fa fa-bullhorn"></i> 权益名称 </th>
+							<th><i class="hidden-phone"></i> 状态 </th>
+							<th class="hidden-phone"> 下载限制 </th>
+							<th class="hidden-phone"> 生效时长 </th>
+							<th><i class="fa fa-bookmark"></i> 价格 </th>
+						</tr>
+					</thead>
+					<tbody *ngIf="discount_list">
+						<ng-container *ngIf="discount_list.length">
+							<tr *ngFor="let discount of discount_list">
+								<td><input icheck class="icheck" name="checked" type="checkbox" value={{discount.id}} ></td>
+								<td><a [routerLink]="['detail', discount.id]">{{ discount.name }}</a></td>
+								<td>{{ discount.status_text }}</td>
+								<td>{{ discount.times }}</td>
+								<td>{{ discount.effect_days }}</td>
+								<td>{{ discount.price }}</td>
+							</tr>
+						</ng-container>
+						<ng-container *ngIf="!discount_list.length">
+							<tr>
+								<td style="text-align: center;" colspan=6>当前还没有添加权益！</td>
+							</tr>
+						</ng-container>
+					</tbody>
+				</table>
+			</div><!-- /content-panel -->
+		</div><!-- /col-md-12 -->
+	</div><!-- /row -->
+</div>
