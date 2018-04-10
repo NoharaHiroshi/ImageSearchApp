@@ -29,7 +29,7 @@ export class SendAuthEmailComponent extends ListBaseComponent implements OnInit{
 			if(data.response == 'ok'){
 				this.user = data.user;
 				this.email_login_url = data.email_login_url;
-			}else{
+			}else if(data.response == 'NeedLogin'){
 				this.config.isLoginOpen = true;
 			}
         });
@@ -56,7 +56,7 @@ export class VerifyEmailEffectComponent extends ListBaseComponent implements OnI
 		super();
 	}
 	
-	info: stirng;
+	info: string;
 	status: string;
 	
 	@ViewChild(SendAuthEmailComponent)
@@ -72,6 +72,8 @@ export class VerifyEmailEffectComponent extends ListBaseComponent implements OnI
 				setTimeout(function(){
 					self.router.navigate(['/']);
 				}, 1500);
+			}else if(res.response == 'NeedLogin'){
+				this.config.isLoginOpen = true;
 			}else{
 				self.info = res.info;
 			}
