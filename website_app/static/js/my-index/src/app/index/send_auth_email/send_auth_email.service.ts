@@ -36,4 +36,13 @@ export class SendAuthEmailService extends BaseService {
 						return json;
 					})
 	}
+	
+	verifyEmailEffect(en_str: string): Promise<any>{
+		const url = `/verify_email_effect?en_str=` + en_str ;
+		return this.http.get(url)
+				   .toPromise().then(function(res){
+					   let json = res.json();
+					   return json;
+				   })
+	}
 }

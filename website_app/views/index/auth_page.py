@@ -51,7 +51,7 @@ def send_auth_email():
                 email = current_user.email
                 en_str = '_'.join([email, now])
                 en_info = AESCipher.encrypt(en_str)
-                full_url = config.URL + '/verify_email_effect?en_str=' + en_info
+                full_url = config.URL + '/#/verify_email_effect?en_str=' + en_info
                 r = send_email(
                     u'恭喜您注册成功',
                     u'恭喜您注册成功, 请您点击以下链接 %s 完成验证，该邮件24小时内有效' % full_url,
@@ -105,15 +105,15 @@ def auth_customer_page():
 
 
 @index.route('/verify_email_effect', methods=['GET'])
-@login_required
 def verify_email_effect():
     result = {
         'response': 'ok',
-        'info': ''
+        'info': u'邮箱验证成功!'
     }
     try:
-        en_str = request.args.get('en_str')
+        en_str = request.args.get('en_str', None)
         if en_str:
+            en_str = en_str.replace(' ', '+')
             de_str = AESCipher.decrypt(en_str)
             info_list = de_str.split('_')
             email = info_list[0]
@@ -122,7 +122,7 @@ def verify_email_effect():
             if now - date >= 60 * 60 * 24:
                 result.update({
                     'response': 'fail',
-                    'info': u'验证邮件已过期'
+                    'info': u'验证邮件已过期!'
                 })
             else:
                 with get_session() as db_session:
@@ -135,12 +135,12 @@ def verify_email_effect():
                     else:
                         result.update({
                             'response': 'fail',
-                            'info': u'当前用户不存在'
+                            'info': u'当前用户不存在!'
                         })
         else:
             result.update({
                 'response': 'fail',
-                'info': u'无法读取验证邮件信息'
+                'info': u'无法读取验证邮件信息!'
             })
         return jsonify(result)
     except Exception as e:

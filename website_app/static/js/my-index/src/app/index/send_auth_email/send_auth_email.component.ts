@@ -1,7 +1,7 @@
 declare var $: any;
 declare var swal: any;
 
-import { Component, OnInit, OnChanges, Input} from '@angular/core';
+import { Component, OnInit, OnChanges, Input, ViewChild} from '@angular/core';
 import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { Location }  from '@angular/common';
 import { AppConfig } from '../../../config/app_config';
@@ -42,6 +42,38 @@ export class SendAuthEmailComponent extends ListBaseComponent implements OnInit{
 				console.log('发送成功');
 			}else{
 				console.log(data.info);
+			}
+		})
+	}
+}
+
+@Component({
+	selector: 'verify-emaill-effect-root',
+	templateUrl: './verify_email_effect.html',
+})
+export class VerifyEmailEffectComponent extends ListBaseComponent implements OnInit {
+	constructor(private config: AppConfig, private service: SendAuthEmailService, public route: ActivatedRoute, public router: Router) {
+		super();
+	}
+	
+	info: stirng;
+	status: string;
+	
+	@ViewChild(SendAuthEmailComponent)
+	private sendAuthEmailComponent: SendAuthEmailComponent;
+	
+	ngOnInit(): void {
+		let self = this;
+		this.route.queryParams.switchMap(params => this.service.verifyEmailEffect(params['en_str'] || ''))
+		.subscribe(res => {
+			self.status = res.response;
+			if(res.response == 'ok'){
+				self.info = res.info;
+				setTimeout(function(){
+					self.router.navigate(['/']);
+				}, 1500);
+			}else{
+				self.info = res.info;
 			}
 		})
 	}

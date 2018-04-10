@@ -1,0 +1,12 @@
+<div class="auth-email-box">
+	<h1 class="auth-email-title">验证邮箱</h1>
+	<div class="auth-email-div" *ngIf="info">
+		<p>{{ info }}</p>
+		<div *ngIf="status == 'ok'">
+			<p>如果没有自动返回首页，请点击<strong><a class="auth-email-login" routerLink="/"> 此处 </a></strong></p>
+		</div>
+		<div *ngIf="status == 'fail'">
+			<p>请点击<strong><a href="javascript:;" class="auth-email-login" (click)="sendAuthEmailComponent.sendAuthEmail()"> 此处 </a></strong> 重新发送。</p>
+		</div>
+	</div>
+</div>

@@ -34,7 +34,7 @@ import { FilterImageListService } from './filter_image_list/filter_image_list.se
 
 import { IndexComponent } from './index.component';
 
-import { SendAuthEmailComponent } from './send_auth_email/send_auth_email.component';
+import { SendAuthEmailComponent, VerifyEmailEffectComponent } from './send_auth_email/send_auth_email.component';
 import { SendAuthEmailService } from './send_auth_email/send_auth_email.service';
 
 import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
@@ -47,7 +47,8 @@ import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 		ImageListComponent,
 		ImageDetailComponent,
 		FilterImageListComponent,
-		SendAuthEmailComponent
+		SendAuthEmailComponent,
+		VerifyEmailEffectComponent
 	],
 	imports: [
 		CommonModule,
