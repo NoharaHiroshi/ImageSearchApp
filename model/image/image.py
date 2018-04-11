@@ -8,8 +8,8 @@ from model.base import Base, IdGenerator
 class Image(Base):
     __tablename__ = 'image'
 
-    # 类型： 通常、封面、轮播图
-    TYPE_COMMON, TYPE_COVER, TYPE_BANNER = range(3)
+    # 类型： 通常、封面、轮播图、权益图
+    TYPE_COMMON, TYPE_COVER, TYPE_BANNER, TYPE_DISCOUNT = range(4)
 
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 名称
