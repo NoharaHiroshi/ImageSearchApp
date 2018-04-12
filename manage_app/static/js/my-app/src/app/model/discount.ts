@@ -8,6 +8,7 @@ export class Discount {
 	times: number;
 	price: number;
 	effect_days: number;
+	level: number;
 	image_id: string;
 	description: string;
 	created_date: string;

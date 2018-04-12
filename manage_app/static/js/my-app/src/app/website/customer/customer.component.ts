@@ -7,6 +7,8 @@ import { Location }  from '@angular/common';
 
 import { ListBaseComponent } from '../../common/base.component';
 import { Customer } from '../../model/customer';
+import { Discount } from '../../model/discount';
+import { CustomerDiscount } from '../../model/customer_discount';
 import { CustomerService } from './customer.service';
 
 
@@ -89,6 +91,45 @@ export class CustomerConfDetailComponent extends ListBaseComponent{
 	
 	save(): void {
 		this.service.update(this.customer).then(res => {
+			this.isDisabledButton = true;
+			if(res.response=='fail'){
+				console.log('fail', '保存失败');
+				this.isDisabledButton = false;
+			}else{
+				console.log('success', '保存成功');
+				this.goBack();
+			}
+		});
+	} 
+}
+
+@Component({
+  selector: 'customer-discount-detail-root',
+  templateUrl: './customer_discount_detail.html',
+})
+export class CustomerDiscountConfDetailComponent extends ListBaseComponent{
+	all_discount: Discount[];
+	customer_discount: CustomerDiscount;
+	
+	constructor(private service: CustomerService, public route: ActivatedRoute, public router: Router) {
+		super();
+	}
+	
+	ngOnInit(): void {
+		let self = this;
+        this.route.params.switchMap((params: Params) => this.service.getCusomterDiscountDetail(params['id']||'0'))
+	        .subscribe(res => {
+	        	this.customer_discount = res['customer_discount'];
+				this.all_discount = res['discount_list'];
+	        });
+	}
+	
+	goBack(): void {
+		this.router.navigate(['../..'], {relativeTo: this.route});
+	}
+	
+	save(): void {
+		this.service.updateCustomerDiscount(this.customer_discount).then(res => {
 			this.isDisabledButton = true;
 			if(res.response=='fail'){
 				console.log('fail', '保存失败');
