@@ -6,6 +6,8 @@ import 'rxjs/add/operator/timeout';
 import 'rxjs/Rx';
 
 import { Customer } from '../../model/customer';
+import { Discount } from '../../model/discount';
+import { CustomerDiscount } from '../../model/customer_discount';
 
 import { BaseService } from '../../common/base.service';
 
@@ -53,5 +55,24 @@ export class CustomerService extends BaseService {
 			'ids': ids
 		}
 		return this.postForm(url, JSON.stringify(params));
+	}
+	
+	getCusomterDiscountDetail(id: String): Promise<{}> {
+		const url = '/website/customer_list/get_discount';
+		let self = this;
+		return this.http.get(url)
+				   .toPromise()
+				   .then(res => {
+						let json = res.json()
+						json['disocunt_list'] = self.jsonListToObjectList(json.discount_list, Discount);
+						json['customer_discount'] = self.jsonToObject(json.customer_discount, CustomerDiscount);
+						return json;
+				   })
+				   .catch(this.handleError);
+	}
+	
+	updateCustomerDiscount(customer_disocunt: CustomerDiscount): Promise<any> {
+		const url = '/website/customer_list/set_discount';
+	    return this.postForm(url, JSON.stringify(customer_disocunt));
 	}
 }

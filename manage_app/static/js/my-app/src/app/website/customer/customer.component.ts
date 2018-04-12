@@ -128,7 +128,7 @@ export class CustomerDiscountConfDetailComponent extends ListBaseComponent{
 		this.router.navigate(['../..'], {relativeTo: this.route});
 	}
 	
-	save(): void {
+	saveCustomerDiscount(): void {
 		this.service.updateCustomerDiscount(this.customer_discount).then(res => {
 			this.isDisabledButton = true;
 			if(res.response=='fail'){

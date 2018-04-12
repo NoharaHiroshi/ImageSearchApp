@@ -7,7 +7,7 @@ import { BannerConfComponent, BannerConfDetailComponent } from './banner/banner.
 import { WebsiteMenuConfComponent, WebsiteMenuConfDetailComponent } from './menu/website_menu.component';
 import { HotSearchConfComponent, HotSearchConfDetailComponent } from './hot_search/hot_search.component';
 import { ColumnConfComponent, ColumnConfDetailComponent, ColumnConfSetDetailComponent } from './column/column.component';
-import { CustomerConfComponent, CustomerConfDetailComponent } from './customer/customer.component';
+import { CustomerConfComponent, CustomerConfDetailComponent, CustomerDiscountConfDetailComponent } from './customer/customer.component';
 import { DiscountConfComponent, DiscountConfDetailComponent } from './discount/discount.component';
 
 import { AuthGuard } from '../common/auth/auth.service';
@@ -40,6 +40,7 @@ const website_routes: Routes = [
 			{ path: 'customer_conf', component: CustomerConfComponent },
 			{ path: 'customer_conf/detail/:id', component: CustomerConfDetailComponent},
 			{ path: 'customer_conf/detail/add', component: CustomerConfDetailComponent},
+			{ path: 'customer_conf/detail/get_customer_disocunt/:id', component: CustomerDiscountConfDetailComponent },
 			
 			{ path: 'discount_conf', component: DiscountConfComponent },
 			{ path: 'discount_conf/detail/:id', component: DiscountConfDetailComponent},
