@@ -21,10 +21,22 @@ def get_customer_list():
     try:
         customer_list = list()
         with get_session() as db_session:
-            customer_query = db_session.query(Customer).order_by(-Customer.created_date).all()
+            customer_query = db_session.query(Customer, CustomerDiscount).outerjoin(
+                CustomerDiscount, CustomerDiscount.customer_id == Customer.id
+            ).order_by(-Customer.created_date).all()
             if customer_query:
-                for customer in customer_query:
+                for customer, customer_discount in customer_query:
                     customer_dict = customer.to_dict()
+                    customer_dict['customer_discount'] = ''
+                    if customer_discount:
+                        discount = db_session.query(Discount).get(customer_discount.discount_id)
+                        if discount:
+                            discount_name = discount.name
+                        else:
+                            discount_name = u'未知权益'
+                        customer_discount_dict = customer_discount.to_dict()
+                        customer_discount_dict['disocunt_name'] = discount_name
+                        customer_dict['customer_discount'] = customer_discount_dict
                     customer_list.append(customer_dict)
             result.update({
                 'customer_list': customer_list
@@ -105,7 +117,7 @@ def update_customer_info():
         print traceback.format_exc(e)
 
 
-@website.route('customer_list/delete', methods=['POST'])
+@website.route('/customer_list/delete', methods=['POST'])
 def delete_customer():
     result = {
         'response': 'ok',
@@ -129,7 +141,7 @@ def delete_customer():
         print traceback.format_exc(e)
 
 
-@website.route('customer_list/get_discount', methods=['GET'])
+@website.route('/customer_list/get_discount', methods=['GET'])
 def get_customer_discount():
     result = {
         'response': 'ok',
@@ -185,7 +197,9 @@ def set_customer_discount():
                         customer_discount.effect_days = discount.effect_days
                 else:
                     customer_discount = CustomerDiscount()
+                    customer_discount.type = CustomerDiscount.TYPE_MANUAL
                     customer_discount.discount_id = discount_id
+                    customer_discount.customer_id = customer_id
                     customer_discount.effect_start = now
                     customer_discount.effect_days = discount.effect_days
                     db_session.add(customer_discount)

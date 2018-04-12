@@ -25,7 +25,12 @@ export class CustomerService extends BaseService {
 	               .then(function(res){
 						let json = res.json();
 	            	    let customer_list = self.jsonListToObjectList(json.customer_list, Customer);
+						for(let customer of customer_list){
+							let customer_discount = self.jsonToObject(customer.customer_discount, CustomerDiscount);
+							customer.customer_discount = customer_discount;
+						}
 	           	        json['customer_list'] = customer_list;
+						console.log(json);
 	            	    return json;
 	               })
 	               .catch(this.handleError);

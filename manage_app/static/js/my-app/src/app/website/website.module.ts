@@ -19,7 +19,7 @@ import { WebsiteMenuConfComponent, WebsiteMenuConfDetailComponent } from './menu
 import { HotSearchConfComponent, HotSearchConfDetailComponent } from './hot_search/hot_search.component';
 import { ColumnConfComponent, ColumnConfDetailComponent, ColumnConfSetDetailComponent } from './column/column.component';
 import { BannerConfComponent, BannerConfDetailComponent } from './banner/banner.component';
-import { CustomerConfComponent, CustomerConfDetailComponent } from './customer/customer.component';
+import { CustomerConfComponent, CustomerConfDetailComponent, CustomerDiscountConfDetailComponent } from './customer/customer.component';
 import { DiscountConfComponent, DiscountConfDetailComponent } from './discount/discount.component';
 
 import { WebsiteMenuService } from './menu/website_menu.service';
@@ -46,6 +46,7 @@ import { AuthGuard } from '../common/auth/auth.service';
 		BannerConfDetailComponent, 
 		CustomerConfComponent, 
 		CustomerConfDetailComponent,
+		CustomerDiscountConfDetailComponent,
 		DiscountConfComponent, 
 		DiscountConfDetailComponent
 	],

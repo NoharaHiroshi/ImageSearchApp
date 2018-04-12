@@ -9,7 +9,7 @@
 			  <div class="form-group">
 				  <label class="col-sm-2 col-sm-2 control-label">选择会员权益</label>
 				  <div class="col-sm-4">
-					  <select class="form-control" name="status" [(ngModel)]="customer_discount.discount_id">
+					  <select class="form-control" name="discount_id" [(ngModel)]="customer_discount.discount_id">
 						<option value='' selected="selected">请选择</option>
 						<ng-container *ngFor="let discount of all_discount">
 							<option value="{{discount.id}}">{{discount.name}}</option>

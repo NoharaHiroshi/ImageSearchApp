@@ -21,8 +21,11 @@
 							</th>
 							<th><i class="fa fa-bullhorn"></i> 用户名称 </th>
 							<th><i class="hidden-phone"></i> 用户邮箱 </th>
-							<th class="hidden-phone"><i class="fa fa-question-circle"></i> 用户手机号 </th>
+							<th><i class="fa fa-bookmark"></i> 会员权益 </th>
+							<th><i class="fa fa-bookmark"></i> 权益生效时间 </th>
+							<th><i class="fa fa-bookmark"></i> 生效时长 </th>
 							<th><i class="fa fa-bookmark"></i> 注册时间 </th>
+							<th><i class="fa fa-bookmark"></i> 操作 </th>
 						</tr>
 					</thead>
 					<tbody *ngIf="customer_list">
@@ -31,13 +34,31 @@
 								<td><input icheck class="icheck" name="checked" type="checkbox" value={{customer.id}} ></td>
 								<td><a [routerLink]="['detail', customer.id]">{{ customer.name }}</a></td>
 								<td>{{ customer.email }}</td>
-								<td>{{ customer.phone }}</td>
+								<ng-container *ngIf="customer.customer_discount.disocunt_name">
+									<td>{{ customer.customer_discount.disocunt_name }}</td>
+								</ng-container>
+								<ng-container *ngIf="!customer.customer_discount.disocunt_name">
+									<td>无</td>
+								</ng-container>
+								<ng-container *ngIf="customer.customer_discount.effect_start">
+									<td>{{ customer.customer_discount.effect_start }}</td>
+								</ng-container>
+								<ng-container *ngIf="!customer.customer_discount.effect_start">
+									<td>无</td>
+								</ng-container>
+								<ng-container *ngIf="customer.customer_discount.effect_days">
+								<td>{{ customer.customer_discount.effect_days }}天</td>
+								</ng-container>
+								<ng-container *ngIf="!customer.customer_discount.effect_days">
+									<td>无</td>
+								</ng-container>
 								<td>{{ customer.created_date }}</td>
+								<td><a [routerLink]="['detail/get_customer_disocunt', customer.id]">配置权益</a></td>
 							</tr>
 						</ng-container>
 						<ng-container *ngIf="!customer_list.length">
 							<tr>
-								<td style="text-align: center;" colspan=5>当前还没有会员注册！</td>
+								<td style="text-align: center;" colspan=8>当前还没有会员注册！</td>
 							</tr>
 						</ng-container>
 					</tbody>

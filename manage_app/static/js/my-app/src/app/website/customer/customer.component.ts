@@ -110,6 +110,7 @@ export class CustomerConfDetailComponent extends ListBaseComponent{
 export class CustomerDiscountConfDetailComponent extends ListBaseComponent{
 	all_discount: Discount[];
 	customer_discount: CustomerDiscount;
+	customer_id: string;
 	
 	constructor(private service: CustomerService, public route: ActivatedRoute, public router: Router) {
 		super();
@@ -117,6 +118,9 @@ export class CustomerDiscountConfDetailComponent extends ListBaseComponent{
 	
 	ngOnInit(): void {
 		let self = this;
+		this.route.params.subscribe(params => {
+			this.customer_id = params['id'];
+		});
         this.route.params.switchMap((params: Params) => this.service.getCusomterDiscountDetail(params['id']||'0'))
 	        .subscribe(res => {
 	        	this.customer_discount = res['customer_discount'];
@@ -125,10 +129,11 @@ export class CustomerDiscountConfDetailComponent extends ListBaseComponent{
 	}
 	
 	goBack(): void {
-		this.router.navigate(['../..'], {relativeTo: this.route});
+		this.router.navigate(['../../..'], {relativeTo: this.route});
 	}
 	
 	saveCustomerDiscount(): void {
+		this.customer_discount.customer_id = this.customer_id;
 		this.service.updateCustomerDiscount(this.customer_discount).then(res => {
 			this.isDisabledButton = true;
 			if(res.response=='fail'){
