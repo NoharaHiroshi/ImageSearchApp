@@ -4,6 +4,7 @@ export class Discount {
 	status: number = 0;
 	status_text: string;
 	img_id: string;
+	img_url: string;
 	times: number;
 	price: number;
 	effect_days: number;

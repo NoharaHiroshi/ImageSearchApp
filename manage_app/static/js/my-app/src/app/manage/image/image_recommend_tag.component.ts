@@ -129,12 +129,12 @@ export class ImageRecommendTagConfDetailComponent extends ListBaseComponent{
                     };
                 },
                 results: function (data:any, page:any) {
-                    var more = (page * 10) < data.meta.total;
+                    let more = (page * 10) < data.meta.total;
                     return {results: data['data_list'], more: more};
                 }
             },
             initSelection: function(element:any, callback:any){
-            	var data = [], 
+            	let data: any[] = [], 
 					_tag_ids = self.tag_ids,
 					_tag_names = self.tag_names;
 				_tag_ids.forEach(function(_tag_id, i){
@@ -146,7 +146,7 @@ export class ImageRecommendTagConfDetailComponent extends ListBaseComponent{
                 return data.name;
             },
             formatResult: function(data:any){
-            	var s = "<div style='padding: 5px;'>" + data.name + "</div>";
+            	let s = "<div style='padding: 5px;'>" + data.name + "</div>";
                 return  s;
             }
         }).on('change', function(){

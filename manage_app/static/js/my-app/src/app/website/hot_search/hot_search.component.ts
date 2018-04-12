@@ -130,11 +130,11 @@ export class HotSearchConfDetailComponent extends ListBaseComponent{
                 }
             },
             initSelection: function(element:any, callback:any){
-            	var data = [], 
+            	let data = {}, 
 					_series_id = self.hot_search.connect_id,
 					_series_name = self.hot_search.connect_name;
                 if(undefined !== _series_id){
-                    data = ({id: _series_id, name: _series_name});
+                    data = {id: _series_id, name: _series_name};
                 }
 				callback(data);
             },

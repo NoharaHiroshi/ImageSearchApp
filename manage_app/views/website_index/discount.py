@@ -5,7 +5,7 @@ from flask import render_template, abort, g, redirect, url_for, request, jsonify
 from sqlalchemy import or_, func, and_
 
 from model.website.customer import Customer
-from model.website.discount import Discount
+from model.website.discount import Discount, CustomerDiscount
 from model.image.image import Image
 from model.session import get_session
 from manage_app.views.website_index.route import website
@@ -76,7 +76,7 @@ def discount_upload():
             })
         else:
             # 存储banner图片
-            img_id_list = save_images(file_objects, t=Image.TYPE_COMMON)
+            img_id_list = save_images(file_objects, t=Image.TYPE_DISCOUNT)
             result['img_id_list'] = img_id_list
     except:
         result.update({
@@ -84,3 +84,85 @@ def discount_upload():
             'info': u'图片上传失败'
         })
     return jsonify(result)
+
+
+@website.route('/discount_list/update', methods=['POST'])
+def discount_update():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    _id = request.form.get('id')
+    name = request.form.get('name')
+    status = request.form.get('status')
+    times = request.form.get('times')
+    price = request.form.get('price')
+    effect_days = request.form.get('effect_days')
+    image_id = request.form.get('img_id')
+    description = request.form.get('description')
+    try:
+        with get_session() as db_session:
+            if not _id:
+                discount = Discount()
+                discount.name = name
+                discount.status = status
+                discount.times = times
+                discount.price = price
+                discount.effect_days = effect_days
+                discount.image_id = image_id
+                discount.description = description
+                db_session.add(discount)
+            else:
+                discount = db_session.query(Discount).get(_id)
+                if discount:
+                    discount.name = name
+                    discount.status = status
+                    discount.times = times
+                    discount.price = price
+                    discount.effect_days = effect_days
+                    discount.image_id = image_id
+                    discount.description = description
+                else:
+                    result.update({
+                        'response': 'fail',
+                        'info': u'当前对象不存在'
+                    })
+            db_session.commit()
+        return jsonify(result)
+    except Exception as e:
+        print traceback.format_exc(e)
+
+
+@website.route('/discount_list/delete', methods=['POST'])
+def delete_discount():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    ids = request.form.get('ids').split(',')
+    try:
+        if ids[0]:
+            with get_session() as db_session:
+                for _id in ids:
+                    customer_discount = db_session.query(
+                        CustomerDiscount.discount_id == _id
+                    ).all()
+                    if customer_discount:
+                        result.update({
+                            'response': 'fail',
+                            'info': u'当前权益仍关联用户，请解绑后再次操作'
+                        })
+                        return jsonify(result)
+                    else:
+                        discount = db_session.query(Discount).get(_id)
+                        if discount:
+                            db_session.delete(discount)
+                        db_session.commit()
+        else:
+            result.update({
+                'response': 'fail',
+                'info': u'当前未选择任何权益'
+            })
+        return jsonify(result)
+    except Exception as e:
+        print traceback.format_exc(e)
