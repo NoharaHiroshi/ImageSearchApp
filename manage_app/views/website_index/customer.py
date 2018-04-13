@@ -177,8 +177,9 @@ def set_customer_discount():
     }
     customer_id = request.form.get('customer_id')
     discount_id = request.form.get('discount_id')
+    effect_start = request.form.get('effect_start')
+    effect_days = request.form.get('effect_days')
     try:
-        now = datetime.datetime.now()
         with get_session() as db_session:
             customer_discount = db_session.query(CustomerDiscount).filter(
                 CustomerDiscount.customer_id == customer_id
@@ -187,20 +188,15 @@ def set_customer_discount():
             if discount:
                 if customer_discount:
                     customer_discount.type = CustomerDiscount.TYPE_MANUAL
-                    # 如果当前用户已经购买了权益，并再次购买相同权益，则将生效时间累加
-                    if str(customer_discount.discount_id) == str(discount_id):
-                        customer_discount.effect_days += discount.effect_days
-                    else:
-                        # 如果用户要升级权益，则生效日期重置，旧的权益作废（如果是用户购买权益，则要根据level来防止用户降低权益）
-                        customer_discount.discount_id = discount_id
-                        customer_discount.effect_start = now
-                        customer_discount.effect_days = discount.effect_days
+                    customer_discount.effect_start = effect_start
+                    customer_discount.discount_id = discount_id
+                    customer_discount.effect_days = effect_days
                 else:
                     customer_discount = CustomerDiscount()
                     customer_discount.type = CustomerDiscount.TYPE_MANUAL
                     customer_discount.discount_id = discount_id
                     customer_discount.customer_id = customer_id
-                    customer_discount.effect_start = now
+                    customer_discount.effect_start = effect_start
                     customer_discount.effect_days = discount.effect_days
                     db_session.add(customer_discount)
             else:
