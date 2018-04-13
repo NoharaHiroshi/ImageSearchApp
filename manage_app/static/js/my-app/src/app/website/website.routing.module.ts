@@ -40,7 +40,7 @@ const website_routes: Routes = [
 			{ path: 'customer_conf', component: CustomerConfComponent },
 			{ path: 'customer_conf/detail/:id', component: CustomerConfDetailComponent},
 			{ path: 'customer_conf/detail/add', component: CustomerConfDetailComponent},
-			{ path: 'customer_conf/detail/get_customer_disocunt/:id', component: CustomerDiscountConfDetailComponent },
+			{ path: 'customer_conf/detail/get_customer_discount/:id', component: CustomerDiscountConfDetailComponent },
 			
 			{ path: 'discount_conf', component: DiscountConfComponent },
 			{ path: 'discount_conf/detail/:id', component: DiscountConfDetailComponent},

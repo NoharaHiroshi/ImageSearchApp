@@ -121,7 +121,7 @@ export class CustomerDiscountConfDetailComponent extends ListBaseComponent{
 		this.route.params.subscribe(params => {
 			this.customer_id = params['id'];
 		});
-        this.route.params.switchMap((params: Params) => this.service.getCusomterDiscountDetail(params['id']||'0'))
+        this.route.params.switchMap((params: Params) => this.service.getCustomerDiscountDetail(params['id']||'0'))
 	        .subscribe(res => {
 	        	this.customer_discount = res['customer_discount'];
 				this.all_discount = res['discount_list'];

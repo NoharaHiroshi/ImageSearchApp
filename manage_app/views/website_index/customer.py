@@ -149,7 +149,7 @@ def get_customer_discount():
         'customer_discount': '',
         'info': ''
     }
-    customer_id = request.args.get('customer_id')
+    customer_id = request.args.get('id')
     try:
         with get_session() as db_session:
             all_discount_list = list()

@@ -62,8 +62,8 @@ export class CustomerService extends BaseService {
 		return this.postForm(url, JSON.stringify(params));
 	}
 	
-	getCusomterDiscountDetail(id: String): Promise<{}> {
-		const url = '/website/customer_list/get_discount';
+	getCustomerDiscountDetail(id: String): Promise<{}> {
+		const url = '/website/customer_list/get_discount?id=' + id;
 		let self = this;
 		return this.http.get(url)
 				   .toPromise()
