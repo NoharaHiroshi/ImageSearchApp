@@ -20,20 +20,9 @@
 			  <div class="form-group">
 					<label class="col-sm-2 col-sm-2 control-label">会员权益开始时间</label>
 					<div class="col-sm-4">
-						<div style="padding-left: 0px;display: inline-block;width: 40%;" align="left">
+						<div style="padding-left: 0px;display: inline-block;width: 100%;" align="left">
 							<div class="input-group" align="left">
-								<input type="text" class="form-control" a2e-datetimepicker [options]="" name="startDate" [(ngModel)]="queryParams.startDate" #startDate1 (blur)="queryParams.startDate = startDate1.value"/>
-								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-							</div>
-						</div>
-						<div class="col-sm-split" style="display: inline-block;padding: 0 10px;"> 
-							<div class="input-group ">
-								<label class="control-label" style="margin-top: 10px;">-</label>
-							</div>
-						</div>
-						<div style="display: inline-block;width: 40%;">
-							<div class="input-group">
-								<input type="text" class="form-control" a2e-datetimepicker [options]="" name="endDate" [(ngModel)]="queryParams.endDate" #endDate1 (blur)="queryParams.endDate = endDate1.value"/>
+								<input type="text" class="form-control" a2e-datetimepicker [options]="" name="effect_start" [(ngModel)]="customer_discount.effect_start" #startDate1 (blur)="customer_discount.effect_start = startDate1.value"/>
 								<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 							</div>
 						</div>
