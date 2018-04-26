@@ -21,6 +21,7 @@ from model.website.banner import Banner
 from model.website.column import WebsiteColumnSeriesRel, WebsiteColumn
 from model.website.customer import Customer
 from model.website.discount import Discount, CustomerDiscount
+from model.website.discount_code import DiscountCode, DisocuntCodeGenHistory
 
 
 def create_all_tables():

@@ -18,7 +18,7 @@ class DiscountCode(Base):
     # 状态
     status = Column(Integer, default=STATUS_NEW, index=True)
     # 券码
-    code = Column(String, nullable=False, index=True)
+    code = Column(String(12), nullable=False, index=True)
     # 关联权益
     discount_id = Column(BigInteger, nullable=False, index=True)
     # 关联会员
@@ -49,7 +49,7 @@ class DisocuntCodeGenHistory(Base):
     # 生成人员
     creator_id = Column(BigInteger, nullable=False, index=True)
     # 生成人员名称
-    creator_name = Column(String, nullable=False, index=True)
+    creator_name = Column(String(20), nullable=False, index=True)
 
     def to_dict(self):
         return {
