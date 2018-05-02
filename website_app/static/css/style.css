@@ -523,7 +523,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 
 .series-box a {
 	text-decoration: none;
-	color: #828282;
+	color: #fff;
 }
 
 .series-content {
@@ -565,9 +565,29 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 
 .series-item {
 	width: 270px;
+	height: 400px;
 	display: inline-block;
 	margin: 0 13px 40px 13px;
 	overflow: hidden;
+	position: relative;
+}
+
+.series-item:hover .series-info {
+	top: 0%;
+}
+
+.series-item:hover img {
+	transform: scale(1.1);
+	-webkit-transform: scale(1.05);
+}
+
+.series-item img {
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: relative;
+	-webkit-transition: all .5s;
+	transition: all .5s
 }
 
 .series-item-font {
@@ -575,6 +595,24 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	text-align: center;
 	padding: 15px 5px 10px 5px;
 	color: #555;
+}
+
+.series-info {
+	position: absolute;
+    width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.4);
+    text-align: center;
+    color: #fff;
+}
+
+.series-info .info{
+	margin: 60% 0;
+	color: #fff;
+}
+
+.series-info .info h2,p{
+	margin-bottom: 5px;
 }
 
 /* 左侧锚点 */
