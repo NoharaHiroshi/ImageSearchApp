@@ -911,64 +911,32 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
     -ms-transition: transform .2s;
     -webkit-transition: transform .2s;
     -moz-transition: transform .2s;
+	max-height: 400px;
 }
 
 .image-item img {
 	width: 100%;
+	height: 100%;
+	display: block;
 }
 
-.image-item:hover  .image-item-hover {
-	top: 5px !important;
-}
-
-.image-item-hover {
+.image-item-download {
+	position: absolute;
 	width: 100%;
-    position: absolute;
-    top: -180px;
-    right: 0;
-    height: 42px;
-    line-height: 42px;
-    transition: all .2s;
-	font-size: 12px;
+	height: 100%;
 }
 
-.image-item-hover-download {
-	background-color: #ffbe40;
-	border: 1px solid #ffbe40;
-	color: #fff;
-	text-decoration: none;
-	border-radius: 2px;
-	padding: 5px 10px;
-	opacity: 0.8;
-	line-height: 30px;
-	height: 30px;
-}
-
-.image-item-hover-download:hover {
-	opacity: 1;
-}
-
-.image-item-hover-view {
-	background-color: #fff;
-	border: 1px solid #fff;
-	color: #666;
-	text-decoration: none;
-	border-radius: 2px;
-	padding: 5px 10px;
-	opacity: 0.8;
-	line-height: 30px;
-	height: 30px;
-}
-
-.image-item-hover-view:hover {
-	opacity: 1;
-}
-
-.image-item-font {
-	font-size: 13px;
+.image-item-download h2 {
 	text-align: center;
-	padding: 15px 5px 10px 5px;
-	color: #555;
+}
+
+.image-item-download a {
+	text-decoration: none;
+	color: #fff;
+}
+
+.image-item:hover .image-item-download{
+	top: 0;
 }
 
 /* 图片详情页 */

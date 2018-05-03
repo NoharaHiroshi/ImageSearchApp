@@ -54,7 +54,7 @@ export class ImageListComponent extends ListBaseComponent implements OnInit{
 		var $container = $('#demo');
 		if(this.image_list){
 			$container.masonry({  
-				itemSelector: '.sitem',  
+				itemSelector: '.image-item',  
 				gutter: 20,  
 				isAnimated: true,  
 				fitWidth: true

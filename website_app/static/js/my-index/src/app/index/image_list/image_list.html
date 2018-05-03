@@ -21,15 +21,9 @@
 				<ng-container *ngIf="image_list">
 					<ng-container *ngFor="let image of image_list">
 						<div class="image-item">
-							<div class="grid">
-								<figure class="effect-zoe">
-									<img class="image-item-image" width="{{image.width}}" height="{{image.height}}" src="{{config.resource_url}}/static/{{image.img_preview_url}}">
-									<figcaption>
-										<h2>下载</h2>
-										<span><i class="fa fa-star-o"></i></span>
-										<a [routerLink]="['/image_detail', image.id]" target="_blank">更多</a>
-									</figcaption>		
-								</figure>
+							<img class="image-item-image" width="{{image.width}}" height="{{image.height}}" src="{{config.resource_url}}/static/{{image.img_preview_url}}">
+							<div class="image-item-download">
+								<h2><a [routerLink]="['/image_detail', image.id]">下载</a></h2>
 							</div>
 						</div>
 					</ng-container>
