@@ -14,7 +14,6 @@ import { ImageSeriesCategory } from '../../model/image_series_category';
 
 import { AppConfig } from '../../../config/app_config';
 
-
 require('../../lib/masonry.min.js');
 require('../../lib/jquery.flex-images.js');
 

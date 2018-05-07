@@ -17,13 +17,24 @@
 		</div>
 		<div class="image-list-desc"> {{image_series.desc}}</div>
 		<div class="image-list-content">
-			<div id="demo" style="margin: 0 auto; overflow:hidden;">
+			<div id="demo" #demo style="margin: 0 auto; overflow:hidden;">
 				<ng-container *ngIf="image_list">
 					<ng-container *ngFor="let image of image_list">
-						<div class="image-item">
-							<img class="image-item-image" width="{{image.width}}" height="{{image.height}}" src="{{config.resource_url}}/static/{{image.img_preview_url}}">
-							<div class="image-item-download">
-								<h2><a [routerLink]="['/image_detail', image.id]">下载</a></h2>
+						<div class="image-item" #witem data-w="" data-h="" style="height:200px; width:200px;">
+							<a [routerLink]="['/image_detail', image.id]" target="_blank">
+								<img class="image-item-image" src="{{config.resource_url}}/static/{{image.img_preview_url}}">	
+							</a>
+							<div class="image-item-hover">
+								<span style="float: left; margin-left: 10px;">
+									<a class="image-item-hover-view" [routerLink]="['/image_detail', image.id]" target="_blank">
+										<i class="fa fa-eye"></i> <span style="margin-left:5px;">{{image.view_count}}</span>
+									</a>
+								</span>
+								<span style="float: right; margin-right: 10px;">
+									<a class="image-item-hover-download" [routerLink]="['/image_detail', image.id]" target="_blank">
+										下载
+									</a>
+								</span>
 							</div>
 						</div>
 					</ng-container>

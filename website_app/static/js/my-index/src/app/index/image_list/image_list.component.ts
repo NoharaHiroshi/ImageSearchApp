@@ -15,6 +15,7 @@ import { ImageSeriesCategory } from '../../model/image_series_category';
 import { AppConfig } from '../../../config/app_config';
 
 require('../../lib/masonry.min.js');
+require('../../lib/jquery.flex-images.js');
 
 @Component({
   selector: 'image-list-root',
@@ -46,19 +47,29 @@ export class ImageListComponent extends ListBaseComponent implements OnInit{
 		this.getPagerData();
 	}
 	
+	@ViewChildren('witem')
+	witem: ElementRef;
+	
 	@ViewChild('demo')
 	demo: ElementRef;
 	
-	ngAfterViewInit(): void{
+	ngAfterViewChecked(): void{
 		let self = this;
-		var $container = $('#demo');
+		let _height = 280;
+		let demo_width = $('#demo').width(),
+			image_divs = $('.image-item');
 		if(this.image_list){
-			$container.masonry({  
-				itemSelector: '.image-item',  
-				gutter: 20,  
-				isAnimated: true,  
-				fitWidth: true
-			});  
+			if(this.image_list.length == image_divs.length){
+				for(let i=0; i<image_divs.length; i++){
+					let image_div = image_divs[i],
+						image_obj = this.image_list[i],
+						_w = _height / image_obj.height * image_obj.width,
+						_h = _height;
+					$(image_div).attr('data-w', _w);
+					$(image_div).attr('data-h', _h);
+				}
+			}
+			$(this.demo.nativeElement).flexImages({rowHeight: 300, container: '.image-item' });
 		}
 	}
 }
