@@ -507,4 +507,3 @@ def get_filter_image_list():
     except Exception as e:
         print e
 
-

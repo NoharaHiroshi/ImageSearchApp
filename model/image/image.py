@@ -3,6 +3,8 @@
 import os
 from sqlalchemy import Column, Integer, String, BigInteger, Boolean
 from model.base import Base, IdGenerator
+from model.session import get_session
+from model.website.customer import CustomerCollect
 
 
 class Image(Base):
@@ -38,6 +40,8 @@ class Image(Base):
     view_count = Column(Integer, default=0, nullable=False, index=True)
     # 下载次数
     download_count = Column(Integer, default=0, nullable=False, index=True)
+    # 收藏次数
+    collect_count = Column(Integer, default=0, nullable=False, index=True)
     # 是否推荐
     is_recommend = Column(Boolean, default=False, index=True)
 
@@ -90,5 +94,6 @@ class Image(Base):
             'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
             'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
             'view_count': self.view_count,
-            'download_count': self.download_count
+            'download_count': self.download_count,
+            'collect_count': self.collect_count
         }

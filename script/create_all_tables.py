@@ -19,7 +19,7 @@ from model.website.menu import WebsiteMenu
 from model.website.hot_search import WebsiteHotSearch
 from model.website.banner import Banner
 from model.website.column import WebsiteColumnSeriesRel, WebsiteColumn
-from model.website.customer import Customer
+from model.website.customer import Customer, CustomerCollect
 from model.website.discount import Discount, CustomerDiscount
 from model.website.discount_code import DiscountCode, DisocuntCodeGenHistory
 

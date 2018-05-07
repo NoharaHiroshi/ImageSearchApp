@@ -36,6 +36,28 @@ class Customer(Base, UserMixin):
             'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S')
         }
 
+
+class CustomerCollect(Base):
+    __tablename__ = 'website_customer_collect'
+
+    # 收藏类型: 图片、系列
+    TYPE_IMAGE, TYPE_SERIES = range(2)
+
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
+    type = Column(Integer, default=TYPE_IMAGE, index=True)
+    customer_id = Column(BigInteger, nullable=False, index=True)
+    collect_id = Column(BigInteger, nullable=False, index=True)
+
+    def to_dict(self):
+        return {
+            'id': str(self.id),
+            'type': self.type,
+            'customer_id': str(self.customer_id),
+            'collect_id': str(self.collect_id),
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S')
+        }
+
 if __name__ == '__main__':
     with get_session() as db_session:
         customer = Customer()
