@@ -606,6 +606,16 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
     color: #fff;
 }
 
+.series-info .font {
+	position: relative;
+	top: 45%;
+}
+
+.series-info  a {
+	color: #fff;
+	text-decoration: none;
+}
+
 .series-info .info{
 	margin: 60% 0;
 	color: #fff;
@@ -933,8 +943,18 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 
 .image-item-hover {
 	margin: 0 auto;
-	position: relative;
-	width: 80%;
+	width: 100%;
+    position: absolute;
+    overflow: hidden;
+}
+
+.image-item:hover .image-item-hover {
+    top: 45%;
+}
+
+.image-item-hover a {
+	color: #fff;
+	text-decoration: none;
 }
 
 /* 图片详情页 */
