@@ -32,6 +32,12 @@ export class ImageDetailComponent extends ListBaseComponent implements OnInit{
 	        .subscribe(res => {
 				this.image = res['image'];
 				this.isLoading = false;
+				if(res['is_collected']){
+					setTimeout(function(){
+						$('.download-collect').text('已收藏');
+						$('.download-collect').attr({"disabled":"disabled"});
+					}, 100);
+				}
 	        });
 	}
 	

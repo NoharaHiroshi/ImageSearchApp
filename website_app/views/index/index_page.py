@@ -317,6 +317,7 @@ def get_image_detail():
     result = {
         'response': 'ok',
         'image': '',
+        'is_collected': False,
         'info': ''
     }
     image_id = request.args.get('id')
@@ -326,8 +327,18 @@ def get_image_detail():
             if image:
                 # 图片浏览量+1
                 image.view_count += 1
-                db_session.commit()
                 image_dict = image.to_dict()
+                db_session.commit()
+
+                # 如果当前用户收藏了该图片则显示
+                if current_user.is_authenticated():
+                    image_collect = db_session.query(CustomerCollect).filter(
+                        CustomerCollect.collect_id == image_id,
+                        CustomerCollect.customer_id == current_user.id,
+                        CustomerCollect.type == CustomerCollect.TYPE_IMAGE
+                    ).first()
+                    if image_collect:
+                        result['is_collected'] = True
                 result['image'] = image_dict
             else:
                 result.update({
@@ -521,19 +532,30 @@ def add_collect():
     try:
         with get_session() as db_session:
             if int(t) == CustomerCollect.TYPE_IMAGE:
-                img = db_session.query(Image).get(collect_id)
-                if img:
-                    img.collect_count += 1
+                customer_collect = db_session.query(CustomerCollect).filter(
+                    CustomerCollect.customer_id == current_user.id,
+                    CustomerCollect.collect_id == collect_id,
+                    CustomerCollect.type == CustomerCollect.TYPE_IMAGE
+                ).first()
+                if not customer_collect:
+                    img = db_session.query(Image).get(collect_id)
+                    if img:
+                        img.collect_count += 1
 
-                    customer_collect = CustomerCollect()
-                    customer_collect.collect_id = collect_id
-                    customer_collect.customer_id = user_id
-                    customer_collect.type = CustomerCollect.TYPE_IMAGE
-                    db_session.add(customer_collect)
+                        customer_collect = CustomerCollect()
+                        customer_collect.collect_id = collect_id
+                        customer_collect.customer_id = user_id
+                        customer_collect.type = CustomerCollect.TYPE_IMAGE
+                        db_session.add(customer_collect)
+                    else:
+                        result.update({
+                            'response': 'fail',
+                            'info': u'当前图片不存在'
+                        })
                 else:
                     result.update({
                         'response': 'fail',
-                        'info': u'当前图片不存在'
+                        'info': u'当前图片已收藏'
                     })
             db_session.commit()
         return jsonify(result)
