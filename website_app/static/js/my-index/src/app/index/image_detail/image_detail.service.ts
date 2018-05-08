@@ -51,4 +51,14 @@ export class ImageDetailService extends BaseService {
 			return url;
 		});
 	}
+	
+	addCollect(id: String): Promise<any> {
+		const url = `/add_collect?collect_id=` + id + `&type=0`;
+		let self = this;
+		return this.http.get(url)
+			.toPromise().then(res => {
+				let json = res.json();
+				return json;
+			}).catch(this.handleError);
+	}
 }

@@ -57,4 +57,19 @@ export class ImageDetailComponent extends ListBaseComponent implements OnInit{
 				$('#download_png')[0].click();
 			});
 	}
+	
+	collectImage(): void {
+		let self = this;
+		this.route.params.switchMap((params: Params) => this.service.addCollect(params['id']))
+			.subscribe(res => {
+				if(this.config.authCheck(res)){
+					if(res['response'] == 'ok'){
+						$('.download-collect').text('已收藏');
+						$('.download-collect').attr({"disabled":"disabled"});
+					}else{
+						console.log(res['info']);
+					}
+				}
+			});
+	}
 }

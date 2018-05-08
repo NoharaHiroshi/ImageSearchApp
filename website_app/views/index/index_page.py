@@ -15,7 +15,7 @@ from lib.aes_encrypt import AESCipher
 from redis_store.redis_cache import common_redis
 
 from model.session import get_session
-from model.website.customer import Customer
+from model.website.customer import Customer, CustomerCollect
 from model.image.image_series import ImageSeries, ImageSeriesCategoryRel, ImageSeriesCategory, ImageSeriesRel
 from model.image.image_download_history import ImageDownloadHistory
 from model.image.image import Image
@@ -507,3 +507,35 @@ def get_filter_image_list():
     except Exception as e:
         print e
 
+
+@index.route('/add_collect', methods=['GET'])
+@login_required
+def add_collect():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    collect_id = request.args.get('collect_id')
+    user_id = current_user.id
+    t = request.args.get('type', 0)
+    try:
+        with get_session() as db_session:
+            if int(t) == CustomerCollect.TYPE_IMAGE:
+                img = db_session.query(Image).get(collect_id)
+                if img:
+                    img.collect_count += 1
+
+                    customer_collect = CustomerCollect()
+                    customer_collect.collect_id = collect_id
+                    customer_collect.customer_id = user_id
+                    customer_collect.type = CustomerCollect.TYPE_IMAGE
+                    db_session.add(customer_collect)
+                else:
+                    result.update({
+                        'response': 'fail',
+                        'info': u'当前图片不存在'
+                    })
+            db_session.commit()
+        return jsonify(result)
+    except Exception as e:
+        print e
