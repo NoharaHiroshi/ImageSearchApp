@@ -1135,7 +1135,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;text-decoration:none;col
 
 .current-position {
 	color: #888;
-	font-size: 15px;
+	font-size: 16px;
 	margin-bottom: 30px;
 }
 
