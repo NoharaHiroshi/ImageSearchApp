@@ -4,7 +4,7 @@ body{ background: #f9f9f9;}
 body,div,ul,li,dl,dt,dd,h2,p{padding:0;margin:0;font-family:"微软雅黑";}
 ul{list-style:none ;}
 img{border:none;}
-a{blr:expression(this.onFocus=this.blur());outline:none;}
+a{blr:expression(this.onFocus=this.blur());outline:none;text-decoration:none;color:#888;}
 
 /* 顶部设置 */
 .header-content {
@@ -1131,6 +1131,16 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	color: #fff;
 	border: 1px solid #ffbe40;
 	background: #ffbe40;
+}
+
+.current-position {
+	color: #888;
+	font-size: 15px;
+	margin-bottom: 30px;
+}
+
+.current-position a:hover {
+	color: #ffbe40;
 }
 
 /* 登录页 */
