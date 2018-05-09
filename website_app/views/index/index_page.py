@@ -318,6 +318,7 @@ def get_image_detail():
         'response': 'ok',
         'image': '',
         'is_collected': False,
+        'tag_list': [],
         'info': ''
     }
     image_id = request.args.get('id')
@@ -328,6 +329,7 @@ def get_image_detail():
                 # 图片浏览量+1
                 image.view_count += 1
                 image_dict = image.to_dict()
+                result['image'] = image_dict
                 db_session.commit()
 
                 # 如果当前用户收藏了该图片则显示
@@ -339,7 +341,18 @@ def get_image_detail():
                     ).first()
                     if image_collect:
                         result['is_collected'] = True
-                result['image'] = image_dict
+
+                # 获取图片的标签
+                tag_list_query = db_session.query(ImageTags).join(
+                    ImageTagsRel, ImageTags.id == ImageTagsRel.tag_id
+                ).filter(
+                    ImageTagsRel.image_id == image_id
+                ).all()
+                tag_list = list()
+                for tag in tag_list_query:
+                    tag_dict = tag.to_dict()
+                    tag_list.append(tag_dict)
+                result['tag_list'] = tag_list
             else:
                 result.update({
                     'response': 'fail',

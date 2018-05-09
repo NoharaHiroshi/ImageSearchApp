@@ -21,6 +21,15 @@
 				<p>色彩模式：<span>{{image.mode}}</span></p>
 				<p>图片尺寸：<span>{{image.width}} * {{image.height}}</span></p>
 			</div>
+			
+			<div class="image-tag-info">
+				<p><strong>标签</strong></p>
+				<p>
+					<ng-container *ngFor="let tag of image_tags">
+						<span class="span"><a [routerLink]="['/filter_image_list']" [queryParams]='{search: tag.name}' target='_blank'>{{tag.name}}</a></span>
+					</ng-container>
+				</p>
+			</div>
 		</div>
 	</ng-container>
 </div>

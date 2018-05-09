@@ -7,6 +7,7 @@ import 'rxjs/Rx';
 
 import { ImageSeries } from '../../model/image_series';
 import { Image } from '../../model/image';
+import { ImageTag } from '../../model/image_tag';
 import { ImageSeriesCategory } from '../../model/image_series_category';
 
 import { BaseService } from '../../common/base.service';
@@ -24,7 +25,9 @@ export class ImageDetailService extends BaseService {
 				   .toPromise().then(res => {
 						let json = res.json();
 						let image = self.jsonToObject(json.image, Image);
+						let image_tags = self.jsonListToObjectList(json.tag_list, ImageTag);
 						json['image'] = image;
+						json['image_tags'] = image_tags;
 						return json;
 					})
 					.catch(this.handleError);

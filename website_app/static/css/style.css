@@ -1086,6 +1086,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 	padding: 20px;
 	background-color: #fff;
 	float: right;
+	margin-bottom: 25px;
 }
 
 .image-sider-info p {
@@ -1095,6 +1096,41 @@ a{blr:expression(this.onFocus=this.blur());outline:none;}
 .image-sider-info span {
 	color: #888;
 	margin-left: 10px;
+}
+
+.image-tag-info {
+	font-size: 14px;
+	color: #666;
+	position: relative;
+	display: inline-block;
+	width: 300px;
+	padding: 20px;
+	background-color: #fff;
+	float: right;
+}
+
+.image-tag-info p {
+	margin-bottom: 20px;
+}
+
+.image-tag-info span {
+	font-size: 13px;
+	margin-right: 5px;
+}
+
+.image-tag-info .span a{
+	color: #ffbe40;
+	border: 1px solid #ffbe40;
+	padding: 5px 8px;
+	border-radius: 5px;
+	text-decoration: none;
+	outline: none;   
+}
+
+.image-tag-info .span a:hover{
+	color: #fff;
+	border: 1px solid #ffbe40;
+	background: #ffbe40;
 }
 
 /* 登录页 */

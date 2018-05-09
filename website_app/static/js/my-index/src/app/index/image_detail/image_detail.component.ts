@@ -10,6 +10,7 @@ import { ListBaseComponent } from '../../common/base.component';
 
 import { Image } from '../../model/image';
 import { ImageSeries } from '../../model/image_series';
+import { ImageTag } from '../../model/image_tag';
 import { ImageSeriesCategory } from '../../model/image_series_category';
 
 import { AppConfig } from '../../../config/app_config';
@@ -20,6 +21,7 @@ import { AppConfig } from '../../../config/app_config';
 })
 export class ImageDetailComponent extends ListBaseComponent implements OnInit{
 	image: Image;
+	image_tags: ImageTag;
 	image_url: String;
 	
 	constructor(private config: AppConfig, private service: ImageDetailService, public route: ActivatedRoute, public router: Router, private elem: ElementRef) {
@@ -31,6 +33,7 @@ export class ImageDetailComponent extends ListBaseComponent implements OnInit{
         this.route.params.switchMap((params: Params) => this.service.getDetail(params['id']||'0'))
 	        .subscribe(res => {
 				this.image = res['image'];
+				this.image_tags = res['image_tags'];
 				this.isLoading = false;
 				if(res['is_collected']){
 					setTimeout(function(){
