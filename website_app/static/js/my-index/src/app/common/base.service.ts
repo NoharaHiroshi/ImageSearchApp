@@ -62,5 +62,4 @@ export class BaseService {
 	public post(url: any, data: {}): Promise<{}> {
 		return this.postForm(url, JSON.stringify(data))
 	}
-	
 }

@@ -39,6 +39,7 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 				this.config.user = data.customer;
 			}
         });
+		this.breadNav(this.current_url);
 	}
 	
 	logout(): void {
@@ -67,5 +68,12 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 	
 	enterSearchImage(event: any): void {
 		this.searchImage();
+	}
+	
+	breadNav(url: string): void { 
+		let nav_list = [];
+		this.service.getBreadNav(url).then(data => {
+        	console.log(data);
+        });
 	}
 }

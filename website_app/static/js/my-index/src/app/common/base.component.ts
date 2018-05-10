@@ -3,6 +3,7 @@ declare var swal: any;
 import { Component, Input, OnInit, Output, EventEmitter, ViewChild} from '@angular/core';
 import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { Modal } from 'angular2-modal/plugins/bootstrap';
+import { BaseService } from './base.service';
 
 import { AppConfig } from '../../config/app_config';
 
@@ -16,6 +17,7 @@ export class ListBaseComponent implements OnInit {
 	public isConfirm = false;
 	public curPage = 1;
 	public queryParams = {};
+	public current_url = window.location.hash.split('#')[1];
 	
     getPagerData(): void {}
 	
@@ -34,5 +36,5 @@ export class ListBaseComponent implements OnInit {
 			obj_list.push(obj.value);
 		}
 		return obj_list.join(',');
-	}  
+	}  	
 }

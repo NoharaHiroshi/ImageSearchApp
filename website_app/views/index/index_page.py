@@ -11,6 +11,7 @@ from flask import send_from_directory
 from lib.paginator import SQLAlchemyPaginator
 from lib.login_required import login_required
 from lib.aes_encrypt import AESCipher
+from lib.breadcrumb_navigation import breadcrumb_navigation
 
 from redis_store.redis_cache import common_redis
 
@@ -179,6 +180,21 @@ def get_footer():
         return jsonify(result)
     except Exception as e:
         print e
+
+
+@index.route('/bread_nav', methods=['GET'])
+def bread_nav():
+    result = {
+        'response': 'ok',
+        'bread_nav': []
+    }
+    url = request.args.get('url')
+    print url
+    nav_list = breadcrumb_navigation(url)
+    result.update({
+        'bread_nav': nav_list
+    })
+    return jsonify(result)
 
 
 @index.route('/main_page', methods=['GET'])

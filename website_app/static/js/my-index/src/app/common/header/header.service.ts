@@ -68,5 +68,18 @@ export class HeaderService extends BaseService {
 			return json;
 		}).catch(this.handleError);
 	}
+	
+	getBreadNav(current_url: any): Promise<{}> {
+		console.log(current_url);
+		const url = '/bread_nav?url=' + current_url;
+		let self = this;
+		return this.http.get(url)
+	               .toPromise()
+	               .then(function(res){
+						let json = res.json();
+	            	    return json;
+	               })
+	               .catch(this.handleError);
+	}
 
 }
