@@ -189,7 +189,6 @@ def bread_nav():
         'bread_nav': []
     }
     url = request.args.get('url')
-    print url
     nav_list = breadcrumb_navigation(url)
     result.update({
         'bread_nav': nav_list
