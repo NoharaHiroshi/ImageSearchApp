@@ -4,7 +4,7 @@ body{ background: #f9f9f9;}
 body,div,ul,li,dl,dt,dd,h2,p{padding:0;margin:0;font-family:"微软雅黑";}
 ul{list-style:none ;}
 img{border:none;}
-a{blr:expression(this.onFocus=this.blur());outline:none;text-decoration:none;color:#888;}
+a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decoration:none;color:#888;}
 
 /* 顶部设置 */
 .header-content {

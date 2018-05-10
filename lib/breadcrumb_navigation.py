@@ -32,7 +32,7 @@ def breadcrumb_navigation(url):
                     ImageSeriesCategoryRel.series_id == image_series.id
                 ).first()
                 if image_series_category:
-                    nav_list.append([image_series.name, 2, str(image_series.id)])
+                    nav_list.append([image_series_category.name, 2, str(image_series_category.id)])
                 nav_list.append([image_series.name, 1, str(image_series.id)])
         elif url_type == 'image_list':
             image_series = db_session.query(ImageSeries).get(url_id)
