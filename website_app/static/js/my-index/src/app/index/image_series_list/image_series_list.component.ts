@@ -59,4 +59,18 @@ export class ImageSeriesListComponent extends ListBaseComponent implements OnIni
 			});  
 		}
 	} */
+	
+	collectImageSeries(): void {
+		let self = this;
+		this.route.params.switchMap((params: Params) => this.service.addCollect(params['id']))
+			.subscribe(res => {
+				if(this.config.authCheck(res)){
+					if(res['response'] == 'ok'){
+						$('.collect-logo').addClass('collect-logo-hover');
+					}else{
+						console.log(res['info']);
+					}
+				}
+			});
+	}
 }

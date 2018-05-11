@@ -621,8 +621,39 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	color: #fff;
 }
 
-.series-info .info h2,p{
+.series-info .info p{
 	margin-bottom: 5px;
+}
+
+.series-info .font h2 {
+	margin-bottom: 5px;
+}
+
+.series-info .collect {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	float: right;
+	right: 10px;
+	top: 10px;
+	z-index: 99;
+}
+
+.series-info .collect i {
+	background: url('../img/collect.png') no-repeat 0 0;
+	display: inline-block;
+	position: relative;
+	background-size: 30px 60px;
+	height: 100%;
+	width: 100%;
+}
+
+.series-info .collect:hover i {
+	background-position: 0 -30px;
+}
+
+.collect-logo-hover {
+	background-position: 0 -30px !important;
 }
 
 /* 左侧锚点 */

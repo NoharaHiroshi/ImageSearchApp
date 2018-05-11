@@ -30,4 +30,14 @@ export class ImageSeriesListService extends BaseService {
 					})
 					.catch(this.handleError);
 	}
+	
+	addCollect(id: String): Promise<any> {
+		const url = `/add_collect?collect_id=` + id + `&type=1`;
+		let self = this;
+		return this.http.get(url)
+			.toPromise().then(res => {
+				let json = res.json();
+				return json;
+			}).catch(this.handleError);
+	}
 }

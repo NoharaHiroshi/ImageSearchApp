@@ -21,15 +21,16 @@
 				<ng-container *ngIf="series_list">
 					<ng-container *ngFor="let series of series_list">
 						<div class="series-item">
-							<img class="series-item-image" width="{{series.width}}" height="{{series.height}}" src="{{config.resource_url}}/static/{{series.cover_image_url}}">
-							<div class="series-info">
-								<div class="font">
-									<h2>{{series.name}}</h2>
-									<p>{{series.desc}}</p>
-									<a [routerLink]="['/image_list', series.id]" target="_blank">更多</a>
-									<div class="series-item-font">{{series.name}}</div>
+							<a [routerLink]="['/image_list', series.id]" target="_blank">
+								<img class="series-item-image" width="{{series.width}}" height="{{series.height}}" src="{{config.resource_url}}/static/{{series.cover_image_url}}">
+								<div class="series-info">
+									<div class="collect"><a href="javascript:;" (click)="collectImageSeries()"><i class="collect-logo"></i></a></div>
+									<div class="font">
+										<h2>{{series.name}}</h2>
+										<p>{{series.desc}}</p>
+									</div>
 								</div>
-							</div>
+							</a>
 						</div>
 					</ng-container>
 				</ng-container>
