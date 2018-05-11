@@ -5,12 +5,15 @@ import ujson
 import os
 from sqlalchemy import or_
 from flask import render_template, abort, g, jsonify, request, session, redirect, url_for
+from flask.ext.login import current_user, login_user, logout_user
 from lib.paginator import SQLAlchemyPaginator
 
 from model.session import get_session
 from model.image.image_series import ImageSeries, ImageSeriesCategoryRel, ImageSeriesCategory, ImageSeriesRel
 from model.image.image import Image
 from model.image.image_tags import ImageTags, ImageTagsRel,ImageRecommendTagsRel, ImageRecommendTags
+from model.website.customer import CustomerCollect
+
 from route import index
 
 
@@ -47,6 +50,15 @@ def get_series_list_page():
             _image_series_list = list()
             for image_series in paginator.page(page):
                 image_series_dict = image_series.to_dict()
+                image_series_dict['is_collected'] = False
+                if current_user.is_authenticated():
+                    image_collect = db_session.query(CustomerCollect).filter(
+                        CustomerCollect.collect_id == image_series.id,
+                        CustomerCollect.customer_id == current_user.id,
+                        CustomerCollect.type == CustomerCollect.TYPE_SERIES
+                    ).first()
+                    if image_collect:
+                        image_series_dict['is_collected'] = True
                 width, height = image_series.get_cover_img_info()
                 image_series_dict['width'] = width
                 image_series_dict['height'] = height

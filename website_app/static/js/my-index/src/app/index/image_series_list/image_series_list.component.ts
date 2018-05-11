@@ -60,17 +60,16 @@ export class ImageSeriesListComponent extends ListBaseComponent implements OnIni
 		}
 	} */
 	
-	collectImageSeries(): void {
+	collectImageSeries(id: string): void {
 		let self = this;
-		this.route.params.switchMap((params: Params) => this.service.addCollect(params['id']))
-			.subscribe(res => {
-				if(this.config.authCheck(res)){
-					if(res['response'] == 'ok'){
-						$('.collect-logo').addClass('collect-logo-hover');
-					}else{
-						console.log(res['info']);
-					}
+		this.service.addCollect(id).then(res => {
+			if(this.config.authCheck(res)){
+				if(res['response'] == 'ok'){
+					$('#' + id).addClass('collect-logo-hover');
+				}else{
+					console.log(res['info']);
 				}
-			});
+			}
+		})
 	}
 }

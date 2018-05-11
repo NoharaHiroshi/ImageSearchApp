@@ -71,6 +71,8 @@ class ImageSeries(Base):
     cover_image_id = Column(BigInteger)
     # 浏览次数
     view_count = Column(Integer, nullable=False, default=0, index=True)
+    # 收藏次数
+    collect_count = Column(Integer, nullable=False, default=0, index=True)
 
     @property
     def type_text(self):
@@ -137,7 +139,8 @@ class ImageSeries(Base):
             'count': self.count,
             'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
             'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
-            'view_count': self.view_count
+            'view_count': self.view_count,
+            'collect_count': self.collect_count
         }
 
 
