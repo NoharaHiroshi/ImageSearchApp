@@ -7,6 +7,7 @@ import { ImageSeriesListComponent } from './image_series_list/image_series_list.
 import { ImageListComponent } from './image_list/image_list.component';
 import { ImageDetailComponent } from './image_detail/image_detail.component';
 import { FilterImageListComponent } from './filter_image_list/filter_image_list.component';
+import { UserPageComponent } from './user_page/user_page.component';
 
 import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 
@@ -21,7 +22,8 @@ const routes: Routes = [
 			{ path: 'image_detail/:id', component: ImageDetailComponent },
 			{ path: 'filter_image_list', component: FilterImageListComponent },
 			{ path: 'auth_email',  component: SendAuthEmailComponent },
-			{ path: 'verify_email_effect', component: VerifyEmailEffectComponent }
+			{ path: 'verify_email_effect', component: VerifyEmailEffectComponent },
+			{ path: 'user/:id', component: UserPageComponent }
 		]
 	},
 ];

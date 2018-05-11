@@ -37,6 +37,9 @@ import { IndexComponent } from './index.component';
 import { SendAuthEmailComponent, VerifyEmailEffectComponent } from './send_auth_email/send_auth_email.component';
 import { SendAuthEmailService } from './send_auth_email/send_auth_email.service';
 
+import { UserPageComponent } from './user_page/user_page.component';
+import { UserPageService } from './user_page/user_page.service';
+
 import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 
 @NgModule({
@@ -48,7 +51,8 @@ import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 		ImageDetailComponent,
 		FilterImageListComponent,
 		SendAuthEmailComponent,
-		VerifyEmailEffectComponent
+		VerifyEmailEffectComponent,
+		UserPageComponent
 	],
 	imports: [
 		CommonModule,
@@ -76,6 +80,7 @@ import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 		ImageDetailService,
 		FilterImageListService,
 		SendAuthEmailService,
+		UserPageService,
 		
 		AuthEmailGuard
 	],
