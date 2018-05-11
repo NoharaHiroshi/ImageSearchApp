@@ -27,8 +27,6 @@ def configure_login_manager(app):
     login_manager = LoginManager()
     # 指定登陆页面的视图
     login_manager.login_view = 'index.login'
-    # 会话的保护程度
-    login_manager.session_protection = "strong"
     login_manager.login_message = u'请登录系统之后进行操作'
     login_manager.login_message_category = "info"
 
