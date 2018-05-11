@@ -1546,7 +1546,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 /* 用户页面 */
 .user-page {
 	width: 1200px;
-	margin: 0px auto;
+	margin: 20px auto 0;
 }
 
 .user-page .left-content {

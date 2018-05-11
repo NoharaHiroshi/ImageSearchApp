@@ -131,7 +131,7 @@
 		<div class="hd"><ul></ul></div>
 	</div>
 </div>
-<div class="current-position" *ngIf="bread_nav_list">当前位置：
+<div class="current-position" *ngIf="bread_nav_list.length > 1">当前位置：
 	<ng-container *ngFor="let bread_nav of bread_nav_list; let i=index">
 		<ng-container *ngIf="bread_nav[1] == 0">
 			<a href="/">首页</a> <ng-container *ngIf="i != bread_nav_list.length - 1"> > </ng-container> 
