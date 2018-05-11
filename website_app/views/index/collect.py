@@ -6,6 +6,7 @@ from lib.login_required import login_required
 from model.session import get_session
 from model.website.customer import Customer, CustomerCollect
 from model.image.image import Image
+from model.image.image_series import ImageSeries
 
 from route import index
 
@@ -48,16 +49,33 @@ def add_collect():
                         'response': 'fail',
                         'info': u'当前图片已收藏'
                     })
+            else:
+                customer_series_collect = db_session.query(CustomerCollect).filter(
+                    CustomerCollect.customer_id == current_user.id,
+                    CustomerCollect.collect_id == collect_id,
+                    CustomerCollect.type == CustomerCollect.TYPE_SERIES
+                ).first()
+                if not customer_series_collect:
+                    img_series = db_session.query(ImageSeries).get(collect_id)
+                    if img_series:
+                        img_series.collect_count += 1
+
+                        customer_series_collect = CustomerCollect()
+                        customer_series_collect.collect_id = collect_id
+                        customer_series_collect.customer_id = user_id
+                        customer_series_collect.type = CustomerCollect.TYPE_SERIES
+                        db_session.add(customer_series_collect)
+                    else:
+                        result.update({
+                            'response': 'fail',
+                            'info': u'当前图片系列不存在'
+                        })
+                else:
+                    result.update({
+                        'response': 'fail',
+                        'info': u'当前图片系列已收藏'
+                    })
             db_session.commit()
         return jsonify(result)
     except Exception as e:
         print e
-
-
-@index.route('/add_series_collect', methods=['GET'])
-@login_required
-def add_series_collect():
-    result = {
-        'response': 'ok',
-        'info': ''
-    }
