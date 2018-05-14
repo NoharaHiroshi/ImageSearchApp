@@ -8,6 +8,8 @@ import { ImageListComponent } from './image_list/image_list.component';
 import { ImageDetailComponent } from './image_detail/image_detail.component';
 import { FilterImageListComponent } from './filter_image_list/filter_image_list.component';
 import { UserPageComponent } from './user_page/user_page.component';
+import { UserInfoComponent } from './user_page/user_info/user_info.component';
+import { ExchangeCodeComponent } from './user_page/exchange_code/exchange_code.component';
 
 import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 
@@ -23,7 +25,14 @@ const routes: Routes = [
 			{ path: 'filter_image_list', component: FilterImageListComponent },
 			{ path: 'auth_email',  component: SendAuthEmailComponent },
 			{ path: 'verify_email_effect', component: VerifyEmailEffectComponent },
-			{ path: 'user/:id', component: UserPageComponent }
+			{ 
+				path: 'user/:id', 
+				component: UserPageComponent,
+				children: [
+					'user_info': UserInfoComponent,
+					'exchange_code': ExchangeCodeComponent
+				]
+			}
 		]
 	},
 ];
