@@ -57,7 +57,5 @@ export class AppModule {
 	constructor(config: AppConfig, router: Router) {
 		console.log('user');
 		console.log(JSON.stringify(config.user));
-		console.log('router');
-		console.log(JSON.stringify(router.config, undefined, 2));
 	}
 }
