@@ -23,7 +23,7 @@ export class LoginComponent {
 			if(data.response == 'active'){
 				this.config.user = data.user;
 				let tmp_url = this.config.tmp_url
-				// this.router.navigate([tmp_url]);
+				this.router.navigate([tmp_url]);
 			}else{
 				this.token = data.token;
 			}

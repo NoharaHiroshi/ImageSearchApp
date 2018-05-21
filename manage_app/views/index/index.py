@@ -145,3 +145,26 @@ def logout():
     except Exception as e:
         print e
         abort(400)
+
+
+@index.route('/get_cur_user', methods=['GET'])
+def get_cur_user():
+    result = {
+        'response': 'ok',
+        'user': ''
+    }
+    try:
+        if current_user.is_authenticated():
+            user = current_user.to_dict()
+            result.update({
+                'response': 'active',
+                'user': user
+            })
+        else:
+            result.update({
+                'response': 'needLogin',
+            })
+        return jsonify(result)
+    except Exception as e:
+        print e
+        abort(400)
