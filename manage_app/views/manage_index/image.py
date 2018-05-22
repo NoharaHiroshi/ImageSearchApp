@@ -29,6 +29,10 @@ def upload_image():
         'info': ''
     }
     file_objects = request.files.getlist('uploadedfile')
+    series_ids = request.args.get('series_ids', '')
+    _series_ids = series_ids.split(u',')
+    tag_ids = request.args.get('tag_ids', '')
+    _tag_ids = tag_ids.split(u',')
     try:
         if None in [file_objects]:
             result.update({
@@ -36,7 +40,7 @@ def upload_image():
                 'info': u'请上传图片'
             })
         else:
-            save_images(file_objects)
+            save_images(file_objects, series_ids=_series_ids, tag_ids=_tag_ids)
         return jsonify(result)
     except Exception as e:
         print e

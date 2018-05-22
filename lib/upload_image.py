@@ -10,7 +10,7 @@ from model.image.image import Image
 from model.website.banner import Banner
 from model.base import IdGenerator, HashName
 from model.image.image_tags import ImageTags, ImageTagsRel
-from model.image.image_series import ImageSeries, ImageSeriesRel\
+from model.image.image_series import ImageSeries, ImageSeriesRel
 
 
 
@@ -39,7 +39,7 @@ def add_watermark_text(im, text):
 
 
 # image模型上传方法: 图片实例对象存储在同一位置，在数据层区分类型
-def save_images(images, t=Image.TYPE_COMMON):
+def save_images(images, t=Image.TYPE_COMMON, series_ids=None, tag_ids=None):
     image_id_list = list()
     with get_session() as db_session:
         for image in images:
@@ -87,6 +87,27 @@ def save_images(images, t=Image.TYPE_COMMON):
             img.mode = mode
             img.height = height
             db_session.add(img)
+
+            # 关联专题
+            if series_ids[0]:
+                for series_id in series_ids:
+                    series = db_session.query(ImageSeries).get(series_id)
+                    img_series = ImageSeriesRel()
+                    img_series.image_id = _id
+                    img_series.image_series_id = series_id
+                    img_series.image_series_name = series.name
+                    db_session.add(img_series)
+
+            # 关联标签
+            if tag_ids[0]:
+                for tag_id in tag_ids:
+                    tag = db_session.query(ImageTags).get(tag_id)
+                    img_tag = ImageTagsRel()
+                    img_tag.image_id = _id
+                    img_tag.tag_id = tag_id
+                    img_tag.tag_name = tag.name
+                    db_session.add(img_tag)
+
             image_id_list.append(str(_id))
         db_session.commit()
     # 返回存储的图片id列表

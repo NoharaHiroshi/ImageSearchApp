@@ -13,11 +13,8 @@ export class ImageUploadComponent extends ListBaseComponent{
 	series_id_list: string;
 	tag_id_list: string;
 	
-	allowed_file_type: any[] = ['jpg', 'png'];
-	
 	public uploader: FileUploader = new FileUploader({
 		url: "http://127.0.0.1:8888/manage/upload_image",
-		allowedFileType: this.allowed_file_type,
 		itemAlias: "uploadedfile"
 	});
 	public hasBaseDropZoneOver:boolean = false;
