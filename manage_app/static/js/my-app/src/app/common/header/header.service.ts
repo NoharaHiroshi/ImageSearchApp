@@ -31,20 +31,6 @@ export class HeaderService extends BaseService {
 	               .catch(this.handleError);
 	}
 	
-	getCurUser(): Promise<any> {
-		const url = `/get_cur_user`;
-		let self = this;
-		return this.http.get(url)
-	               .toPromise()
-	               .then(function(res){
-						let json = res.json();
-	            	    let user = self.jsonToObject(json.user, User);
-						json['user'] = user;
-	            	    return json;
-	               })
-	               .catch(this.handleError);
-	}
-	
 	logout(): Promise<any> {
 		const url = `/logout`; 
 		let self = this;

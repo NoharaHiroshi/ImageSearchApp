@@ -5,11 +5,12 @@ import { CanActivate, CanActivateChild, Router, ActivatedRouteSnapshot, RouterSt
 import { Headers, Http, Response, RequestOptions, RequestMethod } from '@angular/http';
 import { AppConfig } from '../../config/app_config';
 
+import { CheckLoginService } from './check_login.service';
 import { BaseService } from '../../common/base.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
-	constructor(private router: Router, private config: AppConfig, private http: Http) {}
+	constructor(private router: Router, private config: AppConfig, private service: CheckLoginService) {}
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 		// 当前访问路由地址 例如：/func_conf
@@ -22,12 +23,19 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 	}
 	
 	checkLogin(url: string): boolean {
-		if(this.config.user) {
+		if(this.config.user){
 			return true;
 		}else{
 			this.config.tmp_url = url;
-			this.router.navigate(["/login"]);
-			return false;
+			this.service.checkLogin().then(res => {
+				if(res.response == 'active'){
+					this.config.user = res.user;
+					this.router.navigate([url]);
+				}else{
+					this.router.navigate(["/login"]);
+					return false;
+				}
+			});
 		}
 	}
 }

@@ -26,7 +26,6 @@ export class HeaderComponent implements OnInit {
 	ngOnInit(): void {
 		this.service.getInfo().then(data => {
         	this.user = data.user;
-			this.config.user = data.user;
 			this.module_list = data.module_list;
         });
 	}
