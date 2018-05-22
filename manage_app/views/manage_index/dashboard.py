@@ -9,8 +9,9 @@ from flask import current_app as app
 from sqlalchemy import or_, func, and_
 
 from model.session import get_session
-from model.manage.user import User
+from model.website.customer import Customer
 from model.image.image import Image
+from model.image.image_download_history import ImageDownloadHistory
 from model.image.image_series import ImageSeries
 
 from lib.aes_encrypt import AESCipher
@@ -29,6 +30,11 @@ def dashboard_info():
         yesterday_start = datetime.datetime.strftime(yesterday, '%Y-%m-%d 00:00:00')
         yesterday_end = datetime.datetime.strftime(yesterday, '%Y-%m-%d 23:59:59')
         with get_session() as db_session:
+            # 会员数量
+            all_customer = db_session.query(Customer)
+            all_customer_count = all_customer.count()
+            result['dashboard_info']['all_customer_count'] = all_customer_count
+
             # 图片数量
             all_pic_obj = db_session.query(Image)
             all_pic_count = all_pic_obj.count()
@@ -41,6 +47,14 @@ def dashboard_info():
             )
             upload_pic_count = upload_pic_obj.count()
             result['dashboard_info']['upload_pic_count'] = upload_pic_count
+
+            # 昨日下载图片数量
+            download_pic_obj = db_session.query(ImageDownloadHistory).filter(
+                ImageDownloadHistory.created_date >= yesterday_start,
+                ImageDownloadHistory.created_date <= yesterday_end
+            )
+            download_pic_count = download_pic_obj.count()
+            result['dashboard_info']['download_pic_count'] = download_pic_count
 
             # 专题数量
             all_series_obj = db_session.query(ImageSeries)
