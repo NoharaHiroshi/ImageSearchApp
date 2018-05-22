@@ -19,15 +19,14 @@ export class LoginComponent {
 	
 	ngOnInit(): void {
 		let self = this;
-		this.service.getLoginPage().then(data => {
-			if(data.response == 'active'){
-				this.config.user = data.user;
-				let tmp_url = this.config.tmp_url
-				this.router.navigate([tmp_url]);
-			}else{
+		if(this.config.user){
+			let tmp_url = this.config.tmp_url;
+			this.router.navigate([tmp_url]);
+		}else{
+			this.service.getLoginPage().then(data => {
 				this.token = data.token;
 			}
-		})
+		}
 	}
 	
 	login(): void {

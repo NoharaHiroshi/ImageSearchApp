@@ -33,7 +33,7 @@ export class LoginService extends BaseService {
 		}
 		let json = this.postForm(url, JSON.stringify(login_info));
 		json['user'] = self.jsonToObject(json.user, User);
-	    return json;
+		return json;
 	}
 
 }
