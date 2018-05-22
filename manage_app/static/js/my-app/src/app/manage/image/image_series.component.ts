@@ -14,6 +14,8 @@ import { Image } from '../../model/image';
 import { ImageService } from './image.service'
 import { ImageQueryComponent } from '../../common/image_list/image_list.component';
 
+import { MasonryComponent } from '../../common/masonry/masonry.component';
+
 @Component({
   selector: 'image-series-root',
   templateUrl: './image_series_list.html',
