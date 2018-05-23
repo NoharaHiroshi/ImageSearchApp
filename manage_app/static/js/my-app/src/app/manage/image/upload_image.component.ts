@@ -37,7 +37,7 @@ export class ImageUploadComponent extends ListBaseComponent{
 	
 	genUrl(): void {
 		this.uploader.options.url = this.uploader.options.url + '?series_ids=' + this.series_id_list + '&tag_ids=' + this.tag_id_list;
-		console.log(this.uploader.options.url);
+		
 	}
 	
 	loadAfter(): void  {

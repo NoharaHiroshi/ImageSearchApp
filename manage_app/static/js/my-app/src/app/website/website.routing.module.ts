@@ -9,6 +9,7 @@ import { HotSearchConfComponent, HotSearchConfDetailComponent } from './hot_sear
 import { ColumnConfComponent, ColumnConfDetailComponent, ColumnConfSetDetailComponent } from './column/column.component';
 import { CustomerConfComponent, CustomerConfDetailComponent, CustomerDiscountConfDetailComponent } from './customer/customer.component';
 import { DiscountConfComponent, DiscountConfDetailComponent } from './discount/discount.component';
+import { WebsiteComponent } from './website/website.component';
 
 import { AuthGuard } from '../common/auth/auth.service';
 
@@ -45,6 +46,8 @@ const website_routes: Routes = [
 			{ path: 'discount_conf', component: DiscountConfComponent },
 			{ path: 'discount_conf/detail/:id', component: DiscountConfDetailComponent},
 			{ path: 'discount_conf/detail/add', component: DiscountConfDetailComponent},
+			
+			{ path: 'website_conf', component: WebsiteComponent },
 		]
 	}
 ];
