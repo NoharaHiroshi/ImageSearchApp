@@ -133,7 +133,7 @@ def get_menu_func_list():
                 Menu, Menu.id == MenuFunc.menu_id
             ).join(
                 Func, Func.id == MenuFunc.func_id
-            ).order_by(Menu.sort).all()
+            ).order_by(Menu.code).all()
             for menu_func, menu, func in query:
                 menu_func_dict = menu_func.to_dict()
                 menu_func_dict.update({
@@ -202,6 +202,9 @@ def update_menu_func_detail():
                     menu_func = db_session.query(MenuFunc).get(menu_func_id)
                     if menu_func:
                         menu_func.name = menu_func_name
+                        menu_func.menu_id = menu_id
+                        menu_func.func_id = func_id
+                        menu_func.menu_func_code = menu_func_code
                     else:
                         result['response'] = 'fail'
                         result['info'] = '当前对象不存在'

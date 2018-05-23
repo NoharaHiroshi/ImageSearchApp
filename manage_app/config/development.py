@@ -40,5 +40,8 @@ WATERMARK_IMG_FONT_SRC = os.path.join(ROOT_SRC, 'website_app/static/fonts').repl
 # 水印文字字体
 WATERMARK_IMG_FONT_TYPE = os.path.join(WATERMARK_IMG_FONT_SRC, 'Microsoft-YaHei.ttf').replace('\\', '/')
 
+# 网站前端url
+WEBSITE_URL = 'http://127.0.0.1:8899'
+
 if __name__ == '__main__':
     print WATERMARK_IMG_FONT_TYPE

@@ -6,6 +6,8 @@ import 'rxjs/add/operator/timeout';
 import 'rxjs/Rx';
 
 import { UserRole } from '../../model/user_role';
+import { Role } from '../../model/role';
+import { User } from '../../model/user';
 
 import { BaseService } from '../../common/base.service';
 
@@ -36,9 +38,9 @@ export class UserRoleService extends BaseService {
 				   .toPromise()
 				   .then(res => {
 						let json = res.json()
-						json['user_role'] = self.jsonToObject(json.user_role, UserRole);
-						json['all_role_info'] = json.all_role_info;
-						json['all_user_info'] = json.all_user_info;
+						json['user_role'] = self.jsonToObject(json.user_role, UserRole); 
+						json['all_role_info'] = self.jsonListToObjectList(json.all_role_info, Role);
+						json['all_user_info'] = self.jsonListToObjectList(json.all_user_info, User);
 						return json;
 				   })
 				   .catch(this.handleError);

@@ -81,7 +81,7 @@ export class UserRoleConfDetailComponent extends ListBaseComponent{
 	ngOnInit(): void {
 		this.isLoading = true;
 		// 判断是添加还是修改
-		if(undefined == this.route.params.value.id){
+		if('add' == this.route.params.value.id){
 			this.isAdd = true;
 		}
         this.route.params.switchMap((params: Params) => this.service.getDetail(params['id']||'0'))

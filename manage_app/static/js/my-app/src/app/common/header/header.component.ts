@@ -20,6 +20,7 @@ declare var $: any;
 export class HeaderComponent implements OnInit {
 	user: User;
 	module_list: Module[];
+	website_url: string;
 
 	constructor(private service: HeaderService, public router: Router, public config: AppConfig, public location: Location) {}
 	
@@ -27,6 +28,7 @@ export class HeaderComponent implements OnInit {
 		this.service.getInfo().then(data => {
         	this.user = data.user;
 			this.module_list = data.module_list;
+			this.website_url = data.website_url;
         });
 	}
 	

@@ -43,7 +43,8 @@ def nav_list():
 def header_info():
     result = {
         'response': 'ok',
-        'user': {}
+        'user': {},
+        'website_url': ''
     }
     try:
         if current_user.is_authenticated():
@@ -52,6 +53,7 @@ def header_info():
             user_dict = current_user.to_dict()
             result['module_list'] = module_list
             result['user'] = user_dict
+            result['website_url'] = config.WEBSITE_URL
         return jsonify(result)
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))
