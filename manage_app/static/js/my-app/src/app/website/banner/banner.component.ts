@@ -10,6 +10,8 @@ import { ListBaseComponent } from '../../common/base.component';
 import { Banner } from '../../model/banner';
 import { BannerService } from './banner.service';
 
+import { AppConfig } from '../../config/app_config';
+
 @Component({
   selector: 'banner-root',
   templateUrl: './banner_list.html',
@@ -73,7 +75,7 @@ export class BannerConfDetailComponent extends ListBaseComponent{
 	all_series_list: any;
 	banner_img: any;
 	
-	constructor(private service: BannerService, public route: ActivatedRoute, public router: Router) {
+	constructor(private service: BannerService, public route: ActivatedRoute, public router: Router, public config: AppConfig) {
 		super();
 	}
 	
