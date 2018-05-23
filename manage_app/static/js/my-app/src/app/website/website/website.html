@@ -1,0 +1,41 @@
+<h3>
+	<i class="fa fa-angle-right"></i> 网站配置 <span class="sub-title">Website Edit</span> 
+</h3>
+<div class="row mt" *ngIf="website_info">
+	<div class="col-lg-12">
+	  <div class="form-panel">
+		  <form class="form-horizontal style-form" method="get" style="margin-top: 30px;">
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">网站URL</label>
+				  <div class="col-sm-4">
+					  <input type="text" class="form-control" name="website_url" [(ngModel)]="website_info.website_url" placeholder="请设定网站URL">
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">静态资源URL</label>
+				  <div class="col-sm-4">
+					  <input type="text" class="form-control" name="resource_url" [(ngModel)]="website_info.resource_url" placeholder="请设定网站静态资源URL">
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">免费下载次数</label>
+				  <div class="col-sm-4">
+					  <input type="text" class="form-control" name="free_download_count" [(ngModel)]="website_info.free_download_count" placeholder="普通用户可以免费下载的次数">
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">免费下载时间间隔</label>
+				  <div class="col-sm-4">
+					  <input type="text" class="form-control" name="free_download_time" [(ngModel)]="website_info.free_download_time" placeholder="普通用户可以免费下载的时间间隔，单位秒">
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label"></label>
+				  <div class="col-sm-4">
+					  <button type="button" type="submit" [disabled]="isDisabledButton" class="btn btn-theme03" (click)="save()">保存</button>
+				  </div>
+			  </div>
+		  </form>
+	  </div>
+	</div><!-- col-lg-12-->      	
+</div><!-- /row -->
