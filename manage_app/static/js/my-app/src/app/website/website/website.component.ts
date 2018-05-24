@@ -16,6 +16,7 @@ import { WebsiteInfoService } from './website.service';
 })
 export class WebsiteConfComponent extends ListBaseComponent{
 	website_info: WebsiteInfo;
+	result: string;
 	
 	constructor(private service: WebsiteInfoService) {
 		super();
@@ -34,9 +35,12 @@ export class WebsiteConfComponent extends ListBaseComponent{
 			this.isDisabledButton = true;
 			if(res.response=='fail'){
 				console.log('fail', res.info);
+				this.result = '保存失败';
 				this.isDisabledButton = false;
 			}else{
 				console.log('success', '保存成功');
+				this.result = '保存成功';
+				this.isDisabledButton = false;
 			}
 		});
 	}

@@ -32,6 +32,7 @@
 			  <div class="form-group">
 				  <label class="col-sm-2 col-sm-2 control-label"></label>
 				  <div class="col-sm-4">
+					  <p *ngIf="result" style="color: #ed5565;">{{ result }}</p>
 					  <button type="button" type="submit" [disabled]="isDisabledButton" class="btn btn-theme03" (click)="save()">保存</button>
 				  </div>
 			  </div>

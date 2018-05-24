@@ -22,7 +22,7 @@ export class WebsiteInfoService extends BaseService {
 	               .toPromise()
 	               .then(function(res){
 						let json = res.json();
-	            	    let website_info = self.jsonToObject(json.website_info, WebsiteInfo);
+	            	    let website_info = self.jsonToObject(json.website_conf, WebsiteInfo);
 					    json['website_info'] = website_info;
 	            	    return json;
 	               })
