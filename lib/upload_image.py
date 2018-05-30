@@ -89,7 +89,7 @@ def save_images(images, t=Image.TYPE_COMMON, series_ids=None, tag_ids=None):
             db_session.add(img)
 
             # 关联专题
-            if series_ids[0]:
+            if series_ids and series_ids[0]:
                 for series_id in series_ids:
                     series = db_session.query(ImageSeries).get(series_id)
                     img_series = ImageSeriesRel()
@@ -99,7 +99,7 @@ def save_images(images, t=Image.TYPE_COMMON, series_ids=None, tag_ids=None):
                     db_session.add(img_series)
 
             # 关联标签
-            if tag_ids[0]:
+            if tag_ids and tag_ids[0]:
                 for tag_id in tag_ids:
                     tag = db_session.query(ImageTags).get(tag_id)
                     img_tag = ImageTagsRel()

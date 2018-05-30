@@ -78,11 +78,12 @@ def banner_upload():
             # 存储banner图片
             img_id_list = save_images(file_objects, t=Image.TYPE_BANNER)
             result['img_id_list'] = img_id_list
-    except:
+    except Exception as e:
         result.update({
             'response': 'fail',
             'info': u'图片上传失败'
         })
+        print traceback.format_exc(e)
     return jsonify(result)
 
 
