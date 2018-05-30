@@ -10,6 +10,8 @@ import traceback
 import lxml
 import ujson
 from bs4 import BeautifulSoup as bs
+from model.script.script_58pic_image import PIC58Image
+from model.session import get_session
 
 # 获取关联关键字的url
 get_connect_keywords_url = r'http://www.58pic.com/index.php?m=searchtips&a=searchRelated&kw=%s' % u'粽子'
@@ -74,26 +76,56 @@ def get_png_image_from_keyword(keyword):
     :return: json格式的数据
     """
     url = result_url
+    result = {
+        'response': 'ok',
+        'code': 0,
+        'info': ''
+    }
     data = {
         'word': keyword,
         'noresult': ''
     }
     response = post_requests(url, data)
     if response:
-        result = ujson.loads(response.content)
-        status = result.get(u'status')
+        r = ujson.loads(response.content)
+        status = r.get(u'status')
         # 获取成功
         if status == 1:
-            data_list = result.get(u'data', [])
+            data_list = r.get(u'data', [])
             if data_list:
-                for data in data_list:
-                    pic_width = data.get(u'picwidth', u'')
-                    pic_height = data.get(u'picheight', u'')
-                    pic_title = data.get(u'title', u'')
-                    s_height = data.get(u'sheight', 0)
-                    pic_url = data.get(u'picurl', u'')
-                    pic_id = data.get(u'id', u'')
-
-                    
+                with get_session() as db_session:
+                    for data in data_list:
+                        pic_width = data.get(u'picwidth', u'')
+                        pic_height = data.get(u'picheight', u'')
+                        pic_title = data.get(u'title', u'')
+                        pic_url = data.get(u'picurl', u'')
+                        pic_id = data.get(u'id', u'')
+                        pic_image = db_session.query(PIC58Image).filter(
+                            PIC58Image.pic_id == pic_id
+                        ).first()
+                        if not pic_image:
+                            pic_image = PIC58Image()
+                            pic_image.key_word = keyword
+                            pic_image.pic_height = pic_height
+                            pic_image.pic_width = pic_width
+                            pic_image.pic_name = pic_title
+                            pic_image.pic_url = pic_url
+                            pic_image.pic_id = pic_id
+                            db_session.add(pic_image)
+                    db_session.commit()
+            else:
+                result.update({
+                    'response': 'fail',
+                    'code': 2,
+                    'info': u'获取图片信息失败'
+                })
+                return ujson.dumps(result)
+        else:
+            result.update({
+                'response': 'fail',
+                'code': 1,
+                'info': u'获取信息失败'
+            })
+            return ujson.dumps(result)
 if __name__ == '__main__':
     get_png_image_from_keyword(u'粽子')
