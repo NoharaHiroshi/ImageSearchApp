@@ -157,21 +157,27 @@ def get_pic_page_url(keyword):
     if pinyin:
         # 构建png素材url
         keyword_page_url = u'http://www.58pic.com/tupian/%s-0-0-default-7-0-%s-0_2_0_0_0_0_0-1.html' % (pinyin, keyword)
-        get_pic_image(keyword_page_url)
+        get_pic_image(keyword_page_url, key_word=keyword)
 
 
-def get_pic_image(base_url, page=1, all_page_count=None):
+def get_pic_image(base_url, page=1, all_page_count=None, key_word=None):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 '
                       '(KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36',
         'Host': 'www.58pic.com',
-        'Cookie': 'message2=1; qt_visitor_id=%229038ec9d87070adab957c76c48909535%22; '
-                  'qt_ur_type=2; qt_createtime=1505923200; qt_type=2; '
-                  'qt_addtime=%222017-09-21%22; message2=1; '
+        'Cookie': 'qt_visitor_id=%229038ec9d87070adab957c76c48909535%22; '
+                  'qt_ur_type=2; '
+                  'qt_createtime=1505923200; '
+                  'qt_type=2; '
+                  'qt_addtime=%222017-09-21%22; '
                   'qt_risk_visitor_id=%2235eb5141f45d662c1b14ae2e9ddd3499%22; '
-                  'awake=0; FIRSTVISITED=1527666893.22; ISREQUEST=1; '
-                  'imgCodeKey=%229b3a2031b62868dfedfccbc201b721a6%22; '
-                  'history_search=%22%7B%5C%22%25F4%25D5%25D7%25D3_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2Fzi.html%5C%22%2C%5C%22%25B0%25FC%25D7%25D3_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2Fbaozi.html%5C%22%2C%5C%22PNG%25C3%25E2%25BF%25D9%25CB%25D8%25B2%25C4_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2F33051222.html%5C%22%7D%22; historyKw=%22s%253A4%253A%2522%25F4%25D5%25D7%25D3%2522%253B%22; user-browser=%22baidu%22; Hm_lvt_644763986e48f2374d9118a9ae189e14=1527132950,1527666894,1527667035,1527738112; qt_updatetime=%222018-05-31%22; user:search:worlds:new_0_1=%22a%253A1%253A%257Bi%253A0%253Bs%253A4%253A%2522%25F4%25D5%25D7%25D3%2522%253B%257D%22; referer=%22http%3A%5C%2F%5C%2Fwww.58pic.com%5C%2Ftupian%5C%2Fzi.html%22; qt_utime=1527745630; qt_uid=%2212213845%22; Hm_lpvt_644763986e48f2374d9118a9ae189e14=1527745633',
+                  'awake=0; '
+                  'referer=%22http%3A%5C%2F%5C%2Fwww.58pic.com%5C%2Ftupian%5C%2Fzi-0-0-default-7-0-%25E7%25B2%25BD%25E5%25AD%2590-0_2_0_0_0_0_0-3.html%22; 1490c6811c510539f99068d1b8b4e2ba=%22223.71.230.230%22; '
+                  'qt_utime=' + str(int(time.time())) + '; '
+                  'qt_uid=%2212213845%22; '
+                  'qt_updatetime=%222018-05-31%22; '
+                  'history_search=%22%7B%5C%22%25F4%25D5%25D7%25D3_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2Fzi-0-0-default-7-0-%25E7%25B2%25BD%25E5%25AD%2590-0_2_0_0_0_0_0-3.html%5C%22%7D%22; '
+                  'historyKw=%22s%253A4%253A%2522%25F4%25D5%25D7%25D3%2522%253B%22',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
         'Accept-Encoding': 'gzip, deflate',
         'Accept-Language': 'zh-CN,zh;q=0.9',
@@ -183,7 +189,7 @@ def get_pic_image(base_url, page=1, all_page_count=None):
     }
     url = base_url + str(page) + '.html'
     response = get_requests(url, headers=headers, timeout=20)
-    print u'-------------- 正在获取第%s页内容 -----------------' % page
+    print u'-------------- 正在获取第%s页内容， 共%s页 -----------------' % (page, all_page_count)
     response.encoding = 'gbk'
     if response:
         soup = bs(response.text, 'lxml')
@@ -191,27 +197,38 @@ def get_pic_image(base_url, page=1, all_page_count=None):
         page_info = soup.select('.classify-pages')[0].get_text()
         all_page = int(page_info.split(r'/')[-1])
         if img_resource_list:
-            for img_resource in img_resource_list:
-                img_id_info = img_resource.select('.card-img > a')[0]
-                img_info = img_resource.select('.card-img > a > img')[0]
-                if img_info and img_id_info:
-                    img_id = img_id_info['data-id']
-                    img_title = img_info['alt']
-                    img_url = img_info['data-original'] if 'data-original' in img_info.attrs else img_info['src']
-                    print img_id, img_title, img_url
-                else:
-                    continue
+            with get_session() as db_session:
+                for img_resource in img_resource_list:
+                    img_id_info = img_resource.select('.card-img > a')[0]
+                    img_info = img_resource.select('.card-img > a > img')[0]
+                    if img_info and img_id_info:
+                        pic_title = img_info.get(u'alt', u'')
+                        pic_url = img_info['data-original'] if 'data-original' in img_info.attrs else img_info['src']
+                        pic_id = img_id_info.get(u'data-id', u'')
+                        pic_image = db_session.query(PIC58Image).filter(
+                            PIC58Image.pic_id == pic_id
+                        ).first()
+                        if not pic_image:
+                            pic_image = PIC58Image()
+                            pic_image.key_word = key_word
+                            pic_image.pic_name = pic_title
+                            pic_image.pic_url = pic_url
+                            pic_image.pic_id = pic_id
+                            db_session.add(pic_image)
+                    else:
+                        continue
+                db_session.commit()
             page += 1
             all_page_count = all_page
             if page <= all_page:
-                get_pic_image(base_url, page, all_page_count)
+                get_pic_image(base_url, page, all_page_count, key_word=key_word)
             else:
                 return result
     else:
         if all_page_count:
             page += 1
             if page <= all_page_count:
-                get_pic_image(base_url, page, all_page_count)
+                get_pic_image(base_url, page, all_page_count, key_word=key_word)
             else:
                 return result
         else:
@@ -223,7 +240,7 @@ def get_pic_image(base_url, page=1, all_page_count=None):
 
 
 if __name__ == '__main__':
-    k_w = u'粽子'
+    k_w = u'端午节'
     get_pic_page_url(k_w)
     # url = get_connect_keywords_url + u'粽子'
     # response = get_requests(url)

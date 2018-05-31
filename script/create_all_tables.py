@@ -24,7 +24,7 @@ from model.website.discount import Discount, CustomerDiscount
 from model.website.discount_code import DiscountCode, DisocuntCodeGenHistory
 from model.website.website_conf import WebsiteConf
 
-from model.script.script_58pic_image import PIC58Image, PIC58PageImage
+from model.script.script_58pic_image import PIC58Image
 
 
 def create_all_tables():

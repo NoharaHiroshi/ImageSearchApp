@@ -21,10 +21,6 @@ class PIC58Image(Base):
     pic_url = Column(String(225))
     # 图片id
     pic_id = Column(String(10), index=True)
-    # 图片宽度
-    pic_width = Column(Integer, index=True)
-    # 图片长度
-    pic_height = Column(Integer, index=True)
     # 状态
     status = Column(Integer, default=STATUS_DEFAULT, index=True)
 
@@ -33,36 +29,6 @@ class PIC58Image(Base):
             'id': str(self.id),
             'pic_name': self.pic_name,
             'key_word': self.key_word,
-            'pic_url': self.pic_url,
-            'pic_id': self.pic_id,
-            'pic_width': self.pic_width,
-            'pic_height': self.pic_height,
-            'status': self.status,
-            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
-            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
-        }
-
-
-class PIC58PageImage(Base):
-    __tablename__ = 'script_58pic_page_image'
-
-    # 状态：待获取、已获取
-    STATUS_DEFAULT, STATUS_USED = range(2)
-
-    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
-    # 图片标题
-    pic_name = Column(String(100), index=True)
-    # 图片url
-    pic_url = Column(String(225))
-    # 图片id
-    pic_id = Column(String(10), index=True)
-    # 状态
-    status = Column(Integer, default=STATUS_DEFAULT, index=True)
-
-    def to_dict(self):
-        return {
-            'id': str(self.id),
-            'pic_name': self.pic_name,
             'pic_url': self.pic_url,
             'pic_id': self.pic_id,
             'status': self.status,
