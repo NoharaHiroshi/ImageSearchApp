@@ -133,7 +133,7 @@ def get_png_image_from_keyword(keyword):
             return ujson.dumps(result)
 
 
-def get_pic_page_url(keyword):
+def get_pic_page_url(keyword, page=1):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 '
                       '(KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36',
@@ -156,8 +156,8 @@ def get_pic_page_url(keyword):
     pinyin = pinyin_result.get(u'pinyin', u'')
     if pinyin:
         # 构建png素材url
-        keyword_page_url = u'http://www.58pic.com/tupian/%s-0-0-default-7-0-%s-0_2_0_0_0_0_0-1.html' % (pinyin, keyword)
-        get_pic_image(keyword_page_url, key_word=keyword)
+        keyword_page_url = u'http://www.58pic.com/tupian/%s-0-0-default-7-0-%s-0_2_0_0_0_0_0-' % (pinyin, keyword)
+        get_pic_image(keyword_page_url, page=page, key_word=keyword)
 
 
 def get_pic_image(base_url, page=1, all_page_count=None, key_word=None):
@@ -187,61 +187,74 @@ def get_pic_image(base_url, page=1, all_page_count=None, key_word=None):
         'response': 'ok',
         'info': ''
     }
-    url = base_url + str(page) + '.html'
-    response = get_requests(url, headers=headers, timeout=20)
-    print u'-------------- 正在获取第%s页内容， 共%s页 -----------------' % (page, all_page_count)
-    response.encoding = 'gbk'
-    if response:
-        soup = bs(response.text, 'lxml')
-        img_resource_list = soup.select('.flow-item')
-        page_info = soup.select('.classify-pages')[0].get_text()
-        all_page = int(page_info.split(r'/')[-1])
-        if img_resource_list:
-            with get_session() as db_session:
-                for img_resource in img_resource_list:
-                    img_id_info = img_resource.select('.card-img > a')[0]
-                    img_info = img_resource.select('.card-img > a > img')[0]
-                    if img_info and img_id_info:
-                        pic_title = img_info.get(u'alt', u'')
-                        pic_url = img_info['data-original'] if 'data-original' in img_info.attrs else img_info['src']
-                        pic_id = img_id_info.get(u'data-id', u'')
-                        pic_image = db_session.query(PIC58Image).filter(
-                            PIC58Image.pic_id == pic_id
-                        ).first()
-                        if not pic_image:
-                            pic_image = PIC58Image()
-                            pic_image.key_word = key_word
-                            pic_image.pic_name = pic_title
-                            pic_image.pic_url = pic_url
-                            pic_image.pic_id = pic_id
-                            db_session.add(pic_image)
-                    else:
-                        continue
-                db_session.commit()
-            page += 1
-            all_page_count = all_page
-            if page <= all_page:
-                get_pic_image(base_url, page, all_page_count, key_word=key_word)
+    try:
+        url = base_url + str(page) + '.html'
+        response = get_requests(url, headers=headers, timeout=20)
+        print u'-------------- 正在获取第%s页内容， 共%s页 -----------------' % (page, all_page_count)
+        response.encoding = 'gbk'
+        if response:
+            soup = bs(response.text, 'lxml')
+            img_resource_list = soup.select('.flow-item')
+            page_info = soup.select('.classify-pages')[0].get_text()
+            all_page = int(page_info.split(r'/')[-1])
+            if img_resource_list:
+                with get_session() as db_session:
+                    print u'-------------- 获取第%s页内容success -----------------' % page
+                    for img_resource in img_resource_list:
+                        img_id_info = img_resource.select('.card-img > a')[0]
+                        img_info = img_resource.select('.card-img > a > img')[0]
+                        if img_info and img_id_info:
+                            pic_title = img_info.get(u'alt', u'')
+                            pic_url = img_info['data-original'] if 'data-original' in img_info.attrs else img_info['src']
+                            pic_id = img_id_info.get(u'data-id', u'')
+                            pic_image = db_session.query(PIC58Image).filter(
+                                PIC58Image.pic_id == pic_id
+                            ).first()
+                            if not pic_image:
+                                pic_image = PIC58Image()
+                                pic_image.key_word = key_word
+                                pic_image.pic_name = pic_title
+                                pic_image.pic_url = pic_url
+                                pic_image.pic_id = pic_id
+                                db_session.add(pic_image)
+                        else:
+                            continue
+                    db_session.commit()
+                page += 1
+                all_page_count = all_page
+                if page <= all_page:
+                    get_pic_image(base_url, page, all_page_count, key_word=key_word)
+                else:
+                    return result
+        else:
+            if all_page_count:
+                page += 1
+                if page <= all_page_count:
+                    get_pic_image(base_url, page, all_page_count, key_word=key_word)
+                else:
+                    return result
             else:
+                result.update({
+                    'response': 'fail',
+                    'info': u'获取页数失败'
+                })
                 return result
-    else:
-        if all_page_count:
-            page += 1
-            if page <= all_page_count:
-                get_pic_image(base_url, page, all_page_count, key_word=key_word)
-            else:
-                return result
+    except Exception as e:
+        print traceback.format_exc(e)
+        page += 1
+        if page <= all_page_count:
+            get_pic_image(base_url, page, all_page_count, key_word=key_word)
         else:
             result.update({
                 'response': 'fail',
-                'info': u'获取页数失败'
+                'info': u'未知错误'
             })
             return result
 
 
 if __name__ == '__main__':
     k_w = u'端午节'
-    get_pic_page_url(k_w)
+    get_pic_page_url(k_w, 6)
     # url = get_connect_keywords_url + u'粽子'
     # response = get_requests(url)
     # print response.text
