@@ -8,6 +8,7 @@ import requests
 import time
 import traceback
 import lxml
+import os
 import ujson
 from urllib import quote
 from bs4 import BeautifulSoup as bs
@@ -192,7 +193,7 @@ def get_pic_image(base_url, page=1, all_page_count=None, key_word=None):
         response = get_requests(url, headers=headers, timeout=20)
         print u'-------------- 正在获取第%s页内容， 共%s页 -----------------' % (page, all_page_count)
         response.encoding = 'gbk'
-        if response:
+        if response.status_code == 200:
             soup = bs(response.text, 'lxml')
             img_resource_list = soup.select('.flow-item')
             page_info = soup.select('.classify-pages')[0].get_text()
@@ -202,7 +203,11 @@ def get_pic_image(base_url, page=1, all_page_count=None, key_word=None):
                     print u'-------------- 获取第%s页内容success -----------------' % page
                     for img_resource in img_resource_list:
                         img_id_info = img_resource.select('.card-img > a')[0]
-                        img_info = img_resource.select('.card-img > a > img')[0]
+                        _img_info = img_resource.select('.card-img > a > img')
+                        if len(_img_info):
+                            img_info = img_resource.select('.card-img > a > img')[0]
+                        else:
+                            img_info = dict()
                         if img_info and img_id_info:
                             pic_title = img_info.get(u'alt', u'')
                             pic_url = img_info['data-original'] if 'data-original' in img_info.attrs else img_info['src']
@@ -226,7 +231,16 @@ def get_pic_image(base_url, page=1, all_page_count=None, key_word=None):
                     get_pic_image(base_url, page, all_page_count, key_word=key_word)
                 else:
                     return result
+            else:
+                print u'-------------- 获取第%s页内容fail: 未获取素材列表 -----------------' % page
+                page += 1
+                all_page_count = all_page
+                if page <= all_page:
+                    get_pic_image(base_url, page, all_page_count, key_word=key_word)
+                else:
+                    return result
         else:
+            print u'-------------- 获取第%s页内容fail: 请求失败 -----------------' % page
             if all_page_count:
                 page += 1
                 if page <= all_page_count:
@@ -252,9 +266,35 @@ def get_pic_image(base_url, page=1, all_page_count=None, key_word=None):
             return result
 
 
+def get_image_object():
+    try:
+        with get_session() as db_session:
+            all_image = db_session.query(PIC58Image).filter(
+                PIC58Image.status == PIC58Image.STATUS_DEFAULT
+            ).all()
+            if all_image:
+                for image in all_image:
+                    img_key_word = image.key_word
+                    file_path = os.path.join(os.path.dirname(__file__), img_key_word).replace('\\', '/')
+                    if not os.path.exists(file_path):
+                        os.makedirs(file_path)
+                    img_url = image.pic_url.split('!')[0]
+                    img_type = img_url.split('.')[-1]
+                    img_title = '.'.join([image.pic_name, img_type])
+                    print u'----------------- 正在获取%s ----------------' % img_title
+                    img_name = os.path.join(file_path, img_title).replace('\\', '/')
+                    img_response = requests.get(img_url, timeout=50)
+                    with open(img_name, 'wb') as f:
+                        f.write(img_response.content)
+                    image.status = PIC58Image.STATUS_USED
+                    db_session.commit()
+    except Exception as e:
+        print traceback.format_exc(e)
+
 if __name__ == '__main__':
-    k_w = u'端午节'
-    get_pic_page_url(k_w, 6)
+    k_w = u'树叶'
+    get_pic_page_url(k_w, page=38)
     # url = get_connect_keywords_url + u'粽子'
     # response = get_requests(url)
     # print response.text
+    # get_image_object()
