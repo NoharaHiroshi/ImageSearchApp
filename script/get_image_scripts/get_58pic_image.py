@@ -300,8 +300,8 @@ def get_image_object(key_word):
         print traceback.format_exc(e)
 
 if __name__ == '__main__':
-    # k_w = u'树叶'
-    # get_pic_page_url(k_w, page=70)
+    # k_w = u'碎花'
+    # get_pic_page_url(k_w)
     # url = get_connect_keywords_url + u'粽子'
     # response = get_requests(url)
     # print response.text

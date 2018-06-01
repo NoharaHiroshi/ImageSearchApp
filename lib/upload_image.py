@@ -32,7 +32,7 @@ def add_watermark_text(im, text):
     # 居中显示水印
     text_xy = (int((width - text_size_x) // 2), int((height - text_size_y) // 2))
     # font用于指定所有字体，fill用于填充字体颜色
-    image_draw.text(text_xy, text, font=font, fill=(255, 255, 255, 40))
+    image_draw.text(text_xy, text, font=font, fill=(255, 255, 255, 60))
     # 复合图像，两张图像的尺寸需要一致，并且同为RGBA模式
     image_with_text = Img.alpha_composite(rgba_im, text_overlay)
     return image_with_text
