@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/Rx';
 
-import { BaseService } from '../../common/base.service';
+import { BaseService } from '../../../common/base.service';
 
 @Injectable()
 export class UserPageService extends BaseService {

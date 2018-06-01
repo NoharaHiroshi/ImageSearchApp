@@ -5,13 +5,13 @@ import { Component, Input, Output, EventEmitter, ViewChildren, ViewChild, Elemen
 import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { Location }  from '@angular/common';
 
-import { AppConfig } from '../../../config/app_config';
+import { AppConfig } from '../../../../config/app_config';
 
 @Component({
-  selector: 'user-page-root',
-  templateUrl: './user_page.html',
+  selector: 'user-exchange-code-root',
+  templateUrl: './exchange_code.html',
 })
-export class UserPageComponent {
+export class ExchangeCodeComponent {
 	
 	constructor(private config: AppConfig) {}
 }

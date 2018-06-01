@@ -29,8 +29,8 @@ const routes: Routes = [
 				path: 'user/:id', 
 				component: UserPageComponent,
 				children: [
-					'user_info': UserInfoComponent,
-					'exchange_code': ExchangeCodeComponent
+					{ path: 'user_info', component: UserInfoComponent },
+					{ path: 'exchange_code', component: ExchangeCodeComponent }
 				]
 			}
 		]
