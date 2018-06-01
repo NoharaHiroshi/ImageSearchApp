@@ -232,10 +232,9 @@ def get_pic_image(base_url, page=1, all_page_count=None, key_word=None):
                 else:
                     return result
             else:
-                print u'-------------- 获取第%s页内容fail: 未获取素材列表 -----------------' % page
+                print u'-------------- 获取第%s页内容fail: 未获取素材列表，所有page：%s -----------------' % (page, all_page_count)
                 page += 1
-                all_page_count = all_page
-                if page <= all_page:
+                if page <= all_page_count:
                     get_pic_image(base_url, page, all_page_count, key_word=key_word)
                 else:
                     return result
@@ -266,12 +265,16 @@ def get_pic_image(base_url, page=1, all_page_count=None, key_word=None):
             return result
 
 
-def get_image_object():
+def get_image_object(key_word):
     try:
         with get_session() as db_session:
-            all_image = db_session.query(PIC58Image).filter(
-                PIC58Image.status == PIC58Image.STATUS_DEFAULT
-            ).all()
+            query = db_session.query(PIC58Image).filter(
+                PIC58Image.status == PIC58Image.STATUS_DEFAULT,
+                PIC58Image.key_word == key_word
+            )
+            all_image_count = query.count()
+            all_image = query.all()
+            count = 1
             if all_image:
                 for image in all_image:
                     img_key_word = image.key_word
@@ -281,20 +284,25 @@ def get_image_object():
                     img_url = image.pic_url.split('!')[0]
                     img_type = img_url.split('.')[-1]
                     img_title = '.'.join([image.pic_name, img_type])
-                    print u'----------------- 正在获取%s ----------------' % img_title
+                    print u'----------------- 正在获取%s 剩余%s----------------' % (img_title, all_image_count - count)
                     img_name = os.path.join(file_path, img_title).replace('\\', '/')
+                    if os.path.exists(img_name):
+                        pic_name = image.pic_name + str(int(time.time()))
+                        img_title = '.'.join([pic_name, img_type])
+                        img_name = os.path.join(file_path, img_title).replace('\\', '/')
                     img_response = requests.get(img_url, timeout=50)
                     with open(img_name, 'wb') as f:
                         f.write(img_response.content)
                     image.status = PIC58Image.STATUS_USED
+                    count += 1
                     db_session.commit()
     except Exception as e:
         print traceback.format_exc(e)
 
 if __name__ == '__main__':
-    k_w = u'树叶'
-    get_pic_page_url(k_w, page=38)
+    # k_w = u'树叶'
+    # get_pic_page_url(k_w, page=70)
     # url = get_connect_keywords_url + u'粽子'
     # response = get_requests(url)
     # print response.text
-    # get_image_object()
+    get_image_object(u'花')
