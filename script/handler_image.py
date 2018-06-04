@@ -67,7 +67,8 @@ def get_area_image(img_name, alw):
                         if not is_a:
                             alpha.putpixel((row_area, h), 0)
                         if is_a:
-                            alpha.putpixel((row_area, h), 225)
+                            pixel = alpha.getpixel((row_area, h))
+                            alpha.putpixel((row_area, h), 255-int(pixel*0.4))
                     is_a = not is_a
             # 重新分解通道
             r, g, b = new_img.split()
@@ -180,6 +181,6 @@ def convert_trans_pic(img):
         print e
 
 if __name__ == '__main__':
-    get_area_image('phone.jpg', 10)
+    get_area_image('test_1.jpg', 10)
 
 
