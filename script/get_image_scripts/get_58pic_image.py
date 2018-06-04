@@ -266,17 +266,17 @@ def get_pic_image(base_url, page=1, all_page_count=None, key_word=None):
 
 
 def get_image_object(key_word):
-    try:
-        with get_session() as db_session:
-            query = db_session.query(PIC58Image).filter(
-                PIC58Image.status == PIC58Image.STATUS_DEFAULT,
-                PIC58Image.key_word == key_word
-            )
-            all_image_count = query.count()
-            all_image = query.all()
-            count = 1
-            if all_image:
-                for image in all_image:
+    with get_session() as db_session:
+        query = db_session.query(PIC58Image).filter(
+            PIC58Image.status == PIC58Image.STATUS_DEFAULT,
+            PIC58Image.key_word == key_word
+        ).order_by(-PIC58Image.created_date)
+        all_image_count = query.count()
+        all_image = query.all()
+        count = 1
+        if all_image:
+            for image in all_image:
+                try:
                     img_key_word = image.key_word
                     file_path = os.path.join(os.path.dirname(__file__), img_key_word).replace('\\', '/')
                     if not os.path.exists(file_path):
@@ -296,13 +296,12 @@ def get_image_object(key_word):
                     image.status = PIC58Image.STATUS_USED
                     count += 1
                     db_session.commit()
-    except Exception as e:
-        print traceback.format_exc(e)
+                except Exception as e:
+                    print traceback.format_exc(e)
+                    continue
+
 
 if __name__ == '__main__':
-    k_w = u'手柄'
-    get_pic_page_url(k_w)
-    # url = get_connect_keywords_url + u'粽子'
-    # response = get_requests(url)
-    # print response.text
-    # get_image_object(u'花')
+    # k_w = u'苹果电脑'
+    # get_pic_page_url(k_w)
+    get_image_object(u'苹果电脑')
