@@ -8,8 +8,6 @@ import os
 import re
 import traceback
 import contextlib
-import ImageFilter
-import ImageEnhance
 from PIL import Image
 
 
@@ -153,12 +151,12 @@ def get_average_area_color_rgb(img_name):
         print traceback.format_exc(e)
 
 
-def get_area_image(img_name, alw=None):
+def get_area_image(img_name, alw=None, ecl=5):
     try:
         with open_image(img_name) as image:
             if not alw:
                 alw = get_average_area_color(img_name)
-                print 'alw: %s' % alw
+            print 'alw: %s' % alw
             new_img = image.im
             width, height = new_img.size
             r, g, b = new_img.split()
@@ -184,23 +182,20 @@ def get_area_image(img_name, alw=None):
                             row_info.append(w)
                             is_area = False
                 row_info.append(width)
-                print row_info
                 # 是否进入素材
                 is_a = False
-                # 噪点大小
-                noise = 10
                 for row_area_i in range(len(row_info) - 1):
-                    # 是否噪点
-                    is_n = False
-                    print abs(row_info[row_area_i] - row_info[row_area_i + 1])
-                    if abs(row_info[row_area_i] - row_info[row_area_i + 1]) < noise:
-                        is_n = True
                     for row_area in range(row_info[row_area_i], row_info[row_area_i+1]):
-                        if not is_a or is_n:
+                        if not is_a:
                             alpha.putpixel((row_area, h), 0)
                         if is_a:
                             pixel = alpha.getpixel((row_area, h))
-                            alpha.putpixel((row_area, h), 255-int(pixel*0.1))
+                            if row_area - row_info[row_area_i] <= ecl:
+                                v = (ecl - row_area + row_info[row_area_i]) * 0.1
+                                print v
+                                alpha.putpixel((row_area, h), 255-int(pixel*v))
+                            else:
+                                alpha.putpixel((row_area, h), 255-int(pixel*0.1))
                     is_a = not is_a
             # 重新分解通道
             r, g, b = new_img.split()
@@ -242,6 +237,6 @@ def get_color_area_image(img_name):
 
 
 if __name__ == '__main__':
-    get_area_image('test_5.jpg')
+    get_area_image('test_13.jpg')
 
 
