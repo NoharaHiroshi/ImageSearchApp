@@ -157,12 +157,14 @@ def get_area_image(img_name, alw=None):
     try:
         with open_image(img_name) as image:
             if not alw:
-                alw = get_average_area_color_rgb(img_name)
+                alw = get_average_area_color(img_name)
                 print 'alw: %s' % alw
             new_img = image.im
-            alpha = image.im.convert('L')
             width, height = new_img.size
-            main_color = sum(new_img.getpixel((0, 0)))
+            r, g, b = new_img.split()
+            alpha = b
+            main_alpha = alpha.getdata()
+            main_color = main_alpha[0]
             # 扫描主区域
             for h in range(height):
                 row_info = list()
@@ -170,7 +172,7 @@ def get_area_image(img_name, alw=None):
                 # 是否进入素材
                 is_area = False
                 for w in range(width):
-                    pixel = sum(new_img.getpixel((w, h)))
+                    pixel = alpha.getpixel((w, h))
                     # 进入素材
                     if pixel < main_color - alw:
                         if not is_area:
@@ -190,7 +192,7 @@ def get_area_image(img_name, alw=None):
                             alpha.putpixel((row_area, h), 0)
                         if is_a:
                             pixel = alpha.getpixel((row_area, h))
-                            alpha.putpixel((row_area, h), 225-int(pixel*0.1))
+                            alpha.putpixel((row_area, h), 255-int(pixel*0.1))
                     is_a = not is_a
             # 重新分解通道
             r, g, b = new_img.split()
@@ -204,6 +206,6 @@ def get_area_image(img_name, alw=None):
 
 
 if __name__ == '__main__':
-    get_area_image('test_14.jpg', alw=5)
+    get_area_image('test_15.jpg')
 
 
