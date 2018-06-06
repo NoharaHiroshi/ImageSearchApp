@@ -205,7 +205,36 @@ def get_area_image(img_name, alw=None):
         print traceback.format_exc(e)
 
 
+# 通过色彩范围分析
+def get_color_area_image(img_name):
+    try:
+        with open_image(img_name) as image:
+            new_img = image.im
+            width, height = new_img.size
+            r, g, b = new_img.split()
+            alpha = new_img.convert('L')
+            alw = 5
+            main_color = sum(new_img.getpixel((0, 0))) - alw
+            for h in range(height):
+                for w in range(width):
+                    pixel = sum(new_img.getpixel((w, h)))
+                    # 需要剔除的部分
+                    if pixel >= main_color:
+                        alpha.putpixel((w, h), 0)
+                    else:
+                        alpha.putpixel((w, h), 255-int(pixel*0.1))
+            # 重新分解通道
+            r, g, b = new_img.split()
+            a_img = Image.merge('RGBA', (r, g, b, alpha))
+            name = img_name.split('.')[0] + '_color_area'
+            t = 'png'
+            new_name = '.'.join([name, t])
+            a_img.save(new_name)
+    except Exception as e:
+        print traceback.format_exc(e)
+
+
 if __name__ == '__main__':
-    get_area_image('test_15.jpg')
+    get_color_area_image('test_9.jpg')
 
 
