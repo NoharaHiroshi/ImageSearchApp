@@ -132,7 +132,7 @@ def get_average_area_color_rgb(img_name):
                     # 离开素材
                     if is_area:
                         if pixel >= main_color:
-                            pixel = new_img.getpixel((w - 1, h))
+                            pixel = sum(new_img.getpixel((w - 1, h)))
                             if pixel not in area_color_info:
                                 area_color_info[pixel] = 1
                             else:
@@ -145,7 +145,9 @@ def get_average_area_color_rgb(img_name):
                 value += k * v
                 all_count += v
                 area_alw_info.append(k)
-            alw = main_color - int(area_alw_info[-1] / 3)
+                print k, v
+            area_color_info = sorted(area_color_info.items(), key=lambda x: x[1], reverse=True)
+            alw = main_color - area_alw_info[0][0]
             return alw
     except Exception as e:
         print traceback.format_exc(e)
@@ -158,11 +160,9 @@ def get_area_image(img_name, alw=None):
                 alw = get_average_area_color_rgb(img_name)
                 print 'alw: %s' % alw
             new_img = image.im
+            alpha = image.im.convert('L')
             width, height = new_img.size
-            r, g, b = new_img.split()
-            alpha = b
-            main_alpha = alpha.getdata()
-            main_color = main_alpha[0]
+            main_color = sum(new_img.getpixel((0, 0)))
             # 扫描主区域
             for h in range(height):
                 row_info = list()
@@ -170,7 +170,7 @@ def get_area_image(img_name, alw=None):
                 # 是否进入素材
                 is_area = False
                 for w in range(width):
-                    pixel = alpha.getpixel((w, h))
+                    pixel = sum(new_img.getpixel((w, h)))
                     # 进入素材
                     if pixel < main_color - alw:
                         if not is_area:
@@ -190,7 +190,7 @@ def get_area_image(img_name, alw=None):
                             alpha.putpixel((row_area, h), 0)
                         if is_a:
                             pixel = alpha.getpixel((row_area, h))
-                            alpha.putpixel((row_area, h), 255-int(pixel*0.1))
+                            alpha.putpixel((row_area, h), 225-int(pixel*0.1))
                     is_a = not is_a
             # 重新分解通道
             r, g, b = new_img.split()
@@ -204,6 +204,6 @@ def get_area_image(img_name, alw=None):
 
 
 if __name__ == '__main__':
-    print get_average_area_color_rgb('test_14.jpg')
+    get_area_image('test_14.jpg', alw=5)
 
 
