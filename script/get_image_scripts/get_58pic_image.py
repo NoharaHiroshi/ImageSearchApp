@@ -265,12 +265,16 @@ def get_pic_image(base_url, page=1, all_page_count=None, key_word=None):
             return result
 
 
-def get_image_object(key_word):
+def get_image_object(key_word=None):
     with get_session() as db_session:
         query = db_session.query(PIC58Image).filter(
-            PIC58Image.status == PIC58Image.STATUS_DEFAULT,
-            PIC58Image.key_word == key_word
-        ).order_by(-PIC58Image.created_date)
+            PIC58Image.status == PIC58Image.STATUS_DEFAULT
+        )
+        if key_word:
+            query = query.filter(
+                PIC58Image.key_word == key_word
+            )
+        query = query.order_by(-PIC58Image.created_date)
         all_image_count = query.count()
         all_image = query.all()
         count = 1
@@ -302,6 +306,6 @@ def get_image_object(key_word):
 
 
 if __name__ == '__main__':
-    # k_w = u'苹果电脑'
+    # k_w = u'鸭'
     # get_pic_page_url(k_w)
-    get_image_object(u'苹果电脑')
+    get_image_object(u'水果')

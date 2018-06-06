@@ -81,6 +81,7 @@ def get_average_area_color(img_name):
                     if pixel < main_color - 5:
                         if not is_area:
                             if pixel not in area_color_info:
+                                # 记录边界值
                                 area_color_info[pixel] = 1
                             else:
                                 area_color_info[pixel] += 1
@@ -101,7 +102,50 @@ def get_average_area_color(img_name):
                 value += k * v
                 all_count += v
                 area_alw_info.append(k)
-            alw = main_color - sorted(area_alw_info)[-1] + 5
+            alw = main_color - sorted(area_alw_info)[-1]
+            return alw
+    except Exception as e:
+        print traceback.format_exc(e)
+
+
+# 通过转换为灰度的方式获取区域
+def get_average_area_color_rgb(img_name):
+    try:
+        with open_image(img_name) as image:
+            new_img = image.im
+            width, height = new_img.size
+            main_color = sum(new_img.getpixel((0, 0)))
+            area_color_info = dict()
+            for h in range(height):
+                is_area = False
+                for w in range(width):
+                    pixel = sum(new_img.getpixel((w, h)))
+                    # 进入素材
+                    if pixel < main_color:
+                        if not is_area:
+                            if pixel not in area_color_info:
+                                # 记录边界值
+                                area_color_info[pixel] = 1
+                            else:
+                                area_color_info[pixel] += 1
+                            is_area = True
+                    # 离开素材
+                    if is_area:
+                        if pixel >= main_color:
+                            pixel = new_img.getpixel((w - 1, h))
+                            if pixel not in area_color_info:
+                                area_color_info[pixel] = 1
+                            else:
+                                area_color_info[pixel] += 1
+                            is_area = False
+            value = 0
+            all_count = 0
+            area_alw_info = list()
+            for k, v in area_color_info.items():
+                value += k * v
+                all_count += v
+                area_alw_info.append(k)
+            alw = main_color - int(area_alw_info[-1] / 3)
             return alw
     except Exception as e:
         print traceback.format_exc(e)
@@ -111,7 +155,7 @@ def get_area_image(img_name, alw=None):
     try:
         with open_image(img_name) as image:
             if not alw:
-                alw = get_average_area_color(img_name)
+                alw = get_average_area_color_rgb(img_name)
                 print 'alw: %s' % alw
             new_img = image.im
             width, height = new_img.size
@@ -146,7 +190,7 @@ def get_area_image(img_name, alw=None):
                             alpha.putpixel((row_area, h), 0)
                         if is_a:
                             pixel = alpha.getpixel((row_area, h))
-                            alpha.putpixel((row_area, h), 255-int(pixel*0.3))
+                            alpha.putpixel((row_area, h), 255-int(pixel*0.1))
                     is_a = not is_a
             # 重新分解通道
             r, g, b = new_img.split()
@@ -160,6 +204,6 @@ def get_area_image(img_name, alw=None):
 
 
 if __name__ == '__main__':
-    get_area_image('test_8.jpg')
+    print get_average_area_color_rgb('test_14.jpg')
 
 
