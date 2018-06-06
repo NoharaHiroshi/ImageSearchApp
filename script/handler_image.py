@@ -184,11 +184,19 @@ def get_area_image(img_name, alw=None):
                             row_info.append(w)
                             is_area = False
                 row_info.append(width)
+                print row_info
                 # 是否进入素材
                 is_a = False
+                # 噪点大小
+                noise = 10
                 for row_area_i in range(len(row_info) - 1):
+                    # 是否噪点
+                    is_n = False
+                    print abs(row_info[row_area_i] - row_info[row_area_i + 1])
+                    if abs(row_info[row_area_i] - row_info[row_area_i + 1]) < noise:
+                        is_n = True
                     for row_area in range(row_info[row_area_i], row_info[row_area_i+1]):
-                        if not is_a:
+                        if not is_a or is_n:
                             alpha.putpixel((row_area, h), 0)
                         if is_a:
                             pixel = alpha.getpixel((row_area, h))
@@ -211,7 +219,6 @@ def get_color_area_image(img_name):
         with open_image(img_name) as image:
             new_img = image.im
             width, height = new_img.size
-            r, g, b = new_img.split()
             alpha = new_img.convert('L')
             alw = 5
             main_color = sum(new_img.getpixel((0, 0))) - alw
@@ -222,7 +229,7 @@ def get_color_area_image(img_name):
                     if pixel >= main_color:
                         alpha.putpixel((w, h), 0)
                     else:
-                        alpha.putpixel((w, h), 255-int(pixel*0.1))
+                        alpha.putpixel((w, h), 255)
             # 重新分解通道
             r, g, b = new_img.split()
             a_img = Image.merge('RGBA', (r, g, b, alpha))
@@ -235,6 +242,6 @@ def get_color_area_image(img_name):
 
 
 if __name__ == '__main__':
-    get_color_area_image('test_9.jpg')
+    get_area_image('test_5.jpg')
 
 
