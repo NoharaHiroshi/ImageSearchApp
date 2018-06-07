@@ -8,7 +8,10 @@ import os
 import re
 import traceback
 import contextlib
+import ImageFilter
+import ImageEnhance
 from PIL import Image
+from math import log
 
 
 class NewImage:
@@ -76,7 +79,7 @@ def get_average_area_color(img_name):
                 for w in range(width):
                     pixel = alpha.getpixel((w, h))
                     # 进入素材
-                    if pixel < main_color - 5:
+                    if pixel < main_color - 10:
                         if not is_area:
                             if pixel not in area_color_info:
                                 # 记录边界值
@@ -151,6 +154,35 @@ def get_average_area_color_rgb(img_name):
         print traceback.format_exc(e)
 
 
+# 通过色彩范围分析
+def get_color_area_image(img_name):
+    try:
+        with open_image(img_name) as image:
+            new_img = image.im
+            width, height = new_img.size
+            alpha = new_img.convert('L')
+            alw = 5
+            main_color = sum(new_img.getpixel((0, 0))) - alw
+            for h in range(height):
+                for w in range(width):
+                    pixel = sum(new_img.getpixel((w, h)))
+                    # 需要剔除的部分
+                    if pixel >= main_color:
+                        alpha.putpixel((w, h), 0)
+                    else:
+                        alpha.putpixel((w, h), 255)
+            # 重新分解通道
+            r, g, b = new_img.split()
+            a_img = Image.merge('RGBA', (r, g, b, alpha))
+            name = img_name.split('.')[0] + '_color_area'
+            t = 'png'
+            new_name = '.'.join([name, t])
+            a_img.save(new_name)
+    except Exception as e:
+        print traceback.format_exc(e)
+
+
+# 不适合素材中要保留的部分颜色接近背景色
 def get_area_image(img_name, alw=None, ecl=5):
     try:
         with open_image(img_name) as image:
@@ -189,13 +221,16 @@ def get_area_image(img_name, alw=None, ecl=5):
                         if not is_a:
                             alpha.putpixel((row_area, h), 0)
                         if is_a:
-                            pixel = alpha.getpixel((row_area, h))
-                            if row_area - row_info[row_area_i] <= ecl:
-                                v = (ecl - row_area + row_info[row_area_i]) * 0.1
-                                print v
-                                alpha.putpixel((row_area, h), 255-int(pixel*v))
+                            cap = row_area - row_info[row_area_i]
+                            _cap = row_info[row_area_i + 1] - row_area
+                            if cap < ecl:
+                                a = int(255 * 0.9 / pow(2, ecl-1) * (pow(2, cap) - 1))
+                                alpha.putpixel((row_area, h), a)
+                            elif _cap < ecl:
+                                a = int(255 * 0.9 / pow(2, ecl - 1) * (pow(2, _cap) - 1))
+                                alpha.putpixel((row_area, h), a)
                             else:
-                                alpha.putpixel((row_area, h), 255-int(pixel*0.1))
+                                alpha.putpixel((row_area, h), 255)
                     is_a = not is_a
             # 重新分解通道
             r, g, b = new_img.split()
@@ -208,35 +243,7 @@ def get_area_image(img_name, alw=None, ecl=5):
         print traceback.format_exc(e)
 
 
-# 通过色彩范围分析
-def get_color_area_image(img_name):
-    try:
-        with open_image(img_name) as image:
-            new_img = image.im
-            width, height = new_img.size
-            alpha = new_img.convert('L')
-            alw = 5
-            main_color = sum(new_img.getpixel((0, 0))) - alw
-            for h in range(height):
-                for w in range(width):
-                    pixel = sum(new_img.getpixel((w, h)))
-                    # 需要剔除的部分
-                    if pixel >= main_color:
-                        alpha.putpixel((w, h), 0)
-                    else:
-                        alpha.putpixel((w, h), 255)
-            # 重新分解通道
-            r, g, b = new_img.split()
-            a_img = Image.merge('RGBA', (r, g, b, alpha))
-            name = img_name.split('.')[0] + '_color_area'
-            t = 'png'
-            new_name = '.'.join([name, t])
-            a_img.save(new_name)
-    except Exception as e:
-        print traceback.format_exc(e)
-
-
 if __name__ == '__main__':
-    get_area_image('test_13.jpg')
-
+    # get_area_image('test_18.jpg', alw=50)
+    print get_average_area_color('test_18.jpg')
 
