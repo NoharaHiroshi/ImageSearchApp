@@ -547,13 +547,27 @@ def update_image_tag_detail():
         else:
             with get_session() as db_session:
                 if not image_tag_id:
-                    image_tag = ImageTags()
-                    image_tag.name = image_tag_name
-                    db_session.add(image_tag)
+                    has_tag = db_session.query(ImageTags).filter(
+                        ImageTags.name == image_tag_name
+                    ).first()
+                    if has_tag:
+                        result['response'] = 'fail'
+                        result['info'] = u'当前标签已存在'
+                    else:
+                        image_tag = ImageTags()
+                        image_tag.name = image_tag_name
+                        db_session.add(image_tag)
                 else:
                     image_tag = db_session.query(ImageTags).get(image_tag_id)
                     if image_tag:
-                        image_tag.name = image_tag_name
+                        has_tag = db_session.query(ImageTags).filter(
+                            ImageTags.name == image_tag_name
+                        ).first()
+                        if has_tag:
+                            result['response'] = 'fail'
+                            result['info'] = u'当前标签已存在'
+                        else:
+                            image_tag.name = image_tag_name
                     else:
                         result['response'] = 'fail'
                         result['info'] = u'当前对象不存在'

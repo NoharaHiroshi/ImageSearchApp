@@ -306,6 +306,6 @@ def get_image_object(key_word=None):
 
 
 if __name__ == '__main__':
-    # k_w = u'鸭'
+    # k_w = u'电脑'
     # get_pic_page_url(k_w)
     get_image_object()

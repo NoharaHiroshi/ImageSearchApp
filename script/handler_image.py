@@ -79,7 +79,7 @@ def get_average_area_color(img_name):
                 for w in range(width):
                     pixel = alpha.getpixel((w, h))
                     # 进入素材
-                    if pixel < main_color - 10:
+                    if pixel < main_color - 20:
                         if not is_area:
                             if pixel not in area_color_info:
                                 # 记录边界值
@@ -244,6 +244,5 @@ def get_area_image(img_name, alw=None, ecl=5):
 
 
 if __name__ == '__main__':
-    # get_area_image('test_18.jpg', alw=50)
-    print get_average_area_color('test_18.jpg')
+    get_area_image('test_21.jpg', alw=20)
 

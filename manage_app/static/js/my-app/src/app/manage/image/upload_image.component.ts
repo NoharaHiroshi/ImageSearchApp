@@ -92,6 +92,7 @@ export class ImageUploadComponent extends ListBaseComponent{
                 },
                 results: function (data:any, page:any) {
                     var more = (page * 10) < data.meta.total;
+					console.log('more: ' + more);
                     return {results: data['data_list'], more: more};
                 }
             },
