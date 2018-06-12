@@ -59,7 +59,7 @@ export class ImageUploadComponent extends ListBaseComponent{
                     };
                 },
                 results: function (data:any, page:any) {
-                    var more = (page * 10) < data.meta.total;
+                    var more = (page * 10) < data.meta.count;
                     return {results: data['data_list'], more: more};
                 }
             },
@@ -74,7 +74,7 @@ export class ImageUploadComponent extends ListBaseComponent{
         	self.series_id_list = $('#series_select').val();
         });
 		
-		const tag_url = `/lib/get_all_tags`; 
+		const tag_url = `/lib/get_all_tags`;  
 		$('#tag_select').select2({
             placeholder: '请选择标签',
             allowClear: true,
@@ -91,8 +91,7 @@ export class ImageUploadComponent extends ListBaseComponent{
                     };
                 },
                 results: function (data:any, page:any) {
-                    var more = (page * 10) < data.meta.total;
-					console.log('more: ' + more);
+                    var more = (page * 10) < data.meta.count;
                     return {results: data['data_list'], more: more};
                 }
             },

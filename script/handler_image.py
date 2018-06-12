@@ -243,6 +243,10 @@ def get_area_image(img_name, alw=None, ecl=5):
         print traceback.format_exc(e)
 
 
+def get_clean_area_image():
+    pass
+
+
 if __name__ == '__main__':
-    get_area_image('test_21.jpg', alw=20)
+    get_area_image('test_8.jpg', alw=5)
 
