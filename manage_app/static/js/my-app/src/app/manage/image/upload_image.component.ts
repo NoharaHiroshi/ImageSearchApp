@@ -12,9 +12,10 @@ import { ListBaseComponent } from '../../common/base.component';
 export class ImageUploadComponent extends ListBaseComponent{
 	series_id_list: string;
 	tag_id_list: string;
+	base_url: string = 'http://127.0.0.1:8888/manage/upload_image';
 	
 	public uploader: FileUploader = new FileUploader({
-		url: "http://127.0.0.1:8888/manage/upload_image",
+		url: this.base_url,
 		itemAlias: "uploadedfile"
 	});
 	public hasBaseDropZoneOver:boolean = false;
@@ -36,8 +37,8 @@ export class ImageUploadComponent extends ListBaseComponent{
 	}
 	
 	genUrl(): void {
-		this.uploader.options.url = this.uploader.options.url + '?series_ids=' + this.series_id_list + '&tag_ids=' + this.tag_id_list;
-		console.log('current upload url: ' + this.uploader.options.url);
+		this.uploader.options.url = this.base_url + '?series_ids=' + this.series_id_list + '&tag_ids=' + this.tag_id_list;
+		alert('current upload url: ' + this.uploader.options.url);
 	}
 	
 	loadAfter(): void  {

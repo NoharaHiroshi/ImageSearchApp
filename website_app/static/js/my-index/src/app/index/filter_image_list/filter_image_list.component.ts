@@ -98,7 +98,9 @@ export class FilterImageListComponent extends ListBaseComponent implements OnIni
 					$(image_div).attr('data-h', _h);
 				}
 			}
-			$(this.demo.nativeElement).flexImages({rowHeight: 300, container: '.image-item' });
+			if(this.demo){
+				$(this.demo.nativeElement).flexImages({rowHeight: 300, container: '.image-item' });
+			}
 		}
 	}
 }
