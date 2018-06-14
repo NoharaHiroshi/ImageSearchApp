@@ -44,14 +44,24 @@
 		<div class="input-search-btn" (click)="searchImage()">
 			<i class="fa fa-search"></i>
 		</div>
-		<div class="input-recommond-search" id="recommond" style="display:none;">
-			<ng-container *ngFor="let hot_search of hot_search_list">
-				<a [routerLink]="['image_list', hot_search.connect_id]">
-					<p>
-						<span class="input-recommond-search-tag">{{hot_search.name}}</span>
-						<span class="input-recommond-search-result">{{hot_search.count}} 结果</span>
-					</p>
-				</a>
+		<div class="input-recommond-search" id="recommond" style="display: none;">
+			<ng-container *ngFor="let hot_search of hot_search_list; let i = index">
+				<ng-container *ngIf="i < 3">
+					<a [routerLink]="['image_list', hot_search.connect_id]" target="_blank">
+						<p>
+							<span class="input-recommond-search-tag"><span class="rank">{{i+1}}</span>{{hot_search.name}}</span>
+							<span class="input-recommond-search-result">{{hot_search.count}} 结果</span>
+						</p>
+					</a>
+				</ng-container>
+				<ng-container *ngIf="i >= 3">
+					<a [routerLink]="['image_list', hot_search.connect_id]">
+						<p>
+							<span class="input-recommond-search-tag"><span class="rank-gray">{{i+1}}</span>{{hot_search.name}}</span>
+							<span class="input-recommond-search-result">{{hot_search.count}} 结果</span>
+						</p>
+					</a>
+				</ng-container>
 			</ng-container>
 		</div>
 	</div>

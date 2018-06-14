@@ -31,6 +31,7 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 	}
 	
 	ngOnInit(): void {
+		let self = this;
 		this.service.getInfo().then(data => {
         	this.banner_list = data.banner_list;
 			this.website_menu_list = data.website_menu_list;
@@ -44,6 +45,9 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 		.subscribe(res => {
 			this.bread_nav_list = res['bread_nav'];
 		});
+		setTimeout(function(){
+			self.loadAfter();
+		}, 300);
 	}
 	
 	logout(): void {
@@ -72,5 +76,24 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 	
 	enterSearchImage(event: any): void {
 		this.searchImage();
+	}
+	
+	loadAfter(): void {
+		/* 搜索框 */
+		$("#main-search").click(function(e){
+			$('#recommond').show();
+			e.stopPropagation();
+		});
+		
+		$(document).on("click", function(e){
+			$('#recommond').hide();
+		});
+		
+		$("#main-search-fix").focus(function(){
+			$('#recommond-fix').show();
+		});
+		$("#main-search-fix").blur(function(){
+			$('#recommond-fix').hide();
+		});
 	}
 }
