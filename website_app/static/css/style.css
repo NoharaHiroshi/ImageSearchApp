@@ -172,10 +172,9 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 
 .input-recommond-search {
 	font-size: 14px;
-	padding: 5px 10px;
 	line-height: 14px;
 	color: #888;
-    width: 560px;
+    width: 580px;
     position: absolute;
     top: 50px;
     left: 0;
@@ -186,9 +185,14 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
     z-index: 103;
 }
 
-.input-recommond-search p {
-	margin: 15px 10px;
+.input-recommond-search a {
+	display: block;
+	padding: 12px 15px;
 	overflow: hidden;
+}
+
+.input-recommond-search a:hover {
+	background: #f6f6f6;
 }
 
 .input-recommond-search-tag {

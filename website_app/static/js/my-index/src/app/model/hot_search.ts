@@ -6,4 +6,5 @@ export class HotSearch {
 	status: number = 0;
 	status_text: string;
 	ranking: number;
+	count: number;
 }

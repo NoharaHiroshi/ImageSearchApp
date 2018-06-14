@@ -46,10 +46,12 @@
 		</div>
 		<div class="input-recommond-search" id="recommond" style="display:none;">
 			<ng-container *ngFor="let hot_search of hot_search_list">
-				<p>
-					<span class="input-recommond-search-tag">{{hot_search.name}}</span>
-					<span class="input-recommond-search-result">703266 结果</span>
-				</p>
+				<a [routerLink]="['image_list', hot_search.connect_id]">
+					<p>
+						<span class="input-recommond-search-tag">{{hot_search.name}}</span>
+						<span class="input-recommond-search-result">{{hot_search.count}} 结果</span>
+					</p>
+				</a>
 			</ng-container>
 		</div>
 	</div>
@@ -131,7 +133,7 @@
 		<div class="hd"><ul></ul></div>
 	</div>
 </div>
-<div class="current-position" *ngIf="bread_nav_list.length > 1">
+<div class="current-position" *ngIf="bread_nav_list && bread_nav_list.length > 1">
 	<ng-container *ngFor="let bread_nav of bread_nav_list; let i=index">
 		<ng-container *ngIf="bread_nav[1] == 0">
 			<a href="/">当前位置：首页</a> <ng-container *ngIf="i != bread_nav_list.length - 1"> > </ng-container> 

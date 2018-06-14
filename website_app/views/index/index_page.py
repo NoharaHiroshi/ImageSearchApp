@@ -70,6 +70,11 @@ def get_index_header():
                 _menu_list.append(menu_dict)
             for hot_search in all_hot_search:
                 hot_search_dict = hot_search.to_dict()
+                hot_search_rel = db_session.query(ImageSeries).get(hot_search.connect_id)
+                if hot_search_rel:
+                    hot_search_dict['count'] = hot_search_rel.count
+                else:
+                    hot_search_dict['count'] = 0
                 _hot_search_list.append(hot_search_dict)
             result.update({
                 'banner_list': _banner_list,
@@ -83,7 +88,7 @@ def get_index_header():
                 })
         return jsonify(result)
     except Exception as e:
-        print e
+        print traceback.format_exc(e)
 
 
 @index.route('/register', methods=['POST'])
