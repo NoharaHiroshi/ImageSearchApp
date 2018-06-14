@@ -15,16 +15,16 @@ from math import log
 
 
 class NewImage:
-    def __init__(self, file_name):
+    def __init__(self, file_name, file_path=None):
         self.base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        self.img_file_dir = os.path.join(self.base_dir, u'script\images')
+        self.img_file_dir = os.path.join(self.base_dir, file_path) if file_path else os.path.join(self.base_dir, u'script\images')
         self.file_dir = os.path.join(self.img_file_dir, file_name)
         self.im = Image.open(self.file_dir)
 
 
 @contextlib.contextmanager
-def open_image(file_name):
-    new_im = NewImage(file_name)
+def open_image(file_name, file_path=None):
+    new_im = NewImage(file_name, file_path)
     try:
         yield new_im
     except Exception as e:
@@ -183,9 +183,9 @@ def get_color_area_image(img_name):
 
 
 # 不适合素材中要保留的部分颜色接近背景色
-def get_area_image(img_name, alw=None, ecl=5):
+def get_area_image(img_name, alw=None, ecl=5, path=None):
     try:
-        with open_image(img_name) as image:
+        with open_image(img_name, path) as image:
             if not alw:
                 alw = get_average_area_color(img_name)
             print 'alw: %s' % alw
@@ -235,7 +235,7 @@ def get_area_image(img_name, alw=None, ecl=5):
             # 重新分解通道
             r, g, b = new_img.split()
             a_img = Image.merge('RGBA', (r, g, b, alpha))
-            name = img_name.split('.')[0] + '_new'
+            name = 'new_' + img_name.split('.')[0]
             t = 'png'
             new_name = '.'.join([name, t])
             a_img.save(new_name)
@@ -243,10 +243,19 @@ def get_area_image(img_name, alw=None, ecl=5):
         print traceback.format_exc(e)
 
 
-def get_clean_area_image():
-    pass
+# 批量处理图片
+def batch_handler_image(file_path):
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    full_file_path = os.path.join(base_dir, file_path)
+    if os.path.exists(full_file_path):
+        for s in os.listdir(full_file_path):
+            file_format = s.split('.')[-1]
+            if file_format.upper() == 'JPG':
+                print u'当前处理图片: %s' % s
+                get_area_image(s, alw=10, path=file_path)
 
 
 if __name__ == '__main__':
-    get_area_image('test_8.jpg', alw=5)
+    # get_area_image('test_8.jpg', alw=5)
+    batch_handler_image(u'script\get_image_scripts\国庆节')
 
