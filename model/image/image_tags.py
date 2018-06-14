@@ -10,6 +10,7 @@ class ImageTags(Base):
 
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     name = Column(String(30), nullable=False, index=True)
+    view_count = Column(Integer, default=0, index=True)
 
     @property
     def count(self):
@@ -25,6 +26,7 @@ class ImageTags(Base):
             'id': str(self.id),
             'name': self.name,
             'count': self.count,
+            'view_count': self.view_count,
             'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
             'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }

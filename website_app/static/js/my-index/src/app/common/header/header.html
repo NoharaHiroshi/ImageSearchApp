@@ -68,10 +68,14 @@
 	<div class="input-hot-search">
 		<div class="input-hot-search-div">
 			<span style="color: #555;">热门资源：</span>
-			<span>圣诞</span>
-			<span style="color: #ffbe40">新年</span>
-			<span style="color: #ffbe40">元旦</span>
-			<span>年会</span>
+			<ng-container *ngFor="let recommend of recommend_list; let i = index">
+				<ng-container *ngIf="i < 3">
+					<span><a style="color: #ffa220;" [routerLink]="['filter_image_list']" [queryParams]="{search: recommend.name}" target='_blank'>{{recommend.name}}</a></span>
+				</ng-container>
+				<ng-container *ngIf="i >= 3">
+					<span><a [routerLink]="['filter_image_list']" [queryParams]="{search: recommend.name}" target='_blank'>{{recommend.name}}</a></span>
+				</ng-container>
+			</ng-container>
 		</div>
 	</div>
 </div>

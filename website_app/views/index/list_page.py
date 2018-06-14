@@ -170,6 +170,15 @@ def get_filter_image_list():
             ).filter(
                 ImageTags.name.like('%' + search + '%')
             ).all()
+
+            # 搜索关键词
+            tags = db_session.query(ImageTags).filter(
+                ImageTags.name.like('%' + search + '%')
+            ).all()
+            for tag in tags:
+                tag.view_count += 1
+            db_session.commit()
+
             image_ids = [image_tag.image_id for image_tag in image_query]
             query = db_session.query(Image).filter(
                 Image.id.in_(image_ids)

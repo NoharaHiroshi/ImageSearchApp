@@ -22,6 +22,7 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 	banner_list: any[];
 	website_menu_list: any[];
 	hot_search_list: any[];
+	recommend_list: any[];
 	search: any;
 	customer: Customer;
 	bread_nav_list: any[];
@@ -36,6 +37,7 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
         	this.banner_list = data.banner_list;
 			this.website_menu_list = data.website_menu_list;
 			this.hot_search_list = data.hot_search_list;
+			this.recommend_list = data.recommend_list;
 			if(JSON.stringify(data.customer) != "{}"){
 				this.customer = data.customer;
 				this.config.user = data.customer;

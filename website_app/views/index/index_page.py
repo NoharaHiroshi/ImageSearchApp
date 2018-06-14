@@ -46,6 +46,7 @@ def get_index_header():
         'banner_list': [],
         'menu_list': [],
         'hot_search_list': [],
+        'recommend_list': [],
         'customer': ''
     }
     try:
@@ -57,9 +58,11 @@ def get_index_header():
             all_menu = db_session.query(WebsiteMenu).filter(
                 WebsiteMenu.parent_id == 0
             ).all()
+            all_recommend = db_session.query(ImageTags).order_by(-ImageTags.view_count).limit(5).all()
             _banner_list = list()
             _hot_search_list = list()
             _menu_list = list()
+            _recommend_list = list()
             for banner in all_banner:
                 banner_dict = banner.to_dict()
                 img_url = banner.get_banner_img(db_session)
@@ -76,10 +79,14 @@ def get_index_header():
                 else:
                     hot_search_dict['count'] = 0
                 _hot_search_list.append(hot_search_dict)
+            for recommend in all_recommend:
+                recommend_dict = recommend.to_dict()
+                _recommend_list.append(recommend_dict)
             result.update({
                 'banner_list': _banner_list,
                 'menu_list': _menu_list,
-                'hot_search_list': _hot_search_list
+                'hot_search_list': _hot_search_list,
+                'recommend_list': _recommend_list
             })
             if current_user.is_authenticated():
                 customer_dict = current_user.to_dict()

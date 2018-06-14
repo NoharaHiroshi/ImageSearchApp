@@ -166,7 +166,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 }
 
 .input-hot-search span {
-	margin-right: 5px;
+	margin-right: 10px;
 	font-size: 13px;
 }
 
