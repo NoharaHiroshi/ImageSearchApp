@@ -62,9 +62,9 @@ def get_average_image_color(img_name):
         print e
 
 
-def get_average_area_color(img_name):
+def get_average_area_color(img_name, path=None):
     try:
-        with open_image(img_name) as image:
+        with open_image(img_name, path) as image:
             new_img = image.im
             width, height = new_img.size
             r, g, b = new_img.split()
@@ -187,7 +187,7 @@ def get_area_image(img_name, alw=None, ecl=5, path=None):
     try:
         with open_image(img_name, path) as image:
             if not alw:
-                alw = get_average_area_color(img_name)
+                alw = get_average_area_color(img_name, path)
             print 'alw: %s' % alw
             new_img = image.im
             width, height = new_img.size
@@ -221,16 +221,16 @@ def get_area_image(img_name, alw=None, ecl=5, path=None):
                         if not is_a:
                             alpha.putpixel((row_area, h), 0)
                         if is_a:
-                            cap = row_area - row_info[row_area_i]
-                            _cap = row_info[row_area_i + 1] - row_area
-                            if cap < ecl:
-                                a = int(255 * 0.9 / pow(2, ecl-1) * (pow(2, cap) - 1))
-                                alpha.putpixel((row_area, h), a)
-                            elif _cap < ecl:
-                                a = int(255 * 0.9 / pow(2, ecl - 1) * (pow(2, _cap) - 1))
-                                alpha.putpixel((row_area, h), a)
-                            else:
-                                alpha.putpixel((row_area, h), 255)
+                            # cap = row_area - row_info[row_area_i]
+                            # _cap = row_info[row_area_i + 1] - row_area
+                            # if cap < ecl:
+                            #     a = int(255 * 0.9 / pow(2, ecl-1) * (pow(2, cap) - 1))
+                            #     alpha.putpixel((row_area, h), a)
+                            # elif _cap < ecl:
+                            #     a = int(255 * 0.9 / pow(2, ecl - 1) * (pow(2, _cap) - 1))
+                            #     alpha.putpixel((row_area, h), a)
+                            # else:
+                            alpha.putpixel((row_area, h), 255)
                     is_a = not is_a
             # 重新分解通道
             r, g, b = new_img.split()
@@ -252,10 +252,10 @@ def batch_handler_image(file_path):
             file_format = s.split('.')[-1]
             if file_format.upper() == 'JPG':
                 print u'当前处理图片: %s' % s
-                get_area_image(s, alw=10, path=file_path)
+                get_area_image(s, alw=15, path=file_path)
 
 
 if __name__ == '__main__':
     # get_area_image('test_8.jpg', alw=5)
-    batch_handler_image(u'script\get_image_scripts\国庆节')
+    batch_handler_image(u'script\get_image_scripts\树叶')
 

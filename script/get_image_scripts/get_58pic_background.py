@@ -12,14 +12,12 @@ import os
 import ujson
 from urllib import quote
 from bs4 import BeautifulSoup as bs
-from model.script.script_58pic_image import PIC58Image
+from model.script.script_58pic_image import PIC58Background
 from model.session import get_session
+
 
 # 获取关联关键字的url
 get_connect_keywords_url = r'http://www.58pic.com/index.php?m=searchtips&a=searchRelated&kw='
-
-# 搜索内容的url，方法post，参数word:list, noresult:string, 返回json数据
-result_url = r'http://www.58pic.com/index.php?m=result&a=search'
 
 # 中文转化拼音url
 change_pinyin_url = r'http://www.58pic.com/index.php?m=ajaxSearch&a=ajaxCheckPinyin&kw='
@@ -75,66 +73,6 @@ def post_requests(url, data, headers=None, timeout=10, times=1, retry=5):
             return None
 
 
-def get_png_image_from_keyword(keyword):
-    """
-    :param keyword: 要搜索的关键词
-    :return: json格式的数据
-    """
-    url = result_url
-    result = {
-        'response': 'ok',
-        'code': 0,
-        'info': ''
-    }
-    data = {
-        'word': keyword,
-        'noresult': ''
-    }
-    response = post_requests(url, data)
-    if response:
-        r = ujson.loads(response.content)
-        status = r.get(u'status')
-        # 获取成功
-        if status == 1:
-            data_list = r.get(u'data', [])
-            if data_list:
-                with get_session() as db_session:
-                    for data in data_list:
-                        print data
-                        pic_width = data.get(u'picwidth', u'')
-                        pic_height = data.get(u'picheight', u'')
-                        pic_title = data.get(u'title', u'')
-                        pic_url = data.get(u'picurl', u'')
-                        pic_id = data.get(u'id', u'')
-                        pic_image = db_session.query(PIC58Image).filter(
-                            PIC58Image.pic_id == pic_id
-                        ).first()
-                        if not pic_image:
-                            pic_image = PIC58Image()
-                            pic_image.key_word = ','.join(keyword)
-                            pic_image.pic_height = pic_height
-                            pic_image.pic_width = pic_width
-                            pic_image.pic_name = pic_title
-                            pic_image.pic_url = pic_url
-                            pic_image.pic_id = pic_id
-                            db_session.add(pic_image)
-                    db_session.commit()
-            else:
-                result.update({
-                    'response': 'fail',
-                    'code': 2,
-                    'info': u'获取图片信息失败'
-                })
-                return ujson.dumps(result)
-        else:
-            result.update({
-                'response': 'fail',
-                'code': 1,
-                'info': u'获取信息失败'
-            })
-            return ujson.dumps(result)
-
-
 def get_pic_page_url(keyword, page=1):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 '
@@ -158,7 +96,7 @@ def get_pic_page_url(keyword, page=1):
     pinyin = pinyin_result.get(u'pinyin', u'')
     if pinyin:
         # 构建png素材url
-        keyword_page_url = u'http://www.58pic.com/tupian/%s-0-0-default-7-0-%s-0_2_0_0_0_0_0-' % (pinyin, keyword)
+        keyword_page_url = u'http://www.58pic.com/tupian/%s-0-0-default-5-0-%s-0_2_0_0_0_0_0-' % (pinyin, keyword)
         get_pic_image(keyword_page_url, page=page, key_word=keyword)
 
 
@@ -176,10 +114,10 @@ def get_pic_image(base_url, page=1, all_page_count=None, key_word=None):
                   'awake=0; '
                   'referer=%22http%3A%5C%2F%5C%2Fwww.58pic.com%5C%2Ftupian%5C%2Fzi-0-0-default-7-0-%25E7%25B2%25BD%25E5%25AD%2590-0_2_0_0_0_0_0-3.html%22; 1490c6811c510539f99068d1b8b4e2ba=%22223.71.230.230%22; '
                   'qt_utime=' + str(int(time.time())) + '; '
-                  'qt_uid=%2212213845%22; '
-                  'qt_updatetime=%222018-05-31%22; '
-                  'history_search=%22%7B%5C%22%25F4%25D5%25D7%25D3_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2Fzi-0-0-default-7-0-%25E7%25B2%25BD%25E5%25AD%2590-0_2_0_0_0_0_0-3.html%5C%22%7D%22; '
-                  'historyKw=%22s%253A4%253A%2522%25F4%25D5%25D7%25D3%2522%253B%22',
+                                                        'qt_uid=%2212213845%22; '
+                                                        'qt_updatetime=%222018-05-31%22; '
+                                                        'history_search=%22%7B%5C%22%25F4%25D5%25D7%25D3_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2Fzi-0-0-default-7-0-%25E7%25B2%25BD%25E5%25AD%2590-0_2_0_0_0_0_0-3.html%5C%22%7D%22; '
+                                                        'historyKw=%22s%253A4%253A%2522%25F4%25D5%25D7%25D3%2522%253B%22',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
         'Accept-Encoding': 'gzip, deflate',
         'Accept-Language': 'zh-CN,zh;q=0.9',
@@ -211,13 +149,14 @@ def get_pic_image(base_url, page=1, all_page_count=None, key_word=None):
                             img_info = dict()
                         if img_info and img_id_info:
                             pic_title = img_info.get(u'alt', u'')
-                            pic_url = img_info['data-original'] if 'data-original' in img_info.attrs else img_info['src']
+                            pic_url = img_info['data-original'] if 'data-original' in img_info.attrs else img_info[
+                                'src']
                             pic_id = img_id_info.get(u'data-id', u'')
-                            pic_image = db_session.query(PIC58Image).filter(
-                                PIC58Image.pic_id == pic_id
+                            pic_image = db_session.query(PIC58Background).filter(
+                                PIC58Background.pic_id == pic_id
                             ).first()
                             if not pic_image:
-                                pic_image = PIC58Image()
+                                pic_image = PIC58Background()
                                 pic_image.key_word = key_word
                                 pic_image.pic_name = pic_title
                                 pic_image.pic_url = pic_url
@@ -268,14 +207,14 @@ def get_pic_image(base_url, page=1, all_page_count=None, key_word=None):
 
 def get_image_object(key_word=None):
     with get_session() as db_session:
-        query = db_session.query(PIC58Image).filter(
-            PIC58Image.status == PIC58Image.STATUS_DEFAULT
+        query = db_session.query(PIC58Background).filter(
+            PIC58Background.status == PIC58Background.STATUS_DEFAULT
         )
         if key_word:
             query = query.filter(
-                PIC58Image.key_word == key_word
+                PIC58Background.key_word == key_word
             )
-        query = query.order_by(-PIC58Image.created_date)
+        query = query.order_by(-PIC58Background.created_date)
         all_image_count = query.count()
         all_image = query.all()
         count = 1
@@ -300,7 +239,7 @@ def get_image_object(key_word=None):
                     img_response = requests.get(img_url, timeout=50)
                     with open(img_name, 'wb') as f:
                         f.write(img_response.content)
-                    image.status = PIC58Image.STATUS_USED
+                    image.status = PIC58Background.STATUS_USED
                     count += 1
                     db_session.commit()
                 except Exception as e:
@@ -309,5 +248,6 @@ def get_image_object(key_word=None):
 
 
 if __name__ == '__main__':
-    get_pic_page_url(u'国庆节')
-    # get_image_object()
+    key_word = u'中秋节'
+    get_pic_page_url(key_word)
+    get_image_object(key_word)

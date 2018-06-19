@@ -10,8 +10,8 @@ import { ListBaseComponent } from '../../common/base.component';
   templateUrl: './upload_image.html',
 })
 export class ImageUploadComponent extends ListBaseComponent{
-	series_id_list: string;
-	tag_id_list: string;
+	series_id_list: string = '';
+	tag_id_list: string = '';
 	base_url: string = 'http://127.0.0.1:8888/manage/upload_image';
 	
 	public uploader: FileUploader = new FileUploader({
@@ -72,7 +72,11 @@ export class ImageUploadComponent extends ListBaseComponent{
                 return  s;
             }
         }).on('change', function(){
-        	self.series_id_list = $('#series_select').val();
+			if(!$('#series_select').val()){
+				self.series_id_list = '';
+			}else{
+				self.series_id_list = $('#series_select').val();
+			}
         });
 		
 		const tag_url = `/lib/get_all_tags`;  

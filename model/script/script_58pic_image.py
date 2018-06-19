@@ -35,3 +35,34 @@ class PIC58Image(Base):
             'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
             'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }
+
+
+class PIC58Background(Base):
+    __tablename__ = 'script_58pic_background'
+
+    # 状态： 待获取、已获取
+    STATUS_DEFAULT, STATUS_USED = range(2)
+
+    id = Column(BigInteger, primary_key=True, default=IdGenerator.gen)
+    # 图片名称
+    pic_name = Column(String(100), index=True)
+    # 图片关键词
+    key_word = Column(String(50), index=True)
+    # 图片url
+    pic_url = Column(String(225))
+    # 图片ID
+    pic_id = Column(String(10), index=True)
+    # 状态
+    status = Column(Integer, index=True, default=STATUS_DEFAULT)
+
+    def to_dict(self):
+        return {
+            'id': str(self.id),
+            'pic_name': self.pic_name,
+            'key_word': self.key_word,
+            'pic_url': self.pic_url,
+            'pic_id': self.pic_id,
+            'status': self.status,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
+        }
