@@ -940,7 +940,8 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 
 .image-list-desc {
 	color: #666;
-	font-size: 13px;
+	font-size: 14px;
+	line-height: 23px;
 	width: 1100px;
 	margin: 0 auto;
 	padding: 0 30px 40px 30px;
@@ -991,7 +992,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 }
 
 .image-item:hover .image-item-download{
-	top: 0;
+	top: 0%;
 }
 
 .image-item-hover {

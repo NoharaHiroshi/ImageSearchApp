@@ -21,18 +21,18 @@
 				<ng-container *ngIf="image_list">
 					<ng-container *ngFor="let image of image_list">
 						<div class="image-item" #witem data-w="" data-h="" style="height:200px; width:200px;">
-							<a [routerLink]="['/image_detail', image.id]" target="_blank">
+							<a [routerLink]="['/image_detail', image.id]">
 								<img class="image-item-image" src="{{config.resource_url}}/static/{{image.img_preview_url}}">	
 							</a>
-							<a [routerLink]="['/image_detail', image.id]" target="_blank">
+							<a [routerLink]="['/image_detail', image.id]">
 								<div class="image-item-hover">
 									<span class="view">
-										<a class="image-item-hover-view" [routerLink]="['/image_detail', image.id]" target="_blank">
+										<a class="image-item-hover-view" [routerLink]="['/image_detail', image.id]">
 											<i class="fa fa-eye"></i> <span style="margin-left:5px;">{{image.view_count}}</span>
 										</a>
 									</span>
 									<span class="download">
-										<a class="image-item-hover-download" [routerLink]="['/image_detail', image.id]" target="_blank">
+										<a class="image-item-hover-download" [routerLink]="['/image_detail', image.id]">
 											下载
 										</a>
 									</span>

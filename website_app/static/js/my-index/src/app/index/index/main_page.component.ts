@@ -48,7 +48,11 @@ export class MainPageComponent extends ListBaseComponent implements OnInit{
 	// 获取栏目的高度
 	get_elem_height(index: number): any {
 		let header_fix_height = $('.header-content-fix').height();
-		let h = $('.series-content').eq(index).offset().top - header_fix_height - 1; 
+		if($('.series-content').length){
+			let h = $('.series-content').eq(index).offset().top - header_fix_height - 1; 
+		}else{
+			let h = 0;
+		}
 		return h;
 	}
 	

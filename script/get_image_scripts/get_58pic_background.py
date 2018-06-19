@@ -248,6 +248,6 @@ def get_image_object(key_word=None):
 
 
 if __name__ == '__main__':
-    key_word = u'柠檬'
+    key_word = u'苹果'
     get_pic_page_url(key_word)
     get_image_object(key_word)
