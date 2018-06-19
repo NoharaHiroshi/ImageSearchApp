@@ -96,7 +96,7 @@ def get_pic_page_url(keyword, page=1):
     pinyin = pinyin_result.get(u'pinyin', u'')
     if pinyin:
         # 构建png素材url
-        keyword_page_url = u'http://www.58pic.com/tupian/%s-0-0-default-5-0-%s-0_2_0_0_0_0_0-' % (pinyin, keyword)
+        keyword_page_url = u'http://www.58pic.com/tupian/%s-809-0-' % pinyin
         get_pic_image(keyword_page_url, page=page, key_word=keyword)
 
 
@@ -248,6 +248,6 @@ def get_image_object(key_word=None):
 
 
 if __name__ == '__main__':
-    key_word = u'中秋节'
+    key_word = u'柠檬'
     get_pic_page_url(key_word)
     get_image_object(key_word)

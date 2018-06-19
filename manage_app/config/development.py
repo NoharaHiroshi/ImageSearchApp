@@ -32,7 +32,7 @@ MODULES = [
 # 缩略图默认大小
 THUMBNAIL_IMG_HEIGHT = 200
 # 预览图默认大小
-PREVIEW_IMG_HEIGHT = 400
+PREVIEW_IMG_HEIGHT = 800
 # 水印文字/文件
 WATERMARK_IMG_FONT = u'- DuiPic.com -'
 # 水印文字字体路径

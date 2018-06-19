@@ -13,7 +13,6 @@ from model.image.image_tags import ImageTags, ImageTagsRel
 from model.image.image_series import ImageSeries, ImageSeriesRel
 
 
-
 # 为图片添加文字水印
 def add_watermark_text(im, text):
     # param im: 原始图片
@@ -24,7 +23,7 @@ def add_watermark_text(im, text):
     # 原始图片转换为RGBA模式
     rgba_im = im.convert('RGBA')
     # 选择字体类型
-    font = ImageFont.truetype(font=config.WATERMARK_IMG_FONT_TYPE, size=30)
+    font = ImageFont.truetype(font=config.WATERMARK_IMG_FONT_TYPE, size=40)
     text_overlay = Img.new('RGBA', rgba_im.size, (255, 255, 255, 0))
     image_draw = ImageDraw.Draw(text_overlay)
     # 返回给定字符串的大小，以像素为单位
@@ -32,7 +31,7 @@ def add_watermark_text(im, text):
     # 居中显示水印
     text_xy = (int((width - text_size_x) // 2), int((height - text_size_y) // 2))
     # font用于指定所有字体，fill用于填充字体颜色
-    image_draw.text(text_xy, text, font=font, fill=(255, 255, 255, 60))
+    image_draw.text(text_xy, text, font=font, fill=(255, 255, 255, 100))
     # 复合图像，两张图像的尺寸需要一致，并且同为RGBA模式
     image_with_text = Img.alpha_composite(rgba_im, text_overlay)
     return image_with_text
