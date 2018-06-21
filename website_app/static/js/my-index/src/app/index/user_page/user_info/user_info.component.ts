@@ -6,6 +6,8 @@ import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { Location }  from '@angular/common';
 import { ListBaseComponent } from '../../../common/base.component';
 
+import { Customer } from '../../../model/customer';
+
 import { AppConfig } from '../../../../config/app_config';
 import { UserInfoService } from './user_info.service';
 
@@ -14,6 +16,7 @@ import { UserInfoService } from './user_info.service';
   templateUrl: './user_info.html',
 })
 export class UserInfoComponent extends ListBaseComponent implements OnInit{
+	customer: Customer;
 	
 	constructor(public config: AppConfig, public service: UserInfoService) {
 		super();
@@ -21,9 +24,6 @@ export class UserInfoComponent extends ListBaseComponent implements OnInit{
 	
 	getPagerData(): void {
 		let self = this;
-		console.log('user_info');
-		console.log(this.config.user);
-		console.log(this.config.user.id);
 		this.service.getDetail(this.config.user.id).then(res => {
 			this.customer = res['customer'];
 			this.isLoading = false;

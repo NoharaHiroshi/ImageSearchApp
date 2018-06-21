@@ -12,6 +12,7 @@ import { UserInfoComponent } from './user_page/user_info/user_info.component';
 import { ExchangeCodeComponent } from './user_page/exchange_code/exchange_code.component';
 
 import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
+import { AuthGuard } from '../common/auth/auth.service';
 
 // 根路由器
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
 			{ 
 				path: 'user', 
 				component: UserPageComponent,
+				canActivateChild: [AuthGuard],
 				children: [
 					{ path: '', redirectTo: 'user_info', pathMatch: 'full' },
 					{ path: 'user_info', component: UserInfoComponent },
