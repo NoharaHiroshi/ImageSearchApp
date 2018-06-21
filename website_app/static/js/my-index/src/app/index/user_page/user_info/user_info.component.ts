@@ -24,7 +24,8 @@ export class UserInfoComponent extends ListBaseComponent implements OnInit{
 	
 	getPagerData(): void {
 		let self = this;
-		this.service.getDetail(this.config.user.id).then(res => {
+		let user_id: string = '6542384963144122368';
+		this.service.getDetail(user_id).then(res => {
 			this.customer = res['customer'];
 			this.isLoading = false;
 		});

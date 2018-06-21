@@ -21,7 +21,7 @@
 				<ng-container *ngIf="series_list">
 					<ng-container *ngFor="let series of series_list">
 						<div class="series-item">
-							<a [routerLink]="['/image_list', series.id]" target="_blank">
+							<a [routerLink]="['/image_list', series.id]">
 								<img class="series-item-image" width="{{series.width}}" height="{{series.height}}" src="{{config.resource_url}}/static/{{series.cover_image_url}}">
 								<div class="series-info">
 									<div class="collect">

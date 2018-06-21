@@ -1,3 +1,19 @@
-<div class="user-info">
-	<p>test</p>
+<div class="user-info" *ngIf="customer">
+	<div class="title">个人中心<span class="en-title">USER CENTER</span></div>
+	<div class="item">
+		<div class="name">
+			<span>用户名：</span>
+		</div>
+		<div class="value">
+			<span>{{customer.name}}</span>
+		</div>
+	</div>
+	<div class="item">
+		<div class="name">
+			<span>注册时间：</span>
+		</div>
+		<div class="value">
+			<span>{{customer.created_date}}</span>
+		</div>
+	</div>
 </div>

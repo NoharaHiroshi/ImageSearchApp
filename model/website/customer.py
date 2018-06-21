@@ -14,9 +14,13 @@ class Customer(Base, UserMixin):
     # 是否通过验证：通过验证，未验证
     AUTH_NO, AUTH_YES = range(2)
 
+    # 性别： 男、女、未知
+    UNKNOWN, MALE, FEMALE = range(3)
+
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     email = Column(String(45), index=True, nullable=False, unique=True)
     name = Column(String(45), nullable=False, index=True)
+    sex = Column(Integer, default=UNKNOWN, index=True)
     phone = Column(String(45), index=True)
     open_id = Column(String(225))
     password = Column(String(100), nullable=False)
@@ -29,6 +33,7 @@ class Customer(Base, UserMixin):
             'id': str(self.id),
             'name': self.name,
             'open_id': self.open_id,
+            'sex': self.sex,
             'email': self.email,
             'phone': self.phone,
             'qq': self.qq,

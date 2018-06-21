@@ -28,7 +28,7 @@
 					<div class="input-recommond-search-fix" id="recommond-fix" style="display:none;">
 						<ng-container *ngFor="let hot_search of hot_search_list; let i = index">
 							<ng-container *ngIf="i < 3">
-								<a [routerLink]="['image_list', hot_search.connect_id]" target="_blank">
+								<a [routerLink]="['image_list', hot_search.connect_id]">
 									<p>
 										<span class="input-recommond-search-tag-fix"><span class="rank">{{i+1}}</span>{{hot_search.name}}</span>
 										<span class="input-recommond-search-result-fix">{{hot_search.count}} 结果</span>
@@ -59,7 +59,7 @@
 		<div class="input-recommond-search" id="recommond" style="display: none;">
 			<ng-container *ngFor="let hot_search of hot_search_list; let i = index">
 				<ng-container *ngIf="i < 3">
-					<a [routerLink]="['image_list', hot_search.connect_id]" target="_blank">
+					<a [routerLink]="['image_list', hot_search.connect_id]">
 						<p>
 							<span class="input-recommond-search-tag"><span class="rank">{{i+1}}</span>{{hot_search.name}}</span>
 							<span class="input-recommond-search-result">{{hot_search.count}} 结果</span>
@@ -82,10 +82,10 @@
 			<span style="color: #555;">热门资源：</span>
 			<ng-container *ngFor="let recommend of recommend_list; let i = index">
 				<ng-container *ngIf="i < 3">
-					<span><a style="color: #ffa220;" [routerLink]="['filter_image_list']" [queryParams]="{search: recommend.name}" target='_blank'>{{recommend.name}}</a></span>
+					<span><a style="color: #ffa220;" [routerLink]="['filter_image_list']" [queryParams]="{search: recommend.name}">{{recommend.name}}</a></span>
 				</ng-container>
 				<ng-container *ngIf="i >= 3">
-					<span><a [routerLink]="['filter_image_list']" [queryParams]="{search: recommend.name}" target='_blank'>{{recommend.name}}</a></span>
+					<span><a [routerLink]="['filter_image_list']" [queryParams]="{search: recommend.name}">{{recommend.name}}</a></span>
 				</ng-container>
 			</ng-container>
 		</div>
@@ -107,10 +107,10 @@
 									<h4><a href="#" target="_blank" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
 								</ng-container>
 								<ng-container *ngIf="sub_menu.type == 2">
-									<h4><a [routerLink]="['image_list', sub_menu.connect_id]" target="_blank" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
+									<h4><a [routerLink]="['image_list', sub_menu.connect_id]" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
 								</ng-container>
 								<ng-container *ngIf="sub_menu.type == 3">
-									<h4><a [routerLink]="['image_series_list', sub_menu.connect_id]" target="_blank" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
+									<h4><a [routerLink]="['image_series_list', sub_menu.connect_id]" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
 								</ng-container>
 								<ul>
 									<ng-container *ngFor="let third_menu of sub_menu.sub_menus">
@@ -124,11 +124,11 @@
 											</ng-container>
 											<!-- 图片列表页 -->
 											<ng-container *ngIf="third_menu.type == 2">
-												<a [routerLink]="['image_list', third_menu.connect_id]" target="_blank" >{{third_menu.name}}</a>
+												<a [routerLink]="['image_list', third_menu.connect_id]">{{third_menu.name}}</a>
 											</ng-container>
 											<!-- 专题列表页 -->
 											<ng-container *ngIf="third_menu.type == 3">
-												<a [routerLink]="['image_series_list', third_menu.connect_id]" target="_blank">{{third_menu.name}}</a>
+												<a [routerLink]="['image_series_list', third_menu.connect_id]">{{third_menu.name}}</a>
 											</ng-container>
 										</li>
 									</ng-container>

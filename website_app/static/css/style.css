@@ -1609,34 +1609,36 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 /* 用户页面 */
 .user-page {
 	width: 1200px;
-	margin: 20px auto 0;
+	margin: 20px auto 20px;
+	overflow: hidden;
 }
 
 .user-page .left-content {
 	position: relative;
 	display: inline-block;
 	width: 12%;
-	margin-right: 8%;
+	margin-right: 3%;
 }
 
 .user-page .left-content ul {
 	width: 100%;
 }
 
-.user-page .left-content li {
+.user-page .left-content a {
 	text-align: center;
 	font-size: 15px;
 	color: #888;
 	padding: 10px 0;
 	transition: box-shadow .2s,-webkit-box-shadow .2s;
 	margin-bottom: 5px;
+	display: block;
 }
 
-.user-page .left-content li i {
+.user-page .left-content a i {
 	margin-right: 8px;
 }
 
-.user-page .left-content li:hover {
+.user-page .left-content a:hover {
 	color: #FFF;
 	background: #ffbe40;
 	border: 1px soid #ffbe40;
@@ -1645,14 +1647,69 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
 }
 
-.user-page .left-content li:hover a {
-	color: #FFF;
-}
-
 .user-page .right-content {
 	background: #FFF;
 	position: relative;
 	display: inline-block;
-	width: 80%;
+	width: 83%;
+	float: right;
+	-webkit-box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+	border-radius: 5px;
+	margin-bottom: 10px;
+	margin-right: 1%;
 }
 
+.user-info {
+	padding: 15px;
+	color: #888;
+	font-size: 15px;
+}
+
+.user-info .title {
+	margin-bottom: 30px;
+	font-size:18px;
+	color: #ffbe40;
+}
+
+.user-info .en-title {
+	font-size: 12px;
+	margin-left: 10px;
+}
+
+.user-info .item {
+	width: 100%;
+	padding: 5px 0;
+}
+
+.user-info .name {
+	display: inline-block;
+	width: 15%;
+	margin-right: 2%;
+}
+
+.user-info .name span {
+	float: right;
+}
+
+.user-info .value {
+	display: inline-block;
+	width: 73%
+}
+
+.user-info .value span {
+	float: left;
+}
+
+.user-active {
+	color: #FFF !important;
+	background: #ffbe40;
+	border: 1px soid #ffbe40;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+}
+
+.user-active i {
+	color: #fff;
+}

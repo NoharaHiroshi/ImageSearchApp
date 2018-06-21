@@ -26,8 +26,9 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 			return true;
 		}else{
 			this.config.tmp_url = url;
-			this.config.isLoginOpen = true;
-			return false;
+			return true;
+			// this.config.isLoginOpen = true;
+			// return false;
 		}
 	}
 }

@@ -4,6 +4,7 @@ export class User {
 	email: string;
 	type: number;
 	status: number;
+	sex: number;
 	phone: string;
 	created_date: string;
 	modified_date: string;
