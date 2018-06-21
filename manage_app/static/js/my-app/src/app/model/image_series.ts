@@ -3,6 +3,7 @@ export class ImageSeries {
 	name: string;
 	author: string;
 	desc: string;
+	short_desc: string;
 	cover_image_id: string;
 	cover_image_url: string;
 	width: number;

@@ -40,6 +40,7 @@ import { SendAuthEmailService } from './send_auth_email/send_auth_email.service'
 import { UserPageComponent } from './user_page/user_page.component';
 import { UserInfoComponent } from './user_page/user_info/user_info.component';
 import { ExchangeCodeComponent } from './user_page/exchange_code/exchange_code.component';
+import { UserInfoService } from './user_page/user_info/user_info.service';
 
 import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 
@@ -83,6 +84,7 @@ import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 		ImageDetailService,
 		FilterImageListService,
 		SendAuthEmailService,
+		UserInfoService,
 		
 		AuthEmailGuard
 	],

@@ -17,9 +17,7 @@ declare var $: any;
   selector: 'login',
   templateUrl: './login.html',
 })
-export class LoginComponent{
-	@Input() isLogin: any;
-	@Output() returnLoginOpen = new EventEmitter<any>();  
+export class LoginComponent{ 
 	
 	user: string;
 	name: string;
@@ -30,11 +28,10 @@ export class LoginComponent{
 	login_info: string;
 	register_info: string;
 	
-	constructor(private service: LoginService) {}
+	constructor(private service: LoginService, public config: AppConfig) {}
 	
 	closeLogin(): void {
-		this.isLogin = false;
-		this.returnLoginOpen.emit(this.isLogin);
+		this.config.isLoginOpen = false;
 	}
 	
 	login(): void {
@@ -51,9 +48,8 @@ export class LoginComponent{
 				self.login_info = res.info;
 			}else{
 				console.log('success', '登陆成功');
-				this.isLogin = false;
-				this.returnLoginOpen.emit(this.isLogin);
-				window.location.reload();
+				this.config.isLoginOpen = false;
+				this.config.user = res.user;
 			}
 		});
 	}
@@ -91,8 +87,8 @@ export class LoginComponent{
 				self.register_info = res.info;
 			}else{
 				console.log('success', '注册成功');
-				this.isLogin = false;
-				this.returnLoginOpen.emit(this.isLogin);
+				this.config.isLoginOpen = false;
+				// this.returnLoginOpen.emit(this.isLogin);
 				window.location.reload();
 			}
 		});
@@ -100,7 +96,7 @@ export class LoginComponent{
 	
 	ngAfterViewChecked(): void {
 		let self = this;
-		if(this.isLogin){
+		if(this.config.isLoginOpen){
 			$('.login-modal').show();
 		}else{
 			$('.login-modal').hide();

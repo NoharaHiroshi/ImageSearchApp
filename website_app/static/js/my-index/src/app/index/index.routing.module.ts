@@ -26,9 +26,10 @@ const routes: Routes = [
 			{ path: 'auth_email',  component: SendAuthEmailComponent },
 			{ path: 'verify_email_effect', component: VerifyEmailEffectComponent },
 			{ 
-				path: 'user/:id', 
+				path: 'user', 
 				component: UserPageComponent,
 				children: [
+					{ path: '', redirectTo: 'user_info', pathMatch: 'full' },
 					{ path: 'user_info', component: UserInfoComponent },
 					{ path: 'exchange_code', component: ExchangeCodeComponent }
 				]

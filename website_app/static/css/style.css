@@ -324,10 +324,9 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 
 .input-recommond-search-fix {
 	font-size: 14px;
-	padding: 5px 10px;
 	line-height: 14px;
 	color: #888;
-    width: 460px;
+    width: 480px;
     position: absolute;
     top: 50px;
     left: 0;
@@ -338,9 +337,32 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
     z-index: 303;
 }
 
-.input-recommond-search-fix p {
-	margin: 15px 10px;
+.input-recommond-search-fix a {
+	display: block;
+	padding: 12px 15px;
 	overflow: hidden;
+}
+
+.input-recommond-search-fix a:hover {
+	background: #f6f6f6;
+}
+
+.input-recommond-search-fix .rank {
+	padding: 2px 5px;
+	background: #ffbe40;
+	border-radius: 2px;
+	color: #fff;
+	font-size: 12px;
+	margin-right: 8px;
+}
+
+.input-recommond-search-fix .rank-gray{
+	padding: 3px 5px;
+	background: #c8c8c8;
+	border-radius: 2px;
+	color: #fff;
+	font-size: 12px;
+	margin-right: 8px;
 }
 
 .input-recommond-search-tag-fix {
@@ -643,11 +665,11 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	color: #fff;
 }
 
-.series-info .info p{
+.series-info .info .title{
 	margin-bottom: 5px;
 }
 
-.series-info .font h2 {
+.series-info .font  .desc {
 	margin-bottom: 5px;
 }
 

@@ -82,19 +82,29 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 	
 	loadAfter(): void {
 		/* 搜索框 */
-		$("#main-search").click(function(e){
+		window.onscroll = function() {
+			let topScroll = $(window).scrollTop();//滚动的距离,距离顶部的距离
+			if(topScroll > 180){  
+				$(".header-content-fix").show();
+			}else{
+				$(".header-content-fix").hide();
+			}
+		}
+		
+		$("#main-search").click(function(e: any){
 			$('#recommond').show();
 			e.stopPropagation();
 		});
 		
-		$(document).on("click", function(e){
+		$(document).on("click", function(e: any){
 			$('#recommond').hide();
 		});
 		
-		$("#main-search-fix").focus(function(){
+		$("#main-search-fix").on("click", function(e: any){
 			$('#recommond-fix').show();
+			e.stopPropagation();
 		});
-		$("#main-search-fix").blur(function(){
+		$(document).on("click", function(e: any){
 			$('#recommond-fix').hide();
 		});
 	}

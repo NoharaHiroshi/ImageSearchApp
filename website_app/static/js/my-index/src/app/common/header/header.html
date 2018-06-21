@@ -1,5 +1,5 @@
 <!--header start-->
-<login [isLogin]="config.isLoginOpen" (returnLoginOpen)="returnLogin($event)"></login>
+<login></login>
 <header>
 	<div class="header-content">
 		<div class="header-info">
@@ -26,11 +26,23 @@
 						<i class="fa fa-search"></i>
 					</div>
 					<div class="input-recommond-search-fix" id="recommond-fix" style="display:none;">
-						<ng-container *ngFor="let hot_search of hot_search_list">
-						<p>
-							<span class="input-recommond-search-tag-fix">{{hot_search.name}}</span>
-							<span class="input-recommond-search-result-fix">703266 结果</span>
-						</p>
+						<ng-container *ngFor="let hot_search of hot_search_list; let i = index">
+							<ng-container *ngIf="i < 3">
+								<a [routerLink]="['image_list', hot_search.connect_id]" target="_blank">
+									<p>
+										<span class="input-recommond-search-tag-fix"><span class="rank">{{i+1}}</span>{{hot_search.name}}</span>
+										<span class="input-recommond-search-result-fix">{{hot_search.count}} 结果</span>
+									</p>
+								</a>
+							</ng-container>
+							<ng-container *ngIf="i >= 3">
+								<a [routerLink]="['image_list', hot_search.connect_id]">
+									<p>
+										<span class="input-recommond-search-tag-fix"><span class="rank-gray">{{i+1}}</span>{{hot_search.name}}</span>
+										<span class="input-recommond-search-result-fix">{{hot_search.count}} 结果</span>
+									</p>
+								</a>
+							</ng-container>
 						</ng-container>
 					</div>
 				</div>
@@ -150,7 +162,7 @@
 <div class="current-position" *ngIf="bread_nav_list && bread_nav_list.length > 1">
 	<ng-container *ngFor="let bread_nav of bread_nav_list; let i=index">
 		<ng-container *ngIf="bread_nav[1] == 0">
-			<a href="/">当前位置：首页</a> <ng-container *ngIf="i != bread_nav_list.length - 1"> > </ng-container> 
+			当前位置：<a href="/">首页</a> <ng-container *ngIf="i != bread_nav_list.length - 1"> > </ng-container> 
 		</ng-container>
 		<ng-container *ngIf="bread_nav[1] == 1">
 			<a [routerLink]="['image_list', bread_nav[2]]" target='_blank'>{{ bread_nav[0] }}</a> <ng-container *ngIf="i != bread_nav_list.length - 1"> > </ng-container> 

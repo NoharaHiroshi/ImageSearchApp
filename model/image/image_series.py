@@ -67,6 +67,8 @@ class ImageSeries(Base):
     author = Column(String(100), default=u'未知', index=True)
     # 描述
     desc = Column(String(255))
+    # 简短描述
+    short_desc = Column(String(100))
     # 封面图
     cover_image_id = Column(BigInteger)
     # 浏览次数
@@ -134,6 +136,7 @@ class ImageSeries(Base):
             'type_text': self.type_text,
             'author': self.author,
             'desc': self.desc,
+            'short_desc': self.short_desc,
             'cover_image_id': str(self.cover_image_id),
             'cover_image_url': self.cover_image_url,
             'count': self.count,

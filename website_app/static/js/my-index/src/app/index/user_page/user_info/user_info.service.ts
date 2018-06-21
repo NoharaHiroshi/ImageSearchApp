@@ -5,11 +5,25 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/Rx';
 
+import { Customer } from '../../../model/customer';
+
 import { BaseService } from '../../../common/base.service';
 
 @Injectable()
-export class UserPageService extends BaseService {
+export class UserInfoService extends BaseService {
 	constructor(http: Http) { 
 		super(http);
+	}
+	
+	getDetail(id: string): Promise<any>{
+		const url = `/user_info`; 
+		let self = this;
+		return this.http.get(url)
+				   .toPromise().then(function(res){
+						let json = res.json();
+						let customer = self.jsonToObject(json.customer, Customer);
+						json['customer'] = customer;
+						return json;
+					})
 	}
 }

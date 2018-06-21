@@ -134,7 +134,8 @@ def login():
     try:
         result = {
             'response': 'ok',
-            'info': ''
+            'info': '',
+            'user': ''
         }
         # 持久会话
         session.permanent = True
@@ -155,6 +156,9 @@ def login():
                 if customer:
                     if password == AESCipher.decrypt(customer.password):
                         login_user(customer)
+                        result.update({
+                            'user': customer.to_dict()
+                        })
                     else:
                         result.update({
                             'response': 'fail',

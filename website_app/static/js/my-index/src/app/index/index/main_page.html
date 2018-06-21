@@ -47,8 +47,8 @@
 							<img src="{{config.resource_url}}/static/{{series.cover_image_url}}">
 							<div class="series-info">
 								<div class="info">
-									<h2><a [routerLink]="['image_list', series.id]" target="_blank">{{series.name}}</a></h2>
-									<p><a [routerLink]="['image_list', series.id]" target="_blank">{{series.desc}}</a></p>
+									<h2 class="title"><a [routerLink]="['image_list', series.id]" target="_blank">{{series.name}}</a></h2>
+									<p class="desc"><a [routerLink]="['image_list', series.id]" target="_blank">{{series.short_desc}}</a></p>
 								</div>
 							</div>
 						</div>
