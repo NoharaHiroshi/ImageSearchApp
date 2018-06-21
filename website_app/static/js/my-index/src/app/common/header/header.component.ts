@@ -39,14 +39,16 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 			this.hot_search_list = data.hot_search_list;
 			this.recommend_list = data.recommend_list;
 			if(JSON.stringify(data.customer) != "{}"){
-				this.customer = data.customer;
 				this.config.user = data.customer;
 			}
+			this.customer = this.config.user;
+			console.log('header');
+			console.log(this.config);
         });
 		this.route.params.switchMap((params: Params) => this.service.getBreadNav(this.current_url))
-		.subscribe(res => {
-			this.bread_nav_list = res['bread_nav'];
-		});
+			.subscribe(res => {
+				this.bread_nav_list = res['bread_nav'];
+			});
 		setTimeout(function(){
 			self.loadAfter();
 		}, 300);
@@ -62,10 +64,6 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 	
 	login(): void {
 		this.config.isLoginOpen = true;
-	}
-	
-	returnLogin(isLogin: any): void {
-		this.config.isLoginOpen = isLogin;
 	}
 	
 	searchImage(): void {

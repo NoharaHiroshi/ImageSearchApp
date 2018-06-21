@@ -11,7 +11,7 @@ export class AppConfig {
 	resource_url = 'http://127.0.0.1:8888';
 	
 	// 当前用户
-	user: User;
+	user: User = '';
 	
 	// 登陆页面开关
     isLoginOpen = false;

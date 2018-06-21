@@ -92,5 +92,4 @@ import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 		IndexComponent
 	]
 })
-export class IndexModule {
-}
+export class IndexModule {}

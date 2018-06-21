@@ -15,7 +15,7 @@ def user():
         'customer': '',
         'info': ''
     }
-    user_id = request.args.get(id)
+    user_id = request.args.get('id')
     try:
         with get_session() as db_session:
             customer = db_session.query(Customer).get(user_id)

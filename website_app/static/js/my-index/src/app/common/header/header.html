@@ -4,14 +4,14 @@
 	<div class="header-content">
 		<div class="header-info">
 			<div class="header-logo">
-				<span class="header-logo-span"><a [routerLink]="['']" style="text-decoration:none; color: #666;" target="_blank">首页</a></span>
+				<span class="header-logo-span"><a [routerLink]="['']" style="text-decoration:none; color: #666;">首页</a></span>
 			</div>
 			<div class="header-login">
-				<ng-container *ngIf="customer">
-					<span>{{customer.name}}</span>
+				<ng-container *ngIf="config.user">
+					<span><a [routerLink]="['user']">{{config.user.name}}</a></span>
 					<a href="javascript:;" class="header-logout-item" (click)="logout()">退出</a>
 				</ng-container>
-				<ng-container *ngIf="!customer">
+				<ng-container *ngIf="!config.user">
 					<span><a href="javascript:;" class="header-login-item" (click)="login()">登录</a></span>
 				</ng-container>
 			</div>

@@ -15,22 +15,18 @@ import { UserInfoService } from './user_info.service';
 })
 export class UserInfoComponent extends ListBaseComponent implements OnInit{
 	
-	constructor(private config: AppConfig, private service: UserInfoService) {
+	constructor(public config: AppConfig, public service: UserInfoService) {
 		super();
 	}
 	
 	getPagerData(): void {
 		let self = this;
-		console.log('config.user');
+		console.log('user_info');
 		console.log(this.config.user);
-		if(this.config.user){
-			this.service.getDetail(this.config.user.id)
-				.subscribe(res => {
-					this.customer = res['customer'];
-					this.isLoading = false;
-				});
-		}else{
-			this.config.isLoginOpen = true;
-		}
+		console.log(this.config.user.id);
+		this.service.getDetail(this.config.user.id).then(res => {
+			this.customer = res['customer'];
+			this.isLoading = false;
+		});
 	}
 }
