@@ -26,4 +26,9 @@ export class UserInfoService extends BaseService {
 						return json;
 					})
 	}
+	
+	update(customer: Customer): Promise<any> {
+		const url = '/update_user_info';
+	    return this.postForm(url, JSON.stringify(customer));
+	}
 }

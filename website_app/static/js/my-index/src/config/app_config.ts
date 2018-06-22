@@ -31,4 +31,7 @@ export class AppConfig {
 			return true;
 		}
 	}
+	
+	// 提示信息
+	tip: string;
 }

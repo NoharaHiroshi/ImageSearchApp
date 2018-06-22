@@ -1781,3 +1781,35 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	border: 1px soid #00FA9A;
 	background: #00FA9A;
 }
+
+/* 提示信息 */
+.tip {
+	position: absolute;
+	background: #00FA9A;
+	border: 1px soid #00FA9A;
+	-webkit-box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+	padding: 10px 15px;
+	right: 2%;
+	top: 70px;
+	color: #fff;
+	width: 15%;
+	opacity: 0;
+}
+
+@keyframes tip {
+	0%{transform: translateY(50px);opacity: 0;}  
+	60%{ transform: translateY(0px);opacity: 0.75;}  
+    100%{ transform: translateY(0px);opacity: 0;}  
+}
+ 
+@-webkit-keyframes tip {
+	0%{transform: translateY(50px);opacity: 0;}  
+    60%{ transform: translateY(0px);opacity: 0.75;}  
+    100%{ transform: translateY(0px);opacity: 0;}  
+}
+
+.tip {
+    animation: tip 2s;
+    -webkit-animation: tip 2s;
+}

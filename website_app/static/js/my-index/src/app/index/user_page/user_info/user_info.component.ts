@@ -39,6 +39,13 @@ export class UserInfoComponent extends ListBaseComponent implements OnInit{
 	
 	updateUserInfo(): void {
 		this.mode = 0;
+		this.service.update(this.customer).then(res => {
+			if(res.response == 'ok'){
+				console.log('修改成功');
+			}else{
+				console.log('修改失败');
+			}
+		})
 	}
 	
 	cancelUserInfo(): void {
