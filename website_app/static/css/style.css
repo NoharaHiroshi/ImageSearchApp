@@ -1753,4 +1753,31 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
     padding: 0 10px;
     width: 100%;
     border: 1px solid #cccccc;
+	outline:none;
+}
+
+.handler-user-info {
+	margin: 30px auto 0;
+	text-align: center;
+}
+
+.handler-user-info span {
+	width: 10%;
+	display: inline-block;
+	color: #fff;
+	padding: 5px 10px;
+	border: 1px soid #ffbe40;
+	background: #ffbe40;
+	border-radius: 5px;
+	margin-right: 20px;
+	-webkit-box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+	-webkit-transition: all .5s;
+	transition: all .5s;
+	cursor: pointer;
+}
+
+.handler-user-info span:hover {
+	border: 1px soid #00FA9A;
+	background: #00FA9A;
 }

@@ -90,7 +90,10 @@
 					<span><input type="text" name="qq" [(ngModel)]='customer.qq'></span>
 				</div>
 			</div>
-			<div class="change-user-info" (click)="editUserInfo()">修改</div>
+			<div class="handler-user-info">
+				<span (click)="updateUserInfo()">确定</span>
+				<span (click)="cancelUserInfo()">取消</span>
+			</div>
 		</form>
 	</ng-container>
 </div>

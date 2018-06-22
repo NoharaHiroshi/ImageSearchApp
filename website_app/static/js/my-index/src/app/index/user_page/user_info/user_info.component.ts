@@ -40,4 +40,8 @@ export class UserInfoComponent extends ListBaseComponent implements OnInit{
 	updateUserInfo(): void {
 		this.mode = 0;
 	}
+	
+	cancelUserInfo(): void {
+		this.mode = 0;
+	}
 }
