@@ -25,6 +25,7 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 	recommend_list: any[];
 	search: any;
 	bread_nav_list: any[];
+	current_url: string;
 	
 	constructor(private service: HeaderService, public config: AppConfig, public route: ActivatedRoute, public router: Router) {
 		super();
@@ -38,10 +39,10 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 			this.hot_search_list = data.hot_search_list;
 			this.recommend_list = data.recommend_list;
         });
-		this.route.params.switchMap((params: Params) => this.service.getBreadNav(this.current_url))
+		/* this.route.params.switchMap((params: Params) => this.service.getBreadNav(this.current_url))
 			.subscribe(res => {
 				this.bread_nav_list = res['bread_nav'];
-			});
+			}); */
 		setTimeout(function(){
 			self.loadAfter();
 		}, 300);

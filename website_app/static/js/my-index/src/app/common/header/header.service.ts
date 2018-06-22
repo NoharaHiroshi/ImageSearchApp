@@ -70,7 +70,7 @@ export class HeaderService extends BaseService {
 	}
 	
 	getBreadNav(current_url: any): Promise<{}> {
-		console.log(current_url);
+		console.log('current_url: ' + current_url);
 		const url = '/bread_nav?url=' + current_url;
 		let self = this;
 		return this.http.get(url)

@@ -12,6 +12,5 @@ import { AppConfig } from '../../../config/app_config';
   templateUrl: './user_page.html',
 })
 export class UserPageComponent {
-	
 	constructor(private config: AppConfig) {}
 }

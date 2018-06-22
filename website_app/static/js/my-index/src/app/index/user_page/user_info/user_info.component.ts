@@ -17,6 +17,8 @@ import { UserInfoService } from './user_info.service';
 })
 export class UserInfoComponent extends ListBaseComponent implements OnInit{
 	customer: Customer;
+	// 0：只读、 1：编辑
+	mode: number = 0;
 	
 	constructor(public config: AppConfig, public service: UserInfoService) {
 		super();
@@ -29,5 +31,13 @@ export class UserInfoComponent extends ListBaseComponent implements OnInit{
 			this.customer = res['customer'];
 			this.isLoading = false;
 		});
+	}
+	
+	editUserInfo(): void {
+		this.mode = 1;
+	}
+	
+	updateUserInfo(): void {
+		this.mode = 0;
 	}
 }
