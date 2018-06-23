@@ -15,40 +15,77 @@
 		
 	</head>
 	<body>
-		<div class="login-header">
-			<div class="login-header-content">
-				<div class="login-logo">
-					<span>登陆</span>
+		<div class="login-modal">
+			<div class="mdoal-table">
+				<div class="modal-table-call">
+					<div class="login-wrap">
+						<div class="login-hearder">
+							登录
+						</div>
+						<div class="login-content">
+							<div class="login-box">
+								<div class="phone-form-box">
+									<div class="login-form">
+										<div class="login-input-item">
+											<div class="input-icon"><i class="fa fa-user" ></i></div>
+											<input id="login_phone" type="text" name="user" placeholder="请输入手机号/邮箱">
+										</div>
+										<div class="login-input-item">
+											<div class="input-icon"><i class="fa fa-lock" ></i></div>
+											<input id="login_passwd" type="password" name="password"  placeholder="请输入密码">
+										</div>
+										<div class="login-input-item login-captcha" style="display:none;">
+											<input id="img-code2" type="text" name="captcha"  placeholder="图形验证码" maxlength="4" style="width: 188px;">
+											<img alt="加载中..." id="img-captcha2" src="" style="margin-left: 10px;vertical-align: bottom; cursor:pointer;">
+											<a onclick="$('#img-captcha2').click();" style="display:inline-block;width:20px;height:20px;vertical-align:middle;margin-left: 8px;cursor: pointer;background-image:url('#');"></a>
+										</div>
+										<div class="login-return-info" *ngIf="login_info"></div>
+										<a href="javascript:;" class="login-input-submit">登陆</a>
+										<p class="login-other-operation">
+											<a href="#" class="fr">忘记密码</a>
+											<a href="#" class="fr">立即注册</a>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="login-content">
-			<div class="login-background">
-				<div class="login-block">
-					<div class="login-form">
-						<div class="login-form-header">
-							<div>
-								<div class="selected-border">登陆</div>
-							</div>
-							<div>
-								<div>注册</div>
-							</div>
+		<div class="login-modal" style="display: none;">
+			<div class="mdoal-table">
+				<div class="modal-table-call">
+					<div class="login-wrap">
+						<div class="login-hearder">
+							注册
 						</div>
-						<div class="login-form-content">
-							<div class="common-login">
-								<div>
-									<p><img src="/static/img/qq.png" style="width: 100px; margin-bottom:10px;"></p>
-									<p>传统登陆</p>
-									<form method="post" action="/login">
-										<input type="text" name="phone" value="">
-										<button type="submit">登录</button>
-									</form>
+						<div class="login-content">
+							<div class="login-register-box" style="display: none;">
+								<div class="phone-form-box">
+									<div class="login-form">
+										<div class="login-input-item">
+											<div class="input-icon"><i class="fa fa-envelope-o" ></i></div>
+											<input id="register_phone" type="text" name="email"  placeholder="请输入邮箱">
+										</div>
+										<div class="login-input-item">
+											<div class="input-icon"><i class="fa fa-user" ></i></div>
+											<input id="register_name" type="text" name="name"  placeholder="请输入昵称">
+										</div>
+										<div class="login-input-item">
+											<div class="input-icon"><i class="fa fa-lock" ></i></div>
+											<input id="register_passwd" type="password" name="password" placeholder="请输入密码">
+										</div>
+										<div class="login-input-item">
+											<div class="input-icon"><i class="fa fa-lock" ></i></div>
+											<input id="verify_passwd" type="password" name="verify_password"  placeholder="请再次输入密码">
+										</div>
+										<div class="register-return-info" *ngIf="register_info"></div>
+										<a href="javascript:;" class="login-input-submit">注册</a>
+									</div>
 								</div>
-							</div>
-							<div class="weixin-login">
-								<div>
-									<p><img src="/static/img/weixin.png" style="width: 100px; margin-bottom:10px;"></p>
-									<p>微信登陆</p>
+								<div class="agreement-alert">
+									<a href="javascript:;" class="agreement-handle"></a>勾选代表你同意<a href="#" class="text" target="_blank">《注册声明》</a><a href="#" class="text" target="_blank">《版权声明》</a>
 								</div>
 							</div>
 						</div>

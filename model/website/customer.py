@@ -66,7 +66,7 @@ class CustomerCollect(Base):
 if __name__ == '__main__':
     with get_session() as db_session:
         customer = Customer()
-        customer.name = u'小新'
+        customer.name = u'Lands'
         customer.phone = u'18222109895'
         customer.email = u'Lands@qq.com'
         customer.password = AESCipher.encrypt(u'123456')

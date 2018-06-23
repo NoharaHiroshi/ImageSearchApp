@@ -1241,7 +1241,6 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 /* 登录页 */
 .login-wrap {
     width: 400px;
-    height: 440px;
     border-radius: 4px;
     background-color: #fff;
     -webkit-box-shadow: 0 4px 6px 0 rgba(0,0,0,.2);
@@ -1290,7 +1289,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 }
 
 .login-wrap .account-box, .login-wrap .login-box, .login-wrap .phone-box {
-    display: none;
+    display: block;
 }
 
 .login-wrap .login-footer {
@@ -1302,17 +1301,15 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
     text-align: center;
     font-size: 12px;
     color: #666;
-    margin-top: 18px;
+    margin-top: 30px;
 }
 
 .login-modal {
-    display: none;
     width: 100%;
     height: 100%;
     position: fixed;
     left: 0;
     top: 0;
-    background: rgba(0,0,0,.5);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000);
     z-index: 999;
     overflow: hidden;
@@ -1349,7 +1346,8 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 
 .login-type {
 	text-align: center;
-    color: #ffbe40;
+    color: #666;
+	font-size: 14px;
 	height: 45px;
 	line-height: 45px;
 }
@@ -1455,10 +1453,17 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	color: #fff !important;
 	width: 100%;
     display: block;
+	-webkit-transition: all .5s;
+    transition: all .5s;
+}
+
+.login-input-submit:hover {
+	background-color: #00FA9A;
+	color: #fff !important;
 }
 
 .login-other-operation {
-	margin-top: 15px;
+	margin: 30px 0;
 	font-size: 14px;
 }
 

@@ -38,6 +38,9 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 			this.website_menu_list = data.website_menu_list;
 			this.hot_search_list = data.hot_search_list;
 			this.recommend_list = data.recommend_list;
+			if(JSON.stringify(data.customer) != "{}"){
+				this.config.user = data.customer;
+			}
         });
 		/* this.route.params.switchMap((params: Params) => this.service.getBreadNav(this.current_url))
 			.subscribe(res => {

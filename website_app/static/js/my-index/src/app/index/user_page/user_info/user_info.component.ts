@@ -26,11 +26,14 @@ export class UserInfoComponent extends ListBaseComponent implements OnInit{
 	
 	getPagerData(): void {
 		let self = this;
-		let user_id: string = '6542384963144122368';
-		this.service.getDetail(user_id).then(res => {
-			this.customer = res['customer'];
-			this.isLoading = false;
-		});
+		if(this.config.user){
+			this.service.getDetail(this.config.user.id).then(res => {
+				this.customer = res['customer'];
+				this.isLoading = false;
+			});
+		}else{
+			this.config.isLoginOpen = true;
+		}
 	}
 	
 	editUserInfo(): void {

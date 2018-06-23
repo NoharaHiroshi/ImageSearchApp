@@ -129,7 +129,7 @@ def register():
         print traceback.format_exc(e)
 
 
-@index.route('/login', methods=['POST'])
+@index.route('/login', methods=['GET', 'POST'])
 def login():
     try:
         result = {
@@ -144,8 +144,13 @@ def login():
 
         # 对已登录用户进行跳转
         if current_user.is_authenticated():
-            return jsonify(result)
-        else:
+            print 'login'
+            return redirect(url_for('index.index_page'))
+
+        if request.method == 'GET':
+            return render_template('tpl/login.html')
+
+        if request.method == 'POST':
             with get_session() as db_session:
                 customer = db_session.query(Customer).filter(
                     or_(
