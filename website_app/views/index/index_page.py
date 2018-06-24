@@ -105,9 +105,15 @@ def register():
             'response': 'ok',
             'info': ''
         }
-        name = request.form.get('name')
-        email = request.form.get('email')
-        password = request.form.get('password')
+        name = request.form.get('name', None)
+        email = request.form.get('email', None)
+        password = request.form.get('password', None)
+        verify_password = request.form.get('verify_password', None)
+        if None in [name, email, password, verify_password]:
+            result.update({
+                'response': 'fail',
+                'info': u'请输入未填项'
+            })
         with get_session() as db_session:
             customer = db_session.query(Customer).filter(
                 Customer.email == email
@@ -135,7 +141,8 @@ def login():
         result = {
             'response': 'ok',
             'info': '',
-            'user': ''
+            'user': '',
+            'url': '',
         }
         # 持久会话
         session.permanent = True
@@ -162,7 +169,8 @@ def login():
                     if password == AESCipher.decrypt(customer.password):
                         login_user(customer)
                         result.update({
-                            'user': customer.to_dict()
+                            'user': customer.to_dict(),
+                            'info': 'http://127.0.0.1:8888'
                         })
                     else:
                         result.update({

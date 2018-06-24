@@ -15,7 +15,7 @@
 		
 	</head>
 	<body>
-		<div class="login-modal">
+		<div class="login-modal" id="login-modal">
 			<div class="mdoal-table">
 				<div class="modal-table-call">
 					<div class="login-wrap">
@@ -26,24 +26,26 @@
 							<div class="login-box">
 								<div class="phone-form-box">
 									<div class="login-form">
-										<div class="login-input-item">
-											<div class="input-icon"><i class="fa fa-user" ></i></div>
-											<input id="login_phone" type="text" name="user" placeholder="请输入手机号/邮箱">
-										</div>
-										<div class="login-input-item">
-											<div class="input-icon"><i class="fa fa-lock" ></i></div>
-											<input id="login_passwd" type="password" name="password"  placeholder="请输入密码">
-										</div>
-										<div class="login-input-item login-captcha" style="display:none;">
-											<input id="img-code2" type="text" name="captcha"  placeholder="图形验证码" maxlength="4" style="width: 188px;">
-											<img alt="加载中..." id="img-captcha2" src="" style="margin-left: 10px;vertical-align: bottom; cursor:pointer;">
-											<a onclick="$('#img-captcha2').click();" style="display:inline-block;width:20px;height:20px;vertical-align:middle;margin-left: 8px;cursor: pointer;background-image:url('#');"></a>
-										</div>
-										<div class="login-return-info" *ngIf="login_info"></div>
-										<a href="javascript:;" class="login-input-submit">登陆</a>
+										<form action="{{ url_for('index.login') }}" method="post">
+											<div class="login-input-item">
+												<div class="input-icon"><i class="fa fa-user" ></i></div>
+												<input id="login_email" type="text" name="user" value="" placeholder="请输入手机号/邮箱">
+											</div>
+											<div class="login-input-item">
+												<div class="input-icon"><i class="fa fa-lock" ></i></div>
+												<input id="login_passwd" type="password" name="password" value=""  placeholder="请输入密码">
+											</div>
+											<div class="login-input-item login-captcha" style="display:none;">
+												<input id="img-code2" type="text" name="captcha"  placeholder="图形验证码" maxlength="4" style="width: 188px;">
+												<img alt="加载中..." id="img-captcha2" src="" style="margin-left: 10px;vertical-align: bottom; cursor:pointer;">
+												<a onclick="$('#img-captcha2').click();" style="display:inline-block;width:20px;height:20px;vertical-align:middle;margin-left: 8px;cursor: pointer;background-image:url('#');"></a>
+											</div>
+											<div class="login-return-info" id="login_info"></div>
+											<button id="login" type="button" class="login-input-submit">登陆</button>
+										</form>
 										<p class="login-other-operation">
-											<a href="#" class="fr">忘记密码</a>
-											<a href="#" class="fr">立即注册</a>
+											<a href="#" >忘记密码</a>
+											<a href="javascript:;" id="go-register">立即注册</a>
 										</p>
 									</div>
 								</div>
@@ -53,7 +55,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="login-modal" style="display: none;">
+		<div class="login-modal" id="register-modal" style="display: none;">
 			<div class="mdoal-table">
 				<div class="modal-table-call">
 					<div class="login-wrap">
@@ -61,29 +63,34 @@
 							注册
 						</div>
 						<div class="login-content">
-							<div class="login-register-box" style="display: none;">
+							<div class="login-register-box">
 								<div class="phone-form-box">
 									<div class="login-form">
-										<div class="login-input-item">
-											<div class="input-icon"><i class="fa fa-envelope-o" ></i></div>
-											<input id="register_phone" type="text" name="email"  placeholder="请输入邮箱">
-										</div>
-										<div class="login-input-item">
-											<div class="input-icon"><i class="fa fa-user" ></i></div>
-											<input id="register_name" type="text" name="name"  placeholder="请输入昵称">
-										</div>
-										<div class="login-input-item">
-											<div class="input-icon"><i class="fa fa-lock" ></i></div>
-											<input id="register_passwd" type="password" name="password" placeholder="请输入密码">
-										</div>
-										<div class="login-input-item">
-											<div class="input-icon"><i class="fa fa-lock" ></i></div>
-											<input id="verify_passwd" type="password" name="verify_password"  placeholder="请再次输入密码">
-										</div>
-										<div class="register-return-info" *ngIf="register_info"></div>
-										<a href="javascript:;" class="login-input-submit">注册</a>
+										<form action="{{ url_for('index.login') }}" method="post">
+											<div class="login-input-item">
+												<div class="input-icon"><i class="fa fa-envelope-o" ></i></div>
+												<input id="register_email" type="text" name="email" value="" placeholder="请输入邮箱">
+											</div>
+											<div class="login-input-item">
+												<div class="input-icon"><i class="fa fa-user" ></i></div>
+												<input id="register_name" type="text" name="name"  value="" placeholder="请输入昵称">
+											</div>
+											<div class="login-input-item">
+												<div class="input-icon"><i class="fa fa-lock" ></i></div>
+												<input id="register_passwd" type="password" name="password" value="" placeholder="请输入密码">
+											</div>
+											<div class="login-input-item">
+												<div class="input-icon"><i class="fa fa-lock" ></i></div>
+												<input id="verify_passwd" type="password" name="verify_password" value="" placeholder="请再次输入密码">
+											</div>
+											<div class="register-return-info" id="register_info"></div>
+											<button type="button" id="register" class="login-input-submit">注册</button>
+										</form>
 									</div>
 								</div>
+								<p class="login-other-operation">
+									<a href="javascript:;" id="go-login">返回登录</a>
+								</p>
 								<div class="agreement-alert">
 									<a href="javascript:;" class="agreement-handle"></a>勾选代表你同意<a href="#" class="text" target="_blank">《注册声明》</a><a href="#" class="text" target="_blank">《版权声明》</a>
 								</div>
@@ -93,5 +100,73 @@
 				</div>
 			</div>
 		</div>
+		<script>
+			$("#login").click(function(e){
+				e.preventDefault();
+				var login_info = $("#login_info");
+				login_info.html('');
+				var data = {
+					'user':$("#login_email").val(),
+					'password':$("#login_passwd").val(),
+				}
+				$.post('{{ url_for('index.login') }}', data, function (res) {
+					if (res.response == 'ok') {
+						window.location.href = res.url;
+					}else{
+						login_info.html(res.info);
+					}
+				});
+			});
+			$("#go-register").click(function(e){
+				$('#login-modal').hide();
+				$('#register-modal').show();
+			});
+			$("#go-login").click(function(e){
+				$('#login-modal').show();
+				$('#register-modal').hide();
+			});
+			$("#register").click(function(e){
+				e.preventDefault();
+				var register_info = $("#register_info");
+				register_info.html('');
+				var user = $("#register_email").val(),
+					name = $("#register_name").val(),
+					password = $("#register_passwd").val(),
+					verify_password = $("#verify_password").val();
+				if(!user){
+					register_info.html('请输入邮箱');
+					$("#register_email").focus();
+				}
+				if(!name){
+					register_info.html('请输入用户名');
+					$("#register_name").focus();
+				}
+				if(!password){
+					register_info.html('请输入密码');
+					$("#register_passwd").focus();
+				}
+				if(!verify_password){
+					register_info.html('请再次输入密码');
+					$("#verify_passwd").focus();
+				}
+				if(password != verify_passwd){
+					register_info.html('两次输入的密码不一致');
+					$("#verify_passwd").focus();
+				}
+				var data = {
+					'user':user,
+					'name': name,
+					'password': password,
+					'verify_password': verify_password
+				}
+				$.post('{{ url_for('index.register') }}', data, function (res) {
+					if (res.response == 'ok') {
+						window.location.href = res.url;
+					}else{
+						register_info.html(res.info);
+					}
+				});
+			});
+		</script>
 	</body>
 </html>

@@ -1263,10 +1263,6 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	height: 62px;
 }
 
-.login-wrap, .login-wrap .login-content {
-    overflow: hidden;
-}
-
 .login-wrap .login-others {
     text-align: center;
     padding-top: 50px;
@@ -1301,7 +1297,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
     text-align: center;
     font-size: 12px;
     color: #666;
-    margin-top: 30px;
+    margin: 30px 0;
 }
 
 .login-modal {
@@ -1455,6 +1451,8 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
     display: block;
 	-webkit-transition: all .5s;
     transition: all .5s;
+	border: none;
+	outline: none;
 }
 
 .login-input-submit:hover {
