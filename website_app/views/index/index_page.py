@@ -106,14 +106,39 @@ def register():
             'info': ''
         }
         name = request.form.get('name', None)
-        email = request.form.get('email', None)
+        email = request.form.get('user', None)
         password = request.form.get('password', None)
         verify_password = request.form.get('verify_password', None)
-        if None in [name, email, password, verify_password]:
+        if not name:
             result.update({
                 'response': 'fail',
-                'info': u'请输入未填项'
+                'info': u'请输入用户名'
             })
+            return jsonify(result)
+        if not email:
+            result.update({
+                'response': 'fail',
+                'info': u'请输入邮箱'
+            })
+            return jsonify(result)
+        if not password:
+            result.update({
+                'response': 'fail',
+                'info': u'请输入密码'
+            })
+            return jsonify(result)
+        if not verify_password:
+            result.update({
+                'response': 'fail',
+                'info': u'请再次输入密码'
+            })
+            return jsonify(result)
+        if password != verify_password:
+            result.update({
+                'response': 'fail',
+                'info': u'两次输入的密码不一致'
+            })
+            return jsonify(result)
         with get_session() as db_session:
             customer = db_session.query(Customer).filter(
                 Customer.email == email
@@ -121,7 +146,7 @@ def register():
             if customer:
                 result.update({
                     'response': 'fail',
-                    'info': '当前用户已经存在'
+                    'info': u'当前用户已经存在'
                 })
             else:
                 customer = Customer()

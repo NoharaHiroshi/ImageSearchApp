@@ -132,26 +132,31 @@
 				var user = $("#register_email").val(),
 					name = $("#register_name").val(),
 					password = $("#register_passwd").val(),
-					verify_password = $("#verify_password").val();
+					verify_password = $("#verify_passwd").val();
 				if(!user){
 					register_info.html('请输入邮箱');
 					$("#register_email").focus();
+					return;
 				}
 				if(!name){
 					register_info.html('请输入用户名');
 					$("#register_name").focus();
+					return;
 				}
 				if(!password){
 					register_info.html('请输入密码');
 					$("#register_passwd").focus();
+					return;
 				}
 				if(!verify_password){
 					register_info.html('请再次输入密码');
 					$("#verify_passwd").focus();
+					return;
 				}
-				if(password != verify_passwd){
+				if(password != verify_password){
 					register_info.html('两次输入的密码不一致');
 					$("#verify_passwd").focus();
+					return;
 				}
 				var data = {
 					'user':user,
