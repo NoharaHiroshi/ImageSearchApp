@@ -22,12 +22,13 @@ export class AppConfig {
 	// 登陆权限验证
 	authCheck(json: any){
 		let response = json['response'];
+		let url = json['url'];
+		let redirect_url = window.location.href;
+		console.log(redirect_url);
 		if(response == 'NeedLogin'){
 			// 验证需要登录时，打开登陆页面
-			this.isLoginOpen = true;
-			return false;
+			window.location.href = url + '?redirect_url=' + redirect_url;
 		}else{
-			this.isLoginOpen = false;
 			return true;
 		}
 	}

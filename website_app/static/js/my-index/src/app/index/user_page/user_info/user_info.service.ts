@@ -15,8 +15,8 @@ export class UserInfoService extends BaseService {
 		super(http);
 	}
 	
-	getDetail(id: string): Promise<any>{
-		const url = `/user_info?id=` + id; 
+	getDetail(): Promise<any>{
+		const url = `/user_info`; 
 		let self = this;
 		return this.http.get(url)
 				   .toPromise().then(function(res){

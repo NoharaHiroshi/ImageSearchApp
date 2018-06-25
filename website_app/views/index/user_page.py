@@ -6,24 +6,25 @@ from flask.ext.login import current_user, login_user, logout_user
 from model.session import get_session
 from model.website.customer import Customer
 
+from lib.login_required import login_required
+
 from route import index
 
 
 @index.route('/user_info', methods=['GET'])
+@login_required
 def user():
     result = {
+        'response': 'ok',
         'customer': '',
         'info': ''
     }
-    user_id = request.args.get('id')
     try:
-        with get_session() as db_session:
-            customer = db_session.query(Customer).get(user_id)
-            if customer:
-                customer_dict = customer.to_dict()
-                result.update({
-                    'customer': customer_dict
-                })
+        if current_user.is_authenticated():
+            customer_dict = current_user.to_dict()
+            result.update({
+                'customer': customer_dict
+            })
         return jsonify(result)
     except Exception as e:
         print e

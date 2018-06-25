@@ -13,6 +13,7 @@ def login_required(func):
         else:
             result = {
                 'response': 'NeedLogin',
+                'url': url_for('index.login'),
                 'info': u'未登陆，请返回登陆页面'
             }
             return jsonify(result)

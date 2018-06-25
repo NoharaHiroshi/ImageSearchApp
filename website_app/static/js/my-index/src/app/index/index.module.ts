@@ -43,7 +43,6 @@ import { ExchangeCodeComponent } from './user_page/exchange_code/exchange_code.c
 import { UserInfoService } from './user_page/user_info/user_info.service';
 
 import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
-import { AuthGuard } from '../common/auth/auth.service';
 
 @NgModule({
 	declarations: [
@@ -87,8 +86,7 @@ import { AuthGuard } from '../common/auth/auth.service';
 		SendAuthEmailService,
 		UserInfoService,
 		
-		AuthEmailGuard,
-		AuthGuard
+		AuthEmailGuard
 	],
 	bootstrap: [
 		IndexComponent

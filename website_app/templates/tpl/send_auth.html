@@ -20,7 +20,8 @@
 				<div class="modal-table-call">
 					<div class="auth-wrap">
 						<div class="auth-hearder">
-							验证邮箱
+							<span>验证邮箱</span>
+							<span class="back-login"><a href="{{ url_for('index.login') }}">返回首页</a></span>
 						</div>
 						<div class="auth-content">
 							恭喜您注册成功! 请点击<a href="javascript:;" id="send_auth_email">链接</a>发送验证邮件完成验证，该邮件24小时内有效。
@@ -38,7 +39,7 @@
 				auth_info.html('');
 				$.get('{{ url_for('index.send_auth') }}', function (res) {
 					if (res.response == 'ok') {
-						auth_info.html('发送成功');
+						auth_info.html('发送成功，请前往邮箱中查看');
 					}else if(res.response == 'needLogin'){
 						auth_info.html(res.info);
 						setTimeout(function(){

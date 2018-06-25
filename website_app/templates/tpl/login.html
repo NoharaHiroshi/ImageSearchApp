@@ -101,13 +101,19 @@
 			</div>
 		</div>
 		<script>
+			var args = window.location.href.split('?')[1];
+			if(args){
+				var r_url = args.split('=')[1];
+			}
 			$("#login").click(function(e){
 				e.preventDefault();
 				var login_info = $("#login_info");
 				login_info.html('');
+				console.log(r_url);
 				var data = {
 					'user':$("#login_email").val(),
 					'password':$("#login_passwd").val(),
+					'redirect_url': r_url
 				}
 				$.post('{{ url_for('index.login') }}', data, function (res) {
 					if (res.response == 'ok') {

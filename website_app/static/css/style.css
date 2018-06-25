@@ -1878,3 +1878,9 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	padding: 10px 15px;
 	color: #FF3030;
 }
+
+.back-login {
+	float: right;
+	font-size: 14px;
+	color: #888;
+}

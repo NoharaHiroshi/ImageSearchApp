@@ -178,6 +178,7 @@ def login():
         }
         # 持久会话
         session.permanent = True
+        redirect_url = request.form.get('redirect_url', config.URL)
         user = request.form.get('user')
         password = request.form.get('password')
 
@@ -201,7 +202,7 @@ def login():
                         login_user(customer)
                         result.update({
                             'user': customer.to_dict(),
-                            'url': config.URL
+                            'url': redirect_url
                         })
                     else:
                         result.update({
