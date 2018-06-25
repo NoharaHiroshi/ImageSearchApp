@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<title>验证邮箱</title>
+		<link rel="stylesheet" href="/static/css/ddfullscreenslider.css">
+		<link rel="stylesheet" href="/static/css/img-normalize.css" />
+		<link rel="stylesheet" href="/static/css/img-set.css" />
+		<link rel="stylesheet" href="/static/css/style.css">
+		<link rel="stylesheet" href="/static/css/font-awesome.css">
+		
+		<script src="/static/js/jquery-1.11.3.min.js"></script>
+		<script src="/static/js/jquery.SuperSlide.2.1.1.js"></script>
+		<script src="/static/js/modernizr.custom.js"></script>
+		
+	</head>
+	<body>
+		<div class="auth-modal" id="auth-modal">
+			<div class="modal-table">
+				<div class="modal-table-call">
+					<div class="auth-wrap">
+						<div class="auth-hearder">
+							验证邮箱
+						</div>
+						<div class="auth-content">
+							恭喜您注册成功! 请点击<a href="javascript:;" id="send_auth_email">链接</a>发送验证邮件完成验证，该邮件24小时内有效。
+						</div>
+						<div class="auth-info" id="auth-info">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$("#send_auth_email").click(function(e){
+				e.preventDefault();
+				var auth_info = $("#auth-info");
+				auth_info.html('');
+				$.get('{{ url_for('index.send_auth') }}', function (res) {
+					if (res.response == 'ok') {
+						auth_info.html('发送成功');
+					}else if(res.response == 'needLogin'){
+						auth_info.html(res.info);
+						setTimeout(function(){
+							window.location.href = res.url;
+						}, 500);
+					}else if(res.response == 'hasAuth'){
+						auth_info.html(res.info);
+						setTimeout(function(){
+							window.location.href = res.url;
+						}, 500);
+					}else{
+						auth_info.html(res.info);
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
