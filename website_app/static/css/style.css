@@ -1311,7 +1311,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
     overflow: hidden;
 }
 
-.login-modal .mdoal-table {
+.login-modal .modal-table {
     display: table;
     table-layout: fixed;
     width: 100%;
@@ -1815,4 +1815,66 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 .tip {
     animation: tip 2s;
     -webkit-animation: tip 2s;
+}
+
+/* 发送验证邮箱 */
+.auth-modal {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F000000, endColorstr=#7F000000);
+    z-index: 999;
+    overflow: hidden;
+}
+
+.auth-modal .modal-table {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+.auth-modal .modal-table-call {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+
+.auth-wrap {
+    width: 800px;
+	margin: 0 auto;
+    color: #ffbe40;
+	border-radius: 4px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 4px 6px 0 rgba(0,0,0,.2);
+    box-shadow: 0 4px 6px 0 rgba(0,0,0,.2);
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.auth-hearder {
+    color: #ffbe40;
+    font-size: 20px;
+    text-align: left;
+    padding: 15px;
+    position: relative;
+}
+
+.auth-content {
+	padding: 10px 15px;
+	color: #888;
+}
+
+.auth-content a {
+	color: #ffbe40;
+}
+
+.auth-info {
+	color: #888;
+	padding: 10px 15px;
+	color: #FF3030;
 }

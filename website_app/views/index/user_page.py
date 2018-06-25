@@ -55,4 +55,3 @@ def update_user():
         return jsonify(result)
     except Exception as e:
         print e
-                

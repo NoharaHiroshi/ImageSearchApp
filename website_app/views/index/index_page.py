@@ -3,6 +3,7 @@
 import traceback
 import ujson
 import os
+import time
 from sqlalchemy import or_
 from flask import render_template, abort, g, jsonify, request, session, redirect, url_for
 from flask.ext.login import current_user, login_user, logout_user
@@ -12,6 +13,7 @@ from lib.paginator import SQLAlchemyPaginator
 from lib.login_required import login_required
 from lib.aes_encrypt import AESCipher
 from lib.breadcrumb_navigation import breadcrumb_navigation
+from lib.send_email import send_email
 
 from redis_store.redis_cache import common_redis
 
@@ -103,7 +105,8 @@ def register():
     try:
         result = {
             'response': 'ok',
-            'info': ''
+            'info': '',
+            'url': ''
         }
         name = request.form.get('name', None)
         email = request.form.get('user', None)
@@ -155,6 +158,10 @@ def register():
                 customer.password = AESCipher.encrypt(password)
                 db_session.add(customer)
                 db_session.commit()
+                login_user(customer)
+                result.update({
+                    'url': '%s/send_auth_page' % config.URL
+                })
         return jsonify(result)
     except Exception as e:
         print traceback.format_exc(e)
@@ -176,7 +183,6 @@ def login():
 
         # 对已登录用户进行跳转
         if current_user.is_authenticated():
-            print 'login'
             return redirect(url_for('index.index_page'))
 
         if request.method == 'GET':
@@ -195,7 +201,7 @@ def login():
                         login_user(customer)
                         result.update({
                             'user': customer.to_dict(),
-                            'info': 'http://127.0.0.1:8888'
+                            'url': config.URL
                         })
                     else:
                         result.update({
@@ -280,3 +286,54 @@ def get_index_main_page():
         return jsonify(result)
     except Exception as e:
         print e
+
+
+@index.route('/send_auth_page', methods=['GET'])
+@login_required
+def send_auth_page():
+    try:
+        return render_template('tpl/send_auth.html')
+    except Exception as e:
+        app.my_logger.error(traceback.format_exc(e))
+        abort(400)
+
+
+@index.route('/send_auth', methods=['GET'])
+def send_auth():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    try:
+        if current_user.is_authenticated():
+            if not current_user.is_auth:
+                now = str(int(time.time()))
+                email = current_user.email
+                en_str = '_'.join([email, now])
+                en_info = AESCipher.encrypt(en_str)
+                full_url = config.URL + '/#/verify_email_effect?en_str=' + en_info
+                r = send_email(
+                    u'恭喜您注册成功',
+                    u'恭喜您注册成功, 请您点击以下链接 %s 完成验证，该邮件24小时内有效' % full_url,
+                    email
+                )
+                if r.get('response') != 'ok':
+                    result.update({
+                        'response': 'fail',
+                        'info': u'邮件发送失败'
+                    })
+            else:
+                result.update({
+                    'response': 'hasAuth',
+                    'info': u'您已经验证过邮箱了， 即将返回首页',
+                    'url': config.URL
+                })
+        else:
+            result.update({
+                'response': 'needLogin',
+                'info': u'当前用户未登录，即将返回登陆',
+                'url': '%s/login' % config.URL
+            })
+        return jsonify(result)
+    except Exception as e:
+        print traceback.format_exc(e)
