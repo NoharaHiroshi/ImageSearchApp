@@ -1144,6 +1144,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	display: block;
 	margin-bottom: 20px;
 	border: none;
+	outline: none;
 }
 
 .download-collect:hover {

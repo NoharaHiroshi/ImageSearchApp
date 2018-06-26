@@ -2,11 +2,6 @@
 	box-sizing: content-box;
 }
 
-body {
-  background-color: #dedede;
-  font-size: 12px;
-}
-
 .loading-base {
   height: 9em;
   left: 50%;

@@ -50,11 +50,8 @@ export class ImageDetailComponent extends ListBaseComponent implements OnInit{
 			.subscribe(res => {
 				if(this.config.authCheck(res)){
 					if(this.config.tipCheck(res)){
-						console.log('tip_check');
 						if(res['response'] == 'ok'){
 							self.downloadSourceImage();
-						}else{
-							console.log(res['info']);
 						}
 					}
 				}
@@ -75,11 +72,11 @@ export class ImageDetailComponent extends ListBaseComponent implements OnInit{
 		this.route.params.switchMap((params: Params) => this.service.addCollect(params['id']))
 			.subscribe(res => {
 				if(this.config.authCheck(res)){
-					if(res['response'] == 'ok'){
-						$('.download-collect').text('已收藏');
-						$('.download-collect').attr({"disabled":"disabled"});
-					}else{
-						console.log(res['info']);
+					if(this.config.tipCheck(res)){
+						if(res['response'] == 'ok'){
+							$('.download-collect').text('已收藏');
+							$('.download-collect').attr({"disabled":"disabled"});
+						}
 					}
 				}
 			});

@@ -13,6 +13,9 @@ export class AppConfig {
 	// 当前用户
 	user: User;
 	
+	// 加载动画
+	isLoading = true;
+	
 	// 登陆页面开关
     isLoginOpen = false;
 	
@@ -37,11 +40,13 @@ export class AppConfig {
 		let response = json['response'];
 		let info = json['info'];
 		if(response == 'ok'){
-			$('#main-tip').html(info);
-			$('#main-tip').toggleClass('tip');
-			setTimeout(function(){
-				$('#main-tip').removeClass('tip');
-			}, 1500);
+			if(info){
+				$('#main-tip').html(info);
+				$('#main-tip').toggleClass('tip');
+				setTimeout(function(){
+					$('#main-tip').removeClass('tip');
+				}, 1500);
+			}
 		}else{
 			$('#main-tip').html(info);
 			$('#main-tip').toggleClass('fail-tip');
