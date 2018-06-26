@@ -49,10 +49,13 @@ export class ImageDetailComponent extends ListBaseComponent implements OnInit{
 		this.route.params.switchMap((params: Params) => this.service.checkDownloadImage(params['id']))
 			.subscribe(res => {
 				if(this.config.authCheck(res)){
-					if(res['response'] == 'ok'){
-						self.downloadSourceImage();
-					}else{
-						console.log(res['info']);
+					if(this.config.tipCheck(res)){
+						console.log('tip_check');
+						if(res['response'] == 'ok'){
+							self.downloadSourceImage();
+						}else{
+							console.log(res['info']);
+						}
 					}
 				}
 			});

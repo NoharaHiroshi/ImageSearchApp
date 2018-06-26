@@ -9,7 +9,9 @@ from email.utils import formatdate
 
 DEBUG = True
 
-EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+# EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+
+EMAIL_PASSWORD = 'Ixx1234'
 
 # 发送邮件相关
 SMTP_CONFIG = {

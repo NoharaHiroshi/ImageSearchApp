@@ -24,13 +24,32 @@ export class AppConfig {
 		let response = json['response'];
 		let url = json['url'];
 		let redirect_url = window.location.href;
-		console.log(redirect_url);
 		if(response == 'NeedLogin'){
 			// 验证需要登录时，打开登陆页面
 			window.location.href = url + '?redirect_url=' + redirect_url;
 		}else{
 			return true;
 		}
+	}
+	
+	// 提示信息验证
+	tipCheck(json: any){
+		let response = json['response'];
+		let info = json['info'];
+		if(response == 'ok'){
+			$('#main-tip').html(info);
+			$('#main-tip').toggleClass('tip');
+			setTimeout(function(){
+				$('#main-tip').removeClass('tip');
+			}, 1500);
+		}else{
+			$('#main-tip').html(info);
+			$('#main-tip').toggleClass('fail-tip');
+			setTimeout(function(){
+				$('#main-tip').removeClass('fail-tip');
+			}, 1500);
+		}
+		return true;
 	}
 	
 	// 提示信息

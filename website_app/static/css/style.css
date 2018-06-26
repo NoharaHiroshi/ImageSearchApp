@@ -1787,17 +1787,37 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 
 /* 提示信息 */
 .tip {
-	position: absolute;
+	position: fixed;
 	background: #00FA9A;
 	border: 1px soid #00FA9A;
 	-webkit-box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
-	padding: 10px 15px;
+	padding: 15px 20px !important;
+	height: auto !important;
 	right: 2%;
 	top: 70px;
 	color: #fff;
 	width: 15%;
 	opacity: 0;
+	overflow: hidden;
+	z-index: 99;
+}
+
+.fail-tip {
+	position: fixed;
+	background: #FF3030;
+	border: 1px soid #FF3030;
+	-webkit-box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+	padding: 15px 20px !important;
+	height: auto !important;
+	right: 2%;
+	top: 70px;
+	color: #fff;
+	width: 15%;
+	opacity: 0;
+	overflow: hidden;
+	z-index: 99;
 }
 
 @keyframes tip {
@@ -1813,6 +1833,11 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 }
 
 .tip {
+    animation: tip 2s;
+    -webkit-animation: tip 2s;
+}
+
+.fail-tip {
     animation: tip 2s;
     -webkit-animation: tip 2s;
 }
