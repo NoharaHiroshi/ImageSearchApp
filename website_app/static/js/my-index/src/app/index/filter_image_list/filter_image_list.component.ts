@@ -35,13 +35,13 @@ export class FilterImageListComponent extends ListBaseComponent implements OnIni
 	sort: any;
 	search_count: number;
 	
-	constructor(private config: AppConfig, private service: FilterImageListService, public route: ActivatedRoute, public router: Router, private elem: ElementRef) {
+	constructor(public config: AppConfig, private service: FilterImageListService, public route: ActivatedRoute, public router: Router, private elem: ElementRef) {
 		super();
 	}
 	
 	getPagerData(): void {
 		let self = this;
-		this.isLoading = true;
+		this.config.isLoading = true;
         this.route.queryParams.switchMap(params => this.service.getDetail(params['search'] || '', this.page, this.format, this.sort))
 		.subscribe(res => {
 			this.image_series = res['image_series'];
@@ -53,7 +53,7 @@ export class FilterImageListComponent extends ListBaseComponent implements OnIni
 			this.all_image_sort = res['all_image_sort'];
 			this.all_image_sort_str = res['all_image_sort_str'];
 			this.all_recommend_tag = res['recommend_tag_list'];
-			this.isLoading = false;
+			self.config.isLoading = false;
 		});
 	}
 	

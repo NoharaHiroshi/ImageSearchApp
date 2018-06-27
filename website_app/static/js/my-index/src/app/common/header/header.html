@@ -1,21 +1,18 @@
 <!--header start-->
 <login></login>
-<!--Loading 动画-->
-<link rel="stylesheet" href="/static/css/loading_style_1.css" type="text/css" />
-<script src="/static/js/lib/loading.min.js"></script>
-<div style="text-align:center;clear:both;"></div>
-<div class='loading-base'>
-	<div class='cube'></div>
-	<div class='cube'></div>
-	<div class='cube'></div>
-	<div class='cube'></div>
-	<div class='cube'></div>
-	<div class='cube'></div>
-	<div class='cube'></div>
-	<div class='cube'></div>
-	<div class='cube'></div>
-</div>
 <header>
+	<!--Loading 动画-->
+	<ng-container *ngIf="config.isLoading">
+		<div class="website-loading">
+			<div class="spinner">
+				<div class="rect1"></div>
+				<div class="rect2"></div>
+				<div class="rect3"></div>
+				<div class="rect4"></div>
+				<div class="rect5"></div>
+			</div>
+		</div>
+	</ng-container>
 	<div class="header-content">
 		<div class="header-info">
 			<div class="header-logo">

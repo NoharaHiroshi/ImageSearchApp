@@ -59,15 +59,12 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 		});
 	}
 	
-	login(): void {
-		this.config.isLoginOpen = true;
-	}
-	
 	searchImage(): void {
 		if(this.search){
+			this.config.isLoading = true;
 			this.router.navigate(['filter_image_list'], {queryParams: {'search': this.search}});
 		}else{
-			console.log('请输入搜索内容');
+			this.config.tipOut('请输入搜索内容', 'fail');
 		}
 	}
 	

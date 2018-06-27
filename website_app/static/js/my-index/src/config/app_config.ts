@@ -14,7 +14,7 @@ export class AppConfig {
 	user: User;
 	
 	// 加载动画
-	isLoading = true;
+	isLoading = false;
 	
 	// 登陆页面开关
     isLoginOpen = false;
@@ -55,6 +55,22 @@ export class AppConfig {
 			}, 1500);
 		}
 		return true;
+	}
+	
+	tipOut(info: string, type: string){
+		if(type == 'success'){
+			$('#main-tip').html(info);
+			$('#main-tip').toggleClass('tip');
+			setTimeout(function(){
+				$('#main-tip').removeClass('tip');
+			}, 1500);
+		}else{
+			$('#main-tip').html(info);
+			$('#main-tip').toggleClass('fail-tip');
+			setTimeout(function(){
+				$('#main-tip').removeClass('fail-tip');
+			}, 1500);
+		}
 	}
 	
 	// 提示信息

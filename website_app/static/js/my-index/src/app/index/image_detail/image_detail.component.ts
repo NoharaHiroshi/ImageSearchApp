@@ -30,11 +30,12 @@ export class ImageDetailComponent extends ListBaseComponent implements OnInit{
 	
 	getPagerData(): void {
 		let self = this;
+		this.config.isLoading = true;
         this.route.params.switchMap((params: Params) => this.service.getDetail(params['id']||'0'))
 	        .subscribe(res => {
 				this.image = res['image'];
 				this.image_tags = res['image_tags'];
-				this.isLoading = false;
+				this.config.isLoading = false;
 				if(res['is_collected']){
 					setTimeout(function(){
 						$('.download-collect').text('已收藏');

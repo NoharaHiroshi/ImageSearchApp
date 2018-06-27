@@ -25,11 +25,13 @@ export class MainPageComponent extends ListBaseComponent implements OnInit{
 	
 	ngOnInit(): void {
 		let self = this;
+		this.config.isLoading = true;
 		this.service.getMainPageInfo().then(data => {
 			this.column_list = data.column_list;
 			setTimeout(function(){
 				self.loadAfter();
 			}, 100);
+			self.config.isLoading = false;
         });
 	}
 	

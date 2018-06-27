@@ -1,63 +1,58 @@
 <div class="filter-image-list-box">
-	<ng-container *ngIf="isLoading">
-		<div class="image-list-title">正在帮您查找</div>
-	</ng-container>
-	<ng-container *ngIf="!isLoading">
-		<ng-container *ngIf="image_list">
-			<div class="filter_image_pannel">
-				<div class="filter-image-list-search">查询条件：{{search}} <span class="filter-image-count">共查询 <span style="color: #ffbe40">{{search_count}}</span> 结果</span></div>
-				<div class="filter-image-list-format">分类 :
-					<span><a href="javascript:;" (click)="selectedFormat('all')">全部</a></span>
-					<ng-container *ngFor="let format of all_image_format">
-						<span><a href="javascript:;" (click)="selectedFormat(format)">{{format}}</a></span>
-					</ng-container>
-				</div>
-				<div class="filter-image-list-sort">排序 :
-					<ng-container *ngFor="let sort_str of all_image_sort_str let i = index">
-						<span><a href="javascript:;" (click)="selectedSorted(all_image_sort[i])">{{sort_str}}</a></span>
+	<ng-container *ngIf="image_list">
+		<div class="filter_image_pannel">
+			<div class="filter-image-list-search">查询条件：{{search}} <span class="filter-image-count">共查询 <span style="color: #ffbe40">{{search_count}}</span> 结果</span></div>
+			<div class="filter-image-list-format">分类 :
+				<span><a href="javascript:;" (click)="selectedFormat('all')">全部</a></span>
+				<ng-container *ngFor="let format of all_image_format">
+					<span><a href="javascript:;" (click)="selectedFormat(format)">{{format}}</a></span>
+				</ng-container>
+			</div>
+			<div class="filter-image-list-sort">排序 :
+				<ng-container *ngFor="let sort_str of all_image_sort_str let i = index">
+					<span><a href="javascript:;" (click)="selectedSorted(all_image_sort[i])">{{sort_str}}</a></span>
+				</ng-container>
+			</div>
+		</div>
+		<ng-container *ngIf="all_recommend_tag.length">
+			<div class="filter-image-list-recommend">为您推荐 :
+				<ng-container *ngFor="let recommend_tag of all_recommend_tag">
+					<span><a href="javascript:;" (click)="selectedRecommendTag(recommend_tag)">{{recommend_tag}}</a></span>
+				</ng-container>
+			</div>
+		</ng-container>
+		<ng-container *ngIf="image_list.length">
+			<div class="image-list-content">
+				<div id="demo" #demo style="margin: 0 auto; overflow:hidden;">
+					<ng-container *ngIf="image_list">
+						<ng-container *ngFor="let image of image_list">
+							<div class="image-item" #witem data-w="" data-h="" style="height:200px; width:200px;">
+								<a [routerLink]="['/image_detail', image.id]" target="_blank">
+									<img class="image-item-image" src="{{config.resource_url}}/static/{{image.img_preview_url}}">	
+								</a>
+								<a [routerLink]="['/image_detail', image.id]" target="_blank">
+									<div class="image-item-hover">
+										<span class="view">
+											<a class="image-item-hover-view" [routerLink]="['/image_detail', image.id]" target="_blank">
+												<i class="fa fa-eye"></i> <span style="margin-left:5px;">{{image.view_count}}</span>
+											</a>
+										</span>
+										<span class="download">
+											<a class="image-item-hover-download" [routerLink]="['/image_detail', image.id]" target="_blank">
+												下载
+											</a>
+										</span>
+									</div>
+								</a>
+							</div>
+						</ng-container>
 					</ng-container>
 				</div>
 			</div>
-			<ng-container *ngIf="all_recommend_tag.length">
-				<div class="filter-image-list-recommend">为您推荐 :
-					<ng-container *ngFor="let recommend_tag of all_recommend_tag">
-						<span><a href="javascript:;" (click)="selectedRecommendTag(recommend_tag)">{{recommend_tag}}</a></span>
-					</ng-container>
-				</div>
-			</ng-container>
-			<ng-container *ngIf="image_list.length">
-				<div class="image-list-content">
-					<div id="demo" #demo style="margin: 0 auto; overflow:hidden;">
-						<ng-container *ngIf="image_list">
-							<ng-container *ngFor="let image of image_list">
-								<div class="image-item" #witem data-w="" data-h="" style="height:200px; width:200px;">
-									<a [routerLink]="['/image_detail', image.id]" target="_blank">
-										<img class="image-item-image" src="{{config.resource_url}}/static/{{image.img_preview_url}}">	
-									</a>
-									<a [routerLink]="['/image_detail', image.id]" target="_blank">
-										<div class="image-item-hover">
-											<span class="view">
-												<a class="image-item-hover-view" [routerLink]="['/image_detail', image.id]" target="_blank">
-													<i class="fa fa-eye"></i> <span style="margin-left:5px;">{{image.view_count}}</span>
-												</a>
-											</span>
-											<span class="download">
-												<a class="image-item-hover-download" [routerLink]="['/image_detail', image.id]" target="_blank">
-													下载
-												</a>
-											</span>
-										</div>
-									</a>
-								</div>
-							</ng-container>
-						</ng-container>
-					</div>
-				</div>
-				<paging [current_page]="page_info.cur_page" [all_page]="page_info.all_page" [all_num]="page_info.count" (selected_page)="getPageNum($event)"></paging>
-			</ng-container>
-			<ng-container *ngIf="!image_list.length">
-				<div class="image-list-title">抱歉，没有找到您想要的素材</div>
-			</ng-container>
+			<paging [current_page]="page_info.cur_page" [all_page]="page_info.all_page" [all_num]="page_info.count" (selected_page)="getPageNum($event)"></paging>
+		</ng-container>
+		<ng-container *ngIf="!image_list.length">
+			<div class="image-list-title">抱歉，没有找到您想要的素材</div>
 		</ng-container>
 	</ng-container>
 </div>

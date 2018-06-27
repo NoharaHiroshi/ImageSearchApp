@@ -31,12 +31,13 @@ export class ImageSeriesListComponent extends ListBaseComponent implements OnIni
 	
 	getPagerData(): void {
 		let self = this;
+		this.config.isLoading = true;
         this.route.params.switchMap((params: Params) => this.service.getDetail(params['id']||'0', this.page))
 	        .subscribe(res => {
 				this.series_category = res['series_category'];
 	        	this.series_list = res['series_list'];
 				this.page_info = res['meta'];
-				this.isLoading = false;
+				this.config.isLoading = false;
 	        });
 	}
 	
@@ -67,7 +68,7 @@ export class ImageSeriesListComponent extends ListBaseComponent implements OnIni
 				if(res['response'] == 'ok'){
 					$('#' + id).addClass('collect-logo-hover');
 				}else{
-					console.log(res['info']);
+					self.tipOut(res['info'], 'fail');
 				}
 			}
 		})

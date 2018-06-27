@@ -33,12 +33,13 @@ export class ImageListComponent extends ListBaseComponent implements OnInit{
 	
 	getPagerData(): void {
 		let self = this;
+		this.config.isLoading = true;
         this.route.params.switchMap((params: Params) => this.service.getDetail(params['id']||'0', this.page))
 	        .subscribe(res => {
 				this.image_series = res['image_series'];
 	        	this.image_list = res['image_list'];
 				this.page_info = res['meta'];
-				this.isLoading = false;
+				this.config.isLoading = false;
 	        });
 	}
 	
