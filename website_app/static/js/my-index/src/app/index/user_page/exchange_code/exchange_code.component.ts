@@ -5,6 +5,8 @@ import { Component, Input, Output, EventEmitter, ViewChildren, ViewChild, Elemen
 import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { Location }  from '@angular/common';
 
+import { ExchangeCodeService } from './exchange_code.service';
+
 import { AppConfig } from '../../../../config/app_config';
 
 @Component({
@@ -13,5 +15,7 @@ import { AppConfig } from '../../../../config/app_config';
 })
 export class ExchangeCodeComponent {
 	
-	constructor(private config: AppConfig) {}
+	constructor(private config: AppConfig, public service: ExchangeCodeService) {
+		super();
+	}
 }

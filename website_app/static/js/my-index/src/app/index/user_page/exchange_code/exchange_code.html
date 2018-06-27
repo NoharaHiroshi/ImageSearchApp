@@ -8,5 +8,8 @@
 				<div class="exchange_button">兑换</div>
 			</span>
 		</span>
+		<ng-container *ngIf="exchange_info">
+			<span class="exchange_info">{{exchange_info}}</span> 
+		</ng-container>
 	</div>
 </div>

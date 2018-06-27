@@ -8,8 +8,17 @@ import 'rxjs/Rx';
 import { BaseService } from '../../../common/base.service';
 
 @Injectable()
-export class UserPageService extends BaseService {
+export class ExchangeCodeService extends BaseService {
+	
 	constructor(http: Http) { 
 		super(http);
+	}
+
+	exchange(exchange_code: String): Promise<any> {
+		params = {
+			'exchange_code': exchange_code 
+		}
+		const url = '/exchange_code';
+	    return this.postForm(url, JSON.stringify(params));
 	}
 }
