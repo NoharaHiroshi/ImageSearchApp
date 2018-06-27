@@ -1910,3 +1910,47 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	font-size: 14px;
 	color: #888;
 }
+
+/* 兑换页面 */
+.input_exchange_code {
+	width: 90%;
+	margin: 0 auto;
+	overflow: hidden;
+	margin-bottom: 30px;
+}
+
+.input_exchange_code .e-title {
+	position: relative;
+	display: inline-block;
+	width: 40%;
+	margin-right: 2%;
+	color: #888;
+	line-height: 30px;
+}
+
+.input_exchange_code .e-value {
+	position: relative;
+	display: inline-block;
+	width: 40%
+}
+
+.input_exchange_code .e-value input {
+	width: 60%;
+	margin-right: 5%;
+}
+
+.exchange_button {
+	display: inline-block;
+	outline: none;
+	background: #ffbe40;
+	color: #fff;
+	padding: 5px 8px;
+	border-radius: 5px;
+	cursor: pointer;
+	-webkit-transition: all .5s;
+	transition: all .5s;
+}
+
+.exchange_button:hover{
+	background: #00FA9A;
+}

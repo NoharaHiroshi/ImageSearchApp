@@ -1,12 +1,12 @@
-<div class="user-page">
-	<div class="left-content">
-		<ul>
-			<li><a href="#"><i class="fa fa-user-o" aria-hidden="true"></i>个人中心</a></li>
-			<li><a href="#"><i class="fa fa-ticket" aria-hidden="true"></i>券码兑换</a></li>
-		</ul>
-	</div>
-	<div class="right-content">
-		<!-- 右侧内容 -->
-		<router-outlet></router-outlet>
+<div class="user-info">
+	<div class="title">券码兑换<span class="en-title">EXCHANGE CODE</span></div>
+	<div class="input_exchange_code">
+		<span class="e-title"><span style="float: right;">请输入券码兑换: </span></span>
+		<span class="e-value">
+			<span style="float: left; width: 100%;">
+				<input type="text" name="exchange_code" placeholder='输入兑换码' value="" >
+				<div class="exchange_button">兑换</div>
+			</span>
+		</span>
 	</div>
 </div>

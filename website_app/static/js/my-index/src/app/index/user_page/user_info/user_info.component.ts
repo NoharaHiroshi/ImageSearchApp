@@ -26,10 +26,11 @@ export class UserInfoComponent extends ListBaseComponent implements OnInit{
 	
 	getPagerData(): void {
 		let self = this;
+		this.config.isLoading = true
 		this.service.getDetail().then(res => {
 			if(this.config.authCheck(res)){
 				this.customer = res['customer'];
-				this.isLoading = false;
+				this.config.isLoading = false;
 			}
 		});
 	}
@@ -41,11 +42,7 @@ export class UserInfoComponent extends ListBaseComponent implements OnInit{
 	updateUserInfo(): void {
 		this.mode = 0;
 		this.service.update(this.customer).then(res => {
-			if(res.response == 'ok'){
-				console.log('修改成功');
-			}else{
-				console.log('修改失败');
-			}
+			this.config.tipCheck(res);
 		})
 	}
 	

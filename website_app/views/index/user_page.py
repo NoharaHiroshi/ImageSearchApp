@@ -34,7 +34,7 @@ def user():
 def update_user():
     result = {
         'response': 'ok',
-        'info': ''
+        'info': u'修改信息成功'
     }
     c_id = request.form.get('id', None)
     name = request.form.get('name', None)
