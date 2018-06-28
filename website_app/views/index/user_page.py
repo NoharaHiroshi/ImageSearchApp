@@ -34,8 +34,6 @@ def user():
                     discount = db_session.query(Discount).get(user_discount.discount_id)
                     if discount:
                         customer_discount_dict = user_discount.to_dict()
-                        customer_discount_dict['effect_end'] = datetime.datetime.strftime((user_discount.effect_start + datetime.timedelta(
-                            int(user_discount.effect_days))), '%Y-%m-%d %H:%M:%S')
                         customer_discount_dict['discount_name'] = discount.name
                         result.update({
                             'customer_discount': customer_discount_dict

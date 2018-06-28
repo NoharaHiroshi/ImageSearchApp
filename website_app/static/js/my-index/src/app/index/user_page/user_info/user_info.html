@@ -22,10 +22,10 @@
 				<span>当前会员权益：</span>
 			</div>
 			<div class="value">
-				<ng-container *ngIf="customer_discount">
+				<ng-container *ngIf="customer_discount.discount_name">
 					<span>{{customer_discount.discount_name}}</span>
 				</ng-container>
-				<ng-container *ngIf="!customer_discount">
+				<ng-container *ngIf="!customer_discount.discount_name">
 					<span>无</span>
 				</ng-container>
 			</div>
@@ -35,10 +35,10 @@
 				<span>权益生效时间：</span>
 			</div>
 			<div class="value">
-				<ng-container *ngIf="customer_discount">
-					<span>{{customer_discount.effect_start}} - {{customer_discount.effect_end}}</span>
+				<ng-container *ngIf="customer_discount.effect_start && customer_discount.effect_end">
+					<span>{{customer_discount.effect_start}} ~ {{customer_discount.effect_end}}</span>
 				</ng-container>
-				<ng-container *ngIf="!customer_discount">
+				<ng-container *ngIf="!customer_discount.effect_start || !customer_discount.effect_end">
 					<span>无</span>
 				</ng-container>
 			</div>

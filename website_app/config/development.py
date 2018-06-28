@@ -17,7 +17,7 @@ DOWNLOAD_SRC = os.path.join(ROOT_SRC, 'manage_app/static/').replace('\\', '/')
 
 # 免费下载次数限制
 # 时间间隔，单位秒
-FREE_DOWNLOAD_EXPIRED_TIME = 1000
+FREE_DOWNLOAD_EXPIRED_TIME = 86400
 # 免费下载次数
 FREE_DOWNLOAD_TIMES = 1
 

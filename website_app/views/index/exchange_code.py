@@ -37,6 +37,9 @@ def exchange_code():
                         customer_discount.customer_id = current_user.id
                         customer_discount.discount_id = discount.id
                         customer_discount.effect_days = discount.effect_days
+                        now = datetime.datetime.now()
+                        customer_discount.effect_start = now
+                        customer_discount.effect_end = now + datetime.timedelta(int(discount.effect_days))
                         db_session.add(customer_discount)
                         # 更新优惠券状态
                         code_query.status = DiscountCode.STATUS_USED

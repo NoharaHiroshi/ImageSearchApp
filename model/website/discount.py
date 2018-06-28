@@ -73,6 +73,8 @@ class CustomerDiscount(Base):
     effect_start = Column(DateTime, default=datetime.datetime.now, index=True)
     # 生效时间
     effect_days = Column(Integer, nullable=False, index=True)
+    # 失效日期
+    effect_end = Column(DateTime, nullable=False, index=True)
 
     def to_dict(self):
         return {
@@ -82,6 +84,7 @@ class CustomerDiscount(Base):
             'discount_id': str(self.discount_id),
             'effect_start': self.effect_start.strftime('%Y-%m-%d %H:%M:%S'),
             'effect_days': self.effect_days,
+            'effect_end': self.effect_end.strftime('%Y-%m-%d %H:%M:%S'),
             'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
             'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }

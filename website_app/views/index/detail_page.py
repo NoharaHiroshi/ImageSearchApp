@@ -2,6 +2,7 @@
 
 import traceback
 import ujson
+import datetime
 import os
 from flask import render_template, abort, g, jsonify, request, session, redirect, url_for
 from flask.ext.login import current_user
@@ -12,6 +13,7 @@ from redis_store.redis_cache import common_redis
 
 from model.session import get_session
 from model.website.customer import Customer, CustomerCollect
+from model.website.discount import CustomerDiscount, Discount
 from model.image.image_download_history import ImageDownloadHistory
 from model.image.image import Image
 from model.image.image_tags import ImageTags, ImageTagsRel
@@ -84,7 +86,20 @@ def check_image():
             image = db_session.query(Image).get(image_id)
             if image:
                 download_key = u'download_image_%s' % current_user.id
-                download_max_times = config.FREE_DOWNLOAD_TIMES
+                # 查询当前会员是否拥有会员权益
+                now = datetime.datetime.now()
+                cus_discount = db_session.query(Discount).outerjoin(
+                    Discount, Discount.id == CustomerDiscount.discount_id
+                ).filter(
+                    CustomerDiscount.customer_id == current_user.id,
+                    CustomerDiscount.effect_start < now,
+                    CustomerDiscount.effect_end > now,
+                ).first()
+                if cus_discount:
+                    # 当前权益最大下载次数
+                    download_max_times = cus_discount.times
+                else:
+                    download_max_times = config.FREE_DOWNLOAD_TIMES
                 download_times = common_redis.get(download_key)
                 if download_times:
                     download_times = int(download_times)
