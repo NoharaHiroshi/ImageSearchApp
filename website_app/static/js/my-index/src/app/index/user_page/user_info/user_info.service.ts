@@ -6,6 +6,7 @@ import 'rxjs/add/operator/timeout';
 import 'rxjs/Rx';
 
 import { Customer } from '../../../model/customer';
+import { CustomerDiscount } from '../../../model/customer_discount';
 
 import { BaseService } from '../../../common/base.service';
 
@@ -22,7 +23,9 @@ export class UserInfoService extends BaseService {
 				   .toPromise().then(function(res){
 						let json = res.json();
 						let customer = self.jsonToObject(json.customer, Customer);
+						let customer_discount = self.jsonToObject(json.customer_discount, CustomerDiscount);
 						json['customer'] = customer;
+						json['customer_discount'] = customer_discount;
 						return json;
 					})
 	}

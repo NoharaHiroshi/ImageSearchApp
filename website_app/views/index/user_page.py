@@ -1,10 +1,14 @@
 # encoding=utf-8
 
+import datetime
+
 from flask import render_template, abort, g, jsonify, request, session, redirect, url_for
 from flask.ext.login import current_user, login_user, logout_user
 
 from model.session import get_session
 from model.website.customer import Customer
+from model.website.discount_code import DiscountCode, DisocuntCodeGenHistory
+from model.website.discount import Discount, CustomerDiscount
 
 from lib.login_required import login_required
 
@@ -17,14 +21,29 @@ def user():
     result = {
         'response': 'ok',
         'customer': '',
+        'customer_discount': '',
         'info': ''
     }
     try:
         if current_user.is_authenticated():
-            customer_dict = current_user.to_dict()
-            result.update({
-                'customer': customer_dict
-            })
+            with get_session() as db_session:
+                user_discount = db_session.query(CustomerDiscount).filter(
+                    CustomerDiscount.customer_id == current_user.id
+                ).first()
+                if user_discount:
+                    discount = db_session.query(Discount).get(user_discount.discount_id)
+                    if discount:
+                        customer_discount_dict = user_discount.to_dict()
+                        customer_discount_dict['effect_end'] = user_discount.effect_start + datetime.timedelta(
+                            int(user_discount.effect_days))
+                        customer_discount_dict['discount_name'] = discount.name
+                        result.update({
+                            'customer_discount': customer_discount_dict
+                        })
+                customer_dict = current_user.to_dict()
+                result.update({
+                    'customer': customer_dict
+                })
         return jsonify(result)
     except Exception as e:
         print e

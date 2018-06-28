@@ -4,6 +4,7 @@ declare var swal: any;
 import { Component, Input, Output, EventEmitter, ViewChildren, ViewChild, ElementRef, OnInit, OnChanges, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked} from '@angular/core';
 import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { Location }  from '@angular/common';
+import { ListBaseComponent } from '../../../common/base.component';
 
 import { ExchangeCodeService } from './exchange_code.service';
 
@@ -13,9 +14,20 @@ import { AppConfig } from '../../../../config/app_config';
   selector: 'user-exchange-code-root',
   templateUrl: './exchange_code.html',
 })
-export class ExchangeCodeComponent {
+export class ExchangeCodeComponent extends ListBaseComponent{
+	exchange_info: string;
+	code: string;
 	
 	constructor(private config: AppConfig, public service: ExchangeCodeService) {
 		super();
+	}
+	
+	exchangeCode(code: string): void {
+		let self = this;
+		this.service.exchange(code).then(res => {
+			if(this.config.tipCheck(res)){
+				self.exchange_info = res['info'];
+			}
+		})
 	}
 }

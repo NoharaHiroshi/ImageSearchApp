@@ -1900,7 +1900,6 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 }
 
 .auth-info {
-	color: #888;
 	padding: 10px 15px;
 	color: #FF3030;
 }

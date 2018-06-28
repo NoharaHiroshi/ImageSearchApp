@@ -5,6 +5,8 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/timeout';
 import 'rxjs/Rx';
 
+import { CustomerDiscount } from '../../../model/customer_discount';
+
 import { BaseService } from '../../../common/base.service';
 
 @Injectable()
@@ -15,8 +17,8 @@ export class ExchangeCodeService extends BaseService {
 	}
 
 	exchange(exchange_code: String): Promise<any> {
-		params = {
-			'exchange_code': exchange_code 
+		let params = {
+			'code': exchange_code 
 		}
 		const url = '/exchange_code';
 	    return this.postForm(url, JSON.stringify(params));

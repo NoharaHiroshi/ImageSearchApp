@@ -7,6 +7,7 @@ import { Location }  from '@angular/common';
 import { ListBaseComponent } from '../../../common/base.component';
 
 import { Customer } from '../../../model/customer';
+import { CustomerDiscount } from '../../../model/customer_discount';
 
 import { AppConfig } from '../../../../config/app_config';
 import { UserInfoService } from './user_info.service';
@@ -17,6 +18,8 @@ import { UserInfoService } from './user_info.service';
 })
 export class UserInfoComponent extends ListBaseComponent implements OnInit{
 	customer: Customer;
+	customer_discount: CustomerDiscount;
+	
 	// 0：只读、 1：编辑
 	mode: number = 0;
 	
@@ -30,6 +33,7 @@ export class UserInfoComponent extends ListBaseComponent implements OnInit{
 		this.service.getDetail().then(res => {
 			if(this.config.authCheck(res)){
 				this.customer = res['customer'];
+				this.customer_discount = res['customer_discount'];
 				this.config.isLoading = false;
 			}
 		});

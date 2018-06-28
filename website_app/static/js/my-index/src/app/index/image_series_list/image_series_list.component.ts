@@ -68,7 +68,7 @@ export class ImageSeriesListComponent extends ListBaseComponent implements OnIni
 				if(res['response'] == 'ok'){
 					$('#' + id).addClass('collect-logo-hover');
 				}else{
-					self.tipOut(res['info'], 'fail');
+					self.config.tipOut(res['info'], 'fail');
 				}
 			}
 		})

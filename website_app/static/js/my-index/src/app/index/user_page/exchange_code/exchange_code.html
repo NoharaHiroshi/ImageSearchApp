@@ -4,12 +4,19 @@
 		<span class="e-title"><span style="float: right;">请输入券码兑换: </span></span>
 		<span class="e-value">
 			<span style="float: left; width: 100%;">
-				<input type="text" name="exchange_code" placeholder='输入兑换码' value="" >
-				<div class="exchange_button">兑换</div>
+				<input type="text" name="exchange_code" placeholder='输入兑换码' value="" [(ngModel)]="code" >
+				<div class="exchange_button" (click)="exchangeCode(code)">兑换</div>
 			</span>
 		</span>
-		<ng-container *ngIf="exchange_info">
-			<span class="exchange_info">{{exchange_info}}</span> 
-		</ng-container>
 	</div>
+	<ng-container *ngIf="exchange_info">
+		<div class="input_exchange_code">
+			<span class="e-title"><span style="float: right;">兑换结果: </span></span>
+			<span class="e-value">
+				<span style="float: left; width: 100%; color: #FF3030; line-height: 30px;">
+					{{exchange_info}}
+				</span>
+			</span> 
+		</div>
+	</ng-container>
 </div>
