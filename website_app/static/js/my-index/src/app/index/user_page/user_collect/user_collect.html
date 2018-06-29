@@ -1,0 +1,34 @@
+<div class="right-content-collect">
+	<ng-container *ngIf="image_list">
+		<div class="image-list-content">
+			<div id="demo" #demo style="margin: 0 auto; overflow:hidden;">
+				<ng-container *ngIf="image_list">
+					<ng-container *ngFor="let image of image_list">
+						<div class="image-item" #witem data-w="" data-h="" style="height:200px; width:200px;">
+							<a [routerLink]="['/image_detail', image.id]" target="_blank">
+								<img class="image-item-image" src="{{config.resource_url}}/static/{{image.img_preview_url}}">	
+							</a>
+							<a [routerLink]="['/image_detail', image.id]" target="_blank">
+								<div class="image-item-hover">
+									<span class="view">
+										<a class="image-item-hover-view" [routerLink]="['/image_detail', image.id]" target="_blank">
+											<i class="fa fa-eye"></i> <span style="margin-left:5px;">{{image.view_count}}</span>
+										</a>
+									</span>
+									<span class="download">
+										<a class="image-item-hover-download" [routerLink]="['/image_detail', image.id]" target="_blank">
+											下载
+										</a>
+									</span>
+								</div>
+							</a>
+						</div>
+					</ng-container>
+				</ng-container>
+			</div>
+		</div>
+		<div style="margin-bottom: 30px;">
+			<paging [current_page]="page_info.cur_page" [all_page]="page_info.all_page" [all_num]="page_info.count" (selected_page)="getPageNum($event)"></paging>
+		</div>
+	</ng-container>
+</div>
