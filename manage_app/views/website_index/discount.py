@@ -99,6 +99,7 @@ def discount_update():
     price = request.form.get('price')
     effect_days = request.form.get('effect_days')
     image_id = request.form.get('img_id')
+    level = request.form.get('level')
     description = request.form.get('description')
     try:
         with get_session() as db_session:
@@ -111,6 +112,7 @@ def discount_update():
                 discount.effect_days = effect_days
                 discount.image_id = image_id
                 discount.description = description
+                discount.level = level
                 db_session.add(discount)
             else:
                 discount = db_session.query(Discount).get(_id)
@@ -122,6 +124,7 @@ def discount_update():
                     discount.effect_days = effect_days
                     discount.image_id = image_id
                     discount.description = description
+                    discount.level = level
                 else:
                     result.update({
                         'response': 'fail',

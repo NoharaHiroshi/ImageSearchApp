@@ -38,17 +38,17 @@ def exchange_code():
                         customer_discount = db_session.query(CustomerDiscount).filter(
                             CustomerDiscount.customer_id == current_user.id
                         ).first()
+                        cus_discount_obj = db_session.query(Discount).get(customer_discount.discount_id)
                         if customer_discount:
-                            # 权益相同，时间延长
-                            if customer_discount.discount_id == discount.id:
-                                customer_discount.effect_end = customer_discount.effect_end + \
-                                                               datetime.timedelta(int(discount.effect_days))
-                            # 暂时处理为更新新一级权益，只升不降
-                            else:
-                                cus_discount_obj = db_session.query(Discount).get(customer_discount.discount_id)
-                                if cus_discount_obj:
+                            if cus_discount_obj:
+                                # 权益相同，时间延长
+                                if cus_discount_obj.level == discount.level:
+                                    customer_discount.effect_end = customer_discount.effect_end + \
+                                                                   datetime.timedelta(int(discount.effect_days))
+                                # 暂时处理为更新新一级权益，只升不降
+                                else:
                                     # 会员当前权益等级大于兑换券权益，拒绝录入
-                                    if cus_discount_obj.level > discount:
+                                    if cus_discount_obj.level > discount.level:
                                         result.update({
                                             'response': 'fail',
                                             'info': u'您当前的会员权益高于兑换券权益，无法兑换'
@@ -59,12 +59,12 @@ def exchange_code():
                                         customer_discount.discount_id = discount.id
                                         customer_discount.effect_end = customer_discount.effect_end + \
                                                                        datetime.timedelta(int(discount.effect_days))
-                                else:
-                                    result.update({
-                                        'response': 'fail',
-                                        'info': u'当前会员权益不存在，请联系管理员'
-                                    })
-                                    return jsonify(result)
+                            else:
+                                result.update({
+                                    'response': 'fail',
+                                    'info': u'当前会员权益不存在，请联系管理员'
+                                })
+                                return jsonify(result)
                         else:
                             customer_discount = CustomerDiscount()
                             customer_discount.customer_id = current_user.id

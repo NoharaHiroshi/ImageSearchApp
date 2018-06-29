@@ -51,4 +51,4 @@ def bath_gen_discount_code(email, num, discount_id):
 
 
 if __name__ == '__main__':
-    bath_gen_discount_code('380788433@qq.com', 50, 6543399288390811648)
+    bath_gen_discount_code('380788433@qq.com', 10, 6543399288390811650)
