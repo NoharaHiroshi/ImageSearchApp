@@ -1,81 +1,7 @@
-<div class="user-info" *ngIf="customer">
-	<div class="title">个人中心<span class="en-title">USER CENTER</span></div>
-	<ng-container *ngIf="mode == 0">
-		<div class="item">
-			<div class="name">
-				<span>注册邮箱：</span>
-			</div>
-			<div class="value">
-				<span>{{customer.email}}</span>
-			</div>
-		</div>
-		<div class="item">
-			<div class="name">
-				<span>注册时间：</span>
-			</div>
-			<div class="value">
-				<span>{{customer.created_date}}</span>
-			</div>
-		</div>
-		<div class="item">
-			<div class="name">
-				<span>当前会员权益：</span>
-			</div>
-			<div class="value">
-				<ng-container *ngIf="customer_discount.discount_name">
-					<span>{{customer_discount.discount_name}}</span>
-				</ng-container>
-				<ng-container *ngIf="!customer_discount.discount_name">
-					<span>无</span>
-				</ng-container>
-			</div>
-		</div>
-		<div class="item">
-			<div class="name">
-				<span>权益生效时间：</span>
-			</div>
-			<div class="value">
-				<ng-container *ngIf="customer_discount.effect_start && customer_discount.effect_end">
-					<span>{{customer_discount.effect_start}} ~ {{customer_discount.effect_end}}</span>
-				</ng-container>
-				<ng-container *ngIf="!customer_discount.effect_start || !customer_discount.effect_end">
-					<span>无</span>
-				</ng-container>
-			</div>
-		</div>
-		<div class="item">
-			<div class="name">
-				<span>用户名：</span>
-			</div>
-			<div class="value">
-				<span>{{customer.name}}</span>
-			</div>
-		</div>
-		<div class="item">
-			<div class="name">
-				<span>性别：</span>
-			</div>
-			<div class="value">
-				<span>{{customer.sex}}</span>
-			</div>
-		</div>
-		<div class="item">
-			<div class="name">
-				<span>QQ：</span>
-			</div>
-			<div class="value">
-				<ng-container *ngIf="customer.qq">
-					<span>{{customer.qq}}</span>
-				</ng-container>
-				<ng-container *ngIf="!customer.qq">
-					<span>未填写</span>
-				</ng-container>
-			</div>
-		</div>
-		<div class="change-user-info" (click)="editUserInfo()">修改</div>
-	</ng-container>
-	<ng-container *ngIf="mode == 1">
-		<form class="form-horizontal" method="get">
+<div class="right-content">
+	<div class="user-info" *ngIf="customer">
+		<div class="title">个人中心<span class="en-title">USER CENTER</span></div>
+		<ng-container *ngIf="mode == 0">
 			<div class="item">
 				<div class="name">
 					<span>注册邮箱：</span>
@@ -94,10 +20,36 @@
 			</div>
 			<div class="item">
 				<div class="name">
+					<span>当前会员权益：</span>
+				</div>
+				<div class="value">
+					<ng-container *ngIf="customer_discount.discount_name">
+						<span>{{customer_discount.discount_name}}</span>
+					</ng-container>
+					<ng-container *ngIf="!customer_discount.discount_name">
+						<span>无</span>
+					</ng-container>
+				</div>
+			</div>
+			<div class="item">
+				<div class="name">
+					<span>权益生效时间：</span>
+				</div>
+				<div class="value">
+					<ng-container *ngIf="customer_discount.effect_start && customer_discount.effect_end">
+						<span>{{customer_discount.effect_start}} ~ {{customer_discount.effect_end}}</span>
+					</ng-container>
+					<ng-container *ngIf="!customer_discount.effect_start || !customer_discount.effect_end">
+						<span>无</span>
+					</ng-container>
+				</div>
+			</div>
+			<div class="item">
+				<div class="name">
 					<span>用户名：</span>
 				</div>
-				<div class="input">
-					<span><input type="text" name="name" [(ngModel)]='customer.name'></span>
+				<div class="value">
+					<span>{{customer.name}}</span>
 				</div>
 			</div>
 			<div class="item">
@@ -112,14 +64,64 @@
 				<div class="name">
 					<span>QQ：</span>
 				</div>
-				<div class="input">
-					<span><input type="text" name="qq" [(ngModel)]='customer.qq'></span>
+				<div class="value">
+					<ng-container *ngIf="customer.qq">
+						<span>{{customer.qq}}</span>
+					</ng-container>
+					<ng-container *ngIf="!customer.qq">
+						<span>未填写</span>
+					</ng-container>
 				</div>
 			</div>
-			<div class="handler-user-info">
-				<span (click)="updateUserInfo()">确定</span>
-				<span (click)="cancelUserInfo()">取消</span>
-			</div>
-		</form>
-	</ng-container>
+			<div class="change-user-info" (click)="editUserInfo()">修改</div>
+		</ng-container>
+		<ng-container *ngIf="mode == 1">
+			<form class="form-horizontal" method="get">
+				<div class="item">
+					<div class="name">
+						<span>注册邮箱：</span>
+					</div>
+					<div class="value">
+						<span>{{customer.email}}</span>
+					</div>
+				</div>
+				<div class="item">
+					<div class="name">
+						<span>注册时间：</span>
+					</div>
+					<div class="value">
+						<span>{{customer.created_date}}</span>
+					</div>
+				</div>
+				<div class="item">
+					<div class="name">
+						<span>用户名：</span>
+					</div>
+					<div class="input">
+						<span><input type="text" name="name" [(ngModel)]='customer.name'></span>
+					</div>
+				</div>
+				<div class="item">
+					<div class="name">
+						<span>性别：</span>
+					</div>
+					<div class="value">
+						<span>{{customer.sex}}</span>
+					</div>
+				</div>
+				<div class="item">
+					<div class="name">
+						<span>QQ：</span>
+					</div>
+					<div class="input">
+						<span><input type="text" name="qq" [(ngModel)]='customer.qq'></span>
+					</div>
+				</div>
+				<div class="handler-user-info">
+					<span (click)="updateUserInfo()">确定</span>
+					<span (click)="cancelUserInfo()">取消</span>
+				</div>
+			</form>
+		</ng-container>
+	</div>
 </div>

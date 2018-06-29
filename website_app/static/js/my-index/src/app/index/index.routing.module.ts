@@ -10,6 +10,7 @@ import { FilterImageListComponent } from './filter_image_list/filter_image_list.
 import { UserPageComponent } from './user_page/user_page.component';
 import { UserInfoComponent } from './user_page/user_info/user_info.component';
 import { ExchangeCodeComponent } from './user_page/exchange_code/exchange_code.component';
+import { UserCollectComponent } from './user_page/user_collect/user_collect.component';
 
 import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 
@@ -31,7 +32,8 @@ const routes: Routes = [
 				children: [
 					{ path: '', redirectTo: 'user_info', pathMatch: 'full' },
 					{ path: 'user_info', component: UserInfoComponent },
-					{ path: 'exchange_code', component: ExchangeCodeComponent }
+					{ path: 'exchange_code', component: ExchangeCodeComponent },
+					{ path: 'user_collect', component: UserCollectComponent }
 				]
 			}
 		]

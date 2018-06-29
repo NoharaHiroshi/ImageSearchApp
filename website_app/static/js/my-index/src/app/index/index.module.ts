@@ -39,9 +39,11 @@ import { SendAuthEmailService } from './send_auth_email/send_auth_email.service'
 
 import { UserPageComponent } from './user_page/user_page.component';
 import { UserInfoComponent } from './user_page/user_info/user_info.component';
+import { UserInfoService } from './user_page/user_info/user_info.service';
 import { ExchangeCodeComponent } from './user_page/exchange_code/exchange_code.component';
 import { ExchangeCodeService } from './user_page/exchange_code/exchange_code.service';
-import { UserInfoService } from './user_page/user_info/user_info.service';
+import { UserCollectComponent } from './user_page/user_collect/user_collect.component';
+import { UserCollectService } from './user_page/user_collect/user_collect.service';
 
 import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 
@@ -57,7 +59,8 @@ import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 		VerifyEmailEffectComponent,
 		UserPageComponent,
 		UserInfoComponent,
-		ExchangeCodeComponent
+		ExchangeCodeComponent,
+		UserCollectComponent
 	],
 	imports: [
 		CommonModule,
@@ -87,6 +90,7 @@ import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 		SendAuthEmailService,
 		UserInfoService,
 		ExchangeCodeService,
+		UserCollectService,
 		
 		AuthEmailGuard
 	],

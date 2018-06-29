@@ -1664,6 +1664,16 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	margin-right: 1%;
 }
 
+.user-page .right-content-collect {
+	position: relative;
+	display: inline-block;
+	width: 83%;
+	float: right;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	margin-right: 1%;
+}
+
 .user-info {
 	padding: 15px;
 	color: #888;
