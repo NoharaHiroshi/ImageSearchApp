@@ -89,7 +89,7 @@ def check_image():
                 # 查询当前会员是否拥有会员权益
                 now = datetime.datetime.now()
                 cus_discount = db_session.query(Discount).outerjoin(
-                    Discount, Discount.id == CustomerDiscount.discount_id
+                    CustomerDiscount, Discount.id == CustomerDiscount.discount_id
                 ).filter(
                     CustomerDiscount.customer_id == current_user.id,
                     CustomerDiscount.effect_start < now,
@@ -127,8 +127,18 @@ def get_image_full_url():
             image = db_session.query(Image).get(image_id)
             # 防止跳过图片检验直接访问该链接
             download_key = u'download_image_%s' % current_user.id
+            customer_discount = db_session.query(CustomerDiscount).filter(
+                CustomerDiscount.customer_id == current_user.id
+            ).first()
+            if customer_discount:
+                discount = db_session.query(Discount).get(customer_discount.discount_id)
+                if discount:
+                    download_max_times = discount.times
+                else:
+                    download_max_times = config.FREE_DOWNLOAD_EXPIRED_TIME
+            else:
+                download_max_times = config.FREE_DOWNLOAD_TIMES
             expired_time = config.FREE_DOWNLOAD_EXPIRED_TIME
-            download_max_times = config.FREE_DOWNLOAD_TIMES
             download_times = common_redis.get(download_key)
             if download_times:
                 download_times = int(download_times)

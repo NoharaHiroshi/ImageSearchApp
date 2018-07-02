@@ -51,8 +51,8 @@ def exchange_code():
                         customer_discount = db_session.query(CustomerDiscount).filter(
                             CustomerDiscount.customer_id == current_user.id
                         ).first()
-                        cus_discount_obj = db_session.query(Discount).get(customer_discount.discount_id)
                         if customer_discount:
+                            cus_discount_obj = db_session.query(Discount).get(customer_discount.discount_id)
                             if cus_discount_obj:
                                 # 权益相同，时间延长
                                 if cus_discount_obj.level == discount.level:

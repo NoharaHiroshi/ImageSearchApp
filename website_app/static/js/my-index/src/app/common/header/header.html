@@ -20,7 +20,7 @@
 			</div>
 			<div class="header-login">
 				<ng-container *ngIf="config.user">
-					<span><a [routerLink]="['user']">{{config.user.name}}</a></span>
+					<span style="margin-right:10px;"><a [routerLink]="['user']">{{config.user.name}}</a></span>
 					<a href="javascript:;" class="header-logout-item" (click)="logout()">退出</a>
 				</ng-container>
 				<ng-container *ngIf="!config.user">
