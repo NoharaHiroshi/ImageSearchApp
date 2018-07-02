@@ -71,7 +71,7 @@ export class VerifyEmailEffectComponent extends ListBaseComponent implements OnI
 				self.info = res.info;
 				setTimeout(function(){
 					self.router.navigate(['/']);
-				}, 1500);
+				}, 3000);
 			}else if(res.response == 'NeedLogin'){
 				this.config.isLoginOpen = true;
 			}else{

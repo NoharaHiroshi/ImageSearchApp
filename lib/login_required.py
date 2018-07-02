@@ -9,7 +9,18 @@ def login_required(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         if current_user.is_authenticated():
-            return func(*args, **kwargs)
+            if current_user.is_auth:
+                return func(*args, **kwargs)
+            else:
+                context = {
+                    'source': 'auth'
+                }
+                result = {
+                    'response': 'NeedAuth',
+                    'url': url_for('index.send_auth_page', **context),
+                    'info': u'未验证邮箱，请您前往个人中心验证邮箱'
+                }
+                return jsonify(result)
         else:
             result = {
                 'response': 'NeedLogin',
@@ -17,4 +28,5 @@ def login_required(func):
                 'info': u'未登陆，请返回登陆页面'
             }
             return jsonify(result)
+
     return wrapper

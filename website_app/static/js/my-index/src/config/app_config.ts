@@ -30,6 +30,9 @@ export class AppConfig {
 		if(response == 'NeedLogin'){
 			// 验证需要登录时，打开登陆页面
 			window.location.href = url + '?redirect_url=' + redirect_url;
+		}else if(response == 'NeedAuth'){
+			// 验证需要认证邮箱时，打开页面
+			window.location.href = url;
 		}else{
 			return true;
 		}

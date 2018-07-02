@@ -15,6 +15,15 @@ export class ExchangeCodeService extends BaseService {
 	constructor(http: Http) { 
 		super(http);
 	}
+	
+	getDetail(): void {
+		const url = '/exchange_code_page';
+		let self = this;
+		return this.http.get(url).toPromise().then(function(res){
+			let json = res.json();
+			return json;
+		});
+	}
 
 	exchange(exchange_code: String): Promise<any> {
 		let params = {

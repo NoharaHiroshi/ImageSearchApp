@@ -68,6 +68,8 @@ export class UserCollectComponent extends ListBaseComponent implements OnInit{
 			if(this.demo){
 				$(this.demo.nativeElement).flexImages({rowHeight: 300, container: '.image-item' });
 			}
+		}else{
+			console.log('not image_list');
 		}
 	}
 }

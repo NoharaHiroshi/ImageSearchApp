@@ -160,7 +160,7 @@ def register():
                 db_session.commit()
                 login_user(customer)
                 result.update({
-                    'url': '%s/send_auth_page' % config.URL
+                    'url': '%s/send_auth_page?source=register' % config.URL
                 })
         return jsonify(result)
     except Exception as e:
@@ -292,8 +292,25 @@ def get_index_main_page():
 @index.route('/send_auth_page', methods=['GET'])
 @login_required
 def send_auth_page():
+    source = request.args.get('source', None)
+    context = {
+        'source': source,
+        'info': ''
+    }
     try:
-        return render_template('tpl/send_auth.html')
+        if source == 'register':
+            context.update({
+                'info': u'恭喜您注册成功！！'
+            })
+        elif source == 'auth':
+            context.update({
+                'info': u'您当前还未验证邮箱！'
+            })
+        else:
+            context.update({
+                'info': u'恭喜您注册成功！！'
+            })
+        return render_template('tpl/send_auth.html', **context)
     except Exception as e:
         app.my_logger.error(traceback.format_exc(e))
         abort(400)

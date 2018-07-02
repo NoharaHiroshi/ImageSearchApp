@@ -8,3 +8,4 @@ from user_page import *
 from detail_page import *
 from exchange_code import *
 from user_collect import *
+from user_change_password import *

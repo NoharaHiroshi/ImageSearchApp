@@ -22,6 +22,16 @@ export class ExchangeCodeComponent extends ListBaseComponent{
 		super();
 	}
 	
+	getPagerData(): void {
+		let self = this;
+		this.config.isLoading = true
+		this.service.getDetail().then(res => {
+			if(this.config.authCheck(res)){
+				this.config.isLoading = false;
+			}
+		});
+	}
+	
 	exchangeCode(code: string): void {
 		let self = this;
 		this.service.exchange(code).then(res => {

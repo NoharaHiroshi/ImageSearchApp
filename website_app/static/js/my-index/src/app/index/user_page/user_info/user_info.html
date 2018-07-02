@@ -54,6 +54,20 @@
 			</div>
 			<div class="item">
 				<div class="name">
+					<span>是否已验证邮箱：</span>
+				</div>
+				<div class="value">
+					<ng-container *ngIf="customer.is_auth == 0">
+						<span style="color: #FF3030; margin-right: 20px; line-height: 24px;">邮箱未验证</span>
+						<span class="auth-button"><a href="/send_auth_page?source=auth">点击验证</a></span>
+					</ng-container>
+					<ng-container *ngIf="customer.is_auth == 1">
+						<span style="color: #00FF7F;">邮箱已验证</span>
+					</ng-container>
+				</div>
+			</div>
+			<div class="item">
+				<div class="name">
 					<span>性别：</span>
 				</div>
 				<div class="value">
@@ -99,6 +113,20 @@
 					</div>
 					<div class="input">
 						<span><input type="text" name="name" [(ngModel)]='customer.name'></span>
+					</div>
+				</div>
+				<div class="item">
+					<div class="name">
+						<span>是否已验证邮箱：</span>
+					</div>
+					<div class="value">
+						<ng-container *ngIf="customer.is_auth == 0">
+							<span style="color: #FF3030; margin-right: 20px; line-height: 24px;">邮箱未验证</span>
+							<span class="auth-button"><a href="/send_auth_page?source=auth">点击验证</a></span>
+						</ng-container>
+						<ng-container *ngIf="customer.is_auth == 1">
+							<span style="color: #00FF7F;">邮箱已验证</span>
+						</ng-container>
 					</div>
 				</div>
 				<div class="item">

@@ -1760,6 +1760,30 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	background: #00FA9A;
 }
 
+.auth-button {
+	color: #fff;
+	padding: 2px 3px;
+	width: 10%;
+	text-align: center;
+	border: 1px soid #ffbe40;
+	background: #ffbe40;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+	-webkit-transition: all .5s;
+	transition: all .5s;
+	cursor: pointer;
+}
+
+.auth-button a {
+	color: #fff;
+}
+
+.auth-button:hover {
+	border: 1px soid #00FA9A;
+	background: #00FA9A;
+}
+
 .user-info input {
 	font-size: 14px;
     height: 28px;

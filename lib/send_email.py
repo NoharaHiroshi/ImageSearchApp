@@ -8,10 +8,9 @@ from email.mime.text import MIMEText
 from email.utils import formatdate
 
 DEBUG = True
-
 # EMAIL_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
-EMAIL_PASSWORD = 'Ixx1234'
+EMAIL_PASSWORD = open(r'C:\Users\fangjiayao\Desktop\website_conf\email_password.txt').read()
 
 # 发送邮件相关
 SMTP_CONFIG = {
@@ -19,7 +18,7 @@ SMTP_CONFIG = {
     'port': '25',
     'from_email': 'zhaoyuting@ixianxia.com',
     'user': 'zhaoyuting@ixianxia.com',
-    'pwd': EMAIL_PASSWORD if EMAIL_PASSWORD else '9Whd7KckPLX26BAH'
+    'pwd': EMAIL_PASSWORD
 }
 
 
@@ -59,4 +58,4 @@ def send_email(subject, content, to_someone, **smtp_config):
 
 if __name__ == '__main__':
     # send_email(u'测试账户激活', u'这是一封用于测试的邮件', u'380788433@qq.com')
-    print os.environ.get('EMAIL_PASSWORD')
+    print EMAIL_PASSWORD

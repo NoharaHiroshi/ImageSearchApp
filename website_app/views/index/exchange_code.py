@@ -15,6 +15,19 @@ from lib.login_required import login_required
 from route import index
 
 
+@index.route('/exchange_code_page', methods=['GET'])
+@login_required
+def exchange_code_page():
+    result = {
+        'response': 'ok',
+        'info': u''
+    }
+    try:
+        return jsonify(result)
+    except Exception as e:
+        print traceback.format_exc(e)
+
+
 @index.route('/exchange_code', methods=['POST'])
 @login_required
 def exchange_code():

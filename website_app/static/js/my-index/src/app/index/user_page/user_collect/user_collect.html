@@ -1,6 +1,6 @@
-<div class="right-content-collect">
-	<ng-container *ngIf="image_list">
-		<div class="image-list-content">
+<ng-container *ngIf="image_list && image_list.length">
+	<div class="right-content-collect">
+		<div class="image-list-content" style="width: 1000px;">
 			<div id="demo" #demo style="margin: 0 auto; overflow:hidden;">
 				<ng-container *ngIf="image_list">
 					<ng-container *ngFor="let image of image_list">
@@ -30,5 +30,13 @@
 		<div style="margin-bottom: 30px;">
 			<paging [current_page]="page_info.cur_page" [all_page]="page_info.all_page" [all_num]="page_info.count" (selected_page)="getPageNum($event)"></paging>
 		</div>
-	</ng-container>
-</div>
+	</div>
+</ng-container>
+<ng-container *ngIf="!image_list || !image_list.length">
+	<div class="right-content">
+		<div class="user-info">
+			<div class="title">图片收藏<span class="en-title">USER COLLECT</span></div>
+			您当前还未收藏过任何素材。
+		</div>
+	</div>
+</ng-container>

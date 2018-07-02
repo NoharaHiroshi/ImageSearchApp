@@ -44,9 +44,10 @@ export class UserInfoComponent extends ListBaseComponent implements OnInit{
 	}
 	
 	updateUserInfo(): void {
+		let self = this;
 		this.mode = 0;
 		this.service.update(this.customer).then(res => {
-			this.config.tipCheck(res);
+			self.config.tipCheck(res);
 		})
 	}
 	
