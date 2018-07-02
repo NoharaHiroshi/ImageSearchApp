@@ -21,3 +21,8 @@ FREE_DOWNLOAD_EXPIRED_TIME = 86400
 # 免费下载次数
 FREE_DOWNLOAD_TIMES = 1
 
+# Cookie的name
+REMEMBER_COOKIE_NAME = 'website_app_cookie'
+
+# Cookie的domain
+REMEMBER_COOKIE_DOMAIN = '127.0.0.1:8899'
