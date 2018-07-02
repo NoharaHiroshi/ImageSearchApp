@@ -199,7 +199,7 @@ def login():
                 ).first()
                 if customer:
                     if password == AESCipher.decrypt(customer.password):
-                        login_user(customer)
+                        login_user(customer, remember=True)
                         result.update({
                             'user': customer.to_dict(),
                             'url': redirect_url

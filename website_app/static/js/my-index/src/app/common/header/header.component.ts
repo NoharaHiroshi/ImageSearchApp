@@ -68,6 +68,16 @@ export class HeaderComponent extends ListBaseComponent implements OnInit {
 		}
 	}
 	
+	searchListImage(id: string): void {
+		this.config.isLoading = true;
+		this.router.navigate(['image_list', id]);
+	}
+	
+	serachFilterImage(search: string): void {
+		this.config.isLoading = true;
+		this.router.navigate(['filter_image_list'], {queryParams: {'search': search}});
+	}
+	
 	enterSearchImage(event: any): void {
 		this.searchImage();
 	}
