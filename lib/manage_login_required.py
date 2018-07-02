@@ -10,18 +10,7 @@ def login_required(func):
     def wrapper(*args, **kwargs):
         print '会员登录情况：%s' % current_user.is_authenticated()
         if current_user.is_authenticated():
-            if current_user.is_auth:
-                return func(*args, **kwargs)
-            else:
-                context = {
-                    'source': 'auth'
-                }
-                result = {
-                    'response': 'NeedAuth',
-                    'url': url_for('index.send_auth_page', **context),
-                    'info': u'未验证邮箱，请您前往个人中心验证邮箱'
-                }
-                return jsonify(result)
+            return func(*args, **kwargs)
         else:
             result = {
                 'response': 'NeedLogin',

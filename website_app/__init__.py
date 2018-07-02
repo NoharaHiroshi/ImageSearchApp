@@ -60,6 +60,7 @@ def setup_secret_key(app):
 
 
 def create_app(config=None, blueprints=BLUEPRINTS):
+    print DEFAULT_APP_NAME
     app = Flask(DEFAULT_APP_NAME)
     app.config.from_object(config)
     setup_secret_key(app)

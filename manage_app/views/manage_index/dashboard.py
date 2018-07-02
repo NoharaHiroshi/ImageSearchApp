@@ -4,7 +4,7 @@ import traceback
 import time
 import datetime
 from flask import render_template, abort, g, redirect, url_for, request, jsonify, session
-from flask.ext.login import current_user, login_user, logout_user, login_required
+from flask.ext.login import current_user, login_user, logout_user
 from flask import current_app as app
 from sqlalchemy import or_, func, and_
 
@@ -15,11 +15,13 @@ from model.image.image_download_history import ImageDownloadHistory
 from model.image.image_series import ImageSeries
 
 from lib.aes_encrypt import AESCipher
+from lib.manage_login_required import login_required
 
 from route import manage
 
 
 @manage.route('/dashboard/info', methods=['GET'])
+@login_required
 def dashboard_info():
     result = {
         'response': 'ok',

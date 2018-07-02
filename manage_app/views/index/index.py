@@ -108,7 +108,7 @@ def login():
                     return jsonify(result)
 
                 # 验证身份后，调用Flask-Login中的login_user(),将user实例标记为已登录
-                login_user(user)
+                login_user(user, remember=True)
                 user_dict = user.to_dict()
                 result.update({
                     'user': user_dict
