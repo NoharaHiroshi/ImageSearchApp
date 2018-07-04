@@ -10,7 +10,7 @@ from flask.ext.login import current_user, login_user, logout_user
 from flask import current_app as app
 from flask import send_from_directory
 from lib.paginator import SQLAlchemyPaginator
-from lib.login_required import login_required
+from lib.login_required import login_required, auth_required
 from lib.aes_encrypt import AESCipher
 from lib.breadcrumb_navigation import breadcrumb_navigation
 from lib.send_email import send_email
@@ -290,7 +290,7 @@ def get_index_main_page():
 
 
 @index.route('/send_auth_page', methods=['GET'])
-@login_required
+@auth_required
 def send_auth_page():
     source = request.args.get('source', None)
     context = {

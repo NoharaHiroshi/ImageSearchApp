@@ -16,8 +16,8 @@ export class ExchangeCodeService extends BaseService {
 		super(http);
 	}
 	
-	getDetail(): void {
-		const url = '/exchange_code_page';
+	getDetail(): Promise<any> {
+		const url = '/auth_user_page';
 		let self = this;
 		return this.http.get(url).toPromise().then(function(res){
 			let json = res.json();

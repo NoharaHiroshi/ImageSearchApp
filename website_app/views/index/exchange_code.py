@@ -15,9 +15,9 @@ from lib.login_required import login_required
 from route import index
 
 
-@index.route('/exchange_code_page', methods=['GET'])
+@index.route('/auth_user_page', methods=['GET'])
 @login_required
-def exchange_code_page():
+def auth_user_page():
     result = {
         'response': 'ok',
         'info': u''

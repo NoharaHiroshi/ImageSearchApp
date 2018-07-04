@@ -48,14 +48,14 @@ export class AppConfig {
 				$('#main-tip').toggleClass('tip');
 				setTimeout(function(){
 					$('#main-tip').removeClass('tip');
-				}, 1500);
+				}, 2000);
 			}
 		}else{
 			$('#main-tip').html(info);
 			$('#main-tip').toggleClass('fail-tip');
 			setTimeout(function(){
 				$('#main-tip').removeClass('fail-tip');
-			}, 1500);
+			}, 2000);
 		}
 		return true;
 	}
@@ -66,13 +66,13 @@ export class AppConfig {
 			$('#main-tip').toggleClass('tip');
 			setTimeout(function(){
 				$('#main-tip').removeClass('tip');
-			}, 1500);
+			}, 2000);
 		}else{
 			$('#main-tip').html(info);
 			$('#main-tip').toggleClass('fail-tip');
 			setTimeout(function(){
 				$('#main-tip').removeClass('fail-tip');
-			}, 1500);
+			}, 2000);
 		}
 	}
 	

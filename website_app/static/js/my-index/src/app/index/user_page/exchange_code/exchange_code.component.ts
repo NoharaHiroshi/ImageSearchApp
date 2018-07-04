@@ -22,7 +22,7 @@ export class ExchangeCodeComponent extends ListBaseComponent{
 		super();
 	}
 	
-	getPagerData(): void {
+	getPagerData(): any {
 		let self = this;
 		this.config.isLoading = true
 		this.service.getDetail().then(res => {
