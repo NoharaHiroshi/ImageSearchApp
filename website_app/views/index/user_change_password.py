@@ -21,7 +21,6 @@ def user_change_password():
     result = {
         'response': 'ok',
         'info': u'修改密码成功',
-        'url': config.URL + '/logout'
     }
     old_password = request.form.get('old_password', None)
     new_password = request.form.get('new_password', None)
@@ -35,7 +34,6 @@ def user_change_password():
                     if old_password == AESCipher.decrypt(customer.password):
                         customer.password = AESCipher.encrypt(new_password)
                         db_session.commit()
-                        # 修改密码后重新登陆
                     else:
                         result.update({
                             'response': 'fail',
