@@ -5,6 +5,7 @@ from model.base import Base, IdGenerator
 from model.session import get_session
 
 
+# 该模型主要用于存储图片标签
 class ImageTags(Base):
     __tablename__ = 'image_tags'
 
@@ -55,6 +56,26 @@ class ImageTagsRel(Base):
             'tag_id': str(self.tag_id),
             'tag_name': self.tag_name,
             'image_id': str(self.image_id),
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
+        }
+
+
+# 改模型主要用于扩展用户搜索标签的入口，比如用户搜索树叶素材，可以通树叶、叶子等入口搜索同一素材
+class ImageAssociationTag(Base):
+    __tablename__ = 'image_association_tag'
+
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
+    # 标签名称
+    name = Column(String(100), index=True, nullable=False)
+    # 主标签ID
+    tag_id = Column(BigInteger, nullable=False, index=True)
+
+    def to_dict(self):
+        return {
+            'id': str(self.id),
+            'name': self.name,
+            'tag_id': str(self.tag_id),
             'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
             'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }

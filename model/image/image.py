@@ -7,6 +7,7 @@ from model.session import get_session
 from model.website.customer import CustomerCollect
 
 
+# 当前模型主要用于存储素材类型图片
 class Image(Base):
     __tablename__ = 'image'
 

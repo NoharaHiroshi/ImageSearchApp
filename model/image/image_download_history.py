@@ -5,6 +5,7 @@ from sqlalchemy import Column, Integer, String, BigInteger
 from model.base import Base, IdGenerator
 
 
+# 当前模型主要用于存储用户下载图片历史
 class ImageDownloadHistory(Base):
     __tablename__ = 'image_download_history'
 
