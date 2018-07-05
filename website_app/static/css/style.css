@@ -1057,13 +1057,16 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	position: relative;
 	display: inline-block;
 	width: 800px;
+	min-height: 500px;
 	padding: 20px;
 	background-color: #fff;
 	float: left;
+	text-align: center;
 }
 
 .image-main-content img {
-	width: 100%;
+	width: 50%;
+	padding: 20% 0;
 }
 
 .image-sider-content {

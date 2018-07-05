@@ -15,7 +15,7 @@ from model.base import IdGenerator
 from model.session import get_session
 from model.image.image import Image as Img
 from model.image.image_series import ImageSeriesRel, ImageSeries, ImageSeriesCategory, ImageSeriesCategoryRel
-from model.image.image_tags import ImageTags, ImageTagsRel, ImageRecommendTagsRel, ImageRecommendTags
+from model.image.image_tags import ImageTags, ImageTagsRel, ImageRecommendTagsRel, ImageRecommendTags, ImageAssociationTag
 
 from route import manage
 
@@ -711,6 +711,65 @@ def remove_image_from_tag():
         return jsonify(result)
     except Exception as e:
         print e
+        abort(400)
+
+
+@manage.route('/image_tag_list/image_association_tag', methods=['GET'])
+def image_tag_association_list():
+    result = {
+        'response': 'ok',
+        'association_tag_str': '',
+        'tag_id': ''
+    }
+    try:
+        tag_id = request.args.get('tag_id', None)
+        result['tag_id'] = tag_id
+        with get_session() as db_session:
+            association_tag_query = db_session.query(ImageAssociationTag).filter(
+                ImageAssociationTag.tag_id == tag_id
+            ).all()
+            if association_tag_query:
+                association_tag_str = ','.join([association_tag.name for association_tag in association_tag_query])
+                result['association_tag_str'] = association_tag_str
+        return jsonify(result)
+    except Exception as e:
+        print e
+        abort(400)
+
+
+@manage.route('/image_tag_list/image_association_tag/update', methods=['POST'])
+def image_tag_association_update():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    try:
+        tag_id = request.form.get('tag_id', None)
+        association_tag_str = request.form.get('image_association_tag_str', '')
+        if tag_id:
+            with get_session() as db_session:
+                db_session.query(ImageAssociationTag).filter(
+                    ImageAssociationTag.tag_id == tag_id
+                ).delete(synchronize_session=False)
+                association_tag_list = association_tag_str.split(u'，')
+                for association_tag in association_tag_list:
+                    association_tag_obj = db_session.query(ImageAssociationTag).filter(
+                        ImageAssociationTag.name == association_tag
+                    ).first()
+                    if not association_tag_obj:
+                        association_tag_obj = ImageAssociationTag()
+                        association_tag_obj.tag_id = tag_id
+                        association_tag_obj.name = association_tag
+                        db_session.add(association_tag_obj)
+                db_session.commit()
+        else:
+            result.update({
+                'response': 'fail',
+                'info': u'未选择标签'
+            })
+        return jsonify(result)
+    except Exception as e:
+        print traceback.format_exc(e)
         abort(400)
 
 

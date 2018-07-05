@@ -32,7 +32,6 @@ export class ImageTagConfComponent extends ListBaseComponent{
 		this.isLoading = true;
 		this.service.getImageTag(this.page).then(data => {
         	this.image_tag_list = data.image_tag_list;
-			console.log(this.image_tag_list);
 			this.page_info = data.meta;
 			this.isLoading = false;
         });
@@ -183,4 +182,47 @@ export class ImageTagSetComponent extends ListBaseComponent{
 			}
 		});
 	}
+}
+
+
+@Component({
+  selector: 'image-association-tag-set-root',
+  templateUrl: './image_association_tag_set.html',
+})
+export class ImageAssociationTagSetComponent extends ListBaseComponent{
+	association_tag_str: string;
+	tag_id: string;
+	
+	constructor(private service: ImageTagService, public route: ActivatedRoute, public router: Router) {
+		super();
+	}
+	
+	ngOnInit(): void {
+		let self = this;
+		this.isLoading = true;
+        this.route.params.switchMap((params: Params) => this.service.getAssociationTagDetail(params['id']||'0'))
+	        .subscribe(res => {
+	        	this.association_tag_str = res['association_tag_str'];
+				this.tag_id = res['tag_id'];
+				this.isLoading = false;
+	        });
+	}
+	
+	goBack(): void {
+		this.router.navigate(['../..'], {relativeTo: this.route});
+	}
+	
+	save(): void {
+		this.service.updateAssociationTag(this.association_tag_str, this.tag_id).then(res => {
+			this.isDisabledButton = true;
+			if(res.response=='fail'){
+				console.log('fail', '保存失败');
+				this.isDisabledButton = false;
+			}else{
+				console.log('success', '保存成功');
+				this.goBack();
+			}
+		});
+	}
+
 }

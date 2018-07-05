@@ -82,4 +82,25 @@ export class ImageTagService extends BaseService {
 		}
 		return this.postForm(url, JSON.stringify(params));
 	}
+	
+	getAssociationTagDetail(tag_id: String): Promise<any> {
+		const url = '/manage/image_tag_list/image_association_tag?tag_id=' + tag_id;
+		let self = this;
+		return this.http.get(url)
+				   .toPromise()
+				   .then(res => {
+						let json = res.json()
+						return json;
+				   })
+				   .catch(this.handleError);
+	}
+	
+	updateAssociationTag(image_association_tag_str: string, tag_id: string): Promise<any> {
+		const url = '/manage/image_tag_list/image_association_tag/update';
+		let params = {
+			'tag_id': tag_id,
+			'image_association_tag_str': image_association_tag_str
+		}
+	    return this.postForm(url, JSON.stringify(params));
+	}
 }

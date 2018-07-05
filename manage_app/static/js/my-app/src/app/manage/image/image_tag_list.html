@@ -30,7 +30,7 @@
 							<td class="td-center"><input icheck class="icheck" name="checked" type="checkbox" value={{image_tag.id}} ></td>
 							<td class="td-center"><a [routerLink]="['detail', image_tag.id]">{{ image_tag.name }}</a></td>
 							<td class="td-center">
-								<a [routerLink]="['detail', image_tag.id]">
+								<a [routerLink]="['association', image_tag.id]">
 									<ng-container *ngIf="image_tag.all_association_tag && image_tag.all_association_tag.length">
 										<ng-container *ngFor="let association_tag of image_tag.all_association_tag">
 											<span>{{ association_tag.name }}</span>

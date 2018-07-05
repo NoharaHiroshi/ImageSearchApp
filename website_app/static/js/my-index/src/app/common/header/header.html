@@ -119,10 +119,10 @@
 						<div class="cbp-hrsub-inner"> 
 							<div *ngFor="let sub_menu of website_menu.sub_menus">
 								<ng-container *ngIf="sub_menu.type == 0">
-									<h4><a href="#" target="_blank" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
+									<h4><a href="#" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
 								</ng-container>
 								<ng-container *ngIf="sub_menu.type == 1">
-									<h4><a href="#" target="_blank" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
+									<h4><a href="#" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
 								</ng-container>
 								<ng-container *ngIf="sub_menu.type == 2">
 									<h4><a [routerLink]="['image_list', sub_menu.connect_id]" style="font-size: 20px;">{{sub_menu.name}}</a></h4>

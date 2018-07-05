@@ -13,7 +13,7 @@ import { ImageUploadComponent } from './image/upload_image.component';
 import { ImageConfComponent } from './image/image.component';
 import { ImageSeriesConfComponent, ImageSeriesConfDetailComponent, ImageSeriesSetComponent } from './image/image_series.component';
 import { ImageSeriesCategoryConfComponent, ImageSeriesCategoryConfDetailComponent, ImageSeriesCategoryConfSetDetailComponent } from './image/image_series_category.component';
-import { ImageTagConfComponent, ImageTagConfDetailComponent, ImageTagSetComponent } from './image/image_tag.component';
+import { ImageTagConfComponent, ImageTagConfDetailComponent, ImageTagSetComponent, ImageAssociationTagSetComponent } from './image/image_tag.component';
 import { ImageDemoConfComponent } from './image/image_demo.component';
 import { ImageRecommendTagConfComponent, ImageRecommendTagConfDetailComponent } from './image/image_recommend_tag.component';
 
@@ -62,6 +62,7 @@ const manage_routes: Routes = [
 			{ path: 'image_tag_conf/detail/:id', component: ImageTagConfDetailComponent },
 			{ path: 'image_tag_conf/detail/add', component: ImageTagConfDetailComponent },
 			{ path: 'image_tag_conf/set/:id', component: ImageTagSetComponent },
+			{ path: 'image_tag_conf/association/:id', component: ImageAssociationTagSetComponent },
 			{ path: 'image_demo_conf', component: ImageDemoConfComponent },
 			
 			{ path: 'image_recommend_tag_conf', component: ImageRecommendTagConfComponent },

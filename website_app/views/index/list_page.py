@@ -11,7 +11,7 @@ from lib.paginator import SQLAlchemyPaginator
 from model.session import get_session
 from model.image.image_series import ImageSeries, ImageSeriesCategoryRel, ImageSeriesCategory, ImageSeriesRel
 from model.image.image import Image
-from model.image.image_tags import ImageTags, ImageTagsRel,ImageRecommendTagsRel, ImageRecommendTags
+from model.image.image_tags import ImageTags, ImageTagsRel,ImageRecommendTagsRel, ImageRecommendTags, ImageAssociationTag
 from model.website.customer import CustomerCollect
 
 from route import index
@@ -149,78 +149,82 @@ def get_filter_image_list():
         with get_session() as db_session:
             # 根据用户搜索条件查询推荐标签分组
             recommend_tag_list = list()
-            # 找到所有的推荐标签组id
-            recommend_tags = db_session.query(ImageRecommendTagsRel).join(
-                ImageTags, ImageTags.id == ImageRecommendTagsRel.tag_id
-            ).filter(
+            association_tag = db_session.query(ImageAssociationTag).filter(
+                ImageAssociationTag.name.like('%' + search + '%')
+            ).first()
+            main_tag = db_session.query(ImageTags).filter(
                 ImageTags.name.like('%' + search + '%')
-            ).all()
-            for recommend_tag in recommend_tags:
-                recommend_another_tags = db_session.query(ImageTags).join(
-                    ImageRecommendTagsRel, ImageRecommendTagsRel.tag_id == ImageTags.id
-                ).filter(
-                    ImageRecommendTagsRel.recommend_tag_id == recommend_tag.recommend_tag_id
+            ).first()
+            if association_tag or main_tag:
+                tag_id = association_tag.tag_id if association_tag else main_tag.id
+                # 推荐标签组
+                recommend_tags = db_session.query(ImageRecommendTagsRel).filter(
+                    ImageRecommendTagsRel.tag_id == tag_id
                 ).all()
-                for recommend_another_tag in recommend_another_tags:
-                    if recommend_another_tag.name not in recommend_tag_list:
-                        recommend_tag_list.append(recommend_another_tag.name)
+                for recommend_tag in recommend_tags:
+                    recommend_another_tags = db_session.query(ImageTags).join(
+                        ImageRecommendTagsRel, ImageRecommendTagsRel.tag_id == ImageTags.id
+                    ).filter(
+                        ImageRecommendTagsRel.recommend_tag_id == recommend_tag.recommend_tag_id
+                    ).all()
+                    for recommend_another_tag in recommend_another_tags:
+                        if recommend_another_tag.name not in recommend_tag_list:
+                            recommend_tag_list.append(recommend_another_tag.name)
 
-            image_query = db_session.query(ImageTagsRel).join(
-                ImageTags, ImageTags.id == ImageTagsRel.tag_id
-            ).filter(
-                ImageTags.name.like('%' + search + '%')
-            ).all()
+                image_query = db_session.query(ImageTagsRel).filter(
+                    ImageTagsRel.tag_id == tag_id
+                ).all()
 
-            # 搜索关键词
-            tags = db_session.query(ImageTags).filter(
-                ImageTags.name.like('%' + search + '%')
-            ).all()
-            for tag in tags:
-                tag.view_count += 1
-            db_session.commit()
+                # 搜索关键词
+                tag = db_session.query(ImageTags).filter(
+                    ImageTags.id == tag_id
+                ).first()
+                if tag:
+                    tag.view_count += 1
+                db_session.commit()
 
-            image_ids = [image_tag.image_id for image_tag in image_query]
-            query = db_session.query(Image).filter(
-                Image.id.in_(image_ids)
-            )
-            # 图片格式
-            if image_format != u'all':
-                query = query.filter(
-                    Image.format == image_format
+                image_ids = [image_tag.image_id for image_tag in image_query]
+                query = db_session.query(Image).filter(
+                    Image.id.in_(image_ids)
                 )
-            # 图片排序
-            if selected_sort == u'created_date':
-                query = query.order_by(-Image.created_date)
-            elif selected_sort == u'recommend':
-                query = query.filter(
-                    Image.is_recommend == True
-                ).order_by(-Image.created_date)
-            elif selected_sort == u'download':
-                query = query.order_by(-Image.download_count)
-            elif selected_sort == u'view':
-                query = query.order_by(-Image.view_count)
+                # 图片格式
+                if image_format != u'all':
+                    query = query.filter(
+                        Image.format == image_format
+                    )
+                # 图片排序
+                if selected_sort == u'created_date':
+                    query = query.order_by(-Image.created_date)
+                elif selected_sort == u'recommend':
+                    query = query.filter(
+                        Image.is_recommend == True
+                    ).order_by(-Image.created_date)
+                elif selected_sort == u'download':
+                    query = query.order_by(-Image.download_count)
+                elif selected_sort == u'view':
+                    query = query.order_by(-Image.view_count)
 
-            search_count = query.count() if query.count() else 0
-            paginator = SQLAlchemyPaginator(query, limit)
-            page = paginator.get_validate_page(page)
+                search_count = query.count() if query.count() else 0
+                paginator = SQLAlchemyPaginator(query, limit)
+                page = paginator.get_validate_page(page)
 
-            for tag_image in paginator.page(page):
-                tag_image_dict = tag_image.to_dict()
-                all_selected_images.append(tag_image_dict)
-            result.update({
-                'image_list': all_selected_images,
-                'search': search,
-                'search_count': search_count,
-                'all_image_format': all_image_format,
-                'all_image_sort': all_image_sort,
-                'all_image_sort_str': all_image_sort_str,
-                'recommend_tag_list': recommend_tag_list,
-                'meta': {
-                    'cur_page': page,
-                    'all_page': paginator.max_page,
-                    'count': paginator.count
-                }
-            })
+                for tag_image in paginator.page(page):
+                    tag_image_dict = tag_image.to_dict()
+                    all_selected_images.append(tag_image_dict)
+                result.update({
+                    'image_list': all_selected_images,
+                    'search': search,
+                    'search_count': search_count,
+                    'all_image_format': all_image_format,
+                    'all_image_sort': all_image_sort,
+                    'all_image_sort_str': all_image_sort_str,
+                    'recommend_tag_list': recommend_tag_list,
+                    'meta': {
+                        'cur_page': page,
+                        'all_page': paginator.max_page,
+                        'count': paginator.count
+                    }
+                })
         return jsonify(result)
     except Exception as e:
         print e
