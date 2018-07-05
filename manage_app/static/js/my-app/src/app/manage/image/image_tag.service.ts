@@ -6,6 +6,7 @@ import 'rxjs/add/operator/timeout';
 import 'rxjs/Rx';
 
 import { ImageTag } from '../../model/image_tag';
+import { ImageAssociationTag } from '../../model/image_association_tag';
 
 import { BaseService } from '../../common/base.service';
 
@@ -15,8 +16,8 @@ export class ImageTagService extends BaseService {
 		super(http);
 	}
 	
-	getImageTag(): Promise<any> {
-		const url = `/manage/image_tag_list`; 
+	getImageTag(page: number): Promise<any> {
+		const url = `/manage/image_tag_list?page=` + page; 
 		let self = this;
 	    return this.http.get(url)
 	               .toPromise()
@@ -24,6 +25,10 @@ export class ImageTagService extends BaseService {
 						let json = res.json();
 	            	    let image_tag_list = self.jsonListToObjectList(json.image_tag_list, ImageTag);
 	           	        json['image_tag_list'] = image_tag_list;
+						for(let image_tag of image_tag_list){
+							let all_association_tag = self.jsonListToObjectList(image_tag['all_association_tag'], ImageAssociationTag);
+							image_tag['all_association_tag'] = all_association_tag;
+						}
 	            	    return json;
 	               })
 	               .catch(this.handleError);

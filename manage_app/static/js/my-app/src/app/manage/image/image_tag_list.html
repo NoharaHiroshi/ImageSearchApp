@@ -20,6 +20,7 @@
 								<input icheck class="all-icheck" type="checkbox">
 							</th>
 							<th><i class="fa fa-question-circle"></i> 标签名称 </th>
+							<th><i class="fa fa-bookmark"></i> 标签相关名称 </th>
 							<th><i class="fa fa-bookmark"></i> 图片数量 </th>
 							<th><i class="fa fa-bookmark"></i> 操作 </th>
 						</tr>
@@ -28,6 +29,18 @@
 						<tr *ngFor="let image_tag of image_tag_list">
 							<td class="td-center"><input icheck class="icheck" name="checked" type="checkbox" value={{image_tag.id}} ></td>
 							<td class="td-center"><a [routerLink]="['detail', image_tag.id]">{{ image_tag.name }}</a></td>
+							<td class="td-center">
+								<a [routerLink]="['detail', image_tag.id]">
+									<ng-container *ngIf="image_tag.all_association_tag && image_tag.all_association_tag.length">
+										<ng-container *ngFor="let association_tag of image_tag.all_association_tag">
+											<span>{{ association_tag.name }}</span>
+										</ng-container>
+									</ng-container>
+									<ng-container *ngIf="!image_tag.all_association_tag || !image_tag.all_association_tag.length">
+										<span>无</span>
+									</ng-container>
+								</a>
+							</td>
 							<td class="td-center">{{ image_tag.count }}</td>
 							<td class="td-center"><a [routerLink]="['set', image_tag.id]">编辑标签</a></td>
 						</tr>
@@ -36,4 +49,5 @@
 			</div><!-- /content-panel -->
 		</div><!-- /col-md-12 -->
 	</div><!-- /row -->
+	<paging [current_page]="page_info.cur_page" [all_page]="page_info.all_page" [all_num]="page_info.count" (selected_page)="getPageNum($event)"></paging>
 </div>

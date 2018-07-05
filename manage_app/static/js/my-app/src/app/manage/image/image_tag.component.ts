@@ -20,6 +20,9 @@ import { ImageQueryComponent } from '../../common/image_list/image_list.componen
 })
 export class ImageTagConfComponent extends ListBaseComponent{
 	image_tag_list: ImageTag[];
+	page_info: any;
+	
+	page: number = 1;
 	
 	constructor(private service: ImageTagService) {
 		super();
@@ -27,10 +30,17 @@ export class ImageTagConfComponent extends ListBaseComponent{
 	
 	getPagerData(): void {
 		this.isLoading = true;
-		this.service.getImageTag().then(data => {
+		this.service.getImageTag(this.page).then(data => {
         	this.image_tag_list = data.image_tag_list;
+			console.log(this.image_tag_list);
+			this.page_info = data.meta;
 			this.isLoading = false;
         });
+	}
+	
+	getPageNum(page: any): void{
+		this.page = page;
+		this.getPagerData();
 	}
 	
 	del(): void {

@@ -490,16 +490,37 @@ def image_tag_list():
     result = {
         'response': 'ok',
         'image_tag_list': [],
-        'info': ''
+        'info': '',
+        'meta': {}
     }
     try:
+        limit = 20
+        page = request.args.get('page', 1)
         with get_session() as db_session:
-            all_image_tag = db_session.query(ImageTags).all()
+            all_image_tag = db_session.query(ImageTags)
+            paginator = SQLAlchemyPaginator(all_image_tag, limit)
+            page = paginator.get_validate_page(page)
+
             _image_tag_list = list()
-            for image_tag in all_image_tag:
+            for image_tag in paginator.page(page):
                 image_tag_dict = image_tag.to_dict()
+                all_association_tag = image_tag.all_association_tag
+                all_association_tag_list = list()
+                for association_tag in all_association_tag:
+                    association_tag_dict = association_tag.to_dict()
+                    all_association_tag_list.append(association_tag_dict)
+                image_tag_dict['all_association_tag'] = all_association_tag_list
+
                 _image_tag_list.append(image_tag_dict)
             result['image_tag_list'] = _image_tag_list
+
+            result.update({
+                'meta': {
+                    'cur_page': page,
+                    'all_page': paginator.max_page,
+                    'count': paginator.count
+                }
+            })
         return jsonify(result)
     except Exception as e:
         print e

@@ -22,6 +22,14 @@ class ImageTags(Base):
             image_count = image_count if image_count else 0
         return image_count
 
+    @property
+    def all_association_tag(self):
+        with get_session() as db_session:
+            all_association_tag = db_session.query(ImageAssociationTag).filter(
+                ImageAssociationTag.tag_id == self.id
+            ).all()
+        return all_association_tag
+
     def to_dict(self):
         return {
             'id': str(self.id),
