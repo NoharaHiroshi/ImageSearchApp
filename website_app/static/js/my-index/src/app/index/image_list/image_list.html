@@ -1,16 +1,16 @@
 <div class="image-list-box">
 	<ng-container *ngIf="image_series">
 		<div class="image-list-title"> 
-			- {{image_series.name}} - 			
+			{{image_series.name}}			
 			<ng-container *ngIf="image_series.is_collected == 0">
-				<span class="image-series-collect" id="{{image_series.id}}" (click)="collectImageSeries(image_series.id)">
+				<a href="javascript:;" title="点击收藏该专题" class="image-series-collect" id="{{image_series.id}}" (click)="collectImageSeries(image_series.id)">
 					<i class="fa fa-star-o" aria-hidden="true"></i>
-				</span>
+				</a>
 			</ng-container>
 			<ng-container *ngIf="image_series.is_collected == 1">
-				<span class="image-series-collect-hover" id="{{image_series.id}}" (click)="collectImageSeries(image_series.id)">
+				<a href="javascript:;" title="点击收藏该专题" class="image-series-collect-hover" id="{{image_series.id}}" (click)="collectImageSeries(image_series.id)">
 					<i class="fa fa-star-o" aria-hidden="true"></i>
-				</span>
+				</a>
 			</ng-container>
 		</div>
 		<div class="image-list-info">

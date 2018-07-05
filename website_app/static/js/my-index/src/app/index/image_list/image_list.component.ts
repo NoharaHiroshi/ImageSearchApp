@@ -60,17 +60,19 @@ export class ImageListComponent extends ListBaseComponent implements OnInit{
 		let demo_width = $('#demo').width(),
 			image_divs = $('.image-item');
 		if(this.image_list){
-			if(this.image_list.length == image_divs.length){
-				for(let i=0; i<image_divs.length; i++){
-					let image_div = image_divs[i],
-						image_obj = this.image_list[i],
-						_w = _height / image_obj.height * image_obj.width,
-						_h = _height;
-					$(image_div).attr('data-w', _w);
-					$(image_div).attr('data-h', _h);
+			if(this.image_list.length){
+				if(this.image_list.length == image_divs.length){
+					for(let i=0; i<image_divs.length; i++){
+						let image_div = image_divs[i],
+							image_obj = this.image_list[i],
+							_w = _height / image_obj.height * image_obj.width,
+							_h = _height;
+						$(image_div).attr('data-w', _w);
+						$(image_div).attr('data-h', _h);
+					}
 				}
+				$(this.demo.nativeElement).flexImages({rowHeight: 300, container: '.image-item' });
 			}
-			$(this.demo.nativeElement).flexImages({rowHeight: 300, container: '.image-item' });
 		}
 	}
 	
@@ -80,7 +82,13 @@ export class ImageListComponent extends ListBaseComponent implements OnInit{
 			if(this.config.authCheck(res)){
 				if(this.config.tipCheck(res)){
 					if(res['response'] == 'ok'){
-						$('#' + id).addClass('image-series-collect-hover');
+						if(res['is_collected'] == 1){
+							self.image_series.collect_count += 1;
+							$('#' + id).addClass('image-series-collect-hover');
+						}else{
+							self.image_series.collect_count -= 1;
+							$('#' + id).removeClass('image-series-collect-hover').addClass('image-series-collect');
+						}
 					}
 				}
 			}

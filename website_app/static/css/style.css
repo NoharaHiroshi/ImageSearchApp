@@ -994,9 +994,9 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 
 .image-list-desc {
 	color: #666;
-	font-size: 14px;
-	line-height: 23px;
-	width: 1100px;
+	font-size: 15px;
+	line-height: 25px;
+	width: 1200px;
 	margin: 0 auto;
 	padding: 0 30px 40px 30px;
 }
@@ -1056,10 +1056,20 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
     position: absolute;
     overflow: hidden;
 	background: rgba(0,0,0,.4);
+	text-align: center;
 }
 
 .image-item:hover .image-item-hover {
     top: 0%;
+}
+
+.image-item-hover .name-view {
+    top: 45%;
+    display: inline-block;
+    position: relative;
+	color: #fff;
+	margin: 0 auto;
+	font-size: 18px;
 }
 
 .image-item-hover .view {

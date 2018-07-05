@@ -11,6 +11,7 @@ import { UserPageComponent } from './user_page/user_page.component';
 import { UserInfoComponent } from './user_page/user_info/user_info.component';
 import { ExchangeCodeComponent } from './user_page/exchange_code/exchange_code.component';
 import { UserCollectComponent } from './user_page/user_collect/user_collect.component';
+import { UserSeriesCollectComponent } from './user_page/user_series_collect/user_series_collect.component';
 import { UserChangePasswordComponent } from './user_page/change_password/change_password.component';
 
 import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
@@ -35,6 +36,7 @@ const routes: Routes = [
 					{ path: 'user_info', component: UserInfoComponent },
 					{ path: 'exchange_code', component: ExchangeCodeComponent },
 					{ path: 'user_collect', component: UserCollectComponent },
+					{ path: 'user_series_collect', component: UserSeriesCollectComponent },
 					{ path: 'user_change_password', component: UserChangePasswordComponent }
 				]
 			}

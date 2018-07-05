@@ -16,7 +16,8 @@ from route import index
 def add_collect():
     result = {
         'response': 'ok',
-        'info': u'收藏成功'
+        'info': u'收藏成功',
+        'is_collected': 1
     }
     collect_id = request.args.get('collect_id')
     user_id = current_user.id
@@ -29,8 +30,21 @@ def add_collect():
                     CustomerCollect.collect_id == collect_id,
                     CustomerCollect.type == CustomerCollect.TYPE_IMAGE
                 ).first()
-                if not customer_collect:
-                    img = db_session.query(Image).get(collect_id)
+                img = db_session.query(Image).get(collect_id)
+                if customer_collect:
+                    if img:
+                        img.collect_count -= 1
+                        db_session.delete(customer_collect)
+                        result.update({
+                            'info': u'已取消收藏',
+                            'is_collected': 0
+                        })
+                    else:
+                        result.update({
+                            'response': 'fail',
+                            'info': u'当前图片不存在'
+                        })
+                else:
                     if img:
                         img.collect_count += 1
 
@@ -44,19 +58,27 @@ def add_collect():
                             'response': 'fail',
                             'info': u'当前图片不存在'
                         })
-                else:
-                    result.update({
-                        'response': 'fail',
-                        'info': u'当前图片已收藏'
-                    })
             else:
                 customer_series_collect = db_session.query(CustomerCollect).filter(
                     CustomerCollect.customer_id == current_user.id,
                     CustomerCollect.collect_id == collect_id,
                     CustomerCollect.type == CustomerCollect.TYPE_SERIES
                 ).first()
-                if not customer_series_collect:
-                    img_series = db_session.query(ImageSeries).get(collect_id)
+                img_series = db_session.query(ImageSeries).get(collect_id)
+                if customer_series_collect:
+                    if img_series:
+                        img_series.collect_count -= 1
+                        db_session.delete(customer_series_collect)
+                        result.update({
+                            'info': u'已取消收藏',
+                            'is_collected': 0
+                        })
+                    else:
+                        result.update({
+                            'response': 'fail',
+                            'info': u'当前图片系列不存在'
+                        })
+                else:
                     if img_series:
                         img_series.collect_count += 1
 
@@ -70,11 +92,6 @@ def add_collect():
                             'response': 'fail',
                             'info': u'当前图片系列不存在'
                         })
-                else:
-                    result.update({
-                        'response': 'fail',
-                        'info': u'当前图片系列已收藏'
-                    })
             db_session.commit()
         return jsonify(result)
     except Exception as e:

@@ -44,6 +44,8 @@ import { ExchangeCodeComponent } from './user_page/exchange_code/exchange_code.c
 import { ExchangeCodeService } from './user_page/exchange_code/exchange_code.service';
 import { UserCollectComponent } from './user_page/user_collect/user_collect.component';
 import { UserCollectService } from './user_page/user_collect/user_collect.service';
+import { UserSeriesCollectComponent } from './user_page/user_series_collect/user_series_collect.component';
+import { UserSeriesCollectService } from './user_page/user_series_collect/user_series_collect.service';
 import { UserChangePasswordComponent } from './user_page/change_password/change_password.component';
 import { UserChangePasswordService } from './user_page/change_password/change_password.service';
 
@@ -64,6 +66,7 @@ import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 		ExchangeCodeComponent,
 		UserCollectComponent,
 		UserChangePasswordComponent,
+		UserSeriesCollectComponent
 		
 	],
 	imports: [
@@ -95,6 +98,7 @@ import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 		UserInfoService,
 		ExchangeCodeService,
 		UserCollectService,
+		UserSeriesCollectService,
 		UserChangePasswordService,
 		
 		AuthEmailGuard
