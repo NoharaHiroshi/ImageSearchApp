@@ -520,6 +520,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 /* slogan */
 .slogan-box {
 	width: 100%;
+	margin-bottom: 30px;
 }
 
 .slogan-content {
@@ -935,6 +936,47 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	font-family: 'Microsoft YaHei';
 	text-align: center;
 	padding: 0px;
+}
+
+.image-series-collect {
+	display: inline-block;
+    position: absolute;
+    color: #fff;
+    padding: 3px 7px;
+    border: 1px soid #ffbe40;
+    background: #ffbe40;
+    border-radius: 5px;
+    margin-left: 20px;
+    margin-top: 3px;
+    font-size: 16px;
+    -webkit-box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+    -webkit-transition: all .5s;
+    transition: all .5s;
+    cursor: pointer;
+}
+
+.image-series-collect:hover {
+	border: 1px soid #00FA9A;
+	background: #00FA9A;
+}
+
+.image-series-collect-hover {
+	display: inline-block;
+    position: absolute;
+    color: #fff;
+    padding: 3px 7px;
+    border: 1px soid #00FA9A;
+    background: #00FA9A;
+    border-radius: 5px;
+    margin-left: 20px;
+    margin-top: 3px;
+    font-size: 16px;
+    -webkit-box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+    -webkit-transition: all .5s;
+    transition: all .5s;
+    cursor: pointer;
 }
 
 .image-list-info {

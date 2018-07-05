@@ -1,14 +1,26 @@
 <div class="image-list-box">
 	<ng-container *ngIf="image_series">
-		<div class="image-list-title"> - {{image_series.name}} - </div>
+		<div class="image-list-title"> 
+			- {{image_series.name}} - 			
+			<ng-container *ngIf="image_series.is_collected == 0">
+				<span class="image-series-collect" id="{{image_series.id}}" (click)="collectImageSeries(image_series.id)">
+					<i class="fa fa-star-o" aria-hidden="true"></i>
+				</span>
+			</ng-container>
+			<ng-container *ngIf="image_series.is_collected == 1">
+				<span class="image-series-collect-hover" id="{{image_series.id}}" (click)="collectImageSeries(image_series.id)">
+					<i class="fa fa-star-o" aria-hidden="true"></i>
+				</span>
+			</ng-container>
+		</div>
 		<div class="image-list-info">
 			<span>
 				<i class="fa fa-eye" aria-hidden="true"></i>
-				3364
+				{{image_series.view_count}}
 			</span>
 			<span>
 				<i class="fa fa-star-o" aria-hidden="true"></i>
-				992
+				{{image_series.collect_count}}
 			</span>
 			<span>
 				<i class="fa fa-calendar-check-o" aria-hidden="true"></i>

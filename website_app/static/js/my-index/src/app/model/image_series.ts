@@ -11,4 +11,7 @@ export class ImageSeries {
 	count: string;
 	type: number = 0;
 	type_text: string;
+	view_count: number = 0;
+	collect_count: number = 0;
+	is_collected: number;
 }

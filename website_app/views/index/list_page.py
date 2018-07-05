@@ -51,14 +51,6 @@ def get_series_list_page():
             for image_series in paginator.page(page):
                 image_series_dict = image_series.to_dict()
                 image_series_dict['is_collected'] = False
-                if current_user.is_authenticated():
-                    image_collect = db_session.query(CustomerCollect).filter(
-                        CustomerCollect.collect_id == image_series.id,
-                        CustomerCollect.customer_id == current_user.id,
-                        CustomerCollect.type == CustomerCollect.TYPE_SERIES
-                    ).first()
-                    if image_collect:
-                        image_series_dict['is_collected'] = True
                 width, height = image_series.get_cover_img_info()
                 image_series_dict['width'] = width
                 image_series_dict['height'] = height
@@ -91,8 +83,19 @@ def get_image_list_page():
         with get_session() as db_session:
             image_series = db_session.query(ImageSeries).get(connect_id)
             if image_series:
+                image_series.view_count += 1
+                db_session.commit()
                 image_series_dict = image_series.to_dict()
+                image_series_dict['is_collected'] = 0
                 result['image_series'] = image_series_dict
+                if current_user.is_authenticated():
+                    image_collect = db_session.query(CustomerCollect).filter(
+                        CustomerCollect.collect_id == image_series.id,
+                        CustomerCollect.customer_id == current_user.id,
+                        CustomerCollect.type == CustomerCollect.TYPE_SERIES
+                    ).first()
+                    if image_collect:
+                        image_series_dict['is_collected'] = 1
 
                 query = db_session.query(ImageSeriesRel).join(
                     ImageSeries, ImageSeries.id == ImageSeriesRel.image_series_id

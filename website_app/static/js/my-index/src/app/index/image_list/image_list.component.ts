@@ -73,4 +73,17 @@ export class ImageListComponent extends ListBaseComponent implements OnInit{
 			$(this.demo.nativeElement).flexImages({rowHeight: 300, container: '.image-item' });
 		}
 	}
+	
+	collectImageSeries(id: string): void {
+		let self = this;
+		this.service.addCollect(id).then(res => {
+			if(this.config.authCheck(res)){
+				if(this.config.tipCheck(res)){
+					if(res['response'] == 'ok'){
+						$('#' + id).addClass('image-series-collect-hover');
+					}
+				}
+			}
+		})
+	}
 }

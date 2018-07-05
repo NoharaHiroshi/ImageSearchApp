@@ -16,7 +16,7 @@ from route import index
 def add_collect():
     result = {
         'response': 'ok',
-        'info': ''
+        'info': u'收藏成功'
     }
     collect_id = request.args.get('collect_id')
     user_id = current_user.id
