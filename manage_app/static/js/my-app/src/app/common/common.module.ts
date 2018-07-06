@@ -13,6 +13,8 @@ import { ZtreeComponent } from './ztree/ztree.component';
 import { ImageQueryComponent } from './image_list/image_list.component';
 import { MasonryComponent } from './masonry/masonry.component';
 import { PageComponent } from './paging/paging.component';
+import { CKEditorModule, CKEditorComponent } from 'ng2-ckeditor';
+import { EditorComponent } from './editor/editor.component';
 
 // Service
 import { CommonService } from './common.service';
@@ -29,6 +31,7 @@ import { IcheckDirective } from './directive/icheck/icheck.directive';
 		ImageQueryComponent,
 		MasonryComponent,
 		PageComponent,
+		EditorComponent,
 		
 		IcheckDirective,
 	],
@@ -37,7 +40,8 @@ import { IcheckDirective } from './directive/icheck/icheck.directive';
 		FormsModule,
 		HttpModule,
 		RouterModule,
-		CommonModule
+		CommonModule,
+		CKEditorModule
 	],
 	exports: [
 		HeaderComponent,
@@ -47,6 +51,7 @@ import { IcheckDirective } from './directive/icheck/icheck.directive';
 		ImageQueryComponent,
 		MasonryComponent,
 		PageComponent,
+		EditorComponent,
 		
 		IcheckDirective,
 	],

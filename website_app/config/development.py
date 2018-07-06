@@ -26,3 +26,6 @@ REMEMBER_COOKIE_NAME = 'website_app_cookie'
 
 # Cookie的domain
 REMEMBER_COOKIE_DOMAIN = '127.0.0.1:8899'
+
+# session
+SESSION_COOKIE_NAME = 'website_app_session'
