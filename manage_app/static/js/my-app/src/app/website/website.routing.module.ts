@@ -10,6 +10,7 @@ import { ColumnConfComponent, ColumnConfDetailComponent, ColumnConfSetDetailComp
 import { CustomerConfComponent, CustomerConfDetailComponent, CustomerDiscountConfDetailComponent } from './customer/customer.component';
 import { DiscountConfComponent, DiscountConfDetailComponent } from './discount/discount.component';
 import { WebsiteConfComponent } from './website/website.component';
+import { ArticleConfComponent, ArticleConfDetailComponent } from './article/article.component';
 
 import { AuthGuard } from '../common/auth/auth.service';
 
@@ -48,6 +49,10 @@ const website_routes: Routes = [
 			{ path: 'discount_conf/detail/add', component: DiscountConfDetailComponent},
 			
 			{ path: 'website_info_conf', component: WebsiteConfComponent },
+			
+			{ path: 'article_conf', component: ArticleConfComponent },
+			{ path: 'article_conf/detail/:id', component: ArticleConfDetailComponent },
+			{ path: 'article_conf/detail/add', component: ArticleConfDetailComponent },
 		]
 	}
 ];

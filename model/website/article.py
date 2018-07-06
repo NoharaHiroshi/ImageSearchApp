@@ -21,10 +21,18 @@ class Article(Base):
     author = Column(BigInteger, index=True, nullable=False)
     # 阅读量
     view_count = Column(Integer, default=0, nullable=False, index=True)
+    # 评论数
+    comment_count = Column(Integer, default=0, index=True)
     # 版本号（用于版本管理及回溯）
     version = Column(Integer, default=0, index=True)
+    # 点赞数
+    agree_count = Column(Integer, default=0, index=True)
+    # 否定数
+    disagree_count = Column(Integer, default=0, index=True)
     # 正文内容
     content = Column(TEXT)
+    # 摘要
+    desc = Column(TEXT)
 
     def to_dict(self):
         return {
@@ -33,7 +41,11 @@ class Article(Base):
             'status': self.status,
             'author': self.author,
             'view_count': self.view_count,
+            'comment_count': self.comment_count,
+            'agree_count': self.agree_count,
+            'disagree_count': self.disagree_count,
             'version': self.version,
+            'desc': self.desc,
             'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
             'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }

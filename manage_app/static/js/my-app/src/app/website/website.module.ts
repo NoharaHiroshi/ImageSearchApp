@@ -22,6 +22,7 @@ import { BannerConfComponent, BannerConfDetailComponent } from './banner/banner.
 import { CustomerConfComponent, CustomerConfDetailComponent, CustomerDiscountConfDetailComponent } from './customer/customer.component';
 import { DiscountConfComponent, DiscountConfDetailComponent } from './discount/discount.component';
 import { WebsiteConfComponent } from './website/website.component';
+import { ArticleConfComponent, ArticleConfDetailComponent } from './article/article.component';
 
 import { WebsiteMenuService } from './menu/website_menu.service';
 import { HotSearchService } from './hot_search/hot_search.service';
@@ -30,6 +31,7 @@ import { BannerService } from './banner/banner.service';
 import { CustomerService } from './customer/customer.service';
 import { DiscountService } from './discount/discount.service';
 import { WebsiteInfoService } from './website/website.service';
+import { ArticleService } from './article/article.service';
 
 import { WebsiteComponent } from './website.component';
 import { AuthGuard } from '../common/auth/auth.service';
@@ -51,7 +53,9 @@ import { AuthGuard } from '../common/auth/auth.service';
 		CustomerDiscountConfDetailComponent,
 		DiscountConfComponent, 
 		DiscountConfDetailComponent,
-		WebsiteConfComponent
+		WebsiteConfComponent,
+		ArticleConfComponent,
+		ArticleConfDetailComponent,
 	],
 	imports: [
 		CommonModule,
@@ -79,6 +83,7 @@ import { AuthGuard } from '../common/auth/auth.service';
 		CustomerService,
 		DiscountService,
 		WebsiteInfoService,
+		ArticleService,
 		
 		AuthGuard
 	]
