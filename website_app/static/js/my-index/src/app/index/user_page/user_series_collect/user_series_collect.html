@@ -1,0 +1,35 @@
+<ng-container *ngIf="image_series_list && image_series_list.length">
+	<div class="right-content-collect">
+		<div class="image-list-content" style="width: 1000px;">
+			<div id="demo" #demo style="margin: 0 auto; overflow:hidden;">
+				<ng-container *ngIf="image_series_list">
+					<ng-container *ngFor="let image_series of image_series_list">
+						<div class="image-item" #witem data-w="" data-h="" style="height:200px; width:200px;">
+							<a [routerLink]="['/image_list', image_series.id]" target="_blank">
+								<img class="image-item-image" src="{{config.resource_url}}/static/{{image_series.cover_image_url}}">	
+							</a>
+							<a [routerLink]="['/image_list', image_series.id]" target="_blank">
+								<div class="image-item-hover">
+									<span class="name-view">
+										{{image_series.name}}
+									</span>
+								</div>
+							</a>
+						</div>
+					</ng-container>
+				</ng-container>
+			</div>
+		</div>
+		<div style="margin-bottom: 30px;">
+			<paging [current_page]="page_info.cur_page" [all_page]="page_info.all_page" [all_num]="page_info.count" (selected_page)="getPageNum($event)"></paging>
+		</div>
+	</div>
+</ng-container>
+<ng-container *ngIf="!image_series_list || !image_series_list.length">
+	<div class="right-content">
+		<div class="user-info">
+			<div class="title">专题收藏<span class="en-title">USER SERIES COLLECT</span></div>
+			您当前还未收藏过任何专题。
+		</div>
+	</div>
+</ng-container>
