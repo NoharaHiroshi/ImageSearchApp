@@ -1,57 +1,62 @@
-<div *ngIf="isLoading">
-	<loading></loading>
-</div>
-<div *ngIf="!isLoading">
-	<h3>
-		<i class="fa fa-angle-right"></i> 文章列表 <span class="sub-title">Article List</span> 
-	</h3>
-	<div class="showback">
-		<button type="button" class="btn btn-theme" [routerLink]="['detail/add']"><i class="fa fa-plus"></i> <span class="button-name">手动添加 </span></button>
-		<button type="button" class="btn btn-theme02" (click)="refresh()"><i class="fa fa-refresh"></i> <span class="button-name">刷新 </span></button>
-		<button type="button" class="btn btn-theme04" (click)="del()"><i class="fa fa-trash-o"></i> <span class="button-name">删除 </span></button>
-	</div>
-	<div class="row mt">
-		<div class="col-md-12">
-			<div class="content-panel">
-				<table class="table table-striped table-advance table-hover">
-					<thead>
-						<tr>
-							<th>
-								<input icheck class="all-icheck" type="checkbox">
-							</th>
-							<th><i class="fa fa-bullhorn"></i> 文章标题 </th>
-							<th><i class="hidden-phone"></i> 作者 </th>
-							<th><i class="fa fa-bookmark"></i> 状态 </th>
-							<th><i class="fa fa-bookmark"></i> 阅读量 </th>
-							<th><i class="fa fa-bookmark"></i> 摘要 </th>
-							<th><i class="fa fa-bookmark"></i> 创建时间 </th>
-						</tr>
-					</thead>
-					<tbody *ngIf="article_list">
-						<ng-container *ngIf="article_list.length">
-							<tr *ngFor="let article of article_list">
-								<td><input icheck class="icheck" name="checked" type="checkbox" value={{article.id}} ></td>
-								<td><a [routerLink]="['detail', article.id]">{{ article.title }}</a></td>
-								<td>{{ customer.author }}</td>
-								<ng-container *ngIf="article.status == 0">
-									<td>草稿</td>
-								</ng-container>
-								<ng-container *ngIf="article.status == 1">
-									<td>已发布</td>
-								</ng-container>
-								<td>{{ customer.view_count }}</td>
-								<td>{{ customer.desc }}</td>
-								<td>{{ customer.created_date }}</td>
-							</tr>
-						</ng-container>
-						<ng-container *ngIf="!customer_list.length">
-							<tr>
-								<td style="text-align: center;" colspan=7>当前还没有添加文章</td>
-							</tr>
-						</ng-container>
-					</tbody>
-				</table>
-			</div><!-- /content-panel -->
-		</div><!-- /col-md-12 -->
-	</div><!-- /row -->
-</div>
+<h3>
+	<i class="fa fa-angle-right"></i> 编辑文章 <span class="sub-title">Article Edit</span> 
+</h3>
+<div class="row mt" *ngIf="article">
+	<div class="col-lg-12">
+	  <div class="form-panel">
+		  <h5 class="mb return"><a href="javascript:void(0);" (click)="goBack()"><i class="fa fa-reply"></i> 返回 </a></h5>
+		  <form class="form-horizontal style-form" method="get">
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">文章标题</label>
+				  <div class="col-sm-4">
+					  <input type="text" class="form-control" name="title" [(ngModel)]="article.title" placeholder="添加文章标题">
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">阅读量</label>
+				  <div class="col-sm-4">
+					  <input type="text" class="form-control" name="view_count" [(ngModel)]="article.view_count" placeholder="编辑文章阅读量">
+				  </div>
+			  </div>			  
+			  <div class="form-group">
+					<label class="col-sm-2 col-sm-2 control-label">点赞数</label>
+					<div class="col-sm-4">
+					  <input type="text" class="form-control" name="agree_count" [(ngModel)]="article.agree_count" placeholder="编辑文章点赞数">
+				  </div>
+				</div>
+			  
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">否定数</label>
+				  <div class="col-sm-4">
+					  <input type="text" class="form-control" name="disagree_count" [(ngModel)]="article.disagree_count" placeholder="编辑文章否定数">
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">文章摘要</label>
+				  <div class="col-sm-4">
+					  <input type="text" class="form-control" name="desc" [(ngModel)]="article.desc" placeholder="编辑文章摘要">
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label">正文内容</label>
+				  <div class="col-sm-8">
+						<ckeditor          
+							name="detail"         
+						    [(ngModel)]="article.content"
+						    [config]="config.ckeditor_config"
+						    [readonly]="false"
+						    debounce="500">
+						</ckeditor>
+				  </div>
+			  </div>
+			  <div class="form-group">
+				  <label class="col-sm-2 col-sm-2 control-label"></label>
+				  <div class="col-sm-4">
+					  <button type="button" type="submit" [disabled]="isDisabledButton" class="btn btn-theme03" (click)="save()">保存</button>
+					  <button type="button" type="submit" class="btn btn-theme04">取消</button>
+				  </div>
+			  </div>
+		  </form>
+	  </div>
+	</div><!-- col-lg-12-->      	
+</div><!-- /row -->

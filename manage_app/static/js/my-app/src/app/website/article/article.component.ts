@@ -10,6 +10,8 @@ import { Article } from '../../model/article';
 
 import { ArticleService } from './article.service';
 
+import { AppConfig } from '../../config/app_config';
+
 @Component({
   selector: 'article-root',
   templateUrl: './article_list.html',
@@ -18,7 +20,7 @@ export class ArticleConfComponent extends ListBaseComponent{
 	article_list: Article[];
 	result: string;
 	
-	constructor(private service: ArticleService) {
+	constructor(private service: ArticleService, public config: AppConfig) {
 		super();
 	}
 	
@@ -72,7 +74,7 @@ export class ArticleConfComponent extends ListBaseComponent{
 export class ArticleConfDetailComponent extends ListBaseComponent{
 	article: Article;
 	
-	constructor(private service: ArticleService, public route: ActivatedRoute, public router: Router) {
+	constructor(private service: ArticleService, public route: ActivatedRoute, public router: Router, public config: AppConfig) {
 		super();
 	}
 	

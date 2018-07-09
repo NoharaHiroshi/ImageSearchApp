@@ -1,9 +1,17 @@
 # coding:utf-8
 
+import os
+import traceback
+
 from flask import render_template, abort, g, redirect, url_for, request, jsonify, session
 from lib.paginator import SQLAlchemyPaginator
 from model.session import get_session
 
+from manage_app.config import config
+from PIL import Image as Img
+
+from model.base import IdGenerator, HashName
+from model.image.image import CommonImage
 from model.image.image_series import ImageSeries
 from model.image.image_series import ImageSeriesCategory
 from model.image.image_tags import ImageRecommendTagsRel, ImageRecommendTags, ImageTags, ImageTagsRel
@@ -172,5 +180,57 @@ def get_all_tag():
                 'all_page': paginator.max_page,
                 'count': paginator.count
             }
+        })
+    return jsonify(result)
+
+
+@lib.route('/editor/upload_image', methods=['POST'])
+def upload_article_image():
+    result = {
+        'state': 'ok'
+    }
+    f = request.files['upload']
+    try:
+        with get_session() as db_session:
+            _id = IdGenerator.gen()
+            original_name = HashName.gen(_id, info="common")
+            file_name = f.filename
+            upload_src = config.IMG_UPLOAD_SRC
+            # 图像处理
+            im = Img.open(f)
+            # 长宽
+            width, height = im.size
+            # 格式
+            file_format = im.format
+            # 模式
+            file_full_path = os.path.join(upload_src, 'common',
+                                          '.'.join([original_name, file_format.lower()])).replace('\\', '/')
+            mode = im.mode
+            im.save(file_full_path)
+            # 数据库存储
+            img = CommonImage()
+            img.id = _id
+            img.name = file_name
+            img.url = original_name
+            img.format = file_format
+            img.width = width
+            img.mode = mode
+            img.height = height
+            db_session.add(img)
+            result.update({
+                'id': str(_id),
+                'fileName': f.filename,
+                'name': original_name,
+                'original': original_name,
+                'src': img.img_full_url,
+                'type': '.%s' % img.format,
+                'url': config.MANAGE_URL + '/static/' + img.img_full_url,
+                'uploaded': 1
+            })
+            db_session.commit()
+    except Exception as e:
+        print traceback.format_exc(e)
+        result.update({
+            'state': 'fail'
         })
     return jsonify(result)

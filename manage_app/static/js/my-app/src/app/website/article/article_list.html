@@ -32,16 +32,16 @@
 							<tr *ngFor="let article of article_list">
 								<td><input icheck class="icheck" name="checked" type="checkbox" value={{article.id}} ></td>
 								<td><a [routerLink]="['detail', article.id]">{{ article.title }}</a></td>
-								<td>{{ customer.author }}</td>
+								<td>{{ article.author_name }}</td>
 								<ng-container *ngIf="article.status == 0">
 									<td>草稿</td>
 								</ng-container>
 								<ng-container *ngIf="article.status == 1">
 									<td>已发布</td>
 								</ng-container>
-								<td>{{ customer.view_count }}</td>
-								<td>{{ customer.desc }}</td>
-								<td>{{ customer.created_date }}</td>
+								<td>{{ article.view_count }}</td>
+								<td>{{ article.desc }}</td>
+								<td>{{ article.created_date }}</td>
 							</tr>
 						</ng-container>
 						<ng-container *ngIf="!article_list.length">

@@ -10,7 +10,7 @@ from model.manage.permission import RolePermissionRel
 from model.icon.icon import Icon
 from model.icon.icon_series import IconSeries
 from model.icon.icon_tags import IconTags, IconTagsRel
-from model.image.image import Image
+from model.image.image import Image, CommonImage
 from model.image.image_series import ImageSeries, ImageSeriesRel, ImageSeriesCategory, ImageSeriesCategoryRel
 from model.image.image_tags import ImageTags, ImageTagsRel, ImageRecommendTags, ImageRecommendTagsRel, ImageAssociationTag
 from model.image.image_download_history import ImageDownloadHistory

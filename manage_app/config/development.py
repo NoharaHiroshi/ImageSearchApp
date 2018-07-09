@@ -43,6 +43,9 @@ WATERMARK_IMG_FONT_TYPE = os.path.join(WATERMARK_IMG_FONT_SRC, 'Microsoft-YaHei.
 # 网站前端url
 WEBSITE_URL = 'http://127.0.0.1:8899'
 
+# 管理后台url
+MANAGE_URL = 'http://127.0.0.1:8888'
+
 # Cookie的name
 REMEMBER_COOKIE_NAME = 'manage_app_cookie'
 

@@ -1,5 +1,5 @@
 <div>
-    <editor [(ngModel)]="content" #editor [config]="editorConfig" debounce="500" (change)="onChange($event)">
+    <ckeditor [(ngModel)]="content" #editor [config]="editorConfig" debounce="500" (change)="onChange($event)">
     </ckeditor>
 </div>
 <div [innerHTML]="content"></div>

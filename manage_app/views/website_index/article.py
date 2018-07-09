@@ -3,12 +3,14 @@
 import traceback
 from flask import render_template, abort, g, jsonify, request
 from flask import current_app as app
+from flask.ext.login import current_user, login_user, logout_user
 
 from model.session import get_session
 from model.website.banner import Banner
 from model.image.image import Image
 from model.image.image_series import ImageSeries
 from model.website.article import Article
+from model.manage.user import User
 
 from lib.upload_image import save_images
 from lib.login_required import auth_required
@@ -27,7 +29,13 @@ def get_article_list():
         with get_session() as db_session:
             query = db_session.query(Article).all()
             for article in query:
+                author = db_session.query(User).get(article.author)
+                if author:
+                    author_name = author.name
+                else:
+                    author_name = u'佚名'
                 article_dict = article.to_dict()
+                article_dict['author_name'] = author_name
                 result['article_list'].append(article_dict)
             return jsonify(result)
     except Exception as e:
@@ -114,9 +122,10 @@ def publish_article_list():
         abort(400)
 
 
-def update_article_from_params(obj, title, status, view_count, agree_count, disagree_count, desc, content):
+def update_article_from_params(obj, title, author, status, view_count, agree_count, disagree_count, desc, content):
     obj.title = title
     obj.status = status
+    obj.author = author
     obj.view_count = view_count
     obj.agree_count = agree_count
     obj.disagree_count = disagree_count
@@ -124,7 +133,7 @@ def update_article_from_params(obj, title, status, view_count, agree_count, disa
     obj.content = content
 
 
-@website.route('/article_list/update', methods=['POS'])
+@website.route('/article_list/update', methods=['POST'])
 @auth_required
 def update_article():
     result = {
@@ -139,12 +148,13 @@ def update_article():
     disagree_count = request.form.get('disagree_cont', 0)
     desc = request.form.get('desc', '')
     content = request.form.get('content', '')
+    author = current_user.id
     try:
         with get_session() as db_session:
             if article_id:
                 article = db_session.query(Article).get(article_id)
                 if article:
-                    update_article_from_params(obj=article, title=title, status=status, view_count=view_count,
+                    update_article_from_params(obj=article, title=title, author=author, status=status, view_count=view_count,
                                                agree_count=agree_count, disagree_count=disagree_count,
                                                desc=desc, content=content)
                 else:
@@ -154,7 +164,7 @@ def update_article():
                     })
             else:
                 article = Article()
-                update_article_from_params(obj=article, title=title, status=status, view_count=view_count,
+                update_article_from_params(obj=article, title=title, author=author, status=status, view_count=view_count,
                                            agree_count=agree_count, disagree_count=disagree_count,
                                            desc=desc, content=content)
                 db_session.add(article)

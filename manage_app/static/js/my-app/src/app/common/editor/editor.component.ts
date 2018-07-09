@@ -11,6 +11,8 @@ export class EditorComponent implements OnInit {
 	content: string;
 	editorConfig: any;
 	
+	name = 'ng2-ckeditor';
+	
 	@ViewChild("editor") editor: any;
 	
 	constructor() {

@@ -7,6 +7,43 @@ from model.session import get_session
 from model.website.customer import CustomerCollect
 
 
+class CommonImage(Base):
+    __tablename__ = 'image_common'
+
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
+    # 名称
+    name = Column(String(100), index=True)
+    # 图片url
+    url = Column(String(255), nullable=False)
+    # 格式
+    format = Column(String(10), nullable=False, default=u'UNKNOWN')
+    # 宽
+    width = Column(Integer, index=True)
+    # 高
+    height = Column(Integer, index=True)
+    # 模式
+    mode = Column(String(10), index=True)
+
+    @property
+    def img_full_url(self):
+        img_url = 'resource/img/common/%s.%s' % (self.url, self.format.lower())
+        return img_url
+
+    def to_dict(self):
+        return {
+            'id': str(self.id),
+            'name': self.name,
+            'url': self.url,
+            'format': self.format,
+            'width': self.width,
+            'height': self.height,
+            'mode': self.mode,
+            'img_full_url': self.img_full_url,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S')
+        }
+
+
 # 当前模型主要用于存储素材类型图片
 class Image(Base):
     __tablename__ = 'image'
@@ -32,11 +69,11 @@ class Image(Base):
     # 描述
     desc = Column(String(255))
     # 宽
-    width = Column(Integer)
+    width = Column(Integer, index=True)
     # 高
-    height = Column(Integer)
+    height = Column(Integer, index=True)
     # 模式
-    mode = Column(String(10))
+    mode = Column(String(10), index=True)
     # 浏览次数
     view_count = Column(Integer, default=0, nullable=False, index=True)
     # 下载次数

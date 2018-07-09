@@ -46,6 +46,7 @@ class Article(Base):
             'disagree_count': self.disagree_count,
             'version': self.version,
             'desc': self.desc,
+            'content': self.content,
             'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
             'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }
