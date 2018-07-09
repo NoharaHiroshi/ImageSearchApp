@@ -1,0 +1,19 @@
+<div class="article-content">
+	<ng-container *ngIf="article">
+		<div class="header">
+			<div class="title">
+				{{article.title}}
+			</div>
+			<div class="info">
+				<div class="portrait"></div>
+				<div class="date"></div>
+			</div>
+		</div>
+		<div class="desc">
+			{{article.desc}}
+		</div>
+		<div class="content">
+			<div [innerHTML]="article.content"></div>
+		</div>
+	</ng-container>
+</div>

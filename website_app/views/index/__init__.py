@@ -9,3 +9,4 @@ from detail_page import *
 from exchange_code import *
 from user_collect import *
 from user_change_password import *
+from article import *

@@ -2032,3 +2032,52 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 .exchange_button:hover{
 	background: #00FA9A;
 }
+
+/* 文章详情页 */
+.article-content {
+	width: 800px;
+	margin: 0 auto;
+	padding: 20px 20px 40px 20px;
+	background-color: #fff;
+	border-radius: 3px;
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15), 0px 2px 4px 0px rgba(0,0,0,0.10);
+    border: 1px solid rgba(165,170,184,0.10);
+}
+
+.article-content .header {
+	margin-bottom: 60px;
+	position: relative;
+}
+
+.article-content .header .title {
+	font-size: 36px;
+	color: #343434;
+	line-height: 56px;
+}
+
+.article-content .desc {
+	position: relative;
+	width: 80%;
+	margin: 30px auto;
+	padding: 25px 20px;
+	font-size: 15px;
+	color: #888;
+	background: #f9f9f9;
+	border-radius: 3px;
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15), 0px 2px 4px 0px rgba(0,0,0,0.10);
+    border: 1px solid rgba(165,170,184,0.10);
+}
+
+.article-content .content p {
+	padding: 5px 0; 
+	font-size: 16px;
+	color: rgba(48,48,48,.9);
+	line-height: 28px;
+}
+
+.article-content .content img {
+	text-align: center;
+    margin: 0 auto;
+    display: block;
+    padding: 10px 0;
+}

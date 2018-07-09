@@ -49,6 +49,9 @@ import { UserSeriesCollectService } from './user_page/user_series_collect/user_s
 import { UserChangePasswordComponent } from './user_page/change_password/change_password.component';
 import { UserChangePasswordService } from './user_page/change_password/change_password.service';
 
+import { ArticleComponent } from './article/article.component';
+import { ArticleService } from './article/article.service';
+
 import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 
 @NgModule({
@@ -66,8 +69,8 @@ import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 		ExchangeCodeComponent,
 		UserCollectComponent,
 		UserChangePasswordComponent,
-		UserSeriesCollectComponent
-		
+		UserSeriesCollectComponent,
+		ArticleComponent,
 	],
 	imports: [
 		CommonModule,
@@ -100,6 +103,7 @@ import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 		UserCollectService,
 		UserSeriesCollectService,
 		UserChangePasswordService,
+		ArticleService,
 		
 		AuthEmailGuard
 	],

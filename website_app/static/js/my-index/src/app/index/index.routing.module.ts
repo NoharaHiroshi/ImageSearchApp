@@ -13,6 +13,7 @@ import { ExchangeCodeComponent } from './user_page/exchange_code/exchange_code.c
 import { UserCollectComponent } from './user_page/user_collect/user_collect.component';
 import { UserSeriesCollectComponent } from './user_page/user_series_collect/user_series_collect.component';
 import { UserChangePasswordComponent } from './user_page/change_password/change_password.component';
+import { ArticleComponent } from './article/article.component';
 
 import { AuthEmailGuard } from '../common/auth_email/auth_email.service';
 
@@ -28,6 +29,7 @@ const routes: Routes = [
 			{ path: 'filter_image_list', component: FilterImageListComponent },
 			{ path: 'auth_email',  component: SendAuthEmailComponent },
 			{ path: 'verify_email_effect', component: VerifyEmailEffectComponent },
+			{ path: 'article/:id', component: ArticleComponent },
 			{ 
 				path: 'user', 
 				component: UserPageComponent,
