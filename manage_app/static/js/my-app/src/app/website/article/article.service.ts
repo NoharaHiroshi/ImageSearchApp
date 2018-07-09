@@ -54,4 +54,13 @@ export class ArticleService extends BaseService {
 		const url = '/website/article_list/update';
 	    return this.postForm(url, JSON.stringify(article));
 	}
+	
+	publish(ids: String, status: number): Promise<{}> {
+		const url = '/website/article_list/publish';
+		let params = {
+			'ids': ids,
+			'status': status
+		}
+		return this.postForm(url, JSON.stringify(params));
+	}
 }

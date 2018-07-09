@@ -65,6 +65,74 @@ export class ArticleConfComponent extends ListBaseComponent{
 			}
 		});
 	}
+	
+	publish(): void {
+		let del_ids = this.selectChecked();
+		let self = this;
+		swal({
+			title: '发布',
+			text: '确定发布当前文章？',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '发布',
+			cancelButtonText: '取消',
+			confirmButtonClass: 'btn btn-theme margin-right10',
+			cancelButtonClass: 'btn btn-theme04',
+			buttonsStyling: false
+		}).then(function(isConfirm: boolean) {
+			if(isConfirm === true){
+				self.service.publish(del_ids, 1).then(data =>{
+					if(data['response'] == 'ok'){
+						swal('发布成功');
+						self.refresh();
+					}else{
+						swal('发布失败', data['info']);
+						self.refresh();
+					}
+				})
+			}else if (isConfirm === false){
+				self.refresh();
+			}else{
+				self.refresh();
+			}
+		});
+	}
+	
+	cancelPublish(): void {
+		let del_ids = this.selectChecked();
+		let self = this;
+		swal({
+			title: '取消发布',
+			text: '确定取消发布当前文章？',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: '确定',
+			cancelButtonText: '取消',
+			confirmButtonClass: 'btn btn-theme margin-right10',
+			cancelButtonClass: 'btn btn-theme04',
+			buttonsStyling: false
+		}).then(function(isConfirm: boolean) {
+			if(isConfirm === true){
+				self.service.publish(del_ids, 0).then(data =>{
+					if(data['response'] == 'ok'){
+						swal('取消发布成功');
+						self.refresh();
+					}else{
+						swal('取消发布失败', data['info']);
+						self.refresh();
+					}
+				})
+			}else if (isConfirm === false){
+				self.refresh();
+			}else{
+				self.refresh();
+			}
+		});
+	}
 }
 
 @Component({
