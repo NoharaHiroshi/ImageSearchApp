@@ -192,21 +192,31 @@ def upload_article_image():
     f = request.files['upload']
     try:
         with get_session() as db_session:
+            file_name = f.filename
             _id = IdGenerator.gen()
             original_name = HashName.gen(_id, info="common")
-            file_name = f.filename
             upload_src = config.IMG_UPLOAD_SRC
-            # 图像处理
-            im = Img.open(f)
-            # 长宽
-            width, height = im.size
-            # 格式
-            file_format = im.format
-            # 模式
-            file_full_path = os.path.join(upload_src, 'common',
-                                          '.'.join([original_name, file_format.lower()])).replace('\\', '/')
-            mode = im.mode
-            im.save(file_full_path)
+            file_format = file_name.split('.')[-1]
+            if file_format and file_format.upper() == 'GIF':
+                width = 0
+                height = 0
+                mode = 'GIF'
+                file_format = file_format.upper()
+                file_full_path = os.path.join(upload_src, 'common',
+                                              '.'.join([original_name, file_format.lower()])).replace('\\', '/')
+                f.save(file_full_path)
+            else:
+                # 图像处理
+                im = Img.open(f)
+                # 长宽
+                width, height = im.size
+                # 格式
+                file_format = im.format
+                # 模式
+                file_full_path = os.path.join(upload_src, 'common',
+                                              '.'.join([original_name, file_format.lower()])).replace('\\', '/')
+                mode = im.mode
+                im.save(file_full_path)
             # 数据库存储
             img = CommonImage()
             img.id = _id

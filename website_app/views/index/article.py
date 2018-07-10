@@ -16,6 +16,7 @@ from lib.paginator import SQLAlchemyPaginator
 from model.session import get_session
 from model.website.customer import Customer
 from model.website.article import Article
+from model.manage.user import User
 
 from route import index
 from website_app.config import config
@@ -62,9 +63,13 @@ def get_article_detail():
         with get_session() as db_session:
             article = db_session.query(Article).get(_id)
             if article:
+                author_id = article.author
+                author = db_session.query(User).get(author_id)
+                author_name = author.name if author else u'影子管理员'
                 article_dict = article.to_dict()
+                article_dict['author_name'] = author_name
                 result.update({
-                    'article': article_dict
+                    'article': article_dict,
                 })
             else:
                 result.update({

@@ -2045,7 +2045,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 }
 
 .article-content .header {
-	margin-bottom: 60px;
+	margin-bottom: 30px;
 	position: relative;
 }
 
@@ -2053,6 +2053,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	font-size: 36px;
 	color: #343434;
 	line-height: 56px;
+	margin-bottom: 20px;
 }
 
 .article-content .desc {
@@ -2080,4 +2081,18 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
     margin: 0 auto;
     display: block;
     padding: 10px 0;
+}
+
+.article-content .info {
+	color: #666;
+	font-size: 14px;
+}
+
+.article-content .info .portrait {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+.article-content .info .date {
+	display: inline-block;
 }
