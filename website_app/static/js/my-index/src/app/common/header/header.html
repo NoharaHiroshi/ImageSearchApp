@@ -114,7 +114,18 @@
 		<ul>
 			<ng-container *ngFor="let website_menu of website_menu_list">
 				<li>
-					<a href="#" class="cbp-hover">{{website_menu.name}}</a>
+					<ng-container *ngIf="website_menu.type == 0">
+						<a href="#" class="cbp-hover">{{website_menu.name}}</a>
+					</ng-container>
+					<ng-container *ngIf="website_menu.type == 1">
+						<a [routerLink]="['article', website_menu.connect_id]" class="cbp-hover">{{website_menu.name}}</a>
+					</ng-container>
+					<ng-container *ngIf="website_menu.type == 2">
+						<a [routerLink]="['image_list', sub_menu.connect_id]" class="cbp-hover">{{website_menu.name}}</a>
+					</ng-container>
+					<ng-container *ngIf="website_menu.type == 3">
+						<a [routerLink]="['image_series_list', sub_menu.connect_id]" class="cbp-hover">{{website_menu.name}}</a>
+					</ng-container>
 					<div class="cbp-hrsub cbp-hover">
 						<div class="cbp-hrsub-inner"> 
 							<div *ngFor="let sub_menu of website_menu.sub_menus">
@@ -122,7 +133,7 @@
 									<h4><a href="#" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
 								</ng-container>
 								<ng-container *ngIf="sub_menu.type == 1">
-									<h4><a href="#" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
+									<h4><a [routerLink]="['article', sub_menu.connect_id]" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
 								</ng-container>
 								<ng-container *ngIf="sub_menu.type == 2">
 									<h4><a [routerLink]="['image_list', sub_menu.connect_id]" style="font-size: 20px;">{{sub_menu.name}}</a></h4>
@@ -138,7 +149,7 @@
 											</ng-container>
 											<!-- 内容页 -->
 											<ng-container *ngIf="third_menu.type == 1">
-												<a href="#">{{third_menu.name}}</a>
+												<a href="['article, third_menu.connect_id']">{{third_menu.name}}</a>
 											</ng-container>
 											<!-- 图片列表页 -->
 											<ng-container *ngIf="third_menu.type == 2">

@@ -16,6 +16,7 @@ from model.image.image_series import ImageSeries
 from model.image.image_series import ImageSeriesCategory
 from model.image.image_tags import ImageRecommendTagsRel, ImageRecommendTags, ImageTags, ImageTagsRel
 from model.website.column import WebsiteColumnSeriesRel
+from model.website.article import Article
 
 from route import lib
 
@@ -242,5 +243,45 @@ def upload_article_image():
         print traceback.format_exc(e)
         result.update({
             'state': 'fail'
+        })
+    return jsonify(result)
+
+
+@lib.route('/get_all_article', methods=['GET'])
+def get_all_article():
+    result = {
+        'response': 'ok',
+        'meta': '',
+        'data_list': []
+    }
+    search = request.args.get('search')
+    limit = request.args.get('limit', 10)
+    page = request.args.get('page', 1)
+    with get_session() as db_session:
+        query = db_session.query(Article).filter(
+            Article.status == Article.STATUS_PUBLISH
+        ).order_by(-Article.modified_date)
+
+        if search:
+            query = query.filter(
+                Article.name.like('%%%s%%' % search)
+            )
+
+        paginator = SQLAlchemyPaginator(query, limit)
+        page = paginator.get_validate_page(page)
+
+        _data_list = list()
+
+        for article in paginator.page(page):
+            article_dict = article.to_dict()
+            _data_list.append(article_dict)
+
+        result['data_list'] = _data_list
+        result.update({
+            'meta': {
+                'cur_page': page,
+                'all_page': paginator.max_page,
+                'count': paginator.count
+            }
         })
     return jsonify(result)

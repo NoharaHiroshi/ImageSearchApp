@@ -50,3 +50,34 @@ class Article(Base):
             'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
             'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
         }
+
+
+class ArticleComment(Base):
+    __tablename__ = 'website_article_comment'
+
+    # 评论文章，评论用户评论
+    TYPE_ARTICLE, TYPE_COMMENT = range(2)
+
+    id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
+    # 评论会员
+    customer_id = Column(BigInteger, index=True, nullable=False)
+    # 评论员名称
+    customer_name = Column(String(100), index=True, nullable=False)
+    # 评论内容
+    content = Column(TEXT)
+    # 评论ID
+    comment_id = Column(BigInteger, index=True, nullable=False)
+    # 类型
+    type = Column(Integer, default=TYPE_ARTICLE, index=True)
+
+    def to_dict(self):
+        return {
+            'id': str(self.id),
+            'customer_id': str(self.customer_id),
+            'customer_name': self.customer_name,
+            'content': self.content,
+            'comment_id': str(self.comment_id),
+            'type': self.type,
+            'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
+            'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
+        }

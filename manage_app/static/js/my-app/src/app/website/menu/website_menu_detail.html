@@ -23,6 +23,14 @@
 					  </select>
 				  </div>
 			  </div>
+			  <div [ngStyle]="{'display':menu.type == 1 ? 'block': 'none'}">
+				  <div class="form-group">
+						<label class="col-sm-2 col-sm-2 control-label">选择文章</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control" id="article_select" name="article_select">
+						</div>
+				  </div>
+			  </div>
 			  <div [ngStyle]="{'display':menu.type == 2 ? 'block': 'none'}">
 				  <div class="form-group">
 						<label class="col-sm-2 col-sm-2 control-label">选择专题</label>
