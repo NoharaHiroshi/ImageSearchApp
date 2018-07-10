@@ -1,5 +1,5 @@
-<div class="article-content">
-	<ng-container *ngIf="article">
+<ng-container *ngIf="article">
+	<div class="article-content">
 		<div class="header">
 			<div class="title">
 				{{article.title}}
@@ -15,5 +15,35 @@
 		<div class="content">
 			<div [innerHTML]="article.content"></div>
 		</div>
-	</ng-container>
-</div>
+	</div>
+	<div class="comment-count">评论：（{{article.comment_count}}）</div>
+	<div class="new-comment-content">
+		<ng-container *ngIf="config.user">
+			<div class="content">
+				
+			</div>
+		</ng-container>
+		<ng-container *ngIf="!config.user">
+			<div class="no-user-content">
+				<i class="fa fa-comments-o" aria-hidden="true" style="margin-right: 10px;"></i>
+				您还没有<a href="/login" class="login">登录</a>，不能评论哦~
+			</div>
+		</ng-container>
+	</div>
+	<div class="comment-content" *ngIf="comment_list.length > 0">
+		<div class="content">
+			<ng-container *ngFor="let comment of comment_list">
+				<div class="customer">
+					<span class="comment-name">{{comment.customer_name}}</span>
+					<span class="comment-date">评论于：{{comment.created_date}}</span>
+				</div>
+				<div class="comment-reply">{{comment.content}}</div>
+				<div class="comment-button">
+					<span class="reply">
+						<i class="fa fa-commenting-o" style="margin-right: 5px;" aria-hidden="true"></i>回复
+					</span>
+				</div>
+			</ng-container>
+		</div>
+	</div>
+</ng-container>

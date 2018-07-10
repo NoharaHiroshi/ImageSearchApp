@@ -9,6 +9,7 @@ import { ArticleService } from './article.service';
 import { ListBaseComponent } from '../../common/base.component';
 
 import { Article } from '../../model/article';
+import { Comment } from '../../model/comment';
 
 import { AppConfig } from '../../../config/app_config';
 
@@ -18,6 +19,7 @@ import { AppConfig } from '../../../config/app_config';
 })
 export class ArticleComponent extends ListBaseComponent implements OnInit{
 	article: Article;
+	comment_list: Comment[];
 	
 	constructor(public config: AppConfig, private service: ArticleService, public route: ActivatedRoute, public router: Router, private elem: ElementRef) {
 		super();
@@ -29,6 +31,7 @@ export class ArticleComponent extends ListBaseComponent implements OnInit{
         this.route.params.switchMap((params: Params) => this.service.getDetail(params['id']||'0'))
 		.subscribe(res => {
 			self.article = res.article;
+			self.comment_list = res.comment_list;
 			self.config.isLoading = false;
 		})
 	}

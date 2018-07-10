@@ -2042,6 +2042,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	border-radius: 3px;
     box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15), 0px 2px 4px 0px rgba(0,0,0,0.10);
     border: 1px solid rgba(165,170,184,0.10);
+	margin-bottom: 30px;
 }
 
 .article-content .header {
@@ -2095,4 +2096,92 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 
 .article-content .info .date {
 	display: inline-block;
+}
+
+.comment-count {
+	width: 800px;
+	margin: 0 auto 20px;
+	font-size: 16px;
+	color: #999;
+}
+
+.new-comment-content {
+	width: 800px;
+	margin: 0 auto;
+	background: #fff;
+	padding: 20px;
+	border-radius: 3px;
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15), 0px 2px 4px 0px rgba(0,0,0,0.10);
+    border: 1px solid rgba(165,170,184,0.10);
+	margin-bottom: 30px;
+}
+
+.no-user-content {
+	color: #999;
+}
+
+.no-user-content .login {
+	color: #ffbe40;
+}
+
+.comment-content {
+	width: 800px;
+	margin: 0 auto;
+	background: #fff;
+	padding: 20px;
+	border-radius: 3px;
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15), 0px 2px 4px 0px rgba(0,0,0,0.10);
+    border: 1px solid rgba(165,170,184,0.10);
+}
+
+.comment-content .customer {
+	color: #888;
+	position: relative;
+	margin-bottom: 15px;
+}
+
+.comment-content .comment-reply {
+	color: #999;
+	font-size: 14px;
+}
+
+.comment-content .comment-button {
+	color: #999;
+	font-size: 14px;
+	text-align: right;
+}
+
+.comment-content .comment-button .reply {
+	color: #fff;
+    padding: 5px 10px;
+    width: 10%;
+    margin: 30px auto 0;
+    text-align: center;
+    border: 1px soid #ffbe40;
+    background: #ffbe40;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+    -webkit-transition: all .5s;
+    transition: all .5s;
+    cursor: pointer;
+}
+
+.comment-content .comment-button .reply:hover {
+	border: 1px soid #00FA9A;
+    background: #00FA9A;
+}
+
+.comment-date {
+	font-size: 12px; 
+	color: #aaa; 
+	position: absolute; 
+	right: 0px; 
+	line-height: 23px;
+}
+
+.comment-name {
+	font-size: 14px;
+	color: #555;
+	font-weight: 700;
 }

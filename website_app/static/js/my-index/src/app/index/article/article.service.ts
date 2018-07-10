@@ -6,6 +6,7 @@ import 'rxjs/add/operator/timeout';
 import 'rxjs/Rx';
 
 import { Article } from '../../model/article';
+import { Comment } from '../../model/comment';
 
 import { BaseService } from '../../common/base.service';
 
@@ -22,6 +23,8 @@ export class ArticleService extends BaseService {
 				   .toPromise().then(res => {
 						let json = res.json();
 						let article = self.jsonToObject(json.article, Article);
+						let comment_list = self.jsonListToObjectList(json.comment_list, Comment);
+						json['comment_list'] = comment_list;
 						json['article'] = article;
 						return json;
 					})

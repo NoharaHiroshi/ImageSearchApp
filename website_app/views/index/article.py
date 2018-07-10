@@ -15,7 +15,7 @@ from lib.paginator import SQLAlchemyPaginator
 
 from model.session import get_session
 from model.website.customer import Customer
-from model.website.article import Article
+from model.website.article import Article, ArticleComment
 from model.manage.user import User
 
 from route import index
@@ -56,6 +56,7 @@ def get_article_detail():
     result = {
         'response': 'ok',
         'article': '',
+        'comment_list': [],
         'info': ''
     }
     _id = request.args.get('id', None)
@@ -68,6 +69,15 @@ def get_article_detail():
                 author_name = author.name if author else u'影子管理员'
                 article_dict = article.to_dict()
                 article_dict['author_name'] = author_name
+                all_comment = db_session.query(ArticleComment).filter(
+                    ArticleComment.comment_id == article.id
+                ).all()
+                comment_count = len(all_comment) if all_comment else 0
+                article_dict['comment_count'] = comment_count
+                if all_comment:
+                    for comment in all_comment:
+                        comment_dict = comment.to_dict()
+                        result['comment_list'].append(comment_dict)
                 result.update({
                     'article': article_dict,
                 })
@@ -76,6 +86,32 @@ def get_article_detail():
                     'response': 'fail',
                     'info': u'当前文章不存在'
                 })
+        return jsonify(result)
+    except Exception as e:
+        print e
+
+
+@index.route('/article_comment', methods=['POST'])
+@login_required
+def comment_article():
+    result = {
+        'response': 'ok',
+        'info': ''
+    }
+    content = request.form.get('content', '')
+    t = request.form.get('type', 0)
+    comment_id = request.form.get('comment_id', None)
+    try:
+        customer_id = current_user.id
+        customer_name = current_user.name
+        with get_session() as db_session:
+            customer_comment = ArticleComment()
+            customer_comment.comment_id = comment_id
+            customer_comment.customer_id = customer_id
+            customer_comment.customer_name = customer_name
+            customer_comment.type = t
+            customer_comment.content = content
+            db_session.add(customer_comment)
         return jsonify(result)
     except Exception as e:
         print e
