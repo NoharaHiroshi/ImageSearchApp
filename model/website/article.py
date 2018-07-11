@@ -55,8 +55,8 @@ class Article(Base):
 class ArticleComment(Base):
     __tablename__ = 'website_article_comment'
 
-    # 评论文章，评论用户评论
-    TYPE_ARTICLE, TYPE_COMMENT = range(2)
+    # 评论文章，评论用户评论， 层中评论
+    TYPE_ARTICLE, TYPE_COMMENT, TYPE_REPLY = range(3)
 
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 评论会员

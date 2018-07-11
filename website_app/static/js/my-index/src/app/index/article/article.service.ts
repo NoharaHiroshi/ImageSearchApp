@@ -26,6 +26,10 @@ export class ArticleService extends BaseService {
 						let comment_list = self.jsonListToObjectList(json.comment_list, Comment);
 						for(let comment of comment_list){
 							let reply_list = self.jsonListToObjectList(comment.reply_list, Comment);
+							for(let r of reply_list){
+								let r_list = self.jsonListToObjectList(r.reply_reply_list, Comment);
+								r['reply_reply_list'] = r_list;
+							}
 							comment['reply_list'] = reply_list;
 						}
 						json['comment_list'] = comment_list;
@@ -48,6 +52,10 @@ export class ArticleService extends BaseService {
 		let comment_list = self.jsonListToObjectList(json.comment_list, Comment);
 		for(let comment of comment_list){
 			let reply_list = self.jsonListToObjectList(comment.reply_list, Comment);
+			for(let r of reply_list){
+				let r_list = self.jsonListToObjectList(r.reply_reply_list, Comment);
+				r['reply_reply_list'] = r_list;
+			}
 			comment['reply_list'] = reply_list;
 		}
 		json['comment_list'] = comment_list;
@@ -65,6 +73,10 @@ export class ArticleService extends BaseService {
 		let comment_list = self.jsonListToObjectList(json.comment_list, Comment);
 		for(let comment of comment_list){
 			let reply_list = self.jsonListToObjectList(comment.reply_list, Comment);
+			for(let r of reply_list){
+				let r_list = self.jsonListToObjectList(r.reply_reply_list, Comment);
+				r['reply_reply_list'] = r_list;
+			}
 			comment['reply_list'] = reply_list;
 		}
 		json['comment_list'] = comment_list;

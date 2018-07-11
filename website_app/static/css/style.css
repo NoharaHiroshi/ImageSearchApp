@@ -2253,6 +2253,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	margin-bottom: 20px;
     -webkit-box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+	padding: 10px;
 }
 
 .reply-textarea .reply-textarea-content:focus {

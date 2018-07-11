@@ -69,21 +69,32 @@ def get_article_detail():
                 author_name = author.name if author else u'影子管理员'
                 article_dict = article.to_dict()
                 article_dict['author_name'] = author_name
+                # 获取文章所有一级评论
                 all_comment = db_session.query(ArticleComment).filter(
                     ArticleComment.comment_id == article.id,
                     ArticleComment.type == ArticleComment.TYPE_ARTICLE
                 ).all()
-                comment_count = len(all_comment) if all_comment else 0
-                article_dict['comment_count'] = comment_count
-                if all_comment:
-                    for comment in all_comment:
-                        all_reply = db_session.query(ArticleComment).filter(
-                            ArticleComment.comment_id == comment.id,
-                            ArticleComment.type == ArticleComment.TYPE_COMMENT
+                for comment in all_comment:
+                    all_reply = db_session.query(ArticleComment).filter(
+                        ArticleComment.comment_id == comment.id,
+                        ArticleComment.type == ArticleComment.TYPE_COMMENT
+                    ).all()
+                    comment_dict = comment.to_dict()
+                    comment_dict['reply_list'] = list()
+                    # 获取二级评论
+                    for reply in all_reply:
+                        reply_dict = reply.to_dict()
+                        # 获取三级评论
+                        all_reply_reply = db_session.query(ArticleComment).filter(
+                            ArticleComment.comment_id == reply.id,
+                            ArticleComment.type == ArticleComment.TYPE_REPLY
                         ).all()
-                        comment_dict = comment.to_dict()
-                        comment_dict['reply_list'] = [reply.to_dict() for reply in all_reply if all_reply]
-                        result['comment_list'].append(comment_dict)
+                        reply_dict['reply_reply_list'] = [reply_reply.to_dict()
+                                                          for reply_reply in all_reply_reply if all_reply_reply]
+
+                        comment_dict['reply_list'].append(reply_dict)
+
+                    result['comment_list'].append(comment_dict)
                 result.update({
                     'article': article_dict,
                 })
@@ -94,7 +105,7 @@ def get_article_detail():
                 })
         return jsonify(result)
     except Exception as e:
-        print e
+        print traceback.format_exc(e)
 
 
 @index.route('/article_comment', methods=['POST'])
@@ -123,19 +134,32 @@ def comment_article():
                 customer_comment.content = content
                 db_session.add(customer_comment)
                 db_session.commit()
+                # 获取文章所有一级评论
                 all_comment = db_session.query(ArticleComment).filter(
                     ArticleComment.comment_id == article.id,
                     ArticleComment.type == ArticleComment.TYPE_ARTICLE
                 ).all()
-                if all_comment:
-                    for comment in all_comment:
-                        all_reply = db_session.query(ArticleComment).filter(
-                            ArticleComment.comment_id == comment.id,
-                            ArticleComment.type == ArticleComment.TYPE_COMMENT
+                for comment in all_comment:
+                    all_reply = db_session.query(ArticleComment).filter(
+                        ArticleComment.comment_id == comment.id,
+                        ArticleComment.type == ArticleComment.TYPE_COMMENT
+                    ).all()
+                    comment_dict = comment.to_dict()
+                    comment_dict['reply_list'] = list()
+                    # 获取二级评论
+                    for reply in all_reply:
+                        reply_dict = reply.to_dict()
+                        # 获取三级评论
+                        all_reply_reply = db_session.query(ArticleComment).filter(
+                            ArticleComment.comment_id == reply.id,
+                            ArticleComment.type == ArticleComment.TYPE_REPLY
                         ).all()
-                        comment_dict = comment.to_dict()
-                        comment_dict['reply_list'] = [reply.to_dict() for reply in all_reply if all_reply]
-                        result['comment_list'].append(comment_dict)
+                        reply_dict['reply_reply_list'] = [reply_reply.to_dict()
+                                                          for reply_reply in all_reply_reply if all_reply_reply]
+
+                        comment_dict['reply_list'].append(reply_dict)
+
+                    result['comment_list'].append(comment_dict)
             else:
                 result.update({
                     'response': 'fail',
@@ -143,7 +167,7 @@ def comment_article():
                 })
         return jsonify(result)
     except Exception as e:
-        print e
+        print traceback.format_exc(e)
 
 
 @index.route('/article_comment/delete', methods=['POST'])
@@ -195,4 +219,4 @@ def delete_comment_article():
                 })
         return jsonify(result)
     except Exception as e:
-        print e
+        print traceback.format_exc(e)

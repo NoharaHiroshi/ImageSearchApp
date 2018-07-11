@@ -42,6 +42,22 @@ export class ArticleComponent extends ListBaseComponent implements OnInit{
 	}
 	
 	reply(id: string, type: number): void {
+		console.log('reply');
+		let self = this;
+		$('#textarea_' + id).hide();
+		$('#' + id).show();
+		let content = $('#reply_' + id).val();
+		this.service.reply(id, content, type, self.article.id).then(res => {
+			if(self.config.authCheck(res)){
+				if(self.config.tipCheck(res)){
+					self.comment_list = res.comment_list;
+				}
+			}
+		})
+	}
+	
+	replyComment(id: string, type: number): void {
+		console.log('reply');
 		let self = this;
 		$('#textarea_' + id).hide();
 		$('#' + id).show();
