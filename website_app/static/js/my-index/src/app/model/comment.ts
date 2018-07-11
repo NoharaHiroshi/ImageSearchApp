@@ -5,6 +5,7 @@ export class Comment {
 	content: string;
 	comment_id: string;
 	type: number = 0;
+	reply_list: Comment[];
 	created_date: string;
 	modified_date: string;
 }

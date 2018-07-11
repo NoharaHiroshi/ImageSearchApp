@@ -11,7 +11,6 @@ export class Article {
 	disagree_count: number = 0;
 	desc: string;
 	content: string;
-	comment_count: number = 0;
 	created_date: string;
 	modified_date: string;
 }

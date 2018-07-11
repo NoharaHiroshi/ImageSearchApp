@@ -39,9 +39,40 @@
 				</div>
 				<div class="comment-reply">{{comment.content}}</div>
 				<div class="comment-button">
-					<span class="reply">
+					<span class="reply" id="{{comment.id}}" (click)="clickReply(comment.id)">
 						<i class="fa fa-commenting-o" style="margin-right: 5px;" aria-hidden="true"></i>回复
 					</span>
+				</div>
+				<div class="reply-textarea" id="textarea_{{comment.id}}">
+					<textarea class="reply-textarea-content" id="reply_{{comment.id}}" rows="8"></textarea>
+					<div class="reply-button">
+						<span class="reply-success" (click)="reply(comment.id, 1)">OK</span>
+						<span class="reply-fail" (click)="cancel(comment.id)">CANCEL</span>
+					</div>
+				</div>
+				<div class="other-comment" *ngIf="comment.reply_list.length > 0">
+					<ng-container *ngFor="let reply of comment.reply_list">
+						<div class="other-comment-item">
+							<div class="reply">
+								<span class="reply-name">{{reply.customer_name}}</span>
+								<span class="reply-date">评论于：{{reply.created_date}}</span>
+							</div>
+							<div class="reply-comment">{{reply.content}}</div>
+							<div class="reply-reply" id="{{reply.id}}">
+								<ng-container *ngIf="reply.customer_id == config.user.id">
+									<span (click)="deleteReply(reply.id)" style="margin-right: 5px;">删除</span>
+								</ng-container>
+								<span (click)="clickReply(reply.id)">回复</span>
+							</div>
+							<div class="reply-textarea" id="textarea_{{reply.id}}">
+							<textarea class="reply-textarea-content" id="reply_{{reply.id}}" rows="8"></textarea>
+							<div class="reply-button">
+								<span class="reply-success" (click)="reply(reply.id, 1)">OK</span>
+								<span class="reply-fail" (click)="cancel(reply.id)">CANCEL</span>
+							</div>
+						</div>
+						</div>
+					</ng-container>
 				</div>
 			</ng-container>
 		</div>

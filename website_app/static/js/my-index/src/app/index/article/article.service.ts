@@ -24,10 +24,50 @@ export class ArticleService extends BaseService {
 						let json = res.json();
 						let article = self.jsonToObject(json.article, Article);
 						let comment_list = self.jsonListToObjectList(json.comment_list, Comment);
+						for(let comment of comment_list){
+							let reply_list = self.jsonListToObjectList(comment.reply_list, Comment);
+							comment['reply_list'] = reply_list;
+						}
 						json['comment_list'] = comment_list;
 						json['article'] = article;
 						return json;
 					})
 					.catch(this.handleError);
+	}
+	
+	reply(id: string, content: string, type: number, article_id: string): Promise<any> {
+		const url = `/article_comment`;
+		let self = this;
+		let params = {
+			'comment_id': id,
+			'type': type,
+			'article_id': article_id,
+			'content': content
+		}
+		let json = this.postForm(url, JSON.stringify(params));
+		let comment_list = self.jsonListToObjectList(json.comment_list, Comment);
+		for(let comment of comment_list){
+			let reply_list = self.jsonListToObjectList(comment.reply_list, Comment);
+			comment['reply_list'] = reply_list;
+		}
+		json['comment_list'] = comment_list;
+		return json;
+	}
+	
+	delete(id: string, article_id: string): Promise<any> {
+		const url = `/article_comment/delete`;
+		let self = this;
+		let params = {
+			'comment_id': id,
+			'article_id': article_id
+		}
+		let json = this.postForm(url, JSON.stringify(params));
+		let comment_list = self.jsonListToObjectList(json.comment_list, Comment);
+		for(let comment of comment_list){
+			let reply_list = self.jsonListToObjectList(comment.reply_list, Comment);
+			comment['reply_list'] = reply_list;
+		}
+		json['comment_list'] = comment_list;
+		return json;
 	}
 }

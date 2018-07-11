@@ -2149,6 +2149,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	color: #999;
 	font-size: 14px;
 	text-align: right;
+	margin-bottom: 20px;
 }
 
 .comment-content .comment-button .reply {
@@ -2184,4 +2185,108 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	font-size: 14px;
 	color: #555;
 	font-weight: 700;
+}
+
+.other-comment {
+	padding: 15px;
+	background: #f9f9f9;
+	border-left: 4px solid #ffbe40;
+}
+
+.other-comment-item {
+	position: relative;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #eaeaea;
+	padding-bottom: 15px;
+	font-size: 14px;
+	color: #999;
+}
+
+.other-comment-item:last-child {
+	position: relative;
+	margin-bottom: 10px;
+	font-size: 14px;
+	color: #999;
+	border: 0;
+	padding-bottom: 0px;
+}
+
+.reply {
+	margin-bottom: 10px;
+}
+
+.reply-name {
+	font-size: 14px;
+	color: #555;
+	font-weight: 700;
+}
+
+.reply-date {
+	font-size: 12px; 
+	color: #aaa; 
+	position: absolute; 
+	right: 0px; 
+	line-height: 23px;
+}
+
+.reply-reply {
+	text-align: right;
+	cursor: pointer;
+}
+
+.reply-comment {
+	margin-bottom: 15px;
+}
+
+.reply-textarea {
+	width: 90%;
+	margin: 0 auto;
+	display: none;
+}
+
+.reply-textarea .reply-textarea-content {
+	border: 1px solid #cfcfcf;
+	width: 100%;
+	resize:none;
+	font-size: 14px;
+	color: #999;
+	margin-bottom: 20px;
+    -webkit-box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,.15);
+}
+
+.reply-textarea .reply-textarea-content:focus {
+	border: 1px solid #ffbe40;
+	outline: none;
+}
+
+.reply-button {
+	text-align: right;
+	margin-bottom: 20px;
+	font-size: 12px;
+}
+
+.reply-button .reply-success {
+	color: #888;
+	border: none;
+	margin-right: 10px;
+	cursor: pointer;
+	-webkit-transition: all .5s;
+    transition: all .5s;
+}
+
+.reply-button .reply-success:hover {
+	color: #00FA9A;
+}
+
+.reply-button .reply-fail {
+    color: #888;
+	border: none;
+	cursor: pointer;
+	-webkit-transition: all .5s;
+    transition: all .5s;
+}
+
+.reply-button .reply-fail:hover {
+	color: #FF4040;
 }

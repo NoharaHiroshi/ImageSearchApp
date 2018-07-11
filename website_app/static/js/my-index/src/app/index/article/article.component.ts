@@ -35,4 +35,39 @@ export class ArticleComponent extends ListBaseComponent implements OnInit{
 			self.config.isLoading = false;
 		})
 	}
+	
+	cancel(id: string): void {
+		$('#textarea_' + id).hide();
+		$('#' + id).show();
+	}
+	
+	reply(id: string, type: number): void {
+		let self = this;
+		$('#textarea_' + id).hide();
+		$('#' + id).show();
+		let content = $('#reply_' + id).val();
+		this.service.reply(id, content, type, self.article.id).then(res => {
+			if(self.config.authCheck(res)){
+				if(self.config.tipCheck(res)){
+					self.comment_list = res.comment_list;
+				}
+			}
+		})
+	}
+	
+	clickReply(id: string): void {
+		$('#' + id).hide();
+		$('#textarea_' + id).show();
+	}
+	
+	deleteReply(id: string): void {
+		let self = this;
+		this.service.delete(id, self.article.id).then(res => {
+			if(self.config.authCheck(res)){
+				if(self.config.tipCheck(res)){
+					self.comment_list = res.comment_list;
+				}
+			}
+		})
+	}
 }
