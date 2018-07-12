@@ -72,6 +72,29 @@
 								</div>
 							</div>
 						</div>
+						<ng-container *ngFor="let r of reply.reply_reply_list">
+							<div class="other-comment-item">
+								<div class="reply">
+									<span class="reply-name">{{r.customer_name}} </span>
+									<span class="reply-date">评论于：{{r.created_date}}</span>
+								</div>
+								<div class="reply-comment-repeat">回复 <span class="reply-name" style="margin-right: 15px;">{{r.last_reply['customer_name']}}</span>{{r.last_reply['content']}}</div>
+								<div class="reply-comment">{{r.content}}</div>
+								<div class="reply-reply" id="{{r.id}}">
+									<ng-container *ngIf="config.user && r.customer_id == config.user.id">
+										<span (click)="deleteReply(r.id)" style="margin-right: 5px;">删除</span>
+									</ng-container>
+									<span (click)="clickReply(r.id)">回复</span>
+								</div>
+								<div class="reply-textarea" id="textarea_{{r.id}}">
+									<textarea class="reply-textarea-content" id="reply_{{r.id}}" rows="8"></textarea>
+									<div class="reply-button">
+										<span class="reply-success" (click)="replyComment(r.id, 2)">OK</span>
+										<span class="reply-fail" (click)="cancel(r.id)">CANCEL</span>
+									</div>
+								</div>
+							</div>
+						</ng-container>
 					</ng-container>
 				</div>
 			</ng-container>

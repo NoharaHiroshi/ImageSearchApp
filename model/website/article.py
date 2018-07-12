@@ -70,6 +70,30 @@ class ArticleComment(Base):
     # 类型
     type = Column(Integer, default=TYPE_ARTICLE, index=True)
 
+    # 上级回复
+    @property
+    def last_reply(self):
+        with get_session() as db_session:
+            reply = db_session.query(ArticleComment).filter(
+                ArticleComment.id == self.comment_id
+            ).first()
+        return reply
+
+    # 楼中回复
+    def floor_reply_list(self, f_r_l=list()):
+        with get_session() as db_session:
+            all_floor_reply = db_session.query(ArticleComment).filter(
+                ArticleComment.comment_id == self.id,
+                ArticleComment.type == ArticleComment.TYPE_REPLY
+            ).all()
+            if all_floor_reply:
+                for floor_reply in all_floor_reply:
+                    floor_reply_dict = floor_reply.to_dict()
+                    floor_reply_dict['last_reply'] = floor_reply.last_reply.to_dict() if floor_reply.last_reply else None
+                    f_r_l.append(floor_reply_dict)
+                    floor_reply.floor_reply_list(f_r_l)
+        return f_r_l
+
     def to_dict(self):
         return {
             'id': str(self.id),

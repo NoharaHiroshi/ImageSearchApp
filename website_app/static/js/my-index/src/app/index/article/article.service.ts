@@ -76,7 +76,7 @@ export class ArticleService extends BaseService {
 			for(let r of reply_list){
 				let r_list = self.jsonListToObjectList(r.reply_reply_list, Comment);
 				r['reply_reply_list'] = r_list;
-			}
+			} 
 			comment['reply_list'] = reply_list;
 		}
 		json['comment_list'] = comment_list;

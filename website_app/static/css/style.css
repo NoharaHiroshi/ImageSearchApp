@@ -2291,3 +2291,9 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 .reply-button .reply-fail:hover {
 	color: #FF4040;
 }
+
+.reply-comment-repeat {
+	padding: 10px;
+	background: #fff;
+	margin-bottom: 10px;
+}

@@ -84,13 +84,10 @@ def get_article_detail():
                     # 获取二级评论
                     for reply in all_reply:
                         reply_dict = reply.to_dict()
-                        # 获取三级评论
-                        all_reply_reply = db_session.query(ArticleComment).filter(
-                            ArticleComment.comment_id == reply.id,
-                            ArticleComment.type == ArticleComment.TYPE_REPLY
-                        ).all()
-                        reply_dict['reply_reply_list'] = [reply_reply.to_dict()
-                                                          for reply_reply in all_reply_reply if all_reply_reply]
+                        frl = list()
+                        # 获取三级评论, 三级评论是首尾相连
+                        floor_reply_list = reply.floor_reply_list(frl)
+                        reply_dict['reply_reply_list'] = floor_reply_list
 
                         comment_dict['reply_list'].append(reply_dict)
 
@@ -149,13 +146,10 @@ def comment_article():
                     # 获取二级评论
                     for reply in all_reply:
                         reply_dict = reply.to_dict()
-                        # 获取三级评论
-                        all_reply_reply = db_session.query(ArticleComment).filter(
-                            ArticleComment.comment_id == reply.id,
-                            ArticleComment.type == ArticleComment.TYPE_REPLY
-                        ).all()
-                        reply_dict['reply_reply_list'] = [reply_reply.to_dict()
-                                                          for reply_reply in all_reply_reply if all_reply_reply]
+                        frl = list()
+                        # 获取三级评论, 三级评论是首尾相连
+                        floor_reply_list = reply.floor_reply_list(frl)
+                        reply_dict['reply_reply_list'] = floor_reply_list
 
                         comment_dict['reply_list'].append(reply_dict)
 
@@ -185,10 +179,15 @@ def delete_comment_article():
         with get_session() as db_session:
             article = db_session.query(Article).get(article_id)
             if article:
-                comment = db_session.query(ArticleComment).get(comment_id)
-                if comment:
-                    if str(comment.customer_id) == str(customer_id):
-                        db_session.delete(comment)
+                comment = db_session.query(ArticleComment).filter(
+                    ArticleComment.id == comment_id
+                )
+                if comment.first():
+                    comment = comment.filter(
+                        ArticleComment.customer_id == customer_id
+                    )
+                    if comment.first():
+                        comment.delete(synchronize_session=False)
                         db_session.commit()
                         all_comment = db_session.query(ArticleComment).filter(
                             ArticleComment.comment_id == article.id,
@@ -200,7 +199,17 @@ def delete_comment_article():
                                 ArticleComment.type == ArticleComment.TYPE_COMMENT
                             ).all()
                             comment_dict = comment.to_dict()
-                            comment_dict['reply_list'] = [reply.to_dict() for reply in all_reply if all_reply]
+                            comment_dict['reply_list'] = list()
+                            # 获取二级评论
+                            for reply in all_reply:
+                                reply_dict = reply.to_dict()
+                                frl = list()
+                                # 获取三级评论, 三级评论是首尾相连
+                                floor_reply_list = reply.floor_reply_list(frl)
+                                reply_dict['reply_reply_list'] = floor_reply_list
+
+                                comment_dict['reply_list'].append(reply_dict)
+
                             result['comment_list'].append(comment_dict)
                     else:
                         result.update({
