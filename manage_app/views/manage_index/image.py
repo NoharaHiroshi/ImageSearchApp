@@ -729,7 +729,7 @@ def image_tag_association_list():
                 ImageAssociationTag.tag_id == tag_id
             ).all()
             if association_tag_query:
-                association_tag_str = ','.join([association_tag.name for association_tag in association_tag_query])
+                association_tag_str = u'，'.join([association_tag.name for association_tag in association_tag_query])
                 result['association_tag_str'] = association_tag_str
         return jsonify(result)
     except Exception as e:
