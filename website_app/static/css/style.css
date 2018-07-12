@@ -2126,7 +2126,7 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 
 .comment-content {
 	width: 800px;
-	margin: 0 auto;
+	margin: 0 auto 20px;
 	background: #fff;
 	padding: 20px;
 	border-radius: 3px;
@@ -2296,4 +2296,10 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
 	padding: 10px;
 	background: #fff;
 	margin-bottom: 10px;
+}
+
+.reply_introduce {
+	margin-bottom: 15px;
+	color: #888;
+	font-size: 14px;
 }

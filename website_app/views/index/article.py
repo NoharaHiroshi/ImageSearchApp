@@ -123,6 +123,7 @@ def comment_article():
         with get_session() as db_session:
             article = db_session.query(Article).get(article_id)
             if article:
+                article.comment_count += 1
                 customer_comment = ArticleComment()
                 customer_comment.comment_id = comment_id
                 customer_comment.customer_id = customer_id
@@ -179,6 +180,8 @@ def delete_comment_article():
         with get_session() as db_session:
             article = db_session.query(Article).get(article_id)
             if article:
+                article.comment_count -= 1
+                db_session.commit()
                 comment = db_session.query(ArticleComment).filter(
                     ArticleComment.id == comment_id
                 )

@@ -29,16 +29,29 @@
 				您还没有<a href="/login" class="login">登录</a>，不能评论哦~
 			</div>
 		</ng-container>
+		<ng-container>
+			<div class="reply_introduce">Comment</div>
+			<div class="reply-textarea" id="textarea_{{article.id}}" style="display: block;">
+				<textarea class="reply-textarea-content" id="reply_{{article.id}}" rows="8"></textarea>
+				<div class="reply-button">
+					<span class="reply-success" (click)="articleComment(article.id, 0)">OK</span>
+				</div>
+			</div>
+		</ng-container>
 	</div>
-	<div class="comment-content" *ngIf="comment_list.length > 0">
-		<div class="content">
-			<ng-container *ngFor="let comment of comment_list">
+	<ng-container *ngIf="comment_list.length > 0">
+		<ng-container *ngFor="let comment of comment_list">
+		<div class="comment-content" *ngIf="comment_list.length > 0">
+			<div class="content">
 				<div class="customer">
 					<span class="comment-name">{{comment.customer_name}}</span>
 					<span class="comment-date">评论于：{{comment.created_date}}</span>
 				</div>
 				<div class="comment-reply">{{comment.content}}</div>
 				<div class="comment-button">
+					<ng-container *ngIf="config.user && comment.customer_id == config.user.id">
+						<span (click)="deleteReply(comment.id)" style="margin-right: 5px; cursor: pointer;">删除</span>
+					</ng-container>
 					<span class="reply" id="{{comment.id}}" (click)="clickReply(comment.id)">
 						<i class="fa fa-commenting-o" style="margin-right: 5px;" aria-hidden="true"></i>回复
 					</span>
@@ -97,7 +110,8 @@
 						</ng-container>
 					</ng-container>
 				</div>
-			</ng-container>
+			</div>
 		</div>
-	</div>
+		</ng-container>
+	</ng-container>
 </ng-container>
