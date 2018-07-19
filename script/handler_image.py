@@ -257,5 +257,5 @@ def batch_handler_image(file_path):
 
 if __name__ == '__main__':
     # get_area_image('test_8.jpg', alw=5)
-    batch_handler_image(u'script\get_image_scripts\树叶')
+    batch_handler_image(u'script\get_image_scripts\火焰')
 

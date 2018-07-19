@@ -33,7 +33,7 @@ def get_requests(url, headers=None, timeout=10, times=1, retry=5):
             return response
         else:
             print u'------------ 重试次数： %s -------------' % times
-            time.sleep(5)
+            time.sleep(15)
             times += 1
             if times <= retry:
                 get_requests(url, headers, times=times)
@@ -42,7 +42,7 @@ def get_requests(url, headers=None, timeout=10, times=1, retry=5):
     except Exception as e:
         print traceback.format_exc(e)
         print u'------------ 重试次数： %s -------------' % times
-        time.sleep(5)
+        time.sleep(15)
         times += 1
         if times <= retry:
             get_requests(url, headers, times=times)
@@ -58,7 +58,7 @@ def post_requests(url, data, headers=None, timeout=10, times=1, retry=5):
             return response
         else:
             print u'------------ 重试次数： %s -------------' % times
-            time.sleep(5)
+            time.sleep(15)
             times += 1
             if times <= retry:
                 get_requests(url, headers, times=times)
@@ -67,7 +67,7 @@ def post_requests(url, data, headers=None, timeout=10, times=1, retry=5):
     except Exception as e:
         print traceback.format_exc(e)
         print u'------------ 重试次数： %s -------------' % times
-        time.sleep(5)
+        time.sleep(15)
         times += 1
         if times <= retry:
             get_requests(url, headers, times=times)
@@ -163,6 +163,7 @@ def get_pic_page_url(keyword, page=1):
 
 
 def get_pic_image(base_url, page=1, all_page_count=None, key_word=None):
+    time.sleep(15)
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 '
                       '(KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36',
@@ -284,7 +285,7 @@ def get_image_object(key_word=None):
                 try:
                     img_key_word = image.key_word
                     base_url = os.path.dirname(__file__)
-                    file_url = os.path.join(base_url, 'background')
+                    file_url = os.path.join(base_url, 'object')
                     file_path = os.path.join(file_url, img_key_word).replace('\\', '/')
                     if not os.path.exists(file_path):
                         os.makedirs(file_path)
@@ -297,6 +298,7 @@ def get_image_object(key_word=None):
                         pic_name = image.pic_name + str(int(time.time()))
                         img_title = '.'.join([pic_name, img_type])
                         img_name = os.path.join(file_path, img_title).replace('\\', '/')
+                    time.sleep(10)
                     img_response = requests.get(img_url, timeout=50)
                     with open(img_name, 'wb') as f:
                         f.write(img_response.content)
@@ -309,5 +311,5 @@ def get_image_object(key_word=None):
 
 
 if __name__ == '__main__':
-    get_pic_page_url(u'国庆节')
-    # get_image_object()
+    # get_pic_page_url(u'杯子')
+    get_image_object(u'杯子')

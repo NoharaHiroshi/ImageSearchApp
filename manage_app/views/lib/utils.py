@@ -185,6 +185,7 @@ def get_all_tag():
     return jsonify(result)
 
 
+# 存储文章图片
 @lib.route('/editor/upload_image', methods=['POST'])
 def upload_article_image():
     result = {

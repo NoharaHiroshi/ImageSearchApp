@@ -19,7 +19,7 @@ declare var $: any;
 })
 
 export class HeaderComponent extends ListBaseComponent implements OnInit {
-	banner_list: any[];
+	banner_list: Banner[];
 	website_menu_list: any[];
 	hot_search_list: any[];
 	recommend_list: any[];
