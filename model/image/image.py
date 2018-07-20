@@ -51,6 +51,9 @@ class Image(Base):
     # 类型： 通常、封面、轮播图、权益图
     TYPE_COMMON, TYPE_COVER, TYPE_BANNER, TYPE_DISCOUNT = range(4)
 
+    # 色系
+    UNKNOWN, RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, PINK, BROWN, WHITE, BLACK, CYAN = range(12)
+
     id = Column(BigInteger, default=IdGenerator.gen, primary_key=True)
     # 名称
     name = Column(String(100), index=True)
@@ -82,6 +85,8 @@ class Image(Base):
     collect_count = Column(Integer, default=0, nullable=False, index=True)
     # 是否推荐
     is_recommend = Column(Boolean, default=False, index=True)
+    # 色系
+    color = Column(Integer, default=UNKNOWN, index=True)
 
     @property
     def img_full_url(self):
@@ -132,6 +137,7 @@ class Image(Base):
             'created_date': self.created_date.strftime('%Y-%m-%d %H:%M:%S'),
             'modified_date': self.modified_date.strftime('%Y-%m-%d %H:%M:%S'),
             'view_count': self.view_count,
+            'color': self.color,
             'download_count': self.download_count,
             'collect_count': self.collect_count
         }
