@@ -142,6 +142,7 @@ def get_filter_image_list():
     page = request.args.get('page', 1)
     image_format = request.args.get('format', u'all')
     selected_sort = request.args.get('sort', u'created_date')
+    color = request.args.get('color', u"0")
     limit = 20
     try:
         all_selected_images = list()
@@ -206,6 +207,30 @@ def get_filter_image_list():
                     query = query.order_by(-Image.download_count)
                 elif selected_sort == u'view':
                     query = query.order_by(-Image.view_count)
+
+                # 选择颜色
+                if int(color) == 1:
+                    query = query.filter(Image.color == Image.RED)
+                elif int(color) == 2:
+                    query = query.filter(Image.color == Image.ORANGE)
+                elif int(color) == 3:
+                    query = query.filter(Image.color == Image.YELLOW)
+                elif int(color) == 4:
+                    query = query.filter(Image.color == Image.GREEN)
+                elif int(color) == 5:
+                    query = query.filter(Image.color == Image.BLUE)
+                elif int(color) == 11:
+                    query = query.filter(Image.color == Image.CYAN)
+                elif int(color) == 6:
+                    query = query.filter(Image.color == Image.PURPLE)
+                elif int(color) == 7:
+                    query = query.filter(Image.color == Image.PINK)
+                elif int(color) == 8:
+                    query = query.filter(Image.color == Image.BROWN)
+                elif int(color) == 9:
+                    query = query.filter(Image.color == Image.WHITE)
+                elif int(color) == 10:
+                    query = query.filter(Image.color == Image.BLACK)
 
                 search_count = query.count() if query.count() else 0
                 paginator = SQLAlchemyPaginator(query, limit)

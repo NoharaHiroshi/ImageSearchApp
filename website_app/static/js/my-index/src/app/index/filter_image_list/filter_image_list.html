@@ -13,6 +13,19 @@
 					<span><a href="javascript:;" (click)="selectedSorted(all_image_sort[i])">{{sort_str}}</a></span>
 				</ng-container>
 			</div>
+			<div class="filter-image-list-color">颜色分类 :
+				<span><a class="color-red" href="javascript:;" (click)="selectedColor(1)"></a></span>
+				<span><a class="color-orange" href="javascript:;" (click)="selectedColor(2)"></a></span>
+				<span><a class="color-yellow" href="javascript:;" (click)="selectedColor(3)"></a></span>
+				<span><a class="color-green" href="javascript:;" (click)="selectedColor(4)"></a></span>
+				<span><a class="color-blue" href="javascript:;" (click)="selectedColor(5)"></a></span>
+				<span><a class="color-cyan" href="javascript:;" (click)="selectedColor(11)"></a></span>
+				<span><a class="color-purple" href="javascript:;" (click)="selectedColor(6)"></a></span>
+				<span><a class="color-pink" href="javascript:;" (click)="selectedColor(7)"></a></span>
+				<span><a class="color-brown" href="javascript:;" (click)="selectedColor(8)"></a></span>
+				<span><a class="color-white" href="javascript:;" (click)="selectedColor(9)"></a></span>
+				<span><a class="color-black" href="javascript:;" (click)="selectedColor(10)"></a></span>
+			</div>
 		</div>
 		<ng-container *ngIf="all_recommend_tag.length">
 			<div class="filter-image-list-recommend">为您推荐 :
