@@ -150,6 +150,18 @@ def get_filter_image_list():
         all_image_sort_dict = Image.all_image_sort()
         all_image_sort = [sort for sort in all_image_sort_dict]
         all_image_sort_str = [sort_str for sort_str in all_image_sort_dict.values()]
+        result.update({
+            'search': search,
+            'search_count': 0,
+            'all_image_format': all_image_format,
+            'all_image_sort': all_image_sort,
+            'all_image_sort_str': all_image_sort_str,
+            'meta': {
+                'cur_page': 1,
+                'all_page': 1,
+                'count': 0
+            }
+        })
         with get_session() as db_session:
             # 根据用户搜索条件查询推荐标签分组
             recommend_tag_list = list()
