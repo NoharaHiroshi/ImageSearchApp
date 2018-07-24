@@ -1700,12 +1700,23 @@ a{blr:expression(this.onFocus=this.blur());outline:none !important;text-decorati
     -webkit-box-shadow: 0 4px 6px 0 rgba(0,0,0,.2);
     box-shadow: 0 4px 6px 0 rgba(0,0,0,.2);
 }
+
 .filter-image-list-color .color-white{
 	margin: 0 10px;
 	display: inline-block;
 	width: 15px;
 	height: 15px;
 	background: rgba(255, 255, 255, .8);
+    -webkit-box-shadow: 0 4px 6px 0 rgba(0,0,0,.2);
+    box-shadow: 0 4px 6px 0 rgba(0,0,0,.2);
+}
+
+.filter-image-list-color .color-all{
+	margin: 0 10px;
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background: url(../img/color-all.jpg) no-repeat 0 0;
     -webkit-box-shadow: 0 4px 6px 0 rgba(0,0,0,.2);
     box-shadow: 0 4px 6px 0 rgba(0,0,0,.2);
 }
