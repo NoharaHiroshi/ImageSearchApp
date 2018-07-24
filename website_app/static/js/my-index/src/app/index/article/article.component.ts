@@ -82,8 +82,13 @@ export class ArticleComponent extends ListBaseComponent implements OnInit{
 	}
 	
 	clickReply(id: string): void {
-		$('#' + id).hide();
-		$('#textarea_' + id).show();
+		let self = this;
+		if(self.config.user){
+			$('#' + id).hide();
+			$('#textarea_' + id).show();
+		}else{
+			self.config.tipOut('登录之后才可以评论哦~', 'fail');
+		}
 	}
 	
 	deleteReply(id: string): void {

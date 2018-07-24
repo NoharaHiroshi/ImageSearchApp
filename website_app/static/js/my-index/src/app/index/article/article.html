@@ -29,7 +29,7 @@
 				您还没有<a href="/login" class="login">登录</a>，不能评论哦~
 			</div>
 		</ng-container>
-		<ng-container>
+		<ng-container *ngIf="config.user">
 			<div class="reply_introduce">Comment</div>
 			<div class="reply-textarea" id="textarea_{{article.id}}" style="display: block;">
 				<textarea class="reply-textarea-content" id="reply_{{article.id}}" rows="8"></textarea>
