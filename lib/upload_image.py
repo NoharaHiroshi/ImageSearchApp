@@ -11,6 +11,7 @@ from model.website.banner import Banner
 from model.base import IdGenerator, HashName
 from model.image.image_tags import ImageTags, ImageTagsRel
 from model.image.image_series import ImageSeries, ImageSeriesRel
+from script.handler_image_color import get_image_color
 
 
 # 为图片添加文字水印
@@ -85,6 +86,7 @@ def save_images(images, t=Image.TYPE_COMMON, series_ids=None, tag_ids=None):
             img.width = width
             img.mode = mode
             img.height = height
+            img.color = get_image_color(thumb_im, z=10)
             db_session.add(img)
 
             # 关联专题

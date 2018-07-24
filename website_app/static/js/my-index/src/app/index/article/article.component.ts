@@ -76,9 +76,11 @@ export class ArticleComponent extends ListBaseComponent implements OnInit{
 			if(self.config.authCheck(res)){
 				if(self.config.tipCheck(res)){
 					self.comment_list = res.comment_list;
+					$('#reply_' + id).val("");
 				}
 			}
 		})
+		
 	}
 	
 	clickReply(id: string): void {
