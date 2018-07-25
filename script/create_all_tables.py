@@ -26,6 +26,7 @@ from model.website.website_conf import WebsiteConf
 from model.website.article import Article, ArticleComment
 
 from model.script.script_58pic_image import PIC58Image, PIC58Background
+from model.script.script_3png_image import PIC3Image
 
 
 def create_all_tables():

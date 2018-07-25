@@ -8,6 +8,8 @@ import requests
 import time
 import traceback
 import lxml
+from model.script.script_3png_image import PIC3Image
+from model.session import get_session
 from urllib import quote
 from bs4 import BeautifulSoup as bs
 
@@ -79,23 +81,30 @@ def query_keyword(keyword):
     try:
         url = query_keyword_url
         base_url = 'http://3png.com'
-        result = {
-            'response': 'ok',
-            'code': 0,
-            'info': ''
-        }
         url = '%s%s' % (url, quote(keyword))
         response = get_requests(url, headers=headers)
         soup = bs(response.text, 'lxml')
         img_show_list = soup.select('.img-show > a')
         title_list = soup.select('.pic-title > h4')
+        page_list = soup.select('.page > ul > a > li')
+        max_page = page_list[-2].get_text()
         if img_show_list:
-            for i, img_show in enumerate(img_show_list):
-                img_show_href = img_show['href']
-                img_show_full_href = '%s%s' % (base_url, img_show_href)
-                title = title_list[i].get_text()
-                img_id = img_show_full_href.split('/')[-1].split('.')[0].split('-')[-1]
-
+            with get_session() as db_session:
+                for i, img_show in enumerate(img_show_list):
+                    img_show_href = img_show['href']
+                    img_show_full_href = '%s%s' % (base_url, img_show_href)
+                    title = title_list[i].get_text()
+                    img_id = img_show_full_href.split('/')[-1].split('.')[0].split('-')[-1]
+                    has_img = db_session.query(PIC3Image).filter(
+                        PIC3Image.pic_id == img_id
+                    ).first()
+                    if not has_img:
+                        img = PIC3Image()
+                        img.pic_name = title
+                        img.key_word = keyword
+                        img.pic_id = img_id
+                        db_session.add(img)
+                db_session.commit()
     except Exception as e:
         print traceback.format_exc(e)
 
