@@ -24,21 +24,26 @@ export class ImageTagConfComponent extends ListBaseComponent{
 	
 	page: number = 1;
 	
-	constructor(private service: ImageTagService) {
+	constructor(public route: ActivatedRoute, private service: ImageTagService, public router: Router) {
 		super();
 	}
 	
 	getPagerData(): void {
 		this.isLoading = true;
 		this.service.getImageTag(this.page).then(data => {
-        	this.image_tag_list = data.image_tag_list;
+			this.image_tag_list = data.image_tag_list;
 			this.page_info = data.meta;
 			this.isLoading = false;
-        });
+		});
 	}
 	
 	getPageNum(page: any): void{
+		let url = this.router.url.split('?')[0];
 		this.page = page;
+		let queryParams = {
+			'page': this.page
+		}
+		this.router.navigate([url], {queryParams: queryParams});
 		this.getPagerData();
 	}
 	

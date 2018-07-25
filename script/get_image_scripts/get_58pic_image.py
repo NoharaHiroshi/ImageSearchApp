@@ -311,5 +311,5 @@ def get_image_object(key_word=None):
 
 
 if __name__ == '__main__':
-    get_pic_page_url(u'戒指')
-    # get_image_object(u'杯子')
+    # get_pic_page_url(u'冰淇淋')
+    get_image_object(u'冰淇淋')

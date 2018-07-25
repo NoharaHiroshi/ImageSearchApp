@@ -29,6 +29,7 @@ export class ImageTagService extends BaseService {
 							let all_association_tag = self.jsonListToObjectList(image_tag['all_association_tag'], ImageAssociationTag);
 							image_tag['all_association_tag'] = all_association_tag;
 						}
+						json['page'] = page;
 	            	    return json;
 	               })
 	               .catch(this.handleError);

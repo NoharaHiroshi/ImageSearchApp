@@ -18,6 +18,8 @@ export class ListBaseComponent implements OnInit {
 	public curPage = 1;
 	public queryParams = {};
 	public current_url = window.location.hash.split('#')[1];
+	public route: any;
+	public router: any;
 	
     getPagerData(): void {}
 	
