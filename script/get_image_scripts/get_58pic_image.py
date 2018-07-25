@@ -33,7 +33,7 @@ def get_requests(url, headers=None, timeout=10, times=1, retry=5):
             return response
         else:
             print u'------------ 重试次数： %s -------------' % times
-            time.sleep(15)
+            time.sleep(10)
             times += 1
             if times <= retry:
                 get_requests(url, headers, times=times)
@@ -42,7 +42,7 @@ def get_requests(url, headers=None, timeout=10, times=1, retry=5):
     except Exception as e:
         print traceback.format_exc(e)
         print u'------------ 重试次数： %s -------------' % times
-        time.sleep(15)
+        time.sleep(10)
         times += 1
         if times <= retry:
             get_requests(url, headers, times=times)
@@ -58,7 +58,7 @@ def post_requests(url, data, headers=None, timeout=10, times=1, retry=5):
             return response
         else:
             print u'------------ 重试次数： %s -------------' % times
-            time.sleep(15)
+            time.sleep(10)
             times += 1
             if times <= retry:
                 get_requests(url, headers, times=times)
@@ -67,7 +67,7 @@ def post_requests(url, data, headers=None, timeout=10, times=1, retry=5):
     except Exception as e:
         print traceback.format_exc(e)
         print u'------------ 重试次数： %s -------------' % times
-        time.sleep(15)
+        time.sleep(10)
         times += 1
         if times <= retry:
             get_requests(url, headers, times=times)
@@ -163,7 +163,7 @@ def get_pic_page_url(keyword, page=1):
 
 
 def get_pic_image(base_url, page=1, all_page_count=None, key_word=None):
-    time.sleep(15)
+    time.sleep(10)
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 '
                       '(KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36',
@@ -292,6 +292,7 @@ def get_image_object(key_word=None):
                     img_url = image.pic_url.split('!')[0]
                     img_type = img_url.split('.')[-1]
                     img_title = '.'.join([image.pic_name, img_type])
+                    img_title = img_title.replace(r'<i>', '').replace(r'</i>', '')
                     print u'----------------- 正在获取%s 剩余%s----------------' % (img_title, all_image_count - count)
                     img_name = os.path.join(file_path, img_title).replace('\\', '/')
                     if os.path.exists(img_name):
@@ -311,5 +312,5 @@ def get_image_object(key_word=None):
 
 
 if __name__ == '__main__':
-    # get_pic_page_url(u'冰淇淋')
-    get_image_object(u'冰淇淋')
+    # get_pic_page_url(u'草莓')
+    get_image_object(u'草莓')
