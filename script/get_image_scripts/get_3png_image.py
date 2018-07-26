@@ -148,7 +148,7 @@ def query_keyword(keyword, url=None, page=1, max_page=None):
         print traceback.format_exc(e)
 
 
-def download_image(keyword):
+def download_image(keyword, error_count=5):
     download_url = 'http://3png.com/beha-down'
     headers = {
         'Accept': '*/*',
@@ -182,6 +182,7 @@ def download_image(keyword):
         file_path = os.path.join(file_url, keyword).replace('\\', '/')
         if not os.path.exists(file_path):
             os.makedirs(file_path)
+        code_count = 0
         for image in all_image:
             time.sleep(random.randint(3, 10))
             img_title = image.pic_name
@@ -199,14 +200,25 @@ def download_image(keyword):
             img_response = post_requests(download_url, data=data, timeout=50, headers=headers)
             response_result = json.loads(img_response.content)
             print img_response.content
-            download_image_url = response_result.get('url', None)
-            if download_image_url:
-                download_response = get_requests(url=download_image_url)
-                with open(img_name, 'wb') as f:
-                    f.write(download_response.content)
-                image.status = PIC3Image.STATUS_USED
-                count += 1
-                db_session.commit()
+            code = response_result.get('code', 0)
+            if int(code) == 1:
+                # 状态成功， 计数清零
+                code_count = 0
+                download_image_url = response_result.get('url', None)
+                if download_image_url:
+                    download_response = get_requests(url=download_image_url)
+                    with open(img_name, 'wb') as f:
+                        f.write(download_response.content)
+                    image.status = PIC3Image.STATUS_USED
+                    count += 1
+                    db_session.commit()
+            elif int(code) == -2:
+                code_count += 1
+                print u'当前code非正常次数%s' % code_count
+                if code_count > error_count:
+                    print u'达到最大重试次数，冷却600s后重试'
+                    time.sleep(600)
+                    code_count = 0
 
 if __name__ == '__main__':
     download_image(u'花')
