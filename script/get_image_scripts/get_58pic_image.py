@@ -140,13 +140,7 @@ def get_pic_page_url(keyword, page=1):
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 '
                       '(KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36',
         'Host': 'www.58pic.com',
-        'Cookie': 'message2=1; qt_visitor_id=%229038ec9d87070adab957c76c48909535%22; '
-                  'qt_ur_type=2; qt_createtime=1505923200; qt_type=2; '
-                  'qt_addtime=%222017-09-21%22; message2=1; '
-                  'qt_risk_visitor_id=%2235eb5141f45d662c1b14ae2e9ddd3499%22; '
-                  'awake=0; FIRSTVISITED=1527666893.22; ISREQUEST=1; '
-                  'imgCodeKey=%229b3a2031b62868dfedfccbc201b721a6%22; '
-                  'history_search=%22%7B%5C%22%25F4%25D5%25D7%25D3_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2Fzi.html%5C%22%2C%5C%22%25B0%25FC%25D7%25D3_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2Fbaozi.html%5C%22%2C%5C%22PNG%25C3%25E2%25BF%25D9%25CB%25D8%25B2%25C4_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2F33051222.html%5C%22%7D%22; historyKw=%22s%253A4%253A%2522%25F4%25D5%25D7%25D3%2522%253B%22; user-browser=%22baidu%22; Hm_lvt_644763986e48f2374d9118a9ae189e14=1527132950,1527666894,1527667035,1527738112; qt_updatetime=%222018-05-31%22; user:search:worlds:new_0_1=%22a%253A1%253A%257Bi%253A0%253Bs%253A4%253A%2522%25F4%25D5%25D7%25D3%2522%253B%257D%22; referer=%22http%3A%5C%2F%5C%2Fwww.58pic.com%5C%2Ftupian%5C%2Fzi.html%22; qt_utime=1527745630; qt_uid=%2212213845%22; Hm_lpvt_644763986e48f2374d9118a9ae189e14=1527745633',
+        'Cookie': 'message2=1; qt_visitor_id=%229796bee14facdbca3c0d308954c97f0a%22; qt_createtime=1531792330; qt_uid=0; qt_type=0; awake=0; qt_addtime=%222018-07-17%22; message2=1; user-browser=%22baidu%22; FIRSTVISITED=1532411218.817; Hm_lvt_644763986e48f2374d9118a9ae189e14=1532422587,1532483426,1532509028,1532916591; qt_updatetime=%222018-07-30%22; 1490c6811c510539f99068d1b8b4e2ba=%22124.126.0.122%22; user:search:worlds:new_0_1=%22a%253A5%253A%257Bi%253A0%253Bs%253A4%253A%2522%25BD%25F0%25BD%25DB%2522%253Bi%253A1%253Bs%253A4%253A%2522%25D3%25A3%25CC%25D2%2522%253Bi%253A2%253Bs%253A4%253A%2522%25B9%25F0%25D4%25B2%2522%253Bi%253A3%253Bs%253A4%253A%2522%25C1%25FA%25D1%25DB%2522%253Bi%253A4%253Bs%253A2%253A%2522%25B9%25B7%2522%253B%257D%22; referer=%22http%3A%5C%2F%5C%2Fwww.58pic.com%5C%2Ftupian%5C%2F41107483.html%22; history_search=%22%7B%5C%22%25B9%25B7_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2F41107483.html%5C%22%2C%5C%22%25C1%25FA%25D1%25DB_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2Flongyan.html%5C%22%2C%5C%22%25B9%25F0%25D4%25B2_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2Fguiyuan.html%5C%22%2C%5C%22%25D3%25A3%25CC%25D2_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2Fyingtao.html%5C%22%2C%5C%22%25BD%25F0%25BD%25DB_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2Fjinjie.html%5C%22%2C%5C%22%25B5%25B0%25B8%25E2_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2Fdangao.html%5C%22%2C%5C%22%25B2%25DD%25DD%25AE_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2F1173.html%5C%22%2C%5C%22%25C7%25C9%25BF%25CB%25C1%25A6_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2F42165387.html%5C%22%2C%5C%22%25D1%25A9%25B8%25E2_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2Fxuegao.html%5C%22%2C%5C%22%25B1%25F9%25E4%25BF%25C1%25DC_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2Fbinglin.html%5C%22%2C%5C%22%25CA%25F7_%5C%22%3A%5C%22%5C%5C%5C%2Ftupian%5C%5C%5C%2F36318070.html%5C%22%7D%22; historyKw=%22s%253A2%253A%2522%25B9%25B7%2522%253B%22; qt_utime=1532921341; Hm_lpvt_644763986e48f2374d9118a9ae189e14=1532921344',
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
         'Accept-Encoding': 'gzip, deflate',
         'Accept-Language': 'zh-CN,zh;q=0.9',
@@ -197,13 +191,14 @@ def get_pic_image(base_url, page=1, all_page_count=None, key_word=None):
         response.encoding = 'gbk'
         if response.status_code == 200:
             soup = bs(response.text, 'lxml')
-            img_resource_list = soup.select('.flow-item')
+            img_resource_list = soup.select('.flow-item')[:-2]
             page_info = soup.select('.classify-pages')[0].get_text()
             all_page = int(page_info.split(r'/')[-1])
             if img_resource_list:
                 with get_session() as db_session:
                     print u'-------------- 获取第%s页内容success -----------------' % page
                     for img_resource in img_resource_list:
+                        print img_resource
                         img_id_info = img_resource.select('.card-img > a')[0]
                         _img_info = img_resource.select('.card-img > a > img')
                         if len(_img_info):
@@ -312,5 +307,5 @@ def get_image_object(key_word=None):
 
 
 if __name__ == '__main__':
-    # get_pic_page_url(u'草莓')
-    get_image_object(u'草莓')
+    # get_pic_page_url(u'狗', page=4)
+    get_image_object(u'狗')

@@ -172,7 +172,7 @@ def get_filter_image_list():
                 ImageTags.name.like('%' + search + '%')
             ).first()
             if association_tag or main_tag:
-                tag_id = association_tag.tag_id if association_tag else main_tag.id
+                tag_id = main_tag.id if main_tag else association_tag.id
                 # 推荐标签组
                 recommend_tags = db_session.query(ImageRecommendTagsRel).filter(
                     ImageRecommendTagsRel.tag_id == tag_id

@@ -159,8 +159,8 @@ def download_image(keyword, error_count=500):
         'Cookie': 'UM_distinctid=1639018ae2914a-03bd3da834d279-3e3d5307-1aeaa0-1639018ae2aa4c; '
                   'PHPSESSID=ni5ael6fobl8osg14pa2eckbl6; '
                   'Hm_lvt_7c98f23e75ca58af5a589dcae3391616=1532510012; '
-                  'CNZZDATA1261035286=1685858532-1527130688-%7C1532673287; '
-                  'Hm_lpvt_7c98f23e75ca58af5a589dcae3391616=1532677558',
+                  'CNZZDATA1261035286=1685858532-1527130688-%7C1532917931; '
+                  'Hm_lpvt_7c98f23e75ca58af5a589dcae3391616=1532919142',
         'Host': '3png.com',
         'Origin': 'http://3png.com',
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 '
@@ -184,7 +184,7 @@ def download_image(keyword, error_count=500):
             os.makedirs(file_path)
         code_count = 0
         for image in all_image:
-            time.sleep(random.randint(5, 15))
+            # time.sleep(random.randint(5, 15))
             img_title = image.pic_name
             img_title = '.'.join([img_title, 'png'])
             img_name = os.path.join(file_path, img_title).replace('\\', '/')
@@ -221,4 +221,5 @@ def download_image(keyword, error_count=500):
                     code_count = 0
 
 if __name__ == '__main__':
-    download_image(u'花')
+    query_keyword('龙眼')
+    # download_image(u'桃子')
